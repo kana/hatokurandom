@@ -587,6 +587,13 @@ var hatokurandom = {};
     return pid.replace(/:.*/, '');
   };
 
+  H.card_from_card_name = function (card_name) {  //{{{2
+    var card = H.CARD_NAME_TO_CARD_TABLE[card_name];
+    if (card === undefined)
+      throw new Error('Card name "' + card_name + '" is not valid.');
+    return card;
+  };
+
   H.card_from_cid = function (cid) {  //{{{2
     var card = H.CID_TO_CARD_TABLE[cid];
     if (card === undefined)

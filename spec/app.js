@@ -9,6 +9,17 @@
       expect(H.apid_from_pid('supply:basic-firstplay')).toEqual('supply');
     });
   });
+  describe('card_from_card_name', function () {
+    it('should return the corresponding card from a card name', function () {
+      var card = H.CARDS[0];
+      expect(H.card_from_card_name(card.name)).toBe(card);
+    });
+    it('should raise error if a given card name is not valid', function () {
+      expect(function () {H.card_from_card_name('クノイチ');}).not.toThrow();
+      expect(function () {H.card_from_card_name('くのいち');}).toThrow();
+      expect(function () {H.card_from_card_name('くノ一');}).toThrow();
+    });
+  });
   describe('card_from_cid', function () {
     it('should return the corresponding card from a given cid', function () {
       var card = H.CARDS[0];
