@@ -846,7 +846,14 @@ var hatokurandom = {};
     var has_parent = !!parent_pid;
     var parent_meta = has_parent && H.meta_from_pid(parent_pid);
     var sid = H.sid_from_pid(pid);
-    var xcards = H.xcards_from_sid(sid);
+    var xcards =
+      H.order_by(
+        H.xcards_from_sid(sid),
+        function (xcard) {return xcard.dropped ? 2 : 1;},
+        function (xcard) {return xcard.cost;},
+        function (xcard) {return xcard.link;},
+        function (xcard) {return xcard.name;}
+      );
 
     var $content = H.render('supply_template', {
       back_pid: parent_pid,
