@@ -653,6 +653,13 @@ var hatokurandom = {};
     ).join('');
   };
 
+  H.meta_from_pid = function (pid) {  //{{{2
+    var meta = H.PID_TO_META_TABLE[pid];
+    if (meta === undefined)
+      throw new Error('PID "' + pid + '" is not valid.');
+    return meta;
+  };
+
   H.pid_from_url = function (url) {  //{{{2
     return url.hash.substring(1);
   };
