@@ -684,6 +684,26 @@ var hatokurandom = {};
     };
   };
 
+  H.order_by = function (xs /* , key_selector1, ... */) {  //{{{2
+    var _xs = xs.slice(0);
+    var key_selectors = arguments;
+    _xs.sort(function (a, b) {
+      for (var i = 1; i < key_selectors.length; i++) {
+        var ka = key_selectors[i](a);
+        var kb = key_selectors[i](b);
+
+        if (ka < kb)
+          return -1;
+        else if (kb < ka)
+          return 1;
+        else
+          continue;
+      }
+      return 0;
+    });
+    return _xs;
+  };
+
   H.parent_pid_from_pid = function (pid) {  //{{{2
     var parend_pid = H.PID_TO_PARENT_PID_TABLE[pid];
     if (parend_pid === undefined) {

@@ -169,6 +169,45 @@
       expect(H.meta_from_rsid('This is not a valid rsid!')).toEqual(meta);
     });
   });
+  describe('order_by', function () {
+    it('should sort a array with key selectors', function () {
+      var xs = [
+        {car: 123, cdr: '9'},
+        {car: 23, cdr: '9'},
+        {car: 23, cdr: '700'},
+        {car: 23, cdr: '80'},
+        {car: 3, cdr: '9'}
+      ];
+      var xsd =
+        H.order_by(
+          xs,
+          function (x) {return x.car;},
+          function (x) {return x.cdr;}
+        );
+      expect(xsd.length).toEqual(xs.length);
+      expect(xsd[0]).toBe(xs[4]);
+      expect(xsd[1]).toBe(xs[2]);
+      expect(xsd[2]).toBe(xs[3]);
+      expect(xsd[3]).toBe(xs[1]);
+      expect(xsd[4]).toBe(xs[0]);
+    });
+    it('should return a new array, not sort in-place', function () {
+      var xs = [
+        {car: 123, cdr: '9'},
+        {car: 23, cdr: '9'},
+        {car: 23, cdr: '700'},
+        {car: 23, cdr: '80'},
+        {car: 3, cdr: '9'}
+      ];
+      expect(
+        H.order_by(
+          xs,
+          function (x) {return x.cdr;},
+          function (x) {return x.car;}
+        )
+      ).not.toBe(xs);
+    });
+  });
   describe('parent_pid_from_pid', function () {
     var f = H.parent_pid_from_pid;
     it('should return the parent pid from a given pid', function () {
