@@ -746,6 +746,25 @@ var hatokurandom = {};
     );
   };
 
+  H.rsid_from_xcards = function (xcards) {  //{{{2
+    // See also H.xcards_from_rsid.
+    var bs = [];
+
+    var version = 0x01;
+    bs.push(version);
+
+    var sorted_xcards = H.order_by(xcards, function (xc) {return xc.cid;});
+    for (var i in sorted_xcards) {
+      var xcard = sorted_xcards[i];
+      var bd = xcard.dropped ? 1 : 0;
+      var bcid = xcard.cid;
+      bs.push((bd << 5) | (bcid >> 6));
+      bs.push(bcid & ((1 << 6) - 1));
+    }
+
+    return H.encode_base64xml(bs);
+  };
+
   H.sid_from_pid = function (pid) {  //{{{2
     return pid.replace(/.*:/, '');
   };
