@@ -31,6 +31,19 @@
       expect(function () {H.card_from_cid('xxx');}).toThrow();
     });
   });
+  describe('card_names_from_psid', function () {
+    var f = H.card_names_from_psid;
+    it('should return card names from a given psid', function () {
+      var psid = 'basic-firstplay';
+      var card_names = H.PSID_TO_CARD_NAMES_TABLE[psid];
+      expect(f(psid)).toBe(card_names);
+    });
+    it('should raise error if a given cid is not valid', function () {
+      expect(function () {f('basic-guide');}).not.toThrow();
+      expect(function () {f('Basic-Guide');}).toThrow();
+      expect(function () {f('basic');}).toThrow();
+    });
+  });
   describe('decode_base64xml', function () {
     it('should decode a character to a 6-bit value', function () {
       for (var c in H.BASE64XML_DECODING_TABLE)

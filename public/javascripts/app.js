@@ -601,6 +601,13 @@ var hatokurandom = {};
     return card;
   };
 
+  H.card_names_from_psid = function (psid) {  //{{{2
+    var card_names = H.PSID_TO_CARD_NAMES_TABLE[psid];
+    if (card_names === undefined)
+      throw new Error('PSID "' + psid + '" is not valid.');
+    return card_names;
+  };
+
   H.decode_base64xml = function (base64xml_encoded_string) {  //{{{2
     return $.map(
       base64xml_encoded_string.split(''),
