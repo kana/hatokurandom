@@ -810,11 +810,12 @@ var hatokurandom = {};
     var meta = H.meta_from_pid(pid);
     var child_pids = H.child_pids_from_pid(pid);
     var parent_pid = H.parent_pid_from_pid(pid);
-    var parent_meta = H.meta_from_pid(parent_pid);
+    var has_parent = !!parent_pid;
+    var parent_meta = has_parent && H.meta_from_pid(parent_pid);
 
     var $content = H.render('supplies_template', {
       back_pid: parent_pid,
-      back_label: parent_meta.short_title,
+      back_label: has_parent && parent_meta.short_title,
       title: meta.long_title
     });
     var $supplies = $content.find('.supplies');
@@ -826,6 +827,7 @@ var hatokurandom = {};
         title: child_meta.long_title
       }));
     }
+    $content.find('.back').toggleClass('unavailable', !has_parent);
 
     var $page = $('#' + H.apid_from_pid(pid));
     $page
