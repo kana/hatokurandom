@@ -1,4 +1,23 @@
 (function (H, $) {
+  describe('decode_base64xml', function () {
+    it('should decode a character to a 6-bit value', function () {
+      for (var c in H.BASE64XML_DECODING_TABLE)
+        expect(H.decode_base64xml(c)).toEqual([H.BASE64XML_DECODING_TABLE[c]]);
+    });
+    it('should decode a string to an array of 6-bit values', function () {
+      expect(H.decode_base64xml('L0vE')).toEqual([0x0b, 0x34, 0x2f, 0x04]);
+    });
+    it('should fail to decode an invalid character', function () {
+      expect(function () {H.decode_base64xml('ThisIsValid');}).not.toThrow();
+      expect(function () {H.decode_base64xml('This is not valid');}).toThrow();
+    });
+    it('should decode original values from an encoded string', function () {
+      var values = [0x0b, 0x34, 0x2f, 0x04];
+      expect(H.decode_base64xml(H.encode_base64xml(values))).toEqual(values);
+      var string = 'FOO-bar.bz2';
+      expect(H.encode_base64xml(H.decode_base64xml(string))).toEqual(string);
+    });
+  });
   describe('encode_base64xml', function () {
     it('should encode a 6-bit value to a character', function () {
       for (var v in H.BASE64XML_ENCODING_TABLE)

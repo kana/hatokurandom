@@ -421,6 +421,25 @@ var hatokurandom = {};
     })();
 
   // Utilities  //{{{1
+  H.decode_base64xml = function (base64xml_encoded_string) {  //{{{2
+    return $.map(
+      base64xml_encoded_string.split(''),
+      function (c) {
+        var b = H.BASE64XML_DECODING_TABLE[c];
+        if (b === undefined) {
+          throw new Error(
+            'Character '
+            + c
+            + ' in '
+            + base64xml_encoded_string
+            + ' is out of range; it can not be decoded.'
+          );
+        }
+        return b;
+      }
+    );
+  };
+
   H.encode_base64xml = function (six_bit_buffer) {  //{{{2
     return $.map(
       six_bit_buffer,
