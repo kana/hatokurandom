@@ -79,6 +79,15 @@ var hatokurandom = {};
       return t;
     })();
 
+  H.CARD_NAME_TO_CARD_TABLE =  //{{{2
+    (function () {
+      var t = {};
+      $.each(H.CARDS, function (_, c) {
+        t[c.name] = c;
+      });
+      return t;
+    })();
+
   // Utilities  //{{{1
   H.render = function (tid, data) {  //{{{2
     var _data = data || {};
