@@ -660,6 +660,13 @@ var hatokurandom = {};
     return meta;
   };
 
+  H.parent_pid_from_pid = function (pid) {  //{{{2
+    var parend_pid = H.PID_TO_PARENT_PID_TABLE[pid];
+    if (parend_pid === undefined)
+      throw new Error('PID "' + pid + '" is not valid.');
+    return parend_pid;
+  };
+
   H.pid_from_url = function (url) {  //{{{2
     return url.hash.substring(1);
   };

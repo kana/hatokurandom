@@ -102,6 +102,17 @@
       expect(function () {f('supply');}).toThrow();
     });
   });
+  describe('parent_pid_from_pid', function () {
+    var f = H.parent_pid_from_pid;
+    it('should return the parent pid from a given pid', function () {
+      expect(f('supplies:basic')).toEqual('home');
+    });
+    it('should raise error if a given pid is not valid', function () {
+      expect(function () {f('supplies:basic');}).not.toThrow();
+      expect(function () {f('Supplies:basic');}).toThrow();
+      expect(function () {f('supply');}).toThrow();
+    });
+  });
   describe('pid_from_url', function () {
     it('should return pid from a url object', function () {
       expect(H.pid_from_url($.mobile.path.parseUrl('/')))
