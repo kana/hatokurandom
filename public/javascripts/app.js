@@ -12,6 +12,10 @@ var hatokurandom = {};
   // pid: Page ID
 
   // Constants  //{{{1
+  H.EXPANSIONS = [  //{{{2
+    {eid: 1, name: '基本セット'},
+    {eid: 2, name: '極東辺境領'}
+  ];
 
   // Utilities  //{{{1
   H.render = function (tid, data) {  //{{{2
