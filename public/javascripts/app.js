@@ -411,6 +411,15 @@ var hatokurandom = {};
     0x3c: '8', 0x3d: '9', 0x3e: '.', 0x3f: '-'
   };
 
+  H.BASE64XML_DECODING_TABLE =  //{{{2
+    (function () {
+      var t = {};
+      $.each(H.BASE64XML_ENCODING_TABLE, function (key, value) {
+        t[value] = parseInt(key);
+      });
+      return t;
+    })();
+
   // Utilities  //{{{1
   H.render = function (tid, data) {  //{{{2
     var _data = data || {};
