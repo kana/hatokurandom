@@ -869,7 +869,6 @@ var hatokurandom = {};
       var xcard = xcards[i];
       $supply.append(H.render('supply_item_template', xcard));
     }
-    $content.find('.random-only').toggleClass('unavailable', !H.is_rsid(sid));
 
     // FIXME: DRY
     // The tails parts of H.prepare_supplies_page and H.prepare_supply_page

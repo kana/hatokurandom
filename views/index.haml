@@ -15,9 +15,6 @@
       def as_page
         {data: {role: 'page'}}
       end
-      def as_footer
-        {data: {role: 'footer', position: 'fixed'}}
-      end
       def as_content
         {data: {role: 'content'}}
       end
@@ -171,10 +168,6 @@
         %div{as_content}
           %ul.supply{as_listview}
             -# #supply_item_template
-        %div{as_footer}
-          %a.refresh.random-only{as_button, {data: {icon: 'refresh'}}} 再選択
-          %a.share{as_button, {data: {icon: 'arrow-u'}}} 共有
-          %a.configure.random-only{as_button, {data: {icon: 'gear'}}} 設定
       %ul#supply_item_template
         %li
           -# %a(href='#card:{{cid}}') {{cost}} {{name}}
