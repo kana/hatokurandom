@@ -1,4 +1,17 @@
 (function (H, $) {
+  describe('encode_base64xml', function () {
+    it('should encode a 6-bit value to a character', function () {
+      for (var v in H.BASE64XML_ENCODING_TABLE)
+        expect(H.encode_base64xml([v])).toEqual(H.BASE64XML_ENCODING_TABLE[v]);
+    });
+    it('should encode 6-bit values to a string', function () {
+      expect(H.encode_base64xml([0x0b, 0x34, 0x2f, 0x04])).toEqual('L0vE');
+    });
+    it('should fail to encode a value greater than 0x3f', function () {
+      expect(function () {H.encode_base64xml([0x3f]);}).not.toThrow();
+      expect(function () {H.encode_base64xml([0x40]);}).toThrow();
+    });
+  });
   describe('render', function () {
     beforeEach(function () {
       $('body').append('<div id="test1"><span>hi <em>hi</em> hi</span></div>');
