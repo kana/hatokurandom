@@ -9,6 +9,17 @@
       expect(H.apid_from_pid('supply:basic-firstplay')).toEqual('supply');
     });
   });
+  describe('card_from_cid', function () {
+    it('should return the corresponding card from a given cid', function () {
+      var card = H.CARDS[0];
+      expect(H.card_from_cid(card.cid)).toBe(card);
+    });
+    it('should raise error if a given cid is not valid', function () {
+      expect(function () {H.card_from_cid(0x01);}).not.toThrow();
+      expect(function () {H.card_from_cid(-0x01);}).toThrow();
+      expect(function () {H.card_from_cid('xxx');}).toThrow();
+    });
+  });
   describe('decode_base64xml', function () {
     it('should decode a character to a 6-bit value', function () {
       for (var c in H.BASE64XML_DECODING_TABLE)
