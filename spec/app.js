@@ -44,6 +44,19 @@
       expect(function () {f('basic');}).toThrow();
     });
   });
+  describe('child_pids_from_pid', function () {
+    var f = H.child_pids_from_pid;
+    it('should return child pids from a given pid', function () {
+      var pid = 'supplies:basic';
+      var child_pids = H.PID_TO_CHILD_PIDS_TABLE[pid];
+      expect(f(pid)).toBe(child_pids);
+    });
+    it('should raise error if a given pid is not valid', function () {
+      expect(function () {f('supplies:basic');}).not.toThrow();
+      expect(function () {f('Supplies:basic');}).toThrow();
+      expect(function () {f('supply');}).toThrow();
+    });
+  });
   describe('decode_base64xml', function () {
     it('should decode a character to a 6-bit value', function () {
       for (var c in H.BASE64XML_DECODING_TABLE)

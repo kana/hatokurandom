@@ -608,6 +608,13 @@ var hatokurandom = {};
     return card_names;
   };
 
+  H.child_pids_from_pid = function (pid) {  //{{{2
+    var child_pids = H.PID_TO_CHILD_PIDS_TABLE[pid];
+    if (child_pids === undefined)
+      throw new Error('PID "' + pid + '" is not valid.');
+    return child_pids;
+  };
+
   H.decode_base64xml = function (base64xml_encoded_string) {  //{{{2
     return $.map(
       base64xml_encoded_string.split(''),
