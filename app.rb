@@ -15,6 +15,10 @@ class App < Sinatra::Application
   get '/' do
     haml :index
   end
+
+  get '/spec' do
+    send_file 'public/spec.html'
+  end
 end
 
 
