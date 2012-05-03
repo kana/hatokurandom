@@ -7,7 +7,7 @@ require 'sinatra'
 
 class App < Sinatra::Application
   NAME = 'hatokurandom'
-  GITHUB_REPOS_URI = 'GITHUB_REPOS_URI'  # FIXME
+  GITHUB_REPOS_URI = 'https://github.com/kana/hatokurandom'
 
   get '/' do
     haml :index
