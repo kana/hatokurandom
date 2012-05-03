@@ -47,8 +47,111 @@
 
     {name: '噂好きの公爵夫人', type: '継承権', cost: 6, link: 0, set: '基本セット'}
   ];  //}}}
+  var CARD_TABLE =
+    (function () {
+      var t = {};
+      $.each(CARDS, function (_, c) {
+        t[c.name] = c;
+      });
+      return t;
+    })();
+
+  var CARD_NAMES_TABLE = {
+    'basic-firstplay': [  //{{{
+      '斥候',
+      '願いの泉',
+      '早馬',
+      '交易船',
+      '御用商人',
+      '補給部隊',
+      '図書館',
+      '都市開発',
+      '冒険者',
+      '錬金術師'
+    ]  //}}}
+    // FIXME: Add missing definitions.
+  };
+
+  var replace_content = function ($page, cards) {
+    var _cards = cards.slice(0);
+    _cards.sort(function (c1, c2) {
+      var r = c1.cost - c2.cost;
+      if (r != 0)
+        return r;
+      if (c1.name < c2.name)
+        return -1;
+      if (c1.name > c2.name)
+        return 1;
+      return 0;
+    });
+
+    $page.empty();
+    $.each(_cards, function (_, c) {
+      $page.append(
+        $(
+          $('#card-template').html().replace(
+            /{{([^{}]+)}}/g,
+            function (_, key) {
+              return c[key];
+            }
+          )
+        )
+      );
+    });
+  };
+
+  var choose_a_random_supply = function (count) {
+    var rest_cards = CARDS.slice(0);
+    var cs = [];
+    for (var i = 1; i <= count; i++) {
+      var j = Math.floor(Math.random() * rest_cards.length);
+      var c = rest_cards[j];
+      rest_cards.splice(j, 1);
+      cs.push(c);
+    }
+    return cs;
+  };
+
+  var choose_a_fixed_supply = function (supply_id) {
+    var card_names = CARD_NAMES_TABLE[supply_id];
+    if (!card_names) {
+      alert('Error: No such card set "' + supply_id + '"');
+      return [];
+    }
+
+    var cs =
+      $.map(card_names, function (n) {
+        var c = CARD_TABLE[n];
+        if (c == null) {
+          alert('Error: No such card "' + n + '"');
+          return null;
+        }
+        return c;
+      });
+    return $.grep(cs, function (c) {return c != null;});
+  };
 
   $(document).ready(function () {
+    // Create a page for each supply.
+    $('.generate').each(function () {
+      $('body').append(
+        $('<ul>')
+        .attr('id', $(this).attr('href').substring(1))
+        .attr('title', $.trim($(this).text()))
+      );
+    });
+
+    $('.generate').click(function () {
+      var id = $(this).attr('href').substring(1);
+      var $page = $('#' + id);
+      if (/^random-/.test(id)) {
+        var count = id.substring('random-'.length);
+        replace_content($page, choose_a_random_supply(count));
+      } else {
+        var supply_id = id;
+        replace_content($page, choose_a_fixed_supply(supply_id));
+      }
+    });
   });
 })(jQuery);
 
