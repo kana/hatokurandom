@@ -6,7 +6,7 @@ require 'sinatra'
 
 
 class App < Sinatra::Application
-  NAME = 'NAME'  # FIXME
+  NAME = 'hatokurandom'
   GITHUB_REPOS_URI = 'GITHUB_REPOS_URI'  # FIXME
 
   get '/' do
