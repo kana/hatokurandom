@@ -2,26 +2,151 @@
 %html
   %head
     %title= App::NAME
+    %meta(name='viewport' content='width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;')
+    %link(rel='stylesheet' href='/stylesheets/iui/iui.css' type='text/css')
+    %link(rel='stylesheet' href='/stylesheets/iui/t/default/default-theme.css' type='text/css')
     %script(src='http://code.jquery.com/jquery-1.7.2.min.js' type='text/javascript')
+    %script(src='/javascripts/iui/iui.js' type='text/javascript')
+    %script(src='/javascripts/app.js' type='text/javascript')
   %body
-    #header
-      %h1= App::NAME
+    .toolbar
+      %h1#pageTitle
+      %a#backButton.button(href='#')
 
-    #footer
-      %address
-        = App::NAME
-        @@VERSION@@
-        &#x2014;
-        Copyright &copy; 2012 
-        %a(href='http://whileimautomaton.net/') Kana Natsuno
-        (
-        %a(href='http://twitter.com/kana1')> @kana1
-        )
-        &#x2014;
-        %a(href='#{App::GITHUB_REPOS_URI}')
-        Watch changes
-        &#x2014;
-        %a(href='#{App::GITHUB_REPOS_URI}/issues')
-        Report issues
+    %ul#home(title='#{App::NAME}' selected='true')
+      %li
+        %a(href='#random')
+          ランダムにサプライを生成
+      %li
+        %a(href='#basic')
+          推奨カードセット(基本セット)
+      %li
+        %a(href='#fareast')
+          推奨カードセット(極東辺境領)
+      %li
+        %a(href='#championship')
+          世界選手権
+      %li
+        %a(href='#about')
+          About this application
+
+    %ul#random(title='ランダムにサプライを生成')
+      %li
+        %a(href='#random-10' class='generate')
+          ランダムに10種類を選択
+      %li
+        %a(href='#random-12' class='generate')
+          ランダムに12種類を選択
+      %li
+        %a(href='#random-13' class='generate')
+          ランダムに13種類を選択
+      %li
+        %a(href='#random-14' class='generate')
+          ランダムに14種類を選択
+
+    %ul#basic(title='推奨カードセット(基本セット)')
+      %li
+        %a(href='#basic-firstplay' class='generate')
+          ファーストプレイ
+      %li
+        %a(href='#basic-guide' class='generate')
+          入門用
+      %li
+        %a(href='#basic-guide2' class='generate')
+          入門用その2
+      %li
+        %a(href='#basic-intermediate' class='generate')
+          中級用
+      %li
+        %a(href='#basic-intermediate2' class='generate')
+          中級用その2
+      %li
+        %a(href='#basic-bigbusiness' class='generate')
+          ビッグビジネス
+      %li
+        %a(href='#basic-greatwar' class='generate')
+          大戦争
+      %li
+        %a(href='#basic-adventure' class='generate')
+          冒険行
+      %li
+        %a(href='#basic-witchcraft' class='generate')
+          ワルプルギスの夜
+      %li
+        %a(href='#basic-courtpolitics' class='generate')
+          宮廷政治
+
+    %ul#fareast(title='推奨カードセット(極東辺境領)')
+      %li
+        %a(href='#fareast-firstplay' class='generate')
+          初めてのハトクラ
+      %li
+        %a(href='#fareast-porttown' class='generate')
+          港町の攻防
+      %li
+        %a(href='#fareast-prosperity' class='generate')
+          交易と繁栄
+      %li
+        %a(href='#fareast-mine' class='generate')
+          豊かな鉱脈
+      %li
+        %a(href='#fareast-citystrife' class='generate')
+          都市間抗争
+      %li
+        %a(href='#fareast-scandal' class='generate')
+          開発の醜聞
+      %li
+        %a(href='#fareast-battlefield' class='generate')
+          戦場の絆
+      %li
+        %a(href='#fareast-guildstrife' class='generate')
+          ギルド間抗争
+      %li
+        %a(href='#fareast-kunoichi' class='generate')
+          クノイチ忍法帖
+      %li
+        %a(href='#fareast-moneymoneymoney' class='generate')
+          金に色無し
+
+    %ul#championship(title='世界選手権')
+      %li
+        %a(href='#championship-prelims1' class='generate')
+          予選第1回戦
+      %li
+        %a(href='#championship-prelims2' class='generate')
+          予選第2回戦
+      %li
+        %a(href='#championship-prelims3' class='generate')
+          予選第3回戦
+      %li
+        %a(href='#championship-semifinals' class='generate')
+          準決勝
+      %li
+        %a(href='#championship-finals' class='generate')
+          決勝
+
+    #about(title='About this application' class='panel')
+      %fieldset
+        %ul
+          %li
+            = App::NAME
+            @@VERSION@@
+          %li
+            Copyright &copy; 2012
+            %a(href='http://whileimautomaton.net/' target='_blank') Kana Natsuno
+            (
+            %a(href='http://twitter.com/kana1' target='_blank')> @kana1
+            )
+          %li
+            %a(href='#{App::GITHUB_REPOS_URI}' target='_blank')
+              Watch changes
+          %li
+            %a(href='#{App::GITHUB_REPOS_URI}/issues' target='_blank')
+              Report issues
+
+    #internal.hidden
+      #card-template
+        %li<
+          {{cost}} {{name}}
 
 -# __END__
