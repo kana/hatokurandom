@@ -1,3 +1,5 @@
+# coding: utf-8
+
 require 'cgi'
 require 'haml'
 require 'sinatra'
@@ -6,7 +8,7 @@ require 'sinatra'
 
 
 class App < Sinatra::Application
-  NAME = 'hatokurandom'
+  NAME = 'ハトクランダム'
   GITHUB_REPOS_URI = 'https://github.com/kana/hatokurandom'
 
   get '/' do
