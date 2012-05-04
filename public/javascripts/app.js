@@ -406,6 +406,10 @@
           list_to($page, 'card-template', c);
         });
       });
+
+    if (cards.length <= 10) {
+      $page.find('.dropped:checkbox').remove();
+    }
   };
 
   var choose_a_random_supply = function (count) {
