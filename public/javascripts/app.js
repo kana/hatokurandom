@@ -360,6 +360,17 @@
     '': []
   };
 
+  var render = function (template_id, data) {
+    return $(
+      $('#' + template_id).html().replace(
+        /{{([^{}]+)}}/g,
+        function (_, key) {
+          return data[key];
+        }
+      )
+    )
+  };
+
   var replace_content = function ($page, cards) {
     var _cards = cards.slice(0);
     _cards.sort(function (c1, c2) {
@@ -374,17 +385,8 @@
     });
 
     $page.empty();
-    $.each(_cards, function (_, c) {
-      $page.append(
-        $(
-          $('#card-template').html().replace(
-            /{{([^{}]+)}}/g,
-            function (_, key) {
-              return c[key];
-            }
-          )
-        )
-      );
+    $.each(_cards, function (i, c) {
+      $page.append(render('card-template', c));
     });
   };
 
