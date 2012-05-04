@@ -480,6 +480,11 @@
     });
     $(window).trigger('hashchange');
 
+    $(document).on('change', '.dropped:checkbox', function () {
+      $(this).parents('.card')
+        .toggleClass('dropped', $(this).attr('checked') != null);
+    });
+
     // Show a supply if the current page is directly opened via bookmarks etc.
     show_the_current_supply();
   });

@@ -8,3 +8,14 @@ ul.simple
   list-style-type: none;
   padding-left: 1em;
 }
+
+.card > label
+{
+  display: block;
+}
+
+.dropped.card
+{
+  color: #999;
+  background: #eee;
+}
