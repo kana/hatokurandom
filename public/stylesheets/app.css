@@ -19,3 +19,15 @@ ul.simple
   color: #999;
   background: #eee;
 }
+
+.toolbar,
+.toolbar > *
+{
+  position: fixed !important;
+  z-index: 1;
+}
+
+.toolbar
+{
+  width: 100%;
+}
