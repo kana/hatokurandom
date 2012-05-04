@@ -448,6 +448,11 @@
         replace_content($page, choose_a_fixed_supply(supply_id));
       }
     });
+
+    // Show a supply if the current page is directly opened via bookmarks etc.
+    $('.generate').filter(function () {
+      return $(this).attr('href') == location.hash.replace('#_', '#');
+    }).click();
   });
 })(jQuery);
 
