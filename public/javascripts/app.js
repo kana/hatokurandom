@@ -455,6 +455,19 @@
       }
     });
 
+    $('#regenerate').click(function (e) {
+      show_the_current_supply();
+      e.preventDefault();
+    });
+
+    $(window).bind('hashchange', function () {
+      if (/^#_random-/.test(location.hash))
+        $('#regenerate').show();
+      else
+        $('#regenerate').hide();
+    });
+    $(window).trigger('hashchange');
+
     // Show a supply if the current page is directly opened via bookmarks etc.
     show_the_current_supply();
   });
