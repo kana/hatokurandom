@@ -1,5 +1,6 @@
 # coding: utf-8
 
+require 'bundler/setup'
 require 'cgi'
 require 'haml'
 require 'sinatra'
