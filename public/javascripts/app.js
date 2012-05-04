@@ -427,6 +427,12 @@
     return $.grep(cs, function (c) {return c != null;});
   };
 
+  var show_the_current_supply = function () {
+    $('.generate').filter(function () {
+      return $(this).attr('href') == location.hash.replace('#_', '#');
+    }).click();
+  };
+
   $(document).ready(function () {
     // Create a page for each supply.
     $('.generate').each(function () {
@@ -450,9 +456,7 @@
     });
 
     // Show a supply if the current page is directly opened via bookmarks etc.
-    $('.generate').filter(function () {
-      return $(this).attr('href') == location.hash.replace('#_', '#');
-    }).click();
+    show_the_current_supply();
   });
 })(jQuery);
 
