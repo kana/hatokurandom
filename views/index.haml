@@ -150,8 +150,10 @@
 
     #internal.hidden
       %ul#card-template
-        %li<
-          {{cost}} {{name}}
+        %li.card<
+          %label
+            %input.dropped(type='checkbox')
+            {{cost}} {{name}}
       %ul#separator-template
         %li.group<
           {{label}}

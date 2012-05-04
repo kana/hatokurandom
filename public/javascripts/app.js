@@ -406,6 +406,10 @@
           list_to($page, 'card-template', c);
         });
       });
+
+    if (cards.length <= 10) {
+      $page.find('.dropped:checkbox').remove();
+    }
   };
 
   var choose_a_random_supply = function (count) {
@@ -479,6 +483,11 @@
         $('#regenerate').hide();
     });
     $(window).trigger('hashchange');
+
+    $(document).on('change', '.dropped:checkbox', function () {
+      $(this).parents('.card')
+        .toggleClass('dropped', $(this).attr('checked') != null);
+    });
 
     // Show a supply if the current page is directly opened via bookmarks etc.
     show_the_current_supply();
