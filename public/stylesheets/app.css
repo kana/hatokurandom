@@ -1,3 +1,5 @@
+/* Misc. */
+
 .hidden
 {
   display: none;
@@ -9,6 +11,11 @@ ul.simple
   padding-left: 1em;
 }
 
+
+
+
+/* Dropped status */
+
 .card > label
 {
   display: block;
@@ -18,4 +25,21 @@ ul.simple
 {
   color: #999;
   background: #eee;
+}
+
+
+
+
+/* Fixed toolbar */
+
+.toolbar,
+.toolbar > *
+{
+  position: fixed !important;
+  z-index: 1;
+}
+
+.toolbar
+{
+  width: 100%;
 }
