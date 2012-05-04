@@ -386,6 +386,12 @@
 
     $page.empty();
     $.each(_cards, function (i, c) {
+      if (i % 5 == 0) {
+        var data = {
+          label: (i + 1) + '-' + Math.min((i + 5), _cards.length)
+        };
+        $page.append(render('separator-template', data));
+      }
       $page.append(render('card-template', c));
     });
   };
