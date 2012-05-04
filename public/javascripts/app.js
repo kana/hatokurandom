@@ -384,16 +384,28 @@
       return 0;
     });
 
-    $page.empty();
-    $.each(_cards, function (i, c) {
-      if (i % 5 == 0) {
-        var data = {
-          label: (i + 1) + '-' + Math.min((i + 5), _cards.length)
-        };
-        $page.append(render('separator-template', data));
-      }
-      $page.append(render('card-template', c));
-    });
+    var list_to = function ($page, template_id, data) {
+      render(template_id, data)
+        .appendTo($page)
+        .hide()
+        .fadeIn(350);
+    };
+
+    $page
+      .children()
+      .fadeOut(150)
+      .promise()
+      .done(function () {
+        $(this).remove();
+        $.each(_cards, function (i, c) {
+          if (i % 5 == 0) {
+            list_to($page, 'separator-template', {
+              label: (i + 1) + '-' + Math.min((i + 5), _cards.length)
+            });
+          }
+          list_to($page, 'card-template', c);
+        });
+      });
   };
 
   var choose_a_random_supply = function (count) {
