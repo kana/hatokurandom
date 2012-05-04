@@ -32,7 +32,7 @@
           世界選手権
       %li
         %a(href='#about')
-          About this application
+          このアプリについて
 
     %ul#random(title='ランダムにサプライを生成')
       %li
@@ -129,24 +129,24 @@
         %a(href='#championship-finals' class='generate')
           決勝《王冠の行方》
 
-    #about(title='About this application' class='panel')
+    #about(title='アプリ情報' class='panel')
       %fieldset
-        %ul
+        %ul.simple
           %li
             = App::NAME
             @@VERSION@@
           %li
             Copyright &copy; 2012
             %a(href='http://whileimautomaton.net/' target='_blank') Kana Natsuno
-            (
-            %a(href='http://twitter.com/kana1' target='_blank')> @kana1
-            )
           %li
             %a(href='#{App::GITHUB_REPOS_URI}' target='_blank')
-              Watch changes
+              ソースコード
           %li
             %a(href='#{App::GITHUB_REPOS_URI}/issues' target='_blank')
-              Report issues
+              既知の問題点や実装予定の機能など
+          %li
+            %a(href='https://twitter.com/intent/tweet?text=@kana1+&hashtags=hatokurandom' target='_blank')
+              ご意見・ご感想
 
     #internal.hidden
       %ul#card-template
