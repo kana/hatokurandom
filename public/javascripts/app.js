@@ -385,7 +385,14 @@
     });
 
     var list_to = function ($page, template_id, data) {
-      render(template_id, data)
+      var $e = render(template_id, data);
+      var is_a = function (t) {return 0 <= (data.type || '').indexOf(t);};
+      $e.toggleClass('action', is_a('行動'));
+      $e.toggleClass('attack', is_a('攻撃'));
+      $e.toggleClass('defence', is_a('防衛'));
+      $e.toggleClass('land', is_a('領地'));
+      $e.toggleClass('victory', is_a('継承権'));
+      $e
         .appendTo($page)
         .hide()
         .fadeIn(350);

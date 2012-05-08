@@ -63,3 +63,14 @@ input.dropped[type='checkbox']
 {
   line-height: 22px;
 }
+
+
+
+
+/* Card types */
+
+.action.card {background-color: #fff;}
+.attack.action.card {background-color: #fee;}
+.defence.action.card {background-color: #eef;}
+.land.card {background-color: #fed;}
+.victory.card {background-color: #efe;}
