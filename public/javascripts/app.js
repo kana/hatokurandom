@@ -407,9 +407,7 @@
         });
       });
 
-    if (cards.length <= 10) {
-      $page.find('.dropped:checkbox').remove();
-    }
+    $page.toggleClass('droppable', 10 < cards.length);
   };
 
   var choose_a_random_supply = function (count) {

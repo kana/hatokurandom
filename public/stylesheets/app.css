@@ -27,6 +27,16 @@ ul.simple
   background: #eee;
 }
 
+input.dropped[type='checkbox']
+{
+  display: none;
+}
+
+.droppable input.dropped[type='checkbox']
+{
+  display: inline;
+}
+
 
 
 
