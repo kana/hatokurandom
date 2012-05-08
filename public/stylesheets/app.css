@@ -53,3 +53,13 @@ input.dropped[type='checkbox']
 {
   width: 100%;
 }
+
+
+
+
+/* Adjustment of baseline for Japanese title */
+
+.toolbar
+{
+  line-height: 22px;
+}
