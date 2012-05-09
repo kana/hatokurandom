@@ -429,6 +429,27 @@
         } else {
           $page.find('.dropped:checkbox').attr('disabled', 'disabled');
         }
+
+        if (/^random-/.test($page.attr('id'))) {
+          var $permalink = render('permalink-template', {});
+          $permalink
+            .find('a')
+            .click(function () {
+              var permalink = generate_permalink(gather_supply_data());
+              $(this).attr(
+                'href',
+                'https://twitter.com/intent/tweet' +
+                  '?url=' +
+                    encodeURIComponent(permalink) +
+                  '&text=' +
+                    encodeURIComponent('ハトクラなう。今回のサプライ:') +
+                  '&related=' +
+                    encodeURIComponent('HeartofCrown,kana1')
+              );
+            });
+          $page.append(render('separator-template', {label: '&nbsp;'}));
+          $page.append($permalink);
+        }
       });
   };
 
@@ -501,10 +522,13 @@
   var gather_supply_data = function () {
     var page_id = location.hash.replace('#_', '');
     var table = {};  // card_id => dropped_status
-    $('#' + page_id + ' .card').each(function () {
-      table[$(this).find('.id').text()] =
-        $(this).find('.dropped:checkbox').attr('checked') == 'checked';
-    });
+    $('body > *')
+      .filter(function () {return $(this).attr('id') == page_id;})
+      .find('.card')
+      .each(function () {
+        table[$(this).find('.id').text()] =
+          $(this).find('.dropped:checkbox').attr('checked') == 'checked';
+      });
     return table;
   };
 
@@ -632,11 +656,6 @@
         $('#regenerate').hide();
     });
     $(window).trigger('hashchange');
-
-    $(document).on('change', '.dropped:checkbox', function () {
-      $(this).parents('.card')
-        .toggleClass('dropped', $(this).attr('checked') != null);
-    });
 
     // Show a supply if the current page is directly opened via bookmarks etc.
     show_the_current_supply();

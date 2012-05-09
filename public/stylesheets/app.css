@@ -63,3 +63,13 @@ input.dropped[type='checkbox']
 {
   line-height: 22px;
 }
+
+
+
+
+/* Permalink forms */
+
+.permalink[type='text']
+{
+  padding-left: 6px !important;
+}
