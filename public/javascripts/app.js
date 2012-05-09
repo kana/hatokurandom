@@ -51,7 +51,7 @@
     {id: 0x29, name: '割り符', type: '行動（商人）', cost: 5, link: 0, set: '極東辺境領'},
     {id: 0x2a, name: '結盟', type: '行動', cost: 5, link: 2, set: '極東辺境領'}
   ];  //}}}
-  var CARD_TABLE =
+  var CARD_NAME_TABLE =
     (function () {
       var t = {};
       $.each(CARDS, function (_, c) {
@@ -440,7 +440,7 @@
 
     var cs =
       $.map(card_names, function (n) {
-        var c = CARD_TABLE[n];
+        var c = CARD_NAME_TABLE[n];
         if (c == null) {
           alert('Error: No such card "' + n + '"');
           return null;
