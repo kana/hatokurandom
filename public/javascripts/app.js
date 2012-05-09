@@ -396,8 +396,8 @@
       return 0;
     });
 
-    var list_to = function ($page, template_id, data) {
-      render(template_id, data)
+    var list_to = function ($page, $rendered) {
+      $rendered
         .appendTo($page)
         .hide()
         .fadeIn(350);
@@ -411,11 +411,16 @@
         $(this).remove();
         $.each(_cards, function (i, c) {
           if (i % 5 == 0) {
-            list_to($page, 'separator-template', {
+            list_to($page, render('separator-template', {
               label: (i + 1) + '-' + Math.min((i + 5), _cards.length)
-            });
+            }));
           }
-          list_to($page, 'card-template', c);
+          var $card = render('card-template', c);
+          if (c.dropped) {
+            $card.find('.dropped:checkbox').attr('checked', 'checked');
+            $card.addClass('dropped');
+          }
+          list_to($page, $card);
         });
 
         var droppable = 10 < cards.length;
@@ -459,9 +464,38 @@
   };
 
   var show_the_current_supply = function () {
-    $('.generate').filter(function () {
-      return $(this).attr('href') == location.hash.replace('#_', '#');
-    }).click();
+    if (/^#_supply\./.test(location.hash)) {
+      var supply_data =
+        decode_supply_data(location.hash.replace('#_supply.', ''));
+      if (supply_data == null) {
+        iui.showPageById('home');
+        return;
+      }
+
+      var page_id = location.hash.replace('#_', '');
+      var $page = render('supply-page-template', {id: page_id});
+      $('body').append($page);
+      replace_content(
+        $page,
+        $.map(
+          supply_data,
+          function (dropped_status, card_id) {
+            return $.extend(
+              {
+                dropped: dropped_status
+              },
+              CARD_ID_TABLE[card_id]
+            );
+          }
+        )
+      );
+    } else if (/^#_/.test(location.hash)) {
+      $('.generate').filter(function () {
+        return $(this).attr('href') == location.hash.replace('#_', '#');
+      }).click();
+    } else {
+      // The currently accessed URI might not be a supply page.  Do nothing.
+    }
   };
 
   var gather_supply_data = function () {
