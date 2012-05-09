@@ -484,6 +484,14 @@
     0x38: '4', 0x39: '5', 0x3a: '6', 0x3b: '7',
     0x3c: '8', 0x3d: '9', 0x3e: '.', 0x3f: '-'
   };
+  var BASE64XML_DECODING_TABLE =
+    (function () {
+      var t = {};
+      $.each(BASE64XML_ENCODING_TABLE, function (key, value) {
+        t[value] = parseInt(key);
+      });
+      return t;
+    })();
 
   var generate_supply_id = function (supply_data) {
     // permalink_id = version card*
@@ -515,6 +523,37 @@
       /#.*$/,
       '#_supply.' + generate_supply_id(supply_data)
     );
+  };
+
+  var decode_supply_data = function (supply_id) {
+    var buffer =
+      $.map(
+        supply_id.split(''),
+        function (c) {return BASE64XML_DECODING_TABLE[c];}
+      );
+
+    var version = buffer.shift();
+    if (version != 0x01) {
+      alert('Error: Invalid supply version: ' + version);
+      return null;
+    }
+
+    var supply_data = {};
+
+    while (2 <= buffer.length) {
+      var b1 = buffer.shift();
+      var b2 = buffer.shift();
+      var dropped_status = !!(b1 >> 5);
+      var card_id = ((b1 & ((1 << 5) - 1)) << 5) | b2;
+      supply_data[card_id] = dropped_status;
+    }
+
+    if (buffer.length != 0) {
+      alert('Error: Trailing characters in supply id');
+      return null;
+    }
+
+    return supply_data;
   };
 
   $(document).ready(function () {
