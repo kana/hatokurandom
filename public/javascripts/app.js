@@ -1,53 +1,65 @@
 (function ($) {
-  var CARDS = [  //{{{
-    {name: '斥候', type: '行動・攻撃（兵力）', cost: 2, link: 2, set: '基本セット'},
-    {name: '城壁', type: '行動・防衛', cost: 2, link: 1, set: '基本セット'},
-    {name: '早馬', type: '行動', cost: 2, link: 2, set: '基本セット'},
-    {name: '寄付', type: '行動', cost: 2, link: 1, set: '基本セット'},
-    {name: '願いの泉', type: '行動', cost: 2, link: 1, set: '基本セット'},
-    {name: 'お金好きの妖精', type: '行動（魔法）', cost: 2, link: 0, set: '極東辺境領'},
+  var CARDS = [  // Sorted by set, cost, then name.  //{{{
+    {id: 0x01, name: '城壁', type: '行動・防衛', cost: 2, link: 1, set: '基本セット'},
+    {id: 0x02, name: '寄付', type: '行動', cost: 2, link: 1, set: '基本セット'},
+    {id: 0x03, name: '斥候', type: '行動・攻撃（兵力）', cost: 2, link: 2, set: '基本セット'},
+    {id: 0x04, name: '早馬', type: '行動', cost: 2, link: 2, set: '基本セット'},
+    {id: 0x05, name: '願いの泉', type: '行動', cost: 2, link: 1, set: '基本セット'},
 
-    {name: '召集令状', type: '行動', cost: 3, link: 1, set: '基本セット'},
-    {name: '隠れ家', type: '行動・防衛', cost: 3, link: 1, set: '基本セット'},
-    {name: '買収工作', type: '行動・攻撃（計略）', cost: 3, link: 1, set: '基本セット'},
-    {name: '魔法の護符', type: '行動・防衛・呪い', cost: 3, link: 1, set: '基本セット'},
-    {name: '埋もれた財宝', type: '行動', cost: 3, link: 0, set: '基本セット'},
-    {name: '御用商人', type: '行動（商人）', cost: 3, link: 0, set: '基本セット'},
-    {name: '焼き畑農業', type: '行動', cost: 3, link: 1, set: '基本セット'},
-    {name: '交易船', type: '行動（商人）', cost: 3, link: 0, set: '基本セット'},
-    {name: '破城槌', type: '行動', cost: 3, link: 1, set: '基本セット'},
-    {name: '貿易商人', type: '行動（魔法）', cost: 3, link: 0, set: '極東辺境領'},
-    {name: '伝書鳩', type: '行動（計略）', cost: 3, link: 1, set: '極東辺境領'},
-    {name: '課税', type: '行動', cost: 3, link: 0, set: '極東辺境領'},
-    {name: '弓兵隊', type: '行動（兵力）', cost: 3, link: 1, set: '極東辺境領'},
+    {id: 0x06, name: '交易船', type: '行動（商人）', cost: 3, link: 0, set: '基本セット'},
+    {id: 0x07, name: '召集令状', type: '行動', cost: 3, link: 1, set: '基本セット'},
+    {id: 0x08, name: '埋もれた財宝', type: '行動', cost: 3, link: 0, set: '基本セット'},
+    {id: 0x09, name: '御用商人', type: '行動（商人）', cost: 3, link: 0, set: '基本セット'},
+    {id: 0x0a, name: '焼き畑農業', type: '行動', cost: 3, link: 1, set: '基本セット'},
+    {id: 0x0b, name: '破城槌', type: '行動', cost: 3, link: 1, set: '基本セット'},
+    {id: 0x0c, name: '買収工作', type: '行動・攻撃（計略）', cost: 3, link: 1, set: '基本セット'},
+    {id: 0x0d, name: '隠れ家', type: '行動・防衛', cost: 3, link: 1, set: '基本セット'},
+    {id: 0x0e, name: '魔法の護符', type: '行動・防衛・呪い', cost: 3, link: 1, set: '基本セット'},
 
-    {name: '追い立てられた魔獣', type: '行動・攻撃（計略）', cost: 4, link: 1, set: '基本セット'},
-    {name: '星詠みの魔女', type: '行動（魔法）', cost: 4, link: 2, set: '基本セット'},
-    {name: '補給部隊', type: '行動（兵力）', cost: 4, link: 2, set: '基本セット'},
-    {name: '図書館', type: '行動', cost: 4, link: 1, set: '基本セット'},
-    {name: '都市開発', type: '行動（商人）', cost: 4, link: 1, set: '基本セット'},
-    {name: '魅了術の魔女', type: '行動・攻撃（魔法）', cost: 4, link: 1, set: '基本セット'},
-    {name: '歩兵大隊', type: '行動・攻撃（兵力）', cost: 4, link: 0, set: '基本セット'},
-    {name: '金貸し', type: '行動（商人）', cost: 4, link: 1, set: '基本セット'},
-    {name: 'シノビ', type: '行動（計略）', cost: 4, link: 2, set: '基本セット'},
-    {name: '港町', type: '領地', cost: 4, link: 2, set: '極東辺境領'},
-    {name: '鉱山都市', type: '領地', cost: 4, link: 1, set: '極東辺境領'},
-    {name: '見習い魔女', type: '行動・攻撃（魔法）', cost: 4, link: 1, set: '極東辺境領'},
-    {name: 'クノイチ', type: '行動・防衛（計略）', cost: 4, link: 1, set: '極東辺境領'},
-    {name: 'サムライ', type: '行動・攻撃（兵力）', cost: 4, link: 0, set: '極東辺境領'},
+    {id: 0x0f, name: 'シノビ', type: '行動（計略）', cost: 4, link: 2, set: '基本セット'},
+    {id: 0x10, name: '図書館', type: '行動', cost: 4, link: 1, set: '基本セット'},
+    {id: 0x11, name: '星詠みの魔女', type: '行動（魔法）', cost: 4, link: 2, set: '基本セット'},
+    {id: 0x12, name: '歩兵大隊', type: '行動・攻撃（兵力）', cost: 4, link: 0, set: '基本セット'},
+    {id: 0x13, name: '補給部隊', type: '行動（兵力）', cost: 4, link: 2, set: '基本セット'},
+    {id: 0x14, name: '追い立てられた魔獣', type: '行動・攻撃（計略）', cost: 4, link: 1, set: '基本セット'},
+    {id: 0x15, name: '都市開発', type: '行動（商人）', cost: 4, link: 1, set: '基本セット'},
+    {id: 0x16, name: '金貸し', type: '行動（商人）', cost: 4, link: 1, set: '基本セット'},
+    {id: 0x17, name: '魅了術の魔女', type: '行動・攻撃（魔法）', cost: 4, link: 1, set: '基本セット'},
 
-    {name: '近衛騎士団', type: '行動・攻撃（兵力）', cost: 5, link: 0, set: '基本セット'},
-    {name: '銀行', type: '行動（商人）', cost: 5, link: 0, set: '基本セット'},
-    {name: '皇室領', type: '継承権・領地', cost: 5, link: 1, set: '基本セット'},
-    {name: '呪詛の魔女', type: '行動・攻撃（魔法）', cost: 5, link: 0, set: '基本セット'},
-    {name: '冒険者', type: '行動', cost: 5, link: 0, set: '基本セット'},
-    {name: '錬金術師', type: '行動', cost: 5, link: 1, set: '基本セット'},
-    {name: '結盟', type: '行動', cost: 5, link: 2, set: '極東辺境領'},
-    {name: '割り符', type: '行動（商人）', cost: 5, link: 0, set: '極東辺境領'},
+    {id: 0x18, name: '冒険者', type: '行動', cost: 5, link: 0, set: '基本セット'},
+    {id: 0x19, name: '呪詛の魔女', type: '行動・攻撃（魔法）', cost: 5, link: 0, set: '基本セット'},
+    {id: 0x1a, name: '皇室領', type: '継承権・領地', cost: 5, link: 1, set: '基本セット'},
+    {id: 0x1b, name: '近衛騎士団', type: '行動・攻撃（兵力）', cost: 5, link: 0, set: '基本セット'},
+    {id: 0x1c, name: '銀行', type: '行動（商人）', cost: 5, link: 0, set: '基本セット'},
+    {id: 0x1d, name: '錬金術師', type: '行動', cost: 5, link: 1, set: '基本セット'},
 
-    {name: '噂好きの公爵夫人', type: '継承権', cost: 6, link: 0, set: '基本セット'}
+    {id: 0x1e, name: '噂好きの公爵夫人', type: '継承権', cost: 6, link: 0, set: '基本セット'},
+
+    {id: 0x1f, name: 'お金好きの妖精', type: '行動（魔法）', cost: 2, link: 0, set: '極東辺境領'},
+
+    {id: 0x20, name: '伝書鳩', type: '行動（計略）', cost: 3, link: 1, set: '極東辺境領'},
+    {id: 0x21, name: '弓兵隊', type: '行動（兵力）', cost: 3, link: 1, set: '極東辺境領'},
+    {id: 0x22, name: '課税', type: '行動', cost: 3, link: 0, set: '極東辺境領'},
+    {id: 0x23, name: '貿易商人', type: '行動（魔法）', cost: 3, link: 0, set: '極東辺境領'},
+
+    {id: 0x24, name: 'クノイチ', type: '行動・防衛（計略）', cost: 4, link: 1, set: '極東辺境領'},
+    {id: 0x25, name: 'サムライ', type: '行動・攻撃（兵力）', cost: 4, link: 0, set: '極東辺境領'},
+    {id: 0x26, name: '港町', type: '領地', cost: 4, link: 2, set: '極東辺境領'},
+    {id: 0x27, name: '見習い魔女', type: '行動・攻撃（魔法）', cost: 4, link: 1, set: '極東辺境領'},
+    {id: 0x28, name: '鉱山都市', type: '領地', cost: 4, link: 1, set: '極東辺境領'},
+
+    {id: 0x29, name: '割り符', type: '行動（商人）', cost: 5, link: 0, set: '極東辺境領'},
+    {id: 0x2a, name: '結盟', type: '行動', cost: 5, link: 2, set: '極東辺境領'}
   ];  //}}}
-  var CARD_TABLE =
+  var CARD_ID_TABLE =
+    (function () {
+      var t = {};
+      $.each(CARDS, function (_, c) {
+        t[c.id] = c;
+      });
+      return t;
+    })();
+  var CARD_NAME_TABLE =
     (function () {
       var t = {};
       $.each(CARDS, function (_, c) {
@@ -384,8 +396,8 @@
       return 0;
     });
 
-    var list_to = function ($page, template_id, data) {
-      render(template_id, data)
+    var list_to = function ($page, $rendered) {
+      $rendered
         .appendTo($page)
         .hide()
         .fadeIn(350);
@@ -399,11 +411,16 @@
         $(this).remove();
         $.each(_cards, function (i, c) {
           if (i % 5 == 0) {
-            list_to($page, 'separator-template', {
+            list_to($page, render('separator-template', {
               label: (i + 1) + '-' + Math.min((i + 5), _cards.length)
-            });
+            }));
           }
-          list_to($page, 'card-template', c);
+          var $card = render('card-template', c);
+          if (c.dropped) {
+            $card.find('.dropped:checkbox').attr('checked', 'checked');
+            $card.addClass('dropped');
+          }
+          list_to($page, $card);
         });
 
         var droppable = 10 < cards.length;
@@ -411,6 +428,27 @@
           $page.addClass('droppable');
         } else {
           $page.find('.dropped:checkbox').attr('disabled', 'disabled');
+        }
+
+        if (/^random-/.test($page.attr('id'))) {
+          var $permalink = render('permalink-template', {});
+          $permalink
+            .find('a')
+            .click(function () {
+              var permalink = generate_permalink(gather_supply_data());
+              $(this).attr(
+                'href',
+                'https://twitter.com/intent/tweet' +
+                  '?url=' +
+                    encodeURIComponent(permalink) +
+                  '&text=' +
+                    encodeURIComponent('ハトクラなう。今回のサプライ:') +
+                  '&related=' +
+                    encodeURIComponent('HeartofCrown,kana1')
+              );
+            });
+          $page.append(render('separator-template', {label: '&nbsp;'}));
+          $page.append($permalink);
         }
       });
   };
@@ -436,7 +474,7 @@
 
     var cs =
       $.map(card_names, function (n) {
-        var c = CARD_TABLE[n];
+        var c = CARD_NAME_TABLE[n];
         if (c == null) {
           alert('Error: No such card "' + n + '"');
           return null;
@@ -447,9 +485,141 @@
   };
 
   var show_the_current_supply = function () {
-    $('.generate').filter(function () {
-      return $(this).attr('href') == location.hash.replace('#_', '#');
-    }).click();
+    if (/^#_supply\./.test(location.hash)) {
+      var supply_data =
+        decode_supply_data(location.hash.replace('#_supply.', ''));
+      if (supply_data == null) {
+        iui.showPageById('home');
+        return;
+      }
+
+      var page_id = location.hash.replace('#_', '');
+      var $page = render('supply-page-template', {id: page_id});
+      $('body').append($page);
+      replace_content(
+        $page,
+        $.map(
+          supply_data,
+          function (dropped_status, card_id) {
+            return $.extend(
+              {
+                dropped: dropped_status
+              },
+              CARD_ID_TABLE[card_id]
+            );
+          }
+        )
+      );
+    } else if (/^#_/.test(location.hash)) {
+      $('.generate').filter(function () {
+        return $(this).attr('href') == location.hash.replace('#_', '#');
+      }).click();
+    } else {
+      // The currently accessed URI might not be a supply page.  Do nothing.
+    }
+  };
+
+  var gather_supply_data = function () {
+    var page_id = location.hash.replace('#_', '');
+    var table = {};  // card_id => dropped_status
+    $('body > *')
+      .filter(function () {return $(this).attr('id') == page_id;})
+      .find('.card')
+      .each(function () {
+        table[$(this).find('.id').text()] =
+          $(this).find('.dropped:checkbox').attr('checked') == 'checked';
+      });
+    return table;
+  };
+
+  var BASE64XML_ENCODING_TABLE = {
+    0x00: 'A', 0x01: 'B', 0x02: 'C', 0x03: 'D',
+    0x04: 'E', 0x05: 'F', 0x06: 'G', 0x07: 'H',
+    0x08: 'I', 0x09: 'J', 0x0a: 'K', 0x0b: 'L',
+    0x0c: 'M', 0x0d: 'N', 0x0e: 'O', 0x0f: 'P',
+    0x10: 'Q', 0x11: 'R', 0x12: 'S', 0x13: 'T',
+    0x14: 'U', 0x15: 'V', 0x16: 'W', 0x17: 'X',
+    0x18: 'Y', 0x19: 'Z', 0x1a: 'a', 0x1b: 'b',
+    0x1c: 'c', 0x1d: 'd', 0x1e: 'e', 0x1f: 'f',
+    0x20: 'g', 0x21: 'h', 0x22: 'i', 0x23: 'j',
+    0x24: 'k', 0x25: 'l', 0x26: 'm', 0x27: 'n',
+    0x28: 'o', 0x29: 'p', 0x2a: 'q', 0x2b: 'r',
+    0x2c: 's', 0x2d: 't', 0x2e: 'u', 0x2f: 'v',
+    0x30: 'w', 0x31: 'x', 0x32: 'y', 0x33: 'z',
+    0x34: '0', 0x35: '1', 0x36: '2', 0x37: '3',
+    0x38: '4', 0x39: '5', 0x3a: '6', 0x3b: '7',
+    0x3c: '8', 0x3d: '9', 0x3e: '.', 0x3f: '-'
+  };
+  var BASE64XML_DECODING_TABLE =
+    (function () {
+      var t = {};
+      $.each(BASE64XML_ENCODING_TABLE, function (key, value) {
+        t[value] = parseInt(key);
+      });
+      return t;
+    })();
+
+  var generate_supply_id = function (supply_data) {
+    // permalink_id = version card*
+    // card = dropped_status card_id
+    //
+    // version: 6 bit
+    // dropped_status: 1 bit
+    // card_id: 11 bit
+
+    var buffer = [];  // each element is a 6-bit number.
+    var card_ids = $.map(supply_data, function (_, card_id) {return card_id;});
+    card_ids.sort();
+
+    buffer.push(0x01);  // version
+    $.each(card_ids, function (_, card_id) {
+      var dropped_status = supply_data[card_id] ? 0x01 : 0x00;
+      buffer.push((dropped_status << 5) | (card_id >> 6));
+      buffer.push(card_id & ((1 << 6) - 1));
+    });
+
+    return $.map(
+      buffer,
+      function (b) {return BASE64XML_ENCODING_TABLE[b];}
+    ).join('');
+  };
+
+  var generate_permalink = function (supply_data) {
+    return location.href.replace(
+      /#.*$/,
+      '#_supply.' + generate_supply_id(supply_data)
+    );
+  };
+
+  var decode_supply_data = function (supply_id) {
+    var buffer =
+      $.map(
+        supply_id.split(''),
+        function (c) {return BASE64XML_DECODING_TABLE[c];}
+      );
+
+    var version = buffer.shift();
+    if (version != 0x01) {
+      alert('Error: Invalid supply version: ' + version);
+      return null;
+    }
+
+    var supply_data = {};
+
+    while (2 <= buffer.length) {
+      var b1 = buffer.shift();
+      var b2 = buffer.shift();
+      var dropped_status = !!(b1 >> 5);
+      var card_id = ((b1 & ((1 << 5) - 1)) << 5) | b2;
+      supply_data[card_id] = dropped_status;
+    }
+
+    if (buffer.length != 0) {
+      alert('Error: Trailing characters in supply id');
+      return null;
+    }
+
+    return supply_data;
   };
 
   $(document).ready(function () {
@@ -486,11 +656,6 @@
         $('#regenerate').hide();
     });
     $(window).trigger('hashchange');
-
-    $(document).on('change', '.dropped:checkbox', function () {
-      $(this).parents('.card')
-        .toggleClass('dropped', $(this).attr('checked') != null);
-    });
 
     // Show a supply if the current page is directly opened via bookmarks etc.
     show_the_current_supply();

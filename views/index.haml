@@ -153,9 +153,16 @@
         %li.card<
           %label
             %input.dropped(type='checkbox')
+            %span.id.hidden {{id}}
             {{cost}} {{name}}
       %ul#separator-template
         %li.group<
           {{label}}
+      #supply-page-template
+        %ul(id='{{id}}' title='ランダムサプライ')
+      %ul#permalink-template
+        %li
+          %a(href='https://twitter.com/intent/tweet' target='_blank')
+            このサプライを共有する
 
 -# __END__
