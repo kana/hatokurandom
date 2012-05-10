@@ -405,9 +405,14 @@
           }
           list_to($page, 'card-template', c);
         });
-      });
 
-    $page.toggleClass('droppable', 10 < cards.length);
+        var droppable = 10 < cards.length;
+        if (droppable) {
+          $page.addClass('droppable');
+        } else {
+          $page.find('.dropped:checkbox').attr('disabled', 'disabled');
+        }
+      });
   };
 
   var choose_a_random_supply = function (count) {
