@@ -2,7 +2,7 @@ var hatokurandom = {};
 
 (function (H, $) {
   // Constants  //{{{1
-  var CARDS = [  // Sorted by set, cost, then name.  //{{{
+  var CARDS = [  // Sorted by set, cost, then name.  //{{{2
     {id: 0x01, name: '城壁', type: '行動・防衛', cost: 2, link: 1, set: '基本セット'},
     {id: 0x02, name: '寄付', type: '行動', cost: 2, link: 1, set: '基本セット'},
     {id: 0x03, name: '斥候', type: '行動・攻撃（兵力）', cost: 2, link: 2, set: '基本セット'},
@@ -53,8 +53,9 @@ var hatokurandom = {};
 
     {id: 0x29, name: '割り符', type: '行動（商人）', cost: 5, link: 0, set: '極東辺境領'},
     {id: 0x2a, name: '結盟', type: '行動', cost: 5, link: 2, set: '極東辺境領'}
-  ];  //}}}
-  var CARD_ID_TABLE =
+  ];
+
+  var CARD_ID_TABLE =  //{{{2
     (function () {
       var t = {};
       $.each(CARDS, function (_, c) {
@@ -62,7 +63,8 @@ var hatokurandom = {};
       });
       return t;
     })();
-  var CARD_NAME_TABLE =
+
+  var CARD_NAME_TABLE =  //{{{2
     (function () {
       var t = {};
       $.each(CARDS, function (_, c) {
@@ -71,7 +73,7 @@ var hatokurandom = {};
       return t;
     })();
 
-  var CARD_NAMES_TABLE = {
+  var CARD_NAMES_TABLE = {  //{{{2
     'basic-firstplay': [  //{{{
       '斥候',
       '願いの泉',
