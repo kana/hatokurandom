@@ -69,7 +69,7 @@ var hatokurandom = {};
       return t;
     })();
 
-  var CARD_NAME_TABLE =  //{{{2
+  H.CARD_NAME_TO_CARD_TABLE =  //{{{2
     (function () {
       var t = {};
       $.each(H.CARDS, function (_, c) {
@@ -485,7 +485,7 @@ var hatokurandom = {};
 
     var cs =
       $.map(card_names, function (n) {
-        var c = CARD_NAME_TABLE[n];
+        var c = H.CARD_NAME_TO_CARD_TABLE[n];
         if (c == null) {
           alert('Error: No such card "' + n + '"');
           return null;
