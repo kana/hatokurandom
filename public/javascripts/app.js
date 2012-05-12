@@ -514,7 +514,9 @@ var hatokurandom = {};
   };
 
   H.choose_a_predefined_supply = function (psid) {  //{{{2
-    var card_names = PSID_TO_CARD_NAMES_TABLE[psid];
+    var card_names = H.PSID_TO_CARD_NAMES_TABLE[psid];
+    console.log(psid);
+    console.log(card_names);
     if (!card_names) {
       alert('Error: No such predefined supply "' + psid + '"');
       return [];
