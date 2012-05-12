@@ -465,6 +465,7 @@ var hatokurandom = {};
       .fadeOut(150)
       .promise()
       .done(function () {
+        var is_random_mode = /^random-/.test($page.attr('id'));
         $(this).remove();
         $.each(_cards, function (i, c) {
           if (i % 5 == 0) {
@@ -480,14 +481,14 @@ var hatokurandom = {};
           list_to($page, $card);
         });
 
-        var droppable = 10 < cards.length;
+        var droppable = 10 < cards.length && is_random_mode;
         if (droppable) {
           $page.addClass('droppable');
         } else {
           $page.find('.dropped:checkbox').attr('disabled', 'disabled');
         }
 
-        if (/^random-/.test($page.attr('id'))) {
+        if (is_random_mode) {
           var $permalink = H.render('permalink-template', {});
           $permalink
             .find('a')
