@@ -1,4 +1,6 @@
-(function ($) {
+var hatokurandom = {};
+
+(function (H, $) {
   var CARDS = [  // Sorted by set, cost, then name.  //{{{
     {id: 0x01, name: '城壁', type: '行動・防衛', cost: 2, link: 1, set: '基本セット'},
     {id: 0x02, name: '寄付', type: '行動', cost: 2, link: 1, set: '基本セット'},
@@ -660,7 +662,7 @@
     // Show a supply if the current page is directly opened via bookmarks etc.
     show_the_current_supply();
   });
-})(jQuery);
+})(hatokurandom, jQuery);
 
 // __END__  {{{1
 // vim: expandtab shiftwidth=2 softtabstop=2
