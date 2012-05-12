@@ -1,6 +1,7 @@
 var hatokurandom = {};
 
 (function (H, $) {
+  // Constants  //{{{1
   var CARDS = [  // Sorted by set, cost, then name.  //{{{
     {id: 0x01, name: '城壁', type: '行動・防衛', cost: 2, link: 1, set: '基本セット'},
     {id: 0x02, name: '寄付', type: '行動', cost: 2, link: 1, set: '基本セット'},
@@ -374,6 +375,7 @@ var hatokurandom = {};
     '': []
   };
 
+  // Utilities  //{{{1
   var render = function (template_id, data) {
     return $(
       $('#' + template_id).html().replace(
@@ -624,6 +626,7 @@ var hatokurandom = {};
     return supply_data;
   };
 
+  // Bootstrap  //{{{1
   $(document).ready(function () {
     // Create a page for each supply.
     $('.generate').each(function () {
@@ -661,7 +664,7 @@ var hatokurandom = {};
 
     // Show a supply if the current page is directly opened via bookmarks etc.
     show_the_current_supply();
-  });
+  });  //}}}1
 })(hatokurandom, jQuery);
 
 // __END__  {{{1
