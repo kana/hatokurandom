@@ -495,8 +495,8 @@ var hatokurandom = {};
                     encodeURIComponent('HeartofCrown,kana1')
               );
             });
-          $page.append(H.render('separator-template', {label: '&nbsp;'}));
-          $page.append($permalink);
+          list_to($page, H.render('separator-template', {label: '&nbsp;'}));
+          list_to($page, $permalink);
         }
       });
   };
