@@ -425,6 +425,20 @@ var hatokurandom = {};
     return location.hash.replace('#_', '');
   };
 
+  H.cards_from_supply_data = function (supply_data) {  //{{{2
+    return $.map(
+      supply_data,
+      function (dropped_status, card_id) {
+        return $.extend(
+          {
+            dropped: dropped_status
+          },
+          H.CID_TO_CARD_TABLE[card_id]
+        );
+      }
+    );
+  };
+
   H.render = function (tid, data) {  //{{{2
     return $(
       $('#' + tid).html().replace(
@@ -439,9 +453,20 @@ var hatokurandom = {};
   H.replace_content = function ($page, cards) {  //{{{2
     var _cards = cards.slice(0);
     _cards.sort(function (c1, c2) {
-      var r = c1.cost - c2.cost;
+      var r;
+
+      r = (c1.dropped ? 1 : 0) - (c2.dropped ? 1 : 0);
       if (r != 0)
         return r;
+
+      r = c1.cost - c2.cost;
+      if (r != 0)
+        return r;
+
+      r = c1.link - c2.link;
+      if (r != 0)
+        return r;
+
       if (c1.name < c2.name)
         return -1;
       if (c1.name > c2.name)
@@ -461,6 +486,7 @@ var hatokurandom = {};
       .fadeOut(150)
       .promise()
       .done(function () {
+        var is_random_mode = /^random-/.test($page.attr('id'));
         $(this).remove();
         $.each(_cards, function (i, c) {
           if (i % 5 == 0) {
@@ -476,14 +502,22 @@ var hatokurandom = {};
           list_to($page, $card);
         });
 
-        var droppable = 10 < cards.length;
+        var droppable = 10 < cards.length && is_random_mode;
+        var $dropped_checkboxes = $page.find('.dropped:checkbox');
         if (droppable) {
           $page.addClass('droppable');
+          $dropped_checkboxes
+            .change(function () {
+              H.replace_content(
+                $page,
+                H.cards_from_supply_data(H.gather_supply_data())
+              );
+            });
         } else {
-          $page.find('.dropped:checkbox').attr('disabled', 'disabled');
+          $dropped_checkboxes.attr('disabled', 'disabled');
         }
 
-        if (/^random-/.test($page.attr('id'))) {
+        if (is_random_mode) {
           var $permalink = H.render('permalink-template', {});
           $permalink
             .find('a')
@@ -552,17 +586,7 @@ var hatokurandom = {};
       $('body').append($page);
       H.replace_content(
         $page,
-        $.map(
-          supply_data,
-          function (dropped_status, card_id) {
-            return $.extend(
-              {
-                dropped: dropped_status
-              },
-              H.CID_TO_CARD_TABLE[card_id]
-            );
-          }
-        )
+        H.cards_from_supply_data(supply_data)
       );
     } else if (/^#_/.test(location.hash)) {
       $('.generate').filter(function () {
