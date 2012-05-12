@@ -503,7 +503,7 @@ var hatokurandom = {};
     return $.grep(cs, function (c) {return c != null;});
   };
 
-  var show_the_current_supply = function () {
+  H.show_the_current_supply = function () {  //{{{2
     if (/^#_supply\./.test(location.hash)) {
       var supply_data =
         decode_supply_data(location.hash.replace('#_supply.', ''));
@@ -665,7 +665,7 @@ var hatokurandom = {};
     });
 
     $('#regenerate').click(function (e) {
-      show_the_current_supply();
+      H.show_the_current_supply();
       e.preventDefault();
     });
 
@@ -678,7 +678,7 @@ var hatokurandom = {};
     $(window).trigger('hashchange');
 
     // Show a supply if the current page is directly opened via bookmarks etc.
-    show_the_current_supply();
+    H.show_the_current_supply();
   });  //}}}1
 })(hatokurandom, jQuery);
 
