@@ -579,7 +579,7 @@ var hatokurandom = {};
     return table;
   };
 
-  var generate_supply_id = function (supply_data) {
+  H.generate_supply_id = function (supply_data) {  //{{{2
     // permalink_id = version card*
     // card = dropped_status card_id
     //
@@ -607,7 +607,7 @@ var hatokurandom = {};
   var generate_permalink = function (supply_data) {
     return location.href.replace(
       /#.*$/,
-      '#_supply.' + generate_supply_id(supply_data)
+      '#_supply.' + H.generate_supply_id(supply_data)
     );
   };
 
