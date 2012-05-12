@@ -24,6 +24,19 @@
       ]));
     });
   });
+  describe('decode_random_supply_from_rsid', function () {
+    it('should decode properly', function () {
+      expect(H.decode_random_supply_from_rsid(
+        H.generate_rsid({
+          0x11: false,
+          0x22: true
+        })
+      )).toEqual({
+        0x11: false,
+        0x22: true
+      });
+    });
+  });
 })(hatokurandom, jQuery);
 
 
