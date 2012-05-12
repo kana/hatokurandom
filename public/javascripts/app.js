@@ -472,7 +472,7 @@ var hatokurandom = {};
       });
   };
 
-  var choose_a_random_supply = function (count) {
+  H.choose_a_random_supply = function (count) {  //{{{2
     var rest_cards = H.CARDS.slice(0);
     var cs = [];
     for (var i = 1; i <= count; i++) {
@@ -657,7 +657,7 @@ var hatokurandom = {};
       var $page = $('#' + id);
       if (/^random-/.test(id)) {
         var count = id.substring('random-'.length);
-        H.replace_content($page, choose_a_random_supply(count));
+        H.replace_content($page, H.choose_a_random_supply(count));
       } else {
         var supply_id = id;
         H.replace_content($page, choose_a_fixed_supply(supply_id));
