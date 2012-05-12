@@ -439,7 +439,11 @@ var hatokurandom = {};
   H.replace_content = function ($page, cards) {  //{{{2
     var _cards = cards.slice(0);
     _cards.sort(function (c1, c2) {
-      var r = c1.cost - c2.cost;
+      var r;
+      r = (c1.dropped ? 1 : 0) - (c2.dropped ? 1 : 0);
+      if (r != 0)
+        return r;
+      r = c1.cost - c2.cost;
       if (r != 0)
         return r;
       if (c1.name < c2.name)
