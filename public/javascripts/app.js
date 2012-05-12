@@ -580,7 +580,7 @@ var hatokurandom = {};
       .filter(function () {return $(this).attr('id') == pid;})
       .find('.card')
       .each(function () {
-        table[$(this).find('.id').text()] =
+        table[$(this).find('.cid').text()] =
           $(this).find('.dropped:checkbox').attr('checked') == 'checked';
       });
     return table;
