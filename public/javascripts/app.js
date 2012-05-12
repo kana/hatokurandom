@@ -454,7 +454,7 @@ var hatokurandom = {};
           $permalink
             .find('a')
             .click(function () {
-              var permalink = generate_permalink(gather_supply_data());
+              var permalink = generate_permalink(H.gather_supply_data());
               $(this).attr(
                 'href',
                 'https://twitter.com/intent/tweet' +
@@ -538,7 +538,7 @@ var hatokurandom = {};
     }
   };
 
-  var gather_supply_data = function () {
+  H.gather_supply_data = function () {  //{{{2
     var page_id = location.hash.replace('#_', '');
     var table = {};  // card_id => dropped_status
     $('body > *')
