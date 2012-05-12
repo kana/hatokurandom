@@ -78,7 +78,7 @@ var hatokurandom = {};
       return t;
     })();
 
-  var CARD_NAMES_TABLE = {  //{{{2
+  H.PSID_TO_CARD_NAMES_TABLE = {  //{{{2
     'basic-firstplay': [  //{{{
       '斥候',
       '願いの泉',
@@ -477,7 +477,7 @@ var hatokurandom = {};
   };
 
   var choose_a_fixed_supply = function (supply_id) {
-    var card_names = CARD_NAMES_TABLE[supply_id];
+    var card_names = PSID_TO_CARD_NAMES_TABLE[supply_id];
     if (!card_names) {
       alert('Error: No such card set "' + supply_id + '"');
       return [];
