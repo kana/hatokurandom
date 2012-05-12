@@ -482,7 +482,7 @@ var hatokurandom = {};
           $permalink
             .find('a')
             .click(function () {
-              var permalink = generate_permalink(H.gather_supply_data());
+              var permalink = H.generate_permalink(H.gather_supply_data());
               $(this).attr(
                 'href',
                 'https://twitter.com/intent/tweet' +
@@ -604,7 +604,7 @@ var hatokurandom = {};
     ).join('');
   };
 
-  var generate_permalink = function (supply_data) {
+  H.generate_permalink = function (supply_data) {  //{{{2
     return location.href.replace(
       /#.*$/,
       '#_supply.' + H.generate_supply_id(supply_data)
