@@ -60,7 +60,7 @@ var hatokurandom = {};
     {eid: 2, cost: 5, link: 2, cid: 0x2a, name: '結盟', type: '行動'}
   ];
 
-  var CARD_ID_TABLE =  //{{{2
+  H.CID_TO_CARD_TABLE =  //{{{2
     (function () {
       var t = {};
       $.each(H.CARDS, function (_, c) {
@@ -516,7 +516,7 @@ var hatokurandom = {};
               {
                 dropped: dropped_status
               },
-              CARD_ID_TABLE[card_id]
+              H.CID_TO_CARD_TABLE[card_id]
             );
           }
         )
