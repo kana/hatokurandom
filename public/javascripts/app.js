@@ -390,7 +390,7 @@ var hatokurandom = {};
     '': []
   };
 
-  var BASE64XML_ENCODING_TABLE = {  //{{{2
+  H.BASE64XML_ENCODING_TABLE = {  //{{{2
     0x00: 'A', 0x01: 'B', 0x02: 'C', 0x03: 'D',
     0x04: 'E', 0x05: 'F', 0x06: 'G', 0x07: 'H',
     0x08: 'I', 0x09: 'J', 0x0a: 'K', 0x0b: 'L',
@@ -409,10 +409,10 @@ var hatokurandom = {};
     0x3c: '8', 0x3d: '9', 0x3e: '.', 0x3f: '-'
   };
 
-  var BASE64XML_DECODING_TABLE =  //{{{2
+  H.BASE64XML_DECODING_TABLE =  //{{{2
     (function () {
       var t = {};
-      $.each(BASE64XML_ENCODING_TABLE, function (key, value) {
+      $.each(H.BASE64XML_ENCODING_TABLE, function (key, value) {
         t[value] = parseInt(key);
       });
       return t;
@@ -600,7 +600,7 @@ var hatokurandom = {};
 
     return $.map(
       buffer,
-      function (b) {return BASE64XML_ENCODING_TABLE[b];}
+      function (b) {return H.BASE64XML_ENCODING_TABLE[b];}
     ).join('');
   };
 
@@ -615,7 +615,7 @@ var hatokurandom = {};
     var buffer =
       $.map(
         supply_id.split(''),
-        function (c) {return BASE64XML_DECODING_TABLE[c];}
+        function (c) {return H.BASE64XML_DECODING_TABLE[c];}
       );
 
     var version = buffer.shift();
