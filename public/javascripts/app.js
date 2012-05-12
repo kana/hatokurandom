@@ -1,6 +1,14 @@
 var hatokurandom = {};
 
 (function (H, $) {
+  // Naming convensions  //{{{1
+  //
+  // cid: Card ID
+  // eid: Expansion ID
+  // sid: Supply ID
+  // rsid: Random Supply ID
+  // psid: Predefined Supply ID
+
   // Constants  //{{{1
   H.EXPANSIONS = [  //{{{2
     {eid: 1, name: '基本セット'},
