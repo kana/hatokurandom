@@ -513,10 +513,10 @@ var hatokurandom = {};
     return cs;
   };
 
-  H.choose_a_fixed_supply = function (supply_id) {  //{{{2
-    var card_names = PSID_TO_CARD_NAMES_TABLE[supply_id];
+  H.choose_a_predefined_supply = function (psid) {  //{{{2
+    var card_names = PSID_TO_CARD_NAMES_TABLE[psid];
     if (!card_names) {
-      alert('Error: No such card set "' + supply_id + '"');
+      alert('Error: No such predefined supply "' + psid + '"');
       return [];
     }
 
@@ -661,8 +661,8 @@ var hatokurandom = {};
         var count = id.substring('random-'.length);
         H.replace_content($page, H.choose_a_random_supply(count));
       } else {
-        var supply_id = id;
-        H.replace_content($page, H.choose_a_fixed_supply(supply_id));
+        var psid = id;
+        H.replace_content($page, H.choose_a_predefined_supply(psid));
       }
     });
 
