@@ -535,7 +535,7 @@ var hatokurandom = {};
   H.show_the_current_supply = function () {  //{{{2
     if (/^#_supply\./.test(location.hash)) {
       var supply_data =
-        H.decode_supply_data(location.hash.replace('#_supply.', ''));
+        H.decode_random_supply_from_rsid(location.hash.replace('#_supply.', ''));
       if (supply_data == null) {
         iui.showPageById('home');
         return;
@@ -612,10 +612,10 @@ var hatokurandom = {};
     );
   };
 
-  H.decode_supply_data = function (supply_id) {  //{{{2
+  H.decode_random_supply_from_rsid = function (rsid) {  //{{{2
     var buffer =
       $.map(
-        supply_id.split(''),
+        rsid.split(''),
         function (c) {return H.BASE64XML_DECODING_TABLE[c];}
       );
 
