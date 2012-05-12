@@ -484,7 +484,7 @@ var hatokurandom = {};
     return cs;
   };
 
-  var choose_a_fixed_supply = function (supply_id) {
+  H.choose_a_fixed_supply = function (supply_id) {  //{{{2
     var card_names = PSID_TO_CARD_NAMES_TABLE[supply_id];
     if (!card_names) {
       alert('Error: No such card set "' + supply_id + '"');
@@ -660,7 +660,7 @@ var hatokurandom = {};
         H.replace_content($page, H.choose_a_random_supply(count));
       } else {
         var supply_id = id;
-        H.replace_content($page, choose_a_fixed_supply(supply_id));
+        H.replace_content($page, H.choose_a_fixed_supply(supply_id));
       }
     });
 
