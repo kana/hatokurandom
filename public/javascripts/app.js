@@ -9,6 +9,7 @@ var hatokurandom = {};
   // rsid: Random Supply ID
   // psid: Predefined Supply ID
   // tid: Template ID
+  // pid: Page ID
 
   // Constants  //{{{1
   H.EXPANSIONS = [  //{{{2
@@ -420,6 +421,10 @@ var hatokurandom = {};
     })();
 
   // Utilities  //{{{1
+  H.get_current_pid = function () {  //{{{2
+    return location.hash.replace('#_', '');
+  };
+
   H.render = function (tid, data) {  //{{{2
     return $(
       $('#' + tid).html().replace(
@@ -543,8 +548,7 @@ var hatokurandom = {};
         return;
       }
 
-      var page_id = location.hash.replace('#_', '');
-      var $page = H.render('supply-page-template', {id: page_id});
+      var $page = H.render('supply-page-template', {pid: H.get_current_pid()});
       $('body').append($page);
       H.replace_content(
         $page,
@@ -562,7 +566,7 @@ var hatokurandom = {};
       );
     } else if (/^#_/.test(location.hash)) {
       $('.generate').filter(function () {
-        return $(this).attr('href') == location.hash.replace('#_', '#');
+        return $(this).attr('href') == '#' + H.get_current_pid();
       }).click();
     } else {
       // The currently accessed URI might not be a supply page.  Do nothing.
@@ -570,13 +574,13 @@ var hatokurandom = {};
   };
 
   H.gather_supply_data = function () {  //{{{2
-    var page_id = location.hash.replace('#_', '');
+    var pid = H.get_current_pid();
     var table = {};  // card_id => dropped_status
     $('body > *')
-      .filter(function () {return $(this).attr('id') == page_id;})
+      .filter(function () {return $(this).attr('id') == pid;})
       .find('.card')
       .each(function () {
-        table[$(this).find('.id').text()] =
+        table[$(this).find('.cid').text()] =
           $(this).find('.dropped:checkbox').attr('checked') == 'checked';
       });
     return table;
@@ -649,21 +653,22 @@ var hatokurandom = {};
   $(document).ready(function () {
     // Create a page for each supply.
     $('.generate').each(function () {
+      var pid = $(this).attr('href').substring(1);
       $('body').append(
         $('<ul>')
-        .attr('id', $(this).attr('href').substring(1))
+        .attr('id', pid)
         .attr('title', $.trim($(this).text()))
       );
     });
 
     $('.generate').click(function () {
-      var id = $(this).attr('href').substring(1);
-      var $page = $('#' + id);
-      if (/^random-/.test(id)) {
-        var count = id.substring('random-'.length);
+      var pid = $(this).attr('href').substring(1);
+      var $page = $('#' + pid);
+      if (/^random-/.test(pid)) {
+        var count = pid.substring('random-'.length);
         H.replace_content($page, H.choose_a_random_supply(count));
       } else {
-        var psid = id;
+        var psid = pid;
         H.replace_content($page, H.choose_a_predefined_supply(psid));
       }
     });
