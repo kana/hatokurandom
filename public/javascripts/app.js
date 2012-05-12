@@ -534,7 +534,7 @@ var hatokurandom = {};
   H.show_the_current_supply = function () {  //{{{2
     if (/^#_supply\./.test(location.hash)) {
       var supply_data =
-        decode_supply_data(location.hash.replace('#_supply.', ''));
+        H.decode_supply_data(location.hash.replace('#_supply.', ''));
       if (supply_data == null) {
         iui.showPageById('home');
         return;
@@ -611,7 +611,7 @@ var hatokurandom = {};
     );
   };
 
-  var decode_supply_data = function (supply_id) {
+  H.decode_supply_data = function (supply_id) {  //{{{2
     var buffer =
       $.map(
         supply_id.split(''),
