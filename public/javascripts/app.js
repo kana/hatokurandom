@@ -7,7 +7,7 @@ var hatokurandom = {};
     {eid: 2, name: '極東辺境領'}
   ];
 
-  var CARDS = [  // Sorted by eid, cost, then name.  //{{{2
+  H.CARDS = [  // Sorted by eid, cost, then name.  //{{{2
     {cid: 0x01, name: '城壁', type: '行動・防衛', cost: 2, link: 1, eid: 1},
     {cid: 0x02, name: '寄付', type: '行動', cost: 2, link: 1, eid: 1},
     {cid: 0x03, name: '斥候', type: '行動・攻撃（兵力）', cost: 2, link: 2, eid: 1},
@@ -63,7 +63,7 @@ var hatokurandom = {};
   var CARD_ID_TABLE =  //{{{2
     (function () {
       var t = {};
-      $.each(CARDS, function (_, c) {
+      $.each(H.CARDS, function (_, c) {
         t[c.cid] = c;
       });
       return t;
@@ -72,7 +72,7 @@ var hatokurandom = {};
   var CARD_NAME_TABLE =  //{{{2
     (function () {
       var t = {};
-      $.each(CARDS, function (_, c) {
+      $.each(H.CARDS, function (_, c) {
         t[c.name] = c;
       });
       return t;
@@ -465,7 +465,7 @@ var hatokurandom = {};
   };
 
   var choose_a_random_supply = function (count) {
-    var rest_cards = CARDS.slice(0);
+    var rest_cards = H.CARDS.slice(0);
     var cs = [];
     for (var i = 1; i <= count; i++) {
       var j = Math.floor(Math.random() * rest_cards.length);
