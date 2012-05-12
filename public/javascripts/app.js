@@ -391,7 +391,7 @@ var hatokurandom = {};
   };
 
   // Utilities  //{{{1
-  var render = function (template_id, data) {
+  H.render = function (template_id, data) {  //{{{2
     return $(
       $('#' + template_id).html().replace(
         /{{([^{}]+)}}/g,
@@ -430,11 +430,11 @@ var hatokurandom = {};
         $(this).remove();
         $.each(_cards, function (i, c) {
           if (i % 5 == 0) {
-            list_to($page, render('separator-template', {
+            list_to($page, H.render('separator-template', {
               label: (i + 1) + '-' + Math.min((i + 5), _cards.length)
             }));
           }
-          var $card = render('card-template', c);
+          var $card = H.render('card-template', c);
           if (c.dropped) {
             $card.find('.dropped:checkbox').attr('checked', 'checked');
             $card.addClass('dropped');
@@ -450,7 +450,7 @@ var hatokurandom = {};
         }
 
         if (/^random-/.test($page.attr('id'))) {
-          var $permalink = render('permalink-template', {});
+          var $permalink = H.render('permalink-template', {});
           $permalink
             .find('a')
             .click(function () {
@@ -466,7 +466,7 @@ var hatokurandom = {};
                     encodeURIComponent('HeartofCrown,kana1')
               );
             });
-          $page.append(render('separator-template', {label: '&nbsp;'}));
+          $page.append(H.render('separator-template', {label: '&nbsp;'}));
           $page.append($permalink);
         }
       });
@@ -513,7 +513,7 @@ var hatokurandom = {};
       }
 
       var page_id = location.hash.replace('#_', '');
-      var $page = render('supply-page-template', {id: page_id});
+      var $page = H.render('supply-page-template', {id: page_id});
       $('body').append($page);
       replace_content(
         $page,
