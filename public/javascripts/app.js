@@ -496,10 +496,18 @@ var hatokurandom = {};
         });
 
         var droppable = 10 < cards.length && is_random_mode;
+        var $dropped_checkboxes = $page.find('.dropped:checkbox');
         if (droppable) {
           $page.addClass('droppable');
+          $dropped_checkboxes
+            .change(function () {
+              H.replace_content(
+                $page,
+                H.cards_from_supply_data(H.gather_supply_data())
+              );
+            });
         } else {
-          $page.find('.dropped:checkbox').attr('disabled', 'disabled');
+          $dropped_checkboxes.attr('disabled', 'disabled');
         }
 
         if (is_random_mode) {
