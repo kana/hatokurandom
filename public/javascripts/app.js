@@ -9,6 +9,7 @@ var hatokurandom = {};
   // rsid: Random Supply ID
   // psid: Predefined Supply ID
   // tid: Template ID
+  // pid: Page ID
 
   // Constants  //{{{1
   H.EXPANSIONS = [  //{{{2
@@ -420,6 +421,10 @@ var hatokurandom = {};
     })();
 
   // Utilities  //{{{1
+  H.get_current_pid = function () {  //{{{2
+    return location.hash.replace('#_', '');
+  };
+
   H.render = function (tid, data) {  //{{{2
     return $(
       $('#' + tid).html().replace(
@@ -543,7 +548,7 @@ var hatokurandom = {};
         return;
       }
 
-      var page_id = location.hash.replace('#_', '');
+      var page_id = H.get_current_pid();
       var $page = H.render('supply-page-template', {id: page_id});
       $('body').append($page);
       H.replace_content(
@@ -562,7 +567,7 @@ var hatokurandom = {};
       );
     } else if (/^#_/.test(location.hash)) {
       $('.generate').filter(function () {
-        return $(this).attr('href') == location.hash.replace('#_', '#');
+        return $(this).attr('href') == '#' + H.get_current_pid();
       }).click();
     } else {
       // The currently accessed URI might not be a supply page.  Do nothing.
@@ -570,7 +575,7 @@ var hatokurandom = {};
   };
 
   H.gather_supply_data = function () {  //{{{2
-    var page_id = location.hash.replace('#_', '');
+    var page_id = H.get_current_pid();
     var table = {};  // card_id => dropped_status
     $('body > *')
       .filter(function () {return $(this).attr('id') == page_id;})
