@@ -425,6 +425,20 @@ var hatokurandom = {};
     return location.hash.replace('#_', '');
   };
 
+  H.cards_from_supply_data = function (supply_data) {  //{{{2
+    return $.map(
+      supply_data,
+      function (dropped_status, card_id) {
+        return $.extend(
+          {
+            dropped: dropped_status
+          },
+          H.CID_TO_CARD_TABLE[card_id]
+        );
+      }
+    );
+  };
+
   H.render = function (tid, data) {  //{{{2
     return $(
       $('#' + tid).html().replace(
@@ -557,17 +571,7 @@ var hatokurandom = {};
       $('body').append($page);
       H.replace_content(
         $page,
-        $.map(
-          supply_data,
-          function (dropped_status, card_id) {
-            return $.extend(
-              {
-                dropped: dropped_status
-              },
-              H.CID_TO_CARD_TABLE[card_id]
-            );
-          }
-        )
+        H.cards_from_supply_data(supply_data)
       );
     } else if (/^#_/.test(location.hash)) {
       $('.generate').filter(function () {
