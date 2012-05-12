@@ -402,7 +402,7 @@ var hatokurandom = {};
     )
   };
 
-  var replace_content = function ($page, cards) {
+  H.replace_content = function ($page, cards) {  //{{{2
     var _cards = cards.slice(0);
     _cards.sort(function (c1, c2) {
       var r = c1.cost - c2.cost;
@@ -515,7 +515,7 @@ var hatokurandom = {};
       var page_id = location.hash.replace('#_', '');
       var $page = H.render('supply-page-template', {id: page_id});
       $('body').append($page);
-      replace_content(
+      H.replace_content(
         $page,
         $.map(
           supply_data,
@@ -657,10 +657,10 @@ var hatokurandom = {};
       var $page = $('#' + id);
       if (/^random-/.test(id)) {
         var count = id.substring('random-'.length);
-        replace_content($page, choose_a_random_supply(count));
+        H.replace_content($page, choose_a_random_supply(count));
       } else {
         var supply_id = id;
-        replace_content($page, choose_a_fixed_supply(supply_id));
+        H.replace_content($page, choose_a_fixed_supply(supply_id));
       }
     });
 
