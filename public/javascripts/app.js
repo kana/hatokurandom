@@ -8,6 +8,7 @@ var hatokurandom = {};
   // sid: Supply ID
   // rsid: Random Supply ID
   // psid: Predefined Supply ID
+  // tid: Template ID
 
   // Constants  //{{{1
   H.EXPANSIONS = [  //{{{2
@@ -419,9 +420,9 @@ var hatokurandom = {};
     })();
 
   // Utilities  //{{{1
-  H.render = function (template_id, data) {  //{{{2
+  H.render = function (tid, data) {  //{{{2
     return $(
-      $('#' + template_id).html().replace(
+      $('#' + tid).html().replace(
         /{{([^{}]+)}}/g,
         function (_, key) {
           return data[key];
