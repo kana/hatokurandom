@@ -2,6 +2,11 @@ var hatokurandom = {};
 
 (function (H, $) {
   // Constants  //{{{1
+  H.EXPANSIONS = [  //{{{2
+    {eid: 1, name: '基本セット'},
+    {eid: 2, name: '極東辺境領'}
+  ];
+
   var CARDS = [  // Sorted by set, cost, then name.  //{{{2
     {id: 0x01, name: '城壁', type: '行動・防衛', cost: 2, link: 1, set: '基本セット'},
     {id: 0x02, name: '寄付', type: '行動', cost: 2, link: 1, set: '基本セット'},
