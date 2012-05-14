@@ -19,8 +19,8 @@
     .toolbar.footer
       %a#regenerate.left<
         %i.icon-refresh
-      // %a#share.center(href='')<
-      //   %i.icon-share
+      %a#share.center(href='https://twitter.com/intent/tweet' target='_blank' title='このサプライを共有する。')<
+        %i.icon-share
       // %a#configure.right(href='')<
       //   %i.icon-cog.right
 
@@ -171,9 +171,5 @@
           {{label}}
       #supply-page-template
         %ul(id='{{pid}}' title='ランダムサプライ')
-      %ul#permalink-template
-        %li
-          %a(href='https://twitter.com/intent/tweet' target='_blank')
-            このサプライを共有する
 
 -# __END__
