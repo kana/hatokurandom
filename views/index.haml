@@ -6,16 +6,23 @@
     %meta(name='apple-mobile-web-app-capable' content='yes')
     %link(rel='stylesheet' href='/stylesheets/iui/iui.css' type='text/css')
     %link(rel='stylesheet' href='/stylesheets/iui/t/default/default-theme.css' type='text/css')
+    %link(rel='stylesheet' href='/stylesheets/font-awesome/css/font-awesome.css' type='text/css')
     %link(rel='stylesheet' href='/stylesheets/app.css' type='text/css')
     %script(src='/javascripts/jquery-1.7.2.min.js' type='text/javascript')
     %script(src='/javascripts/iui/iui.js' type='text/javascript')
     %script(src='/javascripts/app.js' type='text/javascript')
   %body
-    .toolbar
+    .toolbar.header
       %h1#pageTitle
       %a#backButton.button(href='#')
-      %a#regenerate.hidden.button<
-        再生成
+
+    .toolbar.footer
+      %a#regenerate.left<
+        %i.icon-refresh
+      %a#share.center(href='https://twitter.com/intent/tweet' target='_blank' title='このサプライを共有する。')<
+        %i.icon-share
+      // %a#configure.right(href='')<
+      //   %i.icon-cog.right
 
     %ul#home(title='#{App::NAME}' selected='true')
       %li
@@ -147,6 +154,10 @@
           %li
             %a(href='https://twitter.com/intent/tweet?text=@kana1+&hashtags=hatokurandom' target='_blank')
               ご意見・ご感想
+          %li
+            Awesome icons by
+            %a(href='http://fortawesome.github.com/Font-Awesome' target='_blank')
+              Font Awesome
 
     #internal.hidden
       %ul#card-template
@@ -160,9 +171,5 @@
           {{label}}
       #supply-page-template
         %ul(id='{{pid}}' title='ランダムサプライ')
-      %ul#permalink-template
-        %li
-          %a(href='https://twitter.com/intent/tweet' target='_blank')
-            このサプライを共有する
 
 -# __END__

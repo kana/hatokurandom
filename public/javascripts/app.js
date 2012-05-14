@@ -516,27 +516,6 @@ var hatokurandom = {};
         } else {
           $dropped_checkboxes.attr('disabled', 'disabled');
         }
-
-        if (is_random_mode) {
-          var $permalink = H.render('permalink-template', {});
-          $permalink
-            .find('a')
-            .click(function () {
-              var permalink = H.generate_permalink(H.gather_supply_data());
-              $(this).attr(
-                'href',
-                'https://twitter.com/intent/tweet' +
-                  '?url=' +
-                    encodeURIComponent(permalink) +
-                  '&text=' +
-                    encodeURIComponent('ハトクラなう。今回のサプライ:') +
-                  '&related=' +
-                    encodeURIComponent('HeartofCrown,kana1')
-              );
-            });
-          list_to($page, H.render('separator-template', {label: '&nbsp;'}));
-          list_to($page, $permalink);
-        }
       });
   };
 
@@ -697,16 +676,31 @@ var hatokurandom = {};
       }
     });
 
+    $('#share').click(function () {
+      var permalink = H.generate_permalink(H.gather_supply_data());
+      $(this).attr(
+        'href',
+        'https://twitter.com/intent/tweet' +
+          '?url=' +
+            encodeURIComponent(permalink) +
+          '&text=' +
+            encodeURIComponent('ハトクラなう。今回のサプライ:') +
+          '&related=' +
+            encodeURIComponent('HeartofCrown,kana1')
+      );
+    });
+
     $('#regenerate').click(function (e) {
       H.show_the_current_supply();
       e.preventDefault();
     });
 
     $(window).bind('hashchange', function () {
+      var $footer = $('body > .footer');
       if (/^#_random-/.test(location.hash))
-        $('#regenerate').show();
+        $footer.fadeIn('fast');
       else
-        $('#regenerate').hide();
+        $footer.fadeOut('fast');
     });
     $(window).trigger('hashchange');
 

@@ -1,3 +1,6 @@
 [submodule "vendor/iui"]
 	path = vendor/iui
 	url = https://code.google.com/p/iui/
+[submodule "vendor/font-awesome"]
+	path = vendor/font-awesome
+	url = git://github.com/FortAwesome/Font-Awesome.git
