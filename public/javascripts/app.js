@@ -703,10 +703,11 @@ var hatokurandom = {};
     });
 
     $(window).bind('hashchange', function () {
+      var $footer = $('body > .footer');
       if (/^#_random-/.test(location.hash))
-        $('#regenerate').show();
+        $footer.fadeIn('fast');
       else
-        $('#regenerate').hide();
+        $footer.fadeOut('fast');
     });
     $(window).trigger('hashchange');
 

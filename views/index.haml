@@ -12,11 +12,19 @@
     %script(src='/javascripts/iui/iui.js' type='text/javascript')
     %script(src='/javascripts/app.js' type='text/javascript')
   %body
-    .toolbar
+    .toolbar.header
       %h1#pageTitle
       %a#backButton.button(href='#')
       %a#regenerate.hidden.button<
         再生成
+
+    .toolbar.footer
+      // %a#regenerate.left(href='')<
+      //   %i.icon-refresh
+      // %a#share.center(href='')<
+      //   %i.icon-share
+      // %a#configure.right(href='')<
+      //   %i.icon-cog.right
 
     %ul#home(title='#{App::NAME}' selected='true')
       %li
