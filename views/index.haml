@@ -11,5 +11,136 @@
     %script(src='/javascripts/jquery-mobile/jquery.mobile-1.1.0.min.js' type='text/javascript')
     %script(src='/javascripts/app.js' type='text/javascript')
   %body
+    :ruby
+      def as_page
+        {data: {role: 'page'}}
+      end
+      def as_header
+        {data: {role: 'header', position: 'fixed'}}
+      end
+      def as_content
+        {data: {role: 'content'}}
+      end
+      def as_listview
+        {data: {role: 'listview'}}
+      end
+      def as_inset
+        {data: {inset: 'true'}}
+      end
+
+    #home{as_page}
+
+      %div{as_header}
+        %h1= App::NAME
+
+      %div{as_content}
+        %ul{as_listview}
+          %li
+            %a(href='#supplies:random') ランダム選択
+          %li
+            %a(href='#supplies:basic') 推奨サプライ(基本セット)
+          %li
+            %a(href='#supplies:fareast') 推奨サプライ(極東辺境領)
+          %li
+            %a(href='#supplies:championship1') 世界選手権
+          %li
+            %a(href='#about') このアプリについて
+
+    #about{as_page}
+
+      %div{as_header}
+        %h1 概要
+
+      %div{as_content}
+        %p
+          %a(href='http://flipflops.jp/' target='_blank') FLIPFLOPs
+          様製作のデッキ成長型カードゲーム
+          %a(href='http://hatokura.flipflops.jp/' target='_blank') Heart of Crown
+          をプレイする際にサプライを選ぶためのツールです。
+        %p
+          %a(href='http://hatokura.flipflops.jp/rule' target='_blank') ルールブック
+          に初めてプレイする際に最適な
+          %a(href='#supplies:basic') 推奨サプライ
+          が記載されていますが、ある程度ゲームに慣れてくると
+          %a(href='#supplies:random') ランダム選択でサプライを決める
+          ようになります。
+          ところがコモンカードを10種類ランダムに選択するのは案外大変です。
+          このツールがゲームを快適にプレイするための一助となれば幸いです。
+        %p
+          この手のツールは
+          %a(href='http://www.google.com/search?q=%E3%83%8F%E3%83%BC%E3%83%88%E3%82%AA%E3%83%96%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%B3%20%E3%83%A9%E3%83%B3%E3%83%80%E3%83%A0%20%E9%81%B8%E6%8A%9E' target='_blank') 既存の実装
+          がいくつか存在しますが、
+          %a(href='http://whileimautomaton.net/' target='_blank') 作者
+          が
+          %a(href='#credits') 普段使用していない技術
+          を使っての習作と私的な需要を満たすことを兼ねて作成しています。
+        %ul
+          %li
+            %a(href='#{App::GITHUB_REPOS_URI}' target='_blank')
+              ソースコード
+          %li
+            %a(href='#{App::GITHUB_REPOS_URI}/issues' target='_blank')
+              既知の問題点や実装予定の機能など
+          %li
+            %a(href='https://twitter.com/intent/tweet?text=@kana1+&hashtags=hatokurandom' target='_blank')
+              ご意見・ご感想
+        %ul{as_listview, as_inset}
+          %li
+            %a(href='#credits')
+              バージョン情報
+
+    #credits{as_page}
+
+      %div{as_header}
+        %h1 Credits
+
+      %div{as_content}
+        %h2
+          About this application
+        %p
+          %div
+            = App::CODENAME
+            @@VERSION@@
+          %div
+            Copyright &copy; 2012
+            %a(href='http://whileimautomaton.net/' target='_blank') Kana Natsuno
+        %h2
+          Powered by the following libraries and services
+        %ul{as_listview, as_inset}
+          %li
+            %h2
+              %a(href='http://fortawesome.github.com/Font-Awesome/' target='_blank') Font Awesome
+            for awesome icons.
+          %li
+            %h2
+              %a(href='http://www.heroku.com/' target='_blank') Heroku
+            for easy-to-use cloud application platform.
+          %li
+            %h2
+              %a(href='http://pivotal.github.com/jasmine/' target='_blank') Jasmine
+            for BDD in JavaScript.
+          %li
+            %h2
+              %a(href='http://jquery.com/' target='_blank') jQuery
+            for everything to develop Web applications.
+          %li
+            %h2
+              %a(href='http://jquerymobile.com/' target='_blank') jQuery Mobile
+            for touch-optimized Web application framework.
+        %h2
+          Thanks for the following games
+        %ul{as_listview, as_inset}
+          %li
+            %h2
+              %a(href='http://hatokura.flipflops.jp/' target='_blank') Heart of Crown
+            for an exciting variant of deck-building games.
+          %li
+            %h2
+              %a(href='http://www.riograndegames.com/games.html?id=278' target='_blank') Dominion
+            for the origin of deck-building games.
+          %li
+            %h2
+              %a(href='http://www.wizards.com/magic/' target='_blank') Magic: The Gathering
+            for the origin of collectible trading card games.
 
 -# __END__
