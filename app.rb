@@ -10,6 +10,7 @@ require 'sinatra'
 
 class App < Sinatra::Application
   NAME = 'ハトクランダム'
+  CODENAME = 'Hatokurandom'
   GITHUB_REPOS_URI = 'https://github.com/kana/hatokurandom'
 
   get '/' do
