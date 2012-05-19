@@ -1,0 +1,12 @@
+/* Show icons to distinguish external links. */
+
+a[target='_blank']:after
+{
+  content: '\00a0\f08e';
+  display: inline-block;
+  font-family: FontAwesome;
+  font-size: 80%;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: inherit;
+}
