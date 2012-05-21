@@ -17,6 +17,7 @@ var hatokurandom = {};
 
   // Bootstrap  //{{{1
   $(document).ready(function () {
+    $.mobile.defaultPageTransition = 'slide';
   });  //}}}1
 })(hatokurandom, jQuery);
 
