@@ -18,6 +18,9 @@
       def as_header
         {data: {role: 'header', position: 'fixed'}}
       end
+      def as_footer
+        {data: {role: 'footer', position: 'fixed'}}
+      end
       def as_content
         {data: {role: 'content'}}
       end
@@ -29,6 +32,9 @@
       end
       def as_back_button
         {data: {rel: 'back', icon: 'arrow-l'}}
+      end
+      def as_button
+        {data: {role: 'button'}}
       end
 
     #home{as_page}
@@ -51,6 +57,26 @@
 
     #supplies{as_page}
       -# #supplies_template
+
+    #supply{as_page}
+
+      %div{as_header}
+        %a{as_back_button}(href='\#{{back_pid}}') {{back_label}}
+        %h1 {{title}}
+
+      %div{as_content}
+        %ul{as_listview}
+          %li
+            %a(href='#card:{{cid}}') {{cost}} {{name}}
+          %li
+            %a(href='#card:...') ...
+          %li
+            %a(href='#card:...') ...
+
+      %div{as_footer}
+        %a.refresh{as_button, {data: {icon: 'refresh'}}} 再選択
+        %a.share{as_button, {data: {icon: 'arrow-u'}}} 共有
+        %a.configure{as_button, {data: {icon: 'gear'}}} 設定
 
     #about{as_page}
 
