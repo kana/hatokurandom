@@ -1,6 +1,6 @@
 var hatokurandom = {};
 
-(function (H, $) {
+(function (H, $, $m) {
   // Naming convensions  //{{{1
   //
   // cid: Card ID
@@ -683,11 +683,61 @@ var hatokurandom = {};
     );
   };
 
+  // Core  //{{{1
+  H.prepare_supplies_page = function (e, data, pid) {  //{{{2
+    var meta = H.meta_from_pid(pid);
+    var child_pids = H.child_pids_from_pid(pid);
+    var parent_pid = H.parent_pid_from_pid(pid);
+    var parent_meta = H.meta_from_pid(parent_pid);
+
+    var $content = H.render('supplies_template', {
+      back_pid: parent_pid,
+      back_label: parent_meta.short_title,
+      title: meta.long_title
+    });
+    var $supplies = $content.find('.supplies');
+    for (var i in child_pids) {
+      var child_pid = child_pids[i];
+      var child_meta = H.meta_from_pid(child_pid);
+      $supplies.append(H.render('supplies_item_template', {
+        pid: child_pid,
+        title: child_meta.long_title
+      }));
+    }
+
+    var $page = $('#' + H.apid_from_pid(pid));
+    $page
+      .empty()
+      .append($content);
+    $page.jqmData('title', meta.long_title);
+    $page.page();
+    $page.trigger('pagecreate');
+
+    data.options.dataUrl = data.toPage;
+    $m.changePage($page, data.options);
+    e.preventDefault();
+  };
+
+  // Events  //{{{1
+  $(document).bind('pagebeforechange', function (e, data) {  //{{{2
+    if (typeof data.toPage != 'string')
+      return;
+
+    if (!$m.path.isSameDomain(data.toPage, location.href))
+      return;
+
+    var url = $m.path.parseUrl(data.toPage);
+    var pid = H.pid_from_url(url);
+    var apid = H.apid_from_pid(pid);
+    if (apid == 'supplies')
+      H.prepare_supplies_page(e, data, pid);
+  });
+
   // Bootstrap  //{{{1
   $(document).ready(function () {
     $.mobile.defaultPageTransition = 'slide';
   });  //}}}1
-})(hatokurandom, jQuery);
+})(hatokurandom, jQuery, jQuery.mobile);
 
 // __END__  {{{1
 // vim: expandtab shiftwidth=2 softtabstop=2
