@@ -156,5 +156,8 @@
         %div{as_content}
           %ul.supplies{as_listview}
             -# #supplies_item_template
+      %ul#supplies_item_template
+        %li
+          %a(href='\#{{pid}}') {{title}}
 
 -# __END__
