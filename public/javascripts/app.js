@@ -14,6 +14,17 @@ var hatokurandom = {};
   // Constants  //{{{1
 
   // Utilities  //{{{1
+  H.render = function (tid, data) {  //{{{2
+    var _data = data || {};
+    return $(
+      $('#' + tid).html().replace(
+        /{{([^{}]+)}}/g,
+        function (_, key) {
+          return _data[key] || '{{-' + key + '-}}';
+        }
+      )
+    );
+  };
 
   // Bootstrap  //{{{1
   $(document).ready(function () {
