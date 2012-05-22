@@ -148,4 +148,13 @@
               %a(href='http://www.wizards.com/magic/' target='_blank') Magic: The Gathering
             for the origin of collectible trading card games.
 
+    #templates.internal
+      #supplies_template
+        %div{as_header}
+          %a{as_back_button}(href='\#{{back_pid}}') {{back_label}}
+          %h1 {{title}}
+        %div{as_content}
+          %ul.supplies{as_listview}
+            -# #supplies_item_template
+
 -# __END__
