@@ -41,6 +41,22 @@
       expect(function () {H.encode_base64xml([0x40]);}).toThrow();
     });
   });
+  describe('pid_from_url', function () {
+    it('should return pid from a url object', function () {
+      expect(H.pid_from_url($.mobile.path.parseUrl('/')))
+        .toEqual('');
+      expect(H.pid_from_url($.mobile.path.parseUrl('/#home')))
+        .toEqual('home');
+      expect(H.pid_from_url($.mobile.path.parseUrl('/#supplies:basic')))
+        .toEqual('supplies:basic');
+    });
+    it('should reject any non-url object, especially a string', function () {
+      expect(function () {H.pid_from_url($.mobile.path.parseUrl('/#home'));})
+        .not.toThrow();
+      expect(function () {H.pid_from_url('/#home');})
+        .toThrow();
+    });
+  });
   describe('render', function () {
     beforeEach(function () {
       $('body').append('<div id="test1"><span>hi <em>hi</em> hi</span></div>');

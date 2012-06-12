@@ -625,6 +625,10 @@ var hatokurandom = {};
     ).join('');
   };
 
+  H.pid_from_url = function (url) {  //{{{2
+    return url.hash.substring(1);
+  };
+
   H.render = function (tid, data) {  //{{{2
     var _data = data || {};
     return $(
