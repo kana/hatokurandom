@@ -393,6 +393,51 @@ var hatokurandom = {};
     '': []  // Dummy entry to make folds simple.
   };
 
+  H.PID_TO_CHILD_PIDS_TABLE = {  //{{{2
+    'home': [  //{{{
+      'supplies:random',
+      'supplies:basic',
+      'supplies:fareast',
+      'supplies:championship1',
+      'about'
+    ],  //}}}
+    'about': [  //{{{
+      'credits'
+    ],  //}}}
+    'supplies:basic': [  //{{{
+      'supply:basic-firstplay',
+      'supply:basic-guide',
+      'supply:basic-guide2',
+      'supply:basic-intermediate',
+      'supply:basic-intermediate2',
+      'supply:basic-bigbusiness',
+      'supply:basic-greatwar',
+      'supply:basic-adventure',
+      'supply:basic-witchcraft',
+      'supply:basic-courtpolitics'
+    ],  //}}}
+    'supplies:fareast': [  //{{{
+      'supply:fareast-firstplay',
+      'supply:fareast-porttown',
+      'supply:fareast-prosperity',
+      'supply:fareast-mine',
+      'supply:fareast-citystrife',
+      'supply:fareast-scandal',
+      'supply:fareast-battlefield',
+      'supply:fareast-guildstrife',
+      'supply:fareast-kunoichi',
+      'supply:fareast-moneymoneymoney'
+    ],  //}}}
+    'supplies:championship1': [  //{{{
+      'supply:championship1-prelims1',
+      'supply:championship1-prelims2',
+      'supply:championship1-prelims3',
+      'supply:championship1-semifinals',
+      'supply:championship1-finals'
+    ],  //}}}
+    '': []  // Dummy entry to make folds simple.
+  };
+
   H.BASE64XML_ENCODING_TABLE = {  //{{{2
     0x00: 'A', 0x01: 'B', 0x02: 'C', 0x03: 'D',
     0x04: 'E', 0x05: 'F', 0x06: 'G', 0x07: 'H',
