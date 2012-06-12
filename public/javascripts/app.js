@@ -10,6 +10,7 @@ var hatokurandom = {};
   //   psid: Predefined Supply ID
   // tid: Template ID
   // pid: Page ID
+  // lid: supply List ID
 
   // Constants  //{{{1
   H.EXPANSIONS = [  //{{{2
