@@ -583,6 +583,10 @@ var hatokurandom = {};
     })();
 
   // Utilities  //{{{1
+  H.apid_from_pid = function (pid) {  //{{{2
+    return pid.replace(/:.*/, '');
+  };
+
   H.decode_base64xml = function (base64xml_encoded_string) {  //{{{2
     return $.map(
       base64xml_encoded_string.split(''),

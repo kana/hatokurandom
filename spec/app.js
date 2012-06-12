@@ -1,4 +1,14 @@
 (function (H, $) {
+  describe('apid_from_pid', function () {
+    it('should return pid as is if parameters are not included', function () {
+      expect(H.apid_from_pid('home')).toEqual('home');
+      expect(H.apid_from_pid('about')).toEqual('about');
+    });
+    it('should return apid if a given pid contains parameters', function () {
+      expect(H.apid_from_pid('supplies:basic')).toEqual('supplies');
+      expect(H.apid_from_pid('supply:basic-firstplay')).toEqual('supply');
+    });
+  });
   describe('decode_base64xml', function () {
     it('should decode a character to a 6-bit value', function () {
       for (var c in H.BASE64XML_DECODING_TABLE)
