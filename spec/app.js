@@ -189,6 +189,18 @@
       expect(H.sid_from_pid('supply:basic-guide')).toEqual('basic-guide');
     });
   });
+  describe('xcards_from_psid', function () {
+    it('should return cards with extra information from a psid', function () {
+      var xcards = H.xcards_from_psid('basic-firstplay');
+      expect(xcards[0].name).toEqual('斥候');
+      expect(xcards[0].dropped).toBeFalsy();
+    });
+    it('should not affect the card table', function () {
+      var xcards = H.xcards_from_psid('basic-firstplay');
+      expect(xcards[0].name).toEqual(H.card_from_cid(xcards[0].cid).name);
+      expect(xcards[0]).not.toBe(H.card_from_cid(xcards[0].cid));
+    });
+  });
 })(hatokurandom, jQuery);
 
 

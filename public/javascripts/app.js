@@ -693,6 +693,12 @@ var hatokurandom = {};
     return pid.replace(/.*:/, '');
   };
 
+  H.xcards_from_psid = function (psid) {  //{{{2
+    return $.map(H.card_names_from_psid(psid), function (card_name) {
+      return $.extend({dropped: false}, H.card_from_card_name(card_name));
+    });
+  };
+
   // Core  //{{{1
   H.prepare_supplies_page = function (e, data, pid) {  //{{{2
     var meta = H.meta_from_pid(pid);
