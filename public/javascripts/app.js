@@ -654,6 +654,10 @@ var hatokurandom = {};
     ).join('');
   };
 
+  H.is_psid = function (sid) {  //{{{2
+    return !!(H.PSID_TO_CARD_NAMES_TABLE[sid]);
+  };
+
   H.meta_from_pid = function (pid) {  //{{{2
     var meta = H.PID_TO_META_TABLE[pid];
     if (meta === undefined)

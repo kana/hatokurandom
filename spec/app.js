@@ -113,6 +113,16 @@
       expect(function () {H.encode_base64xml([0x40]);}).toThrow();
     });
   });
+  describe('is_psid', function () {
+    it('should return true for a valid psid', function () {
+      expect(H.is_psid('basic-firstplay')).toBeTruthy();
+      expect(H.is_psid('championship1-finals')).toBeTruthy();
+    });
+    it('should return false for a invalid psid', function () {
+      expect(H.is_psid('foobarbaz')).toBeFalsy();
+      expect(H.is_psid('BALAUAXAdAfAhAlAEAHAJ')).toBeFalsy();
+    });
+  });
   describe('meta_from_pid', function () {
     var f = H.meta_from_pid;
     it('should return meta from a given pid', function () {
