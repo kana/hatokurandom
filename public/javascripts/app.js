@@ -583,6 +583,12 @@ var hatokurandom = {};
     })();
 
   // Utilities  //{{{1
+  H.Error = function (message) {  //{{{2
+    this.message = message;
+  };
+  H.Error.prototype = new Error();
+  H.Error.prototype.constructor = H.Error;
+
   H.apid_from_pid = function (pid) {  //{{{2
     return pid.replace(/:.*/, '');
   };

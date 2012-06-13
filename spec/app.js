@@ -1,4 +1,20 @@
 (function (H, $) {
+  describe('Error', function () {
+    it('should return an error object', function () {
+      expect(new H.Error('hi') instanceof Error).toBeTruthy();
+    });
+    it('should return a non-standard error object', function () {
+      expect(new H.Error('hi') instanceof EvalError).toBeFalsy();
+      expect(new H.Error('hi') instanceof RangeError).toBeFalsy();
+      expect(new H.Error('hi') instanceof ReferenceError).toBeFalsy();
+      expect(new H.Error('hi') instanceof SyntaxError).toBeFalsy();
+      expect(new H.Error('hi') instanceof TypeError).toBeFalsy();
+      expect(new H.Error('hi') instanceof URIError).toBeFalsy();
+    });
+    it('should return a custom error object', function () {
+      expect(new H.Error('hi') instanceof H.Error).toBeTruthy();
+    });
+  });
   describe('apid_from_pid', function () {
     it('should return pid as is if parameters are not included', function () {
       expect(H.apid_from_pid('home')).toEqual('home');
