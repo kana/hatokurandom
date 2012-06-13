@@ -12,6 +12,7 @@ var hatokurandom = {};
   // pid: Page ID
   //   apid: Actual Page ID (PID without any query parameter)
   // lid: supply List ID
+  // xcard: eXtra information + CARD
 
   // Constants  //{{{1
   H.EXPANSIONS = [  //{{{2
