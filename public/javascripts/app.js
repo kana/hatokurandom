@@ -589,6 +589,15 @@ var hatokurandom = {};
   H.Error.prototype = new Error();
   H.Error.prototype.constructor = H.Error;
 
+  H.KeyError = function (key_name, key_value) {  //{{{2
+    H.Error.call(
+      this,
+      key_name + ' ' + JSON.stringify(key_value) + ' is not valid.'
+    );
+  };
+  H.KeyError.prototype = new H.Error();
+  H.KeyError.prototype.constructor = H.KeyError;
+
   H.apid_from_pid = function (pid) {  //{{{2
     return pid.replace(/:.*/, '');
   };

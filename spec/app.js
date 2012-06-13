@@ -15,6 +15,14 @@
       expect(new H.Error('hi') instanceof H.Error).toBeTruthy();
     });
   });
+  describe('KeyError', function () {
+    it('should return a custom error object', function () {
+      expect(new H.KeyError('Hi', 'hi') instanceof H.KeyError).toBeTruthy();
+    });
+    it('should return an object which inherits H.Error', function () {
+      expect(new H.KeyError('Hi', 'hi') instanceof H.Error).toBeTruthy();
+    });
+  });
   describe('apid_from_pid', function () {
     it('should return pid as is if parameters are not included', function () {
       expect(H.apid_from_pid('home')).toEqual('home');
