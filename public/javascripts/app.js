@@ -820,6 +820,43 @@ var hatokurandom = {};
     e.preventDefault();
   };
 
+  H.prepare_supply_page = function (e, data, pid) {  //{{{2
+    var meta = H.meta_from_pid(pid);
+    var parent_pid = H.parent_pid_from_pid(pid);
+    var has_parent = !!parent_pid;
+    var parent_meta = has_parent && H.meta_from_pid(parent_pid);
+    var sid = H.sid_from_pid(pid);
+    var xcards = H.xcards_from_sid(sid);
+
+    var $content = H.render('supply_template', {
+      back_pid: parent_pid,
+      back_label: has_parent && parent_meta.short_title,
+      title: meta.long_title
+    });
+    var $supply = $content.find('.supply');
+    for (var i in xcards) {
+      var xcard = xcards[i];
+      $supply.append(H.render('supply_item_template', xcard));
+    }
+    $content.find('.random-only').toggleClass('unavailable', !H.is_rsid(sid));
+    $content.find('.back').toggleClass('unavailable', !has_parent);
+
+    // FIXME: DRY
+    // The tails parts of H.prepare_supplies_page and H.prepare_supply_page
+    // are the same.
+    var $page = $('#' + H.apid_from_pid(pid));
+    $page
+      .empty()
+      .append($content);
+    $page.jqmData('title', meta.long_title);
+    $page.page();
+    $page.trigger('pagecreate');
+
+    data.options.dataUrl = data.toPage;
+    $m.changePage($page, data.options);
+    e.preventDefault();
+  };
+
   // Events  //{{{1
   $(document).bind('pagebeforechange', function (e, data) {  //{{{2
     try {
@@ -834,6 +871,10 @@ var hatokurandom = {};
       var apid = H.apid_from_pid(pid);
       if (apid == 'supplies')
         H.prepare_supplies_page(e, data, pid);
+      else if (apid == 'supply')
+        H.prepare_supply_page(e, data, pid);
+      else
+        return;
     } catch (ex) {
       alert('Unexpected error: ' + ex.message);  // TODO: Friendly instruction.
       e.preventDefault();

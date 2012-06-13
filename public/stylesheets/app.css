@@ -10,3 +10,15 @@ a[target='_blank']:after
   font-weight: normal;
   text-decoration: inherit;
 }
+
+
+/* Hide elements regardless of the default rendering type.
+ *
+ * Especially, $('a').toggle() sets "display: inline;" to show elements,
+ * but this value might conflict with a jQuery Moble theme.
+ * Use the following class to avoid problems like this.
+ */
+.unavailable
+{
+  display: none !important;
+}

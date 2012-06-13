@@ -59,24 +59,7 @@
       -# #supplies_template
 
     #supply{as_page}
-
-      %div{as_header}
-        %a{as_back_button}(href='\#{{back_pid}}') {{back_label}}
-        %h1 {{title}}
-
-      %div{as_content}
-        %ul{as_listview}
-          %li
-            %a(href='#card:{{cid}}') {{cost}} {{name}}
-          %li
-            %a(href='#card:...') ...
-          %li
-            %a(href='#card:...') ...
-
-      %div{as_footer}
-        %a.refresh{as_button, {data: {icon: 'refresh'}}} 再選択
-        %a.share{as_button, {data: {icon: 'arrow-u'}}} 共有
-        %a.configure{as_button, {data: {icon: 'gear'}}} 設定
+      -# #supply_template
 
     #about{as_page}
 
@@ -188,5 +171,20 @@
       %ul#supplies_item_template
         %li
           %a(href='\#{{pid}}') {{title}}
+      #supply_template
+        %div{as_header}
+          %a.back{as_back_button}(href='\#{{back_pid}}') {{back_label}}
+          %h1 {{title}}
+        %div{as_content}
+          %ul.supply{as_listview}
+            -# #supply_item_template
+        %div{as_footer}
+          %a.refresh.random-only{as_button, {data: {icon: 'refresh'}}} 再選択
+          %a.share{as_button, {data: {icon: 'arrow-u'}}} 共有
+          %a.configure.random-only{as_button, {data: {icon: 'gear'}}} 設定
+      %ul#supply_item_template
+        %li
+          -# %a(href='#card:{{cid}}') {{cost}} {{name}}
+          {{cost}} {{name}}
 
 -# __END__
