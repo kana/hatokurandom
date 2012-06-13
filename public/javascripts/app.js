@@ -721,17 +721,22 @@ var hatokurandom = {};
 
   // Events  //{{{1
   $(document).bind('pagebeforechange', function (e, data) {  //{{{2
-    if (typeof data.toPage != 'string')
-      return;
+    try {
+      if (typeof data.toPage != 'string')
+        return;
 
-    if (!$m.path.isSameDomain(data.toPage, location.href))
-      return;
+      if (!$m.path.isSameDomain(data.toPage, location.href))
+        return;
 
-    var url = $m.path.parseUrl(data.toPage);
-    var pid = H.pid_from_url(url);
-    var apid = H.apid_from_pid(pid);
-    if (apid == 'supplies')
-      H.prepare_supplies_page(e, data, pid);
+      var url = $m.path.parseUrl(data.toPage);
+      var pid = H.pid_from_url(url);
+      var apid = H.apid_from_pid(pid);
+      if (apid == 'supplies')
+        H.prepare_supplies_page(e, data, pid);
+    } catch (ex) {
+      alert('Unexpected error: ' + ex.message);  // TODO: Friendly instruction.
+      e.preventDefault();
+    }
   });
 
   // Bootstrap  //{{{1
