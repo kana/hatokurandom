@@ -741,6 +741,13 @@ var hatokurandom = {};
     return xcards;
   };
 
+  H.xcards_from_sid = function (sid) {  //{{{2
+    if (H.is_psid(sid))
+      return H.xcards_from_psid(sid);
+    else
+      return H.xcards_from_rsid(sid);
+  };
+
   // Core  //{{{1
   H.prepare_supplies_page = function (e, data, pid) {  //{{{2
     var meta = H.meta_from_pid(pid);

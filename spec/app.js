@@ -222,6 +222,19 @@
       expect(function () {H.xcards_from_rsid('BAA');}).toThrow();
     });
   });
+  describe('xcards_from_sid', function () {
+    it('should return xcards from normal psid', function () {
+      expect(H.xcards_from_sid('basic-firstplay'))
+        .toEqual(H.xcards_from_psid('basic-firstplay'));
+    });
+    it('should return xcards from rsid', function () {
+      expect(H.xcards_from_sid('BADgc'))
+        .toEqual(H.xcards_from_rsid('BADgc'));
+    });
+    it('should reject invalid psid/rsid', function () {
+      expect(function () {H.xcards_from_rsid('BAA');}).toThrow();
+    });
+  });
 })(hatokurandom, jQuery);
 
 
