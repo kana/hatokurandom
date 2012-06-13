@@ -174,6 +174,11 @@
       expect($x.html()).toEqual('{{-message-}}');
     });
   });
+  describe('sid_from_pid', function () {
+    it('should return sid from a pid', function () {
+      expect(H.sid_from_pid('supply:basic-guide')).toEqual('basic-guide');
+    });
+  });
 })(hatokurandom, jQuery);
 
 

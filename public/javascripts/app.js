@@ -684,6 +684,10 @@ var hatokurandom = {};
     );
   };
 
+  H.sid_from_pid = function (pid) {  //{{{2
+    return pid.replace(/.*:/, '');
+  };
+
   // Core  //{{{1
   H.prepare_supplies_page = function (e, data, pid) {  //{{{2
     var meta = H.meta_from_pid(pid);
