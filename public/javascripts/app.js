@@ -605,28 +605,28 @@ var hatokurandom = {};
   H.card_from_card_name = function (card_name) {  //{{{2
     var card = H.CARD_NAME_TO_CARD_TABLE[card_name];
     if (card === undefined)
-      throw new Error('Card name "' + card_name + '" is not valid.');
+      throw new H.KeyError('Card name', card_name);
     return card;
   };
 
   H.card_from_cid = function (cid) {  //{{{2
     var card = H.CID_TO_CARD_TABLE[cid];
     if (card === undefined)
-      throw new Error('CID ' + cid + ' is not valid.');
+      throw new H.KeyError('CID', cid);
     return card;
   };
 
   H.card_names_from_psid = function (psid) {  //{{{2
     var card_names = H.PSID_TO_CARD_NAMES_TABLE[psid];
     if (card_names === undefined)
-      throw new Error('PSID "' + psid + '" is not valid.');
+      throw new H.KeyError('PSID', psid);
     return card_names;
   };
 
   H.child_pids_from_pid = function (pid) {  //{{{2
     var child_pids = H.PID_TO_CHILD_PIDS_TABLE[pid];
     if (child_pids === undefined)
-      throw new Error('PID "' + pid + '" is not valid.');
+      throw new H.KeyError('PID', pid);
     return child_pids;
   };
 
@@ -635,15 +635,8 @@ var hatokurandom = {};
       base64xml_encoded_string.split(''),
       function (c) {
         var b = H.BASE64XML_DECODING_TABLE[c];
-        if (b === undefined) {
-          throw new Error(
-            'Character '
-            + c
-            + ' in '
-            + base64xml_encoded_string
-            + ' is out of range; it can not be decoded.'
-          );
-        }
+        if (b === undefined)
+          throw new H.KeyError('Character', c);
         return b;
       }
     );
@@ -654,15 +647,8 @@ var hatokurandom = {};
       six_bit_buffer,
       function (b) {
         var c = H.BASE64XML_ENCODING_TABLE[b];
-        if (c === undefined) {
-          throw new Error(
-            'Value '
-            + b
-            + ' in '
-            + six_bit_buffer
-            + ' is out of range; it can not be encoded.'
-          );
-        }
+        if (c === undefined)
+          throw new H.KeyError('Value', b);
         return c;
       }
     ).join('');
@@ -671,14 +657,14 @@ var hatokurandom = {};
   H.meta_from_pid = function (pid) {  //{{{2
     var meta = H.PID_TO_META_TABLE[pid];
     if (meta === undefined)
-      throw new Error('PID "' + pid + '" is not valid.');
+      throw new H.KeyError('PID', pid);
     return meta;
   };
 
   H.parent_pid_from_pid = function (pid) {  //{{{2
     var parend_pid = H.PID_TO_PARENT_PID_TABLE[pid];
     if (parend_pid === undefined)
-      throw new Error('PID "' + pid + '" is not valid.');
+      throw new H.KeyError('PID', pid);
     return parend_pid;
   };
 
