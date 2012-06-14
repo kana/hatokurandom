@@ -671,6 +671,14 @@ var hatokurandom = {};
     return meta;
   };
 
+  H.meta_from_rsid = function (rsid) {  //{{{2
+    // FIXME: In future, rsids might contain titles.
+    return {
+      long_title: 'ランダムサプライ',
+      short_title: 'ランダムサプライ'
+    };
+  };
+
   H.parent_pid_from_pid = function (pid) {  //{{{2
     var parend_pid = H.PID_TO_PARENT_PID_TABLE[pid];
     if (parend_pid === undefined)

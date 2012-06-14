@@ -150,6 +150,20 @@
       expect(function () {f('supply');}).toThrow();
     });
   });
+  describe('meta_from_rsid', function () {
+    it('should return meta from an rsid', function () {
+      var meta = H.meta_from_rsid('B');
+
+      expect(meta.long_title).toEqual('ランダムサプライ');
+      expect(meta.short_title).toEqual('ランダムサプライ');
+    });
+    it('unfortunately works even if a given rsid is invalid', function () {
+      var meta = H.meta_from_rsid('B');
+      expect(H.meta_from_rsid('BAD')).toEqual(meta);
+      expect(H.meta_from_rsid('BADgc')).toEqual(meta);
+      expect(H.meta_from_rsid('This is not a valid rsid!')).toEqual(meta);
+    });
+  });
   describe('parent_pid_from_pid', function () {
     var f = H.parent_pid_from_pid;
     it('should return the parent pid from a given pid', function () {
