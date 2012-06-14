@@ -179,6 +179,25 @@
       expect(function () {f('Supplies:basic');}).toThrow();
       expect(function () {f('supply');}).toThrow();
     });
+    it('should return undefined to a directly visited rsid page', function () {
+      var original = $.mobile.urlHistory.stack;
+
+      $.mobile.urlHistory.stack = [];
+
+      expect(f('supply:BADgc')).toBeUndefined();
+
+      $.mobile.urlHistory.stack = original;
+    });
+    it('should return the previous pid for other rsid pages', function () {
+      var original = $.mobile.urlHistory.stack;
+
+      $.mobile.urlHistory.addNew('http://june29.jp/#hairstyle:mojamoja');
+      $.mobile.urlHistory.addNew('http://june29.jp/#hairstyle:sarasara');
+
+      expect(f('supply:BADgc')).toEqual('hairstyle:mojamoja');
+
+      $.mobile.urlHistory.stack = original;
+    });
   });
   describe('pid_from_url', function () {
     it('should return pid from a url object', function () {

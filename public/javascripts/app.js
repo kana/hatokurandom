@@ -686,8 +686,27 @@ var hatokurandom = {};
 
   H.parent_pid_from_pid = function (pid) {  //{{{2
     var parend_pid = H.PID_TO_PARENT_PID_TABLE[pid];
-    if (parend_pid === undefined)
+    if (parend_pid === undefined) {
+      if (/^supply:/.test(pid)) {
+        var maybe_rsid = H.sid_from_pid(pid);
+        if (H.is_rsid(maybe_rsid)) {
+          var previous = $m.urlHistory.getPrev();
+          if (previous) {
+            // An rsid page might be visited from anywhere.  If a previous
+            // page exists, it means that the previous page contains a link to
+            // the current page.  Use the pid of the previous page.
+            return H.pid_from_url($m.path.parseUrl(previous.url));
+          } else {
+            // But, in most cases, an rsid page is directly visited from the
+            // outside of the application, for example, Twitter.  In this
+            // case, there is no suitable page as the parent of the current
+            // page.  Return undefined to indicate the absence of the parent.
+            return undefined;
+          }
+        }
+      }
       throw new H.KeyError('PID', pid);
+    }
     return parend_pid;
   };
 
