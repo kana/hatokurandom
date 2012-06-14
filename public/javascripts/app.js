@@ -659,6 +659,11 @@ var hatokurandom = {};
     return !!(H.PSID_TO_CARD_NAMES_TABLE[sid]);
   };
 
+  H.is_rsid = function (sid) {  //{{{2
+    // NB: This is not perfect -- the given sid might be invalid as an rsid.
+    return !H.is_psid(sid);
+  };
+
   H.meta_from_pid = function (pid) {  //{{{2
     var meta = H.PID_TO_META_TABLE[pid];
     if (meta === undefined)

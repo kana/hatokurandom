@@ -123,6 +123,20 @@
       expect(H.is_psid('BALAUAXAdAfAhAlAEAHAJ')).toBeFalsy();
     });
   });
+  describe('is_rsid', function () {
+    it('should return true for a valid rsid', function () {
+      expect(H.is_rsid('B')).toBeTruthy();
+      expect(H.is_rsid('BAD')).toBeTruthy();
+      expect(H.is_rsid('BADgc')).toBeTruthy();
+    });
+    it('should return false for a psid', function () {
+      expect(H.is_rsid('basic-firstplay')).toBeFalsy();
+      expect(H.is_rsid('championship1-finals')).toBeFalsy();
+    });
+    it('should return true for an invalid rsid, unfortunately', function () {
+      expect(H.is_rsid('This is neither a psid nor an rsid')).toBeTruthy();
+    });
+  });
   describe('meta_from_pid', function () {
     var f = H.meta_from_pid;
     it('should return meta from a given pid', function () {
