@@ -666,8 +666,13 @@ var hatokurandom = {};
 
   H.meta_from_pid = function (pid) {  //{{{2
     var meta = H.PID_TO_META_TABLE[pid];
-    if (meta === undefined)
-      throw new H.KeyError('PID', pid);
+    if (meta === undefined) {
+      var maybe_rsid = H.sid_from_pid(pid);
+      if (/^supply:/.test(pid) && H.is_rsid(maybe_rsid))
+        return H.meta_from_rsid(maybe_rsid);
+      else
+        throw new H.KeyError('PID', pid);
+    }
     return meta;
   };
 

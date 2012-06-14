@@ -144,6 +144,11 @@
       var meta = H.PID_TO_META_TABLE[pid];
       expect(f(pid)).toBe(meta);
     });
+    it('should return meta from a page with an rsid', function () {
+      var pid = 'supply:BADgc';
+      expect(H.PID_TO_META_TABLE[pid]).toBeUndefined();
+      expect(f(pid)).toEqual(H.meta_from_rsid('BADgc'));
+    });
     it('should raise error if a given pid is not valid', function () {
       expect(function () {f('supplies:basic');}).not.toThrow();
       expect(function () {f('Supplies:basic');}).toThrow();
