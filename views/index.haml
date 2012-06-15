@@ -30,9 +30,6 @@
       def as_inset
         {data: {inset: 'true'}}
       end
-      def as_back_button
-        {data: {rel: 'back', icon: 'arrow-l'}}
-      end
       def as_button
         {data: {role: 'button'}}
       end
@@ -64,7 +61,6 @@
     #about{as_page}
 
       %div{as_header}
-        %a{as_back_button}(href='#home') ホーム
         %h1 概要
 
       %div{as_content}
@@ -108,7 +104,6 @@
     #credits{as_page}
 
       %div{as_header}
-        %a{as_back_button}(href='#about') 概要
         %h1 Credits
 
       %div{as_content}
@@ -163,7 +158,6 @@
     #templates.internal
       #supplies_template
         %div{as_header}
-          %a{as_back_button}(href='\#{{back_pid}}') {{back_label}}
           %h1 {{title}}
         %div{as_content}
           %ul.supplies{as_listview}
@@ -173,7 +167,6 @@
           %a(href='\#{{pid}}') {{title}}
       #supply_template
         %div{as_header}
-          %a.back{as_back_button}(href='\#{{back_pid}}') {{back_label}}
           %h1 {{title}}
         %div{as_content}
           %ul.supply{as_listview}

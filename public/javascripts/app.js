@@ -809,13 +809,8 @@ var hatokurandom = {};
   H.prepare_supplies_page = function (e, data, pid) {  //{{{2
     var meta = H.meta_from_pid(pid);
     var child_pids = H.child_pids_from_pid(pid);
-    var parent_pid = H.parent_pid_from_pid(pid);
-    var has_parent = !!parent_pid;
-    var parent_meta = has_parent && H.meta_from_pid(parent_pid);
 
     var $content = H.render('supplies_template', {
-      back_pid: parent_pid,
-      back_label: has_parent && parent_meta.short_title,
       title: meta.long_title
     });
     var $supplies = $content.find('.supplies');
@@ -827,7 +822,6 @@ var hatokurandom = {};
         title: child_meta.long_title
       }));
     }
-    $content.find('.back').toggleClass('unavailable', !has_parent);
 
     var $page = $('#' + H.apid_from_pid(pid));
     $page
@@ -844,9 +838,6 @@ var hatokurandom = {};
 
   H.prepare_supply_page = function (e, data, pid) {  //{{{2
     var meta = H.meta_from_pid(pid);
-    var parent_pid = H.parent_pid_from_pid(pid);
-    var has_parent = !!parent_pid;
-    var parent_meta = has_parent && H.meta_from_pid(parent_pid);
     var sid = H.sid_from_pid(pid);
     var xcards =
       H.order_by(
@@ -858,8 +849,6 @@ var hatokurandom = {};
       );
 
     var $content = H.render('supply_template', {
-      back_pid: parent_pid,
-      back_label: has_parent && parent_meta.short_title,
       title: meta.long_title
     });
     var $supply = $content.find('.supply');
@@ -868,7 +857,6 @@ var hatokurandom = {};
       $supply.append(H.render('supply_item_template', xcard));
     }
     $content.find('.random-only').toggleClass('unavailable', !H.is_rsid(sid));
-    $content.find('.back').toggleClass('unavailable', !has_parent);
 
     // FIXME: DRY
     // The tails parts of H.prepare_supplies_page and H.prepare_supply_page
