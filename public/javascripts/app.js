@@ -874,6 +874,10 @@ var hatokurandom = {};
     e.preventDefault();
   };
 
+  H.prepare_other_page = function (e, data, pid) {  //{{{2
+    // Nothing to do.
+  };
+
   // Events  //{{{1
   $(document).bind('pagebeforechange', function (e, data) {  //{{{2
     try {
@@ -885,13 +889,17 @@ var hatokurandom = {};
 
       var url = $m.path.parseUrl(data.toPage);
       var pid = H.pid_from_url(url);
-      var apid = H.apid_from_pid(pid);
-      if (apid == 'supplies')
-        H.prepare_supplies_page(e, data, pid);
-      else if (apid == 'supply')
-        H.prepare_supply_page(e, data, pid);
-      else
-        return;
+      var prepare = (function () {
+        var apid = H.apid_from_pid(pid);
+        if (apid == 'supplies')
+          return H.prepare_supplies_page;
+        else if (apid == 'supply')
+          return H.prepare_supply_page;
+        else
+          return H.prepare_other_page;
+      })();
+
+      prepare(e, data, pid);
     } catch (ex) {
       alert('Unexpected error: ' + ex.message);  // TODO: Friendly instruction.
       e.preventDefault();
