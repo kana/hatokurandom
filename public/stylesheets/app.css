@@ -22,3 +22,12 @@ a[target='_blank']:after
 {
   display: none !important;
 }
+
+
+/* Adjust the size of icons in the navigation bar. */
+
+[data-id='navigation'][data-role='header'] [data-role='navbar'] .ui-btn-inner
+{
+  padding: 0.25ex 0;
+  font-size: 2em;
+}
