@@ -15,9 +15,6 @@
       def as_page
         {data: {role: 'page'}}
       end
-      def as_header
-        {data: {role: 'header', position: 'fixed'}}
-      end
       def as_footer
         {data: {role: 'footer', position: 'fixed'}}
       end
@@ -35,9 +32,6 @@
       end
 
     #home{as_page}
-
-      %div{as_header}
-        %h1= App::NAME
 
       %div{as_content}
         %ul{as_listview}
@@ -59,9 +53,6 @@
       -# #supply_template
 
     #about{as_page}
-
-      %div{as_header}
-        %h1 概要
 
       %div{as_content}
         %p
@@ -102,9 +93,6 @@
               バージョン情報
 
     #credits{as_page}
-
-      %div{as_header}
-        %h1 Credits
 
       %div{as_content}
         %h2
@@ -156,9 +144,23 @@
             for the origin of collectible trading card games.
 
     #templates.internal
+      #header_template
+        %div{data: {role: 'header', position: 'fixed', id: 'navigation'}}
+          %div{data: {role: 'navbar'}}
+            %ul
+              %li
+                %a{data: {direction: 'reverse'}}(href='#home')
+                  %i.icon-home
+              %li
+                %a(href='#configure')
+                  %i.icon-cog
+              %li
+                %a(href='#share')
+                  %i.icon-share
+              %li
+                %a(href='#reshuffle')
+                  %i.icon-random
       #supplies_template
-        %div{as_header}
-          %h1 {{title}}
         %div{as_content}
           %ul.supplies{as_listview}
             -# #supplies_item_template
@@ -166,8 +168,6 @@
         %li
           %a(href='\#{{pid}}') {{title}}
       #supply_template
-        %div{as_header}
-          %h1 {{title}}
         %div{as_content}
           %ul.supply{as_listview}
             -# #supply_item_template
