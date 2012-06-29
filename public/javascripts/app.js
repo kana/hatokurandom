@@ -941,10 +941,10 @@ var hatokurandom = {};
     H.complete_header(e, data);
   });
 
-  // Bootstrap  //{{{1
-  $(document).ready(function () {
+  $(document).ready(function () {  //{{{2
     $.mobile.defaultPageTransition = 'slide';
-  });  //}}}1
+  });
+  //}}}1
 })(hatokurandom, jQuery, jQuery.mobile);
 
 // __END__  {{{1
