@@ -914,6 +914,8 @@ var hatokurandom = {};
   };
 
   // Events  //{{{1
+  if (H.is_running_specs())  //{{{2
+    return;  // Do not register event handlers to avoid interference on specs.
   $(document).bind('pagebeforechange', function (e, data) {  //{{{2
     try {
       if (typeof data.toPage != 'string')
