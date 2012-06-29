@@ -390,6 +390,19 @@
       expect(H.xcards_from_sid('basic-firstplay'))
         .toEqual(H.xcards_from_psid('basic-firstplay'));
     });
+    it('should handle special psid - randomXX', function () {
+      var xcards1 = H.xcards_from_sid('random10');
+      var xcards2;
+      do {
+        xcards2 = H.xcards_from_sid('random10');
+      } while (xcards1 == xcards2);
+      expect(xcards1).not.toEqual(xcards2);
+
+      expect(H.xcards_from_sid('random10').length).toEqual(10);
+      expect(H.xcards_from_sid('random12').length).toEqual(12);
+      expect(H.xcards_from_sid('random20').length).toEqual(20);
+      expect(function () {H.xcards_from_sid('random4');}).toThrow();
+    });
     it('should return xcards from rsid', function () {
       expect(H.xcards_from_sid('BADgc'))
         .toEqual(H.xcards_from_rsid('BADgc'));

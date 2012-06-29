@@ -856,10 +856,19 @@ var hatokurandom = {};
   };
 
   H.xcards_from_sid = function (sid) {  //{{{2
-    if (H.is_psid(sid))
+    var match = /^random(\d\d)$/.exec(sid);
+    if (match) {
+      var count = parseInt(match[1]);
+      var cards = H.choose_random_cards(H.CARDS, count);
+      return $.map(
+        cards,
+        function (c) {return $.extend({dropped: false}, c);}
+      );
+    } else if (H.is_psid(sid)) {
       return H.xcards_from_psid(sid);
-    else
+    } else {
       return H.xcards_from_rsid(sid);
+    }
   };
 
   // Core  //{{{1
