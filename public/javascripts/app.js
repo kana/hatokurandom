@@ -406,6 +406,12 @@ var hatokurandom = {};
     'about': [  //{{{
       'credits'
     ],  //}}}
+    'supplies:random': [  //{{{
+      'supply:random10',
+      'supply:random12',
+      'supply:random13',
+      'supply:random14'
+    ],  //}}}
     'supplies:basic': [  //{{{
       'supply:basic-firstplay',
       'supply:basic-guide',
@@ -460,6 +466,21 @@ var hatokurandom = {};
       'about': {  //{{{
         long_title: 'このアプリについて',
         short_title: '概要'
+      },  //}}}
+      'supplies:random': {  //{{{
+        long_title: 'ランダムサプライ'
+      },  //}}}
+      'supply:random10': {  //{{{
+        long_title: 'ランダムに10枚選択'
+      },  //}}}
+      'supply:random12': {  //{{{
+        long_title: 'ランダムに12枚選択'
+      },  //}}}
+      'supply:random13': {  //{{{
+        long_title: 'ランダムに13枚選択'
+      },  //}}}
+      'supply:random14': {  //{{{
+        long_title: 'ランダムに14枚選択'
       },  //}}}
       'supplies:basic': {  //{{{
         long_title: '推奨サプライ(基本セット)'
