@@ -664,6 +664,10 @@ var hatokurandom = {};
     return !H.is_psid(sid);
   };
 
+  H.is_running_specs = function () {  //{{{2
+    return document.title == 'Jasmine Spec Runner';
+  };
+
   H.meta_from_pid = function (pid) {  //{{{2
     var meta = H.PID_TO_META_TABLE[pid];
     if (meta === undefined) {

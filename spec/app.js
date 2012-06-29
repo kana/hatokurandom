@@ -137,6 +137,21 @@
       expect(H.is_rsid('This is neither a psid nor an rsid')).toBeTruthy();
     });
   });
+  describe('is_running_specs', function () {
+    it('should return true if specs seem to be run', function () {
+      expect(H.is_running_specs()).toBeTruthy();
+    });
+    it('should return false if specs seem not to be run', function () {
+      var original_title = document.title;
+      document.title = 'ハトクランダム';
+
+      expect(H.is_running_specs()).toBeFalsy();
+
+      document.title = original_title;
+
+      expect(H.is_running_specs()).toBeTruthy();
+    });
+  });
   describe('meta_from_pid', function () {
     var f = H.meta_from_pid;
     it('should return meta from a given pid', function () {
