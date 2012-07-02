@@ -813,7 +813,7 @@ var hatokurandom = {};
 
   H.xcards_from_psid = function (psid) {  //{{{2
     return $.map(H.card_names_from_psid(psid), function (card_name) {
-      return $.extend({dropped: false}, H.card_from_card_name(card_name));
+      return H.xcard_from_card(H.card_from_card_name(card_name));
     });
   };
 
@@ -847,7 +847,9 @@ var hatokurandom = {};
       var b2 = bs.shift();
       var dropped = !!(b1 & (1 << 5));
       var cid = ((b1 & ((1 << 5) - 1)) << 5) | b2;
-      xcards.push($.extend({dropped: dropped}, H.card_from_cid(cid)));
+      var xcard = H.xcard_from_card(H.card_from_cid(cid));
+      xcard.dropped = dropped;
+      xcards.push(xcard);
     }
     if (bs.length != 0) {
       throw new H.Error([
@@ -864,10 +866,7 @@ var hatokurandom = {};
     if (match) {
       var count = parseInt(match[1]);
       var cards = H.choose_random_cards(H.CARDS, count);
-      return $.map(
-        cards,
-        function (c) {return $.extend({dropped: false}, c);}
-      );
+      return $.map(cards, H.xcard_from_card);
     } else if (H.is_psid(sid)) {
       return H.xcards_from_psid(sid);
     } else {
