@@ -169,8 +169,8 @@
           %ul.supply{as_listview}
             -# #supply_item_template
       %ul#supply_item_template
-        %li
-          -# %a(href='#card:{{cid}}') {{cost}} {{name}}
+        %li.card(data-cid='{{cid}}')
+          -# FIXME: Link to a card view.
           {{cost}} {{name}}
 
 -# __END__
