@@ -807,6 +807,10 @@ var hatokurandom = {};
     return pid.replace(/.*:/, '');
   };
 
+  H.xcard_from_card = function (card) {  //{{{2
+    return $.extend({dropped: false}, card);
+  };
+
   H.xcards_from_psid = function (psid) {  //{{{2
     return $.map(H.card_names_from_psid(psid), function (card_name) {
       return $.extend({dropped: false}, H.card_from_card_name(card_name));

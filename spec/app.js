@@ -352,6 +352,16 @@
       expect(H.sid_from_pid('supply:basic-guide')).toEqual('basic-guide');
     });
   });
+  describe('xcard_from_card', function () {
+    it('should return xcard from card, with default values', function () {
+      var card = H.CARDS[0];
+      var default_values = {dropped: false};
+      expect(H.xcard_from_card(card))
+        .toEqual($.extend({}, default_values, card));
+      expect(H.xcard_from_card(card)).not.toBe(H.xcard_from_card(card));
+      expect(H.xcard_from_card(card)).not.toBe(card);
+    });
+  });
   describe('xcards_from_psid', function () {
     it('should return cards with extra information from a psid', function () {
       var xcards = H.xcards_from_psid('basic-firstplay');
