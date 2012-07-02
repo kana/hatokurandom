@@ -46,3 +46,11 @@ a[target='_blank']:after
   background: #ddd;
   color: #666;
 }
+
+
+/* For the header. */
+
+.disabled.reshuffle.button
+{
+  color: #666;
+}

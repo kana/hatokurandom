@@ -921,6 +921,21 @@ var hatokurandom = {};
       : data.toPage;
     if ($page.find(':jqmData(role="header")').length == 0) {
       var $header = H.render('header_template');
+      var $reshuffle_button = $header.find('.reshuffle.button');
+      var sid = $page.jqmData('sid');
+      if (H.is_dsid(sid)) {
+        $reshuffle_button.click(function () {
+          H.refresh_supply_view(
+            $m.activePage.find('.supply'),
+            H.xcards_from_sid(sid),
+            sid,
+            false
+          );
+        });
+      } else {
+        $reshuffle_button.addClass('disabled');
+      }
+
       $page.prepend($header);
       $page.page();
       $page.trigger('pagecreate');
