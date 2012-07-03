@@ -6,8 +6,9 @@ var hatokurandom = {};
   // cid: Card ID
   // eid: Expansion ID
   // sid: Supply ID
-  //   rsid: Random Supply ID
+  //   dsid: Dynamic Supply ID
   //   psid: Predefined Supply ID
+  //   rsid: Random Supply ID
   // tid: Template ID
   // pid: Page ID
   //   apid: Actual Page ID (PID without any query parameter)
