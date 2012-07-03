@@ -769,6 +769,15 @@ var hatokurandom = {};
     return parend_pid;
   };
 
+  H.parse_dsid = function (sid) {  //{{{2
+    var match = /^random(\d\d)(:(.*))?$/.exec(sid);
+    return {
+      valid: !!match,
+      count: match && parseInt(match[1]),
+      rsid: match && match[3]
+    };
+  };
+
   H.pid_from_url = function (url) {  //{{{2
     return url.hash.substring(1);
   };
