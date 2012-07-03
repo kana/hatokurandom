@@ -614,6 +614,14 @@ var hatokurandom = {};
     return this;
   };
 
+  $.fn.enable = function (enabled) {  //{{{2
+    if (enabled)
+      this.removeAttr('disabled');
+    else
+      this.attr('disabled', 'disabled');
+    return this;
+  };
+
   H.Error = function (message) {  //{{{2
     this.message = message;
   };
