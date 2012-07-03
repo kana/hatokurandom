@@ -606,6 +606,14 @@ var hatokurandom = {};
     })();
 
   // Utilities  //{{{1
+  $.fn.check = function (checked) {  //{{{2
+    if (checked)
+      this.attr('checked', 'checked');
+    else
+      this.removeAttr('checked');
+    return this;
+  };
+
   H.Error = function (message) {  //{{{2
     this.message = message;
   };
