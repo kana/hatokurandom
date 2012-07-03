@@ -883,11 +883,9 @@ var hatokurandom = {};
   };
 
   H.xcards_from_sid = function (sid) {  //{{{2
-    var match = /^random(\d\d)$/.exec(sid);
-    if (match) {
-      var count = parseInt(match[1]);
-      var cards = H.choose_random_cards(H.CARDS, count);
-      return $.map(cards, H.xcard_from_card);
+    var match = H.parse_dsid(sid);
+    if (match.valid) {
+      return H.xcards_from_dsid_data(match);
     } else if (H.is_psid(sid)) {
       return H.xcards_from_psid(sid);
     } else {
