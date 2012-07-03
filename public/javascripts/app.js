@@ -1005,6 +1005,15 @@ var hatokurandom = {};
     // Nothing to do.
   };
 
+  H.xcards_from_supply_view = function ($supply) {  //{{{2
+    return $supply.find('.card').map(function () {
+      var $card = $(this);
+      var xcard = H.xcard_from_card(H.card_from_cid($card.data('cid')));
+      xcard.dropped = $card.find('.dropped:checkbox:checked').length != 0;
+      return xcard;
+    });
+  };
+
   // Events  //{{{1
   if (H.is_running_specs())  //{{{2
     return;  // Do not register event handlers to avoid interference on specs.
