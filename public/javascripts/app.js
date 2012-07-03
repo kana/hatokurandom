@@ -960,30 +960,13 @@ var hatokurandom = {};
   H.prepare_supply_page = function (e, data, pid) {  //{{{2
     var meta = H.meta_from_pid(pid);
     var sid = H.sid_from_pid(pid);
-    var xcards =
-      H.order_by(
-        H.xcards_from_sid(sid),
-        function (xcard) {return xcard.dropped ? 2 : 1;},
-        function (xcard) {return xcard.cost;},
-        function (xcard) {return xcard.link;},
-        function (xcard) {return xcard.name;}
-      );
+    var initial_xcards = H.xcards_from_sid(sid);
 
     var $content = H.render('supply_template', {
       title: meta.long_title
     });
     var $supply = $content.find('.supply');
-    for (var i in xcards) {
-      var xcard = xcards[i];
-      var $xcard = H.render('supply_item_template', xcard);
-      $xcard
-        .find('.dropped:checkbox')
-        .check(xcard.dropped)
-        .toggleClass('unavailable', xcards.length <= 10)
-        .enable(10 < xcards.length && H.is_dsid(sid));
-      $xcard.toggleClass('dropped', xcard.dropped);
-      $supply.append($xcard);
-    }
+    H.refresh_supply_view($supply, initial_xcards, sid, true);
 
     // FIXME: DRY
     // The tails parts of H.prepare_supplies_page and H.prepare_supply_page
@@ -1003,6 +986,35 @@ var hatokurandom = {};
 
   H.prepare_other_page = function (e, data, pid) {  //{{{2
     // Nothing to do.
+  };
+
+  H.refresh_supply_view = function ($supply, xcards, sid, is_first) {  //{{{2
+    var refresh_if_dropped = function () {
+      var updated_xcards = H.xcards_from_supply_view($supply);
+      H.refresh_supply_view($supply, updated_xcards, sid, false);
+    };
+    var sorted_xcards =
+      H.order_by(
+        xcards,
+        function (xcard) {return xcard.dropped ? 2 : 1;},
+        function (xcard) {return xcard.cost;},
+        function (xcard) {return xcard.link;},
+        function (xcard) {return xcard.name;}
+      );
+    $supply.empty();
+    $.each(sorted_xcards, function (_, xcard) {
+      var $xcard = H.render('supply_item_template', xcard);
+      $xcard
+        .find('.dropped:checkbox')
+        .check(xcard.dropped)
+        .toggleClass('unavailable', xcards.length <= 10)
+        .enable(10 < xcards.length && H.is_dsid(sid))
+        .change(refresh_if_dropped);
+      $xcard.toggleClass('dropped', xcard.dropped);
+      $supply.append($xcard);
+    });
+    if (!is_first)
+      $supply.listview('refresh');
   };
 
   H.xcards_from_supply_view = function ($supply) {  //{{{2
