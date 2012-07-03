@@ -975,6 +975,7 @@ var hatokurandom = {};
     $page
       .empty()
       .append($content);
+    $page.jqmData('sid', sid);
     $page.jqmData('title', meta.long_title);
     $page.page();
     $page.trigger('pagecreate');
