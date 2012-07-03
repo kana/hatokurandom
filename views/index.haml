@@ -171,6 +171,8 @@
       %ul#supply_item_template
         %li.card(data-cid='{{cid}}')
           -# FIXME: Link to a card view.
-          {{cost}} {{name}}
+          %label
+            %input.dropped(type='checkbox' data-role='none')
+            {{cost}} {{name}}
 
 -# __END__

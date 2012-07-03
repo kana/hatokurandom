@@ -706,6 +706,10 @@ var hatokurandom = {};
     ).join('');
   };
 
+  H.is_dsid = function (sid) {  //{{{2
+    return H.parse_dsid(sid).valid;
+  };
+
   H.is_psid = function (sid) {  //{{{2
     return !!(H.PSID_TO_CARD_NAMES_TABLE[sid]);
   };
@@ -971,7 +975,14 @@ var hatokurandom = {};
     var $supply = $content.find('.supply');
     for (var i in xcards) {
       var xcard = xcards[i];
-      $supply.append(H.render('supply_item_template', xcard));
+      var $xcard = H.render('supply_item_template', xcard);
+      $xcard
+        .find('.dropped:checkbox')
+        .check(xcard.dropped)
+        .toggleClass('unavailable', xcards.length <= 10)
+        .enable(10 < xcards.length && H.is_dsid(sid));
+      $xcard.toggleClass('dropped', xcard.dropped);
+      $supply.append($xcard);
     }
 
     // FIXME: DRY

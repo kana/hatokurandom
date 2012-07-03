@@ -31,3 +31,18 @@ a[target='_blank']:after
   padding: 0.25ex 0;
   font-size: 2em;
 }
+
+
+/* For cards in a supply view. */
+
+.card label
+{
+  display: block;
+  cursor: pointer;
+}
+
+.dropped.card
+{
+  background: #ddd;
+  color: #666;
+}
