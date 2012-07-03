@@ -384,6 +384,29 @@
       expect(H.xcard_from_card(card)).not.toBe(card);
     });
   });
+  describe('xcards_from_dsid_data', function () {
+    var f = function (x) {return H.xcards_from_dsid_data(H.parse_dsid(x));};
+    it('should return an empty array from "failure" data', function () {
+      expect(f('basic-guide')).toEqual([]);
+      expect(f('BADgc')).toEqual([]);
+    });
+    it('should return xcards from rsid inside dsid', function () {
+      expect(f('random10:BADgc')).toEqual(H.xcards_from_rsid('BADgc'));
+    });
+    it('should return xcards randomly from dsid without rsid', function () {
+      var xcards1 = f('random10');
+      var xcards2;
+      do {
+        xcards2 = f('random10');
+      } while (xcards1 == xcards2);
+      expect(xcards1).not.toEqual(xcards2);
+
+      expect(f('random10').length).toEqual(10);
+      expect(f('random12').length).toEqual(12);
+      expect(f('random20').length).toEqual(20);
+      expect(f('random4').length).toEqual(0);
+    });
+  });
   describe('xcards_from_psid', function () {
     it('should return cards with extra information from a psid', function () {
       var xcards = H.xcards_from_psid('basic-firstplay');

@@ -821,6 +821,17 @@ var hatokurandom = {};
     return $.extend({dropped: false}, card);
   };
 
+  H.xcards_from_dsid_data = function (dsid_data) {  //{{{2
+    if (!dsid_data.valid) {
+      return [];
+    } else if (dsid_data.rsid) {
+      return H.xcards_from_rsid(dsid_data.rsid);
+    } else {
+      var cards = H.choose_random_cards(H.CARDS, dsid_data.count);
+      return $.map(cards, H.xcard_from_card);
+    }
+  };
+
   H.xcards_from_psid = function (psid) {  //{{{2
     return $.map(H.card_names_from_psid(psid), function (card_name) {
       return H.xcard_from_card(H.card_from_card_name(card_name));
