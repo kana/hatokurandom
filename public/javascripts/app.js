@@ -1050,7 +1050,7 @@ var hatokurandom = {};
       var xcard = H.xcard_from_card(H.card_from_cid($card.data('cid')));
       xcard.dropped = $card.find('.dropped:checkbox:checked').length != 0;
       return xcard;
-    });
+    }).get();
   };
 
   // Events  //{{{1
