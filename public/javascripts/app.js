@@ -983,29 +983,33 @@ var hatokurandom = {};
   };
 
   H.prepare_supplies_page = function (e, data, pid) {  //{{{2
-    var meta = H.meta_from_pid(pid);
-    var child_pids = H.child_pids_from_pid(pid);
-
-    var $content = H.render('supplies_template', {
-      title: meta.long_title
-    });
-    var $supplies = $content.find('.supplies');
-    for (var i in child_pids) {
-      var child_pid = child_pids[i];
-      var child_meta = H.meta_from_pid(child_pid);
-      $supplies.append(H.render('supplies_item_template', {
-        pid: child_pid,
-        title: child_meta.long_title
-      }));
-    }
-
     var $page = $('#' + H.apid_from_pid(pid));
-    $page
-      .empty()
-      .append($content);
-    $page.jqmData('title', meta.long_title);
-    $page.page();
-    $page.trigger('pagecreate');
+
+    // See also [DOUBLE_TROUBLE].
+    if (pid != $page.jqmData('pid')) {
+      var meta = H.meta_from_pid(pid);
+      var child_pids = H.child_pids_from_pid(pid);
+
+      var $content = H.render('supplies_template', {
+        title: meta.long_title
+      });
+      var $supplies = $content.find('.supplies');
+      for (var i in child_pids) {
+        var child_pid = child_pids[i];
+        var child_meta = H.meta_from_pid(child_pid);
+        $supplies.append(H.render('supplies_item_template', {
+          pid: child_pid,
+          title: child_meta.long_title
+        }));
+      }
+
+      $page
+        .empty()
+        .append($content);
+      $page.jqmData('title', meta.long_title);
+      $page.page();
+      $page.trigger('pagecreate');
+    }
 
     data.options.dataUrl = data.toPage;
     $m.changePage($page, data.options);
