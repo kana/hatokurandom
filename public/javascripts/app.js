@@ -1013,27 +1013,34 @@ var hatokurandom = {};
   };
 
   H.prepare_supply_page = function (e, data, pid) {  //{{{2
-    var meta = H.meta_from_pid(pid);
-    var sid = H.sid_from_pid(pid);
-    var initial_xcards = H.xcards_from_sid(sid);
-
-    var $content = H.render('supply_template', {
-      title: meta.long_title
-    });
-    var $supply = $content.find('.supply');
-    H.refresh_supply_view($supply, initial_xcards, sid, true);
-
-    // FIXME: DRY
-    // The tails parts of H.prepare_supplies_page and H.prepare_supply_page
-    // are the same.
     var $page = $('#' + H.apid_from_pid(pid));
-    $page
-      .empty()
-      .append($content);
-    $page.jqmData('sid', sid);
-    $page.jqmData('title', meta.long_title);
-    $page.page();
-    $page.trigger('pagecreate');
+    var sid = H.sid_from_pid(pid);
+
+    // [DOUBLE_TROUBLE] For some reason, pagebeforechange and some events are
+    // triggered twice by using the back/forward buttons in Web browsers.  To
+    // avoid unnecessary recreation and reshuffling a random supply twice,
+    // keep the curent content of $page if possible.
+    if (sid != $page.jqmData('sid')) {
+      var meta = H.meta_from_pid(pid);
+      var initial_xcards = H.xcards_from_sid(sid);
+
+      var $content = H.render('supply_template', {
+        title: meta.long_title
+      });
+      var $supply = $content.find('.supply');
+      H.refresh_supply_view($supply, initial_xcards, sid, true);
+
+      // FIXME: DRY
+      // The tails of H.prepare_supplies_page and H.prepare_supply_page
+      // are almost same.
+      $page
+        .empty()
+        .append($content);
+      $page.jqmData('sid', sid);
+      $page.jqmData('title', meta.long_title);
+      $page.page();
+      $page.trigger('pagecreate');
+    }
 
     data.options.dataUrl = data.toPage;
     $m.changePage($page, data.options);
