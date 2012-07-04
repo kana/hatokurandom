@@ -953,6 +953,17 @@ var hatokurandom = {};
     }
   };
 
+  H.generate_permalink = function ($supply_page) {  //{{{2
+    var sid = $supply_page.jqmData('sid');
+    if (!H.is_dsid(sid))
+      return location.href;
+
+    var $supply = $supply_page.find('.supply');
+    var rsid = H.rsid_from_xcards(H.xcards_from_supply_view($supply));
+    var base_uri = $m.path.parseUrl(location.href).hrefNoHash;
+    return base_uri + '#supply:' + rsid;
+  };
+
   H.prepare_supplies_page = function (e, data, pid) {  //{{{2
     var meta = H.meta_from_pid(pid);
     var child_pids = H.child_pids_from_pid(pid);
