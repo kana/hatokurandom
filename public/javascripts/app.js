@@ -921,6 +921,17 @@ var hatokurandom = {};
       : data.toPage;
     if ($page.find(':jqmData(role="header")').length == 0) {
       var $header = H.render('header_template');
+
+      var $buttons = $header.find('.button');
+      $buttons.click(function () {
+        setTimeout(
+          function () {
+            $buttons.removeClass($m.activeBtnClass);
+          },
+          300
+        );
+      });
+
       var $reshuffle_button = $header.find('.reshuffle.button');
       var sid = $page.jqmData('sid');
       if (H.is_dsid(sid)) {
