@@ -11,6 +11,11 @@ a[target='_blank']:after
   text-decoration: inherit;
 }
 
+a.share.button:after
+{
+  display: none;
+}
+
 
 /* Hide elements regardless of the default rendering type.
  *
@@ -50,7 +55,7 @@ a[target='_blank']:after
 
 /* For the header. */
 
-.disabled.reshuffle.button
+.disabled.button
 {
   color: #666;
 }

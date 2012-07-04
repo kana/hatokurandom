@@ -922,6 +922,7 @@ var hatokurandom = {};
     if ($page.find(':jqmData(role="header")').length == 0) {
       var $header = H.render('header_template');
 
+      var sid = $page.jqmData('sid');
       var $buttons = $header.find('.button');
       $buttons.click(function () {
         setTimeout(
@@ -933,7 +934,6 @@ var hatokurandom = {};
       });
 
       var $reshuffle_button = $header.find('.reshuffle.button');
-      var sid = $page.jqmData('sid');
       if (H.is_dsid(sid)) {
         $reshuffle_button.click(function () {
           H.refresh_supply_view(
@@ -945,6 +945,24 @@ var hatokurandom = {};
         });
       } else {
         $reshuffle_button.addClass('disabled');
+      }
+
+      var $share_button = $header.find('.share.button');
+      if ($page.attr('id') == 'supply') {
+        $share_button.click(function () {
+          var permalink = H.generate_permalink($page);
+          $share_button.attr(
+            'href',
+            [
+              'https://twitter.com/intent/tweet',
+              '?url=', encodeURIComponent(permalink),
+              '&text=', encodeURIComponent('ハトクラなう。今回のサプライ:'),
+              '&related=', encodeURIComponent('HeartofCrown,kana1')
+            ].join('')
+          );
+        });
+      } else {
+        $share_button.addClass('disabled');
       }
 
       $page.prepend($header);
