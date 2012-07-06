@@ -396,6 +396,44 @@ var hatokurandom = {};
     '': []  // Dummy entry to make folds simple.
   };
 
+  H.PID_REPLACEMENT_TABLE_VERSION_1 = {  //{{{2
+    '_about': 'about',
+    '_basic': 'supplies:basic',
+    '_basic-adventure': 'supply:basic-adventure',
+    '_basic-bigbusiness': 'supply:basic-bigbusiness',
+    '_basic-courtpolitics': 'supply:basic-courtpolitics',
+    '_basic-firstplay': 'supply:basic-firstplay',
+    '_basic-greatwar': 'supply:basic-greatwar',
+    '_basic-guide': 'supply:basic-guide',
+    '_basic-guide2': 'supply:basic-guide2',
+    '_basic-intermediate': 'supply:basic-intermediate',
+    '_basic-intermediate2': 'supply:basic-intermediate2',
+    '_basic-witchcraft': 'supply:basic-witchcraft',
+    '_championship': 'supplies:championship',
+    '_championship-finals': 'supply:championship-finals',
+    '_championship-prelims1': 'supply:championship-prelims1',
+    '_championship-prelims2': 'supply:championship-prelims2',
+    '_championship-prelims3': 'supply:championship-prelims3',
+    '_championship-semifinals': 'supply:championship-semifinals',
+    '_fareast': 'supplies:fareast',
+    '_fareast-battlefield': 'supply:fareast-battlefield',
+    '_fareast-citystrife': 'supply:fareast-citystrife',
+    '_fareast-firstplay': 'supply:fareast-firstplay',
+    '_fareast-guildstrife': 'supply:fareast-guildstrife',
+    '_fareast-kunoichi': 'supply:fareast-kunoichi',
+    '_fareast-mine': 'supply:fareast-mine',
+    '_fareast-moneymoneymoney': 'supply:fareast-moneymoneymoney',
+    '_fareast-porttown': 'supply:fareast-porttown',
+    '_fareast-prosperity': 'supply:fareast-prosperity',
+    '_fareast-scandal': 'supply:fareast-scandal',
+    '_home': 'home',
+    '_random': 'supplies:random',
+    '_random-10': 'supply:random10',
+    '_random-12': 'supply:random12',
+    '_random-13': 'supply:random13',
+    '_random-14': 'supply:random14',
+  };
+
   H.PID_TO_CHILD_PIDS_TABLE = {  //{{{2
     'home': [  //{{{
       'supplies:random',
@@ -741,6 +779,18 @@ var hatokurandom = {};
       long_title: 'ランダムサプライ',
       short_title: 'ランダムサプライ'
     };
+  };
+
+  H.migrate_from_version_1 = function (maybe_old_pid) {  //{{{2
+    var new_pid = H.PID_REPLACEMENT_TABLE_VERSION_1[maybe_old_pid];
+    if (new_pid)
+      return new_pid;
+
+    var m = /^_supply\.(.*)$/.exec(maybe_old_pid);
+    if (m)
+      return 'supply:' + m[1];
+
+    return false;
   };
 
   H.order_by = function (xs /* , key_selector1, ... */) {  //{{{2

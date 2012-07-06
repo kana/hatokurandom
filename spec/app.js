@@ -210,6 +210,19 @@
       expect(H.meta_from_rsid('This is not a valid rsid!')).toEqual(meta);
     });
   });
+  describe('migrate_from_version_1', function () {
+    var f = H.migrate_from_version_1;
+    it('should return new-style pid from old-style pid', function () {
+      expect(f('_home')).toEqual('home');
+      expect(f('_about')).toEqual('about');
+      expect(f('_basic')).toEqual('supplies:basic');
+      expect(f('_random-10')).toEqual('supply:random10');
+      expect(f('_supply.BADgc')).toEqual('supply:BADgc');
+    });
+    it('should return false from invalid pid for version 1', function () {
+      expect(f('_credit')).toBeFalsy();
+    });
+  });
   describe('order_by', function () {
     it('should sort a array with key selectors', function () {
       var xs = [
