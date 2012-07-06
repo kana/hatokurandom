@@ -937,7 +937,7 @@ var hatokurandom = {};
       var b1 = bs.shift();
       var b2 = bs.shift();
       var dropped = !!(b1 & (1 << 5));
-      var cid = ((b1 & ((1 << 5) - 1)) << 5) | b2;
+      var cid = ((b1 & ((1 << 5) - 1)) << 6) | b2;
       var xcard = H.xcard_from_card(H.card_from_cid(cid));
       xcard.dropped = dropped;
       xcards.push(xcard);
