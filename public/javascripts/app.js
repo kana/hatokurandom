@@ -1102,7 +1102,11 @@ var hatokurandom = {};
   };
 
   H.prepare_other_page = function (e, data, pid) {  //{{{2
-    // Nothing to do.
+    var new_pid = H.migrate_from_version_1(pid);
+    if (new_pid) {
+      var base_uri = $m.path.parseUrl(location.href).hrefNoHash;
+      location.replace(base_uri + '#' + new_pid);
+    }
   };
 
   H.refresh_supply_view = function ($supply, xcards, sid, is_first) {  //{{{2
