@@ -1050,6 +1050,20 @@ var hatokurandom = {};
     return base_uri + '#supply:' + rsid;
   };
 
+  H.load_options = function () {  //{{{2
+    for (var key in H.DEFAULT_OPTIONS) {
+      var saved_value = $.cookie(key);
+      var value =
+        saved_value == null
+        ? H.DEFAULT_OPTIONS[key]
+        : JSON.parse(saved_value);
+      H.options[key] = value;
+      $('#configure input')
+        .filter(function () {return $(this).attr('name') == key;})
+        .check(value);
+    }
+  };
+
   H.prepare_supplies_page = function (e, data, pid) {  //{{{2
     var $page = $('#' + H.apid_from_pid(pid));
 
