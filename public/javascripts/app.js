@@ -806,6 +806,8 @@ var hatokurandom = {};
     return false;
   };
 
+  H.options = $.extend({}, H.DEFAULT_OPTIONS);  //{{{2
+
   H.order_by = function (xs /* , key_selector1, ... */) {  //{{{2
     var _xs = xs.slice(0);
     var key_selectors = arguments;
