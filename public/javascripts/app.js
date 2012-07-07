@@ -912,7 +912,12 @@ var hatokurandom = {};
     } else if (dsid_data.rsid) {
       return H.xcards_from_rsid(dsid_data.rsid);
     } else {
-      var cards = H.choose_random_cards(H.CARDS, dsid_data.count);
+      var cards =
+        H.choose_random_cards(
+          H.CARDS,
+          dsid_data.count,
+          H.options
+        );
       return $.map(cards, H.xcard_from_card);
     }
   };
