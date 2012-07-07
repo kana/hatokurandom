@@ -106,6 +106,25 @@
       } while (cards1 == cards2);
       expect(cards1).not.toEqual(cards2);
     });
+    it('should reject specific expansions by given options', function () {
+      var filter_by_eid = function (eid, cards) {
+        return $.grep(cards, function (card) {return card.eid == eid;});
+      };
+      var test = function (eid, options) {
+        expect(
+          filter_by_eid(
+            eid,
+            H.choose_random_cards(
+              H.CARDS,
+              H.CARDS.length - filter_by_eid(eid, H.CARDS).length,
+              $.extend({}, H.DEFAULT_OPTIONS, options)
+            )
+          )
+        ).toEqual([]);
+      };
+
+      test(1, {use_basic: false});
+    });
   });
   describe('decode_base64xml', function () {
     it('should decode a character to a 6-bit value', function () {

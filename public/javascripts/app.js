@@ -720,9 +720,17 @@ var hatokurandom = {};
     return child_pids;
   };
 
-  H.choose_random_cards = function (available_cards, count, option) {  //{{{2
-    // FIXME: Support option.
+  H.choose_random_cards = function (available_cards, count, options) {  //{{{2
+    var filter_by_expansion = function (cards, use, eid) {
+      if (!use)
+        return $.grep(cards, function (card) {return card.eid != eid;});
+      else
+        return cards;
+    };
+
     var rest_cards = available_cards.slice(0);
+    rest_cards = filter_by_expansion(rest_cards, options.use_basic, 1);
+
     var selected_cards = [];
     for (var i = 1; i <= count; i++) {
       var j = Math.floor(Math.random() * rest_cards.length);
