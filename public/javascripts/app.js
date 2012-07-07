@@ -92,6 +92,15 @@ var hatokurandom = {};
       return t;
     })();
 
+  H.DEFAULT_OPTIONS = {  //{{{2
+    exclulde_useless_cards: false,
+    include_all_costs: false,
+    include_link_2: false,
+    include_pairs: false,
+    use_basic: true,
+    use_fareast: true
+  };
+
   H.PSID_TO_CARD_NAMES_TABLE = {  //{{{2
     'basic-firstplay': [  //{{{
       '斥候',
