@@ -1215,6 +1215,7 @@ var hatokurandom = {};
 
   $(document).ready(function () {  //{{{2
     $.mobile.defaultPageTransition = 'slide';
+    H.load_options();
   });
   //}}}1
 })(hatokurandom, jQuery, jQuery.mobile);
