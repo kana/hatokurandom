@@ -1170,6 +1170,11 @@ var hatokurandom = {};
       $supply.listview('refresh');
   };
 
+  H.save_option = function (key, value) {  //{{{1
+    H.options[key] = value;
+    $.cookie(key, JSON.stringify(value), {expires: 365});
+  };
+
   H.xcards_from_supply_view = function ($supply) {  //{{{2
     return $supply.find('.card').map(function () {
       var $card = $(this);
