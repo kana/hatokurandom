@@ -83,7 +83,7 @@
   });
   describe('choose_random_cards', function () {
     it('should return a subset of given cards', function () {
-      var cards = H.choose_random_cards(H.CARDS, 10);
+      var cards = H.choose_random_cards(H.CARDS, 10, H.DEFAULT_OPTIONS);
       $.each(cards, function (_, c1) {
         expect(
           $.grep(H.CARDS, function (c2) {return c2 == c1;}).length
@@ -91,7 +91,7 @@
       });
     });
     it('should choose cards without duplicates', function () {
-      var cards = H.choose_random_cards(H.CARDS, 10);
+      var cards = H.choose_random_cards(H.CARDS, 10, H.DEFAULT_OPTIONS);
       $.each(cards, function (_, c1) {
         expect(
           $.grep(cards, function (c2) {return c2 == c1;}).length
@@ -99,10 +99,10 @@
       });
     });
     it('should choose random cards each time', function () {
-      var cards1 = H.choose_random_cards(H.CARDS, 10);
+      var cards1 = H.choose_random_cards(H.CARDS, 10, H.DEFAULT_OPTIONS);
       var cards2;
       do {
-        cards2 = H.choose_random_cards(H.CARDS, 10);
+        cards2 = H.choose_random_cards(H.CARDS, 10, H.DEFAULT_OPTIONS);
       } while (cards1 == cards2);
       expect(cards1).not.toEqual(cards2);
     });
