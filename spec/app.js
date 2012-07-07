@@ -461,6 +461,25 @@
       expect(f('random20').length).toEqual(20);
       expect(f('random4').length).toEqual(0);
     });
+    it('should return xcards randomly with the current options', function () {
+      var original_options = H.options;
+      this.after(function () {
+        H.options = original_options;
+      });
+
+      var filter_by_eid = function (eid, cards) {
+        return $.grep(cards, function (card) {return card.eid == eid;});
+      };
+      var card_count_not_in_basic =
+        H.CARDS.length - filter_by_eid(1, H.CARDS).length;
+
+      H.options = $.extend({}, original_options, {use_basic: true});
+      expect(filter_by_eid(1, f('random' + H.CARDS.length)))
+        .not.toEqual([]);
+      H.options = $.extend({}, original_options, {use_basic: false});
+      expect(filter_by_eid(1, f('random' + card_count_not_in_basic)))
+        .toEqual([]);
+    });
   });
   describe('xcards_from_psid', function () {
     it('should return cards with extra information from a psid', function () {
