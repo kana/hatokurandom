@@ -2,6 +2,7 @@ CACHE MANIFEST
 
 CACHE:
 /javascripts/app.js
+/javascripts/jquery-cookie/jquery.cookie.js
 /javascripts/jquery-mobile/jquery.mobile-1.1.0.min.js
 /javascripts/jquery/jquery-1.7.2.min.js
 /stylesheets/app.css
