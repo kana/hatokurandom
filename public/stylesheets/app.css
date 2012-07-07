@@ -82,6 +82,7 @@ a.share.button:after
 
 #configure .note
 {
+  display: block;
   font-size: 80%;
   font-weight: lighter;
 }
