@@ -969,56 +969,57 @@ var hatokurandom = {};
       typeof data.toPage == 'string'
       ? $('#' + (data.toPage == '/' ? 'home' : data.toPage))
       : data.toPage;
-    if ($page.find(':jqmData(role="header")').length == 0) {
-      var $header = H.render('header_template');
+    if ($page.find(':jqmData(role="header")').length != 0)
+      return;
 
-      var sid = $page.jqmData('sid');
-      var $buttons = $header.find('.button');
-      $buttons.click(function () {
-        setTimeout(
-          function () {
-            $buttons.removeClass($m.activeBtnClass);
-          },
-          300
+    var $header = H.render('header_template');
+
+    var sid = $page.jqmData('sid');
+    var $buttons = $header.find('.button');
+    $buttons.click(function () {
+      setTimeout(
+        function () {
+          $buttons.removeClass($m.activeBtnClass);
+        },
+        300
+      );
+    });
+
+    var $reshuffle_button = $header.find('.reshuffle.button');
+    if (H.is_dsid(sid)) {
+      $reshuffle_button.click(function () {
+        H.refresh_supply_view(
+          $m.activePage.find('.supply'),
+          H.xcards_from_sid(sid),
+          sid,
+          false
         );
       });
-
-      var $reshuffle_button = $header.find('.reshuffle.button');
-      if (H.is_dsid(sid)) {
-        $reshuffle_button.click(function () {
-          H.refresh_supply_view(
-            $m.activePage.find('.supply'),
-            H.xcards_from_sid(sid),
-            sid,
-            false
-          );
-        });
-      } else {
-        $reshuffle_button.addClass('disabled');
-      }
-
-      var $share_button = $header.find('.share.button');
-      if ($page.attr('id') == 'supply') {
-        $share_button.click(function () {
-          var permalink = H.generate_permalink($page);
-          $share_button.attr(
-            'href',
-            [
-              'https://twitter.com/intent/tweet',
-              '?url=', encodeURIComponent(permalink),
-              '&text=', encodeURIComponent('ハトクラなう。今回のサプライ:'),
-              '&related=', encodeURIComponent('HeartofCrown,kana1')
-            ].join('')
-          );
-        });
-      } else {
-        $share_button.addClass('disabled');
-      }
-
-      $page.prepend($header);
-      $page.page();
-      $page.trigger('pagecreate');
+    } else {
+      $reshuffle_button.addClass('disabled');
     }
+
+    var $share_button = $header.find('.share.button');
+    if ($page.attr('id') == 'supply') {
+      $share_button.click(function () {
+        var permalink = H.generate_permalink($page);
+        $share_button.attr(
+          'href',
+          [
+            'https://twitter.com/intent/tweet',
+            '?url=', encodeURIComponent(permalink),
+            '&text=', encodeURIComponent('ハトクラなう。今回のサプライ:'),
+            '&related=', encodeURIComponent('HeartofCrown,kana1')
+          ].join('')
+        );
+      });
+    } else {
+      $share_button.addClass('disabled');
+    }
+
+    $page.prepend($header);
+    $page.page();
+    $page.trigger('pagecreate');
   };
 
   H.generate_permalink = function ($supply_page) {  //{{{2
