@@ -969,6 +969,8 @@ var hatokurandom = {};
       typeof data.toPage == 'string'
       ? $('#' + (data.toPage == '/' ? 'home' : data.toPage))
       : data.toPage;
+    if ($page.jqmData('role') == 'dialog')
+      return;
     if ($page.find(':jqmData(role="header")').length != 0)
       return;
 
