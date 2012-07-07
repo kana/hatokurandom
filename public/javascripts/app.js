@@ -660,6 +660,10 @@ var hatokurandom = {};
     return this;
   };
 
+  $.fn.isChecked = function () {  //{{{2
+    return 0 < this.filter(':checked').length;
+  };
+
   H.Error = function (message) {  //{{{2
     this.message = message;
   };
