@@ -123,8 +123,8 @@
         ).toEqual([]);
       };
 
-      test(1, {use_basic: false});
-      test(2, {use_fareast: false});
+      test(H.EID_BASIC, {use_basic: false});
+      test(H.EID_FAREAST, {use_fareast: false});
     });
   });
   describe('decode_base64xml', function () {
@@ -471,13 +471,13 @@
         return $.grep(cards, function (card) {return card.eid == eid;});
       };
       var card_count_not_in_basic =
-        H.CARDS.length - filter_by_eid(1, H.CARDS).length;
+        H.CARDS.length - filter_by_eid(H.EID_BASIC, H.CARDS).length;
 
       H.options = $.extend({}, original_options, {use_basic: true});
-      expect(filter_by_eid(1, f('random' + H.CARDS.length)))
+      expect(filter_by_eid(H.EID_BASIC, f('random' + H.CARDS.length)))
         .not.toEqual([]);
       H.options = $.extend({}, original_options, {use_basic: false});
-      expect(filter_by_eid(1, f('random' + card_count_not_in_basic)))
+      expect(filter_by_eid(H.EID_BASIC, f('random' + card_count_not_in_basic)))
         .toEqual([]);
     });
   });
