@@ -730,6 +730,7 @@ var hatokurandom = {};
 
     var rest_cards = available_cards.slice(0);
     rest_cards = filter_by_expansion(rest_cards, options.use_basic, 1);
+    rest_cards = filter_by_expansion(rest_cards, options.use_fareast, 2);
 
     var selected_cards = [];
     for (var i = 1; i <= count; i++) {

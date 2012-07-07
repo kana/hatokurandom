@@ -124,6 +124,7 @@
       };
 
       test(1, {use_basic: false});
+      test(2, {use_fareast: false});
     });
   });
   describe('decode_base64xml', function () {
