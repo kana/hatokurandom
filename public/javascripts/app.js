@@ -16,6 +16,10 @@ var hatokurandom = {};
   // xcard: eXtra information + CARD
 
   // Constants  //{{{1
+  // Eids  //{{{2
+  H.EID_BASIC = 1;
+  H.EID_FAREAST = 2;
+
   H.EXPANSIONS = [  //{{{2
     {eid: 1, name: '基本セット'},
     {eid: 2, name: '極東辺境領'}
