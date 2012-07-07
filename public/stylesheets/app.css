@@ -79,3 +79,11 @@ a.share.button:after
   font-size: 80%;
   font-weight: lighter;
 }
+
+
+/* #templates */
+
+#templates
+{
+  display: none;
+}
