@@ -1220,6 +1220,11 @@ var hatokurandom = {};
 
   $(document).ready(function () {  //{{{2
     $.mobile.defaultPageTransition = 'slide';
+
+    $('#configure input').change(function (e) {
+      var $input = $(e.target);
+      H.save_option($input.attr('name'), $input.isChecked());
+    });
     H.load_options();
   });
   //}}}1
