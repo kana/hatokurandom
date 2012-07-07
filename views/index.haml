@@ -146,15 +146,16 @@
     #credits{as_page}
 
       %div{as_content}
+
         %h2
           About this application
-        %p
-          %div
-            = App::CODENAME
-            @@VERSION@@
-          %div
-            Copyright &copy; 2012
-            %a(href='http://whileimautomaton.net/' target='_blank') Kana Natsuno
+        %div
+          = App::CODENAME
+          @@VERSION@@
+        %div
+          Copyright &copy; 2012
+          %a(href='http://whileimautomaton.net/' target='_blank') Kana Natsuno
+
         %h2
           Powered by the following libraries and services
         %ul{as_listview, as_inset}
@@ -178,6 +179,7 @@
             %h2
               %a(href='http://jquerymobile.com/' target='_blank') jQuery Mobile
             for touch-optimized Web application framework.
+
         %h2
           Thanks for the following games
         %ul{as_listview, as_inset}
