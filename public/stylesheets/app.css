@@ -65,3 +65,17 @@ a.share.button:after
 {
   color: #666;
 }
+
+
+/* #configure */
+
+#configure .ui-controlgroup-label
+{
+  font-weight: bolder;
+}
+
+#configure .note
+{
+  font-size: 80%;
+  font-weight: lighter;
+}

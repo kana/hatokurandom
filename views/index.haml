@@ -49,6 +49,59 @@
     #supply{as_page}
       -# #supply_template
 
+    #configure{as_page, {data: {role: 'dialog'}}}
+
+      %div{data: {role: 'header'}}
+        %h1 ランダム選択の設定
+
+      %div{as_content}
+
+        %div{data: {role: 'fieldcontain'}}
+          %fieldset{data: {role: 'controlgroup'}}
+            %legend 使用するエキスパンション:
+            %label
+              %input(type='checkbox' name='use_basic' disabled)
+              基本セット
+            %label
+              %input(type='checkbox' name='use_fareast')
+              極東辺境領
+
+        %div{data: {role: 'fieldcontain'}}
+          %fieldset{data: {role: 'controlgroup'}}
+            %legend 偏り具合の調整:
+            %label
+              %input(type='checkbox' name='include_all_costs' disabled)
+              コストの偏りを減らす
+              .note
+                各コストのカードを少なくとも1枚は含めます。
+                ただし6コスト以上のカードは5コストとして扱います。
+                これはゲーム的に面白くない偏りを避けるためです。
+            %label
+              %input(type='checkbox' name='include_link_2' disabled)
+              連結2を適宜含める
+              .note
+                サプライに連結0のカードが含まれる場合、
+                連結2のカードを1枚は含めるようにします。
+                この設定を無効にした場合、
+                稀に
+                %a(href='#supply:BAGAHAIAPAYAbAfAhAlAp')
+                  連結面で悩ましいサプライ
+                が生成される可能性があります。
+            %label
+              %input(type='checkbox' name='exclulde_useless_cards' disabled)
+              効果の薄いカードを減らす
+              .note
+                サプライに含まれるカードとの組み合わせから、
+                有効に活用できる場面が少ないカードをできるだけ除外します。
+                例: 「兵力カードの無いサプライなら《城壁》は除外する」
+            %label
+              %input(type='checkbox' name='include_pairs' disabled)
+                攻守で対のカードを含める
+              .note
+                一方的に攻撃が行われないよう、
+                できるだけ対抗可能な防衛カードを含めるようにします。
+                例: 「《呪詛の魔女》を含めるなら《魔法の護符》も含める」
+
     #about{as_page}
 
       %div{as_content}
@@ -149,7 +202,7 @@
                 %a.home.button{data: {direction: 'reverse'}}(href='#home')
                   %i.icon-home
               %li
-                %a.disabled.configure.button
+                %a.configure.button{data: {rel: 'dialog'}}(href='#configure')
                   %i.icon-cog
               %li
                 %a.share.button(target='_blank')
