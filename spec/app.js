@@ -83,7 +83,7 @@
   });
   describe('choose_random_cards', function () {
     it('should return a subset of given cards', function () {
-      var cards = H.choose_random_cards(H.CARDS, 10);
+      var cards = H.choose_random_cards(H.CARDS, 10, H.DEFAULT_OPTIONS);
       $.each(cards, function (_, c1) {
         expect(
           $.grep(H.CARDS, function (c2) {return c2 == c1;}).length
@@ -91,7 +91,7 @@
       });
     });
     it('should choose cards without duplicates', function () {
-      var cards = H.choose_random_cards(H.CARDS, 10);
+      var cards = H.choose_random_cards(H.CARDS, 10, H.DEFAULT_OPTIONS);
       $.each(cards, function (_, c1) {
         expect(
           $.grep(cards, function (c2) {return c2 == c1;}).length
@@ -99,12 +99,32 @@
       });
     });
     it('should choose random cards each time', function () {
-      var cards1 = H.choose_random_cards(H.CARDS, 10);
+      var cards1 = H.choose_random_cards(H.CARDS, 10, H.DEFAULT_OPTIONS);
       var cards2;
       do {
-        cards2 = H.choose_random_cards(H.CARDS, 10);
+        cards2 = H.choose_random_cards(H.CARDS, 10, H.DEFAULT_OPTIONS);
       } while (cards1 == cards2);
       expect(cards1).not.toEqual(cards2);
+    });
+    it('should reject specific expansions by given options', function () {
+      var filter_by_eid = function (eid, cards) {
+        return $.grep(cards, function (card) {return card.eid == eid;});
+      };
+      var test = function (eid, options) {
+        expect(
+          filter_by_eid(
+            eid,
+            H.choose_random_cards(
+              H.CARDS,
+              H.CARDS.length - filter_by_eid(eid, H.CARDS).length,
+              $.extend({}, H.DEFAULT_OPTIONS, options)
+            )
+          )
+        ).toEqual([]);
+      };
+
+      test(1, {use_basic: false});
+      test(2, {use_fareast: false});
     });
   });
   describe('decode_base64xml', function () {
@@ -440,6 +460,25 @@
       expect(f('random12').length).toEqual(12);
       expect(f('random20').length).toEqual(20);
       expect(f('random4').length).toEqual(0);
+    });
+    it('should return xcards randomly with the current options', function () {
+      var original_options = H.options;
+      this.after(function () {
+        H.options = original_options;
+      });
+
+      var filter_by_eid = function (eid, cards) {
+        return $.grep(cards, function (card) {return card.eid == eid;});
+      };
+      var card_count_not_in_basic =
+        H.CARDS.length - filter_by_eid(1, H.CARDS).length;
+
+      H.options = $.extend({}, original_options, {use_basic: true});
+      expect(filter_by_eid(1, f('random' + H.CARDS.length)))
+        .not.toEqual([]);
+      H.options = $.extend({}, original_options, {use_basic: false});
+      expect(filter_by_eid(1, f('random' + card_count_not_in_basic)))
+        .toEqual([]);
     });
   });
   describe('xcards_from_psid', function () {

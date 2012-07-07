@@ -92,6 +92,15 @@ var hatokurandom = {};
       return t;
     })();
 
+  H.DEFAULT_OPTIONS = {  //{{{2
+    exclulde_useless_cards: false,
+    include_all_costs: false,
+    include_link_2: false,
+    include_pairs: false,
+    use_basic: true,
+    use_fareast: true
+  };
+
   H.PSID_TO_CARD_NAMES_TABLE = {  //{{{2
     'basic-firstplay': [  //{{{
       '斥候',
@@ -660,6 +669,10 @@ var hatokurandom = {};
     return this;
   };
 
+  $.fn.isChecked = function () {  //{{{2
+    return 0 < this.filter(':checked').length;
+  };
+
   H.Error = function (message) {  //{{{2
     this.message = message;
   };
@@ -707,9 +720,18 @@ var hatokurandom = {};
     return child_pids;
   };
 
-  H.choose_random_cards = function (available_cards, count, option) {  //{{{2
-    // FIXME: Support option.
+  H.choose_random_cards = function (available_cards, count, options) {  //{{{2
+    var filter_by_expansion = function (cards, use, eid) {
+      if (!use)
+        return $.grep(cards, function (card) {return card.eid != eid;});
+      else
+        return cards;
+    };
+
     var rest_cards = available_cards.slice(0);
+    rest_cards = filter_by_expansion(rest_cards, options.use_basic, 1);
+    rest_cards = filter_by_expansion(rest_cards, options.use_fareast, 2);
+
     var selected_cards = [];
     for (var i = 1; i <= count; i++) {
       var j = Math.floor(Math.random() * rest_cards.length);
@@ -792,6 +814,8 @@ var hatokurandom = {};
 
     return false;
   };
+
+  H.options = $.extend({}, H.DEFAULT_OPTIONS);  //{{{2
 
   H.order_by = function (xs /* , key_selector1, ... */) {  //{{{2
     var _xs = xs.slice(0);
@@ -897,7 +921,12 @@ var hatokurandom = {};
     } else if (dsid_data.rsid) {
       return H.xcards_from_rsid(dsid_data.rsid);
     } else {
-      var cards = H.choose_random_cards(H.CARDS, dsid_data.count);
+      var cards =
+        H.choose_random_cards(
+          H.CARDS,
+          dsid_data.count,
+          H.options
+        );
       return $.map(cards, H.xcard_from_card);
     }
   };
@@ -969,56 +998,59 @@ var hatokurandom = {};
       typeof data.toPage == 'string'
       ? $('#' + (data.toPage == '/' ? 'home' : data.toPage))
       : data.toPage;
-    if ($page.find(':jqmData(role="header")').length == 0) {
-      var $header = H.render('header_template');
+    if ($page.jqmData('role') == 'dialog')
+      return;
+    if ($page.find(':jqmData(role="header")').length != 0)
+      return;
 
-      var sid = $page.jqmData('sid');
-      var $buttons = $header.find('.button');
-      $buttons.click(function () {
-        setTimeout(
-          function () {
-            $buttons.removeClass($m.activeBtnClass);
-          },
-          300
+    var $header = H.render('header_template');
+
+    var sid = $page.jqmData('sid');
+    var $buttons = $header.find('.button');
+    $buttons.click(function () {
+      setTimeout(
+        function () {
+          $buttons.removeClass($m.activeBtnClass);
+        },
+        300
+      );
+    });
+
+    var $reshuffle_button = $header.find('.reshuffle.button');
+    if (H.is_dsid(sid)) {
+      $reshuffle_button.click(function () {
+        H.refresh_supply_view(
+          $m.activePage.find('.supply'),
+          H.xcards_from_sid(sid),
+          sid,
+          false
         );
       });
-
-      var $reshuffle_button = $header.find('.reshuffle.button');
-      if (H.is_dsid(sid)) {
-        $reshuffle_button.click(function () {
-          H.refresh_supply_view(
-            $m.activePage.find('.supply'),
-            H.xcards_from_sid(sid),
-            sid,
-            false
-          );
-        });
-      } else {
-        $reshuffle_button.addClass('disabled');
-      }
-
-      var $share_button = $header.find('.share.button');
-      if ($page.attr('id') == 'supply') {
-        $share_button.click(function () {
-          var permalink = H.generate_permalink($page);
-          $share_button.attr(
-            'href',
-            [
-              'https://twitter.com/intent/tweet',
-              '?url=', encodeURIComponent(permalink),
-              '&text=', encodeURIComponent('ハトクラなう。今回のサプライ:'),
-              '&related=', encodeURIComponent('HeartofCrown,kana1')
-            ].join('')
-          );
-        });
-      } else {
-        $share_button.addClass('disabled');
-      }
-
-      $page.prepend($header);
-      $page.page();
-      $page.trigger('pagecreate');
+    } else {
+      $reshuffle_button.addClass('disabled');
     }
+
+    var $share_button = $header.find('.share.button');
+    if ($page.attr('id') == 'supply') {
+      $share_button.click(function () {
+        var permalink = H.generate_permalink($page);
+        $share_button.attr(
+          'href',
+          [
+            'https://twitter.com/intent/tweet',
+            '?url=', encodeURIComponent(permalink),
+            '&text=', encodeURIComponent('ハトクラなう。今回のサプライ:'),
+            '&related=', encodeURIComponent('HeartofCrown,kana1')
+          ].join('')
+        );
+      });
+    } else {
+      $share_button.addClass('disabled');
+    }
+
+    $page.prepend($header);
+    $page.page();
+    $page.trigger('pagecreate');
   };
 
   H.generate_permalink = function ($supply_page) {  //{{{2
@@ -1030,6 +1062,20 @@ var hatokurandom = {};
     var rsid = H.rsid_from_xcards(H.xcards_from_supply_view($supply));
     var base_uri = $m.path.parseUrl(location.href).hrefNoHash;
     return base_uri + '#supply:' + rsid;
+  };
+
+  H.load_options = function () {  //{{{2
+    for (var key in H.DEFAULT_OPTIONS) {
+      var saved_value = $.cookie(key);
+      var value =
+        saved_value == null
+        ? H.DEFAULT_OPTIONS[key]
+        : JSON.parse(saved_value);
+      H.options[key] = value;
+      $('#configure input')
+        .filter(function () {return $(this).attr('name') == key;})
+        .check(value);
+    }
   };
 
   H.prepare_supplies_page = function (e, data, pid) {  //{{{2
@@ -1138,6 +1184,11 @@ var hatokurandom = {};
       $supply.listview('refresh');
   };
 
+  H.save_option = function (key, value) {  //{{{1
+    H.options[key] = value;
+    $.cookie(key, JSON.stringify(value), {expires: 365});
+  };
+
   H.xcards_from_supply_view = function ($supply) {  //{{{2
     return $supply.find('.card').map(function () {
       var $card = $(this);
@@ -1183,6 +1234,12 @@ var hatokurandom = {};
 
   $(document).ready(function () {  //{{{2
     $.mobile.defaultPageTransition = 'slide';
+
+    $('#configure input').change(function (e) {
+      var $input = $(e.target);
+      H.save_option($input.attr('name'), $input.isChecked());
+    });
+    H.load_options();
   });
   //}}}1
 })(hatokurandom, jQuery, jQuery.mobile);
