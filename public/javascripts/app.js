@@ -1036,10 +1036,13 @@ var hatokurandom = {};
 
     var $share_button = $header.find('.share.button');
     if ($page.attr('id') == 'supply') {
-      $share_button.click(function () {
+      $share_button.click(function (e) {
+        // iPhone Safari seems not to trigger a click event for <a> if the
+        // element has a href attribute.  So that we have to explicitly open
+        // a new window instead of to set a permalink to the href attribute and
+        // to let the Web browser open the permalink.
         var permalink = H.generate_permalink($page);
-        $share_button.attr(
-          'href',
+        window.open(
           [
             'https://twitter.com/intent/tweet',
             '?url=', encodeURIComponent(permalink),
@@ -1047,6 +1050,7 @@ var hatokurandom = {};
             '&related=', encodeURIComponent('HeartofCrown,kana1')
           ].join('')
         );
+        e.preventDefault();
       });
     } else {
       $share_button.addClass('disabled');
