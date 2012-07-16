@@ -71,6 +71,17 @@ a.share.button:after
 .card .type[data-name='領地'] {background: #963;}
 .card .type[data-name='継承権'] {background: #696;}
 
+.card .subtype:after
+{
+  color: #999;
+  content: '(' attr(data-name) ')';
+  font-size: 80%;
+}
+.card .subtype[data-name='']:after
+{
+  display: none;
+}
+
 
 /* For the header. */
 

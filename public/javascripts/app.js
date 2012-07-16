@@ -1205,7 +1205,10 @@ var hatokurandom = {};
         H.render(
           'supply_item_template',
           $.extend(
-            {dominant_type: H.dominant_type_from_types(xcard.types)},
+            {
+              dominant_type: H.dominant_type_from_types(xcard.types),
+              subtype: ''
+            },
             xcard
           )
         );
