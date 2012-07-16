@@ -118,3 +118,19 @@ a.share.button:after
 {
   display: none;
 }
+
+
+/* #balloon */
+
+#balloon
+{
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  margin: 0 0.5ex;
+  text-align: center;
+  width: 100%;
+  font-size: 80%;
+  color: #666;
+  background: #f9f9f9;
+}
