@@ -758,6 +758,28 @@ var hatokurandom = {};
     );
   };
 
+  H.dominant_type_from_types = function (types) {  //{{{2
+    if (0 <= types.indexOf('継承権'))
+      return '継承権';
+    if (0 <= types.indexOf('領地'))
+      return '領地';
+
+    if (0 <= types.indexOf('攻撃'))
+      return '攻撃';
+    if (0 <= types.indexOf('防衛'))
+      return '防衛';
+    if (0 <= types.indexOf('行動'))
+      return '行動';
+
+    if (0 <= types.indexOf('呪い'))
+      return '呪い';
+
+    throw new H.Error(
+      JSON.stringify(types)
+      + ' is not a valid type definition.'
+    );
+  };
+
   H.encode_base64xml = function (six_bit_buffer) {  //{{{2
     return $.map(
       six_bit_buffer,

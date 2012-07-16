@@ -146,6 +146,25 @@
       expect(H.encode_base64xml(H.decode_base64xml(string))).toEqual(string);
     });
   });
+  describe('dominant_type_from_types', function () {
+    var f = H.dominant_type_from_types;
+    it('should return the dominant type from given types', function () {
+      expect(f(['継承権', '領地'])).toEqual('継承権');  // 皇室領
+      expect(f(['継承権'])).toEqual('継承権');  // 噂好きの公爵夫人
+      expect(f(['行動', '攻撃'])).toEqual('攻撃');  // 斥候
+      expect(f(['行動', '防衛', '呪い'])).toEqual('防衛');  // 魔法の護符
+      expect(f(['行動', '防衛'])).toEqual('防衛');  // 城壁
+      expect(f(['行動'])).toEqual('行動');  // 寄付
+      expect(f(['領地'])).toEqual('領地');  // 鉱山都市
+    });
+    it('should ignore the order of given types', function () {
+      expect(f(['領地', '継承権'])).toEqual(f(['継承権', '領地']));
+    });
+    it('should fail if there is no valid type', function () {
+      expect(function () {f(['xyzzy', '継承権', '領地']);}).not.toThrow();
+      expect(function () {f(['xyzzy', 'zzyxy']);}).toThrow();
+    });
+  });
   describe('encode_base64xml', function () {
     it('should encode a 6-bit value to a character', function () {
       for (var v in H.BASE64XML_ENCODING_TABLE)
