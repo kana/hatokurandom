@@ -1281,6 +1281,49 @@ var hatokurandom = {};
       H.save_option($input.attr('name'), $input.isChecked());
     });
     H.load_options();
+
+    var cache = window.applicationCache;
+    var notice = function (message) {
+      $('#balloon')
+        .empty()
+        .append(
+          H.render('balloon_message_template', {message: message})
+          .delay(3000)
+          .fadeOut(500, function () {$(this).remove();})
+        );
+    };
+    $(cache).bind('checking', function (e) {
+      notice('更新を確認中……');
+    });
+    $(cache).bind('error', function (e) {
+      notice('オフラインモード利用不可(E)');
+    });
+    $(cache).bind('noupdate', function (e) {
+      notice('Version @@VERSION@@');
+    });
+    $(cache).bind('downloading', function (e) {
+      notice('ダウンロード開始……');
+    });
+    $(cache).bind('progress', function (e) {
+      notice(
+        [
+          'ダウンロード中…… (',
+          e.originalEvent.loaded,
+          '/',
+          e.originalEvent.total,
+          ')'
+        ].join('')
+      );
+    });
+    $(cache).bind('updateready', function (e) {
+      notice('新バージョン利用準備完了');
+    });
+    $(cache).bind('cached', function (e) {
+      notice('オフラインモード準備完了');
+    });
+    $(cache).bind('obsolete', function (e) {
+      notice('オフラインモード利用不可(O)');
+    });
   });
   //}}}1
 })(hatokurandom, jQuery, jQuery.mobile);
