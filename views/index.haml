@@ -230,6 +230,9 @@
           -# FIXME: Link to a card view.
           %label
             %input.dropped(type='checkbox' data-role='none')
-            {{cost}} {{name}}
+            {{cost}}
+            %span.type(data-name='{{dominant_type}}')
+            {{name}}
+            %span.subtype(data-name='{{subtype}}')
 
 -# __END__

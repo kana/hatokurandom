@@ -26,56 +26,56 @@ var hatokurandom = {};
   ];
 
   H.CARDS = [  // Sorted by eid, cost, link, then name.  //{{{2
-    {eid: H.EID_BASIC, cost: 2, link: 1, cid: 0x01, name: '城壁', type: '行動・防衛'},
-    {eid: H.EID_BASIC, cost: 2, link: 1, cid: 0x02, name: '寄付', type: '行動'},
-    {eid: H.EID_BASIC, cost: 2, link: 1, cid: 0x03, name: '願いの泉', type: '行動'},
-    {eid: H.EID_BASIC, cost: 2, link: 2, cid: 0x04, name: '斥候', type: '行動・攻撃（兵力）'},
-    {eid: H.EID_BASIC, cost: 2, link: 2, cid: 0x05, name: '早馬', type: '行動'},
+    {eid: H.EID_BASIC, cost: 2, link: 1, cid: 0x01, name: '城壁', types: ['行動', '防衛']},
+    {eid: H.EID_BASIC, cost: 2, link: 1, cid: 0x02, name: '寄付', types: ['行動']},
+    {eid: H.EID_BASIC, cost: 2, link: 1, cid: 0x03, name: '願いの泉', types: ['行動']},
+    {eid: H.EID_BASIC, cost: 2, link: 2, cid: 0x04, name: '斥候', types: ['行動', '攻撃'], subtype: '兵力'},
+    {eid: H.EID_BASIC, cost: 2, link: 2, cid: 0x05, name: '早馬', types: ['行動']},
 
-    {eid: H.EID_BASIC, cost: 3, link: 0, cid: 0x06, name: '交易船', type: '行動（商人）'},
-    {eid: H.EID_BASIC, cost: 3, link: 0, cid: 0x07, name: '埋もれた財宝', type: '行動'},
-    {eid: H.EID_BASIC, cost: 3, link: 0, cid: 0x08, name: '御用商人', type: '行動（商人）'},
-    {eid: H.EID_BASIC, cost: 3, link: 1, cid: 0x09, name: '召集令状', type: '行動'},
-    {eid: H.EID_BASIC, cost: 3, link: 1, cid: 0x0a, name: '焼き畑農業', type: '行動'},
-    {eid: H.EID_BASIC, cost: 3, link: 1, cid: 0x0b, name: '破城槌', type: '行動'},
-    {eid: H.EID_BASIC, cost: 3, link: 1, cid: 0x0c, name: '買収工作', type: '行動・攻撃（計略）'},
-    {eid: H.EID_BASIC, cost: 3, link: 1, cid: 0x0d, name: '隠れ家', type: '行動・防衛'},
-    {eid: H.EID_BASIC, cost: 3, link: 1, cid: 0x0e, name: '魔法の護符', type: '行動・防衛・呪い'},
+    {eid: H.EID_BASIC, cost: 3, link: 0, cid: 0x06, name: '交易船', types: ['行動'], subtype: '商人'},
+    {eid: H.EID_BASIC, cost: 3, link: 0, cid: 0x07, name: '埋もれた財宝', types: ['行動']},
+    {eid: H.EID_BASIC, cost: 3, link: 0, cid: 0x08, name: '御用商人', types: ['行動'], subtype: '商人'},
+    {eid: H.EID_BASIC, cost: 3, link: 1, cid: 0x09, name: '召集令状', types: ['行動']},
+    {eid: H.EID_BASIC, cost: 3, link: 1, cid: 0x0a, name: '焼き畑農業', types: ['行動']},
+    {eid: H.EID_BASIC, cost: 3, link: 1, cid: 0x0b, name: '破城槌', types: ['行動']},
+    {eid: H.EID_BASIC, cost: 3, link: 1, cid: 0x0c, name: '買収工作', types: ['行動', '攻撃'], subtype: '計略'},
+    {eid: H.EID_BASIC, cost: 3, link: 1, cid: 0x0d, name: '隠れ家', types: ['行動', '防衛']},
+    {eid: H.EID_BASIC, cost: 3, link: 1, cid: 0x0e, name: '魔法の護符', types: ['行動', '防衛', '呪い']},
 
-    {eid: H.EID_BASIC, cost: 4, link: 0, cid: 0x0f, name: '歩兵大隊', type: '行動・攻撃（兵力）'},
-    {eid: H.EID_BASIC, cost: 4, link: 1, cid: 0x10, name: '図書館', type: '行動'},
-    {eid: H.EID_BASIC, cost: 4, link: 1, cid: 0x11, name: '追い立てられた魔獣', type: '行動・攻撃（計略）'},
-    {eid: H.EID_BASIC, cost: 4, link: 1, cid: 0x12, name: '都市開発', type: '行動（商人）'},
-    {eid: H.EID_BASIC, cost: 4, link: 1, cid: 0x13, name: '金貸し', type: '行動（商人）'},
-    {eid: H.EID_BASIC, cost: 4, link: 1, cid: 0x14, name: '魅了術の魔女', type: '行動・攻撃（魔法）'},
-    {eid: H.EID_BASIC, cost: 4, link: 2, cid: 0x15, name: 'シノビ', type: '行動（計略）'},
-    {eid: H.EID_BASIC, cost: 4, link: 2, cid: 0x16, name: '星詠みの魔女', type: '行動（魔法）'},
-    {eid: H.EID_BASIC, cost: 4, link: 2, cid: 0x17, name: '補給部隊', type: '行動（兵力）'},
+    {eid: H.EID_BASIC, cost: 4, link: 0, cid: 0x0f, name: '歩兵大隊', types: ['行動', '攻撃'], subtype: '兵力'},
+    {eid: H.EID_BASIC, cost: 4, link: 1, cid: 0x10, name: '図書館', types: ['行動']},
+    {eid: H.EID_BASIC, cost: 4, link: 1, cid: 0x11, name: '追い立てられた魔獣', types: ['行動', '攻撃'], subtype: '計略'},
+    {eid: H.EID_BASIC, cost: 4, link: 1, cid: 0x12, name: '都市開発', types: ['行動'], subtype: '商人'},
+    {eid: H.EID_BASIC, cost: 4, link: 1, cid: 0x13, name: '金貸し', types: ['行動'], subtype: '商人'},
+    {eid: H.EID_BASIC, cost: 4, link: 1, cid: 0x14, name: '魅了術の魔女', types: ['行動', '攻撃'], subtype: '魔法'},
+    {eid: H.EID_BASIC, cost: 4, link: 2, cid: 0x15, name: 'シノビ', types: ['行動'], subtype: '計略'},
+    {eid: H.EID_BASIC, cost: 4, link: 2, cid: 0x16, name: '星詠みの魔女', types: ['行動'], subtype: '魔法'},
+    {eid: H.EID_BASIC, cost: 4, link: 2, cid: 0x17, name: '補給部隊', types: ['行動'], subtype: '兵力'},
 
-    {eid: H.EID_BASIC, cost: 5, link: 0, cid: 0x18, name: '冒険者', type: '行動'},
-    {eid: H.EID_BASIC, cost: 5, link: 0, cid: 0x19, name: '呪詛の魔女', type: '行動・攻撃（魔法）'},
-    {eid: H.EID_BASIC, cost: 5, link: 0, cid: 0x1a, name: '近衛騎士団', type: '行動・攻撃（兵力）'},
-    {eid: H.EID_BASIC, cost: 5, link: 0, cid: 0x1b, name: '銀行', type: '行動（商人）'},
-    {eid: H.EID_BASIC, cost: 5, link: 1, cid: 0x1c, name: '皇室領', type: '継承権・領地'},
-    {eid: H.EID_BASIC, cost: 5, link: 1, cid: 0x1d, name: '錬金術師', type: '行動'},
+    {eid: H.EID_BASIC, cost: 5, link: 0, cid: 0x18, name: '冒険者', types: ['行動']},
+    {eid: H.EID_BASIC, cost: 5, link: 0, cid: 0x19, name: '呪詛の魔女', types: ['行動', '攻撃'], subtype: '魔法'},
+    {eid: H.EID_BASIC, cost: 5, link: 0, cid: 0x1a, name: '近衛騎士団', types: ['行動', '攻撃'], subtype: '兵力'},
+    {eid: H.EID_BASIC, cost: 5, link: 0, cid: 0x1b, name: '銀行', types: ['行動'], subtype: '商人'},
+    {eid: H.EID_BASIC, cost: 5, link: 1, cid: 0x1c, name: '皇室領', types: ['継承権', '領地']},
+    {eid: H.EID_BASIC, cost: 5, link: 1, cid: 0x1d, name: '錬金術師', types: ['行動']},
 
-    {eid: H.EID_BASIC, cost: 6, link: 0, cid: 0x1e, name: '噂好きの公爵夫人', type: '継承権'},
+    {eid: H.EID_BASIC, cost: 6, link: 0, cid: 0x1e, name: '噂好きの公爵夫人', types: ['継承権']},
 
-    {eid: H.EID_FAREAST, cost: 2, link: 0, cid: 0x1f, name: 'お金好きの妖精', type: '行動（魔法）'},
+    {eid: H.EID_FAREAST, cost: 2, link: 0, cid: 0x1f, name: 'お金好きの妖精', types: ['行動'], subtype: '魔法'},
 
-    {eid: H.EID_FAREAST, cost: 3, link: 0, cid: 0x20, name: '課税', type: '行動'},
-    {eid: H.EID_FAREAST, cost: 3, link: 0, cid: 0x21, name: '貿易商人', type: '行動（魔法）'},
-    {eid: H.EID_FAREAST, cost: 3, link: 1, cid: 0x22, name: '伝書鳩', type: '行動（計略）'},
-    {eid: H.EID_FAREAST, cost: 3, link: 1, cid: 0x23, name: '弓兵隊', type: '行動（兵力）'},
+    {eid: H.EID_FAREAST, cost: 3, link: 0, cid: 0x20, name: '課税', types: ['行動']},
+    {eid: H.EID_FAREAST, cost: 3, link: 0, cid: 0x21, name: '貿易商人', types: ['行動'], subtype: '魔法'},
+    {eid: H.EID_FAREAST, cost: 3, link: 1, cid: 0x22, name: '伝書鳩', types: ['行動'], subtype: '計略'},
+    {eid: H.EID_FAREAST, cost: 3, link: 1, cid: 0x23, name: '弓兵隊', types: ['行動'], subtype: '兵力'},
 
-    {eid: H.EID_FAREAST, cost: 4, link: 0, cid: 0x24, name: 'サムライ', type: '行動・攻撃（兵力）'},
-    {eid: H.EID_FAREAST, cost: 4, link: 1, cid: 0x25, name: 'クノイチ', type: '行動・防衛（計略）'},
-    {eid: H.EID_FAREAST, cost: 4, link: 1, cid: 0x26, name: '見習い魔女', type: '行動・攻撃（魔法）'},
-    {eid: H.EID_FAREAST, cost: 4, link: 1, cid: 0x27, name: '鉱山都市', type: '領地'},
-    {eid: H.EID_FAREAST, cost: 4, link: 2, cid: 0x28, name: '港町', type: '領地'},
+    {eid: H.EID_FAREAST, cost: 4, link: 0, cid: 0x24, name: 'サムライ', types: ['行動', '攻撃'], subtype: '兵力'},
+    {eid: H.EID_FAREAST, cost: 4, link: 1, cid: 0x25, name: 'クノイチ', types: ['行動', '防衛'], subtype: '計略'},
+    {eid: H.EID_FAREAST, cost: 4, link: 1, cid: 0x26, name: '見習い魔女', types: ['行動', '攻撃'], subtype: '魔法'},
+    {eid: H.EID_FAREAST, cost: 4, link: 1, cid: 0x27, name: '鉱山都市', types: ['領地']},
+    {eid: H.EID_FAREAST, cost: 4, link: 2, cid: 0x28, name: '港町', types: ['領地']},
 
-    {eid: H.EID_FAREAST, cost: 5, link: 0, cid: 0x29, name: '割り符', type: '行動（商人）'},
-    {eid: H.EID_FAREAST, cost: 5, link: 2, cid: 0x2a, name: '結盟', type: '行動'}
+    {eid: H.EID_FAREAST, cost: 5, link: 0, cid: 0x29, name: '割り符', types: ['行動'], subtype: '商人'},
+    {eid: H.EID_FAREAST, cost: 5, link: 2, cid: 0x2a, name: '結盟', types: ['行動']}
   ];
 
   H.CID_TO_CARD_TABLE =  //{{{2
@@ -758,6 +758,28 @@ var hatokurandom = {};
     );
   };
 
+  H.dominant_type_from_types = function (types) {  //{{{2
+    if (0 <= types.indexOf('継承権'))
+      return '継承権';
+    if (0 <= types.indexOf('領地'))
+      return '領地';
+
+    if (0 <= types.indexOf('攻撃'))
+      return '攻撃';
+    if (0 <= types.indexOf('防衛'))
+      return '防衛';
+    if (0 <= types.indexOf('行動'))
+      return '行動';
+
+    if (0 <= types.indexOf('呪い'))
+      return '呪い';
+
+    throw new H.Error(
+      JSON.stringify(types)
+      + ' is not a valid type definition.'
+    );
+  };
+
   H.encode_base64xml = function (six_bit_buffer) {  //{{{2
     return $.map(
       six_bit_buffer,
@@ -886,7 +908,8 @@ var hatokurandom = {};
       $('#' + tid).html().replace(
         /{{([^{}]+)}}/g,
         function (_, key) {
-          return _data[key] || '{{-' + key + '-}}';
+          var value = _data[key];
+          return value == null ? '{{-' + key + '-}}' : value;
         }
       )
     );
@@ -1178,7 +1201,17 @@ var hatokurandom = {};
       );
     $supply.empty();
     $.each(sorted_xcards, function (_, xcard) {
-      var $xcard = H.render('supply_item_template', xcard);
+      var $xcard =
+        H.render(
+          'supply_item_template',
+          $.extend(
+            {
+              dominant_type: H.dominant_type_from_types(xcard.types),
+              subtype: ''
+            },
+            xcard
+          )
+        );
       $xcard
         .find('.dropped:checkbox')
         .check(xcard.dropped)
