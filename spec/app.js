@@ -389,6 +389,10 @@
       var $x = H.render('test2', {});
       expect($x.html()).toEqual('{{-message-}}');
     });
+    it('should treat an empty string as a valid value', function () {
+      var $x = H.render('test2', {message: ''});
+      expect($x.html()).toEqual('');
+    });
   });
   describe('rsid_from_xcards', function () {
     it('should return rsid from xcards', function () {

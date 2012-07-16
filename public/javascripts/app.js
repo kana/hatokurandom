@@ -908,7 +908,8 @@ var hatokurandom = {};
       $('#' + tid).html().replace(
         /{{([^{}]+)}}/g,
         function (_, key) {
-          return _data[key] || '{{-' + key + '-}}';
+          var value = _data[key];
+          return value == null ? '{{-' + key + '-}}' : value;
         }
       )
     );
