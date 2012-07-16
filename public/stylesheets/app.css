@@ -58,6 +58,19 @@ a.share.button:after
   color: #666;
 }
 
+.card .type
+{
+  width: 0.8em;
+  height: 0.8em;
+  display: inline-block;
+}
+.card .type[data-name='行動'] {background: #999;}
+.card .type[data-name='防衛'] {background: #339;}
+.card .type[data-name='攻撃'] {background: #c66;}
+.card .type[data-name='呪い'] {background: #636;}
+.card .type[data-name='領地'] {background: #963;}
+.card .type[data-name='継承権'] {background: #696;}
+
 
 /* For the header. */
 

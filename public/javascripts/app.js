@@ -1200,7 +1200,14 @@ var hatokurandom = {};
       );
     $supply.empty();
     $.each(sorted_xcards, function (_, xcard) {
-      var $xcard = H.render('supply_item_template', xcard);
+      var $xcard =
+        H.render(
+          'supply_item_template',
+          $.extend(
+            {dominant_type: H.dominant_type_from_types(xcard.types)},
+            xcard
+          )
+        );
       $xcard
         .find('.dropped:checkbox')
         .check(xcard.dropped)
