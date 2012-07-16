@@ -64,9 +64,9 @@ var hatokurandom = {};
     {eid: H.EID_FAREAST, cost: 2, link: 0, cid: 0x1f, name: 'お金好きの妖精', types: ['行動'], subtype: '魔法'},
 
     {eid: H.EID_FAREAST, cost: 3, link: 0, cid: 0x20, name: '課税', types: ['行動']},
-    {eid: H.EID_FAREAST, cost: 3, link: 0, cid: 0x21, name: '貿易商人', types: ['行動'], subtype: '魔法'},
+    {eid: H.EID_FAREAST, cost: 3, link: 0, cid: 0x21, name: '貿易商人', types: ['行動'], subtype: '商人'},
     {eid: H.EID_FAREAST, cost: 3, link: 1, cid: 0x22, name: '伝書鳩', types: ['行動'], subtype: '計略'},
-    {eid: H.EID_FAREAST, cost: 3, link: 1, cid: 0x23, name: '弓兵隊', types: ['行動'], subtype: '兵力'},
+    {eid: H.EID_FAREAST, cost: 3, link: 1, cid: 0x23, name: '弓兵隊', types: ['行動', '攻撃'], subtype: '兵力'},
 
     {eid: H.EID_FAREAST, cost: 4, link: 0, cid: 0x24, name: 'サムライ', types: ['行動', '攻撃'], subtype: '兵力'},
     {eid: H.EID_FAREAST, cost: 4, link: 1, cid: 0x25, name: 'クノイチ', types: ['行動', '防衛'], subtype: '計略'},
