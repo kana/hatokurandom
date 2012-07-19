@@ -101,7 +101,10 @@ var hatokurandom = {};
   H.DEFAULT_OPTIONS = {  //{{{2
     exclulde_useless_cards: false,
     include_all_costs: false,
+    include_basic: 'may',
+    include_fareast: 'may',
     include_link_2: false,
+    include_northern: 'must_not',
     include_pairs: false,
     use_basic: true,
     use_fareast: true,
