@@ -19,6 +19,7 @@ var hatokurandom = {};
   // Eids  //{{{2
   H.EID_BASIC = 1;
   H.EID_FAREAST = 2;
+  H.EID_NORTHERN = 3;
 
   H.EXPANSIONS = [  //{{{2
     {eid: H.EID_BASIC, name: '基本セット'},
