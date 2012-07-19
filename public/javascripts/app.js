@@ -101,11 +101,11 @@ var hatokurandom = {};
   H.DEFAULT_OPTIONS = {  //{{{2
     exclulde_useless_cards: false,
     include_all_costs: false,
+    include_basic: 'may',
+    include_fareast: 'may',
     include_link_2: false,
-    include_pairs: false,
-    use_basic: true,
-    use_fareast: true,
-    use_northern: true
+    include_northern: 'must_not',
+    include_pairs: false
   };
 
   H.PSID_TO_CARD_NAMES_TABLE = {  //{{{2
@@ -739,19 +739,47 @@ var hatokurandom = {};
       else
         return cards;
     };
-
-    var rest_cards = available_cards.slice(0);
-    rest_cards = filter_by_eid(rest_cards, options.use_basic, H.EID_BASIC);
-    rest_cards = filter_by_eid(rest_cards, options.use_fareast, H.EID_FAREAST);
-    rest_cards = filter_by_eid(rest_cards, options.use_northern, H.EID_NORTHERN);
-
-    var selected_cards = [];
-    for (var i = 1; i <= count; i++) {
-      var j = Math.floor(Math.random() * rest_cards.length);
-      var c = rest_cards[j];
-      rest_cards.splice(j, 1);
-      selected_cards.push(c);
+    var any = function (cards, eid) {
+      for (var i = 0; i < cards.length; i++) {
+        if (cards[i].eid == eid)
+          return true;
+      }
+      return false;
     }
+    var selected_cards;
+
+    for (var try_count = 1; try_count <= 100; try_count++) {
+      var rest_cards = available_cards.slice(0);
+      rest_cards = filter_by_eid(rest_cards, options.include_basic != 'must_not', H.EID_BASIC);
+      rest_cards = filter_by_eid(rest_cards, options.include_fareast != 'must_not', H.EID_FAREAST);
+      rest_cards = filter_by_eid(rest_cards, options.include_northern != 'must_not', H.EID_NORTHERN);
+
+      selected_cards = [];
+      for (var i = 1; i <= count; i++) {
+        var j = Math.floor(Math.random() * rest_cards.length);
+        var c = rest_cards[j];
+        rest_cards.splice(j, 1);
+        selected_cards.push(c);
+      }
+
+      if (options.include_basic == 'must') {
+        if (!any(selected_cards, H.EID_BASIC))
+          continue;
+      }
+      if (options.include_fareast == 'must') {
+        if (!any(selected_cards, H.EID_FAREAST))
+          continue;
+      }
+      if (options.include_northern == 'must') {
+        if (!any(selected_cards, H.EID_NORTHERN))
+          continue;
+      }
+
+      selected_cards.is_valid = true;
+      return selected_cards;
+    }
+
+    selected_cards.is_valid = false;
     return selected_cards;
   };
 
@@ -1111,10 +1139,18 @@ var hatokurandom = {};
         saved_value == null
         ? H.DEFAULT_OPTIONS[key]
         : JSON.parse(saved_value);
+
       H.options[key] = value;
-      $('#configure input')
-        .filter(function () {return $(this).attr('name') == key;})
-        .check(value);
+
+      var $input =
+        $('#configure :input')
+        .filter(function () {return $(this).attr('name') == key;});
+      if ($input.is(':checkbox'))
+        $input.check(value);
+      else if ($input.is('select'))
+        $input.val(value);
+      else
+        throw new H.Error('Form for "' + key + '" is not supported.');
     }
   };
 
@@ -1237,6 +1273,12 @@ var hatokurandom = {};
   H.save_option = function (key, value) {  //{{{1
     H.options[key] = value;
     $.cookie(key, JSON.stringify(value), {expires: 365});
+
+    if (H.options.include_basic == 'must_not'
+        && H.options.include_fareast == 'must_not'
+        && H.options.include_northern == 'must_not') {
+      $('#configure [name="include_basic"]').val('may').change();
+    }
   };
 
   H.xcards_from_supply_view = function ($supply) {  //{{{2
@@ -1285,9 +1327,13 @@ var hatokurandom = {};
   $(document).ready(function () {  //{{{2
     $.mobile.defaultPageTransition = 'slide';
 
-    $('#configure input').change(function (e) {
+    $('#configure :checkbox').change(function (e) {
       var $input = $(e.target);
       H.save_option($input.attr('name'), $input.isChecked());
+    });
+    $('#configure select').change(function (e) {
+      var $input = $(e.target);
+      H.save_option($input.attr('name'), $input.val());
     });
     H.load_options();
 

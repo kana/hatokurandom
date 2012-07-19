@@ -61,18 +61,27 @@
 
       %div{as_content}
 
-        %div{data: {role: 'fieldcontain'}}
+        %div.select{data: {role: 'fieldcontain'}}
           %fieldset{data: {role: 'controlgroup'}}
             %legend 使用するエキスパンション:
             %label
-              %input(type='checkbox' name='use_basic' disabled)
-              基本セット
+              %span.title 基本セット
+              %select(name='include_basic'){data: {inline: 'true'}}
+                %option(value='must') 必須
+                %option(value='may') 使用
+                %option(value='must_not') 禁止
             %label
-              %input(type='checkbox' name='use_fareast')
-              極東辺境領
+              %span.title 極東辺境領
+              %select(name='include_fareast'){data: {inline: 'true'}}
+                %option(value='must') 必須
+                %option(value='may') 使用
+                %option(value='must_not') 禁止
             %label
-              %input(type='checkbox' name='use_northern' disabled)
-              北限の魔女
+              %span.title 北限の魔女
+              %select(name='include_northern' disabled){data: {inline: 'true'}}
+                %option(value='must') 必須
+                %option(value='may') 使用
+                %option(value='must_not') 禁止
 
         %div{data: {role: 'fieldcontain'}}
           %fieldset{data: {role: 'controlgroup'}}
