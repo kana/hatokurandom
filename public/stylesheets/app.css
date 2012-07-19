@@ -111,6 +111,25 @@ a.share.button:after
   font-weight: lighter;
 }
 
+#configure .select label
+{
+  font-weight: bolder;
+  display: block;
+}
+#configure .select label .title
+{
+  display: inline-block;
+  width: 6em;
+}
+#configure .select .ui-select
+{
+  display: inline;
+}
+#configure .select .ui-btn
+{
+  width: 8em;
+}
+
 
 /* #templates */
 
