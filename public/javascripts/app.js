@@ -744,9 +744,9 @@ var hatokurandom = {};
     };
 
     var rest_cards = available_cards.slice(0);
-    rest_cards = filter_by_eid(rest_cards, options.use_basic, H.EID_BASIC);
-    rest_cards = filter_by_eid(rest_cards, options.use_fareast, H.EID_FAREAST);
-    rest_cards = filter_by_eid(rest_cards, options.use_northern, H.EID_NORTHERN);
+    rest_cards = filter_by_eid(rest_cards, options.include_basic != 'must_not', H.EID_BASIC);
+    rest_cards = filter_by_eid(rest_cards, options.include_fareast != 'must_not', H.EID_FAREAST);
+    rest_cards = filter_by_eid(rest_cards, options.include_northern != 'must_not', H.EID_NORTHERN);
 
     var selected_cards = [];
     for (var i = 1; i <= count; i++) {

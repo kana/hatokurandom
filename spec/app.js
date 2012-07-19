@@ -123,9 +123,9 @@
         ).toEqual([]);
       };
 
-      test(H.EID_BASIC, {use_basic: false});
-      test(H.EID_FAREAST, {use_fareast: false});
-      test(H.EID_NORTHERN, {use_northern: false});
+      test(H.EID_BASIC, {include_basic: 'must_not'});
+      test(H.EID_FAREAST, {include_fareast: 'must_not'});
+      test(H.EID_NORTHERN, {include_northern: 'must_not'});
     });
   });
   describe('decode_base64xml', function () {
@@ -497,10 +497,10 @@
       var card_count_not_in_basic =
         H.CARDS.length - filter_by_eid(H.EID_BASIC, H.CARDS).length;
 
-      H.options = $.extend({}, original_options, {use_basic: true});
+      H.options = $.extend({}, original_options, {include_basic: 'may'});
       expect(filter_by_eid(H.EID_BASIC, f('random' + H.CARDS.length)))
         .not.toEqual([]);
-      H.options = $.extend({}, original_options, {use_basic: false});
+      H.options = $.extend({}, original_options, {include_basic: 'must_not'});
       expect(filter_by_eid(H.EID_BASIC, f('random' + card_count_not_in_basic)))
         .toEqual([]);
     });
