@@ -491,6 +491,8 @@ var hatokurandom = {};
       'supply:fareast-kunoichi',
       'supply:fareast-moneymoneymoney'
     ],  //}}}
+    'supplies:northern': [  //{{{
+    ],  //}}}
     'supplies:championship1': [  //{{{
       'supply:championship1-prelims1',
       'supply:championship1-prelims2',
@@ -602,6 +604,9 @@ var hatokurandom = {};
       },  //}}}
       'supply:fareast-moneymoneymoney': {  //{{{
         long_title: '金に色無し'
+      },  //}}}
+      'supplies:northern': {  //{{{
+        long_title: '推奨サプライ(北限の魔女)'
       },  //}}}
       'supplies:championship1': {  //{{{
         long_title: '世界選手権'

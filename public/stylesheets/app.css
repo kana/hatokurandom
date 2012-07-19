@@ -134,3 +134,11 @@ a.share.button:after
   color: #666;
   background: #f9f9f9;
 }
+
+
+/* #home */
+
+#home a.disabled
+{
+  color: #999;
+}
