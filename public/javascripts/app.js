@@ -1245,6 +1245,12 @@ var hatokurandom = {};
   H.save_option = function (key, value) {  //{{{1
     H.options[key] = value;
     $.cookie(key, JSON.stringify(value), {expires: 365});
+
+    if (H.options.include_basic == 'must_not'
+        && H.options.include_fareast == 'must_not'
+        && H.options.include_northern == 'must_not') {
+      $('#configure [name="include_basic"]').val('may').change();
+    }
   };
 
   H.xcards_from_supply_view = function ($supply) {  //{{{2
