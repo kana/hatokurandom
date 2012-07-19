@@ -127,6 +127,27 @@
       test(H.EID_FAREAST, {include_fareast: 'must_not'});
       test(H.EID_NORTHERN, {include_northern: 'must_not'});
     });
+    it('should include specific expansions by given options', function () {
+      var filter_by_eid = function (eid, cards) {
+        return $.grep(cards, function (card) {return card.eid == eid;});
+      };
+      var test = function (eid, options) {
+        var cards =
+          H.choose_random_cards(
+            H.CARDS,
+            10,
+            $.extend({}, H.DEFAULT_OPTIONS, options)
+          );
+        expect(
+          1 <= filter_by_eid(eid, cards).length
+          || !(cards.is_valid)
+        ).toBeTruthy();
+      };
+
+      test(H.EID_BASIC, {include_basic: 'must'});
+      test(H.EID_FAREAST, {include_fareast: 'must'});
+      test(H.EID_NORTHERN, {include_northern: 'must'});
+    });
   });
   describe('decode_base64xml', function () {
     it('should decode a character to a 6-bit value', function () {

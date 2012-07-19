@@ -739,19 +739,47 @@ var hatokurandom = {};
       else
         return cards;
     };
-
-    var rest_cards = available_cards.slice(0);
-    rest_cards = filter_by_eid(rest_cards, options.include_basic != 'must_not', H.EID_BASIC);
-    rest_cards = filter_by_eid(rest_cards, options.include_fareast != 'must_not', H.EID_FAREAST);
-    rest_cards = filter_by_eid(rest_cards, options.include_northern != 'must_not', H.EID_NORTHERN);
-
-    var selected_cards = [];
-    for (var i = 1; i <= count; i++) {
-      var j = Math.floor(Math.random() * rest_cards.length);
-      var c = rest_cards[j];
-      rest_cards.splice(j, 1);
-      selected_cards.push(c);
+    var any = function (cards, eid) {
+      for (var i = 0; i < cards.length; i++) {
+        if (cards[i].eid == eid)
+          return true;
+      }
+      return false;
     }
+    var selected_cards;
+
+    for (var try_count = 1; try_count <= 100; try_count++) {
+      var rest_cards = available_cards.slice(0);
+      rest_cards = filter_by_eid(rest_cards, options.include_basic != 'must_not', H.EID_BASIC);
+      rest_cards = filter_by_eid(rest_cards, options.include_fareast != 'must_not', H.EID_FAREAST);
+      rest_cards = filter_by_eid(rest_cards, options.include_northern != 'must_not', H.EID_NORTHERN);
+
+      selected_cards = [];
+      for (var i = 1; i <= count; i++) {
+        var j = Math.floor(Math.random() * rest_cards.length);
+        var c = rest_cards[j];
+        rest_cards.splice(j, 1);
+        selected_cards.push(c);
+      }
+
+      if (options.include_basic == 'must') {
+        if (!any(selected_cards, H.EID_BASIC))
+          continue;
+      }
+      if (options.include_fareast == 'must') {
+        if (!any(selected_cards, H.EID_FAREAST))
+          continue;
+      }
+      if (options.include_northern == 'must') {
+        if (!any(selected_cards, H.EID_NORTHERN))
+          continue;
+      }
+
+      selected_cards.is_valid = true;
+      return selected_cards;
+    }
+
+    selected_cards.is_valid = false;
     return selected_cards;
   };
 
