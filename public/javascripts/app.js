@@ -23,7 +23,8 @@ var hatokurandom = {};
 
   H.EXPANSIONS = [  //{{{2
     {eid: H.EID_BASIC, name: '基本セット'},
-    {eid: H.EID_FAREAST, name: '極東辺境領'}
+    {eid: H.EID_FAREAST, name: '極東辺境領'},
+    {eid: H.EID_NORTHERN, name: '北限の魔女'}
   ];
 
   H.CARDS = [  // Sorted by eid, cost, link, then name.  //{{{2
