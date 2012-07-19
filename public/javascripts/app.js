@@ -1111,10 +1111,18 @@ var hatokurandom = {};
         saved_value == null
         ? H.DEFAULT_OPTIONS[key]
         : JSON.parse(saved_value);
+
       H.options[key] = value;
-      $('#configure input')
-        .filter(function () {return $(this).attr('name') == key;})
-        .check(value);
+
+      var $input =
+        $('#configure :input')
+        .filter(function () {return $(this).attr('name') == key;});
+      if ($input.is(':checkbox'))
+        $input.check(value);
+      else if ($input.is('select'))
+        $input.val(value);
+      else
+        throw new H.Error('Form for "' + key + '" is not supported.');
     }
   };
 
@@ -1285,9 +1293,13 @@ var hatokurandom = {};
   $(document).ready(function () {  //{{{2
     $.mobile.defaultPageTransition = 'slide';
 
-    $('#configure input').change(function (e) {
+    $('#configure :checkbox').change(function (e) {
       var $input = $(e.target);
       H.save_option($input.attr('name'), $input.isChecked());
+    });
+    $('#configure select').change(function (e) {
+      var $input = $(e.target);
+      H.save_option($input.attr('name'), $input.val());
     });
     H.load_options();
 
