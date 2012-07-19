@@ -125,6 +125,7 @@
 
       test(H.EID_BASIC, {use_basic: false});
       test(H.EID_FAREAST, {use_fareast: false});
+      test(H.EID_NORTHERN, {use_northern: false});
     });
   });
   describe('decode_base64xml', function () {

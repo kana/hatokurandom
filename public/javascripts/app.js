@@ -104,7 +104,8 @@ var hatokurandom = {};
     include_link_2: false,
     include_pairs: false,
     use_basic: true,
-    use_fareast: true
+    use_fareast: true,
+    use_northern: true
   };
 
   H.PSID_TO_CARD_NAMES_TABLE = {  //{{{2
@@ -737,6 +738,7 @@ var hatokurandom = {};
     var rest_cards = available_cards.slice(0);
     rest_cards = filter_by_eid(rest_cards, options.use_basic, H.EID_BASIC);
     rest_cards = filter_by_eid(rest_cards, options.use_fareast, H.EID_FAREAST);
+    rest_cards = filter_by_eid(rest_cards, options.use_northern, H.EID_NORTHERN);
 
     var selected_cards = [];
     for (var i = 1; i <= count; i++) {
