@@ -105,10 +105,7 @@ var hatokurandom = {};
     include_fareast: 'may',
     include_link_2: false,
     include_northern: 'must_not',
-    include_pairs: false,
-    use_basic: true,
-    use_fareast: true,
-    use_northern: true
+    include_pairs: false
   };
 
   H.PSID_TO_CARD_NAMES_TABLE = {  //{{{2
