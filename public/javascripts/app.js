@@ -19,10 +19,12 @@ var hatokurandom = {};
   // Eids  //{{{2
   H.EID_BASIC = 1;
   H.EID_FAREAST = 2;
+  H.EID_NORTHERN = 3;
 
   H.EXPANSIONS = [  //{{{2
     {eid: H.EID_BASIC, name: '基本セット'},
-    {eid: H.EID_FAREAST, name: '極東辺境領'}
+    {eid: H.EID_FAREAST, name: '極東辺境領'},
+    {eid: H.EID_NORTHERN, name: '北限の魔女'}
   ];
 
   H.CARDS = [  // Sorted by eid, cost, link, then name.  //{{{2
@@ -102,7 +104,8 @@ var hatokurandom = {};
     include_link_2: false,
     include_pairs: false,
     use_basic: true,
-    use_fareast: true
+    use_fareast: true,
+    use_northern: true
   };
 
   H.PSID_TO_CARD_NAMES_TABLE = {  //{{{2
@@ -488,6 +491,8 @@ var hatokurandom = {};
       'supply:fareast-kunoichi',
       'supply:fareast-moneymoneymoney'
     ],  //}}}
+    'supplies:northern': [  //{{{
+    ],  //}}}
     'supplies:championship1': [  //{{{
       'supply:championship1-prelims1',
       'supply:championship1-prelims2',
@@ -599,6 +604,9 @@ var hatokurandom = {};
       },  //}}}
       'supply:fareast-moneymoneymoney': {  //{{{
         long_title: '金に色無し'
+      },  //}}}
+      'supplies:northern': {  //{{{
+        long_title: '推奨サプライ(北限の魔女)'
       },  //}}}
       'supplies:championship1': {  //{{{
         long_title: '世界選手権'
@@ -735,6 +743,7 @@ var hatokurandom = {};
     var rest_cards = available_cards.slice(0);
     rest_cards = filter_by_eid(rest_cards, options.use_basic, H.EID_BASIC);
     rest_cards = filter_by_eid(rest_cards, options.use_fareast, H.EID_FAREAST);
+    rest_cards = filter_by_eid(rest_cards, options.use_northern, H.EID_NORTHERN);
 
     var selected_cards = [];
     for (var i = 1; i <= count; i++) {
