@@ -1355,8 +1355,8 @@ var hatokurandom = {};
     };
     $.each(notification_table, function (event_type, mark) {
       $(window.applicationCache).bind(event_type, function (e) {
-        $('#offline_mode_notification').attr('class', event_type);
-        $('#offline_mode_notification').text(
+        $('#notification #offline_mode').attr('class', event_type);
+        $('#notification #offline_mode').text(
           typeof mark == 'function'
           ? mark(e)
           : mark

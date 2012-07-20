@@ -139,22 +139,23 @@ a.share.button:after
 }
 
 
-/* #offline_mode_notification */
+/* #notification */
 
-#offline_mode_notification
+#notification
 {
   position: fixed;
   right: 0.2em;
   bottom: 0.0em;
 }
-#offline_mode_notification.checking {color: #666;}
-#offline_mode_notification.error {color: #900;}
-#offline_mode_notification.noupdate {color: #090;}
-#offline_mode_notification.downloading {color: #666;}
-#offline_mode_notification.progress {color: #666;}
-#offline_mode_notification.updateready {color: #099;}
-#offline_mode_notification.cached {color: #090;}
-#offline_mode_notification.obsolete {color: #660;}
+
+#notification #offline_mode.checking {color: #666;}
+#notification #offline_mode.error {color: #900;}
+#notification #offline_mode.noupdate {color: #090;}
+#notification #offline_mode.downloading {color: #666;}
+#notification #offline_mode.progress {color: #666;}
+#notification #offline_mode.updateready {color: #099;}
+#notification #offline_mode.cached {color: #090;}
+#notification #offline_mode.obsolete {color: #660;}
 
 
 /* #home */
