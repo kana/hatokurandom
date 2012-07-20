@@ -139,20 +139,23 @@ a.share.button:after
 }
 
 
-/* #balloon */
+/* #notification */
 
-#balloon
+#notification
 {
   position: fixed;
-  right: 0;
-  bottom: 0;
-  margin: 0 0.5ex;
-  text-align: center;
-  width: 100%;
-  font-size: 80%;
-  color: #666;
-  background: #f9f9f9;
+  right: 0.2em;
+  bottom: 0.0em;
 }
+
+#notification #offline_mode.checking {color: #666;}
+#notification #offline_mode.error {color: #900;}
+#notification #offline_mode.noupdate {color: #090;}
+#notification #offline_mode.downloading {color: #666;}
+#notification #offline_mode.progress {color: #666;}
+#notification #offline_mode.updateready {color: #099;}
+#notification #offline_mode.cached {color: #090;}
+#notification #offline_mode.obsolete {color: #660;}
 
 
 /* #home */
