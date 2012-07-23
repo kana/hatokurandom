@@ -1287,7 +1287,7 @@ var hatokurandom = {};
       $supply.listview('refresh');
   };
 
-  H.save_option = function (key, value) {  //{{{1
+  H.save_option = function (key, value) {  //{{{2
     H.options[key] = value;
     $.cookie(key, JSON.stringify(value), {expires: 365});
 
