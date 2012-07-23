@@ -749,7 +749,9 @@ var hatokurandom = {};
     }
     var selected_cards;
 
-    for (var try_count = 1; try_count <= 100; try_count++) {
+    var ok_count = 0;
+    var try_count = 100;
+    for (var t = 1; t <= try_count; t++) {
       var rest_cards = available_cards.slice(0);
       rest_cards = filter_by_eid(rest_cards, options.include_basic != 'must_not', H.EID_BASIC);
       rest_cards = filter_by_eid(rest_cards, options.include_fareast != 'must_not', H.EID_FAREAST);
@@ -776,10 +778,21 @@ var hatokurandom = {};
           continue;
       }
 
+      if (options.statistical) {
+        ok_count++;
+        continue;
+      }
       selected_cards.is_valid = true;
       return selected_cards;
     }
 
+    if (options.statistical) {
+      return {
+        try_count: try_count,
+        ok_count: ok_count,
+        probability: (ok_count * 100 / try_count) + '%'
+      };
+    }
     selected_cards.is_valid = false;
     return selected_cards;
   };
