@@ -105,7 +105,8 @@ var hatokurandom = {};
     include_fareast: 'may',
     include_link_2: false,
     include_northern: 'must_not',
-    include_pairs: false
+    include_pairs: false,
+    statistical: false
   };
 
   H.PSID_TO_CARD_NAMES_TABLE = {  //{{{2
