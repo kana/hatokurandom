@@ -1298,6 +1298,18 @@ var hatokurandom = {};
     }
   };
 
+  H.test_supply_generation = function (options) {  //{{{2
+    // For interactive investigation; not called from anywhere.
+    var s = H.choose_random_cards(
+      H.CARDS,
+      10,
+      $.extend({}, H.DEFAULT_OPTIONS, {statistical: true}, options)
+    );
+    var keys = ['ok_count', 'try_count', 'probability'];
+    for (var i in keys)
+      console.log([keys[i], s[keys[i]]]);
+  };
+
   H.xcards_from_supply_view = function ($supply) {  //{{{2
     return $supply.find('.card').map(function () {
       var $card = $(this);
