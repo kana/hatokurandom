@@ -105,7 +105,9 @@ var hatokurandom = {};
     include_fareast: 'may',
     include_link_2: false,
     include_northern: 'must_not',
-    include_pairs: false
+    include_pairs: false,
+    statistical: false,
+    try_count: 100
   };
 
   H.PSID_TO_CARD_NAMES_TABLE = {  //{{{2
@@ -748,7 +750,9 @@ var hatokurandom = {};
     }
     var selected_cards;
 
-    for (var try_count = 1; try_count <= 100; try_count++) {
+    var ok_count = 0;
+    var try_count = options.try_count || H.DEFAULT_OPTIONS;
+    for (var t = 1; t <= try_count; t++) {
       var rest_cards = available_cards.slice(0);
       rest_cards = filter_by_eid(rest_cards, options.include_basic != 'must_not', H.EID_BASIC);
       rest_cards = filter_by_eid(rest_cards, options.include_fareast != 'must_not', H.EID_FAREAST);
@@ -775,10 +779,21 @@ var hatokurandom = {};
           continue;
       }
 
+      if (options.statistical) {
+        ok_count++;
+        continue;
+      }
       selected_cards.is_valid = true;
       return selected_cards;
     }
 
+    if (options.statistical) {
+      return {
+        try_count: try_count,
+        ok_count: ok_count,
+        probability: (ok_count * 100 / try_count) + '%'
+      };
+    }
     selected_cards.is_valid = false;
     return selected_cards;
   };
@@ -1145,7 +1160,9 @@ var hatokurandom = {};
       var $input =
         $('#configure :input')
         .filter(function () {return $(this).attr('name') == key;});
-      if ($input.is(':checkbox'))
+      if ($input.length == 0)
+        ;  // There is no form; it's an internal option.
+      else if ($input.is(':checkbox'))
         $input.check(value);
       else if ($input.is('select'))
         $input.val(value);
@@ -1270,7 +1287,7 @@ var hatokurandom = {};
       $supply.listview('refresh');
   };
 
-  H.save_option = function (key, value) {  //{{{1
+  H.save_option = function (key, value) {  //{{{2
     H.options[key] = value;
     $.cookie(key, JSON.stringify(value), {expires: 365});
 
@@ -1279,6 +1296,18 @@ var hatokurandom = {};
         && H.options.include_northern == 'must_not') {
       $('#configure [name="include_basic"]').val('may').change();
     }
+  };
+
+  H.test_supply_generation = function (options) {  //{{{2
+    // For interactive investigation; not called from anywhere.
+    var s = H.choose_random_cards(
+      H.CARDS,
+      10,
+      $.extend({}, H.DEFAULT_OPTIONS, {statistical: true}, options)
+    );
+    var keys = ['ok_count', 'try_count', 'probability'];
+    for (var i in keys)
+      console.log([keys[i], s[keys[i]]]);
   };
 
   H.xcards_from_supply_view = function ($supply) {  //{{{2
