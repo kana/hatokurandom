@@ -778,6 +778,13 @@ var hatokurandom = {};
         if (!any(selected_cards, H.EID_NORTHERN))
           continue;
       }
+      if (options.include_all_costs) {
+        var costs = {};
+        for (var i in selected_cards)
+          costs[selected_cards[i].cost] = true;
+        if (!(costs[2] && costs[3] && costs[4] && (costs[5] || costs[6])))
+          continue;
+      }
 
       if (options.statistical) {
         ok_count++;
