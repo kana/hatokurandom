@@ -170,6 +170,59 @@
       expect(s.try_count).toEqual(33);
       expect(typeof s.probability).toEqual('string');
     });
+    describe('with include_all_costs', function () {
+      var test = function (card_set, validness) {
+        var cards =
+          H.choose_random_cards(
+            card_set,
+            card_set.length,
+            $.extend(
+              {},
+              H.DEFAULT_OPTIONS,
+              {
+                include_all_costs: true,
+                try_count: 1
+              }
+            )
+          );
+        expect(cards.is_valid).toEqual(validness);
+        expect(H.order_by(cards, function (c) {return c.cid;}))
+          .toEqual(card_set);
+      };
+      it('should return a valid result with cost 2-5', function () {
+        test(
+          [
+            H.card_from_card_name('早馬'),
+            H.card_from_card_name('交易船'),
+            H.card_from_card_name('都市開発'),
+            H.card_from_card_name('冒険者')
+          ],
+          true
+        );
+      });
+      it('should return a valid result with cost 2-4 & 6', function () {
+        test(
+          [
+            H.card_from_card_name('早馬'),
+            H.card_from_card_name('交易船'),
+            H.card_from_card_name('都市開発'),
+            H.card_from_card_name('噂好きの公爵夫人')
+          ],
+          true
+        );
+      });
+      it('should not return a valid result without cost 5-6', function () {
+        test(
+          [
+            H.card_from_card_name('早馬'),
+            H.card_from_card_name('交易船'),
+            H.card_from_card_name('都市開発'),
+            H.card_from_card_name('魅了術の魔女')
+          ],
+          false
+        );
+      });
+    });
   });
   describe('decode_base64xml', function () {
     it('should decode a character to a 6-bit value', function () {
