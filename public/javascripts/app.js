@@ -1145,7 +1145,9 @@ var hatokurandom = {};
       var $input =
         $('#configure :input')
         .filter(function () {return $(this).attr('name') == key;});
-      if ($input.is(':checkbox'))
+      if ($input.length == 0)
+        ;  // There is no form; it's an internal option.
+      else if ($input.is(':checkbox'))
         $input.check(value);
       else if ($input.is('select'))
         $input.val(value);
