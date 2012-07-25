@@ -82,93 +82,101 @@
     });
   });
   describe('choose_random_cards', function () {
-    it('should return a subset of given cards', function () {
-      var cards = H.choose_random_cards(H.CARDS, 10, H.DEFAULT_OPTIONS);
-      $.each(cards, function (_, c1) {
-        expect(
-          $.grep(H.CARDS, function (c2) {return c2 == c1;}).length
-        ).toEqual(1);
+    describe('basics', function () {
+      it('should return a subset of given cards', function () {
+        var cards = H.choose_random_cards(H.CARDS, 10, H.DEFAULT_OPTIONS);
+        for (var i = 0; i < cards.length; i++) {
+          var c1 = cards[i];
+          expect(
+            $.grep(H.CARDS, function (c2) {return c2 == c1;}).length
+          ).toEqual(1);
+        }
+      });
+      it('should choose cards without duplicates', function () {
+        var cards = H.choose_random_cards(H.CARDS, 10, H.DEFAULT_OPTIONS);
+        for (var i = 0; i < cards.length; i++) {
+          var c1 = cards[i];
+          expect(
+            $.grep(cards, function (c2) {return c2 == c1;}).length
+          ).toEqual(1);
+        }
+      });
+      it('should choose random cards each time', function () {
+        var cards1 = H.choose_random_cards(H.CARDS, 10, H.DEFAULT_OPTIONS);
+        var cards2;
+        do {
+          cards2 = H.choose_random_cards(H.CARDS, 10, H.DEFAULT_OPTIONS);
+        } while (cards1 == cards2);
+        expect(cards1).not.toEqual(cards2);
       });
     });
-    it('should choose cards without duplicates', function () {
-      var cards = H.choose_random_cards(H.CARDS, 10, H.DEFAULT_OPTIONS);
-      $.each(cards, function (_, c1) {
-        expect(
-          $.grep(cards, function (c2) {return c2 == c1;}).length
-        ).toEqual(1);
+    describe('include_{expansion}', function () {
+      it('should reject "must_not" expansions', function () {
+        var filter_by_eid = function (eid, cards) {
+          return $.grep(cards, function (card) {return card.eid == eid;});
+        };
+        var test = function (eid, options) {
+          expect(
+            filter_by_eid(
+              eid,
+              H.choose_random_cards(
+                H.CARDS,
+                H.CARDS.length - filter_by_eid(eid, H.CARDS).length,
+                $.extend({}, H.DEFAULT_OPTIONS, options)
+              )
+            )
+          ).toEqual([]);
+        };
+
+        test(H.EID_BASIC, {include_basic: 'must_not'});
+        test(H.EID_FAREAST, {include_fareast: 'must_not'});
+        test(H.EID_NORTHERN, {include_northern: 'must_not'});
       });
-    });
-    it('should choose random cards each time', function () {
-      var cards1 = H.choose_random_cards(H.CARDS, 10, H.DEFAULT_OPTIONS);
-      var cards2;
-      do {
-        cards2 = H.choose_random_cards(H.CARDS, 10, H.DEFAULT_OPTIONS);
-      } while (cards1 == cards2);
-      expect(cards1).not.toEqual(cards2);
-    });
-    it('should reject specific expansions by given options', function () {
-      var filter_by_eid = function (eid, cards) {
-        return $.grep(cards, function (card) {return card.eid == eid;});
-      };
-      var test = function (eid, options) {
-        expect(
-          filter_by_eid(
-            eid,
+      it('should include "must" expansions', function () {
+        var filter_by_eid = function (eid, cards) {
+          return $.grep(cards, function (card) {return card.eid == eid;});
+        };
+        var test = function (eid, options) {
+          var cards =
             H.choose_random_cards(
               H.CARDS,
-              H.CARDS.length - filter_by_eid(eid, H.CARDS).length,
+              10,
               $.extend({}, H.DEFAULT_OPTIONS, options)
-            )
-          )
-        ).toEqual([]);
-      };
+            );
+          expect(
+            1 <= filter_by_eid(eid, cards).length
+            || !(cards.is_valid)
+          ).toBeTruthy();
+        };
 
-      test(H.EID_BASIC, {include_basic: 'must_not'});
-      test(H.EID_FAREAST, {include_fareast: 'must_not'});
-      test(H.EID_NORTHERN, {include_northern: 'must_not'});
+        test(H.EID_BASIC, {include_basic: 'must'});
+        test(H.EID_FAREAST, {include_fareast: 'must'});
+        test(H.EID_NORTHERN, {include_northern: 'must'});
+      });
     });
-    it('should include specific expansions by given options', function () {
-      var filter_by_eid = function (eid, cards) {
-        return $.grep(cards, function (card) {return card.eid == eid;});
-      };
-      var test = function (eid, options) {
-        var cards =
+    describe('statistical', function () {
+      it('should return statistical result if requested', function () {
+        var s =
           H.choose_random_cards(
             H.CARDS,
             10,
-            $.extend({}, H.DEFAULT_OPTIONS, options)
+            $.extend({}, H.DEFAULT_OPTIONS, {statistical: true})
           );
-        expect(
-          1 <= filter_by_eid(eid, cards).length
-          || !(cards.is_valid)
-        ).toBeTruthy();
-      };
-
-      test(H.EID_BASIC, {include_basic: 'must'});
-      test(H.EID_FAREAST, {include_fareast: 'must'});
-      test(H.EID_NORTHERN, {include_northern: 'must'});
-    });
-    it('should return statistical result if requested', function () {
-      var s =
-        H.choose_random_cards(
-          H.CARDS,
-          10,
-          $.extend({}, H.DEFAULT_OPTIONS, {statistical: true})
-        );
-      expect(s.ok_count).not.toBeLessThan(0);
-      expect(s.try_count).toEqual(H.DEFAULT_OPTIONS.try_count);
-      expect(typeof s.probability).toEqual('string');
-    });
-    it('should return statistical result with given try count', function () {
-      var s =
-        H.choose_random_cards(
-          H.CARDS,
-          10,
-          $.extend({}, H.DEFAULT_OPTIONS, {statistical: true, try_count: 33})
-        );
-      expect(s.ok_count).not.toBeLessThan(0);
-      expect(s.try_count).toEqual(33);
-      expect(typeof s.probability).toEqual('string');
+        expect(s.ok_count).not.toBeLessThan(0);
+        expect(s.try_count).toEqual(H.DEFAULT_OPTIONS.try_count);
+        expect(typeof s.probability).toEqual('string');
+      });
+      it('should return statistical result with given try count', function () {
+        var s =
+          H.choose_random_cards(
+            H.CARDS,
+            10,
+            $.extend({}, H.DEFAULT_OPTIONS, {statistical: true, try_count: 33})
+          );
+        expect(s.ok_count).not.toBeLessThan(0);
+        expect(s.try_count).toEqual(33);
+        expect(typeof s.probability).toEqual('string');
+      });
     });
     describe('with include_all_costs', function () {
       var test = function (card_set, validness) {
@@ -675,7 +683,7 @@
       var original_options = H.options;
       this.after(function () {
         H.options = original_options;
-      });
+      });//
 
       var filter_by_eid = function (eid, cards) {
         return $.grep(cards, function (card) {return card.eid == eid;});
@@ -729,7 +737,7 @@
       var original_table = H.CID_TO_CARD_TABLE;
       this.after(function () {
         H.CID_TO_CARD_TABLE = original_table;
-      });
+      });//
       H.CID_TO_CARD_TABLE = $.extend(
         {
           0x3f: {cid: 0x3f},
@@ -794,4 +802,4 @@
 // __END__
 // vim: expandtab shiftwidth=2 softtabstop=2
 // vim: foldmethod=expr
-// vim: foldexpr=getline(v\:lnum)=~#'\\v<x?(describe|it|beforeEach|afterEach)>.*<function>\\s*\\([^()]*\\)\\s*\\{'?'a1'\:(getline(v\:lnum)=~#'^\\s*});'?'s1'\:'=')
+// vim: foldexpr=getline(v\:lnum)=~#'\\v<x?(describe|it|beforeEach|afterEach)>.*<function>\\s*\\([^()]*\\)\\s*\\{'?'a1'\:(getline(v\:lnum)=~#'^\\s*});$'?'s1'\:'=')
