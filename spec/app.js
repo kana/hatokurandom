@@ -111,7 +111,7 @@
       });
     });
     describe('include_{expansion}', function () {
-      it('should reject specific expansions by given options', function () {
+      it('should reject "must_not" expansions', function () {
         var filter_by_eid = function (eid, cards) {
           return $.grep(cards, function (card) {return card.eid == eid;});
         };
@@ -132,7 +132,7 @@
         test(H.EID_FAREAST, {include_fareast: 'must_not'});
         test(H.EID_NORTHERN, {include_northern: 'must_not'});
       });
-      it('should include specific expansions by given options', function () {
+      it('should include "must" expansions', function () {
         var filter_by_eid = function (eid, cards) {
           return $.grep(cards, function (card) {return card.eid == eid;});
         };
