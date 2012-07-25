@@ -785,6 +785,13 @@ var hatokurandom = {};
         if (!(costs[2] && costs[3] && costs[4] && (costs[5] || costs[6])))
           continue;
       }
+      if (options.include_link_2) {
+        var links = {};
+        for (var i in selected_cards)
+          links[selected_cards[i].link] = true;
+        if (links[0] && !links[2])
+          continue;
+      }
 
       if (options.statistical) {
         ok_count++;

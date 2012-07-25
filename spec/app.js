@@ -223,6 +223,96 @@
         );
       });
     });
+    describe('with include_link_2', function () {
+      var test = function (card_set, validness) {
+        var cards =
+          H.choose_random_cards(
+            card_set,
+            card_set.length,
+            $.extend(
+              {},
+              H.DEFAULT_OPTIONS,
+              {
+                include_link_2: true,
+                try_count: 1
+              }
+            )
+          );
+        expect(cards.is_valid).toEqual(validness);
+        expect(H.order_by(cards, function (c) {return c.cid;}))
+          .toEqual(card_set);
+      };
+      it('should not return a valid result with link 0, 0, 0', function () {
+        test(
+          [
+            H.card_from_card_name('歩兵大隊'),
+            H.card_from_card_name('サムライ'),
+            H.card_from_card_name('割り符')
+          ],
+          false
+        );
+      });
+      it('should not return a valid result with link 0, 0, 1', function () {
+        test(
+          [
+            H.card_from_card_name('歩兵大隊'),
+            H.card_from_card_name('サムライ'),
+            H.card_from_card_name('鉱山都市')
+          ],
+          false
+        );
+      });
+      it('should return a valid result with link 0, 0, 2', function () {
+        test(
+          [
+            H.card_from_card_name('歩兵大隊'),
+            H.card_from_card_name('サムライ'),
+            H.card_from_card_name('港町')
+          ],
+          true
+        );
+      });
+      it('should return a valid result with link 0, 1, 2', function () {
+        test(
+          [
+            H.card_from_card_name('歩兵大隊'),
+            H.card_from_card_name('都市開発'),
+            H.card_from_card_name('補給部隊')
+          ],
+          true
+        );
+      });
+      it('should return a valid result with link 1, 1, 1', function () {
+        test(
+          [
+            H.card_from_card_name('図書館'),
+            H.card_from_card_name('都市開発'),
+            H.card_from_card_name('魅了術の魔女')
+          ],
+          true
+        );
+      });
+      it('should return a valid result with link 1, 1, 2', function () {
+        test(
+          [
+            H.card_from_card_name('都市開発'),
+            H.card_from_card_name('魅了術の魔女'),
+            H.card_from_card_name('補給部隊')
+          ],
+          true
+        );
+      });
+      it('should return a valid result with link 2, 2, 2', function () {
+        test(
+          [
+            H.card_from_card_name('シノビ'),
+            H.card_from_card_name('星詠みの魔女'),
+            H.card_from_card_name('補給部隊')
+          ],
+          true
+        );
+      });
+    });
   });
   describe('decode_base64xml', function () {
     it('should decode a character to a 6-bit value', function () {
