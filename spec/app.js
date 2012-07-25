@@ -154,27 +154,29 @@
         test(H.EID_NORTHERN, {include_northern: 'must'});
       });
     });
-    it('should return statistical result if requested', function () {
-      var s =
-        H.choose_random_cards(
-          H.CARDS,
-          10,
-          $.extend({}, H.DEFAULT_OPTIONS, {statistical: true})
-        );
-      expect(s.ok_count).not.toBeLessThan(0);
-      expect(s.try_count).toEqual(H.DEFAULT_OPTIONS.try_count);
-      expect(typeof s.probability).toEqual('string');
-    });
-    it('should return statistical result with given try count', function () {
-      var s =
-        H.choose_random_cards(
-          H.CARDS,
-          10,
-          $.extend({}, H.DEFAULT_OPTIONS, {statistical: true, try_count: 33})
-        );
-      expect(s.ok_count).not.toBeLessThan(0);
-      expect(s.try_count).toEqual(33);
-      expect(typeof s.probability).toEqual('string');
+    describe('statistical', function () {
+      it('should return statistical result if requested', function () {
+        var s =
+          H.choose_random_cards(
+            H.CARDS,
+            10,
+            $.extend({}, H.DEFAULT_OPTIONS, {statistical: true})
+          );
+        expect(s.ok_count).not.toBeLessThan(0);
+        expect(s.try_count).toEqual(H.DEFAULT_OPTIONS.try_count);
+        expect(typeof s.probability).toEqual('string');
+      });
+      it('should return statistical result with given try count', function () {
+        var s =
+          H.choose_random_cards(
+            H.CARDS,
+            10,
+            $.extend({}, H.DEFAULT_OPTIONS, {statistical: true, try_count: 33})
+          );
+        expect(s.ok_count).not.toBeLessThan(0);
+        expect(s.try_count).toEqual(33);
+        expect(typeof s.probability).toEqual('string');
+      });
     });
     describe('with include_all_costs', function () {
       var test = function (card_set, validness) {
