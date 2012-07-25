@@ -82,31 +82,33 @@
     });
   });
   describe('choose_random_cards', function () {
-    it('should return a subset of given cards', function () {
-      var cards = H.choose_random_cards(H.CARDS, 10, H.DEFAULT_OPTIONS);
-      for (var i = 0; i < cards.length; i++) {
-        var c1 = cards[i];
-        expect(
-          $.grep(H.CARDS, function (c2) {return c2 == c1;}).length
-        ).toEqual(1);
-      }
-    });
-    it('should choose cards without duplicates', function () {
-      var cards = H.choose_random_cards(H.CARDS, 10, H.DEFAULT_OPTIONS);
-      for (var i = 0; i < cards.length; i++) {
-        var c1 = cards[i];
-        expect(
-          $.grep(cards, function (c2) {return c2 == c1;}).length
-        ).toEqual(1);
-      }
-    });
-    it('should choose random cards each time', function () {
-      var cards1 = H.choose_random_cards(H.CARDS, 10, H.DEFAULT_OPTIONS);
-      var cards2;
-      do {
-        cards2 = H.choose_random_cards(H.CARDS, 10, H.DEFAULT_OPTIONS);
-      } while (cards1 == cards2);
-      expect(cards1).not.toEqual(cards2);
+    describe('basics', function () {
+      it('should return a subset of given cards', function () {
+        var cards = H.choose_random_cards(H.CARDS, 10, H.DEFAULT_OPTIONS);
+        for (var i = 0; i < cards.length; i++) {
+          var c1 = cards[i];
+          expect(
+            $.grep(H.CARDS, function (c2) {return c2 == c1;}).length
+          ).toEqual(1);
+        }
+      });
+      it('should choose cards without duplicates', function () {
+        var cards = H.choose_random_cards(H.CARDS, 10, H.DEFAULT_OPTIONS);
+        for (var i = 0; i < cards.length; i++) {
+          var c1 = cards[i];
+          expect(
+            $.grep(cards, function (c2) {return c2 == c1;}).length
+          ).toEqual(1);
+        }
+      });
+      it('should choose random cards each time', function () {
+        var cards1 = H.choose_random_cards(H.CARDS, 10, H.DEFAULT_OPTIONS);
+        var cards2;
+        do {
+          cards2 = H.choose_random_cards(H.CARDS, 10, H.DEFAULT_OPTIONS);
+        } while (cards1 == cards2);
+        expect(cards1).not.toEqual(cards2);
+      });
     });
     it('should reject specific expansions by given options', function () {
       var filter_by_eid = function (eid, cards) {
