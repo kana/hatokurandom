@@ -84,19 +84,21 @@
   describe('choose_random_cards', function () {
     it('should return a subset of given cards', function () {
       var cards = H.choose_random_cards(H.CARDS, 10, H.DEFAULT_OPTIONS);
-      $.each(cards, function (_, c1) {
+      for (var i = 0; i < cards.length; i++) {
+        var c1 = cards[i];
         expect(
           $.grep(H.CARDS, function (c2) {return c2 == c1;}).length
         ).toEqual(1);
-      });
+      }
     });
     it('should choose cards without duplicates', function () {
       var cards = H.choose_random_cards(H.CARDS, 10, H.DEFAULT_OPTIONS);
-      $.each(cards, function (_, c1) {
+      for (var i = 0; i < cards.length; i++) {
+        var c1 = cards[i];
         expect(
           $.grep(cards, function (c2) {return c2 == c1;}).length
         ).toEqual(1);
-      });
+      }
     });
     it('should choose random cards each time', function () {
       var cards1 = H.choose_random_cards(H.CARDS, 10, H.DEFAULT_OPTIONS);
