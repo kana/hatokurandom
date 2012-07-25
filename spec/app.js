@@ -683,7 +683,7 @@
       var original_options = H.options;
       this.after(function () {
         H.options = original_options;
-      });
+      });//
 
       var filter_by_eid = function (eid, cards) {
         return $.grep(cards, function (card) {return card.eid == eid;});
@@ -737,7 +737,7 @@
       var original_table = H.CID_TO_CARD_TABLE;
       this.after(function () {
         H.CID_TO_CARD_TABLE = original_table;
-      });
+      });//
       H.CID_TO_CARD_TABLE = $.extend(
         {
           0x3f: {cid: 0x3f},
