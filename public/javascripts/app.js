@@ -798,7 +798,6 @@ var hatokurandom = {};
         ok_count++;
         continue;
       }
-      selected_cards.is_valid = true;
       return selected_cards;
     }
 
@@ -809,7 +808,7 @@ var hatokurandom = {};
         probability: (ok_count * 100 / try_count) + '%'
       };
     }
-    selected_cards.is_valid = false;
+    selected_cards.fallback = true;
     return selected_cards;
   };
 

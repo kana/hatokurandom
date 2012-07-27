@@ -145,7 +145,7 @@
             );
           expect(
             1 <= filter_by_eid(eid, cards).length
-            || !(cards.is_valid)
+            || cards.fallback
           ).toBeTruthy();
         };
 
@@ -179,7 +179,7 @@
       });
     });
     describe('with include_all_costs', function () {
-      var test = function (card_set, validness) {
+      var test = function (card_set, fallback) {
         var cards =
           H.choose_random_cards(
             card_set,
@@ -193,7 +193,7 @@
               }
             )
           );
-        expect(cards.is_valid).toEqual(validness);
+        expect(!!(cards.fallback)).toEqual(fallback);
         expect(H.order_by(cards, function (c) {return c.cid;}))
           .toEqual(card_set);
       };
@@ -205,7 +205,7 @@
             H.card_from_card_name('都市開発'),
             H.card_from_card_name('冒険者')
           ],
-          true
+          false
         );
       });
       it('should return a valid result with cost 2-4 & 6', function () {
@@ -216,7 +216,7 @@
             H.card_from_card_name('都市開発'),
             H.card_from_card_name('噂好きの公爵夫人')
           ],
-          true
+          false
         );
       });
       it('should not return a valid result without cost 5-6', function () {
@@ -227,12 +227,12 @@
             H.card_from_card_name('都市開発'),
             H.card_from_card_name('魅了術の魔女')
           ],
-          false
+          true
         );
       });
     });
     describe('with include_link_2', function () {
-      var test = function (card_set, validness) {
+      var test = function (card_set, fallback) {
         var cards =
           H.choose_random_cards(
             card_set,
@@ -246,7 +246,7 @@
               }
             )
           );
-        expect(cards.is_valid).toEqual(validness);
+        expect(!!(cards.fallback)).toEqual(fallback);
         expect(H.order_by(cards, function (c) {return c.cid;}))
           .toEqual(card_set);
       };
@@ -257,7 +257,7 @@
             H.card_from_card_name('サムライ'),
             H.card_from_card_name('割り符')
           ],
-          false
+          true
         );
       });
       it('should not return a valid result with link 0, 0, 1', function () {
@@ -267,7 +267,7 @@
             H.card_from_card_name('サムライ'),
             H.card_from_card_name('鉱山都市')
           ],
-          false
+          true
         );
       });
       it('should return a valid result with link 0, 0, 2', function () {
@@ -277,7 +277,7 @@
             H.card_from_card_name('サムライ'),
             H.card_from_card_name('港町')
           ],
-          true
+          false
         );
       });
       it('should return a valid result with link 0, 1, 2', function () {
@@ -287,7 +287,7 @@
             H.card_from_card_name('都市開発'),
             H.card_from_card_name('補給部隊')
           ],
-          true
+          false
         );
       });
       it('should return a valid result with link 1, 1, 1', function () {
@@ -297,7 +297,7 @@
             H.card_from_card_name('都市開発'),
             H.card_from_card_name('魅了術の魔女')
           ],
-          true
+          false
         );
       });
       it('should return a valid result with link 1, 1, 2', function () {
@@ -307,7 +307,7 @@
             H.card_from_card_name('魅了術の魔女'),
             H.card_from_card_name('補給部隊')
           ],
-          true
+          false
         );
       });
       it('should return a valid result with link 2, 2, 2', function () {
@@ -317,7 +317,7 @@
             H.card_from_card_name('星詠みの魔女'),
             H.card_from_card_name('補給部隊')
           ],
-          true
+          false
         );
       });
     });
