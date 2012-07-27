@@ -148,6 +148,13 @@ a.share.button:after
   bottom: 0.0em;
 }
 
+#notification #offline_mode {opacity: 0.2;}
+#notification #offline_mode .progress
+{
+  font-size: 80%;
+  font-style: normal;
+  font-family: 'Helvetica', sans-serif;
+}
 #notification #offline_mode.checking {color: #666;}
 #notification #offline_mode.error {color: #900;}
 #notification #offline_mode.noupdate {color: #090;}
