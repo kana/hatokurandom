@@ -1387,29 +1387,25 @@ var hatokurandom = {};
     H.load_options();
 
     var notification_table = {
-      'checking': '\u2026',  // ...
-      'error': '\u00d7',  // x
-      'noupdate': '\u25cb',  // o
-      'downloading': '\u2026',  // ...
-      'progress': function (e) {
-        return [
-          e.originalEvent.loaded,
-          '/',
-          e.originalEvent.total,
-        ].join('');
-      },
-      'updateready': '\u25ce',  // oo
-      'cached': '\u25cb',  // o
-      'obsolete': '\u00d7'  // x
+      'checking': 'icon-signal',
+      'error': 'icon-exclamation-sign',
+      'noupdate': 'icon-ok-sign',
+      'downloading': 'icon-download-alt',
+      'progress': 'icon-download-alt',
+      'updateready': 'icon-ok-sign',
+      'cached': 'icon-ok-sign',
+      'obsolete': 'icon-exclamation-sign'
     };
-    $.each(notification_table, function (event_type, mark) {
+    $.each(notification_table, function (event_type, icon_class) {
       $(window.applicationCache).bind(event_type, function (e) {
         $('#notification #offline_mode').attr('class', event_type);
-        $('#notification #offline_mode').text(
-          typeof mark == 'function'
-          ? mark(e)
-          : mark
-        );
+        $('#notification #offline_mode i').attr('class', icon_class);
+        $('#notification #offline_mode .progress')
+          .text(
+            event_type == 'progress'
+            ? [e.originalEvent.loaded, '/', e.originalEvent.total].join('')
+            : ''
+          );
       });
     });
   });
