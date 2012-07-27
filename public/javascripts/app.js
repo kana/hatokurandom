@@ -1301,6 +1301,10 @@ var hatokurandom = {};
     });
     if (!is_first)
       $supply.listview('refresh');
+    $('#supply_status i').attr(
+      'class',
+      xcards.fallback ? 'icon-exclamation-sign' : 'icon-ok-sign'
+    );
   };
 
   H.save_option = function (key, value) {  //{{{2

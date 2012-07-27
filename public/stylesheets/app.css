@@ -157,6 +157,10 @@ a.share.button:after
 #notification #offline_mode.cached {color: #090;}
 #notification #offline_mode.obsolete {color: #660;}
 
+#notification #supply_status {opacity: 0.2;}
+#notification #supply_status .icon-ok-sign {color: #0c0; display: none;}
+#notification #supply_status .icon-exclamation-sign {color: #c00;}
+
 
 /* #home */
 
