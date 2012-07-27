@@ -1020,7 +1020,9 @@ var hatokurandom = {};
           dsid_data.count,
           H.options
         );
-      return $.map(cards, H.xcard_from_card);
+      var xcards = $.map(cards, H.xcard_from_card);
+      xcards.fallback = cards.fallback;
+      return xcards;
     }
   };
 

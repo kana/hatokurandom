@@ -698,6 +698,37 @@
       expect(filter_by_eid(H.EID_BASIC, f('random' + card_count_not_in_basic)))
         .toEqual([]);
     });
+    it('should return "fallback" xcards if generation is failed', function () {
+      var original_cards = H.CARDS;
+      var original_options = H.options;
+      this.after(function () {
+        H.CARDS = original_cards;
+        H.options = original_options;
+      });//
+
+      H.CARDS = original_cards;
+      H.options = $.extend({}, original_options, {include_all_costs: true});
+      var xcards1 = f('random10');
+      expect(xcards1.length).toEqual(10);
+      expect(!!(xcards1.fallback)).toBeFalsy();
+
+      H.CARDS = [
+        H.card_from_card_name('歩兵大隊'),
+        H.card_from_card_name('図書館'),
+        H.card_from_card_name('追い立てられた魔獣'),
+        H.card_from_card_name('都市開発'),
+        H.card_from_card_name('金貸し'),
+        H.card_from_card_name('魅了術の魔女'),
+        H.card_from_card_name('シノビ'),
+        H.card_from_card_name('星詠みの魔女'),
+        H.card_from_card_name('補給部隊'),
+        H.card_from_card_name('サムライ')
+      ];
+      H.options = $.extend({}, original_options, {include_all_costs: true});
+      var xcards2 = f('random10');
+      expect(xcards2.length).toEqual(10);
+      expect(!!(xcards2.fallback)).toBeTruthy();
+    });
   });
   describe('xcards_from_psid', function () {
     it('should return cards with extra information from a psid', function () {
