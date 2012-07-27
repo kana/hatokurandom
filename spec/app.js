@@ -145,7 +145,7 @@
             );
           expect(
             1 <= filter_by_eid(eid, cards).length
-            || !(cards.is_valid)
+            || cards.fallback
           ).toBeTruthy();
         };
 
@@ -179,7 +179,7 @@
       });
     });
     describe('with include_all_costs', function () {
-      var test = function (card_set, validness) {
+      var test = function (card_set, fallback) {
         var cards =
           H.choose_random_cards(
             card_set,
@@ -193,7 +193,7 @@
               }
             )
           );
-        expect(cards.is_valid).toEqual(validness);
+        expect(!!(cards.fallback)).toEqual(fallback);
         expect(H.order_by(cards, function (c) {return c.cid;}))
           .toEqual(card_set);
       };
@@ -205,7 +205,7 @@
             H.card_from_card_name('都市開発'),
             H.card_from_card_name('冒険者')
           ],
-          true
+          false
         );
       });
       it('should return a valid result with cost 2-4 & 6', function () {
@@ -216,7 +216,7 @@
             H.card_from_card_name('都市開発'),
             H.card_from_card_name('噂好きの公爵夫人')
           ],
-          true
+          false
         );
       });
       it('should not return a valid result without cost 5-6', function () {
@@ -227,12 +227,12 @@
             H.card_from_card_name('都市開発'),
             H.card_from_card_name('魅了術の魔女')
           ],
-          false
+          true
         );
       });
     });
     describe('with include_link_2', function () {
-      var test = function (card_set, validness) {
+      var test = function (card_set, fallback) {
         var cards =
           H.choose_random_cards(
             card_set,
@@ -246,7 +246,7 @@
               }
             )
           );
-        expect(cards.is_valid).toEqual(validness);
+        expect(!!(cards.fallback)).toEqual(fallback);
         expect(H.order_by(cards, function (c) {return c.cid;}))
           .toEqual(card_set);
       };
@@ -257,7 +257,7 @@
             H.card_from_card_name('サムライ'),
             H.card_from_card_name('割り符')
           ],
-          false
+          true
         );
       });
       it('should not return a valid result with link 0, 0, 1', function () {
@@ -267,7 +267,7 @@
             H.card_from_card_name('サムライ'),
             H.card_from_card_name('鉱山都市')
           ],
-          false
+          true
         );
       });
       it('should return a valid result with link 0, 0, 2', function () {
@@ -277,7 +277,7 @@
             H.card_from_card_name('サムライ'),
             H.card_from_card_name('港町')
           ],
-          true
+          false
         );
       });
       it('should return a valid result with link 0, 1, 2', function () {
@@ -287,7 +287,7 @@
             H.card_from_card_name('都市開発'),
             H.card_from_card_name('補給部隊')
           ],
-          true
+          false
         );
       });
       it('should return a valid result with link 1, 1, 1', function () {
@@ -297,7 +297,7 @@
             H.card_from_card_name('都市開発'),
             H.card_from_card_name('魅了術の魔女')
           ],
-          true
+          false
         );
       });
       it('should return a valid result with link 1, 1, 2', function () {
@@ -307,7 +307,7 @@
             H.card_from_card_name('魅了術の魔女'),
             H.card_from_card_name('補給部隊')
           ],
-          true
+          false
         );
       });
       it('should return a valid result with link 2, 2, 2', function () {
@@ -317,7 +317,7 @@
             H.card_from_card_name('星詠みの魔女'),
             H.card_from_card_name('補給部隊')
           ],
-          true
+          false
         );
       });
     });
@@ -697,6 +697,37 @@
       H.options = $.extend({}, original_options, {include_basic: 'must_not'});
       expect(filter_by_eid(H.EID_BASIC, f('random' + card_count_not_in_basic)))
         .toEqual([]);
+    });
+    it('should return "fallback" xcards if generation is failed', function () {
+      var original_cards = H.CARDS;
+      var original_options = H.options;
+      this.after(function () {
+        H.CARDS = original_cards;
+        H.options = original_options;
+      });//
+
+      H.CARDS = original_cards;
+      H.options = $.extend({}, original_options, {include_all_costs: true});
+      var xcards1 = f('random10');
+      expect(xcards1.length).toEqual(10);
+      expect(!!(xcards1.fallback)).toBeFalsy();
+
+      H.CARDS = [
+        H.card_from_card_name('歩兵大隊'),
+        H.card_from_card_name('図書館'),
+        H.card_from_card_name('追い立てられた魔獣'),
+        H.card_from_card_name('都市開発'),
+        H.card_from_card_name('金貸し'),
+        H.card_from_card_name('魅了術の魔女'),
+        H.card_from_card_name('シノビ'),
+        H.card_from_card_name('星詠みの魔女'),
+        H.card_from_card_name('補給部隊'),
+        H.card_from_card_name('サムライ')
+      ];
+      H.options = $.extend({}, original_options, {include_all_costs: true});
+      var xcards2 = f('random10');
+      expect(xcards2.length).toEqual(10);
+      expect(!!(xcards2.fallback)).toBeTruthy();
     });
   });
   describe('xcards_from_psid', function () {

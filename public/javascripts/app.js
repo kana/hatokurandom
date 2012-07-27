@@ -14,6 +14,7 @@ var hatokurandom = {};
   //   apid: Actual Page ID (PID without any query parameter)
   // lid: supply List ID
   // xcard: eXtra information + CARD
+  // xcards: array of xcards + various flags
 
   // Constants  //{{{1
   // Eids  //{{{2
@@ -797,7 +798,6 @@ var hatokurandom = {};
         ok_count++;
         continue;
       }
-      selected_cards.is_valid = true;
       return selected_cards;
     }
 
@@ -808,7 +808,7 @@ var hatokurandom = {};
         probability: (ok_count * 100 / try_count) + '%'
       };
     }
-    selected_cards.is_valid = false;
+    selected_cards.fallback = true;
     return selected_cards;
   };
 
@@ -1020,7 +1020,9 @@ var hatokurandom = {};
           dsid_data.count,
           H.options
         );
-      return $.map(cards, H.xcard_from_card);
+      var xcards = $.map(cards, H.xcard_from_card);
+      xcards.fallback = cards.fallback;
+      return xcards;
     }
   };
 
@@ -1299,6 +1301,10 @@ var hatokurandom = {};
     });
     if (!is_first)
       $supply.listview('refresh');
+    $('#supply_status i').attr(
+      'class',
+      xcards.fallback ? 'icon-exclamation-sign' : 'icon-ok-sign'
+    );
   };
 
   H.save_option = function (key, value) {  //{{{2
