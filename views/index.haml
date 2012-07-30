@@ -240,7 +240,7 @@
           %a(href='\#{{pid}}') {{title}}
       #supply_template
         %div{as_content}
-          %ul.supply{as_listview}
+          %ul.supply{as_listview}(data-divider-theme='d')
             -# #supply_item_template
       %ul#supply_item_template
         %li.card(data-cid='{{cid}}')
@@ -251,5 +251,7 @@
             %span.type(data-name='{{dominant_type}}')
             {{name}}
             %span.subtype(data-name='{{subtype}}')
+      %ul#supply_deadline_template
+        %li{data: {role: 'list-divider'}}
 
 -# __END__

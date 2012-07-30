@@ -1293,7 +1293,7 @@ var hatokurandom = {};
         function (xcard) {return xcard.name;}
       );
     $supply.empty();
-    $.each(sorted_xcards, function (_, xcard) {
+    $.each(sorted_xcards, function (i, xcard) {
       var $xcard =
         H.render(
           'supply_item_template',
@@ -1312,6 +1312,8 @@ var hatokurandom = {};
         .enable(10 < xcards.length && H.is_dsid(sid))
         .change(refresh_if_dropped);
       $xcard.toggleClass('dropped', xcard.dropped);
+      if (i == 10)
+        $supply.append(H.render('supply_deadline_template'));
       $supply.append($xcard);
     });
     if (!is_first)
