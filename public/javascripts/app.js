@@ -1133,11 +1133,14 @@ var hatokurandom = {};
         // a new window instead of to set a permalink to the href attribute and
         // to let the Web browser open the permalink.
         var permalink = H.generate_permalink($page);
+        var card_names = H.list_card_names($page);
         window.open(
           [
             'https://twitter.com/intent/tweet',
             '?url=', encodeURIComponent(permalink),
-            '&text=', encodeURIComponent('ハトクラなう。今回のサプライ:'),
+            '&text=', encodeURIComponent(
+              'ハトクラなう。今回のサプライ: ' + card_names.join(', ')
+            ),
             '&hashtags=', encodeURIComponent('hatokura'),
             '&related=', encodeURIComponent('HeartofCrown')
           ].join('')
@@ -1162,6 +1165,17 @@ var hatokurandom = {};
     var rsid = H.rsid_from_xcards(H.xcards_from_supply_view($supply));
     var base_uri = $m.path.parseUrl(location.href).hrefNoHash;
     return base_uri + '#supply:' + rsid;
+  };
+
+  H.list_card_names = function ($supply_page) {  //{{{2
+    var $supply = $supply_page.find('.supply');
+    return $.map(
+      $.grep(
+        H.xcards_from_supply_view($supply),
+        function (xcard) {return !xcard.dropped;}
+      ),
+      function (xcard) {return xcard.name;}
+    );
   };
 
   H.load_options = function () {  //{{{2
