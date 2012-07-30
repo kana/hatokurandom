@@ -1138,7 +1138,7 @@ var hatokurandom = {};
             'https://twitter.com/intent/tweet',
             '?url=', encodeURIComponent(permalink),
             '&text=', encodeURIComponent('ハトクラなう。今回のサプライ:'),
-            '&related=', encodeURIComponent('HeartofCrown,kana1')
+            '&related=', encodeURIComponent('HeartofCrown')
           ].join('')
         );
         e.preventDefault();
