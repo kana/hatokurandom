@@ -459,6 +459,7 @@ var hatokurandom = {};
       'supplies:basic',
       'supplies:fareast',
       'supplies:championship1',
+      'supply:editor',
       'about'
     ],  //}}}
     'about': [  //{{{
@@ -628,6 +629,9 @@ var hatokurandom = {};
     },  //}}}
     'supply:championship1-finals': {  //{{{
       title: '決勝《王冠の行方》'
+    },  //}}}
+    'supply:editor': {  //{{{
+      title: '手動作成'
     },  //}}}
     '': {}  // Dummy entry to make folds simple.
   };
@@ -948,11 +952,28 @@ var hatokurandom = {};
   };
 
   H.parse_dsid = function (sid) {  //{{{2
-    var match = /^random(\d\d)(:(.*))?$/.exec(sid);
+    var match;
+
+    match = /^random(\d\d)(:(.*))?$/.exec(sid);
+    if (match) {
+      return {
+        valid: true,
+        count: parseInt(match[1]),
+        random: true,
+        rsid: match[3]
+      };
+    }
+
+    match = /^editor$/.exec(sid);
+    if (match) {
+      return {
+        valid: true,
+        editor: true
+      };
+    }
+
     return {
-      valid: !!match,
-      count: match && parseInt(match[1]),
-      rsid: match && match[3]
+      valid: false
     };
   };
 
@@ -1007,7 +1028,7 @@ var hatokurandom = {};
       return [];
     } else if (dsid_data.rsid) {
       return H.xcards_from_rsid(dsid_data.rsid);
-    } else {
+    } else if (dsid_data.random) {
       var cards =
         H.choose_random_cards(
           H.CARDS,
@@ -1017,6 +1038,17 @@ var hatokurandom = {};
       var xcards = $.map(cards, H.xcard_from_card);
       xcards.fallback = cards.fallback;
       return xcards;
+    } else if (dsid_data.editor) {
+      return $.map(
+        H.CARDS,
+        function (card) {
+          var xcard = H.xcard_from_card(card);
+          xcard.dropped = true;
+          return xcard;
+        }
+      );
+    } else {
+      return [];
     }
   };
 
