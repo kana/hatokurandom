@@ -459,6 +459,7 @@ var hatokurandom = {};
       'supplies:basic',
       'supplies:fareast',
       'supplies:championship1',
+      'supply:editor',
       'about'
     ],  //}}}
     'about': [  //{{{
@@ -628,6 +629,9 @@ var hatokurandom = {};
     },  //}}}
     'supply:championship1-finals': {  //{{{
       title: '決勝《王冠の行方》'
+    },  //}}}
+    'supply:editor': {  //{{{
+      title: '手動作成'
     },  //}}}
     '': {}  // Dummy entry to make folds simple.
   };
