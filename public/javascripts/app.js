@@ -1306,8 +1306,8 @@ var hatokurandom = {};
           )
         );
       $xcard
-        .find('.dropped:checkbox')
-        .check(xcard.dropped)
+        .find('.selected:checkbox')
+        .check(!xcard.dropped)
         .toggleClass('unavailable', xcards.length <= 10)
         .enable(10 < xcards.length && H.is_dsid(sid))
         .change(refresh_if_dropped);
@@ -1351,7 +1351,7 @@ var hatokurandom = {};
     return $supply.find('.card').map(function () {
       var $card = $(this);
       var xcard = H.xcard_from_card(H.card_from_cid($card.data('cid')));
-      xcard.dropped = $card.find('.dropped:checkbox:checked').length != 0;
+      xcard.dropped = $card.find('.selected:checkbox:checked').length == 0;
       return xcard;
     }).get();
   };
