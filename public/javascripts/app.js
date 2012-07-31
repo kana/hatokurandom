@@ -1208,6 +1208,16 @@ var hatokurandom = {};
     }
   };
 
+  H.patch_the_title_for_the_initial_page = function () {  //{{{2
+    // For some reason, jQuery Mobile use the <title> element rather than the
+    // data-title of a page if the page is deeply linked or the page is
+    // reloaded.  So that we have to force using the title of the visited page.
+    var url = $m.path.parseUrl(location.href);
+    var pid = H.pid_from_url(url);
+    var meta = H.meta_from_pid(pid);
+    document.title = meta.title;
+  };
+
   H.prepare_supplies_page = function (e, data, pid) {  //{{{2
     var $page = $('#' + H.apid_from_pid(pid));
 
@@ -1401,6 +1411,8 @@ var hatokurandom = {};
 
   $(document).ready(function () {  //{{{2
     $.mobile.defaultPageTransition = 'slide';
+
+    H.patch_the_title_for_the_initial_page();
 
     $('#configure :checkbox').change(function (e, kw) {
       if (!(kw && kw.is_resetting)) {
