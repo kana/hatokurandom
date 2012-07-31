@@ -1406,13 +1406,17 @@ var hatokurandom = {};
   $(document).ready(function () {  //{{{2
     $.mobile.defaultPageTransition = 'slide';
 
-    $('#configure :checkbox').change(function (e) {
-      var $input = $(e.target);
-      H.save_option($input.attr('name'), $input.isChecked());
+    $('#configure :checkbox').change(function (e, kw) {
+      if (!(kw && kw.is_resetting)) {
+        var $input = $(e.target);
+        H.save_option($input.attr('name'), $input.isChecked());
+      }
     });
-    $('#configure select').change(function (e) {
-      var $input = $(e.target);
-      H.save_option($input.attr('name'), $input.val());
+    $('#configure select').change(function (e, kw) {
+      if (!(kw && kw.is_resetting)) {
+        var $input = $(e.target);
+        H.save_option($input.attr('name'), $input.val());
+      }
     });
     H.load_options({is_resetting: false});
 
