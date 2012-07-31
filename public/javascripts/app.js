@@ -1178,7 +1178,7 @@ var hatokurandom = {};
     );
   };
 
-  H.load_options = function () {  //{{{2
+  H.load_options = function (kw) {  //{{{2
     for (var key in H.DEFAULT_OPTIONS) {
       var saved_value = $.cookie(key);
       var value =
@@ -1199,6 +1199,12 @@ var hatokurandom = {};
         $input.val(value);
       else
         throw new H.Error('Form for "' + key + '" is not supported.');
+
+      if (kw.is_resetting) {
+        $input.trigger('change', kw);
+        if ($input.is(':checkbox'))
+          $input.checkboxradio('refresh');
+      }
     }
   };
 
@@ -1328,7 +1334,7 @@ var hatokurandom = {};
     for (var key in H.DEFAULT_OPTIONS)
       $.cookie(key, undefined);
 
-    H.load_options();
+    H.load_options({is_resetting: true});
   };
 
   H.save_option = function (key, value) {  //{{{2
@@ -1408,7 +1414,7 @@ var hatokurandom = {};
       var $input = $(e.target);
       H.save_option($input.attr('name'), $input.val());
     });
-    H.load_options();
+    H.load_options({is_resetting: false});
 
     $('#configure #button_to_reset_options').click(function (e) {
       H.reset_options();
