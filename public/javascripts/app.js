@@ -958,6 +958,7 @@ var hatokurandom = {};
     if (match) {
       return {
         valid: true,
+        random: true,
         count: parseInt(match[1]),
         rsid: match[3]
       };
