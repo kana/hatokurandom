@@ -1205,9 +1205,7 @@ var hatokurandom = {};
       var meta = H.meta_from_pid(pid);
       var child_pids = H.child_pids_from_pid(pid);
 
-      var $content = H.render('supplies_template', {
-        title: meta.title
-      });
+      var $content = H.render('supplies_template');
       var $supplies = $content.find('.supplies');
       for (var i in child_pids) {
         var child_pid = child_pids[i];
@@ -1243,9 +1241,7 @@ var hatokurandom = {};
       var meta = H.meta_from_pid(pid);
       var initial_xcards = H.xcards_from_sid(sid);
 
-      var $content = H.render('supply_template', {
-        title: meta.title
-      });
+      var $content = H.render('supply_template');
       var $supply = $content.find('.supply');
       H.refresh_supply_view($supply, initial_xcards, sid, true);
 
