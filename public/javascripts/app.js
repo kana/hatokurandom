@@ -525,7 +525,7 @@ var hatokurandom = {};
       title: 'このアプリについて'
     },  //}}}
     'supplies:random': {  //{{{
-      title: 'ランダムサプライ'
+      title: 'ランダム選択'
     },  //}}}
     'supply:random10': {  //{{{
       title: 'ランダムに10枚選択'
