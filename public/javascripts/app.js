@@ -1145,6 +1145,10 @@ var hatokurandom = {};
     }
 
     $page.prepend($header);
+    $page.jqmData(
+      'title',
+      $page.jqmData('title') || H.meta_from_pid($page.attr('id')).title
+    );
     $page.page();
     $page.trigger('pagecreate');
   };
