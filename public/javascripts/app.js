@@ -524,6 +524,9 @@ var hatokurandom = {};
     'about': {  //{{{
       title: 'このアプリについて'
     },  //}}}
+    'credits': {  //{{{
+      title: 'バージョン情報'
+    },  //}}}
     'supplies:random': {  //{{{
       title: 'ランダム選択'
     },  //}}}
