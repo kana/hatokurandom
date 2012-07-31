@@ -526,27 +526,31 @@
     });
   });
   describe('parse_dsid', function () {
-    it('should return "failure" data from non-dsid', function () {
-      var rsid_result = H.parse_dsid('BADgc');
-      expect(rsid_result.valid).toBeFalsy();
-      expect(rsid_result.count).toBeFalsy();
-      expect(rsid_result.rsid).toBeFalsy();
-      var psid_result = H.parse_dsid('basic-firstplay');
-      expect(psid_result).toEqual(rsid_result);
+    describe('with "random"', function () {
+      it('should return "success" data from dsid without rsid', function () {
+        var m = H.parse_dsid('random10');
+        expect(m.valid).toBeTruthy();
+        expect(m.random).toBeTruthy();
+        expect(m.count).toEqual(10);
+        expect(m.rsid).toBeFalsy();
+      });
+      it('should return "success" data from dsid with rsid', function () {
+        var m = H.parse_dsid('random11:BADgc');
+        expect(m.valid).toBeTruthy();
+        expect(m.random).toBeTruthy();
+        expect(m.count).toEqual(11);
+        expect(m.rsid).toEqual('BADgc');
+      });
     });
-    it('should return "success" data from dsid without rsid', function () {
-      var m = H.parse_dsid('random10');
-      expect(m.valid).toBeTruthy();
-      expect(m.random).toBeTruthy();
-      expect(m.count).toEqual(10);
-      expect(m.rsid).toBeFalsy();
-    });
-    it('should return "success" data from dsid with rsid', function () {
-      var m = H.parse_dsid('random11:BADgc');
-      expect(m.valid).toBeTruthy();
-      expect(m.random).toBeTruthy();
-      expect(m.count).toEqual(11);
-      expect(m.rsid).toEqual('BADgc');
+    describe('with others', function () {
+      it('should return "failure" data from non-dsid', function () {
+        var rsid_result = H.parse_dsid('BADgc');
+        expect(rsid_result.valid).toBeFalsy();
+        expect(rsid_result.count).toBeFalsy();
+        expect(rsid_result.rsid).toBeFalsy();
+        var psid_result = H.parse_dsid('basic-firstplay');
+        expect(psid_result).toEqual(rsid_result);
+      });
     });
   });
   describe('pid_from_url', function () {
