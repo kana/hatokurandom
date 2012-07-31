@@ -530,16 +530,28 @@
       it('should return "success" data from dsid without rsid', function () {
         var m = H.parse_dsid('random10');
         expect(m.valid).toBeTruthy();
-        expect(m.random).toBeTruthy();
         expect(m.count).toEqual(10);
+        expect(m.editor).toBeFalsy();
+        expect(m.random).toBeTruthy();
         expect(m.rsid).toBeFalsy();
       });
       it('should return "success" data from dsid with rsid', function () {
         var m = H.parse_dsid('random11:BADgc');
         expect(m.valid).toBeTruthy();
-        expect(m.random).toBeTruthy();
         expect(m.count).toEqual(11);
+        expect(m.editor).toBeFalsy();
+        expect(m.random).toBeTruthy();
         expect(m.rsid).toEqual('BADgc');
+      });
+    });
+    describe('with "editor"', function () {
+      it('should return "success" data for the supply editor', function () {
+        var m = H.parse_dsid('editor');
+        expect(m.valid).toBeTruthy();
+        expect(m.count).toBeFalsy();
+        expect(m.editor).toBeTruthy();
+        expect(m.random).toBeFalsy();
+        expect(m.rsid).toBeFalsy();
       });
     });
     describe('with others', function () {

@@ -958,9 +958,17 @@ var hatokurandom = {};
     if (match) {
       return {
         valid: true,
-        random: true,
         count: parseInt(match[1]),
+        random: true,
         rsid: match[3]
+      };
+    }
+
+    match = /^editor$/.exec(sid);
+    if (match) {
+      return {
+        valid: true,
+        editor: true
       };
     }
 
