@@ -549,12 +549,14 @@
   });
   describe('pid_from_url', function () {
     it('should return pid from a url object', function () {
-      expect(H.pid_from_url($.mobile.path.parseUrl('/')))
-        .toEqual('');
       expect(H.pid_from_url($.mobile.path.parseUrl('/#home')))
         .toEqual('home');
       expect(H.pid_from_url($.mobile.path.parseUrl('/#supplies:basic')))
         .toEqual('supplies:basic');
+    });
+    it('should return pid of the home from url without fragment', function () {
+      expect(H.pid_from_url($.mobile.path.parseUrl('/')))
+        .toEqual('home');
     });
     it('should reject any non-url object, especially a string', function () {
       expect(function () {H.pid_from_url($.mobile.path.parseUrl('/#home'));})

@@ -524,6 +524,9 @@ var hatokurandom = {};
     'about': {  //{{{
       title: 'このアプリについて'
     },  //}}}
+    'credits': {  //{{{
+      title: 'バージョン情報'
+    },  //}}}
     'supplies:random': {  //{{{
       title: 'ランダム選択'
     },  //}}}
@@ -954,7 +957,9 @@ var hatokurandom = {};
   };
 
   H.pid_from_url = function (url) {  //{{{2
-    return url.hash.substring(1);
+    // jQuery Mobile omits the fragment of a url for the home page.
+    var pid = url.hash.substring(1);
+    return pid == '' ? 'home' : pid;
   };
 
   H.render = function (tid, data) {  //{{{2
@@ -1082,6 +1087,8 @@ var hatokurandom = {};
       typeof data.toPage == 'string'
       ? $('#' + (data.toPage == '/' ? 'home' : data.toPage))
       : data.toPage;
+    if ($page.length == 0)
+      return;
     if ($page.jqmData('role') == 'dialog')
       return;
     if ($page.find(':jqmData(role="header")').length != 0)
@@ -1141,6 +1148,10 @@ var hatokurandom = {};
     }
 
     $page.prepend($header);
+    $page.jqmData(
+      'title',
+      $page.jqmData('title') || H.meta_from_pid($page.attr('id')).title
+    );
     $page.page();
     $page.trigger('pagecreate');
   };
@@ -1195,6 +1206,16 @@ var hatokurandom = {};
           $input.checkboxradio('refresh');
       }
     }
+  };
+
+  H.patch_the_title_for_the_initial_page = function () {  //{{{2
+    // For some reason, jQuery Mobile use the <title> element rather than the
+    // data-title of a page if the page is deeply linked or the page is
+    // reloaded.  So that we have to force using the title of the visited page.
+    var url = $m.path.parseUrl(location.href);
+    var pid = H.pid_from_url(url);
+    var meta = H.meta_from_pid(pid);
+    document.title = meta.title;
   };
 
   H.prepare_supplies_page = function (e, data, pid) {  //{{{2
@@ -1390,6 +1411,8 @@ var hatokurandom = {};
 
   $(document).ready(function () {  //{{{2
     $.mobile.defaultPageTransition = 'slide';
+
+    H.patch_the_title_for_the_initial_page();
 
     $('#configure :checkbox').change(function (e, kw) {
       if (!(kw && kw.is_resetting)) {
