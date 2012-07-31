@@ -517,127 +517,117 @@ var hatokurandom = {};
       return t;
     })();
 
-  H.PID_TO_META_TABLE = (function () {  //{{{2
-    var table = {
-      'home': {  //{{{
-        long_title: 'ハトクランダム',
-        short_title: 'ホーム'
-      },  //}}}
-      'about': {  //{{{
-        long_title: 'このアプリについて',
-        short_title: '概要'
-      },  //}}}
-      'supplies:random': {  //{{{
-        long_title: 'ランダムサプライ'
-      },  //}}}
-      'supply:random10': {  //{{{
-        long_title: 'ランダムに10枚選択'
-      },  //}}}
-      'supply:random12': {  //{{{
-        long_title: 'ランダムに12枚選択'
-      },  //}}}
-      'supply:random13': {  //{{{
-        long_title: 'ランダムに13枚選択'
-      },  //}}}
-      'supply:random14': {  //{{{
-        long_title: 'ランダムに14枚選択'
-      },  //}}}
-      'supplies:basic': {  //{{{
-        long_title: '推奨サプライ(基本セット)'
-      },  //}}}
-      'supply:basic-firstplay': {  //{{{
-        long_title: 'ファーストプレイ'
-      },  //}}}
-      'supply:basic-guide': {  //{{{
-        long_title: '入門用'
-      },  //}}}
-      'supply:basic-guide2': {  //{{{
-        long_title: '入門用その2'
-      },  //}}}
-      'supply:basic-intermediate': {  //{{{
-        long_title: '中級用'
-      },  //}}}
-      'supply:basic-intermediate2': {  //{{{
-        long_title: '中級用その2'
-      },  //}}}
-      'supply:basic-bigbusiness': {  //{{{
-        long_title: 'ビッグビジネス'
-      },  //}}}
-      'supply:basic-greatwar': {  //{{{
-        long_title: '大戦争'
-      },  //}}}
-      'supply:basic-adventure': {  //{{{
-        long_title: '冒険行'
-      },  //}}}
-      'supply:basic-witchcraft': {  //{{{
-        long_title: 'ワルプルギスの夜'
-      },  //}}}
-      'supply:basic-courtpolitics': {  //{{{
-        long_title: '宮廷政治'
-      },  //}}}
-      'supplies:fareast': {  //{{{
-        long_title: '推奨サプライ(極東辺境領)'
-      },  //}}}
-      'supply:fareast-firstplay': {  //{{{
-        long_title: '初めてのハトクラ'
-      },  //}}}
-      'supply:fareast-porttown': {  //{{{
-        long_title: '港町の攻防'
-      },  //}}}
-      'supply:fareast-prosperity': {  //{{{
-        long_title: '交易と繁栄'
-      },  //}}}
-      'supply:fareast-mine': {  //{{{
-        long_title: '豊かな鉱脈'
-      },  //}}}
-      'supply:fareast-citystrife': {  //{{{
-        long_title: '都市間抗争'
-      },  //}}}
-      'supply:fareast-scandal': {  //{{{
-        long_title: '開発の醜聞'
-      },  //}}}
-      'supply:fareast-battlefield': {  //{{{
-        long_title: '戦場の絆'
-      },  //}}}
-      'supply:fareast-guildstrife': {  //{{{
-        long_title: 'ギルド間抗争'
-      },  //}}}
-      'supply:fareast-kunoichi': {  //{{{
-        long_title: 'クノイチ忍法帖'
-      },  //}}}
-      'supply:fareast-moneymoneymoney': {  //{{{
-        long_title: '金に色無し'
-      },  //}}}
-      'supplies:northern': {  //{{{
-        long_title: '推奨サプライ(北限の魔女)'
-      },  //}}}
-      'supplies:championship1': {  //{{{
-        long_title: '世界選手権'
-      },  //}}}
-      'supply:championship1-prelims1': {  //{{{
-        long_title: '予選第1回戦'
-      },  //}}}
-      'supply:championship1-prelims2': {  //{{{
-        long_title: '予選第2回戦'
-      },  //}}}
-      'supply:championship1-prelims3': {  //{{{
-        long_title: '予選第3回戦'
-      },  //}}}
-      'supply:championship1-semifinals': {  //{{{
-        long_title: '準決勝'
-      },  //}}}
-      'supply:championship1-finals': {  //{{{
-        long_title: '決勝《王冠の行方》'
-      },  //}}}
-      '': {}  // Dummy entry to make folds simple.
-    };
-    for (var pid in table) {
-      var meta = table[pid];
-      if (meta.short_title === undefined)
-        meta.short_title = meta.long_title;
-    }
-    return table;
-  })();
+  H.PID_TO_META_TABLE =  {  //{{{2
+    'home': {  //{{{
+      long_title: 'ハトクランダム'
+    },  //}}}
+    'about': {  //{{{
+      long_title: 'このアプリについて'
+    },  //}}}
+    'supplies:random': {  //{{{
+      long_title: 'ランダムサプライ'
+    },  //}}}
+    'supply:random10': {  //{{{
+      long_title: 'ランダムに10枚選択'
+    },  //}}}
+    'supply:random12': {  //{{{
+      long_title: 'ランダムに12枚選択'
+    },  //}}}
+    'supply:random13': {  //{{{
+      long_title: 'ランダムに13枚選択'
+    },  //}}}
+    'supply:random14': {  //{{{
+      long_title: 'ランダムに14枚選択'
+    },  //}}}
+    'supplies:basic': {  //{{{
+      long_title: '推奨サプライ(基本セット)'
+    },  //}}}
+    'supply:basic-firstplay': {  //{{{
+      long_title: 'ファーストプレイ'
+    },  //}}}
+    'supply:basic-guide': {  //{{{
+      long_title: '入門用'
+    },  //}}}
+    'supply:basic-guide2': {  //{{{
+      long_title: '入門用その2'
+    },  //}}}
+    'supply:basic-intermediate': {  //{{{
+      long_title: '中級用'
+    },  //}}}
+    'supply:basic-intermediate2': {  //{{{
+      long_title: '中級用その2'
+    },  //}}}
+    'supply:basic-bigbusiness': {  //{{{
+      long_title: 'ビッグビジネス'
+    },  //}}}
+    'supply:basic-greatwar': {  //{{{
+      long_title: '大戦争'
+    },  //}}}
+    'supply:basic-adventure': {  //{{{
+      long_title: '冒険行'
+    },  //}}}
+    'supply:basic-witchcraft': {  //{{{
+      long_title: 'ワルプルギスの夜'
+    },  //}}}
+    'supply:basic-courtpolitics': {  //{{{
+      long_title: '宮廷政治'
+    },  //}}}
+    'supplies:fareast': {  //{{{
+      long_title: '推奨サプライ(極東辺境領)'
+    },  //}}}
+    'supply:fareast-firstplay': {  //{{{
+      long_title: '初めてのハトクラ'
+    },  //}}}
+    'supply:fareast-porttown': {  //{{{
+      long_title: '港町の攻防'
+    },  //}}}
+    'supply:fareast-prosperity': {  //{{{
+      long_title: '交易と繁栄'
+    },  //}}}
+    'supply:fareast-mine': {  //{{{
+      long_title: '豊かな鉱脈'
+    },  //}}}
+    'supply:fareast-citystrife': {  //{{{
+      long_title: '都市間抗争'
+    },  //}}}
+    'supply:fareast-scandal': {  //{{{
+      long_title: '開発の醜聞'
+    },  //}}}
+    'supply:fareast-battlefield': {  //{{{
+      long_title: '戦場の絆'
+    },  //}}}
+    'supply:fareast-guildstrife': {  //{{{
+      long_title: 'ギルド間抗争'
+    },  //}}}
+    'supply:fareast-kunoichi': {  //{{{
+      long_title: 'クノイチ忍法帖'
+    },  //}}}
+    'supply:fareast-moneymoneymoney': {  //{{{
+      long_title: '金に色無し'
+    },  //}}}
+    'supplies:northern': {  //{{{
+      long_title: '推奨サプライ(北限の魔女)'
+    },  //}}}
+    'supplies:championship1': {  //{{{
+      long_title: '世界選手権'
+    },  //}}}
+    'supply:championship1-prelims1': {  //{{{
+      long_title: '予選第1回戦'
+    },  //}}}
+    'supply:championship1-prelims2': {  //{{{
+      long_title: '予選第2回戦'
+    },  //}}}
+    'supply:championship1-prelims3': {  //{{{
+      long_title: '予選第3回戦'
+    },  //}}}
+    'supply:championship1-semifinals': {  //{{{
+      long_title: '準決勝'
+    },  //}}}
+    'supply:championship1-finals': {  //{{{
+      long_title: '決勝《王冠の行方》'
+    },  //}}}
+    '': {}  // Dummy entry to make folds simple.
+  };
 
   H.BASE64XML_ENCODING_TABLE = {  //{{{2
     0x00: 'A', 0x01: 'B', 0x02: 'C', 0x03: 'D',
@@ -890,8 +880,7 @@ var hatokurandom = {};
   H.meta_from_rsid = function (rsid) {  //{{{2
     // FIXME: In future, rsids might contain titles.
     return {
-      long_title: 'ランダムサプライ',
-      short_title: 'ランダムサプライ'
+      long_title: 'ランダムサプライ'
     };
   };
 
