@@ -1324,6 +1324,13 @@ var hatokurandom = {};
     );
   };
 
+  H.reset_options = function () {  //{{{2
+    for (var key in H.DEFAULT_OPTIONS)
+      $.cookie(key, undefined);
+
+    H.load_options();
+  };
+
   H.save_option = function (key, value) {  //{{{2
     H.options[key] = value;
     $.cookie(key, JSON.stringify(value), {expires: 365});
@@ -1402,6 +1409,10 @@ var hatokurandom = {};
       H.save_option($input.attr('name'), $input.val());
     });
     H.load_options();
+
+    $('#configure #button_to_reset_options').click(function (e) {
+      H.reset_options();
+    });
 
     var notification_table = {
       'checking': 'icon-signal',
