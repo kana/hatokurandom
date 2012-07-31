@@ -434,7 +434,7 @@
     it('should return meta from an rsid', function () {
       var meta = H.meta_from_rsid('B');
 
-      expect(meta.long_title).toEqual('ランダムサプライ');
+      expect(meta.title).toEqual('ランダムサプライ');
     });
     it('unfortunately works even if a given rsid is invalid', function () {
       var meta = H.meta_from_rsid('B');
