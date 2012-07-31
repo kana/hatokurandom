@@ -954,7 +954,9 @@ var hatokurandom = {};
   };
 
   H.pid_from_url = function (url) {  //{{{2
-    return url.hash.substring(1);
+    // jQuery Mobile omits the fragment of a url for the home page.
+    var pid = url.hash.substring(1);
+    return pid == '' ? 'home' : pid;
   };
 
   H.render = function (tid, data) {  //{{{2
