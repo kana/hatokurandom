@@ -748,6 +748,18 @@
       expect(xcards2.length).toEqual(10);
       expect(!!(xcards2.fallback)).toBeTruthy();
     });
+    it('should return xcards of all cards for the supply editor', function () {
+      expect(f('editor')).toEqual(
+        $.map(
+          H.CARDS,
+          function (card) {
+            var xcard = H.xcard_from_card(card);
+            xcard.dropped = true;
+            return xcard;
+          }
+        )
+      );
+    });
   });
   describe('xcards_from_psid', function () {
     it('should return cards with extra information from a psid', function () {

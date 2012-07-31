@@ -1028,7 +1028,7 @@ var hatokurandom = {};
       return [];
     } else if (dsid_data.rsid) {
       return H.xcards_from_rsid(dsid_data.rsid);
-    } else {
+    } else if (dsid_data.random) {
       var cards =
         H.choose_random_cards(
           H.CARDS,
@@ -1038,6 +1038,17 @@ var hatokurandom = {};
       var xcards = $.map(cards, H.xcard_from_card);
       xcards.fallback = cards.fallback;
       return xcards;
+    } else if (dsid_data.editor) {
+      return $.map(
+        H.CARDS,
+        function (card) {
+          var xcard = H.xcard_from_card(card);
+          xcard.dropped = true;
+          return xcard;
+        }
+      );
+    } else {
+      return [];
     }
   };
 
