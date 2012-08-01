@@ -112,6 +112,12 @@ var hatokurandom = {};
   };
 
   H.PSID_TO_CARD_NAMES_TABLE = (function () {  //{{{2
+    var list = function (predicate) {
+      return $.map($.grep(H.CARDS, predicate), function (c) {return c.name;});
+    };
+    var has_type = function (card, type) {
+        return 0 <= card.types.indexOf(type);
+    };
     return {
       'basic-firstplay': [  //{{{
         '斥候',
@@ -413,6 +419,31 @@ var hatokurandom = {};
         '結盟',
         '噂好きの公爵夫人'
       ],  //}}}
+      'reference-all-actions':  //{{{
+        list(function (c) {return has_type(c, '行動');})
+      ,  //}}}
+      'reference-plain-actions':  //{{{
+        list(function (c) {
+          return has_type(c, '行動') &&
+            !has_type(c, '攻撃') &&
+            !has_type(c, '防衛');
+        })
+      ,  //}}}
+      'reference-attacks':  //{{{
+        list(function (c) {return has_type(c, '攻撃');})
+      ,  //}}}
+      'reference-defenses':  //{{{
+        list(function (c) {return has_type(c, '防衛');})
+      ,  //}}}
+      'reference-territories':  //{{{
+        list(function (c) {return has_type(c, '領地');})
+      ,  //}}}
+      'reference-authorities':  //{{{
+        list(function (c) {return has_type(c, '継承権');})
+      ,  //}}}
+      'reference-curses':  //{{{
+        list(function (c) {return has_type(c, '呪い');})
+      ,  //}}}
       '': []  // Dummy entry to make folds simple.
     };
   })();
@@ -508,6 +539,13 @@ var hatokurandom = {};
       'supply:championship1-finals'
     ],  //}}}
     'references': [  //{{{
+      'reference:all-actions',
+      'reference:plain-actions',
+      'reference:attacks',
+      'reference:defenses',
+      'reference:territories',
+      'reference:authorities',
+      'reference:curses'
     ],  //}}}
     '': []  // Dummy entry to make folds simple.
   };
@@ -640,6 +678,27 @@ var hatokurandom = {};
     },  //}}}
     'references': {  //{{{
       title: '機能別カードリスト'
+    },  //}}}
+    'reference:all-actions': {  //{{{
+      title: '行動カード一覧(全て)'
+    },  //}}}
+    'reference:plain-actions': {  //{{{
+      title: '行動カード一覧(攻撃/防衛以外)'
+    },  //}}}
+    'reference:attacks': {  //{{{
+      title: '攻撃カード一覧'
+    },  //}}}
+    'reference:defenses': {  //{{{
+      title: '防衛カード一覧'
+    },  //}}}
+    'reference:territories': {  //{{{
+      title: '領地カード一覧'
+    },  //}}}
+    'reference:authorities': {  //{{{
+      title: '継承権カード一覧'
+    },  //}}}
+    'reference:curses': {  //{{{
+      title: '呪いカード一覧'
     },  //}}}
     '': {}  // Dummy entry to make folds simple.
   };
