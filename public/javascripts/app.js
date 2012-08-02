@@ -1298,7 +1298,7 @@ var hatokurandom = {};
     } else if (dsid_data.random) {
       var cards =
         H.choose_random_cards(
-          H.ALL_CARDS,
+          H.COMMON_CARDS,
           dsid_data.count,
           H.options
         );
@@ -1307,7 +1307,7 @@ var hatokurandom = {};
       return xcards;
     } else if (dsid_data.editor) {
       return $.map(
-        H.ALL_CARDS,
+        H.COMMON_CARDS,
         function (card) {
           var xcard = H.xcard_from_card(card);
           xcard.dropped = true;
@@ -1670,7 +1670,7 @@ var hatokurandom = {};
   H.test_supply_generation = function (options) {  //{{{2
     // For interactive investigation; not called from anywhere.
     var s = H.choose_random_cards(
-      H.ALL_CARDS,
+      H.COMMON_CARDS,
       10,
       $.extend({}, H.DEFAULT_OPTIONS, {statistical: true}, options)
     );
