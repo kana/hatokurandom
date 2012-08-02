@@ -118,6 +118,9 @@ var hatokurandom = {};
     var has_type = function (card, type) {
         return 0 <= card.types.indexOf(type);
     };
+    var costs = function (card, cost) {
+        return card.cost == cost;
+    };
     return {
       'basic-firstplay': [  //{{{
         '斥候',
@@ -444,6 +447,21 @@ var hatokurandom = {};
       'reference-curses':  //{{{
         list(function (c) {return has_type(c, '呪い');})
       ,  //}}}
+      'reference-cost2':  //{{{
+        list(function (c) {return costs(c, 2);})
+      ,  //}}}
+      'reference-cost3':  //{{{
+        list(function (c) {return costs(c, 3);})
+      ,  //}}}
+      'reference-cost4':  //{{{
+        list(function (c) {return costs(c, 4);})
+      ,  //}}}
+      'reference-cost5':  //{{{
+        list(function (c) {return costs(c, 5);})
+      ,  //}}}
+      'reference-cost6':  //{{{
+        list(function (c) {return costs(c, 6);})
+      ,  //}}}
       '': []  // Dummy entry to make folds simple.
     };
   })();
@@ -545,7 +563,12 @@ var hatokurandom = {};
       'reference:defenses',
       'reference:territories',
       'reference:authorities',
-      'reference:curses'
+      'reference:curses',
+      'reference:cost2',
+      'reference:cost3',
+      'reference:cost4',
+      'reference:cost5',
+      'reference:cost6'
     ],  //}}}
     '': []  // Dummy entry to make folds simple.
   };
@@ -699,6 +722,21 @@ var hatokurandom = {};
     },  //}}}
     'reference:curses': {  //{{{
       title: '呪いカード一覧'
+    },  //}}}
+    'reference:cost2': {  //{{{
+      title: 'コスト2のカード一覧'
+    },  //}}}
+    'reference:cost3': {  //{{{
+      title: 'コスト3のカード一覧'
+    },  //}}}
+    'reference:cost4': {  //{{{
+      title: 'コスト4のカード一覧'
+    },  //}}}
+    'reference:cost5': {  //{{{
+      title: 'コスト5のカード一覧'
+    },  //}}}
+    'reference:cost6': {  //{{{
+      title: 'コスト6のカード一覧'
     },  //}}}
     '': {}  // Dummy entry to make folds simple.
   };
