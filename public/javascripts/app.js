@@ -124,6 +124,9 @@ var hatokurandom = {};
     var costs = function (card, cost) {
         return card.cost == cost;
     };
+    var links = function (card, link_count) {
+        return card.link == link_count;
+    };
     var included = function (card, eid) {
         return card.eid == eid;
     };
@@ -483,6 +486,15 @@ var hatokurandom = {};
       'reference-cost6':  //{{{
         list(function (c) {return costs(c, 6);})
       ,  //}}}
+      'reference-link0':  //{{{
+        list(function (c) {return links(c, 0);})
+      ,  //}}}
+      'reference-link1':  //{{{
+        list(function (c) {return links(c, 1);})
+      ,  //}}}
+      'reference-link2':  //{{{
+        list(function (c) {return links(c, 2);})
+      ,  //}}}
       'reference-basic':  //{{{
         list(function (c) {return included(c, H.EID_BASIC);})
       ,  //}}}
@@ -604,6 +616,9 @@ var hatokurandom = {};
       'reference:cost4',
       'reference:cost5',
       'reference:cost6',
+      'reference:link0',
+      'reference:link1',
+      'reference:link2',
       'reference:basic',
       'reference:fareast',
       'reference:northern'
@@ -790,6 +805,15 @@ var hatokurandom = {};
     },  //}}}
     'reference:cost6': {  //{{{
       title: 'コスト6のカード一覧'
+    },  //}}}
+    'reference:link0': {  //{{{
+      title: 'リンク0のカード一覧'
+    },  //}}}
+    'reference:link1': {  //{{{
+      title: 'リンク1のカード一覧'
+    },  //}}}
+    'reference:link2': {  //{{{
+      title: 'リンク2のカード一覧'
     },  //}}}
     'reference:basic': {  //{{{
       title: '基本セットのカード一覧'
