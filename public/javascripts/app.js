@@ -111,309 +111,402 @@ var hatokurandom = {};
     try_count: 100
   };
 
-  H.PSID_TO_CARD_NAMES_TABLE = {  //{{{2
-    'basic-firstplay': [  //{{{
-      '斥候',
-      '願いの泉',
-      '早馬',
-      '交易船',
-      '御用商人',
-      '補給部隊',
-      '図書館',
-      '都市開発',
-      '冒険者',
-      '錬金術師'
-    ],  //}}}
-    'basic-guide': [  //{{{
-      '斥候',
-      '早馬',
-      '願いの泉',
-      '城壁',
-      '破城槌',
-      '交易船',
-      '都市開発',
-      '歩兵大隊',
-      '御用商人',
-      '錬金術師'
-    ],  //}}}
-    'basic-guide2': [  //{{{
-      '寄付',
-      '斥候',
-      '願いの泉',
-      '城壁',
-      '破城槌',
-      '焼き畑農業',
-      '都市開発',
-      '近衛騎士団',
-      '冒険者',
-      '錬金術師'
-    ],  //}}}
-    'basic-intermediate': [  //{{{
-      '斥候',
-      '寄付',
-      '魔法の護符',
-      '補給部隊',
-      '図書館',
-      '星詠みの魔女',
-      '追い立てられた魔獣',
-      '御用商人',
-      '皇室領',
-      '呪詛の魔女'
-    ],  //}}}
-    'basic-intermediate2': [  //{{{
-      '早馬',
-      '願いの泉',
-      '買収工作',
-      '召集令状',
-      '交易船',
-      '隠れ家',
-      'シノビ',
-      '金貸し',
-      '歩兵大隊',
-      '噂好きの公爵夫人'
-    ],  //}}}
-    'basic-bigbusiness': [  //{{{
-      '願いの泉',
-      '斥候',
-      '買収工作',
-      '補給部隊',
-      '交易船',
-      '図書館',
-      '都市開発',
-      '銀行',
-      '金貸し',
-      '錬金術師'
-    ],  //}}}
-    'basic-greatwar': [  //{{{
-      '斥候',
-      '早馬',
-      '城壁',
-      '破城槌',
-      '交易船',
-      '補給部隊',
-      '歩兵大隊',
-      'シノビ',
-      '隠れ家',
-      '近衛騎士団'
-    ],  //}}}
-    'basic-adventure': [  //{{{
-      '寄付',
-      '願いの泉',
-      '埋もれた財宝',
-      '補給部隊',
-      '追い立てられた魔獣',
-      '星詠みの魔女',
-      '図書館',
-      '錬金術師',
-      '冒険者',
-      '皇室領'
-    ],  //}}}
-    'basic-witchcraft': [  //{{{
-      '寄付',
-      '斥候',
-      '願いの泉',
-      '魔法の護符',
-      '魅了術の魔女',
-      '図書館',
-      '星詠みの魔女',
-      '追い立てられた魔獣',
-      '隠れ家',
-      '呪詛の魔女'
-    ],  //}}}
-    'basic-courtpolitics': [  //{{{
-      '願いの泉',
-      '買収工作',
-      '召集令状',
-      '魔法の護符',
-      '魅了術の魔女',
-      '星詠みの魔女',
-      '近衛騎士団',
-      '錬金術師',
-      '皇室領',
-      '噂好きの公爵夫人'
-    ],  //}}}
-    'fareast-firstplay': [  //{{{
-      '港町',
-      '斥候',
-      '願いの泉',
-      '早馬',
-      '交易船',
-      '図書館',
-      '御用商人',
-      '都市開発',
-      '冒険者',
-      '錬金術師'
-    ],  //}}}
-    'fareast-porttown': [  //{{{
-      'お金好きの妖精',
-      '弓兵隊',
-      '港町',
-      'クノイチ',
-      '早馬',
-      '隠れ家',
-      '交易船',
-      '追い立てられた魔獣',
-      '錬金術師',
-      '近衛騎士団'
-    ],  //}}}
-    'fareast-prosperity': [  //{{{
-      '伝書鳩',
-      '貿易商人',
-      '課税',
-      '鉱山都市',
-      'サムライ',
-      '港町',
-      'クノイチ',
-      '割り符',
-      '早馬',
-      '交易船'
-    ],  //}}}
-    'fareast-mine': [  //{{{
-      'お金好きの妖精',
-      '弓兵隊',
-      '鉱山都市',
-      '寄付',
-      '城壁',
-      '早馬',
-      '破城槌',
-      '図書館',
-      '歩兵大隊',
-      '錬金術師'
-    ],  //}}}
-    'fareast-citystrife': [  //{{{
-      '伝書鳩',
-      '弓兵隊',
-      '港町',
-      '鉱山都市',
-      'サムライ',
-      '割り符',
-      '願いの泉',
-      '早馬',
-      '歩兵大隊',
-      '錬金術師'
-    ],  //}}}
-    'fareast-scandal': [  //{{{
-      'お金好きの妖精',
-      '鉱山都市',
-      '割り符',
-      '願いの泉',
-      '早馬',
-      '都市開発',
-      '皇室領',
-      '錬金術師',
-      '銀行',
-      '噂好きの公爵夫人'
-    ],  //}}}
-    'fareast-battlefield': [  //{{{
-      '伝書鳩',
-      '弓兵隊',
-      '結盟',
-      '斥候',
-      '城壁',
-      '破城槌',
-      '買収工作',
-      '歩兵大隊',
-      '補給部隊',
-      '近衛騎士団'
-    ],  //}}}
-    'fareast-guildstrife': [  //{{{
-      'お金好きの妖精',
-      '伝書鳩',
-      '貿易商人',
-      '交易船',
-      '弓兵隊',
-      '見習い魔女',
-      '鉱山都市',
-      'サムライ',
-      '結盟',
-      '星詠みの魔女'
-    ],  //}}}
-    'fareast-kunoichi': [  //{{{
-      '伝書鳩',
-      '弓兵隊',
-      '貿易商人',
-      '港町',
-      'クノイチ',
-      '結盟',
-      '早馬',
-      '寄付',
-      '交易船',
-      '歩兵大隊'
-    ],  //}}}
-    'fareast-moneymoneymoney': [  //{{{
-      'お金好きの妖精',
-      '弓兵隊',
-      '課税',
-      'サムライ',
-      '願いの泉',
-      '寄付',
-      '金貸し',
-      'シノビ',
-      '呪詛の魔女',
-      '錬金術師'
-    ],  //}}}
-    'championship1-prelims1': [  //{{{
-      '城壁',
-      '願いの泉',
-      '破城槌',
-      '弓兵隊',
-      '歩兵大隊',
-      '都市開発',
-      '補給部隊',
-      '港町',
-      '銀行',
-      '錬金術師'
-    ],  //}}}
-    'championship1-prelims2': [  //{{{
-      '早馬',
-      '斥候',
-      '願いの泉',
-      '焼き畑農業',
-      '伝書鳩',
-      '貿易商人',
-      '図書館',
-      '見習い魔女',
-      '冒険者',
-      '割り符'
-    ],  //}}}
-    'championship1-prelims3': [  //{{{
-      '早馬',
-      '斥候',
-      '城壁',
-      '交易船',
-      '伝書鳩',
-      '貿易商人',
-      '図書館',
-      'シノビ',
-      '錬金術師',
-      '近衛騎士団'
-    ],  //}}}
-    'championship1-semifinals': [  //{{{
-      '願いの泉',
-      '斥候',
-      '隠れ家',
-      '召集令状',
-      'シノビ',
-      '追い立てられた魔獣',
-      '鉱山都市',
-      '錬金術師',
-      '冒険者',
-      '呪詛の魔女'
-    ],  //}}}
-    'championship1-finals': [  //{{{
-      '早馬',
-      '願いの泉',
-      '斥候',
-      '交易船',
-      '御用商人',
-      '課税',
-      '呪詛の魔女',
-      '割り符',
-      '結盟',
-      '噂好きの公爵夫人'
-    ],  //}}}
-    '': []  // Dummy entry to make folds simple.
-  };
+  H.PSID_TO_CARD_NAMES_TABLE = (function () {  //{{{2
+    var list = function (predicate) {
+      return $.map($.grep(H.CARDS, predicate), function (c) {return c.name;});
+    };
+    var has_type = function (card, type) {
+        return 0 <= card.types.indexOf(type);
+    };
+    var has_subtype = function (card, subtype) {
+        return card.subtype == subtype;
+    };
+    var costs = function (card, cost) {
+        return card.cost == cost;
+    };
+    var links = function (card, link_count) {
+        return card.link == link_count;
+    };
+    var included = function (card, eid) {
+        return card.eid == eid;
+    };
+    return {
+      'basic-firstplay': [  //{{{
+        '斥候',
+        '願いの泉',
+        '早馬',
+        '交易船',
+        '御用商人',
+        '補給部隊',
+        '図書館',
+        '都市開発',
+        '冒険者',
+        '錬金術師'
+      ],  //}}}
+      'basic-guide': [  //{{{
+        '斥候',
+        '早馬',
+        '願いの泉',
+        '城壁',
+        '破城槌',
+        '交易船',
+        '都市開発',
+        '歩兵大隊',
+        '御用商人',
+        '錬金術師'
+      ],  //}}}
+      'basic-guide2': [  //{{{
+        '寄付',
+        '斥候',
+        '願いの泉',
+        '城壁',
+        '破城槌',
+        '焼き畑農業',
+        '都市開発',
+        '近衛騎士団',
+        '冒険者',
+        '錬金術師'
+      ],  //}}}
+      'basic-intermediate': [  //{{{
+        '斥候',
+        '寄付',
+        '魔法の護符',
+        '補給部隊',
+        '図書館',
+        '星詠みの魔女',
+        '追い立てられた魔獣',
+        '御用商人',
+        '皇室領',
+        '呪詛の魔女'
+      ],  //}}}
+      'basic-intermediate2': [  //{{{
+        '早馬',
+        '願いの泉',
+        '買収工作',
+        '召集令状',
+        '交易船',
+        '隠れ家',
+        'シノビ',
+        '金貸し',
+        '歩兵大隊',
+        '噂好きの公爵夫人'
+      ],  //}}}
+      'basic-bigbusiness': [  //{{{
+        '願いの泉',
+        '斥候',
+        '買収工作',
+        '補給部隊',
+        '交易船',
+        '図書館',
+        '都市開発',
+        '銀行',
+        '金貸し',
+        '錬金術師'
+      ],  //}}}
+      'basic-greatwar': [  //{{{
+        '斥候',
+        '早馬',
+        '城壁',
+        '破城槌',
+        '交易船',
+        '補給部隊',
+        '歩兵大隊',
+        'シノビ',
+        '隠れ家',
+        '近衛騎士団'
+      ],  //}}}
+      'basic-adventure': [  //{{{
+        '寄付',
+        '願いの泉',
+        '埋もれた財宝',
+        '補給部隊',
+        '追い立てられた魔獣',
+        '星詠みの魔女',
+        '図書館',
+        '錬金術師',
+        '冒険者',
+        '皇室領'
+      ],  //}}}
+      'basic-witchcraft': [  //{{{
+        '寄付',
+        '斥候',
+        '願いの泉',
+        '魔法の護符',
+        '魅了術の魔女',
+        '図書館',
+        '星詠みの魔女',
+        '追い立てられた魔獣',
+        '隠れ家',
+        '呪詛の魔女'
+      ],  //}}}
+      'basic-courtpolitics': [  //{{{
+        '願いの泉',
+        '買収工作',
+        '召集令状',
+        '魔法の護符',
+        '魅了術の魔女',
+        '星詠みの魔女',
+        '近衛騎士団',
+        '錬金術師',
+        '皇室領',
+        '噂好きの公爵夫人'
+      ],  //}}}
+      'fareast-firstplay': [  //{{{
+        '港町',
+        '斥候',
+        '願いの泉',
+        '早馬',
+        '交易船',
+        '図書館',
+        '御用商人',
+        '都市開発',
+        '冒険者',
+        '錬金術師'
+      ],  //}}}
+      'fareast-porttown': [  //{{{
+        'お金好きの妖精',
+        '弓兵隊',
+        '港町',
+        'クノイチ',
+        '早馬',
+        '隠れ家',
+        '交易船',
+        '追い立てられた魔獣',
+        '錬金術師',
+        '近衛騎士団'
+      ],  //}}}
+      'fareast-prosperity': [  //{{{
+        '伝書鳩',
+        '貿易商人',
+        '課税',
+        '鉱山都市',
+        'サムライ',
+        '港町',
+        'クノイチ',
+        '割り符',
+        '早馬',
+        '交易船'
+      ],  //}}}
+      'fareast-mine': [  //{{{
+        'お金好きの妖精',
+        '弓兵隊',
+        '鉱山都市',
+        '寄付',
+        '城壁',
+        '早馬',
+        '破城槌',
+        '図書館',
+        '歩兵大隊',
+        '錬金術師'
+      ],  //}}}
+      'fareast-citystrife': [  //{{{
+        '伝書鳩',
+        '弓兵隊',
+        '港町',
+        '鉱山都市',
+        'サムライ',
+        '割り符',
+        '願いの泉',
+        '早馬',
+        '歩兵大隊',
+        '錬金術師'
+      ],  //}}}
+      'fareast-scandal': [  //{{{
+        'お金好きの妖精',
+        '鉱山都市',
+        '割り符',
+        '願いの泉',
+        '早馬',
+        '都市開発',
+        '皇室領',
+        '錬金術師',
+        '銀行',
+        '噂好きの公爵夫人'
+      ],  //}}}
+      'fareast-battlefield': [  //{{{
+        '伝書鳩',
+        '弓兵隊',
+        '結盟',
+        '斥候',
+        '城壁',
+        '破城槌',
+        '買収工作',
+        '歩兵大隊',
+        '補給部隊',
+        '近衛騎士団'
+      ],  //}}}
+      'fareast-guildstrife': [  //{{{
+        'お金好きの妖精',
+        '伝書鳩',
+        '貿易商人',
+        '交易船',
+        '弓兵隊',
+        '見習い魔女',
+        '鉱山都市',
+        'サムライ',
+        '結盟',
+        '星詠みの魔女'
+      ],  //}}}
+      'fareast-kunoichi': [  //{{{
+        '伝書鳩',
+        '弓兵隊',
+        '貿易商人',
+        '港町',
+        'クノイチ',
+        '結盟',
+        '早馬',
+        '寄付',
+        '交易船',
+        '歩兵大隊'
+      ],  //}}}
+      'fareast-moneymoneymoney': [  //{{{
+        'お金好きの妖精',
+        '弓兵隊',
+        '課税',
+        'サムライ',
+        '願いの泉',
+        '寄付',
+        '金貸し',
+        'シノビ',
+        '呪詛の魔女',
+        '錬金術師'
+      ],  //}}}
+      'championship1-prelims1': [  //{{{
+        '城壁',
+        '願いの泉',
+        '破城槌',
+        '弓兵隊',
+        '歩兵大隊',
+        '都市開発',
+        '補給部隊',
+        '港町',
+        '銀行',
+        '錬金術師'
+      ],  //}}}
+      'championship1-prelims2': [  //{{{
+        '早馬',
+        '斥候',
+        '願いの泉',
+        '焼き畑農業',
+        '伝書鳩',
+        '貿易商人',
+        '図書館',
+        '見習い魔女',
+        '冒険者',
+        '割り符'
+      ],  //}}}
+      'championship1-prelims3': [  //{{{
+        '早馬',
+        '斥候',
+        '城壁',
+        '交易船',
+        '伝書鳩',
+        '貿易商人',
+        '図書館',
+        'シノビ',
+        '錬金術師',
+        '近衛騎士団'
+      ],  //}}}
+      'championship1-semifinals': [  //{{{
+        '願いの泉',
+        '斥候',
+        '隠れ家',
+        '召集令状',
+        'シノビ',
+        '追い立てられた魔獣',
+        '鉱山都市',
+        '錬金術師',
+        '冒険者',
+        '呪詛の魔女'
+      ],  //}}}
+      'championship1-finals': [  //{{{
+        '早馬',
+        '願いの泉',
+        '斥候',
+        '交易船',
+        '御用商人',
+        '課税',
+        '呪詛の魔女',
+        '割り符',
+        '結盟',
+        '噂好きの公爵夫人'
+      ],  //}}}
+      'reference-all-actions':  //{{{
+        list(function (c) {return has_type(c, '行動');})
+      ,  //}}}
+      'reference-plain-actions':  //{{{
+        list(function (c) {
+          return has_type(c, '行動') &&
+            !has_type(c, '攻撃') &&
+            !has_type(c, '防衛');
+        })
+      ,  //}}}
+      'reference-attacks':  //{{{
+        list(function (c) {return has_type(c, '攻撃');})
+      ,  //}}}
+      'reference-defenses':  //{{{
+        list(function (c) {return has_type(c, '防衛');})
+      ,  //}}}
+      'reference-territories':  //{{{
+        list(function (c) {return has_type(c, '領地');})
+      ,  //}}}
+      'reference-authorities':  //{{{
+        list(function (c) {return has_type(c, '継承権');})
+      ,  //}}}
+      'reference-curses':  //{{{
+        list(function (c) {return has_type(c, '呪い');})
+      ,  //}}}
+      'reference-subtype-army':  //{{{
+        list(function (c) {return has_subtype(c, '兵力');})
+      ,  //}}}
+      'reference-subtype-trick':  //{{{
+        list(function (c) {return has_subtype(c, '計略');})
+      ,  //}}}
+      'reference-subtype-magic':  //{{{
+        list(function (c) {return has_subtype(c, '魔法');})
+      ,  //}}}
+      'reference-subtype-merchant':  //{{{
+        list(function (c) {return has_subtype(c, '商人');})
+      ,  //}}}
+      'reference-subtype-maid':  //{{{
+        list(function (c) {return has_subtype(c, '侍女');})
+      ,  //}}}
+      'reference-cost2':  //{{{
+        list(function (c) {return costs(c, 2);})
+      ,  //}}}
+      'reference-cost3':  //{{{
+        list(function (c) {return costs(c, 3);})
+      ,  //}}}
+      'reference-cost4':  //{{{
+        list(function (c) {return costs(c, 4);})
+      ,  //}}}
+      'reference-cost5':  //{{{
+        list(function (c) {return costs(c, 5);})
+      ,  //}}}
+      'reference-cost6':  //{{{
+        list(function (c) {return costs(c, 6);})
+      ,  //}}}
+      'reference-link0':  //{{{
+        list(function (c) {return links(c, 0);})
+      ,  //}}}
+      'reference-link1':  //{{{
+        list(function (c) {return links(c, 1);})
+      ,  //}}}
+      'reference-link2':  //{{{
+        list(function (c) {return links(c, 2);})
+      ,  //}}}
+      'reference-basic':  //{{{
+        list(function (c) {return included(c, H.EID_BASIC);})
+      ,  //}}}
+      'reference-fareast':  //{{{
+        list(function (c) {return included(c, H.EID_FAREAST);})
+      ,  //}}}
+      'reference-northern':  //{{{
+        list(function (c) {return included(c, H.EID_NORTHERN);})
+      ,  //}}}
+      '': []  // Dummy entry to make folds simple.
+    };
+  })();
 
   H.PID_REPLACEMENT_TABLE_VERSION_1 = {  //{{{2
     '_about': 'about',
@@ -460,6 +553,7 @@ var hatokurandom = {};
       'supplies:fareast',
       'supplies:championship1',
       'supply:editor',
+      'card-references',
       'about'
     ],  //}}}
     'about': [  //{{{
@@ -503,6 +597,46 @@ var hatokurandom = {};
       'supply:championship1-prelims3',
       'supply:championship1-semifinals',
       'supply:championship1-finals'
+    ],  //}}}
+    'card-references': [  //{{{
+      'references:type',
+      'references:subtype',
+      'references:cost',
+      'references:link',
+      'references:expansion'
+    ],  //}}}
+    'references:type': [  //{{{
+      'reference:all-actions',
+      'reference:plain-actions',
+      'reference:attacks',
+      'reference:defenses',
+      'reference:territories',
+      'reference:authorities',
+      'reference:curses',
+    ],  //}}}
+    'references:subtype': [  //{{{
+      'reference:subtype-army',
+      'reference:subtype-trick',
+      'reference:subtype-magic',
+      'reference:subtype-merchant',
+      'reference:subtype-maid',
+    ],  //}}}
+    'references:cost': [  //{{{
+      'reference:cost2',
+      'reference:cost3',
+      'reference:cost4',
+      'reference:cost5',
+      'reference:cost6',
+    ],  //}}}
+    'references:link': [  //{{{
+      'reference:link0',
+      'reference:link1',
+      'reference:link2',
+    ],  //}}}
+    'references:expansion': [  //{{{
+      'reference:basic',
+      'reference:fareast',
+      'reference:northern'
     ],  //}}}
     '': []  // Dummy entry to make folds simple.
   };
@@ -632,6 +766,93 @@ var hatokurandom = {};
     },  //}}}
     'supply:editor': {  //{{{
       title: '手動作成'
+    },  //}}}
+    'card-references': {  //{{{
+      title: '機能別カードリスト'
+    },  //}}}
+    'references:type': {  //{{{
+      title: 'タイプ別カードリスト'
+    },  //}}}
+    'reference:all-actions': {  //{{{
+      title: '行動カード一覧(全て)'
+    },  //}}}
+    'reference:plain-actions': {  //{{{
+      title: '行動カード一覧(攻撃/防衛以外)'
+    },  //}}}
+    'reference:attacks': {  //{{{
+      title: '攻撃カード一覧'
+    },  //}}}
+    'reference:defenses': {  //{{{
+      title: '防衛カード一覧'
+    },  //}}}
+    'reference:territories': {  //{{{
+      title: '領地カード一覧'
+    },  //}}}
+    'reference:authorities': {  //{{{
+      title: '継承権カード一覧'
+    },  //}}}
+    'reference:curses': {  //{{{
+      title: '呪いカード一覧'
+    },  //}}}
+    'references:subtype': {  //{{{
+      title: 'サブタイプ別カードリスト'
+    },  //}}}
+    'reference:subtype-army': {  //{{{
+      title: '兵力カード一覧'
+    },  //}}}
+    'reference:subtype-trick': {  //{{{
+      title: '計略カード一覧'
+    },  //}}}
+    'reference:subtype-magic': {  //{{{
+      title: '魔法カード一覧'
+    },  //}}}
+    'reference:subtype-merchant': {  //{{{
+      title: '商人カード一覧'
+    },  //}}}
+    'reference:subtype-maid': {  //{{{
+      title: '侍女カード一覧'
+    },  //}}}
+    'references:cost': {  //{{{
+      title: 'コスト別カードリスト'
+    },  //}}}
+    'reference:cost2': {  //{{{
+      title: 'コスト2のカード一覧'
+    },  //}}}
+    'reference:cost3': {  //{{{
+      title: 'コスト3のカード一覧'
+    },  //}}}
+    'reference:cost4': {  //{{{
+      title: 'コスト4のカード一覧'
+    },  //}}}
+    'reference:cost5': {  //{{{
+      title: 'コスト5のカード一覧'
+    },  //}}}
+    'reference:cost6': {  //{{{
+      title: 'コスト6のカード一覧'
+    },  //}}}
+    'references:link': {  //{{{
+      title: 'リンク別カードリスト'
+    },  //}}}
+    'reference:link0': {  //{{{
+      title: 'リンク0のカード一覧'
+    },  //}}}
+    'reference:link1': {  //{{{
+      title: 'リンク1のカード一覧'
+    },  //}}}
+    'reference:link2': {  //{{{
+      title: 'リンク2のカード一覧'
+    },  //}}}
+    'references:expansion': {  //{{{
+      title: '収録セット別カードリスト'
+    },  //}}}
+    'reference:basic': {  //{{{
+      title: '基本セットのカード一覧'
+    },  //}}}
+    'reference:fareast': {  //{{{
+      title: '極東辺境領のカード一覧'
+    },  //}}}
+    'reference:northern': {  //{{{
+      title: '北限の魔女のカード一覧'
     },  //}}}
     '': {}  // Dummy entry to make folds simple.
   };
@@ -1016,7 +1237,11 @@ var hatokurandom = {};
   };
 
   H.sid_from_pid = function (pid) {  //{{{2
-    return pid.replace(/.*:/, '');
+    if (/^supply:/.test(pid))
+      return pid.replace(/.*:/, '');
+    if (/^reference:/.test(pid))
+      return pid.replace(/:/, '-');
+    return undefined;
   };
 
   H.xcard_from_card = function (card) {  //{{{2
@@ -1161,13 +1386,16 @@ var hatokurandom = {};
         // a new window instead of to set a permalink to the href attribute and
         // to let the Web browser open the permalink.
         var permalink = H.generate_permalink($page);
-        var card_names = H.list_card_names($page);
+        var is_reference_page = /^reference-/.test($page.jqmData('sid'));
         window.open(
           [
             'https://twitter.com/intent/tweet',
             '?url=', encodeURIComponent(permalink),
             '&text=', encodeURIComponent(
-              'ハトクラなう。今回のサプライ: ' + card_names.join(', ')
+              is_reference_page
+              ? 'ハトクラの' + $page.jqmData('title')
+              : 'ハトクラなう。今回のサプライ: '
+                + H.list_card_names($page).join(', ')
             ),
             '&hashtags=', encodeURIComponent('hatokura'),
             '&related=', encodeURIComponent('HeartofCrown')
@@ -1251,7 +1479,17 @@ var hatokurandom = {};
   };
 
   H.prepare_supplies_page = function (e, data, pid) {  //{{{2
-    var $page = $('#' + H.apid_from_pid(pid));
+    // NB: The structures of "card-references" and "references:*" are the same,
+    // so that it would be better to use #supplies for "card-references" for
+    // simplicity, but it is not acceptable.  Because jQuery Mobile's
+    // transisions assume that fromPage and toPage are different, and
+    // "card-references" has several links to "references:*".  If #supplies is
+    // also used for "card-references", page transition between
+    // "card-references" and "references:*" becomes broken.
+    var $page =
+      pid == 'card-references'
+      ? $('#card-references')
+      : $('#supplies');
 
     // See also [DOUBLE_TROUBLE].
     if (pid != $page.jqmData('pid')) {
@@ -1283,7 +1521,7 @@ var hatokurandom = {};
   };
 
   H.prepare_supply_page = function (e, data, pid) {  //{{{2
-    var $page = $('#' + H.apid_from_pid(pid));
+    var $page = $('#supply');
     var sid = H.sid_from_pid(pid);
 
     // [DOUBLE_TROUBLE] For some reason, pagebeforechange and some events are
@@ -1336,6 +1574,7 @@ var hatokurandom = {};
         function (xcard) {return xcard.link;},
         function (xcard) {return xcard.name;}
       );
+    var editable = 10 < xcards.length && H.is_dsid(sid);
     $supply.empty();
     $.each(sorted_xcards, function (i, xcard) {
       var $xcard =
@@ -1352,11 +1591,11 @@ var hatokurandom = {};
       $xcard
         .find('.selected:checkbox')
         .check(!xcard.dropped)
-        .toggleClass('unavailable', xcards.length <= 10)
-        .enable(10 < xcards.length && H.is_dsid(sid))
+        .toggleClass('unavailable', !editable)
+        .enable(editable)
         .change(refresh_if_dropped);
       $xcard.toggleClass('dropped', xcard.dropped);
-      if (i == 10)
+      if (editable && i == 10)
         $supply.append(H.render('supply_deadline_template'));
       $supply.append($xcard);
     });
@@ -1422,9 +1661,11 @@ var hatokurandom = {};
       var pid = H.pid_from_url(url);
       var prepare = (function () {
         var apid = H.apid_from_pid(pid);
-        if (apid == 'supplies')
+        if (apid == 'supplies'
+            || apid == 'references'
+            || apid == 'card-references')
           return H.prepare_supplies_page;
-        else if (apid == 'supply')
+        else if (apid == 'supply' || apid == 'reference')
           return H.prepare_supply_page;
         else
           return H.prepare_other_page;

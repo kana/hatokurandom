@@ -48,6 +48,8 @@
           %li
             %a(href='#supply:editor') 手動作成
           %li
+            %a(href='#card-references') 機能別カードリスト
+          %li
             %a(href='#about') このアプリについて
 
     #supplies{as_page}
@@ -55,6 +57,9 @@
 
     #supply{as_page}
       -# #supply_template
+
+    #card-references{as_page}
+      -# #supplies_template
 
     #configure{as_page, {data: {role: 'dialog'}}}
 
