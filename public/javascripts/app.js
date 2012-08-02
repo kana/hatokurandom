@@ -495,6 +495,9 @@ var hatokurandom = {};
       'reference-curses':  //{{{
         list(function (c) {return has_type(c, '呪い');})
       ,  //}}}
+      'reference-princesses':  //{{{
+        list(function (c) {return has_type(c, 'プリンセス');})
+      ,  //}}}
       'reference-subtype-army':  //{{{
         list(function (c) {return has_subtype(c, '兵力');})
       ,  //}}}
@@ -655,6 +658,7 @@ var hatokurandom = {};
       'reference:territories',
       'reference:authorities',
       'reference:curses',
+      'reference:princesses'
     ],  //}}}
     'references:subtype': [  //{{{
       'reference:subtype-army',
@@ -836,6 +840,9 @@ var hatokurandom = {};
     },  //}}}
     'reference:curses': {  //{{{
       title: '呪いカード一覧'
+    },  //}}}
+    'reference:princesses': {  //{{{
+      title: 'プリンセスカード一覧'
     },  //}}}
     'references:subtype': {  //{{{
       title: 'サブタイプ別カードリスト'
