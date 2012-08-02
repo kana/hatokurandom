@@ -1318,7 +1318,7 @@ var hatokurandom = {};
   };
 
   H.prepare_supplies_page = function (e, data, pid) {  //{{{2
-    var $page = $('#' + H.apid_from_pid(pid));
+    var $page = $('#supplies');
 
     // See also [DOUBLE_TROUBLE].
     if (pid != $page.jqmData('pid')) {
@@ -1489,7 +1489,7 @@ var hatokurandom = {};
       var pid = H.pid_from_url(url);
       var prepare = (function () {
         var apid = H.apid_from_pid(pid);
-        if (apid == 'supplies')
+        if (apid == 'supplies' || apid == 'references')
           return H.prepare_supplies_page;
         else if (apid == 'supply')
           return H.prepare_supply_page;
