@@ -351,6 +351,8 @@
       expect(f(['行動', '防衛'])).toEqual('防衛');  // 城壁
       expect(f(['行動'])).toEqual('行動');  // 寄付
       expect(f(['領地'])).toEqual('領地');  // 鉱山都市
+      expect(f(['呪い'])).toEqual('呪い');  // 呪い
+      expect(f(['プリンセス'])).toEqual('プリンセス');  // 第一皇女 ルルナサイカ
     });
     it('should ignore the order of given types', function () {
       expect(f(['領地', '継承権'])).toEqual(f(['継承権', '領地']));

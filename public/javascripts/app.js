@@ -1092,6 +1092,9 @@ var hatokurandom = {};
     if (0 <= types.indexOf('呪い'))
       return '呪い';
 
+    if (0 <= types.indexOf('プリンセス'))
+      return 'プリンセス';
+
     throw new H.Error(
       JSON.stringify(types)
       + ' is not a valid type definition.'
