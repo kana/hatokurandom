@@ -32,6 +32,11 @@ var hatokurandom = {};
     // Sorted by eid, cost, link, then name.
     // :'<,'>sort /cid: \S\+, \zs.*/ r
 
+    {cid: 0x34, eid: H.EID_BASIC, cost: 0, link: 0, name: '呪い', types: ['呪い'], non_common: true},
+
+    {cid: 0x2b, eid: H.EID_BASIC, cost: 1, link: 1, name: '農村', types: ['領地'], non_common: true},
+
+    {cid: 0x2e, eid: H.EID_BASIC, cost: 2, link: 0, name: '見習い侍女', types: ['継承権'], subtype: '侍女', non_common: true},
     {cid: 0x01, eid: H.EID_BASIC, cost: 2, link: 1, name: '城壁', types: ['行動', '防衛']},
     {cid: 0x02, eid: H.EID_BASIC, cost: 2, link: 1, name: '寄付', types: ['行動']},
     {cid: 0x03, eid: H.EID_BASIC, cost: 2, link: 1, name: '願いの泉', types: ['行動']},
@@ -40,11 +45,13 @@ var hatokurandom = {};
 
     {cid: 0x06, eid: H.EID_BASIC, cost: 3, link: 0, name: '交易船', types: ['行動'], subtype: '商人'},
     {cid: 0x07, eid: H.EID_BASIC, cost: 3, link: 0, name: '埋もれた財宝', types: ['行動']},
+    {cid: 0x2f, eid: H.EID_BASIC, cost: 3, link: 0, name: '宮廷侍女', types: ['継承権'], subtype: '侍女', non_common: true},
     {cid: 0x08, eid: H.EID_BASIC, cost: 3, link: 0, name: '御用商人', types: ['行動'], subtype: '商人'},
     {cid: 0x09, eid: H.EID_BASIC, cost: 3, link: 1, name: '召集令状', types: ['行動']},
     {cid: 0x0a, eid: H.EID_BASIC, cost: 3, link: 1, name: '焼き畑農業', types: ['行動']},
     {cid: 0x0b, eid: H.EID_BASIC, cost: 3, link: 1, name: '破城槌', types: ['行動']},
     {cid: 0x0c, eid: H.EID_BASIC, cost: 3, link: 1, name: '買収工作', types: ['行動', '攻撃'], subtype: '計略'},
+    {cid: 0x2c, eid: H.EID_BASIC, cost: 3, link: 1, name: '都市', types: ['領地'], non_common: true},
     {cid: 0x0d, eid: H.EID_BASIC, cost: 3, link: 1, name: '隠れ家', types: ['行動', '防衛']},
     {cid: 0x0e, eid: H.EID_BASIC, cost: 3, link: 1, name: '魔法の護符', types: ['行動', '防衛', '呪い']},
 
@@ -60,12 +67,26 @@ var hatokurandom = {};
 
     {cid: 0x18, eid: H.EID_BASIC, cost: 5, link: 0, name: '冒険者', types: ['行動']},
     {cid: 0x19, eid: H.EID_BASIC, cost: 5, link: 0, name: '呪詛の魔女', types: ['行動', '攻撃'], subtype: '魔法'},
+    {cid: 0x30, eid: H.EID_BASIC, cost: 5, link: 0, name: '議員', types: ['継承権'], non_common: true},
     {cid: 0x1a, eid: H.EID_BASIC, cost: 5, link: 0, name: '近衛騎士団', types: ['行動', '攻撃'], subtype: '兵力'},
     {cid: 0x1b, eid: H.EID_BASIC, cost: 5, link: 0, name: '銀行', types: ['行動'], subtype: '商人'},
     {cid: 0x1c, eid: H.EID_BASIC, cost: 5, link: 1, name: '皇室領', types: ['継承権', '領地']},
     {cid: 0x1d, eid: H.EID_BASIC, cost: 5, link: 1, name: '錬金術師', types: ['行動']},
 
+    {cid: 0x37, eid: H.EID_BASIC, cost: 6, link: 0, name: '南洋の市姫 クラムクラム', types: ['プリンセス'], non_common: true},
+    {cid: 0x3a, eid: H.EID_BASIC, cost: 6, link: 0, name: '双子の姫 レイン&シオン', types: ['プリンセス'], non_common: true},
     {cid: 0x1e, eid: H.EID_BASIC, cost: 6, link: 0, name: '噂好きの公爵夫人', types: ['継承権']},
+    {cid: 0x38, eid: H.EID_BASIC, cost: 6, link: 0, name: '大方博雅の姫 ベルガモット', types: ['プリンセス'], non_common: true},
+    {cid: 0x39, eid: H.EID_BASIC, cost: 6, link: 0, name: '姫将軍 フラマリア', types: ['プリンセス'], non_common: true},
+    {cid: 0x35, eid: H.EID_BASIC, cost: 6, link: 0, name: '第一皇女 ルルナサイカ', types: ['プリンセス'], non_common: true},
+    {cid: 0x36, eid: H.EID_BASIC, cost: 6, link: 0, name: '第二皇女 ラオリリ', types: ['プリンセス'], non_common: true},
+    {cid: 0x2d, eid: H.EID_BASIC, cost: 6, link: 1, name: '大都市', types: ['領地'], non_common: true},
+
+    {cid: 0x31, eid: H.EID_BASIC, cost: 8, link: 0, name: '公爵', types: ['継承権'], non_common: true},
+
+    {cid: 0x32, eid: H.EID_BASIC, cost: 11, link: 1, name: '帝都カリクマ', types: ['継承権', '領地'], non_common: true},
+
+    {cid: 0x33, eid: H.EID_BASIC, cost: 13, link: 0, name: '皇帝の冠', types: ['継承権'], non_common: true},
 
     {cid: 0x1f, eid: H.EID_FAREAST, cost: 2, link: 0, name: 'お金好きの妖精', types: ['行動'], subtype: '魔法'},
 
@@ -81,7 +102,10 @@ var hatokurandom = {};
     {cid: 0x28, eid: H.EID_FAREAST, cost: 4, link: 2, name: '港町', types: ['領地']},
 
     {cid: 0x29, eid: H.EID_FAREAST, cost: 5, link: 0, name: '割り符', types: ['行動'], subtype: '商人'},
-    {cid: 0x2a, eid: H.EID_FAREAST, cost: 5, link: 2, name: '結盟', types: ['行動']}
+    {cid: 0x2a, eid: H.EID_FAREAST, cost: 5, link: 2, name: '結盟', types: ['行動']},
+
+    {cid: 0x3b, eid: H.EID_FAREAST, cost: 6, link: 0, name: '極東の算法姫 オウカ', types: ['プリンセス'], non_common: true}
+
   ];
 
   H.CID_TO_CARD_TABLE =  //{{{2
