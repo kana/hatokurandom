@@ -1428,7 +1428,7 @@ var hatokurandom = {};
         .enable(editable)
         .change(refresh_if_dropped);
       $xcard.toggleClass('dropped', xcard.dropped);
-      if (i == 10)
+      if (editable && i == 10)
         $supply.append(H.render('supply_deadline_template'));
       $supply.append($xcard);
     });
