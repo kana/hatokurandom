@@ -28,7 +28,7 @@ var hatokurandom = {};
     {eid: H.EID_NORTHERN, name: '北限の魔女'}
   ];
 
-  H.CARDS = [  //{{{2
+  H.ALL_CARDS = [  //{{{2
     // Sorted by eid, cost, link, then name.
     // :'<,'>sort /cid: \S\+, \zs.*/ r
 
@@ -111,14 +111,14 @@ var hatokurandom = {};
   H.CID_TO_CARD_TABLE =  //{{{2
     (function () {
       var t = {};
-      $.each(H.CARDS, function (_, c) {
+      $.each(H.ALL_CARDS, function (_, c) {
         t[c.cid] = c;
       });
 
       var n = 0;
       for (var _ in t)
         n++;
-      if (H.CARDS.length != n)
+      if (H.ALL_CARDS.length != n)
         throw new Error('Internal error: Duplicated CIDs.');
 
       return t;
@@ -127,7 +127,7 @@ var hatokurandom = {};
   H.CARD_NAME_TO_CARD_TABLE =  //{{{2
     (function () {
       var t = {};
-      $.each(H.CARDS, function (_, c) {
+      $.each(H.ALL_CARDS, function (_, c) {
         t[c.name] = c;
       });
       return t;
@@ -147,7 +147,7 @@ var hatokurandom = {};
 
   H.PSID_TO_CARD_NAMES_TABLE = (function () {  //{{{2
     var list = function (predicate) {
-      return $.map($.grep(H.CARDS, predicate), function (c) {return c.name;});
+      return $.map($.grep(H.ALL_CARDS, predicate), function (c) {return c.name;});
     };
     var has_type = function (card, type) {
         return 0 <= card.types.indexOf(type);
@@ -1293,7 +1293,7 @@ var hatokurandom = {};
     } else if (dsid_data.random) {
       var cards =
         H.choose_random_cards(
-          H.CARDS,
+          H.ALL_CARDS,
           dsid_data.count,
           H.options
         );
@@ -1302,7 +1302,7 @@ var hatokurandom = {};
       return xcards;
     } else if (dsid_data.editor) {
       return $.map(
-        H.CARDS,
+        H.ALL_CARDS,
         function (card) {
           var xcard = H.xcard_from_card(card);
           xcard.dropped = true;
@@ -1665,7 +1665,7 @@ var hatokurandom = {};
   H.test_supply_generation = function (options) {  //{{{2
     // For interactive investigation; not called from anywhere.
     var s = H.choose_random_cards(
-      H.CARDS,
+      H.ALL_CARDS,
       10,
       $.extend({}, H.DEFAULT_OPTIONS, {statistical: true}, options)
     );

@@ -35,7 +35,7 @@
   });
   describe('card_from_card_name', function () {
     it('should return the corresponding card from a card name', function () {
-      var card = H.CARDS[0];
+      var card = H.ALL_CARDS[0];
       expect(H.card_from_card_name(card.name)).toBe(card);
     });
     it('should raise error if a given card name is not valid', function () {
@@ -46,7 +46,7 @@
   });
   describe('card_from_cid', function () {
     it('should return the corresponding card from a given cid', function () {
-      var card = H.CARDS[0];
+      var card = H.ALL_CARDS[0];
       expect(H.card_from_cid(card.cid)).toBe(card);
     });
     it('should raise error if a given cid is not valid', function () {
@@ -84,16 +84,16 @@
   describe('choose_random_cards', function () {
     describe('basics', function () {
       it('should return a subset of given cards', function () {
-        var cards = H.choose_random_cards(H.CARDS, 10, H.DEFAULT_OPTIONS);
+        var cards = H.choose_random_cards(H.ALL_CARDS, 10, H.DEFAULT_OPTIONS);
         for (var i = 0; i < cards.length; i++) {
           var c1 = cards[i];
           expect(
-            $.grep(H.CARDS, function (c2) {return c2 == c1;}).length
+            $.grep(H.ALL_CARDS, function (c2) {return c2 == c1;}).length
           ).toEqual(1);
         }
       });
       it('should choose cards without duplicates', function () {
-        var cards = H.choose_random_cards(H.CARDS, 10, H.DEFAULT_OPTIONS);
+        var cards = H.choose_random_cards(H.ALL_CARDS, 10, H.DEFAULT_OPTIONS);
         for (var i = 0; i < cards.length; i++) {
           var c1 = cards[i];
           expect(
@@ -102,10 +102,10 @@
         }
       });
       it('should choose random cards each time', function () {
-        var cards1 = H.choose_random_cards(H.CARDS, 10, H.DEFAULT_OPTIONS);
+        var cards1 = H.choose_random_cards(H.ALL_CARDS, 10, H.DEFAULT_OPTIONS);
         var cards2;
         do {
-          cards2 = H.choose_random_cards(H.CARDS, 10, H.DEFAULT_OPTIONS);
+          cards2 = H.choose_random_cards(H.ALL_CARDS, 10, H.DEFAULT_OPTIONS);
         } while (cards1 == cards2);
         expect(cards1).not.toEqual(cards2);
       });
@@ -120,8 +120,8 @@
             filter_by_eid(
               eid,
               H.choose_random_cards(
-                H.CARDS,
-                H.CARDS.length - filter_by_eid(eid, H.CARDS).length,
+                H.ALL_CARDS,
+                H.ALL_CARDS.length - filter_by_eid(eid, H.ALL_CARDS).length,
                 $.extend({}, H.DEFAULT_OPTIONS, options)
               )
             )
@@ -139,7 +139,7 @@
         var test = function (eid, options) {
           var cards =
             H.choose_random_cards(
-              H.CARDS,
+              H.ALL_CARDS,
               10,
               $.extend({}, H.DEFAULT_OPTIONS, options)
             );
@@ -158,7 +158,7 @@
       it('should return statistical result if requested', function () {
         var s =
           H.choose_random_cards(
-            H.CARDS,
+            H.ALL_CARDS,
             10,
             $.extend({}, H.DEFAULT_OPTIONS, {statistical: true})
           );
@@ -169,7 +169,7 @@
       it('should return statistical result with given try count', function () {
         var s =
           H.choose_random_cards(
-            H.CARDS,
+            H.ALL_CARDS,
             10,
             $.extend({}, H.DEFAULT_OPTIONS, {statistical: true, try_count: 33})
           );
@@ -676,7 +676,7 @@
   });
   describe('xcard_from_card', function () {
     it('should return xcard from card, with default values', function () {
-      var card = H.CARDS[0];
+      var card = H.ALL_CARDS[0];
       var default_values = {dropped: false};
       expect(H.xcard_from_card(card))
         .toEqual($.extend({}, default_values, card));
@@ -716,30 +716,30 @@
         return $.grep(cards, function (card) {return card.eid == eid;});
       };
       var card_count_not_in_basic =
-        H.CARDS.length - filter_by_eid(H.EID_BASIC, H.CARDS).length;
+        H.ALL_CARDS.length - filter_by_eid(H.EID_BASIC, H.ALL_CARDS).length;
 
       H.options = $.extend({}, original_options, {include_basic: 'may'});
-      expect(filter_by_eid(H.EID_BASIC, f('random' + H.CARDS.length)))
+      expect(filter_by_eid(H.EID_BASIC, f('random' + H.ALL_CARDS.length)))
         .not.toEqual([]);
       H.options = $.extend({}, original_options, {include_basic: 'must_not'});
       expect(filter_by_eid(H.EID_BASIC, f('random' + card_count_not_in_basic)))
         .toEqual([]);
     });
     it('should return "fallback" xcards if generation is failed', function () {
-      var original_cards = H.CARDS;
+      var original_cards = H.ALL_CARDS;
       var original_options = H.options;
       this.after(function () {
-        H.CARDS = original_cards;
+        H.ALL_CARDS = original_cards;
         H.options = original_options;
       });//
 
-      H.CARDS = original_cards;
+      H.ALL_CARDS = original_cards;
       H.options = $.extend({}, original_options, {include_all_costs: true});
       var xcards1 = f('random10');
       expect(xcards1.length).toEqual(10);
       expect(!!(xcards1.fallback)).toBeFalsy();
 
-      H.CARDS = [
+      H.ALL_CARDS = [
         H.card_from_card_name('歩兵大隊'),
         H.card_from_card_name('図書館'),
         H.card_from_card_name('追い立てられた魔獣'),
@@ -759,7 +759,7 @@
     it('should return xcards of all cards for the supply editor', function () {
       expect(f('editor')).toEqual(
         $.map(
-          H.CARDS,
+          H.ALL_CARDS,
           function (card) {
             var xcard = H.xcard_from_card(card);
             xcard.dropped = true;
