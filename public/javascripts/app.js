@@ -553,7 +553,7 @@ var hatokurandom = {};
       'supplies:fareast',
       'supplies:championship1',
       'supply:editor',
-      'references',
+      'card-references',
       'about'
     ],  //}}}
     'about': [  //{{{
@@ -598,7 +598,14 @@ var hatokurandom = {};
       'supply:championship1-semifinals',
       'supply:championship1-finals'
     ],  //}}}
-    'references': [  //{{{
+    'card-references': [  //{{{
+      'references:type',
+      'references:subtype',
+      'references:cost',
+      'references:link',
+      'references:expansion'
+    ],  //}}}
+    'references:type': [  //{{{
       'reference:all-actions',
       'reference:plain-actions',
       'reference:attacks',
@@ -606,19 +613,27 @@ var hatokurandom = {};
       'reference:territories',
       'reference:authorities',
       'reference:curses',
+    ],  //}}}
+    'references:subtype': [  //{{{
       'reference:subtype-army',
       'reference:subtype-trick',
       'reference:subtype-magic',
       'reference:subtype-merchant',
       'reference:subtype-maid',
+    ],  //}}}
+    'references:cost': [  //{{{
       'reference:cost2',
       'reference:cost3',
       'reference:cost4',
       'reference:cost5',
       'reference:cost6',
+    ],  //}}}
+    'references:link': [  //{{{
       'reference:link0',
       'reference:link1',
       'reference:link2',
+    ],  //}}}
+    'references:expansion': [  //{{{
       'reference:basic',
       'reference:fareast',
       'reference:northern'
@@ -752,8 +767,11 @@ var hatokurandom = {};
     'supply:editor': {  //{{{
       title: '手動作成'
     },  //}}}
-    'references': {  //{{{
+    'card-references': {  //{{{
       title: '機能別カードリスト'
+    },  //}}}
+    'references:type': {  //{{{
+      title: 'タイプ別カードリスト'
     },  //}}}
     'reference:all-actions': {  //{{{
       title: '行動カード一覧(全て)'
@@ -776,6 +794,9 @@ var hatokurandom = {};
     'reference:curses': {  //{{{
       title: '呪いカード一覧'
     },  //}}}
+    'references:subtype': {  //{{{
+      title: 'サブタイプ別カードリスト'
+    },  //}}}
     'reference:subtype-army': {  //{{{
       title: '兵力カード一覧'
     },  //}}}
@@ -790,6 +811,9 @@ var hatokurandom = {};
     },  //}}}
     'reference:subtype-maid': {  //{{{
       title: '侍女カード一覧'
+    },  //}}}
+    'references:cost': {  //{{{
+      title: 'コスト別カードリスト'
     },  //}}}
     'reference:cost2': {  //{{{
       title: 'コスト2のカード一覧'
@@ -806,6 +830,9 @@ var hatokurandom = {};
     'reference:cost6': {  //{{{
       title: 'コスト6のカード一覧'
     },  //}}}
+    'references:link': {  //{{{
+      title: 'リンク別カードリスト'
+    },  //}}}
     'reference:link0': {  //{{{
       title: 'リンク0のカード一覧'
     },  //}}}
@@ -814,6 +841,9 @@ var hatokurandom = {};
     },  //}}}
     'reference:link2': {  //{{{
       title: 'リンク2のカード一覧'
+    },  //}}}
+    'references:expansion': {  //{{{
+      title: '収録セット別カードリスト'
     },  //}}}
     'reference:basic': {  //{{{
       title: '基本セットのカード一覧'
@@ -1449,7 +1479,17 @@ var hatokurandom = {};
   };
 
   H.prepare_supplies_page = function (e, data, pid) {  //{{{2
-    var $page = $('#supplies');
+    // NB: The structures of "card-references" and "references:*" are the same,
+    // so that it would be better to use #supplies for "card-references" for
+    // simplicity, but it is not acceptable.  Because jQuery Mobile's
+    // transisions assume that fromPage and toPage are different, and
+    // "card-references" has several links to "references:*".  If #supplies is
+    // also used for "card-references", page transition between
+    // "card-references" and "references:*" becomes broken.
+    var $page =
+      pid == 'card-references'
+      ? $('#card-references')
+      : $('#supplies');
 
     // See also [DOUBLE_TROUBLE].
     if (pid != $page.jqmData('pid')) {
@@ -1621,7 +1661,9 @@ var hatokurandom = {};
       var pid = H.pid_from_url(url);
       var prepare = (function () {
         var apid = H.apid_from_pid(pid);
-        if (apid == 'supplies' || apid == 'references')
+        if (apid == 'supplies'
+            || apid == 'references'
+            || apid == 'card-references')
           return H.prepare_supplies_page;
         else if (apid == 'supply' || apid == 'reference')
           return H.prepare_supply_page;
