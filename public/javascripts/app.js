@@ -1083,7 +1083,11 @@ var hatokurandom = {};
   };
 
   H.sid_from_pid = function (pid) {  //{{{2
-    return pid.replace(/.*:/, '');
+    if (/^supply:/.test(pid))
+      return pid.replace(/.*:/, '');
+    if (/^reference:/.test(pid))
+      return pid.replace(/:/, '-');
+    return undefined;
   };
 
   H.xcard_from_card = function (card) {  //{{{2

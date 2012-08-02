@@ -662,8 +662,14 @@
     });
   });
   describe('sid_from_pid', function () {
-    it('should return sid from a pid', function () {
+    it('should return sid from a pid of a supply page', function () {
       expect(H.sid_from_pid('supply:basic-guide')).toEqual('basic-guide');
+    });
+    it('should return sid from a pid of a reference page', function () {
+      expect(H.sid_from_pid('reference:attacks')).toEqual('reference-attacks');
+    });
+    it('should return undefined from a pid of other page', function () {
+      expect(H.sid_from_pid('supplies:basic')).toBeUndefined();
     });
   });
   describe('xcard_from_card', function () {
