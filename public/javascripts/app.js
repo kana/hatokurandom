@@ -28,7 +28,10 @@ var hatokurandom = {};
     {eid: H.EID_NORTHERN, name: '北限の魔女'}
   ];
 
-  H.CARDS = [  // Sorted by eid, cost, link, then name.  //{{{2
+  H.CARDS = [  //{{{2
+    // Sorted by eid, cost, link, then name.
+    // :'<,'>sort /cid: \S\+, \zs.*/ r
+
     {cid: 0x01, eid: H.EID_BASIC, cost: 2, link: 1, name: '城壁', types: ['行動', '防衛']},
     {cid: 0x02, eid: H.EID_BASIC, cost: 2, link: 1, name: '寄付', types: ['行動']},
     {cid: 0x03, eid: H.EID_BASIC, cost: 2, link: 1, name: '願いの泉', types: ['行動']},
