@@ -70,6 +70,7 @@ a.share.button:after
 .card .type[data-name='呪い'] {background: #636;}
 .card .type[data-name='領地'] {background: #963;}
 .card .type[data-name='継承権'] {background: #696;}
+.card .type[data-name='プリンセス'] {background: #cc3;}
 
 .card .subtype:after
 {
