@@ -525,6 +525,9 @@ var hatokurandom = {};
       'reference-cost6':  //{{{
         list(function (c) {return costs(c, 6);})
       ,  //}}}
+      'reference-cost7ormore':  //{{{
+        list(function (c) {return 7 <= c.cost;})
+      ,  //}}}
       'reference-link0':  //{{{
         list(function (c) {return links(c, 0);})
       ,  //}}}
@@ -666,6 +669,7 @@ var hatokurandom = {};
       'reference:cost4',
       'reference:cost5',
       'reference:cost6',
+      'reference:cost7ormore'
     ],  //}}}
     'references:link': [  //{{{
       'reference:link0',
@@ -868,6 +872,9 @@ var hatokurandom = {};
     },  //}}}
     'reference:cost6': {  //{{{
       title: 'コスト6のカード一覧'
+    },  //}}}
+    'reference:cost7ormore': {  //{{{
+      title: 'コスト7以上のカード一覧'
     },  //}}}
     'references:link': {  //{{{
       title: 'リンク別カードリスト'
