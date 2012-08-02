@@ -1407,6 +1407,7 @@ var hatokurandom = {};
         function (xcard) {return xcard.link;},
         function (xcard) {return xcard.name;}
       );
+    var editable = 10 < xcards.length && H.is_dsid(sid);
     $supply.empty();
     $.each(sorted_xcards, function (i, xcard) {
       var $xcard =
@@ -1423,8 +1424,8 @@ var hatokurandom = {};
       $xcard
         .find('.selected:checkbox')
         .check(!xcard.dropped)
-        .toggleClass('unavailable', xcards.length <= 10)
-        .enable(10 < xcards.length && H.is_dsid(sid))
+        .toggleClass('unavailable', !editable)
+        .enable(editable)
         .change(refresh_if_dropped);
       $xcard.toggleClass('dropped', xcard.dropped);
       if (i == 10)
