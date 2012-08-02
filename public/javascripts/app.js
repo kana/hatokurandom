@@ -460,6 +460,7 @@ var hatokurandom = {};
       'supplies:fareast',
       'supplies:championship1',
       'supply:editor',
+      'references',
       'about'
     ],  //}}}
     'about': [  //{{{
@@ -503,6 +504,8 @@ var hatokurandom = {};
       'supply:championship1-prelims3',
       'supply:championship1-semifinals',
       'supply:championship1-finals'
+    ],  //}}}
+    'references': [  //{{{
     ],  //}}}
     '': []  // Dummy entry to make folds simple.
   };
@@ -632,6 +635,9 @@ var hatokurandom = {};
     },  //}}}
     'supply:editor': {  //{{{
       title: '手動作成'
+    },  //}}}
+    'references': {  //{{{
+      title: '機能別カードリスト'
     },  //}}}
     '': {}  // Dummy entry to make folds simple.
   };
