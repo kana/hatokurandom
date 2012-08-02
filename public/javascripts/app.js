@@ -1350,7 +1350,7 @@ var hatokurandom = {};
   };
 
   H.prepare_supply_page = function (e, data, pid) {  //{{{2
-    var $page = $('#' + H.apid_from_pid(pid));
+    var $page = $('#supply');
     var sid = H.sid_from_pid(pid);
 
     // [DOUBLE_TROUBLE] For some reason, pagebeforechange and some events are
@@ -1491,7 +1491,7 @@ var hatokurandom = {};
         var apid = H.apid_from_pid(pid);
         if (apid == 'supplies' || apid == 'references')
           return H.prepare_supplies_page;
-        else if (apid == 'supply')
+        else if (apid == 'supply' || apid == 'reference')
           return H.prepare_supply_page;
         else
           return H.prepare_other_page;
