@@ -121,6 +121,9 @@ var hatokurandom = {};
     var costs = function (card, cost) {
         return card.cost == cost;
     };
+    var included = function (card, eid) {
+        return card.eid == eid;
+    };
     return {
       'basic-firstplay': [  //{{{
         '斥候',
@@ -462,6 +465,15 @@ var hatokurandom = {};
       'reference-cost6':  //{{{
         list(function (c) {return costs(c, 6);})
       ,  //}}}
+      'reference-basic':  //{{{
+        list(function (c) {return included(c, H.EID_BASIC);})
+      ,  //}}}
+      'reference-fareast':  //{{{
+        list(function (c) {return included(c, H.EID_FAREAST);})
+      ,  //}}}
+      'reference-northern':  //{{{
+        list(function (c) {return included(c, H.EID_NORTHERN);})
+      ,  //}}}
       '': []  // Dummy entry to make folds simple.
     };
   })();
@@ -568,7 +580,10 @@ var hatokurandom = {};
       'reference:cost3',
       'reference:cost4',
       'reference:cost5',
-      'reference:cost6'
+      'reference:cost6',
+      'reference:basic',
+      'reference:fareast',
+      'reference:northern'
     ],  //}}}
     '': []  // Dummy entry to make folds simple.
   };
@@ -737,6 +752,15 @@ var hatokurandom = {};
     },  //}}}
     'reference:cost6': {  //{{{
       title: 'コスト6のカード一覧'
+    },  //}}}
+    'reference:basic': {  //{{{
+      title: '基本セットのカード一覧'
+    },  //}}}
+    'reference:fareast': {  //{{{
+      title: '極東辺境領のカード一覧'
+    },  //}}}
+    'reference:northern': {  //{{{
+      title: '北限の魔女のカード一覧'
     },  //}}}
     '': {}  // Dummy entry to make folds simple.
   };
