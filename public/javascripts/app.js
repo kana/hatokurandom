@@ -108,6 +108,11 @@ var hatokurandom = {};
 
   ];
 
+  H.COMMON_CARDS =  //{{{2
+    (function () {
+      return $.grep(H.ALL_CARDS, function (card) {return !card.non_common;});
+    })();
+
   H.CID_TO_CARD_TABLE =  //{{{2
     (function () {
       var t = {};
