@@ -118,6 +118,9 @@ var hatokurandom = {};
     var has_type = function (card, type) {
         return 0 <= card.types.indexOf(type);
     };
+    var has_subtype = function (card, subtype) {
+        return card.subtype == subtype;
+    };
     var costs = function (card, cost) {
         return card.cost == cost;
     };
@@ -450,6 +453,21 @@ var hatokurandom = {};
       'reference-curses':  //{{{
         list(function (c) {return has_type(c, '呪い');})
       ,  //}}}
+      'reference-subtype-army':  //{{{
+        list(function (c) {return has_subtype(c, '兵力');})
+      ,  //}}}
+      'reference-subtype-trick':  //{{{
+        list(function (c) {return has_subtype(c, '計略');})
+      ,  //}}}
+      'reference-subtype-magic':  //{{{
+        list(function (c) {return has_subtype(c, '魔法');})
+      ,  //}}}
+      'reference-subtype-merchant':  //{{{
+        list(function (c) {return has_subtype(c, '商人');})
+      ,  //}}}
+      'reference-subtype-maid':  //{{{
+        list(function (c) {return has_subtype(c, '侍女');})
+      ,  //}}}
       'reference-cost2':  //{{{
         list(function (c) {return costs(c, 2);})
       ,  //}}}
@@ -576,6 +594,11 @@ var hatokurandom = {};
       'reference:territories',
       'reference:authorities',
       'reference:curses',
+      'reference:subtype-army',
+      'reference:subtype-trick',
+      'reference:subtype-magic',
+      'reference:subtype-merchant',
+      'reference:subtype-maid',
       'reference:cost2',
       'reference:cost3',
       'reference:cost4',
@@ -737,6 +760,21 @@ var hatokurandom = {};
     },  //}}}
     'reference:curses': {  //{{{
       title: '呪いカード一覧'
+    },  //}}}
+    'reference:subtype-army': {  //{{{
+      title: '兵力カード一覧'
+    },  //}}}
+    'reference:subtype-trick': {  //{{{
+      title: '計略カード一覧'
+    },  //}}}
+    'reference:subtype-magic': {  //{{{
+      title: '魔法カード一覧'
+    },  //}}}
+    'reference:subtype-merchant': {  //{{{
+      title: '商人カード一覧'
+    },  //}}}
+    'reference:subtype-maid': {  //{{{
+      title: '侍女カード一覧'
     },  //}}}
     'reference:cost2': {  //{{{
       title: 'コスト2のカード一覧'
