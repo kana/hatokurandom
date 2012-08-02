@@ -90,6 +90,13 @@ var hatokurandom = {};
       $.each(H.CARDS, function (_, c) {
         t[c.cid] = c;
       });
+
+      var n = 0;
+      for (var _ in t)
+        n++;
+      if (H.CARDS.length != n)
+        throw new Error('Internal error: Duplicated CIDs.');
+
       return t;
     })();
 
