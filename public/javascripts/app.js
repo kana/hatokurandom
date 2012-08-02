@@ -540,6 +540,9 @@ var hatokurandom = {};
       'reference-link2':  //{{{
         list(function (c) {return links(c, 2);})
       ,  //}}}
+      'reference-unplayable':  //{{{
+        list(function (c) {return c.link === undefined;})
+      ,  //}}}
       'reference-basic':  //{{{
         list(function (c) {return included(c, H.EID_BASIC);})
       ,  //}}}
@@ -679,6 +682,7 @@ var hatokurandom = {};
       'reference:link0',
       'reference:link1',
       'reference:link2',
+      'reference:unplayable'
     ],  //}}}
     'references:expansion': [  //{{{
       'reference:basic',
@@ -894,6 +898,9 @@ var hatokurandom = {};
     },  //}}}
     'reference:link2': {  //{{{
       title: 'リンク2のカード一覧'
+    },  //}}}
+    'reference:unplayable': {  //{{{
+      title: 'プレイできないカード一覧'
     },  //}}}
     'references:expansion': {  //{{{
       title: '収録セット別カードリスト'
