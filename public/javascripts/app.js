@@ -1121,6 +1121,9 @@ var hatokurandom = {};
     if (0 <= types.indexOf('プリンセス'))
       return 'プリンセス';
 
+    if (0 <= types.indexOf('?'))
+      return '?';
+
     throw new H.Error(
       JSON.stringify(types)
       + ' is not a valid type definition.'
