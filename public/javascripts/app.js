@@ -144,7 +144,7 @@ var hatokurandom = {};
     include_basic: 'may',
     include_fareast: 'may',
     include_link_2: false,
-    include_northern: 'must_not',
+    include_northern: 'may',
     include_pairs: false,
     statistical: false,
     try_count: 100
