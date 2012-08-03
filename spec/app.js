@@ -354,6 +354,7 @@
       expect(f(['領地'])).toEqual('領地');  // 鉱山都市
       expect(f(['呪い'])).toEqual('呪い');  // 呪い
       expect(f(['プリンセス'])).toEqual('プリンセス');  // 第一皇女 ルルナサイカ
+      expect(f(['?'])).toEqual('?');  // カードリスト判明までの仮データ
     });
     it('should ignore the order of given types', function () {
       expect(f(['領地', '継承権'])).toEqual(f(['継承権', '領地']));
@@ -811,6 +812,8 @@
         H.CID_TO_CARD_TABLE = original_table;
       });//
       H.CID_TO_CARD_TABLE = $.extend(
+        {},
+        original_table,
         {
           0x3f: {cid: 0x3f},
           0x40: {cid: 0x40},
@@ -819,8 +822,7 @@
           0x104: {cid: 0x104},
           0x208: {cid: 0x208},
           0x410: {cid: 0x410}
-        },
-        original_table
+        }
       );
       expect(H.xcards_from_rsid('BA-g-BAhABBhBCCiCEEkEIIoIQQwQ')).toEqual([
         {dropped: false, cid: 0x3f},

@@ -104,7 +104,25 @@ var hatokurandom = {};
     {cid: 0x29, eid: H.EID_FAREAST, cost: 5, link: 0, name: '割り符', types: ['行動'], subtype: '商人'},
     {cid: 0x2a, eid: H.EID_FAREAST, cost: 5, link: 2, name: '結盟', types: ['行動']},
 
-    {cid: 0x3b, eid: H.EID_FAREAST, cost: 6, link: undefined, name: '極東の算法姫 オウカ', types: ['プリンセス'], non_common: true}
+    {cid: 0x3b, eid: H.EID_FAREAST, cost: 6, link: undefined, name: '極東の算法姫 オウカ', types: ['プリンセス'], non_common: true},
+
+    {cid: 0x3f, eid: H.EID_NORTHERN, cost: '?', link: undefined, name: '???', types: ['?'], non_common: true},
+    {cid: 0x40, eid: H.EID_NORTHERN, cost: '?', link: undefined, name: '???', types: ['?'], non_common: true},
+    {cid: 0x41, eid: H.EID_NORTHERN, cost: '?', link: undefined, name: '???', types: ['?'], non_common: true},
+    {cid: 0x42, eid: H.EID_NORTHERN, cost: '?', link: undefined, name: '???', types: ['?'], non_common: true},
+    {cid: 0x43, eid: H.EID_NORTHERN, cost: '?', link: undefined, name: '???', types: ['?'], non_common: true},
+    {cid: 0x44, eid: H.EID_NORTHERN, cost: '?', link: undefined, name: '???', types: ['?'], non_common: true},
+    {cid: 0x45, eid: H.EID_NORTHERN, cost: '?', link: undefined, name: '???', types: ['?'], non_common: true},
+    {cid: 0x46, eid: H.EID_NORTHERN, cost: '?', link: undefined, name: '???', types: ['?'], non_common: true},
+    {cid: 0x47, eid: H.EID_NORTHERN, cost: '?', link: undefined, name: '???', types: ['?'], non_common: true},
+    {cid: 0x48, eid: H.EID_NORTHERN, cost: '?', link: undefined, name: '???', types: ['?'], non_common: true},
+    {cid: 0x49, eid: H.EID_NORTHERN, cost: '?', link: undefined, name: '???', types: ['?'], non_common: true},
+
+    {cid: 0x3e, eid: H.EID_NORTHERN, cost: 4, link: 2, name: 'エルフの狙撃手', types: ['行動', '攻撃'], subtype: '兵力'},
+
+    {cid: 0x3d, eid: H.EID_NORTHERN, cost: 5, link: 0, name: '豪商', types: ['行動'], subtype: '商人'},
+
+    {cid: 0x3c, eid: H.EID_NORTHERN, cost: 6, link: undefined, name: '北限の魔女姫 アナスタシア', types: ['プリンセス'], non_common: true}
 
   ];
 
@@ -144,7 +162,7 @@ var hatokurandom = {};
     include_basic: 'may',
     include_fareast: 'may',
     include_link_2: false,
-    include_northern: 'must_not',
+    include_northern: 'may',
     include_pairs: false,
     statistical: false,
     try_count: 100
@@ -1121,6 +1139,9 @@ var hatokurandom = {};
     if (0 <= types.indexOf('プリンセス'))
       return 'プリンセス';
 
+    if (0 <= types.indexOf('?'))
+      return '?';
+
     throw new H.Error(
       JSON.stringify(types)
       + ' is not a valid type definition.'
@@ -1633,6 +1654,7 @@ var hatokurandom = {};
       H.order_by(
         xcards,
         function (xcard) {return xcard.dropped ? 2 : 1;},
+        function (xcard) {return xcard.cost == '?' ? 2 : 1;},
         function (xcard) {return xcard.cost;},
         function (xcard) {return xcard.link === undefined ? 888 : xcard.link;},
         function (xcard) {return xcard.name;}
