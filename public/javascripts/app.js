@@ -106,6 +106,18 @@ var hatokurandom = {};
 
     {cid: 0x3b, eid: H.EID_FAREAST, cost: 6, link: undefined, name: '極東の算法姫 オウカ', types: ['プリンセス'], non_common: true},
 
+    {cid: 0x3f, eid: H.EID_NORTHERN, cost: '?', link: undefined, name: '???', types: ['?'], non_common: true},
+    {cid: 0x40, eid: H.EID_NORTHERN, cost: '?', link: undefined, name: '???', types: ['?'], non_common: true},
+    {cid: 0x41, eid: H.EID_NORTHERN, cost: '?', link: undefined, name: '???', types: ['?'], non_common: true},
+    {cid: 0x42, eid: H.EID_NORTHERN, cost: '?', link: undefined, name: '???', types: ['?'], non_common: true},
+    {cid: 0x43, eid: H.EID_NORTHERN, cost: '?', link: undefined, name: '???', types: ['?'], non_common: true},
+    {cid: 0x44, eid: H.EID_NORTHERN, cost: '?', link: undefined, name: '???', types: ['?'], non_common: true},
+    {cid: 0x45, eid: H.EID_NORTHERN, cost: '?', link: undefined, name: '???', types: ['?'], non_common: true},
+    {cid: 0x46, eid: H.EID_NORTHERN, cost: '?', link: undefined, name: '???', types: ['?'], non_common: true},
+    {cid: 0x47, eid: H.EID_NORTHERN, cost: '?', link: undefined, name: '???', types: ['?'], non_common: true},
+    {cid: 0x48, eid: H.EID_NORTHERN, cost: '?', link: undefined, name: '???', types: ['?'], non_common: true},
+    {cid: 0x49, eid: H.EID_NORTHERN, cost: '?', link: undefined, name: '???', types: ['?'], non_common: true},
+
     {cid: 0x3e, eid: H.EID_NORTHERN, cost: 4, link: 2, name: 'エルフの狙撃手', types: ['行動', '攻撃'], subtype: '兵力'},
 
     {cid: 0x3d, eid: H.EID_NORTHERN, cost: 5, link: 0, name: '豪商', types: ['行動'], subtype: '商人'},
