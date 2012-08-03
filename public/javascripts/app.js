@@ -1636,6 +1636,7 @@ var hatokurandom = {};
       H.order_by(
         xcards,
         function (xcard) {return xcard.dropped ? 2 : 1;},
+        function (xcard) {return xcard.cost == '?' ? 2 : 1;},
         function (xcard) {return xcard.cost;},
         function (xcard) {return xcard.link === undefined ? 888 : xcard.link;},
         function (xcard) {return xcard.name;}
