@@ -811,6 +811,8 @@
         H.CID_TO_CARD_TABLE = original_table;
       });//
       H.CID_TO_CARD_TABLE = $.extend(
+        {},
+        original_table,
         {
           0x3f: {cid: 0x3f},
           0x40: {cid: 0x40},
@@ -819,8 +821,7 @@
           0x104: {cid: 0x104},
           0x208: {cid: 0x208},
           0x410: {cid: 0x410}
-        },
-        original_table
+        }
       );
       expect(H.xcards_from_rsid('BA-g-BAhABBhBCCiCEEkEIIoIQQwQ')).toEqual([
         {dropped: false, cid: 0x3f},
