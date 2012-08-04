@@ -123,7 +123,12 @@
                 H.COMMON_CARDS,
                 H.COMMON_CARDS.length
                 - filter_by_eid(eid, H.COMMON_CARDS).length,
-                $.extend({}, H.DEFAULT_OPTIONS, options)
+                $.extend(
+                  {},
+                  H.DEFAULT_OPTIONS,
+                  {exclude_banned_cards: false},
+                  options
+                )
               )
             )
           ).toEqual([]);
@@ -189,6 +194,7 @@
               {},
               H.DEFAULT_OPTIONS,
               {
+                exclude_banned_cards: false,
                 include_all_costs: true,
                 try_count: 1
               }
@@ -242,6 +248,7 @@
               {},
               H.DEFAULT_OPTIONS,
               {
+                exclude_banned_cards: false,
                 include_link_2: true,
                 try_count: 1
               }
@@ -775,7 +782,15 @@
         H.card_from_card_name('補給部隊'),
         H.card_from_card_name('サムライ')
       ];
-      H.options = $.extend({}, original_options, {include_all_costs: true});
+      H.options =
+        $.extend(
+          {},
+          original_options,
+          {
+            exclude_banned_cards: false,
+            include_all_costs: true
+          }
+        );
       var xcards2 = f('random10');
       expect(xcards2.length).toEqual(10);
       expect(!!(xcards2.fallback)).toBeTruthy();
