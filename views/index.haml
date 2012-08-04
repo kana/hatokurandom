@@ -94,6 +94,14 @@
           %fieldset{data: {role: 'controlgroup'}}
             %legend 偏り具合の調整:
             %label
+              %input(type='checkbox' name='exclude_banned_cards')
+              公式推奨バランスを使用する
+              %span.note
+                以下のカードを除外します:
+                《埋もれた財宝》
+                《買収工作》
+                《魅了術の魔女》
+            %label
               %input(type='checkbox' name='include_all_costs')
               コストの偏りを減らす
               %span.note
