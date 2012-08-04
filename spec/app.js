@@ -109,6 +109,26 @@
         } while (cards1 == cards2);
         expect(cards1).not.toEqual(cards2);
       });
+      it('should return invalid result if there is no more card', function () {
+        var cards = H.choose_random_cards(
+          [
+            H.card_from_card_name('早馬'),
+            H.card_from_card_name('斥候'),
+            H.card_from_card_name('寄付'),
+            H.card_from_card_name('願いの泉')
+          ],
+          5,
+          $.extend(
+            {},
+            H.DEFAULT_OPTIONS,
+            {
+              try_count: 1
+            }
+          )
+        );
+        expect(cards.length).toEqual(4);
+        expect(cards.fallback).toBeTruthy();
+      });
     });
     describe('include_{expansion}', function () {
       it('should reject "must_not" expansions', function () {

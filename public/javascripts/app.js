@@ -1057,12 +1057,14 @@ var hatokurandom = {};
       rest_cards = filter_by_eid(rest_cards, options.include_northern != 'must_not', H.EID_NORTHERN);
 
       selected_cards = [];
-      for (var i = 1; i <= count; i++) {
+      for (var i = 1; i <= count && 1 <= rest_cards.length; i++) {
         var j = Math.floor(Math.random() * rest_cards.length);
         var c = rest_cards[j];
         rest_cards.splice(j, 1);
         selected_cards.push(c);
       }
+      if (i <= count)
+        break;
 
       if (options.include_basic == 'must') {
         if (!any(selected_cards, H.EID_BASIC))
