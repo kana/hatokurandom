@@ -1209,6 +1209,12 @@ var hatokurandom = {};
     return false;
   };
 
+  H.not = function (predicate) {  //{{{2
+    return function () {
+      return !predicate.apply(this, arguments);
+    };
+  };
+
   H.options = $.extend({}, H.DEFAULT_OPTIONS);  //{{{2
 
   H.order_by = function (xs /* , key_selector1, ... */) {  //{{{2

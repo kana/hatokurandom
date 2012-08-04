@@ -460,6 +460,16 @@
       expect(f('_credit')).toBeFalsy();
     });
   });
+  describe('not', function () {
+    it('should return inverted value from given predicate', function () {
+      var plus = function (a, b) {return a + b;};
+      expect(H.not(function () {return true;})()).toBeFalsy();
+      expect(H.not(function () {return false;})()).toBeTruthy();
+      expect(H.not(plus)(1, 1)).toBeFalsy();
+      expect(H.not(plus)(1, 0)).toBeFalsy();
+      expect(H.not(plus)(1, -1)).toBeTruthy();
+    });
+  });
   describe('order_by', function () {
     it('should sort a array with key selectors', function () {
       var xs = [
