@@ -109,6 +109,26 @@
         } while (cards1 == cards2);
         expect(cards1).not.toEqual(cards2);
       });
+      it('should return invalid result if there is no more card', function () {
+        var cards = H.choose_random_cards(
+          [
+            H.card_from_card_name('早馬'),
+            H.card_from_card_name('斥候'),
+            H.card_from_card_name('寄付'),
+            H.card_from_card_name('願いの泉')
+          ],
+          5,
+          $.extend(
+            {},
+            H.DEFAULT_OPTIONS,
+            {
+              try_count: 1
+            }
+          )
+        );
+        expect(cards.length).toEqual(4);
+        expect(cards.fallback).toBeTruthy();
+      });
     });
     describe('include_{expansion}', function () {
       it('should reject "must_not" expansions', function () {
@@ -123,7 +143,12 @@
                 H.COMMON_CARDS,
                 H.COMMON_CARDS.length
                 - filter_by_eid(eid, H.COMMON_CARDS).length,
-                $.extend({}, H.DEFAULT_OPTIONS, options)
+                $.extend(
+                  {},
+                  H.DEFAULT_OPTIONS,
+                  {exclude_banned_cards: false},
+                  options
+                )
               )
             )
           ).toEqual([]);
@@ -189,6 +214,7 @@
               {},
               H.DEFAULT_OPTIONS,
               {
+                exclude_banned_cards: false,
                 include_all_costs: true,
                 try_count: 1
               }
@@ -242,6 +268,7 @@
               {},
               H.DEFAULT_OPTIONS,
               {
+                exclude_banned_cards: false,
                 include_link_2: true,
                 try_count: 1
               }
@@ -322,6 +349,68 @@
         );
       });
     });
+    describe('with exclude_banned_cards', function () {
+      var test = function (card_set, valid) {
+        var cards =
+          H.choose_random_cards(
+            card_set,
+            card_set.length,
+            $.extend(
+              {},
+              H.DEFAULT_OPTIONS,
+              {
+                exclude_banned_cards: true,
+                try_count: 1
+              }
+            )
+          );
+        expect(!cards.fallback).toEqual(valid);
+        expect(cards.length).toEqual(card_set.length - (valid ? 0 : 1));
+      };
+      it('should return valid result from non-banned cards', function () {
+        test(
+          [
+            H.card_from_card_name('早馬'),
+            H.card_from_card_name('交易船'),
+            H.card_from_card_name('都市開発'),
+            H.card_from_card_name('冒険者')
+          ],
+          true
+        );
+      });
+      it('should return invalid result with banned cards', function () {
+        test(
+          [
+            H.card_from_card_name('早馬'),
+            H.card_from_card_name('交易船'),
+            H.card_from_card_name('都市開発'),
+            H.card_from_card_name('冒険者'),
+            H.card_from_card_name('埋もれた財宝')
+          ],
+          false
+        );
+        test(
+          [
+            H.card_from_card_name('早馬'),
+            H.card_from_card_name('交易船'),
+            H.card_from_card_name('都市開発'),
+            H.card_from_card_name('冒険者'),
+            H.card_from_card_name('買収工作')
+          ],
+          false
+        );
+        test(
+          [
+            H.card_from_card_name('早馬'),
+            H.card_from_card_name('交易船'),
+            H.card_from_card_name('都市開発'),
+            H.card_from_card_name('冒険者'),
+            H.card_from_card_name('魅了術の魔女')
+          ],
+          false
+        );
+      });
+    });
   });
   describe('decode_base64xml', function () {
     it('should decode a character to a 6-bit value', function () {
@@ -375,6 +464,17 @@
     it('should fail to encode a value greater than 0x3f', function () {
       expect(function () {H.encode_base64xml([0x3f]);}).not.toThrow();
       expect(function () {H.encode_base64xml([0x40]);}).toThrow();
+    });
+  });
+  describe('is_banned_card', function () {
+    var f = function (n) {return H.is_banned_card(H.card_from_card_name(n));};
+    it('should return true for banned cards', function () {
+      expect(f('埋もれた財宝')).toBeTruthy();
+      expect(f('買収工作')).toBeTruthy();
+      expect(f('魅了術の魔女')).toBeTruthy();
+    });
+    it('should return false for non-banned cards', function () {
+      expect(f('割り符')).toBeFalsy();
     });
   });
   describe('is_psid', function () {
@@ -458,6 +558,16 @@
     });
     it('should return false from invalid pid for version 1', function () {
       expect(f('_credit')).toBeFalsy();
+    });
+  });
+  describe('not', function () {
+    it('should return inverted value from given predicate', function () {
+      var plus = function (a, b) {return a + b;};
+      expect(H.not(function () {return true;})()).toBeFalsy();
+      expect(H.not(function () {return false;})()).toBeTruthy();
+      expect(H.not(plus)(1, 1)).toBeFalsy();
+      expect(H.not(plus)(1, 0)).toBeFalsy();
+      expect(H.not(plus)(1, -1)).toBeTruthy();
     });
   });
   describe('order_by', function () {
@@ -754,7 +864,15 @@
         H.card_from_card_name('補給部隊'),
         H.card_from_card_name('サムライ')
       ];
-      H.options = $.extend({}, original_options, {include_all_costs: true});
+      H.options =
+        $.extend(
+          {},
+          original_options,
+          {
+            exclude_banned_cards: false,
+            include_all_costs: true
+          }
+        );
       var xcards2 = f('random10');
       expect(xcards2.length).toEqual(10);
       expect(!!(xcards2.fallback)).toBeTruthy();

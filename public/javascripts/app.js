@@ -157,6 +157,7 @@ var hatokurandom = {};
     })();
 
   H.DEFAULT_OPTIONS = {  //{{{2
+    exclude_banned_cards: true,
     exclulde_useless_cards: false,
     include_all_costs: false,
     include_basic: 'may',
@@ -1051,17 +1052,21 @@ var hatokurandom = {};
     var try_count = options.try_count || H.DEFAULT_OPTIONS;
     for (var t = 1; t <= try_count; t++) {
       var rest_cards = available_cards.slice(0);
+      if (options.exclude_banned_cards)
+        rest_cards = $.grep(rest_cards, H.not(H.is_banned_card));
       rest_cards = filter_by_eid(rest_cards, options.include_basic != 'must_not', H.EID_BASIC);
       rest_cards = filter_by_eid(rest_cards, options.include_fareast != 'must_not', H.EID_FAREAST);
       rest_cards = filter_by_eid(rest_cards, options.include_northern != 'must_not', H.EID_NORTHERN);
 
       selected_cards = [];
-      for (var i = 1; i <= count; i++) {
+      for (var i = 1; i <= count && 1 <= rest_cards.length; i++) {
         var j = Math.floor(Math.random() * rest_cards.length);
         var c = rest_cards[j];
         rest_cards.splice(j, 1);
         selected_cards.push(c);
       }
+      if (i <= count)
+        break;
 
       if (options.include_basic == 'must') {
         if (!any(selected_cards, H.EID_BASIC))
@@ -1160,6 +1165,12 @@ var hatokurandom = {};
     ).join('');
   };
 
+  H.is_banned_card = function (card) {  //{{{2
+    return card.name == '埋もれた財宝' ||
+      card.name == '買収工作' ||
+      card.name == '魅了術の魔女';
+  };
+
   H.is_dsid = function (sid) {  //{{{2
     return H.parse_dsid(sid).valid;
   };
@@ -1206,6 +1217,12 @@ var hatokurandom = {};
       return 'supply:' + m[1];
 
     return false;
+  };
+
+  H.not = function (predicate) {  //{{{2
+    return function () {
+      return !predicate.apply(this, arguments);
+    };
   };
 
   H.options = $.extend({}, H.DEFAULT_OPTIONS);  //{{{2
