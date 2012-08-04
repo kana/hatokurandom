@@ -377,6 +377,17 @@
       expect(function () {H.encode_base64xml([0x40]);}).toThrow();
     });
   });
+  describe('is_banned_card', function () {
+    var f = function (n) {return H.is_banned_card(H.card_from_card_name(n));};
+    it('should return true for banned cards', function () {
+      expect(f('埋もれた財宝')).toBeTruthy();
+      expect(f('買収工作')).toBeTruthy();
+      expect(f('魅了術の魔女')).toBeTruthy();
+    });
+    it('should return false for non-banned cards', function () {
+      expect(f('割り符')).toBeFalsy();
+    });
+  });
   describe('is_psid', function () {
     it('should return true for a valid psid', function () {
       expect(H.is_psid('basic-firstplay')).toBeTruthy();

@@ -1161,6 +1161,12 @@ var hatokurandom = {};
     ).join('');
   };
 
+  H.is_banned_card = function (card) {  //{{{2
+    return card.name == '埋もれた財宝' ||
+      card.name == '買収工作' ||
+      card.name == '魅了術の魔女';
+  };
+
   H.is_dsid = function (sid) {  //{{{2
     return H.parse_dsid(sid).valid;
   };
