@@ -157,6 +157,7 @@ var hatokurandom = {};
     })();
 
   H.DEFAULT_OPTIONS = {  //{{{2
+    exclude_banned_cards: true,
     exclulde_useless_cards: false,
     include_all_costs: false,
     include_basic: 'may',
