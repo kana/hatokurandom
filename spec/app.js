@@ -349,6 +349,68 @@
         );
       });
     });
+    describe('with exclude_banned_cards', function () {
+      var test = function (card_set, valid) {
+        var cards =
+          H.choose_random_cards(
+            card_set,
+            card_set.length,
+            $.extend(
+              {},
+              H.DEFAULT_OPTIONS,
+              {
+                exclude_banned_cards: true,
+                try_count: 1
+              }
+            )
+          );
+        expect(!cards.fallback).toEqual(valid);
+        expect(cards.length).toEqual(card_set.length - (valid ? 0 : 1));
+      };
+      it('should return valid result from non-banned cards', function () {
+        test(
+          [
+            H.card_from_card_name('早馬'),
+            H.card_from_card_name('交易船'),
+            H.card_from_card_name('都市開発'),
+            H.card_from_card_name('冒険者')
+          ],
+          true
+        );
+      });
+      it('should return invalid result with banned cards', function () {
+        test(
+          [
+            H.card_from_card_name('早馬'),
+            H.card_from_card_name('交易船'),
+            H.card_from_card_name('都市開発'),
+            H.card_from_card_name('冒険者'),
+            H.card_from_card_name('埋もれた財宝')
+          ],
+          false
+        );
+        test(
+          [
+            H.card_from_card_name('早馬'),
+            H.card_from_card_name('交易船'),
+            H.card_from_card_name('都市開発'),
+            H.card_from_card_name('冒険者'),
+            H.card_from_card_name('買収工作')
+          ],
+          false
+        );
+        test(
+          [
+            H.card_from_card_name('早馬'),
+            H.card_from_card_name('交易船'),
+            H.card_from_card_name('都市開発'),
+            H.card_from_card_name('冒険者'),
+            H.card_from_card_name('魅了術の魔女')
+          ],
+          false
+        );
+      });
+    });
   });
   describe('decode_base64xml', function () {
     it('should decode a character to a 6-bit value', function () {
