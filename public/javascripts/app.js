@@ -1113,9 +1113,9 @@ var hatokurandom = {};
     return selected_cards;
   };
 
-  H.decode_base64xml = function (base64xml_encoded_string) {  //{{{2
+  H.decode_base64 = function (base64_encoded_string) {  //{{{2
     return $.map(
-      base64xml_encoded_string.split(''),
+      base64_encoded_string.split(''),
       function (c) {
         var b = H.BASE64_DECODING_TABLE[c];
         if (b === undefined)
@@ -1153,7 +1153,7 @@ var hatokurandom = {};
     );
   };
 
-  H.encode_base64xml = function (six_bit_buffer) {  //{{{2
+  H.encode_base64 = function (six_bit_buffer) {  //{{{2
     return $.map(
       six_bit_buffer,
       function (b) {
@@ -1334,7 +1334,7 @@ var hatokurandom = {};
       bs.push(bcid & ((1 << 6) - 1));
     }
 
-    return H.encode_base64xml(bs);
+    return H.encode_base64(bs);
   };
 
   H.sid_from_pid = function (pid) {  //{{{2
@@ -1402,7 +1402,7 @@ var hatokurandom = {};
     // The rest bits represent a cid.
     // Other information of a xcard is retrieved by H.card_from_cid.
 
-    var bs = H.decode_base64xml(rsid);
+    var bs = H.decode_base64(rsid);
     var xcards = [];
 
     var version = bs.shift();
