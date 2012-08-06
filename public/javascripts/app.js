@@ -952,7 +952,17 @@ var hatokurandom = {};
     0x30: 'w', 0x31: 'x', 0x32: 'y', 0x33: 'z',
     0x34: '0', 0x35: '1', 0x36: '2', 0x37: '3',
     0x38: '4', 0x39: '5', 0x3a: '6', 0x3b: '7',
-    0x3c: '8', 0x3d: '9', 0x3e: '.', 0x3f: '-'
+    0x3c: '8', 0x3d: '9', 0x3e: '_', 0x3f: '-'
+    // When Twitter links URLs in tweets, it ignores trailing "."s in URLs.
+    // So that "http://foo/index.html." will be converted into
+    // "<a href='http://foo/index.html'>http://foo/index.html</a>."
+    // (note that the last "." is not treated as a part of the URL).
+    //
+    // Old versions used "." to encode 0x3e,
+    // and resulting RSIDs might be ended with ".".
+    // So that shared supplies might not be linked properly on Twitter.
+    //
+    // To avoid the problem, 0x3e is now encoded to "_" instead of ".".
   };
 
   H.BASE64_DECODING_TABLE =  //{{{2

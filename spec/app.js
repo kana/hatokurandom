@@ -427,7 +427,7 @@
     it('should decode original values from an encoded string', function () {
       var values = [0x0b, 0x34, 0x2f, 0x04];
       expect(H.decode_base64(H.encode_base64(values))).toEqual(values);
-      var string = 'FOO-bar.bz2';
+      var string = 'FOO-bar_bz2';
       expect(H.encode_base64(H.decode_base64(string))).toEqual(string);
     });
   });
