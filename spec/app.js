@@ -412,23 +412,26 @@
       });
     });
   });
-  describe('decode_base64xml', function () {
+  describe('decode_base64', function () {
     it('should decode a character to a 6-bit value', function () {
-      for (var c in H.BASE64XML_DECODING_TABLE)
-        expect(H.decode_base64xml(c)).toEqual([H.BASE64XML_DECODING_TABLE[c]]);
+      for (var c in H.BASE64_DECODING_TABLE)
+        expect(H.decode_base64(c)).toEqual([H.BASE64_DECODING_TABLE[c]]);
     });
     it('should decode a string to an array of 6-bit values', function () {
-      expect(H.decode_base64xml('L0vE')).toEqual([0x0b, 0x34, 0x2f, 0x04]);
+      expect(H.decode_base64('L0vE')).toEqual([0x0b, 0x34, 0x2f, 0x04]);
     });
     it('should fail to decode an invalid character', function () {
-      expect(function () {H.decode_base64xml('ThisIsValid');}).not.toThrow();
-      expect(function () {H.decode_base64xml('This is not valid');}).toThrow();
+      expect(function () {H.decode_base64('ThisIsValid');}).not.toThrow();
+      expect(function () {H.decode_base64('This is not valid');}).toThrow();
     });
     it('should decode original values from an encoded string', function () {
       var values = [0x0b, 0x34, 0x2f, 0x04];
-      expect(H.decode_base64xml(H.encode_base64xml(values))).toEqual(values);
-      var string = 'FOO-bar.bz2';
-      expect(H.encode_base64xml(H.decode_base64xml(string))).toEqual(string);
+      expect(H.decode_base64(H.encode_base64(values))).toEqual(values);
+      var string = 'FOO-bar_bz2';
+      expect(H.encode_base64(H.decode_base64(string))).toEqual(string);
+    });
+    it('should decode "." as if "_" for backward compatibility', function () {
+      expect(H.decode_base64('.')).toEqual(H.decode_base64('_'));
     });
   });
   describe('dominant_type_from_types', function () {
@@ -453,17 +456,17 @@
       expect(function () {f(['xyzzy', 'zzyxy']);}).toThrow();
     });
   });
-  describe('encode_base64xml', function () {
+  describe('encode_base64', function () {
     it('should encode a 6-bit value to a character', function () {
-      for (var v in H.BASE64XML_ENCODING_TABLE)
-        expect(H.encode_base64xml([v])).toEqual(H.BASE64XML_ENCODING_TABLE[v]);
+      for (var v in H.BASE64_ENCODING_TABLE)
+        expect(H.encode_base64([v])).toEqual(H.BASE64_ENCODING_TABLE[v]);
     });
     it('should encode 6-bit values to a string', function () {
-      expect(H.encode_base64xml([0x0b, 0x34, 0x2f, 0x04])).toEqual('L0vE');
+      expect(H.encode_base64([0x0b, 0x34, 0x2f, 0x04])).toEqual('L0vE');
     });
     it('should fail to encode a value greater than 0x3f', function () {
-      expect(function () {H.encode_base64xml([0x3f]);}).not.toThrow();
-      expect(function () {H.encode_base64xml([0x40]);}).toThrow();
+      expect(function () {H.encode_base64([0x3f]);}).not.toThrow();
+      expect(function () {H.encode_base64([0x40]);}).toThrow();
     });
   });
   describe('is_banned_card', function () {
