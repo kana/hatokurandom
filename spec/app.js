@@ -414,8 +414,8 @@
   });
   describe('decode_base64xml', function () {
     it('should decode a character to a 6-bit value', function () {
-      for (var c in H.BASE64XML_DECODING_TABLE)
-        expect(H.decode_base64xml(c)).toEqual([H.BASE64XML_DECODING_TABLE[c]]);
+      for (var c in H.BASE64_DECODING_TABLE)
+        expect(H.decode_base64xml(c)).toEqual([H.BASE64_DECODING_TABLE[c]]);
     });
     it('should decode a string to an array of 6-bit values', function () {
       expect(H.decode_base64xml('L0vE')).toEqual([0x0b, 0x34, 0x2f, 0x04]);
@@ -455,8 +455,8 @@
   });
   describe('encode_base64xml', function () {
     it('should encode a 6-bit value to a character', function () {
-      for (var v in H.BASE64XML_ENCODING_TABLE)
-        expect(H.encode_base64xml([v])).toEqual(H.BASE64XML_ENCODING_TABLE[v]);
+      for (var v in H.BASE64_ENCODING_TABLE)
+        expect(H.encode_base64xml([v])).toEqual(H.BASE64_ENCODING_TABLE[v]);
     });
     it('should encode 6-bit values to a string', function () {
       expect(H.encode_base64xml([0x0b, 0x34, 0x2f, 0x04])).toEqual('L0vE');

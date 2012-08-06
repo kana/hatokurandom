@@ -936,7 +936,7 @@ var hatokurandom = {};
     '': {}  // Dummy entry to make folds simple.
   };
 
-  H.BASE64XML_ENCODING_TABLE = {  //{{{2
+  H.BASE64_ENCODING_TABLE = {  //{{{2
     0x00: 'A', 0x01: 'B', 0x02: 'C', 0x03: 'D',
     0x04: 'E', 0x05: 'F', 0x06: 'G', 0x07: 'H',
     0x08: 'I', 0x09: 'J', 0x0a: 'K', 0x0b: 'L',
@@ -955,10 +955,10 @@ var hatokurandom = {};
     0x3c: '8', 0x3d: '9', 0x3e: '.', 0x3f: '-'
   };
 
-  H.BASE64XML_DECODING_TABLE =  //{{{2
+  H.BASE64_DECODING_TABLE =  //{{{2
     (function () {
       var t = {};
-      $.each(H.BASE64XML_ENCODING_TABLE, function (key, value) {
+      $.each(H.BASE64_ENCODING_TABLE, function (key, value) {
         t[value] = parseInt(key);
       });
       return t;
@@ -1117,7 +1117,7 @@ var hatokurandom = {};
     return $.map(
       base64xml_encoded_string.split(''),
       function (c) {
-        var b = H.BASE64XML_DECODING_TABLE[c];
+        var b = H.BASE64_DECODING_TABLE[c];
         if (b === undefined)
           throw new H.KeyError('Character', c);
         return b;
@@ -1157,7 +1157,7 @@ var hatokurandom = {};
     return $.map(
       six_bit_buffer,
       function (b) {
-        var c = H.BASE64XML_ENCODING_TABLE[b];
+        var c = H.BASE64_ENCODING_TABLE[b];
         if (c === undefined)
           throw new H.KeyError('Value', b);
         return c;
@@ -1385,7 +1385,7 @@ var hatokurandom = {};
   };
 
   H.xcards_from_rsid = function (rsid) {  //{{{2
-    // An rsid is a string which is encoded from xcards with BASE64XML,
+    // An rsid is a string which is encoded from xcards with BASE64,
     // so that each character in rsid is corresponding to a 6-bit value.
     // To simplify both encoding and decoding,
     // we use only an array of 6-bit values to convert rsid from/to xcards.
