@@ -430,6 +430,9 @@
       var string = 'FOO-bar_bz2';
       expect(H.encode_base64(H.decode_base64(string))).toEqual(string);
     });
+    it('should decode "." as if "_" for backward compatibility', function () {
+      expect(H.decode_base64('.')).toEqual(H.decode_base64('_'));
+    });
   });
   describe('dominant_type_from_types', function () {
     var f = H.dominant_type_from_types;
