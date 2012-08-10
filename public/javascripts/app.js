@@ -106,22 +106,23 @@ var hatokurandom = {};
 
     {cid: 0x3b, eid: H.EID_FAREAST, cost: 6, link: undefined, name: '極東の算法姫 オウカ', types: ['プリンセス'], non_common: true},
 
-    {cid: 0x3f, eid: H.EID_NORTHERN, cost: '?', link: undefined, name: '???', types: ['?'], non_common: true},
-    {cid: 0x40, eid: H.EID_NORTHERN, cost: '?', link: undefined, name: '???', types: ['?'], non_common: true},
-    {cid: 0x41, eid: H.EID_NORTHERN, cost: '?', link: undefined, name: '???', types: ['?'], non_common: true},
-    {cid: 0x42, eid: H.EID_NORTHERN, cost: '?', link: undefined, name: '???', types: ['?'], non_common: true},
-    {cid: 0x43, eid: H.EID_NORTHERN, cost: '?', link: undefined, name: '???', types: ['?'], non_common: true},
-    {cid: 0x44, eid: H.EID_NORTHERN, cost: '?', link: undefined, name: '???', types: ['?'], non_common: true},
-    {cid: 0x45, eid: H.EID_NORTHERN, cost: '?', link: undefined, name: '???', types: ['?'], non_common: true},
-    {cid: 0x46, eid: H.EID_NORTHERN, cost: '?', link: undefined, name: '???', types: ['?'], non_common: true},
-    {cid: 0x47, eid: H.EID_NORTHERN, cost: '?', link: undefined, name: '???', types: ['?'], non_common: true},
-    {cid: 0x48, eid: H.EID_NORTHERN, cost: '?', link: undefined, name: '???', types: ['?'], non_common: true},
-    {cid: 0x49, eid: H.EID_NORTHERN, cost: '?', link: undefined, name: '???', types: ['?'], non_common: true},
+    {cid: 0x3f, eid: H.EID_NORTHERN, cost: 2, link: 1, name: 'ケットシー', types: ['行動'], subtype: '魔法'},
+    {cid: 0x40, eid: H.EID_NORTHERN, cost: 2, link: 1, name: '幸運の銀貨', types: ['行動']},
 
+    {cid: 0x41, eid: H.EID_NORTHERN, cost: 3, link: 1, name: '洗礼', types: ['行動']},
+    {cid: 0x43, eid: H.EID_NORTHERN, cost: 3, link: 2, name: '名馬', types: ['行動']},
+    {cid: 0x42, eid: H.EID_NORTHERN, cost: 3, link: undefined, name: '呪いの人形', types: ['呪い']},
+
+    {cid: 0x45, eid: H.EID_NORTHERN, cost: 4, link: 0, name: 'ドワーフの宝石職人', types: ['行動']},
+    {cid: 0x44, eid: H.EID_NORTHERN, cost: 4, link: 0, name: '宮廷闘争', types: ['行動', '攻撃'], subtype: '計略'},
     {cid: 0x3e, eid: H.EID_NORTHERN, cost: 4, link: 2, name: 'エルフの狙撃手', types: ['行動', '攻撃'], subtype: '兵力'},
 
+    {cid: 0x47, eid: H.EID_NORTHERN, cost: 5, link: 0, name: '地方役人', types: ['行動']},
     {cid: 0x3d, eid: H.EID_NORTHERN, cost: 5, link: 0, name: '豪商', types: ['行動'], subtype: '商人'},
+    {cid: 0x46, eid: H.EID_NORTHERN, cost: 5, link: undefined, name: '貴族の一人娘', types: ['継承権']},
 
+    {cid: 0x48, eid: H.EID_NORTHERN, cost: 6, link: 0, name: '独占', types: ['行動']},
+    {cid: 0x49, eid: H.EID_NORTHERN, cost: 6, link: 1, name: '工業都市', types: ['領地']},
     {cid: 0x3c, eid: H.EID_NORTHERN, cost: 6, link: undefined, name: '北限の魔女姫 アナスタシア', types: ['プリンセス'], non_common: true}
 
   ];
@@ -429,6 +430,114 @@ var hatokurandom = {};
         '呪詛の魔女',
         '錬金術師'
       ],  //}}}
+      'northern-territory': [  //{{{
+        'ケットシー',
+        '幸運の銀貨',
+        'エルフの狙撃手',
+        'ドワーフの宝石職人',
+        '豪商',
+        '工業都市',
+        '願いの泉',
+        '破城槌',
+        '図書館',
+        '冒険者',
+      ],  //}}}
+      'northern-parliament': [  //{{{
+        '名馬',
+        '洗礼',
+        'エルフの狙撃手',
+        '豪商',
+        '地方役人',
+        '工業都市',
+        '早馬',
+        '交易船',
+        '図書館',
+        '呪詛の魔女',
+      ],  //}}}
+      'northern-witchandchurch': [  //{{{
+        'ケットシー',
+        '幸運の銀貨',
+        '洗礼',
+        '宮廷闘争',
+        'ドワーフの宝石職人',
+        '貴族の一人娘',
+        '斥候',
+        '早馬',
+        '都市開発',
+        '呪詛の魔女',
+      ],  //}}}
+      'northern-society': [  //{{{
+        'ケットシー',
+        '洗礼',
+        '呪いの人形',
+        '宮廷闘争',
+        '貴族の一人娘',
+        '豪商',
+        '早馬',
+        '図書館',
+        '銀行',
+        '噂好きの公爵夫人',
+      ],  //}}}
+      'northern-guiltycrown': [  //{{{
+        '名馬',
+        'ドワーフの宝石職人',
+        '宮廷闘争',
+        '地方役人',
+        '工業都市',
+        '願いの泉',
+        '城壁',
+        '破城槌',
+        '歩兵大隊',
+        '補給部隊',
+      ],  //}}}
+      'northern-darkness': [  //{{{
+        'ケットシー',
+        '呪いの人形',
+        '名馬',
+        'エルフの狙撃手',
+        '宮廷闘争',
+        '豪商',
+        '独占',
+        '早馬',
+        '城壁',
+        '錬金術師',
+      ],  //}}}
+      'northern-scandal': [  //{{{
+        '名馬',
+        'ドワーフの宝石職人',
+        '地方役人',
+        '豪商',
+        '鉱山都市',
+        '割り符',
+        '願いの泉',
+        '錬金術師',
+        '銀行',
+        '噂好きの公爵夫人',
+      ],  //}}}
+      'northern-teaparty': [  //{{{
+        '幸運の銀貨',
+        '名馬',
+        '呪いの人形',
+        'ドワーフの宝石職人',
+        '地方役人',
+        'お金好きの妖精',
+        '伝書鳩',
+        '見習い魔女',
+        '結盟',
+        '願いの泉',
+      ],  //}}}
+      'northern-swordsman': [  //{{{
+        '洗礼',
+        '名馬',
+        '独占',
+        '工業都市',
+        '伝書鳩',
+        'サムライ',
+        '鉱山都市',
+        '結盟',
+        '早馬',
+        '交易船',
+      ],  //}}}
       'championship1-prelims1': [  //{{{
         '城壁',
         '願いの泉',
@@ -657,6 +766,15 @@ var hatokurandom = {};
       'supply:fareast-moneymoneymoney'
     ],  //}}}
     'supplies:northern': [  //{{{
+      'supply:northern-territory',
+      'supply:northern-parliament',
+      'supply:northern-witchandchurch',
+      'supply:northern-society',
+      'supply:northern-guiltycrown',
+      'supply:northern-darkness',
+      'supply:northern-scandal',
+      'supply:northern-teaparty',
+      'supply:northern-swordsman'
     ],  //}}}
     'supplies:championship1': [  //{{{
       'supply:championship1-prelims1',
@@ -815,6 +933,33 @@ var hatokurandom = {};
     },  //}}}
     'supplies:northern': {  //{{{
       title: '推奨サプライ(北限の魔女)'
+    },  //}}}
+    'supply:northern-territory': {  //{{{
+      title: '北限領'
+    },  //}}}
+    'supply:northern-parliament': {  //{{{
+      title: '議会を占拠せよ'
+    },  //}}}
+    'supply:northern-witchandchurch': {  //{{{
+      title: '魔女と教会'
+    },  //}}}
+    'supply:northern-society': {  //{{{
+      title: '社交界'
+    },  //}}}
+    'supply:northern-guiltycrown': {  //{{{
+      title: '罪の王冠'
+    },  //}}}
+    'supply:northern-darkness': {  //{{{
+      title: '暗闘'
+    },  //}}}
+    'supply:northern-scandal': {  //{{{
+      title: '開拓の醜聞'
+    },  //}}}
+    'supply:northern-teaparty': {  //{{{
+      title: '魔女のお茶会'
+    },  //}}}
+    'supply:northern-swordsman': {  //{{{
+      title: '異国の剣士'
     },  //}}}
     'supplies:championship1': {  //{{{
       title: '世界選手権'
