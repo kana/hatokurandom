@@ -106,22 +106,23 @@ var hatokurandom = {};
 
     {cid: 0x3b, eid: H.EID_FAREAST, cost: 6, link: undefined, name: '極東の算法姫 オウカ', types: ['プリンセス'], non_common: true},
 
-    {cid: 0x3f, eid: H.EID_NORTHERN, cost: '?', link: undefined, name: '???', types: ['?'], non_common: true},
-    {cid: 0x40, eid: H.EID_NORTHERN, cost: '?', link: undefined, name: '???', types: ['?'], non_common: true},
-    {cid: 0x41, eid: H.EID_NORTHERN, cost: '?', link: undefined, name: '???', types: ['?'], non_common: true},
-    {cid: 0x42, eid: H.EID_NORTHERN, cost: '?', link: undefined, name: '???', types: ['?'], non_common: true},
-    {cid: 0x43, eid: H.EID_NORTHERN, cost: '?', link: undefined, name: '???', types: ['?'], non_common: true},
-    {cid: 0x44, eid: H.EID_NORTHERN, cost: '?', link: undefined, name: '???', types: ['?'], non_common: true},
-    {cid: 0x45, eid: H.EID_NORTHERN, cost: '?', link: undefined, name: '???', types: ['?'], non_common: true},
-    {cid: 0x46, eid: H.EID_NORTHERN, cost: '?', link: undefined, name: '???', types: ['?'], non_common: true},
-    {cid: 0x47, eid: H.EID_NORTHERN, cost: '?', link: undefined, name: '???', types: ['?'], non_common: true},
-    {cid: 0x48, eid: H.EID_NORTHERN, cost: '?', link: undefined, name: '???', types: ['?'], non_common: true},
-    {cid: 0x49, eid: H.EID_NORTHERN, cost: '?', link: undefined, name: '???', types: ['?'], non_common: true},
+    {cid: 0x3f, eid: H.EID_NORTHERN, cost: 2, link: 1, name: 'ケットシー', types: ['行動'], subtype: '魔法'},
+    {cid: 0x40, eid: H.EID_NORTHERN, cost: 2, link: 1, name: '幸運の銀貨', types: ['行動']},
 
+    {cid: 0x41, eid: H.EID_NORTHERN, cost: 3, link: 1, name: '洗礼', types: ['行動']},
+    {cid: 0x43, eid: H.EID_NORTHERN, cost: 3, link: 2, name: '名馬', types: ['行動']},
+    {cid: 0x42, eid: H.EID_NORTHERN, cost: 3, link: undefined, name: '呪いの人形', types: ['呪い']},
+
+    {cid: 0x45, eid: H.EID_NORTHERN, cost: 4, link: 0, name: 'ドワーフの宝石職人', types: ['行動']},
+    {cid: 0x44, eid: H.EID_NORTHERN, cost: 4, link: 0, name: '宮廷闘争', types: ['行動', '攻撃'], subtype: '計略'},
     {cid: 0x3e, eid: H.EID_NORTHERN, cost: 4, link: 2, name: 'エルフの狙撃手', types: ['行動', '攻撃'], subtype: '兵力'},
 
+    {cid: 0x47, eid: H.EID_NORTHERN, cost: 5, link: 0, name: '地方役人', types: ['行動']},
     {cid: 0x3d, eid: H.EID_NORTHERN, cost: 5, link: 0, name: '豪商', types: ['行動'], subtype: '商人'},
+    {cid: 0x46, eid: H.EID_NORTHERN, cost: 5, link: undefined, name: '貴族の一人娘', types: ['継承権']},
 
+    {cid: 0x48, eid: H.EID_NORTHERN, cost: 6, link: 0, name: '独占', types: ['行動']},
+    {cid: 0x49, eid: H.EID_NORTHERN, cost: 6, link: 1, name: '工業都市', types: ['領地']},
     {cid: 0x3c, eid: H.EID_NORTHERN, cost: 6, link: undefined, name: '北限の魔女姫 アナスタシア', types: ['プリンセス'], non_common: true}
 
   ];
