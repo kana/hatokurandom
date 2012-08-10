@@ -430,6 +430,114 @@ var hatokurandom = {};
         '呪詛の魔女',
         '錬金術師'
       ],  //}}}
+      'northern-territory': [  //{{{
+        'ケットシー',
+        '幸運の銀貨',
+        'エルフの狙撃手',
+        'ドワーフの宝石職人',
+        '豪商',
+        '工業都市',
+        '願いの泉',
+        '破城槌',
+        '図書館',
+        '冒険者',
+      ],  //}}}
+      'northern-parliament': [  //{{{
+        '名馬',
+        '洗礼',
+        'エルフの狙撃手',
+        '豪商',
+        '地方役人',
+        '工業都市',
+        '早馬',
+        '交易船',
+        '図書館',
+        '呪詛の魔女',
+      ],  //}}}
+      'northern-witchandchurch': [  //{{{
+        'ケットシー',
+        '幸運の銀貨',
+        '洗礼',
+        '宮廷闘争',
+        'ドワーフの宝石職人',
+        '貴族の一人娘',
+        '斥候',
+        '早馬',
+        '都市開発',
+        '呪詛の魔女',
+      ],  //}}}
+      'northern-society': [  //{{{
+        'ケットシー',
+        '洗礼',
+        '呪いの人形',
+        '宮廷闘争',
+        '貴族の一人娘',
+        '豪商',
+        '早馬',
+        '図書館',
+        '銀行',
+        '噂好きの公爵夫人',
+      ],  //}}}
+      'northern-guiltycrown': [  //{{{
+        '名馬',
+        'ドワーフの宝石職人',
+        '宮廷闘争',
+        '地方役人',
+        '工業都市',
+        '願いの泉',
+        '城壁',
+        '破城槌',
+        '歩兵大隊',
+        '補給部隊',
+      ],  //}}}
+      'northern-darkness': [  //{{{
+        'ケットシー',
+        '呪いの人形',
+        '名馬',
+        'エルフの狙撃手',
+        '宮廷闘争',
+        '豪商',
+        '独占',
+        '早馬',
+        '城壁',
+        '錬金術師',
+      ],  //}}}
+      'northern-scandal': [  //{{{
+        '名馬',
+        'ドワーフの宝石職人',
+        '地方役人',
+        '豪商',
+        '鉱山都市',
+        '割り符',
+        '願いの泉',
+        '錬金術師',
+        '銀行',
+        '噂好きの公爵夫人',
+      ],  //}}}
+      'northern-teaparty': [  //{{{
+        '幸運の銀貨',
+        '名馬',
+        '呪いの人形',
+        'ドワーフの宝石職人',
+        '地方役人',
+        'お金好きの妖精',
+        '伝書鳩',
+        '見習い魔女',
+        '結盟',
+        '願いの泉',
+      ],  //}}}
+      'northern-swordsman': [  //{{{
+        '洗礼',
+        '名馬',
+        '独占',
+        '工業都市',
+        '伝書鳩',
+        'サムライ',
+        '鉱山都市',
+        '結盟',
+        '早馬',
+        '交易船',
+      ],  //}}}
       'championship1-prelims1': [  //{{{
         '城壁',
         '願いの泉',
@@ -658,6 +766,15 @@ var hatokurandom = {};
       'supply:fareast-moneymoneymoney'
     ],  //}}}
     'supplies:northern': [  //{{{
+      'supply:northern-territory',
+      'supply:northern-parliament',
+      'supply:northern-witchandchurch',
+      'supply:northern-society',
+      'supply:northern-guiltycrown',
+      'supply:northern-darkness',
+      'supply:northern-scandal',
+      'supply:northern-teaparty',
+      'supply:northern-swordsman'
     ],  //}}}
     'supplies:championship1': [  //{{{
       'supply:championship1-prelims1',
@@ -816,6 +933,33 @@ var hatokurandom = {};
     },  //}}}
     'supplies:northern': {  //{{{
       title: '推奨サプライ(北限の魔女)'
+    },  //}}}
+    'supply:northern-territory': {  //{{{
+      title: '北限領'
+    },  //}}}
+    'supply:northern-parliament': {  //{{{
+      title: '議会を占拠せよ'
+    },  //}}}
+    'supply:northern-witchandchurch': {  //{{{
+      title: '魔女と教会'
+    },  //}}}
+    'supply:northern-society': {  //{{{
+      title: '社交界'
+    },  //}}}
+    'supply:northern-guiltycrown': {  //{{{
+      title: '罪の王冠'
+    },  //}}}
+    'supply:northern-darkness': {  //{{{
+      title: '暗闘'
+    },  //}}}
+    'supply:northern-scandal': {  //{{{
+      title: '開拓の醜聞'
+    },  //}}}
+    'supply:northern-teaparty': {  //{{{
+      title: '魔女のお茶会'
+    },  //}}}
+    'supply:northern-swordsman': {  //{{{
+      title: '異国の剣士'
     },  //}}}
     'supplies:championship1': {  //{{{
       title: '世界選手権'
