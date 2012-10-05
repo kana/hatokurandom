@@ -1973,6 +1973,7 @@ var hatokurandom = {};
 
     $('#configure #button_to_reset_options').click(function (e) {
       H.reset_options();
+      alert('初期設定に戻しました。');
     });
 
     var notification_table = {
