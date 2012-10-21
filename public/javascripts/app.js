@@ -1691,7 +1691,12 @@ var hatokurandom = {};
       return location.href;
 
     var $supply = $supply_page.find('.supply');
-    var rsid = H.rsid_from_xcards(H.xcards_from_supply_view($supply));
+    var xcards = H.xcards_from_supply_view($supply);
+    var rsid = H.rsid_from_xcards(
+      sid == 'editor'
+      ? $.grep(xcards, function (xcard) {return !xcard.dropped;})
+      : xcards
+    );
     var base_uri = $m.path.parseUrl(location.href).hrefNoHash;
     return base_uri + '#supply:' + rsid;
   };
