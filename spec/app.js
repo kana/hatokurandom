@@ -157,6 +157,7 @@
         test(H.EID_BASIC, {include_basic: 'must_not'});
         test(H.EID_FAREAST, {include_fareast: 'must_not'});
         test(H.EID_NORTHERN, {include_northern: 'must_not'});
+        test(H.EID_FAIRY, {include_fairy: 'must_not'});
       });
       it('should include "must" expansions', function () {
         var filter_by_eid = function (eid, cards) {
@@ -178,6 +179,7 @@
         test(H.EID_BASIC, {include_basic: 'must'});
         test(H.EID_FAREAST, {include_fareast: 'must'});
         test(H.EID_NORTHERN, {include_northern: 'must'});
+        test(H.EID_FAIRY, {include_fairy: 'must'});
       });
     });
     describe('statistical', function () {

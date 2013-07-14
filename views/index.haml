@@ -43,6 +43,9 @@
           %li
             %a(href='#supplies:northern') 推奨サプライ(北限の魔女)
           %li
+            -# %a(href='#supplies:fairy') 推奨サプライ(フェアリーガーデン)
+            %a.disabled 推奨サプライ(フェアリーガーデン)
+          %li
             %a(href='#supplies:championship1') 世界選手権
           %li
             %a(href='#supply:editor') 手動作成
@@ -85,6 +88,12 @@
             %label
               %span.title 北限の魔女
               %select(name='include_northern'){data: {inline: 'true'}}
+                %option(value='must') 必須
+                %option(value='may') 使用
+                %option(value='must_not') 禁止
+            %label
+              %span.title フェアリーガーデン
+              %select(name='include_fairy'){data: {inline: 'true'}}
                 %option(value='must') 必須
                 %option(value='may') 使用
                 %option(value='must_not') 禁止

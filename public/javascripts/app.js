@@ -27,11 +27,13 @@ var hatokurandom = {};
   H.EID_BASIC = 1;
   H.EID_FAREAST = 2;
   H.EID_NORTHERN = 3;
+  H.EID_FAIRY = 4;
 
   H.EXPANSIONS = [  //{{{2
     {eid: H.EID_BASIC, name: '基本セット'},
     {eid: H.EID_FAREAST, name: '極東辺境領'},
-    {eid: H.EID_NORTHERN, name: '北限の魔女'}
+    {eid: H.EID_NORTHERN, name: '北限の魔女'},
+    {eid: H.EID_FAIRY, name: 'フェアリーガーデン'}
   ];
 
   H.ALL_CARDS = [  //{{{2
@@ -132,13 +134,48 @@ var hatokurandom = {};
 
     {cid: 0x48, eid: H.EID_NORTHERN, cost: 6, link: 0, name: '独占', types: ['行動'], rarity: 'C'},
     {cid: 0x49, eid: H.EID_NORTHERN, cost: 6, link: 1, name: '工業都市', types: ['領地'], rarity: 'C'},
-    {cid: 0x3c, eid: H.EID_NORTHERN, cost: 6, link: undefined, name: '北限の魔女姫 アナスタシア', types: ['プリンセス'], rarity: 'R'}
+    {cid: 0x3c, eid: H.EID_NORTHERN, cost: 6, link: undefined, name: '北限の魔女姫 アナスタシア', types: ['プリンセス'], rarity: 'R'},
+
+    {cid: 0x4a, eid: H.EID_FAIRY, cost: 4, link: 1, name: '大農園', types: ['領地'], rarity: 'C'},
+    {cid: 0x4b, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x4c, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x4d, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x4e, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x4f, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x50, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x51, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x52, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x53, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x54, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x55, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x56, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x57, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x58, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x59, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x5a, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x5b, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x5c, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x5d, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x5e, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x5f, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x60, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x61, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x62, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x63, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x64, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x65, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x66, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x67, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+
+    {cid: 0x68, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '妖精女王エルルーン', types: ['?'], rarity: 'R'}
 
   ];
 
   H.COMMON_CARDS =  //{{{2
     (function () {
-      return $.grep(H.ALL_CARDS, function (card) {return card.rarity == 'C';});
+      return $.grep(H.ALL_CARDS, function (card) {
+        return card.rarity == 'C' && card.cost !== undefined;
+      });
     })();
 
   H.CID_TO_CARD_TABLE =  //{{{2
@@ -171,6 +208,7 @@ var hatokurandom = {};
     exclude_useless_cards: false,
     include_all_costs: false,
     include_basic: 'may',
+    include_fairy: 'may',
     include_fareast: 'may',
     include_link_2: false,
     include_northern: 'may',
@@ -689,6 +727,9 @@ var hatokurandom = {};
       'reference-northern':  //{{{
         list(function (c) {return included(c, H.EID_NORTHERN);})
       ,  //}}}
+      'reference-fairy':  //{{{
+        list(function (c) {return included(c, H.EID_FAIRY);})
+      ,  //}}}
       'reference-rarity-basic':  //{{{
         list(function (c) {return c.rarity == 'B';})
       ,  //}}}
@@ -794,6 +835,8 @@ var hatokurandom = {};
       'supply:northern-teaparty',
       'supply:northern-swordsman'
     ],  //}}}
+    'supplies:fairy': [  //{{{
+    ],  //}}}
     'supplies:championship1': [  //{{{
       'supply:championship1-prelims1',
       'supply:championship1-prelims2',
@@ -843,7 +886,8 @@ var hatokurandom = {};
     'references:expansion': [  //{{{
       'reference:basic',
       'reference:fareast',
-      'reference:northern'
+      'reference:northern',
+      'reference:fairy'
     ],  //}}}
     'references:rarity': [  //{{{
       'reference:rarity-basic',
@@ -985,6 +1029,9 @@ var hatokurandom = {};
     'supply:northern-swordsman': {  //{{{
       title: '異国の剣士'
     },  //}}}
+    'supplies:fairy': {  //{{{
+      title: '推奨サプライ(フェアリーガーデン)'
+    },  //}}}
     'supplies:championship1': {  //{{{
       title: '世界選手権'
     },  //}}}
@@ -1101,6 +1148,9 @@ var hatokurandom = {};
     },  //}}}
     'reference:northern': {  //{{{
       title: '北限の魔女のカード一覧'
+    },  //}}}
+    'reference:fairy': {  //{{{
+      title: 'フェアリーガーデンのカード一覧'
     },  //}}}
     'references:rarity': {  //{{{
       title: 'レアリティ別カードリスト'
@@ -1261,6 +1311,7 @@ var hatokurandom = {};
       rest_cards = filter_by_eid(rest_cards, options.include_basic != 'must_not', H.EID_BASIC);
       rest_cards = filter_by_eid(rest_cards, options.include_fareast != 'must_not', H.EID_FAREAST);
       rest_cards = filter_by_eid(rest_cards, options.include_northern != 'must_not', H.EID_NORTHERN);
+      rest_cards = filter_by_eid(rest_cards, options.include_fairy != 'must_not', H.EID_FAIRY);
 
       selected_cards = [];
       for (var i = 1; i <= count && 1 <= rest_cards.length; i++) {
@@ -1282,6 +1333,10 @@ var hatokurandom = {};
       }
       if (options.include_northern == 'must') {
         if (!any(selected_cards, H.EID_NORTHERN))
+          continue;
+      }
+      if (options.include_fairy == 'must') {
+        if (!any(selected_cards, H.EID_FAIRY))
           continue;
       }
       if (options.include_all_costs) {
@@ -1933,7 +1988,8 @@ var hatokurandom = {};
 
     if (H.options.include_basic == 'must_not'
         && H.options.include_fareast == 'must_not'
-        && H.options.include_northern == 'must_not') {
+        && H.options.include_northern == 'must_not'
+        && H.options.include_fairy == 'must_not') {
       $('#configure [name="include_basic"]').val('may').change();
     }
   };
