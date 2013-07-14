@@ -1876,12 +1876,13 @@ var hatokurandom = {};
       var updated_xcards = H.xcards_from_supply_view($supply);
       H.refresh_supply_view($supply, updated_xcards, sid, false);
     };
+    var oo = Number.MAX_VALUE;
     var sorted_xcards =
       H.order_by(
         xcards,
         function (xcard) {return xcard.dropped ? 2 : 1;},
-        function (xcard) {return xcard.cost === undefined ? 888 : xcard.cost;},
-        function (xcard) {return xcard.link === undefined ? 888 : xcard.link;},
+        function (xcard) {return xcard.cost === undefined ? oo : xcard.cost;},
+        function (xcard) {return xcard.link === undefined ? oo : xcard.link;},
         function (xcard) {return xcard.name;}
       );
     var editable = 10 < xcards.length && H.is_dsid(sid);
