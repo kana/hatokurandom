@@ -1883,6 +1883,7 @@ var hatokurandom = {};
         function (xcard) {return xcard.dropped ? 2 : 1;},
         function (xcard) {return xcard.cost === undefined ? oo : xcard.cost;},
         function (xcard) {return xcard.link === undefined ? oo : xcard.link;},
+        function (xcard) {return xcard.name === '???' ? 2 : 1;},
         function (xcard) {return xcard.name;}
       );
     var editable = 10 < xcards.length && H.is_dsid(sid);
