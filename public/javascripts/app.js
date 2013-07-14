@@ -173,7 +173,9 @@ var hatokurandom = {};
 
   H.COMMON_CARDS =  //{{{2
     (function () {
-      return $.grep(H.ALL_CARDS, function (card) {return card.rarity == 'C';});
+      return $.grep(H.ALL_CARDS, function (card) {
+        return card.rarity == 'C' && card.cost !== undefined;
+      });
     })();
 
   H.CID_TO_CARD_TABLE =  //{{{2
