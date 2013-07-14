@@ -797,6 +797,8 @@ var hatokurandom = {};
       'supply:northern-teaparty',
       'supply:northern-swordsman'
     ],  //}}}
+    'supplies:fairy': [  //{{{
+    ],  //}}}
     'supplies:championship1': [  //{{{
       'supply:championship1-prelims1',
       'supply:championship1-prelims2',
@@ -987,6 +989,9 @@ var hatokurandom = {};
     },  //}}}
     'supply:northern-swordsman': {  //{{{
       title: '異国の剣士'
+    },  //}}}
+    'supplies:fairy': {  //{{{
+      title: '推奨サプライ(フェアリーガーデン)'
     },  //}}}
     'supplies:championship1': {  //{{{
       title: '世界選手権'
