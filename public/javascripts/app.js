@@ -689,6 +689,15 @@ var hatokurandom = {};
       'reference-northern':  //{{{
         list(function (c) {return included(c, H.EID_NORTHERN);})
       ,  //}}}
+      'reference-rarity-basic':  //{{{
+        list(function (c) {return c.rarity == 'B';})
+      ,  //}}}
+      'reference-rarity-common':  //{{{
+        list(function (c) {return c.rarity == 'C';})
+      ,  //}}}
+      'reference-rarity-rare':  //{{{
+        list(function (c) {return c.rarity == 'R';})
+      ,  //}}}
       '': []  // Dummy entry to make folds simple.
     };
   })();
@@ -797,7 +806,8 @@ var hatokurandom = {};
       'references:subtype',
       'references:cost',
       'references:link',
-      'references:expansion'
+      'references:expansion',
+      'references:rarity'
     ],  //}}}
     'references:type': [  //{{{
       'reference:all-actions',
@@ -834,6 +844,11 @@ var hatokurandom = {};
       'reference:basic',
       'reference:fareast',
       'reference:northern'
+    ],  //}}}
+    'references:rarity': [  //{{{
+      'reference:rarity-basic',
+      'reference:rarity-common',
+      'reference:rarity-rare'
     ],  //}}}
     '': []  // Dummy entry to make folds simple.
   };
@@ -1086,6 +1101,18 @@ var hatokurandom = {};
     },  //}}}
     'reference:northern': {  //{{{
       title: '北限の魔女のカード一覧'
+    },  //}}}
+    'references:rarity': {  //{{{
+      title: 'レアリティ別カードリスト'
+    },  //}}}
+    'reference:rarity-basic': {  //{{{
+      title: 'ベーシックマーケットのカード一覧'
+    },  //}}}
+    'reference:rarity-common': {  //{{{
+      title: 'コモンカード一覧'
+    },  //}}}
+    'reference:rarity-rare': {  //{{{
+      title: 'レアカード一覧'
     },  //}}}
     '': {}  // Dummy entry to make folds simple.
   };
