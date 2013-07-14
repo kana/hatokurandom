@@ -692,6 +692,9 @@ var hatokurandom = {};
       'reference-northern':  //{{{
         list(function (c) {return included(c, H.EID_NORTHERN);})
       ,  //}}}
+      'reference-fairy':  //{{{
+        list(function (c) {return included(c, H.EID_FAIRY);})
+      ,  //}}}
       'reference-rarity-basic':  //{{{
         list(function (c) {return c.rarity == 'B';})
       ,  //}}}
@@ -848,7 +851,8 @@ var hatokurandom = {};
     'references:expansion': [  //{{{
       'reference:basic',
       'reference:fareast',
-      'reference:northern'
+      'reference:northern',
+      'reference:fairy'
     ],  //}}}
     'references:rarity': [  //{{{
       'reference:rarity-basic',
@@ -1109,6 +1113,9 @@ var hatokurandom = {};
     },  //}}}
     'reference:northern': {  //{{{
       title: '北限の魔女のカード一覧'
+    },  //}}}
+    'reference:fairy': {  //{{{
+      title: 'フェアリーガーデンのカード一覧'
     },  //}}}
     'references:rarity': {  //{{{
       title: 'レアリティ別カードリスト'
