@@ -15,6 +15,12 @@ var hatokurandom = {};
   // lid: supply List ID
   // xcard: eXtra information + CARD
   // xcards: array of xcards + various flags
+  //
+  // rarity
+  //   'B' = basic
+  //   'C' = common
+  //   'R' = rare
+  //   undefined = unknown
 
   // Constants  //{{{1
   // Eids  //{{{2
@@ -31,105 +37,108 @@ var hatokurandom = {};
   H.ALL_CARDS = [  //{{{2
     // Sorted by eid, cost, link, then name.
     // :'<,'>sort /cid: \S\+, \zs.*/ r
+    //
+    // Princess cards are counted as rare cards.
+    // Reference: https://twitter.com/HeartofCrown/status/233840190383341568
 
-    {cid: 0x34, eid: H.EID_BASIC, cost: 0, link: undefined, name: '呪い', types: ['呪い'], non_common: true},
+    {cid: 0x34, eid: H.EID_BASIC, cost: 0, link: undefined, name: '呪い', types: ['呪い'], rarity: 'B'},
 
-    {cid: 0x2b, eid: H.EID_BASIC, cost: 1, link: 1, name: '農村', types: ['領地'], non_common: true},
+    {cid: 0x2b, eid: H.EID_BASIC, cost: 1, link: 1, name: '農村', types: ['領地'], rarity: 'B'},
 
-    {cid: 0x01, eid: H.EID_BASIC, cost: 2, link: 1, name: '城壁', types: ['行動', '防衛']},
-    {cid: 0x02, eid: H.EID_BASIC, cost: 2, link: 1, name: '寄付', types: ['行動']},
-    {cid: 0x03, eid: H.EID_BASIC, cost: 2, link: 1, name: '願いの泉', types: ['行動']},
-    {cid: 0x04, eid: H.EID_BASIC, cost: 2, link: 2, name: '斥候', types: ['行動', '攻撃'], subtype: '兵力'},
-    {cid: 0x05, eid: H.EID_BASIC, cost: 2, link: 2, name: '早馬', types: ['行動']},
-    {cid: 0x2e, eid: H.EID_BASIC, cost: 2, link: undefined, name: '見習い侍女', types: ['継承権'], subtype: '侍女', non_common: true},
+    {cid: 0x01, eid: H.EID_BASIC, cost: 2, link: 1, name: '城壁', types: ['行動', '防衛'], rarity: 'C'},
+    {cid: 0x02, eid: H.EID_BASIC, cost: 2, link: 1, name: '寄付', types: ['行動'], rarity: 'C'},
+    {cid: 0x03, eid: H.EID_BASIC, cost: 2, link: 1, name: '願いの泉', types: ['行動'], rarity: 'C'},
+    {cid: 0x04, eid: H.EID_BASIC, cost: 2, link: 2, name: '斥候', types: ['行動', '攻撃'], subtype: '兵力', rarity: 'C'},
+    {cid: 0x05, eid: H.EID_BASIC, cost: 2, link: 2, name: '早馬', types: ['行動'], rarity: 'C'},
+    {cid: 0x2e, eid: H.EID_BASIC, cost: 2, link: undefined, name: '見習い侍女', types: ['継承権'], subtype: '侍女', rarity: undefined},
 
-    {cid: 0x06, eid: H.EID_BASIC, cost: 3, link: 0, name: '交易船', types: ['行動'], subtype: '商人'},
-    {cid: 0x07, eid: H.EID_BASIC, cost: 3, link: 0, name: '埋もれた財宝', types: ['行動']},
-    {cid: 0x08, eid: H.EID_BASIC, cost: 3, link: 0, name: '御用商人', types: ['行動'], subtype: '商人'},
-    {cid: 0x09, eid: H.EID_BASIC, cost: 3, link: 1, name: '召集令状', types: ['行動']},
-    {cid: 0x0a, eid: H.EID_BASIC, cost: 3, link: 1, name: '焼き畑農業', types: ['行動']},
-    {cid: 0x0b, eid: H.EID_BASIC, cost: 3, link: 1, name: '破城槌', types: ['行動']},
-    {cid: 0x0c, eid: H.EID_BASIC, cost: 3, link: 1, name: '買収工作', types: ['行動', '攻撃'], subtype: '計略'},
-    {cid: 0x2c, eid: H.EID_BASIC, cost: 3, link: 1, name: '都市', types: ['領地'], non_common: true},
-    {cid: 0x0d, eid: H.EID_BASIC, cost: 3, link: 1, name: '隠れ家', types: ['行動', '防衛']},
-    {cid: 0x0e, eid: H.EID_BASIC, cost: 3, link: 1, name: '魔法の護符', types: ['行動', '防衛', '呪い']},
-    {cid: 0x2f, eid: H.EID_BASIC, cost: 3, link: undefined, name: '宮廷侍女', types: ['継承権'], subtype: '侍女', non_common: true},
+    {cid: 0x06, eid: H.EID_BASIC, cost: 3, link: 0, name: '交易船', types: ['行動'], subtype: '商人', rarity: 'C'},
+    {cid: 0x07, eid: H.EID_BASIC, cost: 3, link: 0, name: '埋もれた財宝', types: ['行動'], rarity: 'C'},
+    {cid: 0x08, eid: H.EID_BASIC, cost: 3, link: 0, name: '御用商人', types: ['行動'], subtype: '商人', rarity: 'C'},
+    {cid: 0x09, eid: H.EID_BASIC, cost: 3, link: 1, name: '召集令状', types: ['行動'], rarity: 'C'},
+    {cid: 0x0a, eid: H.EID_BASIC, cost: 3, link: 1, name: '焼き畑農業', types: ['行動'], rarity: 'C'},
+    {cid: 0x0b, eid: H.EID_BASIC, cost: 3, link: 1, name: '破城槌', types: ['行動'], rarity: 'C'},
+    {cid: 0x0c, eid: H.EID_BASIC, cost: 3, link: 1, name: '買収工作', types: ['行動', '攻撃'], subtype: '計略', rarity: 'C'},
+    {cid: 0x2c, eid: H.EID_BASIC, cost: 3, link: 1, name: '都市', types: ['領地'], rarity: 'B'},
+    {cid: 0x0d, eid: H.EID_BASIC, cost: 3, link: 1, name: '隠れ家', types: ['行動', '防衛'], rarity: 'C'},
+    {cid: 0x0e, eid: H.EID_BASIC, cost: 3, link: 1, name: '魔法の護符', types: ['行動', '防衛', '呪い'], rarity: 'C'},
+    {cid: 0x2f, eid: H.EID_BASIC, cost: 3, link: undefined, name: '宮廷侍女', types: ['継承権'], subtype: '侍女', rarity: 'B'},
 
-    {cid: 0x0f, eid: H.EID_BASIC, cost: 4, link: 0, name: '歩兵大隊', types: ['行動', '攻撃'], subtype: '兵力'},
-    {cid: 0x10, eid: H.EID_BASIC, cost: 4, link: 1, name: '図書館', types: ['行動']},
-    {cid: 0x11, eid: H.EID_BASIC, cost: 4, link: 1, name: '追い立てられた魔獣', types: ['行動', '攻撃'], subtype: '計略'},
-    {cid: 0x12, eid: H.EID_BASIC, cost: 4, link: 1, name: '都市開発', types: ['行動'], subtype: '商人'},
-    {cid: 0x13, eid: H.EID_BASIC, cost: 4, link: 1, name: '金貸し', types: ['行動'], subtype: '商人'},
-    {cid: 0x14, eid: H.EID_BASIC, cost: 4, link: 1, name: '魅了術の魔女', types: ['行動', '攻撃'], subtype: '魔法'},
-    {cid: 0x15, eid: H.EID_BASIC, cost: 4, link: 2, name: 'シノビ', types: ['行動'], subtype: '計略'},
-    {cid: 0x16, eid: H.EID_BASIC, cost: 4, link: 2, name: '星詠みの魔女', types: ['行動'], subtype: '魔法'},
-    {cid: 0x17, eid: H.EID_BASIC, cost: 4, link: 2, name: '補給部隊', types: ['行動'], subtype: '兵力'},
+    {cid: 0x0f, eid: H.EID_BASIC, cost: 4, link: 0, name: '歩兵大隊', types: ['行動', '攻撃'], subtype: '兵力', rarity: 'C'},
+    {cid: 0x10, eid: H.EID_BASIC, cost: 4, link: 1, name: '図書館', types: ['行動'], rarity: 'C'},
+    {cid: 0x11, eid: H.EID_BASIC, cost: 4, link: 1, name: '追い立てられた魔獣', types: ['行動', '攻撃'], subtype: '計略', rarity: 'C'},
+    {cid: 0x12, eid: H.EID_BASIC, cost: 4, link: 1, name: '都市開発', types: ['行動'], subtype: '商人', rarity: 'C'},
+    {cid: 0x13, eid: H.EID_BASIC, cost: 4, link: 1, name: '金貸し', types: ['行動'], subtype: '商人', rarity: 'C'},
+    {cid: 0x14, eid: H.EID_BASIC, cost: 4, link: 1, name: '魅了術の魔女', types: ['行動', '攻撃'], subtype: '魔法', rarity: 'C'},
+    {cid: 0x15, eid: H.EID_BASIC, cost: 4, link: 2, name: 'シノビ', types: ['行動'], subtype: '計略', rarity: 'C'},
+    {cid: 0x16, eid: H.EID_BASIC, cost: 4, link: 2, name: '星詠みの魔女', types: ['行動'], subtype: '魔法', rarity: 'C'},
+    {cid: 0x17, eid: H.EID_BASIC, cost: 4, link: 2, name: '補給部隊', types: ['行動'], subtype: '兵力', rarity: 'C'},
 
-    {cid: 0x18, eid: H.EID_BASIC, cost: 5, link: 0, name: '冒険者', types: ['行動']},
-    {cid: 0x19, eid: H.EID_BASIC, cost: 5, link: 0, name: '呪詛の魔女', types: ['行動', '攻撃'], subtype: '魔法'},
-    {cid: 0x1a, eid: H.EID_BASIC, cost: 5, link: 0, name: '近衛騎士団', types: ['行動', '攻撃'], subtype: '兵力'},
-    {cid: 0x1b, eid: H.EID_BASIC, cost: 5, link: 0, name: '銀行', types: ['行動'], subtype: '商人'},
-    {cid: 0x1c, eid: H.EID_BASIC, cost: 5, link: 1, name: '皇室領', types: ['継承権', '領地']},
-    {cid: 0x1d, eid: H.EID_BASIC, cost: 5, link: 1, name: '錬金術師', types: ['行動']},
-    {cid: 0x30, eid: H.EID_BASIC, cost: 5, link: undefined, name: '議員', types: ['継承権'], non_common: true},
+    {cid: 0x18, eid: H.EID_BASIC, cost: 5, link: 0, name: '冒険者', types: ['行動'], rarity: 'C'},
+    {cid: 0x19, eid: H.EID_BASIC, cost: 5, link: 0, name: '呪詛の魔女', types: ['行動', '攻撃'], subtype: '魔法', rarity: 'C'},
+    {cid: 0x1a, eid: H.EID_BASIC, cost: 5, link: 0, name: '近衛騎士団', types: ['行動', '攻撃'], subtype: '兵力', rarity: 'C'},
+    {cid: 0x1b, eid: H.EID_BASIC, cost: 5, link: 0, name: '銀行', types: ['行動'], subtype: '商人', rarity: 'C'},
+    {cid: 0x1c, eid: H.EID_BASIC, cost: 5, link: 1, name: '皇室領', types: ['継承権', '領地'], rarity: 'C'},
+    {cid: 0x1d, eid: H.EID_BASIC, cost: 5, link: 1, name: '錬金術師', types: ['行動'], rarity: 'C'},
+    {cid: 0x30, eid: H.EID_BASIC, cost: 5, link: undefined, name: '議員', types: ['継承権'], rarity: 'B'},
 
-    {cid: 0x2d, eid: H.EID_BASIC, cost: 6, link: 1, name: '大都市', types: ['領地'], non_common: true},
-    {cid: 0x37, eid: H.EID_BASIC, cost: 6, link: undefined, name: '南洋の市姫 クラムクラム', types: ['プリンセス'], non_common: true},
-    {cid: 0x3a, eid: H.EID_BASIC, cost: 6, link: undefined, name: '双子の姫 レイン&シオン', types: ['プリンセス'], non_common: true},
-    {cid: 0x1e, eid: H.EID_BASIC, cost: 6, link: undefined, name: '噂好きの公爵夫人', types: ['継承権']},
-    {cid: 0x38, eid: H.EID_BASIC, cost: 6, link: undefined, name: '大方博雅の姫 ベルガモット', types: ['プリンセス'], non_common: true},
-    {cid: 0x39, eid: H.EID_BASIC, cost: 6, link: undefined, name: '姫将軍 フラマリア', types: ['プリンセス'], non_common: true},
-    {cid: 0x35, eid: H.EID_BASIC, cost: 6, link: undefined, name: '第一皇女 ルルナサイカ', types: ['プリンセス'], non_common: true},
-    {cid: 0x36, eid: H.EID_BASIC, cost: 6, link: undefined, name: '第二皇女 ラオリリ', types: ['プリンセス'], non_common: true},
+    {cid: 0x2d, eid: H.EID_BASIC, cost: 6, link: 1, name: '大都市', types: ['領地'], rarity: 'B'},
+    {cid: 0x37, eid: H.EID_BASIC, cost: 6, link: undefined, name: '南洋の市姫 クラムクラム', types: ['プリンセス'], rarity: 'R'},
+    {cid: 0x3a, eid: H.EID_BASIC, cost: 6, link: undefined, name: '双子の姫 レイン&シオン', types: ['プリンセス'], rarity: 'R'},
+    {cid: 0x1e, eid: H.EID_BASIC, cost: 6, link: undefined, name: '噂好きの公爵夫人', types: ['継承権'], rarity: 'C'},
+    {cid: 0x38, eid: H.EID_BASIC, cost: 6, link: undefined, name: '大方博雅の姫 ベルガモット', types: ['プリンセス'], rarity: 'R'},
+    {cid: 0x39, eid: H.EID_BASIC, cost: 6, link: undefined, name: '姫将軍 フラマリア', types: ['プリンセス'], rarity: 'R'},
+    {cid: 0x35, eid: H.EID_BASIC, cost: 6, link: undefined, name: '第一皇女 ルルナサイカ', types: ['プリンセス'], rarity: 'R'},
+    {cid: 0x36, eid: H.EID_BASIC, cost: 6, link: undefined, name: '第二皇女 ラオリリ', types: ['プリンセス'], rarity: 'R'},
 
-    {cid: 0x31, eid: H.EID_BASIC, cost: 8, link: undefined, name: '公爵', types: ['継承権'], non_common: true},
+    {cid: 0x31, eid: H.EID_BASIC, cost: 8, link: undefined, name: '公爵', types: ['継承権'], rarity: 'B'},
 
-    {cid: 0x32, eid: H.EID_BASIC, cost: 11, link: 1, name: '帝都カリクマ', types: ['継承権', '領地'], non_common: true},
+    {cid: 0x32, eid: H.EID_BASIC, cost: 11, link: 1, name: '帝都カリクマ', types: ['継承権', '領地'], rarity: 'R'},
 
-    {cid: 0x33, eid: H.EID_BASIC, cost: 13, link: undefined, name: '皇帝の冠', types: ['継承権'], non_common: true},
+    {cid: 0x33, eid: H.EID_BASIC, cost: 13, link: undefined, name: '皇帝の冠', types: ['継承権'], rarity: 'R'},
 
-    {cid: 0x1f, eid: H.EID_FAREAST, cost: 2, link: 0, name: 'お金好きの妖精', types: ['行動'], subtype: '魔法'},
+    {cid: 0x1f, eid: H.EID_FAREAST, cost: 2, link: 0, name: 'お金好きの妖精', types: ['行動'], subtype: '魔法', rarity: 'C'},
 
-    {cid: 0x20, eid: H.EID_FAREAST, cost: 3, link: 0, name: '課税', types: ['行動']},
-    {cid: 0x21, eid: H.EID_FAREAST, cost: 3, link: 0, name: '貿易商人', types: ['行動'], subtype: '商人'},
-    {cid: 0x22, eid: H.EID_FAREAST, cost: 3, link: 1, name: '伝書鳩', types: ['行動'], subtype: '計略'},
-    {cid: 0x23, eid: H.EID_FAREAST, cost: 3, link: 1, name: '弓兵隊', types: ['行動', '攻撃'], subtype: '兵力'},
+    {cid: 0x20, eid: H.EID_FAREAST, cost: 3, link: 0, name: '課税', types: ['行動'], rarity: 'C'},
+    {cid: 0x21, eid: H.EID_FAREAST, cost: 3, link: 0, name: '貿易商人', types: ['行動'], subtype: '商人', rarity: 'C'},
+    {cid: 0x22, eid: H.EID_FAREAST, cost: 3, link: 1, name: '伝書鳩', types: ['行動'], subtype: '計略', rarity: 'C'},
+    {cid: 0x23, eid: H.EID_FAREAST, cost: 3, link: 1, name: '弓兵隊', types: ['行動', '攻撃'], subtype: '兵力', rarity: 'C'},
 
-    {cid: 0x24, eid: H.EID_FAREAST, cost: 4, link: 0, name: 'サムライ', types: ['行動', '攻撃'], subtype: '兵力'},
-    {cid: 0x25, eid: H.EID_FAREAST, cost: 4, link: 1, name: 'クノイチ', types: ['行動', '防衛'], subtype: '計略'},
-    {cid: 0x26, eid: H.EID_FAREAST, cost: 4, link: 1, name: '見習い魔女', types: ['行動', '攻撃'], subtype: '魔法'},
-    {cid: 0x27, eid: H.EID_FAREAST, cost: 4, link: 1, name: '鉱山都市', types: ['領地']},
-    {cid: 0x28, eid: H.EID_FAREAST, cost: 4, link: 2, name: '港町', types: ['領地']},
+    {cid: 0x24, eid: H.EID_FAREAST, cost: 4, link: 0, name: 'サムライ', types: ['行動', '攻撃'], subtype: '兵力', rarity: 'C'},
+    {cid: 0x25, eid: H.EID_FAREAST, cost: 4, link: 1, name: 'クノイチ', types: ['行動', '防衛'], subtype: '計略', rarity: 'C'},
+    {cid: 0x26, eid: H.EID_FAREAST, cost: 4, link: 1, name: '見習い魔女', types: ['行動', '攻撃'], subtype: '魔法', rarity: 'C'},
+    {cid: 0x27, eid: H.EID_FAREAST, cost: 4, link: 1, name: '鉱山都市', types: ['領地'], rarity: 'C'},
+    {cid: 0x28, eid: H.EID_FAREAST, cost: 4, link: 2, name: '港町', types: ['領地'], rarity: 'C'},
 
-    {cid: 0x29, eid: H.EID_FAREAST, cost: 5, link: 0, name: '割り符', types: ['行動'], subtype: '商人'},
-    {cid: 0x2a, eid: H.EID_FAREAST, cost: 5, link: 2, name: '結盟', types: ['行動']},
+    {cid: 0x29, eid: H.EID_FAREAST, cost: 5, link: 0, name: '割り符', types: ['行動'], subtype: '商人', rarity: 'C'},
+    {cid: 0x2a, eid: H.EID_FAREAST, cost: 5, link: 2, name: '結盟', types: ['行動'], rarity: 'C'},
 
-    {cid: 0x3b, eid: H.EID_FAREAST, cost: 6, link: undefined, name: '極東の算法姫 オウカ', types: ['プリンセス'], non_common: true},
+    {cid: 0x3b, eid: H.EID_FAREAST, cost: 6, link: undefined, name: '極東の算法姫 オウカ', types: ['プリンセス'], rarity: 'R'},
 
-    {cid: 0x3f, eid: H.EID_NORTHERN, cost: 2, link: 1, name: 'ケットシー', types: ['行動'], subtype: '魔法'},
-    {cid: 0x40, eid: H.EID_NORTHERN, cost: 2, link: 1, name: '幸運の銀貨', types: ['行動']},
+    {cid: 0x3f, eid: H.EID_NORTHERN, cost: 2, link: 1, name: 'ケットシー', types: ['行動'], subtype: '魔法', rarity: 'C'},
+    {cid: 0x40, eid: H.EID_NORTHERN, cost: 2, link: 1, name: '幸運の銀貨', types: ['行動'], rarity: 'C'},
 
-    {cid: 0x41, eid: H.EID_NORTHERN, cost: 3, link: 1, name: '洗礼', types: ['行動']},
-    {cid: 0x43, eid: H.EID_NORTHERN, cost: 3, link: 2, name: '名馬', types: ['行動']},
-    {cid: 0x42, eid: H.EID_NORTHERN, cost: 3, link: undefined, name: '呪いの人形', types: ['呪い']},
+    {cid: 0x41, eid: H.EID_NORTHERN, cost: 3, link: 1, name: '洗礼', types: ['行動'], rarity: 'C'},
+    {cid: 0x43, eid: H.EID_NORTHERN, cost: 3, link: 2, name: '名馬', types: ['行動'], rarity: 'C'},
+    {cid: 0x42, eid: H.EID_NORTHERN, cost: 3, link: undefined, name: '呪いの人形', types: ['呪い'], rarity: 'C'},
 
-    {cid: 0x45, eid: H.EID_NORTHERN, cost: 4, link: 0, name: 'ドワーフの宝石職人', types: ['行動']},
-    {cid: 0x44, eid: H.EID_NORTHERN, cost: 4, link: 0, name: '宮廷闘争', types: ['行動', '攻撃'], subtype: '計略'},
-    {cid: 0x3e, eid: H.EID_NORTHERN, cost: 4, link: 2, name: 'エルフの狙撃手', types: ['行動', '攻撃'], subtype: '兵力'},
+    {cid: 0x45, eid: H.EID_NORTHERN, cost: 4, link: 0, name: 'ドワーフの宝石職人', types: ['行動'], rarity: 'C'},
+    {cid: 0x44, eid: H.EID_NORTHERN, cost: 4, link: 0, name: '宮廷闘争', types: ['行動', '攻撃'], subtype: '計略', rarity: 'C'},
+    {cid: 0x3e, eid: H.EID_NORTHERN, cost: 4, link: 2, name: 'エルフの狙撃手', types: ['行動', '攻撃'], subtype: '兵力', rarity: 'C'},
 
-    {cid: 0x47, eid: H.EID_NORTHERN, cost: 5, link: 0, name: '地方役人', types: ['行動']},
-    {cid: 0x3d, eid: H.EID_NORTHERN, cost: 5, link: 0, name: '豪商', types: ['行動'], subtype: '商人'},
-    {cid: 0x46, eid: H.EID_NORTHERN, cost: 5, link: undefined, name: '貴族の一人娘', types: ['継承権']},
+    {cid: 0x47, eid: H.EID_NORTHERN, cost: 5, link: 0, name: '地方役人', types: ['行動'], rarity: 'C'},
+    {cid: 0x3d, eid: H.EID_NORTHERN, cost: 5, link: 0, name: '豪商', types: ['行動'], subtype: '商人', rarity: 'C'},
+    {cid: 0x46, eid: H.EID_NORTHERN, cost: 5, link: undefined, name: '貴族の一人娘', types: ['継承権'], rarity: 'C'},
 
-    {cid: 0x48, eid: H.EID_NORTHERN, cost: 6, link: 0, name: '独占', types: ['行動']},
-    {cid: 0x49, eid: H.EID_NORTHERN, cost: 6, link: 1, name: '工業都市', types: ['領地']},
-    {cid: 0x3c, eid: H.EID_NORTHERN, cost: 6, link: undefined, name: '北限の魔女姫 アナスタシア', types: ['プリンセス'], non_common: true}
+    {cid: 0x48, eid: H.EID_NORTHERN, cost: 6, link: 0, name: '独占', types: ['行動'], rarity: 'C'},
+    {cid: 0x49, eid: H.EID_NORTHERN, cost: 6, link: 1, name: '工業都市', types: ['領地'], rarity: 'C'},
+    {cid: 0x3c, eid: H.EID_NORTHERN, cost: 6, link: undefined, name: '北限の魔女姫 アナスタシア', types: ['プリンセス'], rarity: 'R'}
 
   ];
 
   H.COMMON_CARDS =  //{{{2
     (function () {
-      return $.grep(H.ALL_CARDS, function (card) {return !card.non_common;});
+      return $.grep(H.ALL_CARDS, function (card) {return card.rarity == 'C';});
     })();
 
   H.CID_TO_CARD_TABLE =  //{{{2
@@ -680,6 +689,15 @@ var hatokurandom = {};
       'reference-northern':  //{{{
         list(function (c) {return included(c, H.EID_NORTHERN);})
       ,  //}}}
+      'reference-rarity-basic':  //{{{
+        list(function (c) {return c.rarity == 'B';})
+      ,  //}}}
+      'reference-rarity-common':  //{{{
+        list(function (c) {return c.rarity == 'C';})
+      ,  //}}}
+      'reference-rarity-rare':  //{{{
+        list(function (c) {return c.rarity == 'R';})
+      ,  //}}}
       '': []  // Dummy entry to make folds simple.
     };
   })();
@@ -788,7 +806,8 @@ var hatokurandom = {};
       'references:subtype',
       'references:cost',
       'references:link',
-      'references:expansion'
+      'references:expansion',
+      'references:rarity'
     ],  //}}}
     'references:type': [  //{{{
       'reference:all-actions',
@@ -825,6 +844,11 @@ var hatokurandom = {};
       'reference:basic',
       'reference:fareast',
       'reference:northern'
+    ],  //}}}
+    'references:rarity': [  //{{{
+      'reference:rarity-basic',
+      'reference:rarity-common',
+      'reference:rarity-rare'
     ],  //}}}
     '': []  // Dummy entry to make folds simple.
   };
@@ -1077,6 +1101,18 @@ var hatokurandom = {};
     },  //}}}
     'reference:northern': {  //{{{
       title: '北限の魔女のカード一覧'
+    },  //}}}
+    'references:rarity': {  //{{{
+      title: 'レアリティ別カードリスト'
+    },  //}}}
+    'reference:rarity-basic': {  //{{{
+      title: 'ベーシックマーケットのカード一覧'
+    },  //}}}
+    'reference:rarity-common': {  //{{{
+      title: 'コモンカード一覧'
+    },  //}}}
+    'reference:rarity-rare': {  //{{{
+      title: 'レアカード一覧'
     },  //}}}
     '': {}  // Dummy entry to make folds simple.
   };
@@ -1840,13 +1876,14 @@ var hatokurandom = {};
       var updated_xcards = H.xcards_from_supply_view($supply);
       H.refresh_supply_view($supply, updated_xcards, sid, false);
     };
+    var oo = Number.MAX_VALUE;
     var sorted_xcards =
       H.order_by(
         xcards,
         function (xcard) {return xcard.dropped ? 2 : 1;},
-        function (xcard) {return xcard.cost == '?' ? 2 : 1;},
-        function (xcard) {return xcard.cost;},
-        function (xcard) {return xcard.link === undefined ? 888 : xcard.link;},
+        function (xcard) {return xcard.cost === undefined ? oo : xcard.cost;},
+        function (xcard) {return xcard.link === undefined ? oo : xcard.link;},
+        function (xcard) {return xcard.name === '???' ? 2 : 1;},
         function (xcard) {return xcard.name;}
       );
     var editable = 10 < xcards.length && H.is_dsid(sid);
@@ -1857,6 +1894,7 @@ var hatokurandom = {};
           'supply_item_template',
           $.extend(
             {
+              cost: '?',
               dominant_type: H.dominant_type_from_types(xcard.types),
               subtype: ''
             },
