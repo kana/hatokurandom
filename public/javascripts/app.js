@@ -134,7 +134,40 @@ var hatokurandom = {};
 
     {cid: 0x48, eid: H.EID_NORTHERN, cost: 6, link: 0, name: '独占', types: ['行動'], rarity: 'C'},
     {cid: 0x49, eid: H.EID_NORTHERN, cost: 6, link: 1, name: '工業都市', types: ['領地'], rarity: 'C'},
-    {cid: 0x3c, eid: H.EID_NORTHERN, cost: 6, link: undefined, name: '北限の魔女姫 アナスタシア', types: ['プリンセス'], rarity: 'R'}
+    {cid: 0x3c, eid: H.EID_NORTHERN, cost: 6, link: undefined, name: '北限の魔女姫 アナスタシア', types: ['プリンセス'], rarity: 'R'},
+
+    {cid: 0x4a, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x4b, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x4c, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x4d, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x4e, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x4f, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x50, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x51, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x52, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x53, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x54, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x55, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x56, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x57, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x58, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x59, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x5a, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x5b, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x5c, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x5d, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x5e, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x5f, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x60, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x61, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x62, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x63, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x64, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x65, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x66, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x67, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+
+    {cid: 0x68, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '妖精女王エルルーン', types: ['?'], rarity: 'R'}
 
   ];
 
