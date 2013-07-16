@@ -137,7 +137,7 @@ var hatokurandom = {};
     {cid: 0x3c, eid: H.EID_NORTHERN, cost: 6, link: undefined, name: '北限の魔女姫 アナスタシア', types: ['プリンセス'], rarity: 'R'},
 
     {cid: 0x4a, eid: H.EID_FAIRY, cost: 4, link: 1, name: '大農園', types: ['領地'], rarity: 'C'},
-    {cid: 0x4b, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x4b, eid: H.EID_FAIRY, cost: 5, link: 1, name: '収穫祭', types: ['行動'], rarity: 'C'},
     {cid: 0x4c, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
     {cid: 0x4d, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
     {cid: 0x4e, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
