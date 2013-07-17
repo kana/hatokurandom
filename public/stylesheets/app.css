@@ -132,6 +132,11 @@ a.share.button:after
   display: inline-block;
   width: 6em;
 }
+#configure .select label #include_fairy.title
+{
+  line-height: 120%;
+  vertical-align: middle;
+}
 #configure .select .ui-select
 {
   display: inline;
