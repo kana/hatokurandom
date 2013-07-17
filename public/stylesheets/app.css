@@ -141,6 +141,14 @@ a.share.button:after
   width: 8em;
 }
 
+/* A workaround to avoid automatic zooming by focusing a <select>.
+ * https://github.com/jquery/jquery-mobile/issues/2069#issuecomment-2871905
+ */
+.ui-select .ui-btn select
+{
+  font-size: 50px;
+}
+
 
 /* #templates */
 
