@@ -2075,6 +2075,9 @@ var hatokurandom = {};
       alert('初期設定に戻しました。');
     });
 
+    if (navigator.userAgent.match(/OS (\S)+ like Mac OS X/i))
+      $('body').addClass('iOS');
+
     var notification_table = {
       'checking': 'icon-signal',
       'error': 'icon-exclamation-sign',
