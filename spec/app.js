@@ -482,6 +482,25 @@
       expect(f('割り符')).toBeFalsy();
     });
   });
+  describe('is_banned_card_for_fairy_garden', function () {
+    var f = function (n) {return H.is_banned_card_for_fairy_garden(H.card_from_card_name(n));};
+    it('should return true for banned cards', function () {
+      expect(f('城壁')).toBeTruthy();
+      expect(f('隠れ家')).toBeTruthy();
+      expect(f('破城槌')).toBeTruthy();
+      expect(f('埋もれた財宝')).toBeTruthy();
+      expect(f('星詠みの魔女')).toBeTruthy();
+      expect(f('シノビ')).toBeTruthy();
+      expect(f('魅了術の魔女')).toBeTruthy();
+      expect(f('歩兵大隊')).toBeTruthy();
+      expect(f('近衛騎士団')).toBeTruthy();
+      expect(f('弓兵隊')).toBeTruthy();
+      expect(f('サムライ')).toBeTruthy();
+    });
+    it('should return false for non-banned cards', function () {
+      expect(f('割り符')).toBeFalsy();
+    });
+  });
   describe('is_psid', function () {
     it('should return true for a valid psid', function () {
       expect(H.is_psid('basic-firstplay')).toBeTruthy();
