@@ -413,6 +413,81 @@
         );
       });
     });
+    describe('with exclude_banned_cards_for_fairy_garden', function () {
+      var test = function (card_set, valid, length) {
+        var cards =
+          H.choose_random_cards(
+            card_set,
+            card_set.length,
+            $.extend(
+              {},
+              H.DEFAULT_OPTIONS,
+              {
+                exclude_banned_cards: false,
+                exclude_banned_cards_for_fairy_garden: true,
+                try_count: 1
+              }
+            )
+          );
+        expect(!cards.fallback).toEqual(valid);
+        expect(cards.length).toEqual(card_set.length);
+      };
+      it('should return valid result from non-banned cards', function () {
+        test(
+          [
+            H.card_from_card_name('伝令'),
+            H.card_from_card_name('交易船'),
+            H.card_from_card_name('都市開発'),
+            H.card_from_card_name('買収工作')
+          ],
+          true
+        );
+      });
+      it('should return valid result with banned cards if Fairy Garden cards are not included', function () {
+        test(
+          [
+            H.card_from_card_name('早馬'),
+            H.card_from_card_name('交易船'),
+            H.card_from_card_name('都市開発'),
+            H.card_from_card_name('冒険者'),
+            H.card_from_card_name('埋もれた財宝')
+          ],
+          true
+        );
+        test(
+          [
+            H.card_from_card_name('早馬'),
+            H.card_from_card_name('交易船'),
+            H.card_from_card_name('都市開発'),
+            H.card_from_card_name('冒険者'),
+            H.card_from_card_name('魅了術の魔女')
+          ],
+          true
+        );
+      });
+      it('should return invalid result with banned cards if Fairy Garden cards are included', function () {
+        test(
+          [
+            H.card_from_card_name('伝令'),
+            H.card_from_card_name('交易船'),
+            H.card_from_card_name('都市開発'),
+            H.card_from_card_name('冒険者'),
+            H.card_from_card_name('埋もれた財宝')
+          ],
+          false
+        );
+        test(
+          [
+            H.card_from_card_name('伝令'),
+            H.card_from_card_name('交易船'),
+            H.card_from_card_name('都市開発'),
+            H.card_from_card_name('冒険者'),
+            H.card_from_card_name('魅了術の魔女')
+          ],
+          false
+        );
+      });
+    });
   });
   describe('decode_base64', function () {
     it('should decode a character to a 6-bit value', function () {
