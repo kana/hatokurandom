@@ -205,6 +205,7 @@ var hatokurandom = {};
 
   H.DEFAULT_OPTIONS = {  //{{{2
     exclude_banned_cards: true,
+    exclude_banned_cards_for_fairy_garden: true,
     exclude_useless_cards: false,
     include_all_costs: false,
     include_basic: 'may',
@@ -1481,6 +1482,11 @@ var hatokurandom = {};
         if (links[0] && !links[2])
           continue;
       }
+      if (options.exclude_banned_cards_for_fairy_garden) {
+        if (any(selected_cards, H.EID_FAIRY) &&
+            selected_cards.some(H.is_banned_card_for_fairy_garden))
+          continue;
+      }
 
       if (options.statistical) {
         ok_count++;
@@ -1556,6 +1562,19 @@ var hatokurandom = {};
     return card.name == '埋もれた財宝' ||
       card.name == '買収工作' ||
       card.name == '魅了術の魔女';
+  };
+
+  H.is_banned_card_for_fairy_garden = function (card) {  //{{{2
+    return 0 <= card.types.indexOf('防衛') ||
+      card.name == '破城槌' ||
+      card.name == '埋もれた財宝' ||
+      card.name == '星詠みの魔女' ||
+      card.name == 'シノビ' ||
+      card.name == '魅了術の魔女' ||
+      card.name == '歩兵大隊' ||
+      card.name == '近衛騎士団' ||
+      card.name == '弓兵隊' ||
+      card.name == 'サムライ';
   };
 
   H.is_dsid = function (sid) {  //{{{2
