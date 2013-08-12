@@ -585,6 +585,102 @@ var hatokurandom = {};
         '早馬',
         '交易船',
       ],  //}}}
+      'fairy-primer': [  //{{{
+        '家守の精霊',
+        '伝令',
+        '春風の妖精',
+        'リーフフェアリー',
+        '旅芸人',
+        '大農園',
+        '石弓隊',
+        '商船団',
+        '収穫祭',
+        '合併',
+      ],  //}}}
+      'fairy-butlerandmaid': [  //{{{
+        '伝令',
+        '春風の妖精',
+        '星巫女の託宣',
+        '旅芸人',
+        '石弓隊',
+        '商船団',
+        '行商人',
+        '検地役人',
+        'メイド長',
+        '執事',
+      ],  //}}}
+      'fairy-winter': [  //{{{
+        '密偵',
+        '伝令',
+        '春風の妖精',
+        '司書',
+        '大農園',
+        '氷雪の精霊',
+        '石弓隊',
+        '行商人',
+        'ブラウニー',
+        '執事',
+      ],  //}}}
+      'fairy-folklore': [  //{{{
+        '密偵',
+        '巡礼',
+        '家守の精霊',
+        'ニンフ',
+        '辻占い師',
+        '御料地',
+        '行商人',
+        'ブラウニー',
+        '聖堂騎士',
+        'メイド長',
+      ],  //}}}
+      'fairy-frontier': [  //{{{
+        '密偵',
+        '巡礼',
+        '家守の精霊',
+        '星巫女の託宣',
+        '旅芸人',
+        '商船団',
+        '交易都市',
+        '鬼族の戦士',
+        '徴税人',
+        '合併',
+      ],  //}}}
+      'fairy-carnival': [  //{{{
+        '密偵',
+        '春風の妖精',
+        '祝福',
+        '星巫女の託宣',
+        'ギルドマスター',
+        '大農園',
+        '石弓隊',
+        '聖堂騎士',
+        'メイド長',
+        '収穫祭',
+      ],  //}}}
+      'fairy-holyornot': [  //{{{
+        '密偵',
+        '巡礼',
+        '家守の精霊',
+        'リーフフェアリー',
+        'ギルドマスター',
+        '氷雪の精霊',
+        '御料地',
+        '交易都市',
+        '収穫祭',
+        '裁判官',
+      ],  //}}}
+      'fairy-fairyandknight': [  //{{{
+        '家守の精霊',
+        '春風の妖精',
+        '祝福',
+        'リーフフェアリー',
+        '旅芸人',
+        'ギルドマスター',
+        'ニンフ',
+        '大農園',
+        '聖堂騎士',
+        '合併',
+      ],  //}}}
       'championship1-prelims1': [  //{{{
         '城壁',
         '願いの泉',
@@ -836,6 +932,14 @@ var hatokurandom = {};
       'supply:northern-swordsman'
     ],  //}}}
     'supplies:fairy': [  //{{{
+      'supply:fairy-primer',
+      'supply:fairy-butlerandmaid',
+      'supply:fairy-winter',
+      'supply:fairy-folklore',
+      'supply:fairy-frontier',
+      'supply:fairy-carnival',
+      'supply:fairy-holyornot',
+      'supply:fairy-fairyandknight'
     ],  //}}}
     'supplies:championship1': [  //{{{
       'supply:championship1-prelims1',
@@ -1031,6 +1135,30 @@ var hatokurandom = {};
     },  //}}}
     'supplies:fairy': {  //{{{
       title: '推奨サプライ(フェアリーガーデン)'
+    },  //}}}
+    'supply:fairy-primer': {  //{{{
+      title: 'フェアリーガーデン入門'
+    },  //}}}
+    'supply:fairy-butlerandmaid': {  //{{{
+      title: '執事とメイド'
+    },  //}}}
+    'supply:fairy-winter': {  //{{{
+      title: '冬来たりなば'
+    },  //}}}
+    'supply:fairy-folklore': {  //{{{
+      title: 'フォークロア'
+    },  //}}}
+    'supply:fairy-frontier': {  //{{{
+      title: '辺境部族'
+    },  //}}}
+    'supply:fairy-carnival': {  //{{{
+      title: '謝肉祭'
+    },  //}}}
+    'supply:fairy-holyornot': {  //{{{
+      title: '聖か俗か'
+    },  //}}}
+    'supply:fairy-fairyandknight': {  //{{{
+      title: '妖精と騎士'
     },  //}}}
     'supplies:championship1': {  //{{{
       title: '世界選手権'
