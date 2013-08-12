@@ -139,33 +139,33 @@ var hatokurandom = {};
     {cid: 0x4a, eid: H.EID_FAIRY, cost: 4, link: 1, name: '大農園', types: ['領地'], rarity: 'C'},
     {cid: 0x4b, eid: H.EID_FAIRY, cost: 5, link: 1, name: '収穫祭', types: ['行動'], rarity: 'C'},
     {cid: 0x4c, eid: H.EID_FAIRY, cost: 4, link: 0, name: '氷雪の精霊', types: ['行動', '攻撃'], subtype: '魔法', rarity: 'C'},
-    {cid: 0x4d, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
-    {cid: 0x4e, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
-    {cid: 0x4f, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
-    {cid: 0x50, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
-    {cid: 0x51, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
-    {cid: 0x52, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
-    {cid: 0x53, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
-    {cid: 0x54, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
-    {cid: 0x55, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
-    {cid: 0x56, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
-    {cid: 0x57, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
-    {cid: 0x58, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
-    {cid: 0x59, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
-    {cid: 0x5a, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
-    {cid: 0x5b, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
-    {cid: 0x5c, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
-    {cid: 0x5d, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
-    {cid: 0x5e, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
-    {cid: 0x5f, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
-    {cid: 0x60, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
-    {cid: 0x61, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
-    {cid: 0x62, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
-    {cid: 0x63, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
-    {cid: 0x64, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
-    {cid: 0x65, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
-    {cid: 0x66, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
-    {cid: 0x67, eid: H.EID_FAIRY, cost: undefined, link: undefined, name: '???', types: ['?'], rarity: 'C'},
+    {cid: 0x4d, eid: H.EID_FAIRY, cost: 2, link: 2, name: '密偵', types: ['行動', '攻撃'], subtype: '兵力', rarity: 'C'},
+    {cid: 0x4e, eid: H.EID_FAIRY, cost: 2, link: 2, name: '巡礼', types: ['行動'], rarity: 'C'},
+    {cid: 0x4f, eid: H.EID_FAIRY, cost: 2, link: 1, name: '家守の精霊', types: ['行動'], subtype: '魔法', rarity: 'C'},
+    {cid: 0x50, eid: H.EID_FAIRY, cost: 2, link: 2, name: '伝令', types: ['行動'], rarity: 'C'},
+    {cid: 0x51, eid: H.EID_FAIRY, cost: 2, link: 1, name: '春風の妖精', types: ['行動'], subtype: '魔法', rarity: 'C'},
+    {cid: 0x52, eid: H.EID_FAIRY, cost: 3, link: 1, name: '司書', types: ['行動'], rarity: 'C'},
+    {cid: 0x53, eid: H.EID_FAIRY, cost: 3, link: 1, name: '祝福', types: ['行動'], rarity: 'C'},
+    {cid: 0x54, eid: H.EID_FAIRY, cost: 3, link: 2, name: '星巫女の託宣', types: ['行動'], subtype: '魔法', rarity: 'C'},
+    {cid: 0x55, eid: H.EID_FAIRY, cost: 3, link: 1, name: 'リーフフェアリー', types: ['行動'], subtype: '魔法', rarity: 'C'},
+    {cid: 0x56, eid: H.EID_FAIRY, cost: 3, link: 1, name: '旅芸人', types: ['行動'], rarity: 'C'},
+    {cid: 0x57, eid: H.EID_FAIRY, cost: 3, link: 2, name: 'ギルドマスター', types: ['行動'], rarity: 'C'},
+    {cid: 0x58, eid: H.EID_FAIRY, cost: 4, link: 1, name: 'ニンフ', types: ['行動', '攻撃'], subtype: '魔法', rarity: 'C'},
+    {cid: 0x59, eid: H.EID_FAIRY, cost: 4, link: 0, name: '辻占い師', types: ['行動'], subtype: '魔法', rarity: 'C'},
+    {cid: 0x5a, eid: H.EID_FAIRY, cost: 4, link: 1, name: '御料地', types: ['領地'], rarity: 'C'},
+    {cid: 0x5b, eid: H.EID_FAIRY, cost: 4, link: 0, name: '石弓隊', types: ['行動', '攻撃'], subtype: '兵力', rarity: 'C'},
+    {cid: 0x5c, eid: H.EID_FAIRY, cost: 4, link: 0, name: '商船団', types: ['行動'], subtype: '商人', rarity: 'C'},
+    {cid: 0x5d, eid: H.EID_FAIRY, cost: 4, link: 0, name: '行商人', types: ['行動'], subtype: '商人', rarity: 'C'},
+    {cid: 0x5e, eid: H.EID_FAIRY, cost: 4, link: 0, name: 'ブラウニー', types: ['行動'], subtype: '魔法', rarity: 'C'},
+    {cid: 0x5f, eid: H.EID_FAIRY, cost: 4, link: 1, name: '検地役人', types: ['行動', '攻撃'], rarity: 'C'},
+    {cid: 0x60, eid: H.EID_FAIRY, cost: 5, link: 0, name: '聖堂騎士', types: ['行動', '攻撃'], subtype: '兵力', rarity: 'C'},
+    {cid: 0x61, eid: H.EID_FAIRY, cost: 5, link: 1, name: '交易都市', types: ['領地'], rarity: 'C'},
+    {cid: 0x62, eid: H.EID_FAIRY, cost: 5, link: 0, name: '鬼族の戦士', types: ['行動', '攻撃'], subtype: '兵力', rarity: 'C'},
+    {cid: 0x63, eid: H.EID_FAIRY, cost: 5, link: undefined, name: 'メイド長', types: ['継承権'], subtype: '侍女', rarity: 'C'},
+    {cid: 0x64, eid: H.EID_FAIRY, cost: 5, link: 0, name: '執事', types: ['行動'], rarity: 'C'},
+    {cid: 0x65, eid: H.EID_FAIRY, cost: 5, link: 0, name: '徴税人', types: ['行動', '攻撃'], rarity: 'C'},
+    {cid: 0x66, eid: H.EID_FAIRY, cost: 5, link: 1, name: '合併', types: ['行動'], rarity: 'C'},
+    {cid: 0x67, eid: H.EID_FAIRY, cost: 6, link: undefined, name: '裁判官', types: ['継承権'], rarity: 'C'},
 
     {cid: 0x68, eid: H.EID_FAIRY, cost: 11, link: undefined, name: '妖精女王エルルーン', types: ['継承権'], rarity: 'R'}
 
@@ -585,6 +585,102 @@ var hatokurandom = {};
         '早馬',
         '交易船',
       ],  //}}}
+      'fairy-primer': [  //{{{
+        '家守の精霊',
+        '伝令',
+        '春風の妖精',
+        'リーフフェアリー',
+        '旅芸人',
+        '大農園',
+        '石弓隊',
+        '商船団',
+        '収穫祭',
+        '合併',
+      ],  //}}}
+      'fairy-butlerandmaid': [  //{{{
+        '伝令',
+        '春風の妖精',
+        '星巫女の託宣',
+        '旅芸人',
+        '石弓隊',
+        '商船団',
+        '行商人',
+        '検地役人',
+        'メイド長',
+        '執事',
+      ],  //}}}
+      'fairy-winter': [  //{{{
+        '密偵',
+        '伝令',
+        '春風の妖精',
+        '司書',
+        '大農園',
+        '氷雪の精霊',
+        '石弓隊',
+        '行商人',
+        'ブラウニー',
+        '執事',
+      ],  //}}}
+      'fairy-folklore': [  //{{{
+        '密偵',
+        '巡礼',
+        '家守の精霊',
+        'ニンフ',
+        '辻占い師',
+        '御料地',
+        '行商人',
+        'ブラウニー',
+        '聖堂騎士',
+        'メイド長',
+      ],  //}}}
+      'fairy-frontier': [  //{{{
+        '密偵',
+        '巡礼',
+        '家守の精霊',
+        '星巫女の託宣',
+        '旅芸人',
+        '商船団',
+        '交易都市',
+        '鬼族の戦士',
+        '徴税人',
+        '合併',
+      ],  //}}}
+      'fairy-carnival': [  //{{{
+        '密偵',
+        '春風の妖精',
+        '祝福',
+        '星巫女の託宣',
+        'ギルドマスター',
+        '大農園',
+        '石弓隊',
+        '聖堂騎士',
+        'メイド長',
+        '収穫祭',
+      ],  //}}}
+      'fairy-holyornot': [  //{{{
+        '密偵',
+        '巡礼',
+        '家守の精霊',
+        'リーフフェアリー',
+        'ギルドマスター',
+        '氷雪の精霊',
+        '御料地',
+        '交易都市',
+        '収穫祭',
+        '裁判官',
+      ],  //}}}
+      'fairy-fairyandknight': [  //{{{
+        '家守の精霊',
+        '春風の妖精',
+        '祝福',
+        'リーフフェアリー',
+        '旅芸人',
+        'ギルドマスター',
+        'ニンフ',
+        '大農園',
+        '聖堂騎士',
+        '合併',
+      ],  //}}}
       'championship1-prelims1': [  //{{{
         '城壁',
         '願いの泉',
@@ -836,6 +932,14 @@ var hatokurandom = {};
       'supply:northern-swordsman'
     ],  //}}}
     'supplies:fairy': [  //{{{
+      'supply:fairy-primer',
+      'supply:fairy-butlerandmaid',
+      'supply:fairy-winter',
+      'supply:fairy-folklore',
+      'supply:fairy-frontier',
+      'supply:fairy-carnival',
+      'supply:fairy-holyornot',
+      'supply:fairy-fairyandknight'
     ],  //}}}
     'supplies:championship1': [  //{{{
       'supply:championship1-prelims1',
@@ -1031,6 +1135,30 @@ var hatokurandom = {};
     },  //}}}
     'supplies:fairy': {  //{{{
       title: '推奨サプライ(フェアリーガーデン)'
+    },  //}}}
+    'supply:fairy-primer': {  //{{{
+      title: 'フェアリーガーデン入門'
+    },  //}}}
+    'supply:fairy-butlerandmaid': {  //{{{
+      title: '執事とメイド'
+    },  //}}}
+    'supply:fairy-winter': {  //{{{
+      title: '冬来たりなば'
+    },  //}}}
+    'supply:fairy-folklore': {  //{{{
+      title: 'フォークロア'
+    },  //}}}
+    'supply:fairy-frontier': {  //{{{
+      title: '辺境部族'
+    },  //}}}
+    'supply:fairy-carnival': {  //{{{
+      title: '謝肉祭'
+    },  //}}}
+    'supply:fairy-holyornot': {  //{{{
+      title: '聖か俗か'
+    },  //}}}
+    'supply:fairy-fairyandknight': {  //{{{
+      title: '妖精と騎士'
     },  //}}}
     'supplies:championship1': {  //{{{
       title: '世界選手権'
