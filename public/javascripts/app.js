@@ -43,7 +43,7 @@ var hatokurandom = {};
     // Princess cards are counted as rare cards.
     // Reference: https://twitter.com/HeartofCrown/status/233840190383341568
 
-    {cid: 0x34, eid: H.EID_BASIC, cost: 0, link: undefined, name: '呪い', types: ['呪い'], rarity: 'B'},
+    {cid: 0x34, eid: H.EID_BASIC, cost: 0, link: undefined, name: '呪い', types: ['呪い'], rarity: undefined},
 
     {cid: 0x2b, eid: H.EID_BASIC, cost: 1, link: 1, name: '農村', types: ['領地'], rarity: 'B'},
 
