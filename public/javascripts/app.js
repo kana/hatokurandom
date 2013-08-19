@@ -2198,6 +2198,14 @@ var hatokurandom = {};
     H.complete_header(e, data);
   });
 
+  $(document).bind('swipeleft', function () {  //{{{2
+    history.forward();
+  });
+
+  $(document).bind('swiperight', function () {  //{{{2
+    history.back();
+  });
+
   $(document).ready(function () {  //{{{2
     $.mobile.defaultPageTransition = 'slide';
 
