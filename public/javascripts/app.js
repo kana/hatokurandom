@@ -2215,6 +2215,14 @@ var hatokurandom = {};
           return H.prepare_other_page;
       })();
 
+      // Most of initialization steps are usually done at "ready".
+      // But H.set_up_options_if_necessary must be done also at this timing,
+      // because "pagebeforechange" is triggered before "ready".
+      // If we H.set_up_options_if_necessary at "ready" and a user directly
+      // opens a page to generate a random supply (such as #supply:random10)
+      // from another site, options are loaded AFTER a random supply is
+      // generated.
+      H.set_up_options_if_necessary();
       prepare(e, data, pid);
     } catch (ex) {
       alert('Unexpected error: ' + ex.message);  // TODO: Friendly instruction.
