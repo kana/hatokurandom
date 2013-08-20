@@ -2141,6 +2141,34 @@ var hatokurandom = {};
     }
   };
 
+  H.set_up_options_if_necessary = (function () {  //{{{2
+    var is_initialized = false;
+    return function () {
+      if (!is_initialized) {
+        $('#configure :checkbox').change(function (e, kw) {
+          if (!(kw && kw.is_resetting)) {
+            var $input = $(e.target);
+            H.save_option($input.attr('name'), $input.isChecked());
+          }
+        });
+        $('#configure select').change(function (e, kw) {
+          if (!(kw && kw.is_resetting)) {
+            var $input = $(e.target);
+            H.save_option($input.attr('name'), $input.val());
+          }
+        });
+        H.load_options({is_resetting: false});
+
+        $('#configure #button_to_reset_options').click(function (e) {
+          H.reset_options();
+          alert('初期設定に戻しました。');
+        });
+
+        is_initialized = true;
+      }
+    };
+  })();
+
   H.test_supply_generation = function (options) {  //{{{2
     // For interactive investigation; not called from anywhere.
     var s = H.choose_random_cards(
@@ -2203,24 +2231,7 @@ var hatokurandom = {};
 
     H.patch_the_title_for_the_initial_page();
 
-    $('#configure :checkbox').change(function (e, kw) {
-      if (!(kw && kw.is_resetting)) {
-        var $input = $(e.target);
-        H.save_option($input.attr('name'), $input.isChecked());
-      }
-    });
-    $('#configure select').change(function (e, kw) {
-      if (!(kw && kw.is_resetting)) {
-        var $input = $(e.target);
-        H.save_option($input.attr('name'), $input.val());
-      }
-    });
-    H.load_options({is_resetting: false});
-
-    $('#configure #button_to_reset_options').click(function (e) {
-      H.reset_options();
-      alert('初期設定に戻しました。');
-    });
+    H.set_up_options_if_necessary();
 
     if (navigator.userAgent.match(/OS (\S)+ like Mac OS X/i))
       $('body').addClass('iOS');
