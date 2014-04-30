@@ -2169,6 +2169,21 @@ var hatokurandom = {};
     };
   })();
 
+  H.suggest_new_uri_if_necessary = function () {  //{{{2
+    var old_domain = 'hatokurandom.heroku.com';
+    var new_domain = 'hatokurandom.herokuapp.com';
+    if (location.hostname == old_domain) {
+      var message =
+        '現在アクセスされている ' + old_domain + ' ですが、' +
+        '諸事情により2014-09-22から利用できなくなりました。' +
+        '今後は ' + new_domain + ' でアクセスするようお願いします。' +
+        '\n\n' +
+        new_domain + ' へ移動してもよいでしょうか?';
+      if (confirm(message))
+        location.href = location.href.replace(location.host, new_domain);
+    }
+  };
+
   H.test_supply_generation = function (options) {  //{{{2
     // For interactive investigation; not called from anywhere.
     var s = H.choose_random_cards(
@@ -2235,6 +2250,8 @@ var hatokurandom = {};
   });
 
   $(document).ready(function () {  //{{{2
+    H.suggest_new_uri_if_necessary();
+
     $.mobile.defaultPageTransition = 'slide';
 
     H.patch_the_title_for_the_initial_page();
