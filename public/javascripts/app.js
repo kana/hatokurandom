@@ -45,6 +45,8 @@ var hatokurandom = {};
     // Princess cards are counted as rare cards.
     // Reference: https://twitter.com/HeartofCrown/status/233840190383341568
 
+    // 基本セット  //{{{3
+
     {cid: 0x34, eid: H.EID_BASIC, cost: 0, link: undefined, name: '呪い', types: ['呪い'], rarity: undefined},
 
     {cid: 0x2b, eid: H.EID_BASIC, cost: 1, link: 1, name: '農村', types: ['領地'], rarity: 'B'},
@@ -101,6 +103,8 @@ var hatokurandom = {};
 
     {cid: 0x33, eid: H.EID_BASIC, cost: 13, link: undefined, name: '皇帝の冠', types: ['継承権'], rarity: 'R'},
 
+    // 極東辺境領  //{{{3
+
     {cid: 0x1f, eid: H.EID_FAREAST, cost: 2, link: 0, name: 'お金好きの妖精', types: ['行動'], subtype: '魔法', rarity: 'C'},
 
     {cid: 0x20, eid: H.EID_FAREAST, cost: 3, link: 0, name: '課税', types: ['行動'], rarity: 'C'},
@@ -118,6 +122,8 @@ var hatokurandom = {};
     {cid: 0x2a, eid: H.EID_FAREAST, cost: 5, link: 2, name: '結盟', types: ['行動'], rarity: 'C'},
 
     {cid: 0x3b, eid: H.EID_FAREAST, cost: 6, link: undefined, name: '極東の算法姫 オウカ', types: ['プリンセス'], rarity: 'R'},
+
+    // 北限の魔女  //{{{3
 
     {cid: 0x3f, eid: H.EID_NORTHERN, cost: 2, link: 1, name: 'ケットシー', types: ['行動'], subtype: '魔法', rarity: 'C'},
     {cid: 0x40, eid: H.EID_NORTHERN, cost: 2, link: 1, name: '幸運の銀貨', types: ['行動'], rarity: 'C'},
@@ -137,6 +143,8 @@ var hatokurandom = {};
     {cid: 0x48, eid: H.EID_NORTHERN, cost: 6, link: 0, name: '独占', types: ['行動'], rarity: 'C'},
     {cid: 0x49, eid: H.EID_NORTHERN, cost: 6, link: 1, name: '工業都市', types: ['領地'], rarity: 'C'},
     {cid: 0x3c, eid: H.EID_NORTHERN, cost: 6, link: undefined, name: '北限の魔女姫 アナスタシア', types: ['プリンセス'], rarity: 'R'},
+
+    // フェアリーガーデン  //{{{3
 
     {cid: 0x4f, eid: H.EID_FAIRY, cost: 2, link: 1, name: '家守の精霊', types: ['行動'], subtype: '魔法', rarity: 'C'},
     {cid: 0x51, eid: H.EID_FAIRY, cost: 2, link: 1, name: '春風の妖精', types: ['行動'], subtype: '魔法', rarity: 'C'},
@@ -175,8 +183,11 @@ var hatokurandom = {};
 
     {cid: 0x68, eid: H.EID_FAIRY, cost: 11, link: undefined, name: '妖精女王エルルーン', types: ['継承権'], rarity: 'R'},
 
+    // 六都市同盟  //{{{3
+
     {cid: 0x69, eid: H.EID_SIX, cost: undefined, link: undefined, name: '?', types: ['プリンセス'], rarity: 'R'}
 
+    //{{{3
   ];
 
   H.COMMON_CARDS =  //{{{2
