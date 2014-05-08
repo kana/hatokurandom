@@ -28,12 +28,14 @@ var hatokurandom = {};
   H.EID_FAREAST = 2;
   H.EID_NORTHERN = 3;
   H.EID_FAIRY = 4;
+  H.EID_SIX = 5;
 
   H.EXPANSIONS = [  //{{{2
     {eid: H.EID_BASIC, name: '基本セット'},
     {eid: H.EID_FAREAST, name: '極東辺境領'},
     {eid: H.EID_NORTHERN, name: '北限の魔女'},
-    {eid: H.EID_FAIRY, name: 'フェアリーガーデン'}
+    {eid: H.EID_FAIRY, name: 'フェアリーガーデン'},
+    {eid: H.EID_SIX, name: '六都市同盟'}
   ];
 
   H.ALL_CARDS = [  //{{{2
@@ -42,6 +44,8 @@ var hatokurandom = {};
     //
     // Princess cards are counted as rare cards.
     // Reference: https://twitter.com/HeartofCrown/status/233840190383341568
+
+    // 基本セット  //{{{3
 
     {cid: 0x34, eid: H.EID_BASIC, cost: 0, link: undefined, name: '呪い', types: ['呪い'], rarity: undefined},
 
@@ -99,6 +103,8 @@ var hatokurandom = {};
 
     {cid: 0x33, eid: H.EID_BASIC, cost: 13, link: undefined, name: '皇帝の冠', types: ['継承権'], rarity: 'R'},
 
+    // 極東辺境領  //{{{3
+
     {cid: 0x1f, eid: H.EID_FAREAST, cost: 2, link: 0, name: 'お金好きの妖精', types: ['行動'], subtype: '魔法', rarity: 'C'},
 
     {cid: 0x20, eid: H.EID_FAREAST, cost: 3, link: 0, name: '課税', types: ['行動'], rarity: 'C'},
@@ -116,6 +122,8 @@ var hatokurandom = {};
     {cid: 0x2a, eid: H.EID_FAREAST, cost: 5, link: 2, name: '結盟', types: ['行動'], rarity: 'C'},
 
     {cid: 0x3b, eid: H.EID_FAREAST, cost: 6, link: undefined, name: '極東の算法姫 オウカ', types: ['プリンセス'], rarity: 'R'},
+
+    // 北限の魔女  //{{{3
 
     {cid: 0x3f, eid: H.EID_NORTHERN, cost: 2, link: 1, name: 'ケットシー', types: ['行動'], subtype: '魔法', rarity: 'C'},
     {cid: 0x40, eid: H.EID_NORTHERN, cost: 2, link: 1, name: '幸運の銀貨', types: ['行動'], rarity: 'C'},
@@ -136,39 +144,50 @@ var hatokurandom = {};
     {cid: 0x49, eid: H.EID_NORTHERN, cost: 6, link: 1, name: '工業都市', types: ['領地'], rarity: 'C'},
     {cid: 0x3c, eid: H.EID_NORTHERN, cost: 6, link: undefined, name: '北限の魔女姫 アナスタシア', types: ['プリンセス'], rarity: 'R'},
 
-    {cid: 0x4a, eid: H.EID_FAIRY, cost: 4, link: 1, name: '大農園', types: ['領地'], rarity: 'C'},
-    {cid: 0x4b, eid: H.EID_FAIRY, cost: 5, link: 1, name: '収穫祭', types: ['行動'], rarity: 'C'},
-    {cid: 0x4c, eid: H.EID_FAIRY, cost: 4, link: 0, name: '氷雪の精霊', types: ['行動', '攻撃'], subtype: '魔法', rarity: 'C'},
+    // フェアリーガーデン  //{{{3
+
+    {cid: 0x4f, eid: H.EID_FAIRY, cost: 2, link: 1, name: '家守の精霊', types: ['行動'], subtype: '魔法', rarity: 'C'},
+    {cid: 0x51, eid: H.EID_FAIRY, cost: 2, link: 1, name: '春風の妖精', types: ['行動'], subtype: '魔法', rarity: 'C'},
+    {cid: 0x50, eid: H.EID_FAIRY, cost: 2, link: 2, name: '伝令', types: ['行動'], rarity: 'C'},
     {cid: 0x4d, eid: H.EID_FAIRY, cost: 2, link: 2, name: '密偵', types: ['行動', '攻撃'], subtype: '兵力', rarity: 'C'},
     {cid: 0x4e, eid: H.EID_FAIRY, cost: 2, link: 2, name: '巡礼', types: ['行動'], rarity: 'C'},
-    {cid: 0x4f, eid: H.EID_FAIRY, cost: 2, link: 1, name: '家守の精霊', types: ['行動'], subtype: '魔法', rarity: 'C'},
-    {cid: 0x50, eid: H.EID_FAIRY, cost: 2, link: 2, name: '伝令', types: ['行動'], rarity: 'C'},
-    {cid: 0x51, eid: H.EID_FAIRY, cost: 2, link: 1, name: '春風の妖精', types: ['行動'], subtype: '魔法', rarity: 'C'},
-    {cid: 0x52, eid: H.EID_FAIRY, cost: 3, link: 1, name: '司書', types: ['行動'], rarity: 'C'},
-    {cid: 0x53, eid: H.EID_FAIRY, cost: 3, link: 1, name: '祝福', types: ['行動'], rarity: 'C'},
-    {cid: 0x54, eid: H.EID_FAIRY, cost: 3, link: 2, name: '星巫女の託宣', types: ['行動'], subtype: '魔法', rarity: 'C'},
+
     {cid: 0x55, eid: H.EID_FAIRY, cost: 3, link: 1, name: 'リーフフェアリー', types: ['行動'], subtype: '魔法', rarity: 'C'},
+    {cid: 0x52, eid: H.EID_FAIRY, cost: 3, link: 1, name: '司書', types: ['行動'], rarity: 'C'},
     {cid: 0x56, eid: H.EID_FAIRY, cost: 3, link: 1, name: '旅芸人', types: ['行動'], rarity: 'C'},
+    {cid: 0x53, eid: H.EID_FAIRY, cost: 3, link: 1, name: '祝福', types: ['行動'], rarity: 'C'},
     {cid: 0x57, eid: H.EID_FAIRY, cost: 3, link: 2, name: 'ギルドマスター', types: ['行動'], rarity: 'C'},
-    {cid: 0x58, eid: H.EID_FAIRY, cost: 4, link: 1, name: 'ニンフ', types: ['行動', '攻撃'], subtype: '魔法', rarity: 'C'},
-    {cid: 0x59, eid: H.EID_FAIRY, cost: 4, link: 0, name: '辻占い師', types: ['行動'], subtype: '魔法', rarity: 'C'},
-    {cid: 0x5a, eid: H.EID_FAIRY, cost: 4, link: 1, name: '御料地', types: ['領地'], rarity: 'C'},
-    {cid: 0x5b, eid: H.EID_FAIRY, cost: 4, link: 0, name: '石弓隊', types: ['行動', '攻撃'], subtype: '兵力', rarity: 'C'},
-    {cid: 0x5c, eid: H.EID_FAIRY, cost: 4, link: 0, name: '商船団', types: ['行動'], subtype: '商人', rarity: 'C'},
-    {cid: 0x5d, eid: H.EID_FAIRY, cost: 4, link: 0, name: '行商人', types: ['行動'], subtype: '商人', rarity: 'C'},
+    {cid: 0x54, eid: H.EID_FAIRY, cost: 3, link: 2, name: '星巫女の託宣', types: ['行動'], subtype: '魔法', rarity: 'C'},
+
     {cid: 0x5e, eid: H.EID_FAIRY, cost: 4, link: 0, name: 'ブラウニー', types: ['行動'], subtype: '魔法', rarity: 'C'},
+    {cid: 0x4c, eid: H.EID_FAIRY, cost: 4, link: 0, name: '氷雪の精霊', types: ['行動', '攻撃'], subtype: '魔法', rarity: 'C'},
+    {cid: 0x5b, eid: H.EID_FAIRY, cost: 4, link: 0, name: '石弓隊', types: ['行動', '攻撃'], subtype: '兵力', rarity: 'C'},
+    {cid: 0x5d, eid: H.EID_FAIRY, cost: 4, link: 0, name: '行商人', types: ['行動'], subtype: '商人', rarity: 'C'},
+    {cid: 0x59, eid: H.EID_FAIRY, cost: 4, link: 0, name: '辻占い師', types: ['行動'], subtype: '魔法', rarity: 'C'},
+    {cid: 0x58, eid: H.EID_FAIRY, cost: 4, link: 1, name: 'ニンフ', types: ['行動', '攻撃'], subtype: '魔法', rarity: 'C'},
+    {cid: 0x4a, eid: H.EID_FAIRY, cost: 4, link: 1, name: '大農園', types: ['領地'], rarity: 'C'},
+    {cid: 0x5a, eid: H.EID_FAIRY, cost: 4, link: 1, name: '御料地', types: ['領地'], rarity: 'C'},
     {cid: 0x5f, eid: H.EID_FAIRY, cost: 4, link: 1, name: '検地役人', types: ['行動', '攻撃'], rarity: 'C'},
-    {cid: 0x60, eid: H.EID_FAIRY, cost: 5, link: 0, name: '聖堂騎士', types: ['行動', '攻撃'], subtype: '兵力', rarity: 'C'},
-    {cid: 0x61, eid: H.EID_FAIRY, cost: 5, link: 1, name: '交易都市', types: ['領地'], rarity: 'C'},
-    {cid: 0x62, eid: H.EID_FAIRY, cost: 5, link: 0, name: '鬼族の戦士', types: ['行動', '攻撃'], subtype: '兵力', rarity: 'C'},
-    {cid: 0x63, eid: H.EID_FAIRY, cost: 5, link: undefined, name: 'メイド長', types: ['継承権'], subtype: '侍女', rarity: 'C'},
+
+    {cid: 0x5c, eid: H.EID_FAIRY, cost: 5, link: 0, name: '商船団', types: ['行動'], subtype: '商人', rarity: 'C'},
     {cid: 0x64, eid: H.EID_FAIRY, cost: 5, link: 0, name: '執事', types: ['行動'], rarity: 'C'},
     {cid: 0x65, eid: H.EID_FAIRY, cost: 5, link: 0, name: '徴税人', types: ['行動', '攻撃'], rarity: 'C'},
+    {cid: 0x60, eid: H.EID_FAIRY, cost: 5, link: 0, name: '聖堂騎士', types: ['行動', '攻撃'], subtype: '兵力', rarity: 'C'},
+    {cid: 0x62, eid: H.EID_FAIRY, cost: 5, link: 0, name: '鬼族の戦士', types: ['行動', '攻撃'], subtype: '兵力', rarity: 'C'},
+    {cid: 0x61, eid: H.EID_FAIRY, cost: 5, link: 1, name: '交易都市', types: ['領地'], rarity: 'C'},
+    {cid: 0x4b, eid: H.EID_FAIRY, cost: 5, link: 1, name: '収穫祭', types: ['行動'], rarity: 'C'},
     {cid: 0x66, eid: H.EID_FAIRY, cost: 5, link: 1, name: '合併', types: ['行動'], rarity: 'C'},
+    {cid: 0x63, eid: H.EID_FAIRY, cost: 5, link: undefined, name: 'メイド長', types: ['継承権'], subtype: '侍女', rarity: 'C'},
+
     {cid: 0x67, eid: H.EID_FAIRY, cost: 6, link: undefined, name: '裁判官', types: ['継承権'], rarity: 'C'},
 
-    {cid: 0x68, eid: H.EID_FAIRY, cost: 11, link: undefined, name: '妖精女王エルルーン', types: ['継承権'], rarity: 'R'}
+    {cid: 0x68, eid: H.EID_FAIRY, cost: 11, link: undefined, name: '妖精女王エルルーン', types: ['継承権'], rarity: 'R'},
 
+    // 六都市同盟  //{{{3
+
+    {cid: 0x69, eid: H.EID_SIX, cost: undefined, link: undefined, name: '?', types: ['プリンセス'], rarity: 'R'}
+
+    //{{{3
   ];
 
   H.COMMON_CARDS =  //{{{2
@@ -214,6 +233,7 @@ var hatokurandom = {};
     include_link_2: false,
     include_northern: 'may',
     include_pairs: false,
+    include_six: 'may',
     statistical: false,
     try_count: 100
   };
@@ -827,6 +847,9 @@ var hatokurandom = {};
       'reference-fairy':  //{{{
         list(function (c) {return included(c, H.EID_FAIRY);})
       ,  //}}}
+      'reference-six':  //{{{
+        list(function (c) {return included(c, H.EID_SIX);})
+      ,  //}}}
       'reference-rarity-basic':  //{{{
         list(function (c) {return c.rarity == 'B';})
       ,  //}}}
@@ -942,6 +965,8 @@ var hatokurandom = {};
       'supply:fairy-holyornot',
       'supply:fairy-fairyandknight'
     ],  //}}}
+    'supplies:six': [  //{{{
+    ],  //}}}
     'supplies:championship1': [  //{{{
       'supply:championship1-prelims1',
       'supply:championship1-prelims2',
@@ -992,7 +1017,8 @@ var hatokurandom = {};
       'reference:basic',
       'reference:fareast',
       'reference:northern',
-      'reference:fairy'
+      'reference:fairy',
+      'reference:six'
     ],  //}}}
     'references:rarity': [  //{{{
       'reference:rarity-basic',
@@ -1161,6 +1187,9 @@ var hatokurandom = {};
     'supply:fairy-fairyandknight': {  //{{{
       title: '妖精と騎士'
     },  //}}}
+    'supplies:six': {  //{{{
+      title: '推奨サプライ(六都市同盟)'
+    },  //}}}
     'supplies:championship1': {  //{{{
       title: '世界選手権'
     },  //}}}
@@ -1280,6 +1309,9 @@ var hatokurandom = {};
     },  //}}}
     'reference:fairy': {  //{{{
       title: 'フェアリーガーデンのカード一覧'
+    },  //}}}
+    'reference:six': {  //{{{
+      title: '六都市同盟のカード一覧'
     },  //}}}
     'references:rarity': {  //{{{
       title: 'レアリティ別カードリスト'
@@ -1441,6 +1473,7 @@ var hatokurandom = {};
       rest_cards = filter_by_eid(rest_cards, options.include_fareast != 'must_not', H.EID_FAREAST);
       rest_cards = filter_by_eid(rest_cards, options.include_northern != 'must_not', H.EID_NORTHERN);
       rest_cards = filter_by_eid(rest_cards, options.include_fairy != 'must_not', H.EID_FAIRY);
+      rest_cards = filter_by_eid(rest_cards, options.include_fairy != 'must_not', H.EID_SIX);
 
       selected_cards = [];
       for (var i = 1; i <= count && 1 <= rest_cards.length; i++) {
@@ -1466,6 +1499,10 @@ var hatokurandom = {};
       }
       if (options.include_fairy == 'must') {
         if (!any(selected_cards, H.EID_FAIRY))
+          continue;
+      }
+      if (options.include_six == 'must') {
+        if (!any(selected_cards, H.EID_SIX))
           continue;
       }
       if (options.include_all_costs) {
@@ -2136,7 +2173,8 @@ var hatokurandom = {};
     if (H.options.include_basic == 'must_not'
         && H.options.include_fareast == 'must_not'
         && H.options.include_northern == 'must_not'
-        && H.options.include_fairy == 'must_not') {
+        && H.options.include_fairy == 'must_not'
+        && H.options.include_six == 'must_not') {
       $('#configure [name="include_basic"]').val('may').change();
     }
   };

@@ -45,6 +45,9 @@
           %li
             %a(href='#supplies:fairy') 推奨サプライ(フェアリーガーデン)
           %li
+            -# %a(href='#supplies:six') 推奨サプライ(六都市同盟)
+            %a.disabled 推奨サプライ(六都市同盟)
+          %li
             %a(href='#supplies:championship1') 世界選手権
           %li
             %a(href='#supply:editor') 手動作成
@@ -93,6 +96,12 @@
             %label
               %span#include_fairy.title フェアリーガーデン
               %select(name='include_fairy'){data: {inline: 'true'}}
+                %option(value='must') 必須
+                %option(value='may') 使用
+                %option(value='must_not') 禁止
+            %label
+              %span.title 六都市同盟
+              %select(name='include_six'){data: {inline: 'true'}}
                 %option(value='must') 必須
                 %option(value='may') 使用
                 %option(value='must_not') 禁止
