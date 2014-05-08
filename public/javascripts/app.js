@@ -34,7 +34,8 @@ var hatokurandom = {};
     {eid: H.EID_BASIC, name: '基本セット'},
     {eid: H.EID_FAREAST, name: '極東辺境領'},
     {eid: H.EID_NORTHERN, name: '北限の魔女'},
-    {eid: H.EID_FAIRY, name: 'フェアリーガーデン'}
+    {eid: H.EID_FAIRY, name: 'フェアリーガーデン'},
+    {eid: H.EID_SIX, name: '六都市同盟'}
   ];
 
   H.ALL_CARDS = [  //{{{2
