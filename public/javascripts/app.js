@@ -830,6 +830,9 @@ var hatokurandom = {};
       'reference-fairy':  //{{{
         list(function (c) {return included(c, H.EID_FAIRY);})
       ,  //}}}
+      'reference-six':  //{{{
+        list(function (c) {return included(c, H.EID_SIX);})
+      ,  //}}}
       'reference-rarity-basic':  //{{{
         list(function (c) {return c.rarity == 'B';})
       ,  //}}}
@@ -997,7 +1000,8 @@ var hatokurandom = {};
       'reference:basic',
       'reference:fareast',
       'reference:northern',
-      'reference:fairy'
+      'reference:fairy',
+      'reference:six'
     ],  //}}}
     'references:rarity': [  //{{{
       'reference:rarity-basic',
@@ -1288,6 +1292,9 @@ var hatokurandom = {};
     },  //}}}
     'reference:fairy': {  //{{{
       title: 'フェアリーガーデンのカード一覧'
+    },  //}}}
+    'reference:six': {  //{{{
+      title: '六都市同盟のカード一覧'
     },  //}}}
     'references:rarity': {  //{{{
       title: 'レアリティ別カードリスト'
