@@ -945,6 +945,8 @@ var hatokurandom = {};
       'supply:fairy-holyornot',
       'supply:fairy-fairyandknight'
     ],  //}}}
+    'supplies:six': [  //{{{
+    ],  //}}}
     'supplies:championship1': [  //{{{
       'supply:championship1-prelims1',
       'supply:championship1-prelims2',
@@ -1163,6 +1165,9 @@ var hatokurandom = {};
     },  //}}}
     'supply:fairy-fairyandknight': {  //{{{
       title: '妖精と騎士'
+    },  //}}}
+    'supplies:six': {  //{{{
+      title: '推奨サプライ(六都市同盟)'
     },  //}}}
     'supplies:championship1': {  //{{{
       title: '世界選手権'
