@@ -156,7 +156,7 @@ var hatokurandom = {};
     {cid: 0x59, eid: H.EID_FAIRY, cost: 4, link: 0, name: '辻占い師', types: ['行動'], subtype: '魔法', rarity: 'C'},
     {cid: 0x5a, eid: H.EID_FAIRY, cost: 4, link: 1, name: '御料地', types: ['領地'], rarity: 'C'},
     {cid: 0x5b, eid: H.EID_FAIRY, cost: 4, link: 0, name: '石弓隊', types: ['行動', '攻撃'], subtype: '兵力', rarity: 'C'},
-    {cid: 0x5c, eid: H.EID_FAIRY, cost: 4, link: 0, name: '商船団', types: ['行動'], subtype: '商人', rarity: 'C'},
+    {cid: 0x5c, eid: H.EID_FAIRY, cost: 5, link: 0, name: '商船団', types: ['行動'], subtype: '商人', rarity: 'C'},
     {cid: 0x5d, eid: H.EID_FAIRY, cost: 4, link: 0, name: '行商人', types: ['行動'], subtype: '商人', rarity: 'C'},
     {cid: 0x5e, eid: H.EID_FAIRY, cost: 4, link: 0, name: 'ブラウニー', types: ['行動'], subtype: '魔法', rarity: 'C'},
     {cid: 0x5f, eid: H.EID_FAIRY, cost: 4, link: 1, name: '検地役人', types: ['行動', '攻撃'], rarity: 'C'},
