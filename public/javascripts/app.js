@@ -169,7 +169,9 @@ var hatokurandom = {};
     {cid: 0x66, eid: H.EID_FAIRY, cost: 5, link: 1, name: '合併', types: ['行動'], rarity: 'C'},
     {cid: 0x67, eid: H.EID_FAIRY, cost: 6, link: undefined, name: '裁判官', types: ['継承権'], rarity: 'C'},
 
-    {cid: 0x68, eid: H.EID_FAIRY, cost: 11, link: undefined, name: '妖精女王エルルーン', types: ['継承権'], rarity: 'R'}
+    {cid: 0x68, eid: H.EID_FAIRY, cost: 11, link: undefined, name: '妖精女王エルルーン', types: ['継承権'], rarity: 'R'},
+
+    {cid: 0x69, eid: H.EID_SIX, cost: undefined, link: undefined, name: '?', types: ['プリンセス'], rarity: 'R'}
 
   ];
 
