@@ -216,6 +216,7 @@ var hatokurandom = {};
     include_link_2: false,
     include_northern: 'may',
     include_pairs: false,
+    include_six: 'may',
     statistical: false,
     try_count: 100
   };
@@ -1443,6 +1444,7 @@ var hatokurandom = {};
       rest_cards = filter_by_eid(rest_cards, options.include_fareast != 'must_not', H.EID_FAREAST);
       rest_cards = filter_by_eid(rest_cards, options.include_northern != 'must_not', H.EID_NORTHERN);
       rest_cards = filter_by_eid(rest_cards, options.include_fairy != 'must_not', H.EID_FAIRY);
+      rest_cards = filter_by_eid(rest_cards, options.include_fairy != 'must_not', H.EID_SIX);
 
       selected_cards = [];
       for (var i = 1; i <= count && 1 <= rest_cards.length; i++) {
@@ -1468,6 +1470,10 @@ var hatokurandom = {};
       }
       if (options.include_fairy == 'must') {
         if (!any(selected_cards, H.EID_FAIRY))
+          continue;
+      }
+      if (options.include_six == 'must') {
+        if (!any(selected_cards, H.EID_SIX))
           continue;
       }
       if (options.include_all_costs) {
@@ -2138,7 +2144,8 @@ var hatokurandom = {};
     if (H.options.include_basic == 'must_not'
         && H.options.include_fareast == 'must_not'
         && H.options.include_northern == 'must_not'
-        && H.options.include_fairy == 'must_not') {
+        && H.options.include_fairy == 'must_not'
+        && H.options.include_six == 'must_not') {
       $('#configure [name="include_basic"]').val('may').change();
     }
   };
