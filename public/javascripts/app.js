@@ -1849,7 +1849,7 @@ var hatokurandom = {};
   H.complete_header = function (e, data) {  //{{{2
     var $page =
       typeof data.toPage == 'string'
-      ? $('#' + (data.toPage == '/' ? 'home' : data.toPage))
+      ? $('#' + H.apid_from_pid(H.pid_from_url($m.path.parseUrl(data.toPage))))
       : data.toPage;
     if ($page.length == 0)
       return;
