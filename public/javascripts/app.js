@@ -1028,17 +1028,6 @@ var hatokurandom = {};
     '': []  // Dummy entry to make folds simple.
   };
 
-  H.PID_TO_PARENT_PID_TABLE =  //{{{2
-    (function () {
-      var t = {};
-      for (var parent_pid in H.PID_TO_CHILD_PIDS_TABLE) {
-        var child_pids = H.PID_TO_CHILD_PIDS_TABLE[parent_pid];
-        for (var i in child_pids)
-          t[child_pids[i]] = parent_pid;
-      }
-      return t;
-    })();
-
   H.PID_TO_META_TABLE =  {  //{{{2
     'home': {  //{{{
       title: 'ハトクランダム'
