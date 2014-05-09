@@ -710,36 +710,6 @@
       ).not.toBe(xs);
     });
   });
-  describe('parent_pid_from_pid', function () {
-    var f = H.parent_pid_from_pid;
-    it('should return the parent pid from a given pid', function () {
-      expect(f('supplies:basic')).toEqual('home');
-    });
-    it('should raise error if a given pid is not valid', function () {
-      expect(function () {f('supplies:basic');}).not.toThrow();
-      expect(function () {f('Supplies:basic');}).toThrow();
-      expect(function () {f('supply');}).toThrow();
-    });
-    it('should return undefined to a directly visited rsid page', function () {
-      var original = $.mobile.urlHistory.stack;
-
-      $.mobile.urlHistory.stack = [];
-
-      expect(f('supply:BADgc')).toBeUndefined();
-
-      $.mobile.urlHistory.stack = original;
-    });
-    it('should return the previous pid for other rsid pages', function () {
-      var original = $.mobile.urlHistory.stack;
-
-      $.mobile.urlHistory.addNew('http://june29.jp/#hairstyle:mojamoja');
-      $.mobile.urlHistory.addNew('http://june29.jp/#hairstyle:sarasara');
-
-      expect(f('supply:BADgc')).toEqual('hairstyle:mojamoja');
-
-      $.mobile.urlHistory.stack = original;
-    });
-  });
   describe('parse_dsid', function () {
     describe('with "random"', function () {
       it('should return "success" data from dsid without rsid', function () {
