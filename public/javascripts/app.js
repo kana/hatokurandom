@@ -1607,6 +1607,13 @@ var hatokurandom = {};
     return H.parse_dsid(sid).valid;
   };
 
+  H.is_dynamic_page_url = function (location_href) {  //{{{2
+    var url = $m.path.parseUrl(location_href);
+    var pid = H.pid_from_url(url);
+    var apid = H.apid_from_pid(pid);
+    return pid != apid;
+  };
+
   H.is_psid = function (sid) {  //{{{2
     return !!(H.PSID_TO_CARD_NAMES_TABLE[sid]);
   };

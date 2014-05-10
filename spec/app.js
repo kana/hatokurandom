@@ -578,6 +578,14 @@
       expect(f('割り符')).toBeFalsy();
     });
   });
+  describe('is_dynamic_page_url', function () {
+    it('should return true for a dynamic page URL', function () {
+      expect(H.is_dynamic_page_url('http://example.com/#a:b')).toBeTruthy();
+    });
+    it('should return false for a static page URL', function () {
+      expect(H.is_dynamic_page_url('http://example.com/#abc')).toBeFalsy();
+    });
+  });
   describe('is_psid', function () {
     it('should return true for a valid psid', function () {
       expect(H.is_psid('basic-firstplay')).toBeTruthy();
