@@ -2004,6 +2004,69 @@ var hatokurandom = {};
     document.title = meta.title;
   };
 
+  H.prepare_dynamic_page_content = function (pid, apid) {  //{{{2
+    if (apid == 'supply' || apid == 'reference')
+      return H.prepare_dynamic_page_content_cards(pid, apid);
+    else
+      return H.prepare_dynamic_page_content_pages(pid, apid);
+  };
+
+  H.prepare_dynamic_page_content_cards = function (pid, apid) {  //{{{2
+    var $page = $('#' + apid);
+    var sid = H.sid_from_pid(pid);
+
+    // Reuse the last content to avoid unnecessary regeneration (especially for
+    // a random supply page) if the next page is already visited before witht
+    // the same parameters.
+    if (sid == $page.jqmData('sid'))
+      return $page;
+    $page.jqmData('sid', sid);
+
+    var meta = H.meta_from_pid(pid);
+    var initial_xcards = H.xcards_from_sid(sid);
+
+    var $content = H.render('supply_template');
+    var $supply = $content.find('.supply');
+    H.refresh_supply_view($supply, initial_xcards, sid, true);
+
+    $supply.listview();
+    $page.empty().append($content);
+    $page.jqmData('title', meta.title);
+
+    return $page;
+  };
+
+  H.prepare_dynamic_page_content_pages = function (pid, apid) {  //{{{2
+    var meta = H.meta_from_pid(pid);
+    var child_pids = H.child_pids_from_pid(pid);
+
+    var $content = H.render('supplies_template');
+    var $supplies = $content.find('.supplies');
+    for (var i in child_pids) {
+      var child_pid = child_pids[i];
+      var child_meta = H.meta_from_pid(child_pid);
+      $supplies.append(H.render('supplies_item_template', {
+        pid: child_pid,
+        title: child_meta.title
+      }));
+    }
+
+    var $page = $('#' + apid);
+    $supplies.listview();
+    $page.empty().append($content);
+    $page.jqmData('title', meta.title);
+
+    return $page;
+  };
+
+  H.redirect_to_new_url_if_necessary = function (pid) {  //{{{2
+    var new_pid = H.migrate_from_version_1(pid);
+    if (new_pid) {
+      var base_uri = $m.path.parseUrl(location.href).hrefNoHash;
+      location.replace(base_uri + '#' + new_pid);
+    }
+  };
+
   H.refresh_supply_view = function ($supply, xcards, sid, is_first) {  //{{{2
     var refresh_if_dropped = function () {
       var updated_xcards = H.xcards_from_supply_view($supply);
@@ -2140,6 +2203,45 @@ var hatokurandom = {};
   // Events  //{{{1
   if (H.is_running_specs())  //{{{2
     return;  // Do not register event handlers to avoid interference on specs.
+
+  $(document).on('pagebeforechange', function (e, data) {  //{{{2
+    // From the reference:
+    //
+    // > Triggered twice during the page change cyle:
+    // > First prior to any page loading or transition
+    // > and next after page loading completes successfully, but before the
+    // > browser history has been modified by the navigation process.
+    // >
+    // > When received with data.toPage set to a string, the event indicates
+    // > that navigation is about to commence. The value stored in data.toPage
+    // > is the URL of the page that will be loaded.
+    // >
+    // > When received with data.toPage set to a jQuery object, the event
+    // > indicates that the destination page has been loaded and navigation
+    // > will continue.
+
+    try {
+      if (typeof(data.toPage) != 'string')
+        return;
+
+      var url = $m.path.parseUrl(data.toPage);
+      var pid = H.pid_from_url(url);
+      var apid = H.apid_from_pid(pid);
+
+      H.redirect_to_new_url_if_necessary();
+
+      if (apid != pid || apid == 'card-references') {
+        var $page = H.prepare_dynamic_page_content(pid, apid);
+        data.options.dataUrl = data.toPage;
+        data.toPage = $page;
+      } else {
+        // Let jQuery Mobile process this request.
+      }
+    } catch (ex) {
+      alert('Unexpected error: ' + ex.message);  // TODO: Friendly instruction.
+      e.preventDefault();
+    }
+  });
 
   $(document).on('pagecontainertransition', ':mobile-pagecontainer', function (e, ui) {  //{{{2
     H.adjust_header(ui.toPage);
