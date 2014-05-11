@@ -2254,7 +2254,7 @@ var hatokurandom = {};
   $(document).ready(function () {  //{{{2
     H.suggest_new_uri_if_necessary();
 
-    $.mobile.defaultPageTransition = 'slide';
+    $m.defaultPageTransition = 'slide';
 
     H.patch_the_title_for_the_initial_page();
 
