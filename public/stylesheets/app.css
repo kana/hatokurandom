@@ -101,9 +101,59 @@ a.share.button:after
 
 /* #configure */
 
-#configure .ui-controlgroup-label
+#configure h2
 {
+  font-size: 110%;
+}
+
+#configure .block
+{
+  margin-top: 2em;
+}
+#configure .block:first-child
+{
+  margin-top: 0;
+}
+
+#configure #available_card_sets .ui-controlgroup-controls > label
+{
+  position: inherit !important;
+  height: auto;
+  width: auto;
+  overflow: inherit;
+  clip: auto;
+}
+
+#configure #available_card_sets .ui-controlgroup-controls > label
+{
+  margin: 0;
+}
+#configure #available_card_sets .ui-controlgroup-controls > label > .title
+{
+  width: 6em;
+  height: 1em;
+  display: inline-block;
+  vertical-align: middle;
   font-weight: bolder;
+}
+#configure #available_card_sets .ui-controlgroup-controls > label > .title#include_fairy
+{
+  position: relative;
+  top: -0.5em;
+}
+#configure #available_card_sets .ui-controlgroup-controls > .ui-select
+{
+  float: left;
+}
+#configure #available_card_sets .ui-controlgroup-controls .ui-first-child
+{
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+#configure #available_card_sets .ui-controlgroup-controls .ui-last-child
+{
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
 }
 
 #configure .note
@@ -111,30 +161,6 @@ a.share.button:after
   display: block;
   font-size: 80%;
   font-weight: lighter;
-}
-
-#configure .select label
-{
-  font-weight: bolder;
-  display: block;
-}
-#configure .select label .title
-{
-  display: inline-block;
-  width: 6em;
-}
-#configure .select label #include_fairy.title
-{
-  line-height: 120%;
-  vertical-align: middle;
-}
-#configure .select .ui-select
-{
-  display: inline;
-}
-#configure .select .ui-btn
-{
-  width: 8em;
 }
 
 /* A workaround to avoid automatic zooming by focusing a <select>.
