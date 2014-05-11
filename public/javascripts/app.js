@@ -1847,6 +1847,7 @@ var hatokurandom = {};
 
   // Core  //{{{1
   H.adjust_header = function ($page) {  //{{{2
+    $('#header .reshuffle.button').toggleClass('disabled', !H.is_dsid($page.jqmData('sid')));
     $('#header .share.button').toggleClass('disabled', $page.attr('id') != 'supply');
   };
 
@@ -1881,6 +1882,20 @@ var hatokurandom = {};
           $button.removeClass('ui-btn-active');
         },
         300
+      );
+    });
+
+    $('#header .reshuffle.button').click(function () {
+      if ($(this).is('.disabled'))
+        return;
+
+      var $page = H.get_current_page();
+      var sid = $page.jqmData('sid');
+      H.refresh_supply_view(
+        $page.find('.supply'),
+        H.xcards_from_sid(sid),
+        sid,
+        false
       );
     });
 
