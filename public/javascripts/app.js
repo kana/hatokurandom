@@ -1846,6 +1846,10 @@ var hatokurandom = {};
   };
 
   // Core  //{{{1
+  H.adjust_header = function ($page) {  //{{{2
+    $('#header .share.button').toggleClass('disabled', $page.attr('id') != 'supply');
+  };
+
   H.generate_permalink = function ($supply_page) {  //{{{2
     var sid = $supply_page.jqmData('sid');
     if (!H.is_dsid(sid))
@@ -1878,6 +1882,36 @@ var hatokurandom = {};
         },
         300
       );
+    });
+
+    $('#header .share.button').click(function (e) {
+      // iPhone Safari seems not to trigger a click event for <a> if the
+      // element has a href attribute.  So that we have to explicitly open
+      // a new window instead of to set a permalink to the href attribute and
+      // to let the Web browser open the permalink.
+
+      if ($(this).is('.disabled'))
+        return;
+
+      var $page = H.get_current_page();
+      var permalink = H.generate_permalink($page);
+      var is_reference_page = /^reference-/.test($page.jqmData('sid'));
+      window.open(
+        [
+          'https://twitter.com/intent/tweet',
+          '?url=', encodeURIComponent(permalink),
+          '&text=', encodeURIComponent(
+            is_reference_page
+            ? 'ハトクラの' + $page.jqmData('title')
+            : 'ハトクラなう。今回のサプライ: '
+              + H.list_card_names($page).join(', ')
+          ),
+          '&hashtags=', encodeURIComponent('hatokura'),
+          '&related=', encodeURIComponent('HeartofCrown')
+        ].join('')
+      );
+
+      e.preventDefault();
     });
   };
 
@@ -2187,6 +2221,10 @@ var hatokurandom = {};
       alert('Unexpected error: ' + ex.message);  // TODO: Friendly instruction.
       e.preventDefault();
     }
+  });
+
+  $(document).on('pagecontainertransition', ':mobile-pagecontainer', function (e, ui) {  //{{{2
+    H.adjust_header(ui.toPage);
   });
 
   $(document).ready(function () {  //{{{2
