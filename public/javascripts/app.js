@@ -2272,14 +2272,14 @@ var hatokurandom = {};
       $('body').addClass('iOS');
 
     var notification_table = {
-      'checking': 'icon-signal',
-      'error': 'icon-exclamation-sign',
-      'noupdate': 'icon-ok-sign',
-      'downloading': 'icon-download-alt',
-      'progress': 'icon-download-alt',
-      'updateready': 'icon-ok-sign',
-      'cached': 'icon-ok-sign',
-      'obsolete': 'icon-exclamation-sign'
+      'checking': 'fa fa-signal',
+      'error': 'fa fa-exclamation-circle',
+      'noupdate': 'fa fa-check-circle',
+      'downloading': 'fa fa-download',
+      'progress': 'fa fa-download',
+      'updateready': 'fa fa-check-circle',
+      'cached': 'fa fa-check-circle',
+      'obsolete': 'fa fa-exclamation-circle'
     };
     $.each(notification_table, function (event_type, icon_class) {
       $(window.applicationCache).on(event_type, function (e) {
