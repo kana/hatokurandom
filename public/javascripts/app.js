@@ -1858,6 +1858,22 @@ var hatokurandom = {};
     $('#header .share.button').toggleClass('disabled', $page.attr('id') != 'supply');
   };
 
+  H.adjust_the_initial_page_if_it_is_dynamic_page = function () {  //{{{2
+    // jQuery Mobile doesn't trigger pagebeforechange for a dynamic page if its
+    // URL is directly opened (from a link posted to Twitter, for example).
+    // And the #home page will be shown but location.href points the dynamic
+    // page URL.  So that we have to "redirect" to the dynamic page, especially
+    // after all of jQuery Mobile's initializations.
+    if (H.is_dynamic_page_url(location.href)) {
+      setTimeout(
+        function () {
+          $(':mobile-pagecontainer').pagecontainer('change', location.href);
+        },
+        100
+      );
+    }
+  };
+
   H.generate_permalink = function ($supply_page) {  //{{{2
     var sid = $supply_page.jqmData('sid');
     if (!H.is_dsid(sid))
@@ -2259,6 +2275,8 @@ var hatokurandom = {};
     H.set_up_options_if_necessary();
 
     H.initialize_header();
+
+    H.adjust_the_initial_page_if_it_is_dynamic_page();
 
     if (navigator.userAgent.match(/OS (\S)+ like Mac OS X/i))
       $('body').addClass('iOS');
