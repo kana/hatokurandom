@@ -1846,83 +1846,6 @@ var hatokurandom = {};
   };
 
   // Core  //{{{1
-  H.complete_header = function (e, data) {  //{{{2
-    var $page =
-      typeof data.toPage == 'string'
-      ? $('#' + H.apid_from_pid(H.pid_from_url($m.path.parseUrl(data.toPage))))
-      : data.toPage;
-    if ($page.length == 0)
-      return;
-    if ($page.jqmData('role') == 'dialog')
-      return;
-    if ($page.find(':jqmData(role="header")').length != 0)
-      return;
-
-    var $header = H.render('header_template');
-
-    var sid = $page.jqmData('sid');
-    var $buttons = $header.find('.button');
-    $buttons.click(function () {
-      setTimeout(
-        function () {
-          $buttons.removeClass($m.activeBtnClass);
-        },
-        300
-      );
-    });
-
-    var $reshuffle_button = $header.find('.reshuffle.button');
-    if (H.is_dsid(sid)) {
-      $reshuffle_button.click(function () {
-        H.refresh_supply_view(
-          $m.activePage.find('.supply'),
-          H.xcards_from_sid(sid),
-          sid,
-          false
-        );
-      });
-    } else {
-      $reshuffle_button.addClass('disabled');
-    }
-
-    var $share_button = $header.find('.share.button');
-    if ($page.attr('id') == 'supply') {
-      $share_button.click(function (e) {
-        // iPhone Safari seems not to trigger a click event for <a> if the
-        // element has a href attribute.  So that we have to explicitly open
-        // a new window instead of to set a permalink to the href attribute and
-        // to let the Web browser open the permalink.
-        var permalink = H.generate_permalink($page);
-        var is_reference_page = /^reference-/.test($page.jqmData('sid'));
-        window.open(
-          [
-            'https://twitter.com/intent/tweet',
-            '?url=', encodeURIComponent(permalink),
-            '&text=', encodeURIComponent(
-              is_reference_page
-              ? 'ハトクラの' + $page.jqmData('title')
-              : 'ハトクラなう。今回のサプライ: '
-                + H.list_card_names($page).join(', ')
-            ),
-            '&hashtags=', encodeURIComponent('hatokura'),
-            '&related=', encodeURIComponent('HeartofCrown')
-          ].join('')
-        );
-        e.preventDefault();
-      });
-    } else {
-      $share_button.addClass('disabled');
-    }
-
-    $page.prepend($header);
-    $page.jqmData(
-      'title',
-      $page.jqmData('title') || H.meta_from_pid($page.attr('id')).title
-    );
-    $page.page();
-    $page.trigger('pagecreate');
-  };
-
   H.generate_permalink = function ($supply_page) {  //{{{2
     var sid = $supply_page.jqmData('sid');
     if (!H.is_dsid(sid))
@@ -2245,10 +2168,6 @@ var hatokurandom = {};
       alert('Unexpected error: ' + ex.message);  // TODO: Friendly instruction.
       e.preventDefault();
     }
-  });
-
-  $(document).bind('pagebeforechange', function (e, data) {  //{{{2
-    H.complete_header(e, data);
   });
 
   $(document).ready(function () {  //{{{2
