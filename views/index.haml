@@ -37,7 +37,7 @@
             %a.home.button{data: {direction: 'reverse'}}(href='#home' title='ホーム画面へ移動する。')
               %i.icon-home
           %li
-            %a.configure.button{data: {rel: 'dialog'}}(href='#configure' title='設定画面を開く。')
+            %a.configure.button{data: {transition: 'pop'}}(href='#configure' title='設定画面を開く。')
               %i.icon-cog
           %li
             %a.share.button(title='サプライを共有する。')
@@ -87,7 +87,7 @@
     #reference{as_page}
       -# #card_list_template
 
-    #configure{as_page, {data: {role: 'dialog'}}}
+    #configure{as_page, {data: {dialog: 'true'}}}
 
       %div{data: {role: 'header', theme: 'b'}}
         %h1 ランダム選択の設定
