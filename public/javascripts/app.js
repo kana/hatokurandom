@@ -1862,6 +1862,10 @@ var hatokurandom = {};
     return base_uri + '#supply:' + rsid;
   };
 
+  H.get_current_page = function () {  //{{{2
+    return $(':mobile-pagecontainer').pagecontainer('getActivePage');
+  };
+
   H.initialize_header = function () {  //{{{2
     $('#header').toolbar();
     $('#header > [data-role="navbar"]').navbar();
