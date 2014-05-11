@@ -76,7 +76,7 @@
       -# #page_list_template
 
     #supply{as_page}
-      -# #supply_template
+      -# #card_list_template
 
     #card-references{as_page}
       -# #page_list_template
@@ -85,7 +85,7 @@
       -# #page_list_template
 
     #reference{as_page}
-      -# #supply_template
+      -# #card_list_template
 
     #configure{as_page, {data: {role: 'dialog'}}}
 
@@ -294,11 +294,11 @@
       %ul#page_list_item_template
         %li
           %a(href='\#{{pid}}') {{title}}
-      #supply_template
+      #card_list_template
         %div{as_content}
-          %ul.supply{as_listview}(data-divider-theme='d')
-            -# #supply_item_template
-      %ul#supply_item_template
+          %ul.card_list{as_listview}(data-divider-theme='d')
+            -# #card_list_item_template
+      %ul#card_list_item_template
         %li.card(data-cid='{{cid}}')
           -# FIXME: Link to a card view.
           %label

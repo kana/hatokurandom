@@ -1879,7 +1879,7 @@ var hatokurandom = {};
     if (!H.is_dsid(sid))
       return location.href;
 
-    var $supply = $supply_page.find('.supply');
+    var $supply = $supply_page.find('.card_list');
     var xcards = H.xcards_from_supply_view($supply);
     var rsid = H.rsid_from_xcards(
       sid == 'editor'
@@ -1915,7 +1915,7 @@ var hatokurandom = {};
       var $page = H.get_current_page();
       var sid = $page.jqmData('sid');
       H.refresh_supply_view(
-        $page.find('.supply'),
+        $page.find('.card_list'),
         H.xcards_from_sid(sid),
         sid,
         false
@@ -1954,7 +1954,7 @@ var hatokurandom = {};
   };
 
   H.list_card_names = function ($supply_page) {  //{{{2
-    var $supply = $supply_page.find('.supply');
+    var $supply = $supply_page.find('.card_list');
     return $.map(
       $.grep(
         H.xcards_from_supply_view($supply),
@@ -2025,8 +2025,8 @@ var hatokurandom = {};
     var meta = H.meta_from_pid(pid);
     var initial_xcards = H.xcards_from_sid(sid);
 
-    var $content = H.render('supply_template');
-    var $supply = $content.find('.supply');
+    var $content = H.render('card_list_template');
+    var $supply = $content.find('.card_list');
     H.refresh_supply_view($supply, initial_xcards, sid, true);
 
     $supply.listview();
@@ -2087,7 +2087,7 @@ var hatokurandom = {};
     $.each(sorted_xcards, function (i, xcard) {
       var $xcard =
         H.render(
-          'supply_item_template',
+          'card_list_item_template',
           $.extend(
             {
               cost: '?',
