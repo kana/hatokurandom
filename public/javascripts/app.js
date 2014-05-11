@@ -1028,17 +1028,6 @@ var hatokurandom = {};
     '': []  // Dummy entry to make folds simple.
   };
 
-  H.PID_TO_PARENT_PID_TABLE =  //{{{2
-    (function () {
-      var t = {};
-      for (var parent_pid in H.PID_TO_CHILD_PIDS_TABLE) {
-        var child_pids = H.PID_TO_CHILD_PIDS_TABLE[parent_pid];
-        for (var i in child_pids)
-          t[child_pids[i]] = parent_pid;
-      }
-      return t;
-    })();
-
   H.PID_TO_META_TABLE =  {  //{{{2
     'home': {  //{{{
       title: 'ハトクランダム'
@@ -1618,6 +1607,13 @@ var hatokurandom = {};
     return H.parse_dsid(sid).valid;
   };
 
+  H.is_dynamic_page_url = function (location_href) {  //{{{2
+    var url = $m.path.parseUrl(location_href);
+    var pid = H.pid_from_url(url);
+    var apid = H.apid_from_pid(pid);
+    return pid != apid;
+  };
+
   H.is_psid = function (sid) {  //{{{2
     return !!(H.PSID_TO_CARD_NAMES_TABLE[sid]);
   };
@@ -1688,32 +1684,6 @@ var hatokurandom = {};
       return 0;
     });
     return _xs;
-  };
-
-  H.parent_pid_from_pid = function (pid) {  //{{{2
-    var parend_pid = H.PID_TO_PARENT_PID_TABLE[pid];
-    if (parend_pid === undefined) {
-      if (/^supply:/.test(pid)) {
-        var maybe_rsid = H.sid_from_pid(pid);
-        if (H.is_rsid(maybe_rsid)) {
-          var previous = $m.urlHistory.getPrev();
-          if (previous) {
-            // An rsid page might be visited from anywhere.  If a previous
-            // page exists, it means that the previous page contains a link to
-            // the current page.  Use the pid of the previous page.
-            return H.pid_from_url($m.path.parseUrl(previous.url));
-          } else {
-            // But, in most cases, an rsid page is directly visited from the
-            // outside of the application, for example, Twitter.  In this
-            // case, there is no suitable page as the parent of the current
-            // page.  Return undefined to indicate the absence of the parent.
-            return undefined;
-          }
-        }
-      }
-      throw new H.KeyError('PID', pid);
-    }
-    return parend_pid;
   };
 
   H.parse_dsid = function (sid) {  //{{{2
@@ -1883,90 +1853,42 @@ var hatokurandom = {};
   };
 
   // Core  //{{{1
-  H.complete_header = function (e, data) {  //{{{2
-    var $page =
-      typeof data.toPage == 'string'
-      ? $('#' + (data.toPage == '/' ? 'home' : data.toPage))
-      : data.toPage;
-    if ($page.length == 0)
-      return;
-    if ($page.jqmData('role') == 'dialog')
-      return;
-    if ($page.find(':jqmData(role="header")').length != 0)
-      return;
-
-    var $header = H.render('header_template');
-
-    var sid = $page.jqmData('sid');
-    var $buttons = $header.find('.button');
-    $buttons.click(function () {
-      setTimeout(
-        function () {
-          $buttons.removeClass($m.activeBtnClass);
-        },
-        300
-      );
-    });
-
-    var $reshuffle_button = $header.find('.reshuffle.button');
-    if (H.is_dsid(sid)) {
-      $reshuffle_button.click(function () {
-        H.refresh_supply_view(
-          $m.activePage.find('.supply'),
-          H.xcards_from_sid(sid),
-          sid,
-          false
-        );
-      });
-    } else {
-      $reshuffle_button.addClass('disabled');
-    }
-
-    var $share_button = $header.find('.share.button');
-    if ($page.attr('id') == 'supply') {
-      $share_button.click(function (e) {
-        // iPhone Safari seems not to trigger a click event for <a> if the
-        // element has a href attribute.  So that we have to explicitly open
-        // a new window instead of to set a permalink to the href attribute and
-        // to let the Web browser open the permalink.
-        var permalink = H.generate_permalink($page);
-        var is_reference_page = /^reference-/.test($page.jqmData('sid'));
-        window.open(
-          [
-            'https://twitter.com/intent/tweet',
-            '?url=', encodeURIComponent(permalink),
-            '&text=', encodeURIComponent(
-              is_reference_page
-              ? 'ハトクラの' + $page.jqmData('title')
-              : 'ハトクラなう。今回のサプライ: '
-                + H.list_card_names($page).join(', ')
-            ),
-            '&hashtags=', encodeURIComponent('hatokura'),
-            '&related=', encodeURIComponent('HeartofCrown')
-          ].join('')
-        );
-        e.preventDefault();
-      });
-    } else {
-      $share_button.addClass('disabled');
-    }
-
-    $page.prepend($header);
-    $page.jqmData(
-      'title',
-      $page.jqmData('title') || H.meta_from_pid($page.attr('id')).title
+  H.adjust_header = function ($page) {  //{{{2
+    $('#header .reshuffle.button').toggleClass(
+      'disabled',
+      !H.is_dsid($page.jqmData('sid'))
     );
-    $page.page();
-    $page.trigger('pagecreate');
+    $('#header .share.button').toggleClass(
+      'disabled',
+      !($page.attr('id') == 'supply' || $page.attr('id') == 'reference')
+    );
   };
 
-  H.generate_permalink = function ($supply_page) {  //{{{2
-    var sid = $supply_page.jqmData('sid');
+  H.adjust_the_initial_page_if_it_is_dynamic_page = function () {  //{{{2
+    // jQuery Mobile doesn't trigger pagebeforechange for a dynamic page if its
+    // URL is directly opened (from a link posted to Twitter, for example).
+    // And the #home page will be shown but location.href points the dynamic
+    // page URL.  So that we have to "redirect" to the dynamic page, especially
+    // after all of jQuery Mobile's initializations.
+    //
+    // FIXME: But this is a quick-and-dirty workaround.  Consider other ways.
+    if (H.is_dynamic_page_url(location.href)) {
+      setTimeout(
+        function () {
+          $(':mobile-pagecontainer').pagecontainer('change', location.href);
+        },
+        500
+      );
+    }
+  };
+
+  H.generate_permalink = function ($card_list_page) {  //{{{2
+    var sid = $card_list_page.jqmData('sid');
     if (!H.is_dsid(sid))
       return location.href;
 
-    var $supply = $supply_page.find('.supply');
-    var xcards = H.xcards_from_supply_view($supply);
+    var $card_list = $card_list_page.find('.card_list');
+    var xcards = H.xcards_from_card_list_view($card_list);
     var rsid = H.rsid_from_xcards(
       sid == 'editor'
       ? $.grep(xcards, function (xcard) {return !xcard.dropped;})
@@ -1976,11 +1898,74 @@ var hatokurandom = {};
     return base_uri + '#supply:' + rsid;
   };
 
-  H.list_card_names = function ($supply_page) {  //{{{2
-    var $supply = $supply_page.find('.supply');
+  H.get_current_page = function () {  //{{{2
+    return $(':mobile-pagecontainer').pagecontainer('getActivePage');
+  };
+
+  H.initialize_header = function () {  //{{{2
+    $('#header').toolbar();
+    $('#header > [data-role="navbar"]').navbar();
+
+    $('#header .button').click(function () {
+      var $button = $(this);
+      setTimeout(
+        function () {
+          $button.removeClass('ui-btn-active');
+        },
+        300
+      );
+    });
+
+    $('#header .reshuffle.button').click(function () {
+      if ($(this).is('.disabled'))
+        return;
+
+      var $page = H.get_current_page();
+      var sid = $page.jqmData('sid');
+      H.refresh_card_list_view(
+        $page.find('.card_list'),
+        H.xcards_from_sid(sid),
+        sid,
+        false
+      );
+    });
+
+    $('#header .share.button').click(function (e) {
+      // iPhone Safari seems not to trigger a click event for <a> if the
+      // element has a href attribute.  So that we have to explicitly open
+      // a new window instead of to set a permalink to the href attribute and
+      // to let the Web browser open the permalink.
+
+      if ($(this).is('.disabled'))
+        return;
+
+      var $page = H.get_current_page();
+      var permalink = H.generate_permalink($page);
+      var is_reference_page = /^reference-/.test($page.jqmData('sid'));
+      window.open(
+        [
+          'https://twitter.com/intent/tweet',
+          '?url=', encodeURIComponent(permalink),
+          '&text=', encodeURIComponent(
+            is_reference_page
+            ? 'ハトクラの' + $page.jqmData('title')
+            : 'ハトクラなう。今回のサプライ: '
+              + H.list_card_names($page).join(', ')
+          ),
+          '&hashtags=', encodeURIComponent('hatokura'),
+          '&related=', encodeURIComponent('HeartofCrown')
+        ].join('')
+      );
+
+      e.preventDefault();
+    });
+  };
+
+  H.list_card_names = function ($card_list_page) {  //{{{2
+    var $card_list = $card_list_page.find('.card_list');
     return $.map(
       $.grep(
-        H.xcards_from_supply_view($supply),
+        H.xcards_from_card_list_view($card_list),
         function (xcard) {return !xcard.dropped;}
       ),
       function (xcard) {return xcard.name;}
@@ -2027,82 +2012,62 @@ var hatokurandom = {};
     document.title = meta.title;
   };
 
-  H.prepare_supplies_page = function (e, data, pid) {  //{{{2
-    // NB: The structures of "card-references" and "references:*" are the same,
-    // so that it would be better to use #supplies for "card-references" for
-    // simplicity, but it is not acceptable.  Because jQuery Mobile's
-    // transisions assume that fromPage and toPage are different, and
-    // "card-references" has several links to "references:*".  If #supplies is
-    // also used for "card-references", page transition between
-    // "card-references" and "references:*" becomes broken.
-    var $page =
-      pid == 'card-references'
-      ? $('#card-references')
-      : $('#supplies');
-
-    // See also [DOUBLE_TROUBLE].
-    if (pid != $page.jqmData('pid')) {
-      var meta = H.meta_from_pid(pid);
-      var child_pids = H.child_pids_from_pid(pid);
-
-      var $content = H.render('supplies_template');
-      var $supplies = $content.find('.supplies');
-      for (var i in child_pids) {
-        var child_pid = child_pids[i];
-        var child_meta = H.meta_from_pid(child_pid);
-        $supplies.append(H.render('supplies_item_template', {
-          pid: child_pid,
-          title: child_meta.title
-        }));
-      }
-
-      $page
-        .empty()
-        .append($content);
-      $page.jqmData('title', meta.title);
-      $page.page();
-      $page.trigger('pagecreate');
-    }
-
-    data.options.dataUrl = data.toPage;
-    $m.changePage($page, data.options);
-    e.preventDefault();
+  H.prepare_dynamic_page_content = function (pid, apid) {  //{{{2
+    if (apid == 'supply' || apid == 'reference')
+      return H.prepare_dynamic_page_content_cards(pid, apid);
+    else
+      return H.prepare_dynamic_page_content_pages(pid, apid);
   };
 
-  H.prepare_supply_page = function (e, data, pid) {  //{{{2
-    var $page = $('#supply');
+  H.prepare_dynamic_page_content_cards = function (pid, apid) {  //{{{2
+    var $page = $('#' + apid);
     var sid = H.sid_from_pid(pid);
 
-    // [DOUBLE_TROUBLE] For some reason, pagebeforechange and some events are
-    // triggered twice by using the back/forward buttons in Web browsers.  To
-    // avoid unnecessary recreation and reshuffling a random supply twice,
-    // keep the curent content of $page if possible.
-    if (sid != $page.jqmData('sid')) {
-      var meta = H.meta_from_pid(pid);
-      var initial_xcards = H.xcards_from_sid(sid);
+    // Reuse the last content to avoid unnecessary regeneration (especially for
+    // a random supply page) if the next page is already visited before witht
+    // the same parameters.
+    if (sid == $page.jqmData('sid'))
+      return $page;
+    $page.jqmData('sid', sid);
 
-      var $content = H.render('supply_template');
-      var $supply = $content.find('.supply');
-      H.refresh_supply_view($supply, initial_xcards, sid, true);
+    var meta = H.meta_from_pid(pid);
+    var initial_xcards = H.xcards_from_sid(sid);
 
-      // FIXME: DRY
-      // The tails of H.prepare_supplies_page and H.prepare_supply_page
-      // are almost same.
-      $page
-        .empty()
-        .append($content);
-      $page.jqmData('sid', sid);
-      $page.jqmData('title', meta.title);
-      $page.page();
-      $page.trigger('pagecreate');
-    }
+    var $content = H.render('card_list_template');
+    var $card_list = $content.find('.card_list');
+    H.refresh_card_list_view($card_list, initial_xcards, sid, true);
 
-    data.options.dataUrl = data.toPage;
-    $m.changePage($page, data.options);
-    e.preventDefault();
+    $card_list.listview();
+    $page.empty().append($content);
+    $page.jqmData('title', meta.title);
+
+    return $page;
   };
 
-  H.prepare_other_page = function (e, data, pid) {  //{{{2
+  H.prepare_dynamic_page_content_pages = function (pid, apid) {  //{{{2
+    var meta = H.meta_from_pid(pid);
+    var child_pids = H.child_pids_from_pid(pid);
+
+    var $content = H.render('page_list_template');
+    var $page_list = $content.find('.page_list');
+    for (var i in child_pids) {
+      var child_pid = child_pids[i];
+      var child_meta = H.meta_from_pid(child_pid);
+      $page_list.append(H.render('page_list_item_template', {
+        pid: child_pid,
+        title: child_meta.title
+      }));
+    }
+
+    var $page = $('#' + apid);
+    $page_list.listview();
+    $page.empty().append($content);
+    $page.jqmData('title', meta.title);
+
+    return $page;
+  };
+
+  H.redirect_to_new_url_if_necessary = function (pid) {  //{{{2
     var new_pid = H.migrate_from_version_1(pid);
     if (new_pid) {
       var base_uri = $m.path.parseUrl(location.href).hrefNoHash;
@@ -2110,10 +2075,10 @@ var hatokurandom = {};
     }
   };
 
-  H.refresh_supply_view = function ($supply, xcards, sid, is_first) {  //{{{2
+  H.refresh_card_list_view = function ($card_list, xcards, sid, is_first) {  //{{{2
     var refresh_if_dropped = function () {
-      var updated_xcards = H.xcards_from_supply_view($supply);
-      H.refresh_supply_view($supply, updated_xcards, sid, false);
+      var updated_xcards = H.xcards_from_card_list_view($card_list);
+      H.refresh_card_list_view($card_list, updated_xcards, sid, false);
     };
     var oo = Number.MAX_VALUE;
     var sorted_xcards =
@@ -2126,11 +2091,11 @@ var hatokurandom = {};
         function (xcard) {return xcard.name;}
       );
     var editable = 10 < xcards.length && H.is_dsid(sid);
-    $supply.empty();
+    $card_list.empty();
     $.each(sorted_xcards, function (i, xcard) {
       var $xcard =
         H.render(
-          'supply_item_template',
+          'card_list_item_template',
           $.extend(
             {
               cost: '?',
@@ -2148,11 +2113,11 @@ var hatokurandom = {};
         .change(refresh_if_dropped);
       $xcard.toggleClass('dropped', xcard.dropped);
       if (editable && i == 10)
-        $supply.append(H.render('supply_deadline_template'));
-      $supply.append($xcard);
+        $card_list.append(H.render('supply_deadline_template'));
+      $card_list.append($xcard);
     });
     if (!is_first)
-      $supply.listview('refresh');
+      $card_list.listview('refresh');
     $('#supply_status i').attr(
       'class',
       xcards.fallback ? 'icon-exclamation-sign' : 'icon-ok-sign'
@@ -2234,8 +2199,8 @@ var hatokurandom = {};
       console.log([keys[i], s[keys[i]]]);
   };
 
-  H.xcards_from_supply_view = function ($supply) {  //{{{2
-    return $supply.find('.card').map(function () {
+  H.xcards_from_card_list_view = function ($card_list) {  //{{{2
+    return $card_list.find('.card').map(function () {
       var $card = $(this);
       var xcard = H.xcard_from_card(H.card_from_cid($card.data('cid')));
       xcard.dropped = $card.find('.selected:checkbox:checked').length == 0;
@@ -2246,55 +2211,62 @@ var hatokurandom = {};
   // Events  //{{{1
   if (H.is_running_specs())  //{{{2
     return;  // Do not register event handlers to avoid interference on specs.
-  $(document).bind('pagebeforechange', function (e, data) {  //{{{2
-    try {
-      if (typeof data.toPage != 'string')
-        return;
 
-      if (!$m.path.isSameDomain(data.toPage, location.href))
+  $(document).on('pagebeforechange', function (e, data) {  //{{{2
+    // From the reference:
+    //
+    // > Triggered twice during the page change cyle:
+    // > First prior to any page loading or transition
+    // > and next after page loading completes successfully, but before the
+    // > browser history has been modified by the navigation process.
+    // >
+    // > When received with data.toPage set to a string, the event indicates
+    // > that navigation is about to commence. The value stored in data.toPage
+    // > is the URL of the page that will be loaded.
+    // >
+    // > When received with data.toPage set to a jQuery object, the event
+    // > indicates that the destination page has been loaded and navigation
+    // > will continue.
+
+    try {
+      if (typeof(data.toPage) != 'string')
         return;
 
       var url = $m.path.parseUrl(data.toPage);
       var pid = H.pid_from_url(url);
-      var prepare = (function () {
-        var apid = H.apid_from_pid(pid);
-        if (apid == 'supplies'
-            || apid == 'references'
-            || apid == 'card-references')
-          return H.prepare_supplies_page;
-        else if (apid == 'supply' || apid == 'reference')
-          return H.prepare_supply_page;
-        else
-          return H.prepare_other_page;
-      })();
+      var apid = H.apid_from_pid(pid);
 
-      // Most of initialization steps are usually done at "ready".
-      // But H.set_up_options_if_necessary must be done also at this timing,
-      // because "pagebeforechange" is triggered before "ready".
-      // If we H.set_up_options_if_necessary at "ready" and a user directly
-      // opens a page to generate a random supply (such as #supply:random10)
-      // from another site, options are loaded AFTER a random supply is
-      // generated.
-      H.set_up_options_if_necessary();
-      prepare(e, data, pid);
+      H.redirect_to_new_url_if_necessary();
+
+      if (apid != pid || apid == 'card-references') {
+        var $page = H.prepare_dynamic_page_content(pid, apid);
+        data.options.dataUrl = data.toPage;
+        data.toPage = $page;
+      } else {
+        // Let jQuery Mobile process this request.
+      }
     } catch (ex) {
       alert('Unexpected error: ' + ex.message);  // TODO: Friendly instruction.
       e.preventDefault();
     }
   });
 
-  $(document).bind('pagebeforechange', function (e, data) {  //{{{2
-    H.complete_header(e, data);
+  $(document).on('pagecontainertransition', ':mobile-pagecontainer', function (e, ui) {  //{{{2
+    H.adjust_header(ui.toPage);
   });
 
   $(document).ready(function () {  //{{{2
     H.suggest_new_uri_if_necessary();
 
-    $.mobile.defaultPageTransition = 'slide';
+    $m.defaultPageTransition = 'slide';
 
     H.patch_the_title_for_the_initial_page();
 
     H.set_up_options_if_necessary();
+
+    H.initialize_header();
+
+    H.adjust_the_initial_page_if_it_is_dynamic_page();
 
     if (navigator.userAgent.match(/OS (\S)+ like Mac OS X/i))
       $('body').addClass('iOS');
@@ -2310,7 +2282,7 @@ var hatokurandom = {};
       'obsolete': 'icon-exclamation-sign'
     };
     $.each(notification_table, function (event_type, icon_class) {
-      $(window.applicationCache).bind(event_type, function (e) {
+      $(window.applicationCache).on(event_type, function (e) {
         $('#notification #offline_mode').attr('class', event_type);
         $('#notification #offline_mode i').attr('class', icon_class);
         $('#notification #offline_mode .progress')
@@ -2322,6 +2294,7 @@ var hatokurandom = {};
       });
     });
   });
+
   //}}}1
 })(hatokurandom, jQuery, jQuery.mobile);
 

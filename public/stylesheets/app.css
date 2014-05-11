@@ -29,21 +29,6 @@ a.share.button:after
 }
 
 
-/* Adjust the size of icons in the navigation bar.
- *
- * There might be a small gap between the navigation bar and the page content.
- * It's hard to remove the gap in portable notation.  The following definition
- * is optimized for iPhone 4S.
- */
-
-[data-id='navigation'][data-role='header'] [data-role='navbar'] .ui-btn-inner
-{
-  font-size: 2em;
-  line-height: 100%;
-  padding: 0.25em 0;
-}
-
-
 /* For cards in a supply view. */
 
 .card label
@@ -84,35 +69,91 @@ a.share.button:after
   display: none;
 }
 
-.ui-li-static.ui-li
+/* Show 10 cards without scrolling
+ * in non-fullscreen Mobile Safari on iPhone 4S with iOS7.
+ */
+.ui-listview > .ui-li-static
 {
-  /* Show 10 cards without scrolling
-   * in non-fullscreen iPhone Safari on iPhone 4S.
-   */
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
+  padding-top: 0.4em;
+  padding-bottom: 0.4em;
+}
+.ui-listview > .ui-li-static > label
+{
+  margin: 0;
+  font-size: 14px;
 }
 
 
-/* For the header. */
+/* #header */
 
-.disabled.button
+#header .button
+{
+  font-size: 24px;
+  line-height: 100%;
+  padding: 0.25em 0;
+}
+
+#header .disabled.button
 {
   color: #666;
-}
-
-.ui-header .ui-title
-{
-  margin-left: 20%;
-  margin-right: 20%;
 }
 
 
 /* #configure */
 
-#configure .ui-controlgroup-label
+#configure h2
 {
+  font-size: 110%;
+}
+
+#configure .block
+{
+  margin-top: 2em;
+}
+#configure .block:first-child
+{
+  margin-top: 0;
+}
+
+#configure #available_card_sets .ui-controlgroup-controls > label
+{
+  position: inherit !important;
+  height: auto;
+  width: auto;
+  overflow: inherit;
+  clip: auto;
+}
+
+#configure #available_card_sets .ui-controlgroup-controls > label
+{
+  margin: 0;
+}
+#configure #available_card_sets .ui-controlgroup-controls > label > .title
+{
+  width: 6em;
+  height: 1em;
+  display: inline-block;
+  vertical-align: middle;
   font-weight: bolder;
+}
+#configure #available_card_sets .ui-controlgroup-controls > label > .title#include_fairy
+{
+  position: relative;
+  top: -0.5em;
+}
+#configure #available_card_sets .ui-controlgroup-controls > .ui-select
+{
+  float: left;
+}
+#configure #available_card_sets .ui-controlgroup-controls .ui-first-child
+{
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+#configure #available_card_sets .ui-controlgroup-controls .ui-last-child
+{
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
 }
 
 #configure .note
@@ -120,30 +161,6 @@ a.share.button:after
   display: block;
   font-size: 80%;
   font-weight: lighter;
-}
-
-#configure .select label
-{
-  font-weight: bolder;
-  display: block;
-}
-#configure .select label .title
-{
-  display: inline-block;
-  width: 6em;
-}
-#configure .select label #include_fairy.title
-{
-  line-height: 120%;
-  vertical-align: middle;
-}
-#configure .select .ui-select
-{
-  display: inline;
-}
-#configure .select .ui-btn
-{
-  width: 8em;
 }
 
 /* A workaround to avoid automatic zooming by focusing a <select>.

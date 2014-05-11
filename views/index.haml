@@ -6,11 +6,11 @@
     %meta(name='viewport' content='width=device-width, initial-scale=1')
     %meta(name='apple-mobile-web-app-capable' content='yes')
     %link(href='/stylesheets/font-awesome/css/font-awesome.css' rel='stylesheet' type='text/css')
-    %link(href='/stylesheets/jquery-mobile/jquery.mobile-1.1.0.min.css' rel='stylesheet' type='text/css')
+    %link(href='/stylesheets/jquery-mobile/jquery.mobile-1.4.2.min.css' rel='stylesheet' type='text/css')
     %link(href='/stylesheets/app.css' rel='stylesheet' type='text/css')
-    %script(src='/javascripts/jquery/jquery-1.7.2.min.js' type='text/javascript')
+    %script(src='/javascripts/jquery/jquery-2.1.1.min.js' type='text/javascript')
     %script(src='/javascripts/jquery-cookie/jquery.cookie.js' type='text/javascript')
-    %script(src='/javascripts/jquery-mobile/jquery.mobile-1.1.0.min.js' type='text/javascript')
+    %script(src='/javascripts/jquery-mobile/jquery.mobile-1.4.2.min.js' type='text/javascript')
     %script(src='/javascripts/app.js' type='text/javascript')
   %body
     :ruby
@@ -29,6 +29,22 @@
       def as_button
         {data: {role: 'button'}}
       end
+
+    #header{data: {role: 'header', position: 'fixed', theme: 'b'}}
+      %div{data: {role: 'navbar'}}
+        %ul
+          %li
+            %a.home.button{data: {direction: 'reverse'}}(href='#home' title='ホーム画面へ移動する。')
+              %i.icon-home
+          %li
+            %a.configure.button{data: {transition: 'pop'}}(href='#configure' title='設定画面を開く。')
+              %i.icon-cog
+          %li
+            %a.share.button(title='サプライを共有する。')
+              %i.icon-share
+          %li
+            %a.reshuffle.button(title='サプライを再生成する。')
+              %i.icon-random
 
     #home{as_page}
 
@@ -57,24 +73,31 @@
             %a(href='#about') このアプリについて
 
     #supplies{as_page}
-      -# #supplies_template
+      -# #page_list_template
 
     #supply{as_page}
-      -# #supply_template
+      -# #card_list_template
 
     #card-references{as_page}
-      -# #supplies_template
+      -# #page_list_template
 
-    #configure{as_page, {data: {role: 'dialog'}}}
+    #references{as_page}
+      -# #page_list_template
 
-      %div{data: {role: 'header'}}
-        %h1 ランダム選択の設定
+    #reference{as_page}
+      -# #card_list_template
+
+    #configure{as_page, {data: {dialog: 'true'}}}
+
+      %div{data: {role: 'header', theme: 'b'}}
+        %h1 設定
 
       %div{as_content}
 
-        %div.select{data: {role: 'fieldcontain'}}
+        .block#available_card_sets
+          %h2 使用するカードセット
+
           %fieldset{data: {role: 'controlgroup'}}
-            %legend 使用するカードセット:
             %label
               %span.title 基本セット
               %select(name='include_basic'){data: {inline: 'true'}}
@@ -106,9 +129,10 @@
                 %option(value='may') 使用
                 %option(value='must_not') 禁止
 
-        %div{data: {role: 'fieldcontain'}}
+        .block
+          %h2 偏り具合の調整
+
           %fieldset{data: {role: 'controlgroup'}}
-            %legend 偏り具合の調整:
             %label
               %input(type='checkbox' name='exclude_banned_cards')
               公式推奨バランスを使用する
@@ -161,7 +185,7 @@
                 できるだけ対抗可能な防衛カードを含めるようにします。
                 例: 「《呪詛の魔女》を含めるなら《魔法の護符》も含める」
 
-        %div{data: {role: 'fieldcontain'}}
+        .block
           %input#button_to_reset_options(type='button' value='初期設定に戻す')
 
     #about{as_page}
@@ -265,34 +289,18 @@
           %span.progress
 
     #templates.internal
-      #header_template
-        %div{data: {role: 'header', position: 'fixed', id: 'navigation'}}
-          %div{data: {role: 'navbar'}}
-            %ul
-              %li
-                %a.home.button{data: {direction: 'reverse'}}(href='#home' title='ホーム画面へ移動する。')
-                  %i.icon-home
-              %li
-                %a.configure.button{data: {rel: 'dialog'}}(href='#configure' title='設定画面を開く。')
-                  %i.icon-cog
-              %li
-                %a.share.button(title='サプライを共有する。')
-                  %i.icon-share
-              %li
-                %a.reshuffle.button(title='サプライを再生成する。')
-                  %i.icon-random
-      #supplies_template
+      #page_list_template
         %div{as_content}
-          %ul.supplies{as_listview}
-            -# #supplies_item_template
-      %ul#supplies_item_template
+          %ul.page_list{as_listview}
+            -# #page_list_item_template
+      %ul#page_list_item_template
         %li
           %a(href='\#{{pid}}') {{title}}
-      #supply_template
+      #card_list_template
         %div{as_content}
-          %ul.supply{as_listview}(data-divider-theme='d')
-            -# #supply_item_template
-      %ul#supply_item_template
+          %ul.card_list{as_listview}(data-divider-theme='d')
+            -# #card_list_item_template
+      %ul#card_list_item_template
         %li.card(data-cid='{{cid}}')
           -# FIXME: Link to a card view.
           %label
@@ -302,6 +310,6 @@
             {{name}}
             %span.subtype(data-name='{{subtype}}')
       %ul#supply_deadline_template
-        %li{data: {role: 'list-divider'}}
+        %li{data: {role: 'list-divider', theme: 'a'}}
 
 -# __END__
