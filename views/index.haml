@@ -5,7 +5,7 @@
     %meta(charset='UTF-8')
     %meta(name='viewport' content='width=device-width, initial-scale=1')
     %meta(name='apple-mobile-web-app-capable' content='yes')
-    %link(href='/stylesheets/font-awesome/css/font-awesome.css' rel='stylesheet' type='text/css')
+    %link(href='/stylesheets/font-awesome/css/font-awesome.min.css' rel='stylesheet' type='text/css')
     %link(href='/stylesheets/jquery-mobile/jquery.mobile-1.4.2.min.css' rel='stylesheet' type='text/css')
     %link(href='/stylesheets/app.css' rel='stylesheet' type='text/css')
     %script(src='/javascripts/jquery/jquery-2.1.1.min.js' type='text/javascript')
@@ -35,16 +35,16 @@
         %ul
           %li
             %a.home.button{data: {direction: 'reverse'}}(href='#home' title='ホーム画面へ移動する。')
-              %i.icon-home
+              %i.fa.fa-home
           %li
             %a.configure.button{data: {transition: 'pop'}}(href='#configure' title='設定画面を開く。')
-              %i.icon-cog
+              %i.fa.fa-cog
           %li
             %a.share.button(title='サプライを共有する。')
-              %i.icon-share
+              %i.fa.fa-share-square-o
           %li
             %a.reshuffle.button(title='サプライを再生成する。')
-              %i.icon-random
+              %i.fa.fa-random
 
     #home{as_page}
 
