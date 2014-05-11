@@ -1865,6 +1865,16 @@ var hatokurandom = {};
   H.initialize_header = function () {  //{{{2
     $('#header').toolbar();
     $('#header > [data-role="navbar"]').navbar();
+
+    $('#header .button').click(function () {
+      var $button = $(this);
+      setTimeout(
+        function () {
+          $button.removeClass($m.activeBtnClass);
+        },
+        300
+      );
+    });
   };
 
   H.list_card_names = function ($supply_page) {  //{{{2
