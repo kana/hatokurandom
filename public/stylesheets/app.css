@@ -86,6 +86,9 @@ a.share.button:after
 .ui-listview > .ui-li-static > label
 {
   margin: 0;
+}
+.iOS .ui-listview > .ui-li-static > label
+{
   font-size: 14px;
 }
 
