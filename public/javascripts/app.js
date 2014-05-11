@@ -1855,7 +1855,10 @@ var hatokurandom = {};
   // Core  //{{{1
   H.adjust_header = function ($page) {  //{{{2
     $('#header .reshuffle.button').toggleClass('disabled', !H.is_dsid($page.jqmData('sid')));
-    $('#header .share.button').toggleClass('disabled', $page.attr('id') != 'supply');
+    $('#header .share.button').toggleClass(
+      'disabled',
+      !($page.attr('id') == 'supply' || $page.attr('id') == 'reference')
+    );
   };
 
   H.adjust_the_initial_page_if_it_is_dynamic_page = function () {  //{{{2
