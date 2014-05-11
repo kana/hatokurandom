@@ -2004,89 +2004,6 @@ var hatokurandom = {};
     document.title = meta.title;
   };
 
-  H.prepare_supplies_page = function (e, data, pid) {  //{{{2
-    // NB: The structures of "card-references" and "references:*" are the same,
-    // so that it would be better to use #supplies for "card-references" for
-    // simplicity, but it is not acceptable.  Because jQuery Mobile's
-    // transisions assume that fromPage and toPage are different, and
-    // "card-references" has several links to "references:*".  If #supplies is
-    // also used for "card-references", page transition between
-    // "card-references" and "references:*" becomes broken.
-    var $page =
-      pid == 'card-references'
-      ? $('#card-references')
-      : $('#supplies');
-
-    // See also [DOUBLE_TROUBLE].
-    if (pid != $page.jqmData('pid')) {
-      var meta = H.meta_from_pid(pid);
-      var child_pids = H.child_pids_from_pid(pid);
-
-      var $content = H.render('supplies_template');
-      var $supplies = $content.find('.supplies');
-      for (var i in child_pids) {
-        var child_pid = child_pids[i];
-        var child_meta = H.meta_from_pid(child_pid);
-        $supplies.append(H.render('supplies_item_template', {
-          pid: child_pid,
-          title: child_meta.title
-        }));
-      }
-
-      $page
-        .empty()
-        .append($content);
-      $page.jqmData('title', meta.title);
-      $page.page();
-      $page.trigger('pagecreate');
-    }
-
-    data.options.dataUrl = data.toPage;
-    $m.changePage($page, data.options);
-    e.preventDefault();
-  };
-
-  H.prepare_supply_page = function (e, data, pid) {  //{{{2
-    var $page = $('#supply');
-    var sid = H.sid_from_pid(pid);
-
-    // [DOUBLE_TROUBLE] For some reason, pagebeforechange and some events are
-    // triggered twice by using the back/forward buttons in Web browsers.  To
-    // avoid unnecessary recreation and reshuffling a random supply twice,
-    // keep the curent content of $page if possible.
-    if (sid != $page.jqmData('sid')) {
-      var meta = H.meta_from_pid(pid);
-      var initial_xcards = H.xcards_from_sid(sid);
-
-      var $content = H.render('supply_template');
-      var $supply = $content.find('.supply');
-      H.refresh_supply_view($supply, initial_xcards, sid, true);
-
-      // FIXME: DRY
-      // The tails of H.prepare_supplies_page and H.prepare_supply_page
-      // are almost same.
-      $page
-        .empty()
-        .append($content);
-      $page.jqmData('sid', sid);
-      $page.jqmData('title', meta.title);
-      $page.page();
-      $page.trigger('pagecreate');
-    }
-
-    data.options.dataUrl = data.toPage;
-    $m.changePage($page, data.options);
-    e.preventDefault();
-  };
-
-  H.prepare_other_page = function (e, data, pid) {  //{{{2
-    var new_pid = H.migrate_from_version_1(pid);
-    if (new_pid) {
-      var base_uri = $m.path.parseUrl(location.href).hrefNoHash;
-      location.replace(base_uri + '#' + new_pid);
-    }
-  };
-
   H.refresh_supply_view = function ($supply, xcards, sid, is_first) {  //{{{2
     var refresh_if_dropped = function () {
       var updated_xcards = H.xcards_from_supply_view($supply);
@@ -2223,43 +2140,6 @@ var hatokurandom = {};
   // Events  //{{{1
   if (H.is_running_specs())  //{{{2
     return;  // Do not register event handlers to avoid interference on specs.
-
-  $(document).on('pagebeforechange', function (e, data) {  //{{{2
-    try {
-      if (typeof data.toPage != 'string')
-        return;
-
-      if (!$m.path.isSameDomain(data.toPage, location.href))
-        return;
-
-      var url = $m.path.parseUrl(data.toPage);
-      var pid = H.pid_from_url(url);
-      var prepare = (function () {
-        var apid = H.apid_from_pid(pid);
-        if (apid == 'supplies'
-            || apid == 'references'
-            || apid == 'card-references')
-          return H.prepare_supplies_page;
-        else if (apid == 'supply' || apid == 'reference')
-          return H.prepare_supply_page;
-        else
-          return H.prepare_other_page;
-      })();
-
-      // Most of initialization steps are usually done at "ready".
-      // But H.set_up_options_if_necessary must be done also at this timing,
-      // because "pagebeforechange" is triggered before "ready".
-      // If we H.set_up_options_if_necessary at "ready" and a user directly
-      // opens a page to generate a random supply (such as #supply:random10)
-      // from another site, options are loaded AFTER a random supply is
-      // generated.
-      H.set_up_options_if_necessary();
-      prepare(e, data, pid);
-    } catch (ex) {
-      alert('Unexpected error: ' + ex.message);  // TODO: Friendly instruction.
-      e.preventDefault();
-    }
-  });
 
   $(document).on('pagecontainertransition', ':mobile-pagecontainer', function (e, ui) {  //{{{2
     H.adjust_header(ui.toPage);
