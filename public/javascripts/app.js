@@ -1870,7 +1870,7 @@ var hatokurandom = {};
       var $button = $(this);
       setTimeout(
         function () {
-          $button.removeClass($m.activeBtnClass);
+          $button.removeClass('ui-btn-active');
         },
         300
       );
