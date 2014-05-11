@@ -2040,19 +2040,19 @@ var hatokurandom = {};
     var meta = H.meta_from_pid(pid);
     var child_pids = H.child_pids_from_pid(pid);
 
-    var $content = H.render('supplies_template');
-    var $supplies = $content.find('.supplies');
+    var $content = H.render('page_list_template');
+    var $page_list = $content.find('.page_list');
     for (var i in child_pids) {
       var child_pid = child_pids[i];
       var child_meta = H.meta_from_pid(child_pid);
-      $supplies.append(H.render('supplies_item_template', {
+      $page_list.append(H.render('page_list_item_template', {
         pid: child_pid,
         title: child_meta.title
       }));
     }
 
     var $page = $('#' + apid);
-    $supplies.listview();
+    $page_list.listview();
     $page.empty().append($content);
     $page.jqmData('title', meta.title);
 

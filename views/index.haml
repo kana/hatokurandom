@@ -73,16 +73,16 @@
             %a(href='#about') このアプリについて
 
     #supplies{as_page}
-      -# #supplies_template
+      -# #page_list_template
 
     #supply{as_page}
       -# #supply_template
 
     #card-references{as_page}
-      -# #supplies_template
+      -# #page_list_template
 
     #references{as_page}
-      -# #supplies_template
+      -# #page_list_template
 
     #reference{as_page}
       -# #supply_template
@@ -287,11 +287,11 @@
           %span.progress
 
     #templates.internal
-      #supplies_template
+      #page_list_template
         %div{as_content}
-          %ul.supplies{as_listview}
-            -# #supplies_item_template
-      %ul#supplies_item_template
+          %ul.page_list{as_listview}
+            -# #page_list_item_template
+      %ul#page_list_item_template
         %li
           %a(href='\#{{pid}}') {{title}}
       #supply_template
