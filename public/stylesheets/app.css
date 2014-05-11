@@ -29,21 +29,6 @@ a.share.button:after
 }
 
 
-/* Adjust the size of icons in the navigation bar.
- *
- * There might be a small gap between the navigation bar and the page content.
- * It's hard to remove the gap in portable notation.  The following definition
- * is optimized for iPhone 4S.
- */
-
-[data-id='navigation'][data-role='header'] [data-role='navbar'] .ui-btn-inner
-{
-  font-size: 2em;
-  line-height: 100%;
-  padding: 0.25em 0;
-}
-
-
 /* For cards in a supply view. */
 
 .card label
@@ -94,7 +79,14 @@ a.share.button:after
 }
 
 
-/* For the header. */
+/* #header */
+
+#header .button
+{
+  font-size: 24px;
+  line-height: 100%;
+  padding: 0.25em 0;
+}
 
 #header .disabled.button
 {
