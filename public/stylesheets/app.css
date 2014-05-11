@@ -29,7 +29,7 @@ a.share.button:after
 }
 
 
-/* For cards in a supply view. */
+/* For cards in a card-list view. */
 
 .card label
 {
@@ -41,6 +41,12 @@ a.share.button:after
 {
   background: #ddd;
   color: #666;
+}
+
+.card .cost,
+.card .name
+{
+  font-weight: bolder;
 }
 
 .card .type
@@ -61,7 +67,7 @@ a.share.button:after
 .card .subtype:after
 {
   color: #999;
-  content: '(' attr(data-name) ')';
+  content: '（' attr(data-name) '）';
   font-size: 80%;
 }
 .card .subtype[data-name='']:after
@@ -80,7 +86,6 @@ a.share.button:after
 .ui-listview > .ui-li-static > label
 {
   margin: 0;
-  font-size: 14px;
 }
 
 
