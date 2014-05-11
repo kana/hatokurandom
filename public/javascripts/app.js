@@ -1870,12 +1870,14 @@ var hatokurandom = {};
     // And the #home page will be shown but location.href points the dynamic
     // page URL.  So that we have to "redirect" to the dynamic page, especially
     // after all of jQuery Mobile's initializations.
+    //
+    // FIXME: But this is a quick-and-dirty workaround.  Consider other ways.
     if (H.is_dynamic_page_url(location.href)) {
       setTimeout(
         function () {
           $(':mobile-pagecontainer').pagecontainer('change', location.href);
         },
-        100
+        500
       );
     }
   };
