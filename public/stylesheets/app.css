@@ -43,6 +43,12 @@ a.share.button:after
   color: #666;
 }
 
+.card .cost,
+.card .name
+{
+  font-weight: bolder;
+}
+
 .card .type
 {
   width: 0.8em;
