@@ -1862,6 +1862,11 @@ var hatokurandom = {};
     return base_uri + '#supply:' + rsid;
   };
 
+  H.initialize_header = function () {  //{{{2
+    $('#header').toolbar();
+    $('#header > [data-role="navbar"]').navbar();
+  };
+
   H.list_card_names = function ($supply_page) {  //{{{2
     var $supply = $supply_page.find('.supply');
     return $.map(
@@ -2178,6 +2183,8 @@ var hatokurandom = {};
     H.patch_the_title_for_the_initial_page();
 
     H.set_up_options_if_necessary();
+
+    H.initialize_header();
 
     if (navigator.userAgent.match(/OS (\S)+ like Mac OS X/i))
       $('body').addClass('iOS');

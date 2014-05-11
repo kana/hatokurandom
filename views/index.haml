@@ -30,6 +30,22 @@
         {data: {role: 'button'}}
       end
 
+    #header{data: {role: 'header', position: 'fixed', theme: 'b'}}
+      %div{data: {role: 'navbar'}}
+        %ul
+          %li
+            %a.home.button{data: {direction: 'reverse'}}(href='#home' title='ホーム画面へ移動する。')
+              %i.icon-home
+          %li
+            %a.configure.button{data: {rel: 'dialog'}}(href='#configure' title='設定画面を開く。')
+              %i.icon-cog
+          %li
+            %a.share.button(title='サプライを共有する。')
+              %i.icon-share
+          %li
+            %a.reshuffle.button(title='サプライを再生成する。')
+              %i.icon-random
+
     #home{as_page}
 
       %div{as_content}
