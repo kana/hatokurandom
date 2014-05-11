@@ -1886,7 +1886,7 @@ var hatokurandom = {};
       return location.href;
 
     var $card_list = $card_list_page.find('.card_list');
-    var xcards = H.xcards_from_supply_view($card_list);
+    var xcards = H.xcards_from_card_list_view($card_list);
     var rsid = H.rsid_from_xcards(
       sid == 'editor'
       ? $.grep(xcards, function (xcard) {return !xcard.dropped;})
@@ -1920,7 +1920,7 @@ var hatokurandom = {};
 
       var $page = H.get_current_page();
       var sid = $page.jqmData('sid');
-      H.refresh_supply_view(
+      H.refresh_card_list_view(
         $page.find('.card_list'),
         H.xcards_from_sid(sid),
         sid,
@@ -1963,7 +1963,7 @@ var hatokurandom = {};
     var $card_list = $card_list_page.find('.card_list');
     return $.map(
       $.grep(
-        H.xcards_from_supply_view($card_list),
+        H.xcards_from_card_list_view($card_list),
         function (xcard) {return !xcard.dropped;}
       ),
       function (xcard) {return xcard.name;}
@@ -2033,7 +2033,7 @@ var hatokurandom = {};
 
     var $content = H.render('card_list_template');
     var $card_list = $content.find('.card_list');
-    H.refresh_supply_view($card_list, initial_xcards, sid, true);
+    H.refresh_card_list_view($card_list, initial_xcards, sid, true);
 
     $card_list.listview();
     $page.empty().append($content);
@@ -2073,10 +2073,10 @@ var hatokurandom = {};
     }
   };
 
-  H.refresh_supply_view = function ($card_list, xcards, sid, is_first) {  //{{{2
+  H.refresh_card_list_view = function ($card_list, xcards, sid, is_first) {  //{{{2
     var refresh_if_dropped = function () {
-      var updated_xcards = H.xcards_from_supply_view($card_list);
-      H.refresh_supply_view($card_list, updated_xcards, sid, false);
+      var updated_xcards = H.xcards_from_card_list_view($card_list);
+      H.refresh_card_list_view($card_list, updated_xcards, sid, false);
     };
     var oo = Number.MAX_VALUE;
     var sorted_xcards =
@@ -2197,7 +2197,7 @@ var hatokurandom = {};
       console.log([keys[i], s[keys[i]]]);
   };
 
-  H.xcards_from_supply_view = function ($card_list) {  //{{{2
+  H.xcards_from_card_list_view = function ($card_list) {  //{{{2
     return $card_list.find('.card').map(function () {
       var $card = $(this);
       var xcard = H.xcard_from_card(H.card_from_cid($card.data('cid')));
