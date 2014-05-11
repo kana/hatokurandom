@@ -1874,13 +1874,13 @@ var hatokurandom = {};
     }
   };
 
-  H.generate_permalink = function ($supply_page) {  //{{{2
-    var sid = $supply_page.jqmData('sid');
+  H.generate_permalink = function ($card_list_page) {  //{{{2
+    var sid = $card_list_page.jqmData('sid');
     if (!H.is_dsid(sid))
       return location.href;
 
-    var $supply = $supply_page.find('.card_list');
-    var xcards = H.xcards_from_supply_view($supply);
+    var $card_list = $card_list_page.find('.card_list');
+    var xcards = H.xcards_from_supply_view($card_list);
     var rsid = H.rsid_from_xcards(
       sid == 'editor'
       ? $.grep(xcards, function (xcard) {return !xcard.dropped;})
@@ -1953,11 +1953,11 @@ var hatokurandom = {};
     });
   };
 
-  H.list_card_names = function ($supply_page) {  //{{{2
-    var $supply = $supply_page.find('.card_list');
+  H.list_card_names = function ($card_list_page) {  //{{{2
+    var $card_list = $card_list_page.find('.card_list');
     return $.map(
       $.grep(
-        H.xcards_from_supply_view($supply),
+        H.xcards_from_supply_view($card_list),
         function (xcard) {return !xcard.dropped;}
       ),
       function (xcard) {return xcard.name;}
@@ -2026,10 +2026,10 @@ var hatokurandom = {};
     var initial_xcards = H.xcards_from_sid(sid);
 
     var $content = H.render('card_list_template');
-    var $supply = $content.find('.card_list');
-    H.refresh_supply_view($supply, initial_xcards, sid, true);
+    var $card_list = $content.find('.card_list');
+    H.refresh_supply_view($card_list, initial_xcards, sid, true);
 
-    $supply.listview();
+    $card_list.listview();
     $page.empty().append($content);
     $page.jqmData('title', meta.title);
 
@@ -2067,10 +2067,10 @@ var hatokurandom = {};
     }
   };
 
-  H.refresh_supply_view = function ($supply, xcards, sid, is_first) {  //{{{2
+  H.refresh_supply_view = function ($card_list, xcards, sid, is_first) {  //{{{2
     var refresh_if_dropped = function () {
-      var updated_xcards = H.xcards_from_supply_view($supply);
-      H.refresh_supply_view($supply, updated_xcards, sid, false);
+      var updated_xcards = H.xcards_from_supply_view($card_list);
+      H.refresh_supply_view($card_list, updated_xcards, sid, false);
     };
     var oo = Number.MAX_VALUE;
     var sorted_xcards =
@@ -2083,7 +2083,7 @@ var hatokurandom = {};
         function (xcard) {return xcard.name;}
       );
     var editable = 10 < xcards.length && H.is_dsid(sid);
-    $supply.empty();
+    $card_list.empty();
     $.each(sorted_xcards, function (i, xcard) {
       var $xcard =
         H.render(
@@ -2105,11 +2105,11 @@ var hatokurandom = {};
         .change(refresh_if_dropped);
       $xcard.toggleClass('dropped', xcard.dropped);
       if (editable && i == 10)
-        $supply.append(H.render('supply_deadline_template'));
-      $supply.append($xcard);
+        $card_list.append(H.render('supply_deadline_template'));
+      $card_list.append($xcard);
     });
     if (!is_first)
-      $supply.listview('refresh');
+      $card_list.listview('refresh');
     $('#supply_status i').attr(
       'class',
       xcards.fallback ? 'icon-exclamation-sign' : 'icon-ok-sign'
@@ -2191,8 +2191,8 @@ var hatokurandom = {};
       console.log([keys[i], s[keys[i]]]);
   };
 
-  H.xcards_from_supply_view = function ($supply) {  //{{{2
-    return $supply.find('.card').map(function () {
+  H.xcards_from_supply_view = function ($card_list) {  //{{{2
+    return $card_list.find('.card').map(function () {
       var $card = $(this);
       var xcard = H.xcard_from_card(H.card_from_cid($card.data('cid')));
       xcard.dropped = $card.find('.selected:checkbox:checked').length == 0;
