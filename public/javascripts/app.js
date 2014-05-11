@@ -2138,7 +2138,7 @@ var hatokurandom = {};
   if (H.is_running_specs())  //{{{2
     return;  // Do not register event handlers to avoid interference on specs.
 
-  $(document).bind('pagebeforechange', function (e, data) {  //{{{2
+  $(document).on('pagebeforechange', function (e, data) {  //{{{2
     try {
       if (typeof data.toPage != 'string')
         return;
@@ -2200,7 +2200,7 @@ var hatokurandom = {};
       'obsolete': 'icon-exclamation-sign'
     };
     $.each(notification_table, function (event_type, icon_class) {
-      $(window.applicationCache).bind(event_type, function (e) {
+      $(window.applicationCache).on(event_type, function (e) {
         $('#notification #offline_mode').attr('class', event_type);
         $('#notification #offline_mode i').attr('class', icon_class);
         $('#notification #offline_mode .progress')
