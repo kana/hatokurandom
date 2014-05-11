@@ -69,13 +69,18 @@ a.share.button:after
   display: none;
 }
 
-.ui-li-static.ui-li
+/* Show 10 cards without scrolling
+ * in non-fullscreen Mobile Safari on iPhone 4S with iOS7.
+ */
+.ui-listview > .ui-li-static
 {
-  /* Show 10 cards without scrolling
-   * in non-fullscreen iPhone Safari on iPhone 4S.
-   */
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
+  padding-top: 0.4em;
+  padding-bottom: 0.4em;
+}
+.ui-listview > .ui-li-static > label
+{
+  margin: 0;
+  font-size: 14px;
 }
 
 
