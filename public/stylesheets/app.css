@@ -96,7 +96,7 @@ a.share.button:after
 
 /* For the header. */
 
-.disabled.button
+#header .disabled.button
 {
   color: #666;
 }
