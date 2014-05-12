@@ -87,9 +87,10 @@
     #reference{as_page}
       -# #card_list_template
 
-    #configure{as_page, {data: {dialog: 'true'}}}
+    #configure{as_page, {data: {dialog: 'true', 'close-btn' => 'none'}}}
 
       %div{data: {role: 'header', theme: 'b'}}
+        %a#configure_close_button.ui-btn.ui-corner-all.ui-icon-delete.ui-btn-icon-notext.ui-btn-left
         %h1 設定
 
       %div{as_content}
