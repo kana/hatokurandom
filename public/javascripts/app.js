@@ -1964,6 +1964,24 @@ var hatokurandom = {};
     });
   };
 
+  H.initialize_configure = function () {  //{{{2
+    $('#configure_close_button').click(function () {
+      // NB: $.mobile.navigate.history is not documented API.
+      // This code might not work with newer versions of jQuery Mobile.
+      if (1 <= $.mobile.navigate.history.activeIndex) {
+        $.mobile.back();
+      } else {
+        // When #configure is directly accessed, there is no valid page to back.
+        // Close #configure by going to #home instead.
+        $(':mobile-pagecontainer').pagecontainer(
+          'change',
+          '#home',
+          {transition: 'pop', reverse: true}
+        );
+      }
+    });
+  };
+
   H.list_card_names = function ($card_list_page) {  //{{{2
     var $card_list = $card_list_page.find('.card_list');
     return $.map(
@@ -2268,6 +2286,7 @@ var hatokurandom = {};
     H.set_up_options_if_necessary();
 
     H.initialize_header();
+    H.initialize_configure();
 
     H.adjust_the_initial_page_if_it_is_dynamic_page();
 
