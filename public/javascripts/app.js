@@ -1038,6 +1038,9 @@ var hatokurandom = {};
     'credits': {  //{{{
       title: 'バージョン情報'
     },  //}}}
+    'configure': {  //{{{
+      title: '設定'
+    },  //}}}
     'supplies:random': {  //{{{
       title: 'ランダム選択'
     },  //}}}
