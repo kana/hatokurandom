@@ -1885,6 +1885,16 @@ var hatokurandom = {};
     }
   };
 
+  H.adjust_title = function (pid) {  //{{{2
+    var apid = H.apid_from_pid(pid);
+    var $page = $('#' + apid);
+    if ($page.length != 1)  // Seems not to be a valid page.  Skip.
+      return;
+
+    var meta = H.meta_from_pid(pid);
+    $page.jqmData('title', meta.title);
+  };
+
   H.generate_permalink = function ($card_list_page) {  //{{{2
     var sid = $card_list_page.jqmData('sid');
     if (!H.is_dsid(sid))
@@ -2051,7 +2061,6 @@ var hatokurandom = {};
       return $page;
     $page.jqmData('sid', sid);
 
-    var meta = H.meta_from_pid(pid);
     var initial_xcards = H.xcards_from_sid(sid);
 
     var $content = H.render('card_list_template');
@@ -2060,13 +2069,11 @@ var hatokurandom = {};
 
     $card_list.listview();
     $page.empty().append($content);
-    $page.jqmData('title', meta.title);
 
     return $page;
   };
 
   H.prepare_dynamic_page_content_pages = function (pid, apid) {  //{{{2
-    var meta = H.meta_from_pid(pid);
     var child_pids = H.child_pids_from_pid(pid);
 
     var $content = H.render('page_list_template');
@@ -2083,7 +2090,6 @@ var hatokurandom = {};
     var $page = $('#' + apid);
     $page_list.listview();
     $page.empty().append($content);
-    $page.jqmData('title', meta.title);
 
     return $page;
   };
@@ -2258,6 +2264,7 @@ var hatokurandom = {};
       var apid = H.apid_from_pid(pid);
 
       H.redirect_to_new_url_if_necessary();
+      H.adjust_title(pid);
 
       if (apid != pid || apid == 'card-references') {
         var $page = H.prepare_dynamic_page_content(pid, apid);
