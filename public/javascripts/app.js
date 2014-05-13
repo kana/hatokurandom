@@ -1035,6 +1035,9 @@ var hatokurandom = {};
     'about': {  //{{{
       title: 'このアプリについて'
     },  //}}}
+    'tips': {  //{{{
+      title: 'Tips'
+    },  //}}}
     'credits': {  //{{{
       title: 'バージョン情報'
     },  //}}}

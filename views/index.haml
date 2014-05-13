@@ -227,8 +227,48 @@
               ご意見・ご感想
         %ul{as_listview, as_inset}
           %li
+            %a(href='#tips')
+              Tips
+          %li
             %a(href='#credits')
               バージョン情報
+
+    #tips{as_page}
+      %div{as_content}
+        %h1 Tips
+
+        %h2 オフラインでの利用
+
+        %p
+          このアプリはWebアプリではありますが、
+          %a(href='/offline') オフラインでも利用できるバージョン
+          を用意しています。
+        %p
+          特にiPhoneのSafariでこのオフライン版を
+          「ホーム画面に追加」
+          すると通常のアプリのように使えるようになります。
+          うっかり電波の届かない場所でハトクラする時も安心ですし、
+          オフライン版だと通信待ち時間が無いので高速で起動します。
+        %p
+          なお、オフライン版を利用している場合は
+          画面右下隅に通信状況を示すアイコンが表示されます:
+
+        %ul.fa-ul
+          %li
+            %i.fa-li.fa.fa-signal
+            最新バージョンのチェック中
+          %li
+            %i.fa-li.fa.fa-download
+            最新バージョンのダウンロード中
+          %li
+            %i.fa-li.fa.fa-check-circle
+            オンライン状態 -
+            最新バージョンを利用中 or
+            次回起動時に最新バージョンに自動更新
+          %li
+            %i.fa-li.fa.fa-exclamation-circle
+            オフライン状態 or
+            オンライン状態だが最新バージョンのダウンロードに失敗
 
     #credits{as_page}
 
