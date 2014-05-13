@@ -18,14 +18,17 @@ class App < Sinatra::Application
     haml :index
   end
 
+  get '/offline' do
+    haml :index
+  end
+
   get '/spec' do
     send_file 'public/spec.html'
   end
 
   helpers do
-    def development?
-      @local_ip_addresses ||= Socket.ip_address_list.map {|a| a.ip_address}
-      @local_ip_addresses.member?(request.ip)
+    def offline_mode?
+      request.path == '/offline'
     end
   end
 end
