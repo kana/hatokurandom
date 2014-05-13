@@ -1983,7 +1983,20 @@ var hatokurandom = {};
       // NB: $m.navigate.history is not documented API.
       // This code might not work with newer versions of jQuery Mobile.
       if (1 <= $m.navigate.history.activeIndex) {
+        // $m.back() uses window.history.go to back if $m.hashListeningEnabled.
+        // This is the same as using the browser's "Back" button.  But Back and
+        // Forward buttons do not work on iOS7 if application cache is enabled.
+        // So that #configure dialog cannot be closed.
+        //
+        // As a workaround this issue, here we disable $m.hashListeningEnabled
+        // while executing $m.back().  This workaround should be removed when
+        // the bug is fixed in later releases of iOS.
+        var original_value = $m.hashListeningEnabled;
+        $m.hashListeningEnabled = false;
+
         $m.back();
+
+        $m.hashListeningEnabled = original_value;
       } else {
         // When #configure is directly accessed, there is no valid page to back.
         // Close #configure by going to #home instead.
