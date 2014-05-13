@@ -1899,9 +1899,10 @@ var hatokurandom = {};
   };
 
   H.generate_permalink = function ($card_list_page) {  //{{{2
+    var online_version_url_base = location.href.replace('/offline', '/');
     var sid = $card_list_page.jqmData('sid');
     if (!H.is_dsid(sid))
-      return location.href;
+      return online_version_url_base;
 
     var $card_list = $card_list_page.find('.card_list');
     var xcards = H.xcards_from_card_list_view($card_list);
@@ -1910,7 +1911,7 @@ var hatokurandom = {};
       ? $.grep(xcards, function (xcard) {return !xcard.dropped;})
       : xcards
     );
-    var base_uri = $m.path.parseUrl(location.href).hrefNoHash;
+    var base_uri = $m.path.parseUrl(online_version_url_base).hrefNoHash;
     return base_uri + '#supply:' + rsid;
   };
 
