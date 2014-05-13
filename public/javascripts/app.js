@@ -1980,10 +1980,10 @@ var hatokurandom = {};
 
   H.initialize_configure = function () {  //{{{2
     $('#configure_close_button').click(function () {
-      // NB: $.mobile.navigate.history is not documented API.
+      // NB: $m.navigate.history is not documented API.
       // This code might not work with newer versions of jQuery Mobile.
-      if (1 <= $.mobile.navigate.history.activeIndex) {
-        $.mobile.back();
+      if (1 <= $m.navigate.history.activeIndex) {
+        $m.back();
       } else {
         // When #configure is directly accessed, there is no valid page to back.
         // Close #configure by going to #home instead.
