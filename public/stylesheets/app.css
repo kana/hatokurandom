@@ -75,6 +75,12 @@ a.share.button:after
   display: none;
 }
 
+/* Use the same style as linked list items for static list items. */
+.ui-listview > .ui-li-static.card
+{
+  background: transparent;
+}
+
 /* Show 10 cards without scrolling
  * in non-fullscreen Mobile Safari on iPhone 4S with iOS7.
  */
