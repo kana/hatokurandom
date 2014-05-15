@@ -152,6 +152,10 @@ a.share.button:after
   position: relative;
   top: -0.5em;
 }
+#configure #available_card_sets .ui-controlgroup-controls > label > .ui-select
+{
+  width: 8em;
+}
 #configure #available_card_sets .ui-controlgroup-controls .ui-first-child
 {
   border-top-right-radius: 5px;
