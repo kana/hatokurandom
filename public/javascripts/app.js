@@ -2305,7 +2305,7 @@ var hatokurandom = {};
     }
   });
 
-  $(document).on('pagecontainertransition', ':mobile-pagecontainer', function (e, ui) {  //{{{2
+  $(document).on('pagecontainerbeforetransition', ':mobile-pagecontainer', function (e, ui) {  //{{{2
     H.adjust_header(ui.toPage);
   });
 
