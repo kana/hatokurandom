@@ -97,6 +97,11 @@ a.share.button:after
 
 /* #header */
 
+#header.disabled
+{
+  opacity: 0.5;
+}
+
 #header .button
 {
   font-size: 24px;
@@ -104,6 +109,7 @@ a.share.button:after
   padding: 0.25em 0;
 }
 
+#header.disabled .button,
 #header .disabled.button
 {
   color: #666;
@@ -111,6 +117,11 @@ a.share.button:after
 
 
 /* #configure */
+
+#configure
+{
+  z-index: 2000;  /* not to be overlaid by #header */
+}
 
 #configure h2
 {
