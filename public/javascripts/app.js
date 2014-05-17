@@ -1948,33 +1948,35 @@ var hatokurandom = {};
     });
 
     $('#header .share.button').click(function (e) {
-      // iPhone Safari seems not to trigger a click event for <a> if the
-      // element has a href attribute.  So that we have to explicitly open
-      // a new window instead of to set a permalink to the href attribute and
-      // to let the Web browser open the permalink.
+      // Here we want to open a new window to share a link.  If the app is
+      // running in standalone mode on iOS devices, we want to switches to
+      // Mobile Safari to open a new window.
+      //
+      // But window.open doesn't work if the app is running in standalone mode
+      // on iOS7.  In this case, it opens URL in the current screen of the app.
+      // So that it's not possible to back to the app.
 
       if ($(this).is('.disabled'))
-        return;
+        return false;
 
       var $page = H.get_current_page();
       var permalink = H.generate_permalink($page);
       var is_reference_page = /^reference-/.test($page.jqmData('sid'));
-      window.open(
-        [
-          'https://twitter.com/intent/tweet',
-          '?url=', encodeURIComponent(permalink),
-          '&text=', encodeURIComponent(
-            is_reference_page
-            ? 'ハトクラの' + $page.jqmData('title')
-            : 'ハトクラなう。今回のサプライ: '
-              + H.list_card_names($page).join(', ')
-          ),
-          '&hashtags=', encodeURIComponent('hatokura'),
-          '&related=', encodeURIComponent('HeartofCrown')
-        ].join('')
-      );
+      var link_to_share_permalink = [
+        'https://twitter.com/intent/tweet',
+        '?url=', encodeURIComponent(permalink),
+        '&text=', encodeURIComponent(
+          is_reference_page
+          ? 'ハトクラの' + $page.jqmData('title')
+          : 'ハトクラなう。今回のサプライ: '
+            + H.list_card_names($page).join(', ')
+        ),
+        '&hashtags=', encodeURIComponent('hatokura'),
+        '&related=', encodeURIComponent('HeartofCrown')
+      ].join('')
 
-      e.preventDefault();
+      $(this).attr('href', link_to_share_permalink);
+      return;  // Let the browser opens the adjusted href.
     });
   };
 
@@ -1988,15 +1990,21 @@ var hatokurandom = {};
         // Forward buttons do not work on iOS7 if application cache is enabled.
         // So that #configure dialog cannot be closed.
         //
-        // As a workaround this issue, here we disable $m.hashListeningEnabled
-        // while executing $m.back().  This workaround should be removed when
+        // As a workaround for this issue, we manually goes to the previous
+        // page instead of $m.back().  This workaround should be removed when
         // the bug is fixed in later releases of iOS.
-        var original_value = $m.hashListeningEnabled;
-        $m.hashListeningEnabled = false;
-
-        $m.back();
-
-        $m.hashListeningEnabled = original_value;
+        var browser_history_available =
+          !window.navigator.standalone ||
+          window.applicationCache.status == window.applicationCache.UNCACHED;
+        if (browser_history_available) {
+          $m.back();
+        } else {
+          $(':mobile-pagecontainer').pagecontainer(
+            'change',
+            $m.navigate.history.stack[$m.navigate.history.activeIndex - 1].url,
+            {transition: 'pop', reverse: true}
+          );
+        }
       } else {
         // When #configure is directly accessed, there is no valid page to back.
         // Close #configure by going to #home instead.
