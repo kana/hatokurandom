@@ -97,6 +97,11 @@ a.share.button:after
 
 /* #header */
 
+#header.disabled
+{
+  opacity: 0.5;
+}
+
 #header .button
 {
   font-size: 24px;
