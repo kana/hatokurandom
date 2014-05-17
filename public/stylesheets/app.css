@@ -118,6 +118,11 @@ a.share.button:after
 
 /* #configure */
 
+#configure
+{
+  z-index: 2000;  /* not to be overlaid by #header */
+}
+
 #configure h2
 {
   font-size: 110%;
