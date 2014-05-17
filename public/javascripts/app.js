@@ -2332,7 +2332,7 @@ var hatokurandom = {};
       'downloading': 'fa fa-download',
       'progress': 'fa fa-download',
       'cached': 'fa fa-check-circle',  // The current app is newly cached.
-      'updateready': 'fa fa-check-circle',  // New version has been cached.
+      'updateready': 'fa fa-refresh',  // New version has been cached.
       'obsolete': 'fa fa-exclamation-circle',
       'error': 'fa fa-exclamation-circle'
     };
