@@ -109,6 +109,7 @@ a.share.button:after
   padding: 0.25em 0;
 }
 
+#header.disabled .button,
 #header .disabled.button
 {
   color: #666;
