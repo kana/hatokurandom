@@ -2328,13 +2328,13 @@ var hatokurandom = {};
 
     var notification_table = {
       'checking': 'fa fa-signal',
-      'error': 'fa fa-exclamation-circle',
-      'noupdate': 'fa fa-check-circle',
+      'noupdate': 'fa fa-check-circle',  // The current app is up to date.
       'downloading': 'fa fa-download',
       'progress': 'fa fa-download',
-      'updateready': 'fa fa-check-circle',
-      'cached': 'fa fa-check-circle',
-      'obsolete': 'fa fa-exclamation-circle'
+      'cached': 'fa fa-check-circle',  // The current app is newly cached.
+      'updateready': 'fa fa-refresh',  // New version has been cached.
+      'obsolete': 'fa fa-exclamation-circle',
+      'error': 'fa fa-exclamation-circle'
     };
     $.each(notification_table, function (event_type, icon_class) {
       $(window.applicationCache).on(event_type, function (e) {

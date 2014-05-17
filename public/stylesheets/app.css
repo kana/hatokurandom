@@ -219,13 +219,13 @@ a.share.button:after
   font-family: 'Helvetica', sans-serif;
 }
 #notification #offline_mode.checking {color: #666;}
-#notification #offline_mode.error {color: #900;}
 #notification #offline_mode.noupdate {color: #090;}
 #notification #offline_mode.downloading {color: #666;}
 #notification #offline_mode.progress {color: #666;}
-#notification #offline_mode.updateready {color: #099;}
 #notification #offline_mode.cached {color: #090;}
+#notification #offline_mode.updateready {color: #099;}
 #notification #offline_mode.obsolete {color: #660;}
+#notification #offline_mode.error {color: #900;}
 
 #notification #supply_status {opacity: 0.2;}
 #notification #supply_status .icon-ok-sign {color: #0c0; display: none;}
