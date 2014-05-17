@@ -2328,11 +2328,11 @@ var hatokurandom = {};
 
     var notification_table = {
       'checking': 'fa fa-signal',
-      'noupdate': 'fa fa-check-circle',
+      'noupdate': 'fa fa-check-circle',  // The current app is up to date.
       'downloading': 'fa fa-download',
       'progress': 'fa fa-download',
-      'cached': 'fa fa-check-circle',
-      'updateready': 'fa fa-check-circle',
+      'cached': 'fa fa-check-circle',  // The current app is newly cached.
+      'updateready': 'fa fa-check-circle',  // New version has been cached.
       'obsolete': 'fa fa-exclamation-circle',
       'error': 'fa fa-exclamation-circle'
     };
