@@ -1860,6 +1860,7 @@ var hatokurandom = {};
 
   // Core  //{{{1
   H.adjust_header = function ($page) {  //{{{2
+    $('#header').toggleClass('disabled', $page.attr('id') == 'configure');
     $('#header .reshuffle.button').toggleClass(
       'disabled',
       !H.is_dsid($page.jqmData('sid'))
