@@ -1990,15 +1990,21 @@ var hatokurandom = {};
         // Forward buttons do not work on iOS7 if application cache is enabled.
         // So that #configure dialog cannot be closed.
         //
-        // As a workaround this issue, here we disable $m.hashListeningEnabled
-        // while executing $m.back().  This workaround should be removed when
+        // As a workaround for this issue, we manually goes to the previous
+        // page instead of $m.back().  This workaround should be removed when
         // the bug is fixed in later releases of iOS.
-        var original_value = $m.hashListeningEnabled;
-        $m.hashListeningEnabled = false;
-
-        $m.back();
-
-        $m.hashListeningEnabled = original_value;
+        var browser_history_available =
+          !window.navigator.standalone ||
+          window.applicationCache.status == window.applicationCache.UNCACHED;
+        if (browser_history_available) {
+          $m.back();
+        } else {
+          $(':mobile-pagecontainer').pagecontainer(
+            'change',
+            $m.navigate.history.stack[$m.navigate.history.activeIndex - 1].url,
+            {transition: 'pop', reverse: true}
+          );
+        }
       } else {
         // When #configure is directly accessed, there is no valid page to back.
         // Close #configure by going to #home instead.
