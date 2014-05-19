@@ -2226,7 +2226,7 @@ var hatokurandom = {};
     };
   })();
 
-  H.suggest_new_uri_if_necessary = function () {  //{{{2
+  H.suggest_new_uri_for_heroku_migration_if_necessary = function () {  //{{{2
     var old_domain = 'hatokurandom.heroku.com';
     var new_domain = 'hatokurandom.herokuapp.com';
     if (location.hostname == old_domain) {
@@ -2311,7 +2311,7 @@ var hatokurandom = {};
 
   $(document).ready(function () {  //{{{2
     H.redirect_to_new_url_from_iui_era_url_if_necessary();
-    H.suggest_new_uri_if_necessary();
+    H.suggest_new_uri_for_heroku_migration_if_necessary();
 
     $m.defaultPageTransition = 'slide';
 
