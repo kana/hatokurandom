@@ -2042,14 +2042,15 @@ var hatokurandom = {};
       var $input =
         $('#configure :input')
         .filter(function () {return $(this).attr('name') == key;});
-      if ($input.length == 0)
-        ;  // There is no form; it's an internal option.
-      else if ($input.is(':checkbox'))
+      if ($input.length == 0) {
+        // There is no form; it's an internal option.
+      } else if ($input.is(':checkbox')) {
         $input.check(value);
-      else if ($input.is('select'))
+      } else if ($input.is('select')) {
         $input.val(value);
-      else
+      } else {
         throw new H.Error('Form for "' + key + '" is not supported.');
+      }
 
       if (kw.is_resetting) {
         $input.trigger('change', kw);
