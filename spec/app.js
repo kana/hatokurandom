@@ -490,6 +490,46 @@
         );
       });
     });
+    describe('with not-fully-unveiled cards', function () {
+      var test = function (card_set, expected_validness, expected_length) {
+        var cards =
+          H.choose_random_cards(
+            card_set,
+            card_set.length,
+            $.extend(
+              {},
+              H.DEFAULT_OPTIONS,
+              {try_count: 1}
+            )
+          );
+        expect(!cards.fallback).toEqual(expected_validness);
+        expect(cards.length).toEqual(expected_length);
+      };
+      it('never includes cards marked as "imperfect"', function () {
+        test(
+          [
+            H.card_from_card_name('伝令'),
+            H.card_from_card_name('交易船'),
+            H.card_from_card_name('都市開発'),
+            H.card_from_card_name('冒険者'),
+            H.card_from_card_name('裁判官')
+          ],
+          true,
+          5
+        );
+        test(
+          [
+            H.card_from_card_name('伝令'),
+            $.extend({imperfect: true}, H.card_from_card_name('交易船')),
+            H.card_from_card_name('都市開発'),
+            $.extend({imperfect: true}, H.card_from_card_name('冒険者')),
+            H.card_from_card_name('工業都市')
+          ],
+          false,
+          3
+        );
+      });
+    });
   });
   describe('decode_base64', function () {
     it('should decode a character to a 6-bit value', function () {

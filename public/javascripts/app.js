@@ -1487,6 +1487,7 @@ var hatokurandom = {};
       var rest_cards = available_cards.slice(0);
       if (options.exclude_banned_cards)
         rest_cards = $.grep(rest_cards, H.not(H.is_banned_card));
+      rest_cards = $.grep(rest_cards, function (c) {return !c.imperfect;});
       rest_cards = filter_by_eid(rest_cards, options.include_basic != 'must_not', H.EID_BASIC);
       rest_cards = filter_by_eid(rest_cards, options.include_fareast != 'must_not', H.EID_FAREAST);
       rest_cards = filter_by_eid(rest_cards, options.include_northern != 'must_not', H.EID_NORTHERN);
