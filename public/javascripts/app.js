@@ -2121,7 +2121,9 @@ var hatokurandom = {};
     return $page;
   };
 
-  H.redirect_to_new_url_from_iui_era_url_if_necessary = function (pid) {  //{{{2
+  H.redirect_to_new_url_from_iui_era_url_if_necessary = function () {  //{{{2
+    var url = $m.path.parseUrl(location.href);
+    var pid = H.pid_from_url(url);
     var new_pid = H.migrate_from_version_1(pid);
     if (new_pid) {
       var base_uri = $m.path.parseUrl(location.href).hrefNoHash;
