@@ -2121,7 +2121,7 @@ var hatokurandom = {};
     return $page;
   };
 
-  H.redirect_to_new_url_if_necessary = function (pid) {  //{{{2
+  H.redirect_to_new_url_from_iui_era_url_if_necessary = function (pid) {  //{{{2
     var new_pid = H.migrate_from_version_1(pid);
     if (new_pid) {
       var base_uri = $m.path.parseUrl(location.href).hrefNoHash;
@@ -2310,7 +2310,7 @@ var hatokurandom = {};
   });
 
   $(document).ready(function () {  //{{{2
-    H.redirect_to_new_url_if_necessary();
+    H.redirect_to_new_url_from_iui_era_url_if_necessary();
     H.suggest_new_uri_if_necessary();
 
     $m.defaultPageTransition = 'slide';
