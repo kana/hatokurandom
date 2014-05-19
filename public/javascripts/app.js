@@ -2290,7 +2290,6 @@ var hatokurandom = {};
       var pid = H.pid_from_url(url);
       var apid = H.apid_from_pid(pid);
 
-      H.redirect_to_new_url_if_necessary();
       H.adjust_title(pid);
 
       if (apid != pid || apid == 'card-references') {
@@ -2311,6 +2310,7 @@ var hatokurandom = {};
   });
 
   $(document).ready(function () {  //{{{2
+    H.redirect_to_new_url_if_necessary();
     H.suggest_new_uri_if_necessary();
 
     $m.defaultPageTransition = 'slide';
