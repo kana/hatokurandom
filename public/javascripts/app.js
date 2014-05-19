@@ -1360,7 +1360,7 @@ var hatokurandom = {};
       var t = {};
 
       $.each(H.BASE64_ENCODING_TABLE, function (key, value) {
-        t[value] = parseInt(key);
+        t[value] = parseInt(key, 10);
       });
 
       // '.' must be decoded to the same value as '_'
@@ -1699,7 +1699,7 @@ var hatokurandom = {};
     if (match) {
       return {
         valid: true,
-        count: parseInt(match[1]),
+        count: parseInt(match[1], 10),
         random: true,
         rsid: match[3]
       };
