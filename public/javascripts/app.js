@@ -508,7 +508,7 @@ var hatokurandom = {};
         '願いの泉',
         '破城槌',
         '図書館',
-        '冒険者',
+        '冒険者'
       ],  //}}}
       'northern-parliament': [  //{{{
         '名馬',
@@ -520,7 +520,7 @@ var hatokurandom = {};
         '早馬',
         '交易船',
         '図書館',
-        '呪詛の魔女',
+        '呪詛の魔女'
       ],  //}}}
       'northern-witchandchurch': [  //{{{
         'ケットシー',
@@ -532,7 +532,7 @@ var hatokurandom = {};
         '斥候',
         '早馬',
         '都市開発',
-        '呪詛の魔女',
+        '呪詛の魔女'
       ],  //}}}
       'northern-society': [  //{{{
         'ケットシー',
@@ -544,7 +544,7 @@ var hatokurandom = {};
         '早馬',
         '図書館',
         '銀行',
-        '噂好きの公爵夫人',
+        '噂好きの公爵夫人'
       ],  //}}}
       'northern-guiltycrown': [  //{{{
         '名馬',
@@ -556,7 +556,7 @@ var hatokurandom = {};
         '城壁',
         '破城槌',
         '歩兵大隊',
-        '補給部隊',
+        '補給部隊'
       ],  //}}}
       'northern-darkness': [  //{{{
         'ケットシー',
@@ -568,7 +568,7 @@ var hatokurandom = {};
         '独占',
         '早馬',
         '城壁',
-        '錬金術師',
+        '錬金術師'
       ],  //}}}
       'northern-scandal': [  //{{{
         '名馬',
@@ -580,7 +580,7 @@ var hatokurandom = {};
         '願いの泉',
         '錬金術師',
         '銀行',
-        '噂好きの公爵夫人',
+        '噂好きの公爵夫人'
       ],  //}}}
       'northern-teaparty': [  //{{{
         '幸運の銀貨',
@@ -592,7 +592,7 @@ var hatokurandom = {};
         '伝書鳩',
         '見習い魔女',
         '結盟',
-        '願いの泉',
+        '願いの泉'
       ],  //}}}
       'northern-swordsman': [  //{{{
         '洗礼',
@@ -604,7 +604,7 @@ var hatokurandom = {};
         '鉱山都市',
         '結盟',
         '早馬',
-        '交易船',
+        '交易船'
       ],  //}}}
       'fairy-primer': [  //{{{
         '家守の精霊',
@@ -616,7 +616,7 @@ var hatokurandom = {};
         '石弓隊',
         '商船団',
         '収穫祭',
-        '合併',
+        '合併'
       ],  //}}}
       'fairy-butlerandmaid': [  //{{{
         '伝令',
@@ -628,7 +628,7 @@ var hatokurandom = {};
         '行商人',
         '検地役人',
         'メイド長',
-        '執事',
+        '執事'
       ],  //}}}
       'fairy-winter': [  //{{{
         '密偵',
@@ -640,7 +640,7 @@ var hatokurandom = {};
         '石弓隊',
         '行商人',
         'ブラウニー',
-        '執事',
+        '執事'
       ],  //}}}
       'fairy-folklore': [  //{{{
         '密偵',
@@ -652,7 +652,7 @@ var hatokurandom = {};
         '行商人',
         'ブラウニー',
         '聖堂騎士',
-        'メイド長',
+        'メイド長'
       ],  //}}}
       'fairy-frontier': [  //{{{
         '密偵',
@@ -664,7 +664,7 @@ var hatokurandom = {};
         '交易都市',
         '鬼族の戦士',
         '徴税人',
-        '合併',
+        '合併'
       ],  //}}}
       'fairy-carnival': [  //{{{
         '密偵',
@@ -676,7 +676,7 @@ var hatokurandom = {};
         '石弓隊',
         '聖堂騎士',
         'メイド長',
-        '収穫祭',
+        '収穫祭'
       ],  //}}}
       'fairy-holyornot': [  //{{{
         '密偵',
@@ -688,7 +688,7 @@ var hatokurandom = {};
         '御料地',
         '交易都市',
         '収穫祭',
-        '裁判官',
+        '裁判官'
       ],  //}}}
       'fairy-fairyandknight': [  //{{{
         '家守の精霊',
@@ -700,7 +700,7 @@ var hatokurandom = {};
         'ニンフ',
         '大農園',
         '聖堂騎士',
-        '合併',
+        '合併'
       ],  //}}}
       'championship1-prelims1': [  //{{{
         '城壁',
@@ -898,7 +898,7 @@ var hatokurandom = {};
     '_random-10': 'supply:random10',
     '_random-12': 'supply:random12',
     '_random-13': 'supply:random13',
-    '_random-14': 'supply:random14',
+    '_random-14': 'supply:random14'
   };
 
   H.PID_TO_CHILD_PIDS_TABLE = {  //{{{2
@@ -997,7 +997,7 @@ var hatokurandom = {};
       'reference:subtype-trick',
       'reference:subtype-magic',
       'reference:subtype-merchant',
-      'reference:subtype-maid',
+      'reference:subtype-maid'
     ],  //}}}
     'references:cost': [  //{{{
       'reference:cost2',
