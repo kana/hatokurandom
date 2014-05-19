@@ -519,11 +519,11 @@
       expect(f(['継承権', '領地'])).toEqual('継承権');  // 皇室領
       expect(f(['継承権'])).toEqual('継承権');  // 噂好きの公爵夫人
       expect(f(['行動', '攻撃'])).toEqual('攻撃');  // 斥候
-      expect(f(['行動', '防衛', '呪い'])).toEqual('防衛');  // 魔法の護符
+      expect(f(['行動', '防衛', '災い'])).toEqual('防衛');  // 魔法の護符
       expect(f(['行動', '防衛'])).toEqual('防衛');  // 城壁
       expect(f(['行動'])).toEqual('行動');  // 寄付
       expect(f(['領地'])).toEqual('領地');  // 鉱山都市
-      expect(f(['呪い'])).toEqual('呪い');  // 呪い
+      expect(f(['災い'])).toEqual('災い');  // 呪い
       expect(f(['プリンセス'])).toEqual('プリンセス');  // 第一皇女 ルルナサイカ
       expect(f(['?'])).toEqual('?');  // カードリスト判明までの仮データ
     });
