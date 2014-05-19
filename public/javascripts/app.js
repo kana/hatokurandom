@@ -185,7 +185,30 @@ var hatokurandom = {};
 
     // 六都市同盟  //{{{3
 
-    {cid: 0x69, eid: H.EID_SIX, cost: undefined, link: undefined, name: '?', types: ['プリンセス'], rarity: 'R'}
+    // Guessed from http://hatokura.flipflops.jp/wordpress/files/2014/05/hoc.jpg
+    // 1st row
+    {imperfect: true, cid: 0x69, eid: H.EID_SIX, cost: 6, link: undefined, name: 'オアシスの美姫 エムシエレ', types: ['プリンセス'], rarity: 'R'},
+    {imperfect: true, cid: 0x6a, eid: H.EID_SIX, cost: 5, link: 1, name: '独立都市', types: ['領地'], rarity: 'C'},
+    {imperfect: true, cid: 0x6b, eid: H.EID_SIX, cost: undefined, link: 1, name: 'オアシス都市ネフェルティリ', types: ['領地'], rarity: 'R'},
+    {imperfect: true, cid: 0x6c, eid: H.EID_SIX, cost: 5, link: 0, name: '〓〓〓〓', types: ['?', '?'], rarity: 'C'},
+    {imperfect: true, cid: 0x6d, eid: H.EID_SIX, cost: undefined, link: undefined, name: '?', types: ['継承権?'], rarity: 'R'},
+    {imperfect: true, cid: 0x6e, eid: H.EID_SIX, cost: undefined, link: undefined, name: '?', types: ['?'], rarity: 'C'},
+    {imperfect: true, cid: 0x6f, eid: H.EID_SIX, cost: undefined, link: undefined, name: '?', types: ['?'], rarity: 'R'},
+    // 2nd row
+    {imperfect: true, cid: 0x70, eid: H.EID_SIX, cost: 5, link: 1, name: '学園都市', types: ['領地'], rarity: 'C'},
+    {imperfect: true, cid: 0x71, eid: H.EID_SIX, cost: 0, link: undefined, name: '不運', types: ['災い'], rarity: 'C'},
+    // 3rd row
+    {imperfect: true, cid: 0x72, eid: H.EID_SIX, cost: 4, link: 1, name: '〓〓〓〓〓〓', types: ['行動'], rarity: 'C'},
+    {imperfect: true, cid: 0x73, eid: H.EID_SIX, cost: undefined, link: 0, name: '?', types: ['領地?'], rarity: 'R'},
+    {imperfect: true, cid: 0x74, eid: H.EID_SIX, cost: undefined, link: undefined, name: '?', types: ['?'], rarity: 'R'},
+    {imperfect: true, cid: 0x75, eid: H.EID_SIX, cost: undefined, link: undefined, name: '?', types: ['?'], rarity: 'R'},
+    // 4th row
+    {imperfect: true, cid: 0x76, eid: H.EID_SIX, cost: undefined, link: 1, name: '?', types: ['領地?'], rarity: 'C'},
+    // 5th row
+    {imperfect: true, cid: 0x77, eid: H.EID_SIX, cost: undefined, link: undefined, name: '?', types: ['?'], rarity: 'C'},
+    {imperfect: true, cid: 0x78, eid: H.EID_SIX, cost: undefined, link: undefined, name: '?', types: ['?'], rarity: undefined},
+    // 6th row
+    {imperfect: true, cid: 0x79, eid: H.EID_SIX, cost: undefined, link: undefined, name: '?', types: ['?'], rarity: undefined},
 
     //{{{3
   ];
@@ -1464,11 +1487,12 @@ var hatokurandom = {};
       var rest_cards = available_cards.slice(0);
       if (options.exclude_banned_cards)
         rest_cards = $.grep(rest_cards, H.not(H.is_banned_card));
+      rest_cards = $.grep(rest_cards, function (c) {return !c.imperfect;});
       rest_cards = filter_by_eid(rest_cards, options.include_basic != 'must_not', H.EID_BASIC);
       rest_cards = filter_by_eid(rest_cards, options.include_fareast != 'must_not', H.EID_FAREAST);
       rest_cards = filter_by_eid(rest_cards, options.include_northern != 'must_not', H.EID_NORTHERN);
       rest_cards = filter_by_eid(rest_cards, options.include_fairy != 'must_not', H.EID_FAIRY);
-      rest_cards = filter_by_eid(rest_cards, options.include_fairy != 'must_not', H.EID_SIX);
+      rest_cards = filter_by_eid(rest_cards, options.include_six != 'must_not', H.EID_SIX);
 
       selected_cards = [];
       for (var i = 1; i <= count && 1 <= rest_cards.length; i++) {

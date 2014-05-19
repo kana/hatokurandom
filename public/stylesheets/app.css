@@ -75,6 +75,11 @@ a.share.button:after
   display: none;
 }
 
+.card[data-imperfect='true']
+{
+  opacity: 0.5;
+}
+
 /* Use the same style as linked list items for static list items. */
 .ui-listview > .ui-li-static.card
 {
