@@ -187,28 +187,28 @@ var hatokurandom = {};
 
     // Guessed from http://hatokura.flipflops.jp/wordpress/files/2014/05/hoc.jpg
     // 1st row
-    {cid: 0x69, eid: H.EID_SIX, cost: 6, link: undefined, name: 'オアシスの美姫 エムシエレ', types: ['プリンセス'], rarity: 'R'},
-    {cid: 0x6a, eid: H.EID_SIX, cost: 5, link: 1, name: '独立都市', types: ['領地'], rarity: 'C'},
-    {cid: 0x6b, eid: H.EID_SIX, cost: undefined, link: 1, name: 'オアシス都市ネフェルティリ', types: ['領地'], rarity: 'R'},
-    {cid: 0x6c, eid: H.EID_SIX, cost: 5, link: 0, name: '〓〓〓〓', types: ['?', '?'], rarity: 'C'},
-    {cid: 0x6d, eid: H.EID_SIX, cost: undefined, link: undefined, name: '?', types: ['継承権?'], rarity: 'R'},
-    {cid: 0x6e, eid: H.EID_SIX, cost: undefined, link: undefined, name: '?', types: ['?'], rarity: 'C'},
-    {cid: 0x6f, eid: H.EID_SIX, cost: undefined, link: undefined, name: '?', types: ['?'], rarity: 'R'},
+    {imperfect: true, cid: 0x69, eid: H.EID_SIX, cost: 6, link: undefined, name: 'オアシスの美姫 エムシエレ', types: ['プリンセス'], rarity: 'R'},
+    {imperfect: true, cid: 0x6a, eid: H.EID_SIX, cost: 5, link: 1, name: '独立都市', types: ['領地'], rarity: 'C'},
+    {imperfect: true, cid: 0x6b, eid: H.EID_SIX, cost: undefined, link: 1, name: 'オアシス都市ネフェルティリ', types: ['領地'], rarity: 'R'},
+    {imperfect: true, cid: 0x6c, eid: H.EID_SIX, cost: 5, link: 0, name: '〓〓〓〓', types: ['?', '?'], rarity: 'C'},
+    {imperfect: true, cid: 0x6d, eid: H.EID_SIX, cost: undefined, link: undefined, name: '?', types: ['継承権?'], rarity: 'R'},
+    {imperfect: true, cid: 0x6e, eid: H.EID_SIX, cost: undefined, link: undefined, name: '?', types: ['?'], rarity: 'C'},
+    {imperfect: true, cid: 0x6f, eid: H.EID_SIX, cost: undefined, link: undefined, name: '?', types: ['?'], rarity: 'R'},
     // 2nd row
-    {cid: 0x70, eid: H.EID_SIX, cost: 5, link: 1, name: '学園都市', types: ['領地'], rarity: 'C'},
-    {cid: 0x71, eid: H.EID_SIX, cost: 0, link: undefined, name: '不運', types: ['災い'], rarity: 'C'},
+    {imperfect: true, cid: 0x70, eid: H.EID_SIX, cost: 5, link: 1, name: '学園都市', types: ['領地'], rarity: 'C'},
+    {imperfect: true, cid: 0x71, eid: H.EID_SIX, cost: 0, link: undefined, name: '不運', types: ['災い'], rarity: 'C'},
     // 3rd row
-    {cid: 0x72, eid: H.EID_SIX, cost: 4, link: 1, name: '〓〓〓〓〓〓', types: ['行動'], rarity: 'C'},
-    {cid: 0x73, eid: H.EID_SIX, cost: undefined, link: 0, name: '?', types: ['領地?'], rarity: 'R'},
-    {cid: 0x74, eid: H.EID_SIX, cost: undefined, link: undefined, name: '?', types: ['?'], rarity: 'R'},
-    {cid: 0x75, eid: H.EID_SIX, cost: undefined, link: undefined, name: '?', types: ['?'], rarity: 'R'},
+    {imperfect: true, cid: 0x72, eid: H.EID_SIX, cost: 4, link: 1, name: '〓〓〓〓〓〓', types: ['行動'], rarity: 'C'},
+    {imperfect: true, cid: 0x73, eid: H.EID_SIX, cost: undefined, link: 0, name: '?', types: ['領地?'], rarity: 'R'},
+    {imperfect: true, cid: 0x74, eid: H.EID_SIX, cost: undefined, link: undefined, name: '?', types: ['?'], rarity: 'R'},
+    {imperfect: true, cid: 0x75, eid: H.EID_SIX, cost: undefined, link: undefined, name: '?', types: ['?'], rarity: 'R'},
     // 4th row
-    {cid: 0x76, eid: H.EID_SIX, cost: undefined, link: 1, name: '?', types: ['領地?'], rarity: 'C'},
+    {imperfect: true, cid: 0x76, eid: H.EID_SIX, cost: undefined, link: 1, name: '?', types: ['領地?'], rarity: 'C'},
     // 5th row
-    {cid: 0x77, eid: H.EID_SIX, cost: undefined, link: undefined, name: '?', types: ['?'], rarity: 'C'},
-    {cid: 0x78, eid: H.EID_SIX, cost: undefined, link: undefined, name: '?', types: ['?'], rarity: undefined},
+    {imperfect: true, cid: 0x77, eid: H.EID_SIX, cost: undefined, link: undefined, name: '?', types: ['?'], rarity: 'C'},
+    {imperfect: true, cid: 0x78, eid: H.EID_SIX, cost: undefined, link: undefined, name: '?', types: ['?'], rarity: undefined},
     // 6th row
-    {cid: 0x79, eid: H.EID_SIX, cost: undefined, link: undefined, name: '?', types: ['?'], rarity: undefined},
+    {imperfect: true, cid: 0x79, eid: H.EID_SIX, cost: undefined, link: undefined, name: '?', types: ['?'], rarity: undefined},
 
     //{{{3
   ];
