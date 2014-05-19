@@ -1491,7 +1491,7 @@ var hatokurandom = {};
       rest_cards = filter_by_eid(rest_cards, options.include_fareast != 'must_not', H.EID_FAREAST);
       rest_cards = filter_by_eid(rest_cards, options.include_northern != 'must_not', H.EID_NORTHERN);
       rest_cards = filter_by_eid(rest_cards, options.include_fairy != 'must_not', H.EID_FAIRY);
-      rest_cards = filter_by_eid(rest_cards, options.include_fairy != 'must_not', H.EID_SIX);
+      rest_cards = filter_by_eid(rest_cards, options.include_six != 'must_not', H.EID_SIX);
 
       selected_cards = [];
       for (var i = 1; i <= count && 1 <= rest_cards.length; i++) {
