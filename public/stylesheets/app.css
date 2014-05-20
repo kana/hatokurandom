@@ -37,7 +37,7 @@ a.share.button:after
   cursor: pointer;
 }
 
-.dropped.card
+.ui-listview > .ui-li-static.dropped.card
 {
   background: #ddd;
   color: #666;
