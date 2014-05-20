@@ -261,6 +261,15 @@ var hatokurandom = {};
     try_count: 100
   };
 
+  H.EID_TO_EXPANSION_TABLE =  //{{{2
+    (function () {
+      var t = {};
+      $.each(H.EXPANSIONS, function (_, e) {
+        t[e.eid] = e;
+      });
+      return t;
+    })();
+
   H.PSID_TO_CARD_NAMES_TABLE = (function () {  //{{{2
     var list = function (predicate) {
       return $.map($.grep(H.ALL_CARDS, predicate), function (c) {return c.name;});
