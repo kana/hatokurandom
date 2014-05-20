@@ -137,34 +137,33 @@
           %fieldset{data: {role: 'controlgroup'}}
             %label
               %input(type='checkbox' name='exclude_banned_cards')
-              公式推奨バランスを使用する
+              公式推奨バランスにする
               %span.note
-                以下のカードを除外します:
-                《埋もれた財宝》
-                《買収工作》
-                《魅了術の魔女》
+                以下のカードは出現しません:
+                %span.card-name 埋もれた財宝
+                %span.card-name 買収工作
+                %span.card-name 魅了術の魔女
             %label
               %input(type='checkbox' name='exclude_banned_cards_for_fairy_garden')
-              フェアリーガーデンとの併用非推奨カードを除外する
+              フェアリーガーデンと併用非推奨のカードを除外する
               %span.note
-                フェアリーガーデンのカードが含まれる場合、
-                以下のカードを除外します:
+                フェアリーガーデンのカードと以下のカードは同時に出現しません:
                 全ての防衛カード、および
-                《破城槌》
-                《埋もれた財宝》
-                《星詠みの魔女》
-                《シノビ》
-                《魅了術の魔女》
-                《歩兵大隊》
-                《近衛騎士団》
-                《弓兵隊》
-                《サムライ》
+                %span.card-name 破城槌
+                %span.card-name 埋もれた財宝
+                %span.card-name 星詠みの魔女
+                %span.card-name シノビ
+                %span.card-name 魅了術の魔女
+                %span.card-name 歩兵大隊
+                %span.card-name 近衛騎士団
+                %span.card-name 弓兵隊
+                %span.card-name サムライ
             %label
               %input(type='checkbox' name='include_all_costs')
               コストの偏りを減らす
               %span.note
-                各コストのカードを少なくとも1枚は含めます。
-                ただし6コスト以上のカードは5コストとして扱います。
+                各コスト帯のカードが1枚以上出現します。
+                ただし6コスト以上のカードは5コスト帯に含まれます。
                 これはゲーム的に面白くない偏りを避けるためです。
             %label
               %input(type='checkbox' name='include_link_2')
