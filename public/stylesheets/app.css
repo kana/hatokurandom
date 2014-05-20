@@ -40,7 +40,10 @@ a.share.button:after
 .ui-listview > .ui-li-static.dropped.card
 {
   background: #ddd;
-  color: #666;
+}
+.dropped.card span
+{
+  opacity: 0.5;
 }
 
 .card .cost,
