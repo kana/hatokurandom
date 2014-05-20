@@ -190,6 +190,9 @@ a.share.button:after
   font-weight: lighter;
 }
 
+#configure .card-name:before {content: '《';}
+#configure .card-name:after {content: '》';}
+
 /* A workaround to avoid automatic zooming by focusing a <select>.
  * https://github.com/jquery/jquery-mobile/issues/2069#issuecomment-2871905
  */
