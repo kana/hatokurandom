@@ -31,11 +31,11 @@ var hatokurandom = {};
   H.EID_SIX = 5;
 
   H.EXPANSIONS = [  //{{{2
-    {eid: H.EID_BASIC, name: '基本セット'},
-    {eid: H.EID_FAREAST, name: '極東辺境領'},
-    {eid: H.EID_NORTHERN, name: '北限の魔女'},
-    {eid: H.EID_FAIRY, name: 'フェアリーガーデン'},
-    {eid: H.EID_SIX, name: '六都市同盟'}
+    {eid: H.EID_BASIC, name: '基本セット', symbol: '基本'},
+    {eid: H.EID_FAREAST, name: '極東辺境領', symbol: '極東'},
+    {eid: H.EID_NORTHERN, name: '北限の魔女', symbol: '北限'},
+    {eid: H.EID_FAIRY, name: 'フェアリーガーデン', symbol: 'ＦＧ'},
+    {eid: H.EID_SIX, name: '六都市同盟', symbol: '六都'}
   ];
 
   H.ALL_CARDS = [  //{{{2
