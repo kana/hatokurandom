@@ -37,10 +37,13 @@ a.share.button:after
   cursor: pointer;
 }
 
-.dropped.card
+.ui-listview > .ui-li-static.dropped.card
 {
   background: #ddd;
-  color: #666;
+}
+.dropped.card span
+{
+  opacity: 0.5;
 }
 
 .card .cost,
@@ -74,6 +77,21 @@ a.share.button:after
 {
   display: none;
 }
+
+.card .esym
+{
+  font-size: 80%;
+  padding: 0.25em 0.25em;
+  border-radius: 0.25em;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  line-height: 100%;
+  float: right;
+}
+.card .esym[data-esym='基本'] {color: #666; background: #ddd;}
+.card .esym[data-esym='極東'] {color: #884; background: #eeb;}
+.card .esym[data-esym='北限'] {color: #669; background: #cce;}
+.card .esym[data-esym='ＦＧ'] {color: #696; background: #ded;}
+.card .esym[data-esym='六都'] {color: #966; background: #ece;}
 
 .card[data-imperfect='true']
 {
