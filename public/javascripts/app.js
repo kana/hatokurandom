@@ -2213,7 +2213,7 @@ var hatokurandom = {};
       $card_list.listview('refresh');
     $('#supply_status i').attr(
       'class',
-      xcards.fallback ? 'icon-exclamation-sign' : 'icon-ok-sign'
+      xcards.fallback ? 'fa fa-exclamation-circle' : 'fa fa-check-circle'
     );
   };
 
