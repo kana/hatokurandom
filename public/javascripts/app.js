@@ -257,6 +257,7 @@ var hatokurandom = {};
     include_northern: 'may',
     include_pairs: false,
     include_six: 'may',
+    sort_key: 'eid',
     statistical: false,
     try_count: 100
   };
@@ -1408,10 +1409,7 @@ var hatokurandom = {};
 
   // Utilities  //{{{1
   $.fn.check = function (checked) {  //{{{2
-    if (checked)
-      this.attr('checked', 'checked');
-    else
-      this.removeAttr('checked');
+    this.prop('checked', checked);
     return this;
   };
 
@@ -2079,6 +2077,10 @@ var hatokurandom = {};
         // There is no form; it's an internal option.
       } else if ($input.is(':checkbox')) {
         $input.check(value);
+      } else if ($input.is(':radio')) {
+        $input.each(function () {
+          $(this).check($(this).val() == value);
+        });
       } else if ($input.is('select')) {
         $input.val(value);
       } else {
@@ -2087,7 +2089,7 @@ var hatokurandom = {};
 
       if (kw.is_resetting) {
         $input.trigger('change', kw);
-        if ($input.is(':checkbox'))
+        if ($input.is(':checkbox, :radio'))
           $input.checkboxradio('refresh');
       }
     }
@@ -2174,6 +2176,7 @@ var hatokurandom = {};
       H.order_by(
         xcards,
         function (xcard) {return xcard.dropped ? 2 : 1;},
+        function (xcard) {return H.options.sort_key == 'eid' ? xcard.eid : 0;},
         function (xcard) {return xcard.cost === undefined ? oo : xcard.cost;},
         function (xcard) {return xcard.link === undefined ? oo : xcard.link;},
         function (xcard) {return xcard.name === '???' ? 2 : 1;},
@@ -2238,16 +2241,16 @@ var hatokurandom = {};
     var is_initialized = false;
     return function () {
       if (!is_initialized) {
-        $('#configure :checkbox').change(function (e, kw) {
+        $('#configure :input').change(function (e, kw) {
           if (!(kw && kw.is_resetting)) {
             var $input = $(e.target);
-            H.save_option($input.attr('name'), $input.isChecked());
-          }
-        });
-        $('#configure select').change(function (e, kw) {
-          if (!(kw && kw.is_resetting)) {
-            var $input = $(e.target);
-            H.save_option($input.attr('name'), $input.val());
+            if ($input.is(':checkbox')) {
+              H.save_option($input.attr('name'), $input.isChecked());
+            } else if ($input.is(':radio')) {
+              H.save_option($input.attr('name'), $input.val());
+            } else if ($input.is('select')) {
+              H.save_option($input.attr('name'), $input.val());
+            }
           }
         });
         H.load_options({is_resetting: false});
