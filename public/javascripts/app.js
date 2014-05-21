@@ -2076,6 +2076,10 @@ var hatokurandom = {};
         // There is no form; it's an internal option.
       } else if ($input.is(':checkbox')) {
         $input.check(value);
+      } else if ($input.is(':radio')) {
+        $input.each(function () {
+          $(this).check($(this).val() == value);
+        });
       } else if ($input.is('select')) {
         $input.val(value);
       } else {
@@ -2084,7 +2088,7 @@ var hatokurandom = {};
 
       if (kw.is_resetting) {
         $input.trigger('change', kw);
-        if ($input.is(':checkbox'))
+        if ($input.is(':checkbox, :radio'))
           $input.checkboxradio('refresh');
       }
     }
@@ -2240,6 +2244,12 @@ var hatokurandom = {};
           if (!(kw && kw.is_resetting)) {
             var $input = $(e.target);
             H.save_option($input.attr('name'), $input.isChecked());
+          }
+        });
+        $('#configure :radio').change(function (e, kw) {
+          if (!(kw && kw.is_resetting)) {
+            var $input = $(e.target);
+            H.save_option($input.attr('name'), $input.val());
           }
         });
         $('#configure select').change(function (e, kw) {
