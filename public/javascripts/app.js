@@ -257,6 +257,7 @@ var hatokurandom = {};
     include_northern: 'may',
     include_pairs: false,
     include_six: 'may',
+    sort_key: 'eid',
     statistical: false,
     try_count: 100
   };
@@ -2175,7 +2176,7 @@ var hatokurandom = {};
       H.order_by(
         xcards,
         function (xcard) {return xcard.dropped ? 2 : 1;},
-        function (xcard) {return xcard.eid;},
+        function (xcard) {return H.options.sort_key == 'eid' ? xcard.eid : 0;},
         function (xcard) {return xcard.cost === undefined ? oo : xcard.cost;},
         function (xcard) {return xcard.link === undefined ? oo : xcard.link;},
         function (xcard) {return xcard.name === '???' ? 2 : 1;},
