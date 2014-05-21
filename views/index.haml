@@ -187,6 +187,18 @@
                 例: 「《呪詛の魔女》を含めるなら《魔法の護符》も含める」
 
         .block
+          %h2 表示
+
+          %fieldset{data: {role: 'controlgroup'}}
+            %legend カードの並び順
+            %label
+              %input(type='radio' name='sort_key' value='eid')
+              拡張順
+            %label
+              %input(type='radio' name='sort_key' value='cost')
+              コスト順
+
+        .block
           %input#button_to_reset_options(type='button' value='初期設定に戻す')
 
     #about{as_page}
