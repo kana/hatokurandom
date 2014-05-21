@@ -2211,9 +2211,9 @@ var hatokurandom = {};
     });
     if (!is_first)
       $card_list.listview('refresh');
-    $('#supply_status i').attr(
+    $('#supply_status').attr(
       'class',
-      xcards.fallback ? 'icon-exclamation-sign' : 'icon-ok-sign'
+      xcards.fallback ? 'failed' : 'succeeded'
     );
   };
 
