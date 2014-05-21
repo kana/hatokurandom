@@ -263,7 +263,7 @@ a.share.button:after
 
 #notification #supply_status {opacity: 0.2;}
 #notification #supply_status .fa-check-circle {color: #0c0; display: none;}
-#notification #supply_status .fa-exclamation-circle {color: #c00;}
+#notification #supply_status .fa-warning {color: #c00;}
 
 
 /* #home */
