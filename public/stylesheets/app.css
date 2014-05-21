@@ -85,7 +85,9 @@ a.share.button:after
   border-radius: 0.25em;
   border: 1px solid rgba(0, 0, 0, 0.05);
   line-height: 100%;
-  float: right;
+  position: absolute;
+  right: 0.5em;
+  top: 0.5em;
 }
 .card .esym[data-esym='基本'] {color: #666; background: #ddd;}
 .card .esym[data-esym='極東'] {color: #884; background: #eeb;}
