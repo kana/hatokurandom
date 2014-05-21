@@ -212,6 +212,11 @@ a.share.button:after
 #configure .card-name:after {color: #666; content: '》';}
 #configure .card-name {white-space: nowrap;}
 
+#configure legend
+{
+  font-weight: bolder;
+}
+
 /* A workaround to avoid automatic zooming by focusing a <select>.
  * https://github.com/jquery/jquery-mobile/issues/2069#issuecomment-2871905
  */
