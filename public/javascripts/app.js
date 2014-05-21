@@ -2241,22 +2241,16 @@ var hatokurandom = {};
     var is_initialized = false;
     return function () {
       if (!is_initialized) {
-        $('#configure :checkbox').change(function (e, kw) {
+        $('#configure :input').change(function (e, kw) {
           if (!(kw && kw.is_resetting)) {
             var $input = $(e.target);
-            H.save_option($input.attr('name'), $input.isChecked());
-          }
-        });
-        $('#configure :radio').change(function (e, kw) {
-          if (!(kw && kw.is_resetting)) {
-            var $input = $(e.target);
-            H.save_option($input.attr('name'), $input.val());
-          }
-        });
-        $('#configure select').change(function (e, kw) {
-          if (!(kw && kw.is_resetting)) {
-            var $input = $(e.target);
-            H.save_option($input.attr('name'), $input.val());
+            if ($input.is(':checkbox')) {
+              H.save_option($input.attr('name'), $input.isChecked());
+            } else if ($input.is(':radio')) {
+              H.save_option($input.attr('name'), $input.val());
+            } else if ($input.is('select')) {
+              H.save_option($input.attr('name'), $input.val());
+            }
           }
         });
         H.load_options({is_resetting: false});
