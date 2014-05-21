@@ -1408,10 +1408,7 @@ var hatokurandom = {};
 
   // Utilities  //{{{1
   $.fn.check = function (checked) {  //{{{2
-    if (checked)
-      this.attr('checked', 'checked');
-    else
-      this.removeAttr('checked');
+    this.prop('checked', checked);
     return this;
   };
 
