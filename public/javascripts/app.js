@@ -2174,6 +2174,7 @@ var hatokurandom = {};
       H.order_by(
         xcards,
         function (xcard) {return xcard.dropped ? 2 : 1;},
+        function (xcard) {return xcard.eid;},
         function (xcard) {return xcard.cost === undefined ? oo : xcard.cost;},
         function (xcard) {return xcard.link === undefined ? oo : xcard.link;},
         function (xcard) {return xcard.name === '???' ? 2 : 1;},
