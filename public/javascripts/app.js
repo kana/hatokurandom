@@ -22,6 +22,24 @@ var hatokurandom = {};
   //   'R' = rare
   //   undefined = unknown
 
+  // Fundamental tools  //{{{1
+  function delay(expressionAsFunction) {  //{{{2
+    var result;
+    var isEvaluated = false;
+
+    return function () {
+      if (!isEvaluated) {
+        result = expressionAsFunction();
+        isEvaluated = true;
+      }
+      return result;
+    };
+  }
+
+  function force(promise) {  //{{{2
+    return promise();
+  }
+
   // Constants  //{{{1
   // Eids  //{{{2
   H.EID_BASIC = 1;
