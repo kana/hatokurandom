@@ -1498,11 +1498,16 @@ var hatokurandom = {};
     return card;
   };
 
-  H.card_names_from_psid = function (psid) {  //{{{2
+  H.cids_from_psid = function (psid) {  //{{{2
     var delayed_card_names = H.PSID_TO_DELAYED_CARD_NAMES_TABLE[psid];
     if (delayed_card_names === undefined)
       throw new H.KeyError('PSID', psid);
-    return force(delayed_card_names);
+    return $.map(
+      force(delayed_card_names),
+      function (name) {
+        return H.card_from_card_name(name).cid;
+      }
+    );
   };
 
   H.child_pids_from_pid = function (pid) {  //{{{2
@@ -1872,8 +1877,8 @@ var hatokurandom = {};
   };
 
   H.xcards_from_psid = function (psid) {  //{{{2
-    return $.map(H.card_names_from_psid(psid), function (card_name) {
-      return H.xcard_from_card(H.card_from_card_name(card_name));
+    return $.map(H.cids_from_psid(psid), function (cid) {
+      return H.xcard_from_card(H.card_from_cid(cid));
     });
   };
 
