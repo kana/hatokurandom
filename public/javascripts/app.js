@@ -295,6 +295,9 @@ var hatokurandom = {};
     })();
 
   H.PSID_TO_CARD_NAMES_TABLE = (function () {  //{{{2
+    function by_names(names) {
+      return names;
+    }
     var list = function (predicate) {
       return $.map($.grep(H.ALL_CARDS, predicate), function (c) {return c.name;});
     };
@@ -314,7 +317,7 @@ var hatokurandom = {};
         return card.eid == eid;
     };
     return {
-      'basic-firstplay': [  //{{{
+      'basic-firstplay': by_names([  //{{{
         '斥候',
         '願いの泉',
         '早馬',
@@ -325,8 +328,8 @@ var hatokurandom = {};
         '都市開発',
         '冒険者',
         '錬金術師'
-      ],  //}}}
-      'basic-guide': [  //{{{
+      ]),  //}}}
+      'basic-guide': by_names([  //{{{
         '斥候',
         '早馬',
         '願いの泉',
@@ -337,8 +340,8 @@ var hatokurandom = {};
         '歩兵大隊',
         '御用商人',
         '錬金術師'
-      ],  //}}}
-      'basic-guide2': [  //{{{
+      ]),  //}}}
+      'basic-guide2': by_names([  //{{{
         '寄付',
         '斥候',
         '願いの泉',
@@ -349,8 +352,8 @@ var hatokurandom = {};
         '近衛騎士団',
         '冒険者',
         '錬金術師'
-      ],  //}}}
-      'basic-intermediate': [  //{{{
+      ]),  //}}}
+      'basic-intermediate': by_names([  //{{{
         '斥候',
         '寄付',
         '魔法の護符',
@@ -361,8 +364,8 @@ var hatokurandom = {};
         '御用商人',
         '皇室領',
         '呪詛の魔女'
-      ],  //}}}
-      'basic-intermediate2': [  //{{{
+      ]),  //}}}
+      'basic-intermediate2': by_names([  //{{{
         '早馬',
         '願いの泉',
         '買収工作',
@@ -373,8 +376,8 @@ var hatokurandom = {};
         '金貸し',
         '歩兵大隊',
         '噂好きの公爵夫人'
-      ],  //}}}
-      'basic-bigbusiness': [  //{{{
+      ]),  //}}}
+      'basic-bigbusiness': by_names([  //{{{
         '願いの泉',
         '斥候',
         '買収工作',
@@ -385,8 +388,8 @@ var hatokurandom = {};
         '銀行',
         '金貸し',
         '錬金術師'
-      ],  //}}}
-      'basic-greatwar': [  //{{{
+      ]),  //}}}
+      'basic-greatwar': by_names([  //{{{
         '斥候',
         '早馬',
         '城壁',
@@ -397,8 +400,8 @@ var hatokurandom = {};
         'シノビ',
         '隠れ家',
         '近衛騎士団'
-      ],  //}}}
-      'basic-adventure': [  //{{{
+      ]),  //}}}
+      'basic-adventure': by_names([  //{{{
         '寄付',
         '願いの泉',
         '埋もれた財宝',
@@ -409,8 +412,8 @@ var hatokurandom = {};
         '錬金術師',
         '冒険者',
         '皇室領'
-      ],  //}}}
-      'basic-witchcraft': [  //{{{
+      ]),  //}}}
+      'basic-witchcraft': by_names([  //{{{
         '寄付',
         '斥候',
         '願いの泉',
@@ -421,8 +424,8 @@ var hatokurandom = {};
         '追い立てられた魔獣',
         '隠れ家',
         '呪詛の魔女'
-      ],  //}}}
-      'basic-courtpolitics': [  //{{{
+      ]),  //}}}
+      'basic-courtpolitics': by_names([  //{{{
         '願いの泉',
         '買収工作',
         '召集令状',
@@ -433,8 +436,8 @@ var hatokurandom = {};
         '錬金術師',
         '皇室領',
         '噂好きの公爵夫人'
-      ],  //}}}
-      'fareast-firstplay': [  //{{{
+      ]),  //}}}
+      'fareast-firstplay': by_names([  //{{{
         '港町',
         '斥候',
         '願いの泉',
@@ -445,8 +448,8 @@ var hatokurandom = {};
         '都市開発',
         '冒険者',
         '錬金術師'
-      ],  //}}}
-      'fareast-porttown': [  //{{{
+      ]),  //}}}
+      'fareast-porttown': by_names([  //{{{
         'お金好きの妖精',
         '弓兵隊',
         '港町',
@@ -457,8 +460,8 @@ var hatokurandom = {};
         '追い立てられた魔獣',
         '錬金術師',
         '近衛騎士団'
-      ],  //}}}
-      'fareast-prosperity': [  //{{{
+      ]),  //}}}
+      'fareast-prosperity': by_names([  //{{{
         '伝書鳩',
         '貿易商人',
         '課税',
@@ -469,8 +472,8 @@ var hatokurandom = {};
         '割り符',
         '早馬',
         '交易船'
-      ],  //}}}
-      'fareast-mine': [  //{{{
+      ]),  //}}}
+      'fareast-mine': by_names([  //{{{
         'お金好きの妖精',
         '弓兵隊',
         '鉱山都市',
@@ -481,8 +484,8 @@ var hatokurandom = {};
         '図書館',
         '歩兵大隊',
         '錬金術師'
-      ],  //}}}
-      'fareast-citystrife': [  //{{{
+      ]),  //}}}
+      'fareast-citystrife': by_names([  //{{{
         '伝書鳩',
         '弓兵隊',
         '港町',
@@ -493,8 +496,8 @@ var hatokurandom = {};
         '早馬',
         '歩兵大隊',
         '錬金術師'
-      ],  //}}}
-      'fareast-scandal': [  //{{{
+      ]),  //}}}
+      'fareast-scandal': by_names([  //{{{
         'お金好きの妖精',
         '鉱山都市',
         '割り符',
@@ -505,8 +508,8 @@ var hatokurandom = {};
         '錬金術師',
         '銀行',
         '噂好きの公爵夫人'
-      ],  //}}}
-      'fareast-battlefield': [  //{{{
+      ]),  //}}}
+      'fareast-battlefield': by_names([  //{{{
         '伝書鳩',
         '弓兵隊',
         '結盟',
@@ -517,8 +520,8 @@ var hatokurandom = {};
         '歩兵大隊',
         '補給部隊',
         '近衛騎士団'
-      ],  //}}}
-      'fareast-guildstrife': [  //{{{
+      ]),  //}}}
+      'fareast-guildstrife': by_names([  //{{{
         'お金好きの妖精',
         '伝書鳩',
         '貿易商人',
@@ -529,8 +532,8 @@ var hatokurandom = {};
         'サムライ',
         '結盟',
         '星詠みの魔女'
-      ],  //}}}
-      'fareast-kunoichi': [  //{{{
+      ]),  //}}}
+      'fareast-kunoichi': by_names([  //{{{
         '伝書鳩',
         '弓兵隊',
         '貿易商人',
@@ -541,8 +544,8 @@ var hatokurandom = {};
         '寄付',
         '交易船',
         '歩兵大隊'
-      ],  //}}}
-      'fareast-moneymoneymoney': [  //{{{
+      ]),  //}}}
+      'fareast-moneymoneymoney': by_names([  //{{{
         'お金好きの妖精',
         '弓兵隊',
         '課税',
@@ -553,8 +556,8 @@ var hatokurandom = {};
         'シノビ',
         '呪詛の魔女',
         '錬金術師'
-      ],  //}}}
-      'northern-territory': [  //{{{
+      ]),  //}}}
+      'northern-territory': by_names([  //{{{
         'ケットシー',
         '幸運の銀貨',
         'エルフの狙撃手',
@@ -565,8 +568,8 @@ var hatokurandom = {};
         '破城槌',
         '図書館',
         '冒険者'
-      ],  //}}}
-      'northern-parliament': [  //{{{
+      ]),  //}}}
+      'northern-parliament': by_names([  //{{{
         '名馬',
         '洗礼',
         'エルフの狙撃手',
@@ -577,8 +580,8 @@ var hatokurandom = {};
         '交易船',
         '図書館',
         '呪詛の魔女'
-      ],  //}}}
-      'northern-witchandchurch': [  //{{{
+      ]),  //}}}
+      'northern-witchandchurch': by_names([  //{{{
         'ケットシー',
         '幸運の銀貨',
         '洗礼',
@@ -589,8 +592,8 @@ var hatokurandom = {};
         '早馬',
         '都市開発',
         '呪詛の魔女'
-      ],  //}}}
-      'northern-society': [  //{{{
+      ]),  //}}}
+      'northern-society': by_names([  //{{{
         'ケットシー',
         '洗礼',
         '呪いの人形',
@@ -601,8 +604,8 @@ var hatokurandom = {};
         '図書館',
         '銀行',
         '噂好きの公爵夫人'
-      ],  //}}}
-      'northern-guiltycrown': [  //{{{
+      ]),  //}}}
+      'northern-guiltycrown': by_names([  //{{{
         '名馬',
         'ドワーフの宝石職人',
         '宮廷闘争',
@@ -613,8 +616,8 @@ var hatokurandom = {};
         '破城槌',
         '歩兵大隊',
         '補給部隊'
-      ],  //}}}
-      'northern-darkness': [  //{{{
+      ]),  //}}}
+      'northern-darkness': by_names([  //{{{
         'ケットシー',
         '呪いの人形',
         '名馬',
@@ -625,8 +628,8 @@ var hatokurandom = {};
         '早馬',
         '城壁',
         '錬金術師'
-      ],  //}}}
-      'northern-scandal': [  //{{{
+      ]),  //}}}
+      'northern-scandal': by_names([  //{{{
         '名馬',
         'ドワーフの宝石職人',
         '地方役人',
@@ -637,8 +640,8 @@ var hatokurandom = {};
         '錬金術師',
         '銀行',
         '噂好きの公爵夫人'
-      ],  //}}}
-      'northern-teaparty': [  //{{{
+      ]),  //}}}
+      'northern-teaparty': by_names([  //{{{
         '幸運の銀貨',
         '名馬',
         '呪いの人形',
@@ -649,8 +652,8 @@ var hatokurandom = {};
         '見習い魔女',
         '結盟',
         '願いの泉'
-      ],  //}}}
-      'northern-swordsman': [  //{{{
+      ]),  //}}}
+      'northern-swordsman': by_names([  //{{{
         '洗礼',
         '名馬',
         '独占',
@@ -661,8 +664,8 @@ var hatokurandom = {};
         '結盟',
         '早馬',
         '交易船'
-      ],  //}}}
-      'fairy-primer': [  //{{{
+      ]),  //}}}
+      'fairy-primer': by_names([  //{{{
         '家守の精霊',
         '伝令',
         '春風の妖精',
@@ -673,8 +676,8 @@ var hatokurandom = {};
         '商船団',
         '収穫祭',
         '合併'
-      ],  //}}}
-      'fairy-butlerandmaid': [  //{{{
+      ]),  //}}}
+      'fairy-butlerandmaid': by_names([  //{{{
         '伝令',
         '春風の妖精',
         '星巫女の託宣',
@@ -685,8 +688,8 @@ var hatokurandom = {};
         '検地役人',
         'メイド長',
         '執事'
-      ],  //}}}
-      'fairy-winter': [  //{{{
+      ]),  //}}}
+      'fairy-winter': by_names([  //{{{
         '密偵',
         '伝令',
         '春風の妖精',
@@ -697,8 +700,8 @@ var hatokurandom = {};
         '行商人',
         'ブラウニー',
         '執事'
-      ],  //}}}
-      'fairy-folklore': [  //{{{
+      ]),  //}}}
+      'fairy-folklore': by_names([  //{{{
         '密偵',
         '巡礼',
         '家守の精霊',
@@ -709,8 +712,8 @@ var hatokurandom = {};
         'ブラウニー',
         '聖堂騎士',
         'メイド長'
-      ],  //}}}
-      'fairy-frontier': [  //{{{
+      ]),  //}}}
+      'fairy-frontier': by_names([  //{{{
         '密偵',
         '巡礼',
         '家守の精霊',
@@ -721,8 +724,8 @@ var hatokurandom = {};
         '鬼族の戦士',
         '徴税人',
         '合併'
-      ],  //}}}
-      'fairy-carnival': [  //{{{
+      ]),  //}}}
+      'fairy-carnival': by_names([  //{{{
         '密偵',
         '春風の妖精',
         '祝福',
@@ -733,8 +736,8 @@ var hatokurandom = {};
         '聖堂騎士',
         'メイド長',
         '収穫祭'
-      ],  //}}}
-      'fairy-holyornot': [  //{{{
+      ]),  //}}}
+      'fairy-holyornot': by_names([  //{{{
         '密偵',
         '巡礼',
         '家守の精霊',
@@ -745,8 +748,8 @@ var hatokurandom = {};
         '交易都市',
         '収穫祭',
         '裁判官'
-      ],  //}}}
-      'fairy-fairyandknight': [  //{{{
+      ]),  //}}}
+      'fairy-fairyandknight': by_names([  //{{{
         '家守の精霊',
         '春風の妖精',
         '祝福',
@@ -757,8 +760,8 @@ var hatokurandom = {};
         '大農園',
         '聖堂騎士',
         '合併'
-      ],  //}}}
-      'championship1-prelims1': [  //{{{
+      ]),  //}}}
+      'championship1-prelims1': by_names([  //{{{
         '城壁',
         '願いの泉',
         '破城槌',
@@ -769,8 +772,8 @@ var hatokurandom = {};
         '港町',
         '銀行',
         '錬金術師'
-      ],  //}}}
-      'championship1-prelims2': [  //{{{
+      ]),  //}}}
+      'championship1-prelims2': by_names([  //{{{
         '早馬',
         '斥候',
         '願いの泉',
@@ -781,8 +784,8 @@ var hatokurandom = {};
         '見習い魔女',
         '冒険者',
         '割り符'
-      ],  //}}}
-      'championship1-prelims3': [  //{{{
+      ]),  //}}}
+      'championship1-prelims3': by_names([  //{{{
         '早馬',
         '斥候',
         '城壁',
@@ -793,8 +796,8 @@ var hatokurandom = {};
         'シノビ',
         '錬金術師',
         '近衛騎士団'
-      ],  //}}}
-      'championship1-semifinals': [  //{{{
+      ]),  //}}}
+      'championship1-semifinals': by_names([  //{{{
         '願いの泉',
         '斥候',
         '隠れ家',
@@ -805,8 +808,8 @@ var hatokurandom = {};
         '錬金術師',
         '冒険者',
         '呪詛の魔女'
-      ],  //}}}
-      'championship1-finals': [  //{{{
+      ]),  //}}}
+      'championship1-finals': by_names([  //{{{
         '早馬',
         '願いの泉',
         '斥候',
@@ -817,7 +820,7 @@ var hatokurandom = {};
         '割り符',
         '結盟',
         '噂好きの公爵夫人'
-      ],  //}}}
+      ]),  //}}}
       'reference-all-actions':  //{{{
         list(function (c) {return has_type(c, '行動');})
       ,  //}}}
