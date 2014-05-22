@@ -294,13 +294,20 @@ var hatokurandom = {};
       return t;
     })();
 
-  H.PSID_TO_CARD_NAMES_TABLE = (function () {  //{{{2
+  H.PSID_TO_DELAYED_CARD_NAMES_TABLE = (function () {  //{{{2
     function by_names(names) {
-      return names;
+      return delay(function () {
+        return names;
+      });
     }
-    var list = function (predicate) {
-      return $.map($.grep(H.ALL_CARDS, predicate), function (c) {return c.name;});
-    };
+    function list(predicate) {
+      return delay(function () {
+        return $.map(
+          $.grep(H.ALL_CARDS, predicate),
+          function (c) {return c.name;}
+        );
+      });
+    }
     var has_type = function (card, type) {
         return 0 <= card.types.indexOf(type);
     };
@@ -1492,10 +1499,10 @@ var hatokurandom = {};
   };
 
   H.card_names_from_psid = function (psid) {  //{{{2
-    var card_names = H.PSID_TO_CARD_NAMES_TABLE[psid];
-    if (card_names === undefined)
+    var delayed_card_names = H.PSID_TO_DELAYED_CARD_NAMES_TABLE[psid];
+    if (delayed_card_names === undefined)
       throw new H.KeyError('PSID', psid);
-    return card_names;
+    return force(delayed_card_names);
   };
 
   H.child_pids_from_pid = function (pid) {  //{{{2
@@ -1688,7 +1695,7 @@ var hatokurandom = {};
   };
 
   H.is_psid = function (sid) {  //{{{2
-    return !!(H.PSID_TO_CARD_NAMES_TABLE[sid]);
+    return !!(H.PSID_TO_DELAYED_CARD_NAMES_TABLE[sid]);
   };
 
   H.is_rsid = function (sid) {  //{{{2
