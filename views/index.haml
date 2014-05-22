@@ -99,37 +99,65 @@
         .block#available_card_sets
           %h2 使用するカードセット
 
-          %fieldset{data: {role: 'controlgroup'}}
+          %fieldset{data: {role: 'controlgroup', type: 'horizontal'}}
+            %legend 基本セット
             %label
-              %span.title 基本セット
-              %select(name='include_basic'){data: {inline: 'true'}}
-                %option(value='must') 必須
-                %option(value='may') 使用
-                %option(value='must_not') 禁止
+              %input(type='radio' name='include_basic' value='must')
+              必須
             %label
-              %span.title 極東辺境領
-              %select(name='include_fareast'){data: {inline: 'true'}}
-                %option(value='must') 必須
-                %option(value='may') 使用
-                %option(value='must_not') 禁止
+              %input(type='radio' name='include_basic' value='may')
+              使用
             %label
-              %span.title 北限の魔女
-              %select(name='include_northern'){data: {inline: 'true'}}
-                %option(value='must') 必須
-                %option(value='may') 使用
-                %option(value='must_not') 禁止
+              %input(type='radio' name='include_basic' value='must_not')
+              禁止
+
+          %fieldset{data: {role: 'controlgroup', type: 'horizontal'}}
+            %legend 極東辺境領
             %label
-              %span#include_fairy.title フェアリーガーデン
-              %select(name='include_fairy'){data: {inline: 'true'}}
-                %option(value='must') 必須
-                %option(value='may') 使用
-                %option(value='must_not') 禁止
+              %input(type='radio' name='include_fareast' value='must')
+              必須
             %label
-              %span.title 六都市同盟
-              %select(name='include_six' disabled){data: {inline: 'true'}}
-                %option(value='must') 必須
-                %option(value='may') 使用
-                %option(value='must_not') 禁止
+              %input(type='radio' name='include_fareast' value='may')
+              使用
+            %label
+              %input(type='radio' name='include_fareast' value='must_not')
+              禁止
+
+          %fieldset{data: {role: 'controlgroup', type: 'horizontal'}}
+            %legend 北限の魔女
+            %label
+              %input(type='radio' name='include_northern' value='must')
+              必須
+            %label
+              %input(type='radio' name='include_northern' value='may')
+              使用
+            %label
+              %input(type='radio' name='include_northern' value='must_not')
+              禁止
+
+          %fieldset.fairygarden{data: {role: 'controlgroup', type: 'horizontal'}}
+            %legend フェアリーガーデン
+            %label
+              %input(type='radio' name='include_fairy' value='must')
+              必須
+            %label
+              %input(type='radio' name='include_fairy' value='may')
+              使用
+            %label
+              %input(type='radio' name='include_fairy' value='must_not')
+              禁止
+
+          %fieldset{data: {role: 'controlgroup', type: 'horizontal'}}
+            %legend 六都市同盟
+            %label
+              %input(disabled type='radio' name='include_six' value='must')
+              必須
+            %label
+              %input(disabled type='radio' name='include_six' value='may')
+              使用
+            %label
+              %input(disabled type='radio' name='include_six' value='must_not')
+              禁止
 
         .block
           %h2 偏り具合の調整
