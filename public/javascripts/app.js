@@ -2179,7 +2179,8 @@ var hatokurandom = {};
         xcards,
         function (xcard) {return xcard.dropped ? 2 : 1;},
         function (xcard) {return H.options.sort_key == 'eid' ? xcard.eid : 0;},
-        function (xcard) {return xcard.cost === undefined ? oo : xcard.cost;},
+        function (xcard) {return xcard.cost === undefined ? oo : 0;},
+        function (xcard) {return typeof xcard.cost === 'string' ? oo : xcard.cost;},
         function (xcard) {return xcard.link === undefined ? oo : xcard.link;},
         function (xcard) {return xcard.name === '???' ? 2 : 1;},
         function (xcard) {return xcard.name;}
