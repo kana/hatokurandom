@@ -565,6 +565,7 @@
       expect(f(['領地'])).toEqual('領地');  // 鉱山都市
       expect(f(['災い'])).toEqual('災い');  // 呪い
       expect(f(['プリンセス'])).toEqual('プリンセス');  // 第一皇女 ルルナサイカ
+      expect(f(['サポート'])).toEqual('サポート');  // 軍師シャオリン
       expect(f(['?'])).toEqual('?');  // カードリスト判明までの仮データ
     });
     it('should ignore the order of given types', function () {

@@ -1600,6 +1600,9 @@ var hatokurandom = {};
     if (0 <= types.indexOf('プリンセス'))
       return 'プリンセス';
 
+    if (0 <= types.indexOf('サポート'))
+      return 'サポート';
+
     if (0 <= types.indexOf('?'))
       return '?';
 
