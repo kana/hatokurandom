@@ -823,6 +823,9 @@ var hatokurandom = {};
       'reference-princesses':  //{{{
         list(function (c) {return has_type(c, 'プリンセス');})
       ,  //}}}
+      'reference-support':  //{{{
+        list(function (c) {return has_type(c, 'サポート');})
+      ,  //}}}
       'reference-subtype-army':  //{{{
         list(function (c) {return has_subtype(c, '兵力');})
       ,  //}}}
@@ -1023,7 +1026,8 @@ var hatokurandom = {};
       'reference:territories',
       'reference:authorities',
       'reference:curses',
-      'reference:princesses'
+      'reference:princesses',
+      'reference:support'
     ],  //}}}
     'references:subtype': [  //{{{
       'reference:subtype-army',
@@ -1268,6 +1272,9 @@ var hatokurandom = {};
     },  //}}}
     'reference:princesses': {  //{{{
       title: 'プリンセスカード一覧'
+    },  //}}}
+    'reference:support': {  //{{{
+      title: 'サポートカード一覧'
     },  //}}}
     'references:subtype': {  //{{{
       title: 'サブタイプ別カードリスト'
