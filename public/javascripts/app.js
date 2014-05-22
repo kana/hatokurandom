@@ -840,13 +840,11 @@ var hatokurandom = {};
         '噂好きの公爵夫人'
       ]),  //}}}
       'reference-all-actions': by_type('行動'),
-      'reference-plain-actions':  //{{{
-        list(function (c) {
-          return has_type(c, '行動') &&
-            !has_type(c, '攻撃') &&
-            !has_type(c, '防衛');
-        })
-      ,  //}}}
+      'reference-plain-actions': list(function (c) {  //{{{
+        return has_type(c, '行動') &&
+          !has_type(c, '攻撃') &&
+          !has_type(c, '防衛');
+      }),  //}}}
       'reference-attacks': by_type('攻撃'),
       'reference-defenses': by_type('防衛'),
       'reference-territories': by_type('領地'),
