@@ -221,7 +221,7 @@ var hatokurandom = {};
     {imperfect: true, cid: 0x74, eid: H.EID_SIX, cost: '+2', link: undefined, name: '?', types: ['サポート'], rarity: 'R'},
     {imperfect: true, cid: 0x75, eid: H.EID_SIX, cost: '+2', link: undefined, name: '?', types: ['サポート'], rarity: 'R'},
     // 4th row
-    {imperfect: true, cid: 0x76, eid: H.EID_SIX, cost: undefined, link: 1, name: '?', types: ['領地?'], rarity: 'C'},
+    {imperfect: true, cid: 0x76, eid: H.EID_SIX, cost: undefined, link: 1, name: '?', types: ['領地'], rarity: 'C'},
     // 5th row
     {imperfect: true, cid: 0x77, eid: H.EID_SIX, cost: undefined, link: undefined, name: '?', types: ['?'], rarity: 'C'},
     {imperfect: true, cid: 0x78, eid: H.EID_SIX, cost: undefined, link: undefined, name: '?', types: ['?'], rarity: undefined},
