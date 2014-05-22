@@ -864,6 +864,9 @@ var hatokurandom = {};
       'reference-cost5': by_cost(5),
       'reference-cost6': by_cost(6),
       'reference-cost7ormore': list(function (c) {return 7 <= c.cost;}),
+      'reference-costspecial': list(function (c) {  //{{{
+        return typeof c.cost !== 'number';
+      }),  //}}}
       'reference-link0': by_link(0),
       'reference-link1': by_link(1),
       'reference-link2': by_link(2),
@@ -1024,7 +1027,8 @@ var hatokurandom = {};
       'reference:cost4',
       'reference:cost5',
       'reference:cost6',
-      'reference:cost7ormore'
+      'reference:cost7ormore',
+      'reference:costspecial'
     ],  //}}}
     'references:link': [  //{{{
       'reference:link0',
@@ -1299,6 +1303,9 @@ var hatokurandom = {};
     },  //}}}
     'reference:cost7ormore': {  //{{{
       title: 'コスト7以上のカード一覧'
+    },  //}}}
+    'reference:costspecial': {  //{{{
+      title: '特殊なコストのカード一覧'
     },  //}}}
     'references:link': {  //{{{
       title: 'リンク別カードリスト'
