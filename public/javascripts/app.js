@@ -191,17 +191,17 @@ var hatokurandom = {};
     {imperfect: true, cid: 0x6a, eid: H.EID_SIX, cost: 5, link: 1, name: '独立都市', types: ['領地'], rarity: 'C'},
     {imperfect: true, cid: 0x6b, eid: H.EID_SIX, cost: undefined, link: 1, name: 'オアシス都市ネフェルティリ', types: ['領地'], rarity: 'R'},
     {imperfect: true, cid: 0x6c, eid: H.EID_SIX, cost: 5, link: 0, name: '〓〓〓〓', types: ['?', '?'], rarity: 'C'},
-    {imperfect: true, cid: 0x6d, eid: H.EID_SIX, cost: undefined, link: undefined, name: '?', types: ['継承権?'], rarity: 'R'},
+    {imperfect: true, cid: 0x6d, eid: H.EID_SIX, cost: '+2', link: undefined, name: '?', types: ['サポート'], rarity: 'R'},
     {imperfect: true, cid: 0x6e, eid: H.EID_SIX, cost: undefined, link: undefined, name: '?', types: ['?'], rarity: 'C'},
-    {imperfect: true, cid: 0x6f, eid: H.EID_SIX, cost: undefined, link: undefined, name: '?', types: ['?'], rarity: 'R'},
+    {imperfect: true, cid: 0x6f, eid: H.EID_SIX, cost: '+2', link: undefined, name: '?', types: ['サポート'], rarity: 'R'},
     // 2nd row
     {imperfect: true, cid: 0x70, eid: H.EID_SIX, cost: 5, link: 1, name: '学園都市', types: ['領地'], rarity: 'C'},
     {imperfect: true, cid: 0x71, eid: H.EID_SIX, cost: 0, link: undefined, name: '不運', types: ['災い'], rarity: 'C'},
     // 3rd row
     {imperfect: true, cid: 0x72, eid: H.EID_SIX, cost: 4, link: 1, name: '〓〓〓〓〓〓', types: ['行動'], rarity: 'C'},
-    {imperfect: true, cid: 0x73, eid: H.EID_SIX, cost: undefined, link: 0, name: '?', types: ['領地?'], rarity: 'R'},
-    {imperfect: true, cid: 0x74, eid: H.EID_SIX, cost: undefined, link: undefined, name: '?', types: ['?'], rarity: 'R'},
-    {imperfect: true, cid: 0x75, eid: H.EID_SIX, cost: undefined, link: undefined, name: '?', types: ['?'], rarity: 'R'},
+    {imperfect: true, cid: 0x73, eid: H.EID_SIX, cost: '+2', link: undefined, name: '?', types: ['サポート'], rarity: 'R'},
+    {imperfect: true, cid: 0x74, eid: H.EID_SIX, cost: '+2', link: undefined, name: '?', types: ['サポート'], rarity: 'R'},
+    {imperfect: true, cid: 0x75, eid: H.EID_SIX, cost: '+2', link: undefined, name: '?', types: ['サポート'], rarity: 'R'},
     // 4th row
     {imperfect: true, cid: 0x76, eid: H.EID_SIX, cost: undefined, link: 1, name: '?', types: ['領地?'], rarity: 'C'},
     // 5th row
@@ -209,6 +209,11 @@ var hatokurandom = {};
     {imperfect: true, cid: 0x78, eid: H.EID_SIX, cost: undefined, link: undefined, name: '?', types: ['?'], rarity: undefined},
     // 6th row
     {imperfect: true, cid: 0x79, eid: H.EID_SIX, cost: undefined, link: undefined, name: '?', types: ['?'], rarity: undefined},
+
+    // From http://hatokura.flipflops.jp/wordpress/archives/923
+    {cid: 0x80, eid: H.EID_SIX, cost: '+2', link: undefined, name: '軍師シャオリン', types: ['サポート'], rarity: 'R'},
+    {imperfect: true, cid: 0x81, eid: H.EID_SIX, cost: '+2', link: undefined, name: '?', types: ['サポート'], rarity: 'R'},
+    {imperfect: true, cid: 0x82, eid: H.EID_SIX, cost: '+2', link: undefined, name: '?', types: ['サポート'], rarity: 'R'}
 
     //{{{3
   ];
@@ -823,6 +828,9 @@ var hatokurandom = {};
       'reference-princesses':  //{{{
         list(function (c) {return has_type(c, 'プリンセス');})
       ,  //}}}
+      'reference-support':  //{{{
+        list(function (c) {return has_type(c, 'サポート');})
+      ,  //}}}
       'reference-subtype-army':  //{{{
         list(function (c) {return has_subtype(c, '兵力');})
       ,  //}}}
@@ -1023,7 +1031,8 @@ var hatokurandom = {};
       'reference:territories',
       'reference:authorities',
       'reference:curses',
-      'reference:princesses'
+      'reference:princesses',
+      'reference:support'
     ],  //}}}
     'references:subtype': [  //{{{
       'reference:subtype-army',
@@ -1268,6 +1277,9 @@ var hatokurandom = {};
     },  //}}}
     'reference:princesses': {  //{{{
       title: 'プリンセスカード一覧'
+    },  //}}}
+    'reference:support': {  //{{{
+      title: 'サポートカード一覧'
     },  //}}}
     'references:subtype': {  //{{{
       title: 'サブタイプ別カードリスト'
@@ -1599,6 +1611,9 @@ var hatokurandom = {};
 
     if (0 <= types.indexOf('プリンセス'))
       return 'プリンセス';
+
+    if (0 <= types.indexOf('サポート'))
+      return 'サポート';
 
     if (0 <= types.indexOf('?'))
       return '?';
