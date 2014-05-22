@@ -313,6 +313,9 @@ var hatokurandom = {};
         );
       });
     }
+    function by_type(type) {
+      return list(function (card) {return has_type(card, type);});
+    }
     var has_type = function (card, type) {
         return 0 <= card.types.indexOf(type);
     };
@@ -833,9 +836,7 @@ var hatokurandom = {};
         '結盟',
         '噂好きの公爵夫人'
       ]),  //}}}
-      'reference-all-actions':  //{{{
-        list(function (c) {return has_type(c, '行動');})
-      ,  //}}}
+      'reference-all-actions': by_type('行動'),
       'reference-plain-actions':  //{{{
         list(function (c) {
           return has_type(c, '行動') &&
@@ -843,27 +844,13 @@ var hatokurandom = {};
             !has_type(c, '防衛');
         })
       ,  //}}}
-      'reference-attacks':  //{{{
-        list(function (c) {return has_type(c, '攻撃');})
-      ,  //}}}
-      'reference-defenses':  //{{{
-        list(function (c) {return has_type(c, '防衛');})
-      ,  //}}}
-      'reference-territories':  //{{{
-        list(function (c) {return has_type(c, '領地');})
-      ,  //}}}
-      'reference-authorities':  //{{{
-        list(function (c) {return has_type(c, '継承権');})
-      ,  //}}}
-      'reference-curses':  //{{{
-        list(function (c) {return has_type(c, '災い');})
-      ,  //}}}
-      'reference-princesses':  //{{{
-        list(function (c) {return has_type(c, 'プリンセス');})
-      ,  //}}}
-      'reference-support':  //{{{
-        list(function (c) {return has_type(c, 'サポート');})
-      ,  //}}}
+      'reference-attacks': by_type('攻撃'),
+      'reference-defenses': by_type('防衛'),
+      'reference-territories': by_type('領地'),
+      'reference-authorities': by_type('継承権'),
+      'reference-curses': by_type('災い'),
+      'reference-princesses': by_type('プリンセス'),
+      'reference-support': by_type('サポート'),
       'reference-subtype-army':  //{{{
         list(function (c) {return has_subtype(c, '兵力');})
       ,  //}}}
