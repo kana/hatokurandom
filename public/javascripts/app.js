@@ -325,9 +325,9 @@ var hatokurandom = {};
     function by_cost(cost) {
       return list(function (card) {return card.cost == cost;});
     }
-    var links = function (card, link_count) {
-        return card.link == link_count;
-    };
+    function by_link(count) {
+      return list(function (card) {return card.link === count;});
+    }
     var included = function (card, eid) {
         return card.eid == eid;
     };
@@ -864,18 +864,10 @@ var hatokurandom = {};
       'reference-cost7ormore':  //{{{
         list(function (c) {return 7 <= c.cost;})
       ,  //}}}
-      'reference-link0':  //{{{
-        list(function (c) {return links(c, 0);})
-      ,  //}}}
-      'reference-link1':  //{{{
-        list(function (c) {return links(c, 1);})
-      ,  //}}}
-      'reference-link2':  //{{{
-        list(function (c) {return links(c, 2);})
-      ,  //}}}
-      'reference-unplayable':  //{{{
-        list(function (c) {return c.link === undefined;})
-      ,  //}}}
+      'reference-link0': by_link(0),
+      'reference-link1': by_link(1),
+      'reference-link2': by_link(2),
+      'reference-unplayable': by_link(undefined),
       'reference-basic':  //{{{
         list(function (c) {return included(c, H.EID_BASIC);})
       ,  //}}}
