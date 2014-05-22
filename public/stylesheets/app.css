@@ -163,45 +163,25 @@ a.share.button:after
   margin-top: 0;
 }
 
-#configure #available_card_sets .ui-controlgroup-controls > label
+#configure #available_card_sets .ui-controlgroup-label
 {
-  position: inherit !important;
-  height: auto;
-  width: auto;
-  overflow: inherit;
-  clip: auto;
-}
-
-#configure #available_card_sets .ui-controlgroup-controls > label
-{
-  margin: 0;
-}
-#configure #available_card_sets .ui-controlgroup-controls > label > .title
-{
+  float: left;
   width: 6em;
-  height: 1em;
-  display: inline-block;
-  vertical-align: middle;
-  font-weight: bolder;
-}
-#configure #available_card_sets .ui-controlgroup-controls > label > .title#include_fairy
-{
+  height: 2em;
   position: relative;
-  top: -0.5em;
+  top: 0.25em;
 }
-#configure #available_card_sets .ui-controlgroup-controls > label > .ui-select
+#configure #available_card_sets .fairygarden .ui-controlgroup-label
 {
-  width: 8em;
+  top: -0.25em;
 }
-#configure #available_card_sets .ui-controlgroup-controls .ui-first-child
+#configure #available_card_sets .ui-controlgroup-controls
 {
-  border-top-right-radius: 5px;
-  border-top-left-radius: 5px;
+  float: left;
 }
-#configure #available_card_sets .ui-controlgroup-controls .ui-last-child
+#configure #available_card_sets .ui-controlgroup-controls > .ui-radio > .ui-btn
 {
-  border-bottom-right-radius: 5px;
-  border-bottom-left-radius: 5px;
+  padding: 0.25em 0.5em;
 }
 
 #configure .note
