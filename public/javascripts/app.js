@@ -316,9 +316,9 @@ var hatokurandom = {};
     function by_type(type) {
       return list(function (card) {return has_type(card, type);});
     }
-    var has_type = function (card, type) {
-        return 0 <= card.types.indexOf(type);
-    };
+    function has_type(card, type) {
+      return 0 <= card.types.indexOf(type);
+    }
     var has_subtype = function (card, subtype) {
         return card.subtype == subtype;
     };
