@@ -864,9 +864,7 @@ var hatokurandom = {};
       'reference-cost4': by_cost(4),
       'reference-cost5': by_cost(5),
       'reference-cost6': by_cost(6),
-      'reference-cost7ormore':  //{{{
-        list(function (c) {return 7 <= c.cost;})
-      ,  //}}}
+      'reference-cost7ormore': list(function (c) {return 7 <= c.cost;}),
       'reference-link0': by_link(0),
       'reference-link1': by_link(1),
       'reference-link2': by_link(2),
