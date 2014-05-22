@@ -331,6 +331,9 @@ var hatokurandom = {};
     function by_expansion(eid) {
       return list(function (card) {return card.eid == eid;});
     }
+    function by_rarity(rarity) {
+      return list(function (card) {return card.rarity == rarity;});
+    }
     return {
       'basic-firstplay': by_names([  //{{{
         '斥候',
@@ -873,15 +876,9 @@ var hatokurandom = {};
       'reference-northern': by_expansion(H.EID_NORTHERN),
       'reference-fairy': by_expansion(H.EID_FAIRY),
       'reference-six': by_expansion(H.EID_SIX),
-      'reference-rarity-basic':  //{{{
-        list(function (c) {return c.rarity == 'B';})
-      ,  //}}}
-      'reference-rarity-common':  //{{{
-        list(function (c) {return c.rarity == 'C';})
-      ,  //}}}
-      'reference-rarity-rare':  //{{{
-        list(function (c) {return c.rarity == 'R';})
-      ,  //}}}
+      'reference-rarity-basic': by_rarity('B'),
+      'reference-rarity-common': by_rarity('C'),
+      'reference-rarity-rare': by_rarity('R'),
       '': []  // Dummy entry to make folds simple.
     };
   })();
