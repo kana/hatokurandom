@@ -322,9 +322,9 @@ var hatokurandom = {};
     function by_subtype(subtype) {
       return list(function (card) {return card.subtype == subtype;});
     }
-    var costs = function (card, cost) {
-        return card.cost == cost;
-    };
+    function by_cost(cost) {
+      return list(function (card) {return card.cost == cost;});
+    }
     var links = function (card, link_count) {
         return card.link == link_count;
     };
@@ -856,21 +856,11 @@ var hatokurandom = {};
       'reference-subtype-magic': by_subtype('魔法'),
       'reference-subtype-merchant': by_subtype('商人'),
       'reference-subtype-maid': by_subtype('侍女'),
-      'reference-cost2':  //{{{
-        list(function (c) {return costs(c, 2);})
-      ,  //}}}
-      'reference-cost3':  //{{{
-        list(function (c) {return costs(c, 3);})
-      ,  //}}}
-      'reference-cost4':  //{{{
-        list(function (c) {return costs(c, 4);})
-      ,  //}}}
-      'reference-cost5':  //{{{
-        list(function (c) {return costs(c, 5);})
-      ,  //}}}
-      'reference-cost6':  //{{{
-        list(function (c) {return costs(c, 6);})
-      ,  //}}}
+      'reference-cost2': by_cost(2),
+      'reference-cost3': by_cost(3),
+      'reference-cost4': by_cost(4),
+      'reference-cost5': by_cost(5),
+      'reference-cost6': by_cost(6),
       'reference-cost7ormore':  //{{{
         list(function (c) {return 7 <= c.cost;})
       ,  //}}}
