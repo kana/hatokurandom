@@ -857,6 +857,7 @@ var hatokurandom = {};
       'reference-subtype-magic': by_subtype('魔法'),
       'reference-subtype-merchant': by_subtype('商人'),
       'reference-subtype-maid': by_subtype('侍女'),
+      'reference-cost1orless': list(function (c) {return c.cost <= 1;}),
       'reference-cost2': by_cost(2),
       'reference-cost3': by_cost(3),
       'reference-cost4': by_cost(4),
@@ -1017,6 +1018,7 @@ var hatokurandom = {};
       'reference:subtype-maid'
     ],  //}}}
     'references:cost': [  //{{{
+      'reference:cost1orless',
       'reference:cost2',
       'reference:cost3',
       'reference:cost4',
@@ -1276,6 +1278,9 @@ var hatokurandom = {};
     },  //}}}
     'references:cost': {  //{{{
       title: 'コスト別カードリスト'
+    },  //}}}
+    'reference:cost1orless': {  //{{{
+      title: 'コスト1以下のカード一覧'
     },  //}}}
     'reference:cost2': {  //{{{
       title: 'コスト2のカード一覧'
