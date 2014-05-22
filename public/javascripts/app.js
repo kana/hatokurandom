@@ -294,17 +294,22 @@ var hatokurandom = {};
       return t;
     })();
 
-  H.PSID_TO_DELAYED_CARD_NAMES_TABLE = (function () {  //{{{2
+  H.PSID_TO_DELAYED_CIDS_TABLE = (function () {  //{{{2
     function by_names(names) {
       return delay(function () {
-        return names;
+        return $.map(
+          names,
+          function (name) {
+            return H.card_from_card_name(name).cid;
+          }
+        );
       });
     }
     function list(predicate) {
       return delay(function () {
         return $.map(
           $.grep(H.ALL_CARDS, predicate),
-          function (c) {return c.name;}
+          function (c) {return c.cid;}
         );
       });
     }
@@ -1499,15 +1504,10 @@ var hatokurandom = {};
   };
 
   H.cids_from_psid = function (psid) {  //{{{2
-    var delayed_card_names = H.PSID_TO_DELAYED_CARD_NAMES_TABLE[psid];
-    if (delayed_card_names === undefined)
+    var delayed_cids = H.PSID_TO_DELAYED_CIDS_TABLE[psid];
+    if (delayed_cids === undefined)
       throw new H.KeyError('PSID', psid);
-    return $.map(
-      force(delayed_card_names),
-      function (name) {
-        return H.card_from_card_name(name).cid;
-      }
-    );
+    return force(delayed_cids);
   };
 
   H.child_pids_from_pid = function (pid) {  //{{{2
@@ -1700,7 +1700,7 @@ var hatokurandom = {};
   };
 
   H.is_psid = function (sid) {  //{{{2
-    return !!(H.PSID_TO_DELAYED_CARD_NAMES_TABLE[sid]);
+    return !!(H.PSID_TO_DELAYED_CIDS_TABLE[sid]);
   };
 
   H.is_rsid = function (sid) {  //{{{2
