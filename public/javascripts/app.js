@@ -22,6 +22,24 @@ var hatokurandom = {};
   //   'R' = rare
   //   undefined = unknown
 
+  // Fundamental tools  //{{{1
+  function delay(expressionAsFunction) {  //{{{2
+    var result;
+    var isEvaluated = false;
+
+    return function () {
+      if (!isEvaluated) {
+        result = expressionAsFunction();
+        isEvaluated = true;
+      }
+      return result;
+    };
+  }
+
+  function force(promise) {  //{{{2
+    return promise();
+  }
+
   // Constants  //{{{1
   // Eids  //{{{2
   H.EID_BASIC = 1;
@@ -203,7 +221,7 @@ var hatokurandom = {};
     {imperfect: true, cid: 0x74, eid: H.EID_SIX, cost: '+2', link: undefined, name: '?', types: ['サポート'], rarity: 'R'},
     {imperfect: true, cid: 0x75, eid: H.EID_SIX, cost: '+2', link: undefined, name: '?', types: ['サポート'], rarity: 'R'},
     // 4th row
-    {imperfect: true, cid: 0x76, eid: H.EID_SIX, cost: undefined, link: 1, name: '?', types: ['領地?'], rarity: 'C'},
+    {imperfect: true, cid: 0x76, eid: H.EID_SIX, cost: undefined, link: 1, name: '?', types: ['領地'], rarity: 'C'},
     // 5th row
     {imperfect: true, cid: 0x77, eid: H.EID_SIX, cost: undefined, link: undefined, name: '?', types: ['?'], rarity: 'C'},
     {imperfect: true, cid: 0x78, eid: H.EID_SIX, cost: undefined, link: undefined, name: '?', types: ['?'], rarity: undefined},
@@ -276,27 +294,48 @@ var hatokurandom = {};
       return t;
     })();
 
-  H.PSID_TO_CARD_NAMES_TABLE = (function () {  //{{{2
-    var list = function (predicate) {
-      return $.map($.grep(H.ALL_CARDS, predicate), function (c) {return c.name;});
-    };
-    var has_type = function (card, type) {
-        return 0 <= card.types.indexOf(type);
-    };
-    var has_subtype = function (card, subtype) {
-        return card.subtype == subtype;
-    };
-    var costs = function (card, cost) {
-        return card.cost == cost;
-    };
-    var links = function (card, link_count) {
-        return card.link == link_count;
-    };
-    var included = function (card, eid) {
-        return card.eid == eid;
-    };
+  H.PSID_TO_DELAYED_CIDS_TABLE = (function () {  //{{{2
+    function by_names(names) {
+      return delay(function () {
+        return $.map(
+          names,
+          function (name) {
+            return H.card_from_card_name(name).cid;
+          }
+        );
+      });
+    }
+    function list(predicate) {
+      return delay(function () {
+        return $.map(
+          $.grep(H.ALL_CARDS, predicate),
+          function (c) {return c.cid;}
+        );
+      });
+    }
+    function by_type(type) {
+      return list(function (card) {return has_type(card, type);});
+    }
+    function has_type(card, type) {
+      return 0 <= card.types.indexOf(type);
+    }
+    function by_subtype(subtype) {
+      return list(function (card) {return card.subtype == subtype;});
+    }
+    function by_cost(cost) {
+      return list(function (card) {return card.cost == cost;});
+    }
+    function by_link(count) {
+      return list(function (card) {return card.link === count;});
+    }
+    function by_expansion(eid) {
+      return list(function (card) {return card.eid == eid;});
+    }
+    function by_rarity(rarity) {
+      return list(function (card) {return card.rarity == rarity;});
+    }
     return {
-      'basic-firstplay': [  //{{{
+      'basic-firstplay': by_names([  //{{{
         '斥候',
         '願いの泉',
         '早馬',
@@ -307,8 +346,8 @@ var hatokurandom = {};
         '都市開発',
         '冒険者',
         '錬金術師'
-      ],  //}}}
-      'basic-guide': [  //{{{
+      ]),  //}}}
+      'basic-guide': by_names([  //{{{
         '斥候',
         '早馬',
         '願いの泉',
@@ -319,8 +358,8 @@ var hatokurandom = {};
         '歩兵大隊',
         '御用商人',
         '錬金術師'
-      ],  //}}}
-      'basic-guide2': [  //{{{
+      ]),  //}}}
+      'basic-guide2': by_names([  //{{{
         '寄付',
         '斥候',
         '願いの泉',
@@ -331,8 +370,8 @@ var hatokurandom = {};
         '近衛騎士団',
         '冒険者',
         '錬金術師'
-      ],  //}}}
-      'basic-intermediate': [  //{{{
+      ]),  //}}}
+      'basic-intermediate': by_names([  //{{{
         '斥候',
         '寄付',
         '魔法の護符',
@@ -343,8 +382,8 @@ var hatokurandom = {};
         '御用商人',
         '皇室領',
         '呪詛の魔女'
-      ],  //}}}
-      'basic-intermediate2': [  //{{{
+      ]),  //}}}
+      'basic-intermediate2': by_names([  //{{{
         '早馬',
         '願いの泉',
         '買収工作',
@@ -355,8 +394,8 @@ var hatokurandom = {};
         '金貸し',
         '歩兵大隊',
         '噂好きの公爵夫人'
-      ],  //}}}
-      'basic-bigbusiness': [  //{{{
+      ]),  //}}}
+      'basic-bigbusiness': by_names([  //{{{
         '願いの泉',
         '斥候',
         '買収工作',
@@ -367,8 +406,8 @@ var hatokurandom = {};
         '銀行',
         '金貸し',
         '錬金術師'
-      ],  //}}}
-      'basic-greatwar': [  //{{{
+      ]),  //}}}
+      'basic-greatwar': by_names([  //{{{
         '斥候',
         '早馬',
         '城壁',
@@ -379,8 +418,8 @@ var hatokurandom = {};
         'シノビ',
         '隠れ家',
         '近衛騎士団'
-      ],  //}}}
-      'basic-adventure': [  //{{{
+      ]),  //}}}
+      'basic-adventure': by_names([  //{{{
         '寄付',
         '願いの泉',
         '埋もれた財宝',
@@ -391,8 +430,8 @@ var hatokurandom = {};
         '錬金術師',
         '冒険者',
         '皇室領'
-      ],  //}}}
-      'basic-witchcraft': [  //{{{
+      ]),  //}}}
+      'basic-witchcraft': by_names([  //{{{
         '寄付',
         '斥候',
         '願いの泉',
@@ -403,8 +442,8 @@ var hatokurandom = {};
         '追い立てられた魔獣',
         '隠れ家',
         '呪詛の魔女'
-      ],  //}}}
-      'basic-courtpolitics': [  //{{{
+      ]),  //}}}
+      'basic-courtpolitics': by_names([  //{{{
         '願いの泉',
         '買収工作',
         '召集令状',
@@ -415,8 +454,8 @@ var hatokurandom = {};
         '錬金術師',
         '皇室領',
         '噂好きの公爵夫人'
-      ],  //}}}
-      'fareast-firstplay': [  //{{{
+      ]),  //}}}
+      'fareast-firstplay': by_names([  //{{{
         '港町',
         '斥候',
         '願いの泉',
@@ -427,8 +466,8 @@ var hatokurandom = {};
         '都市開発',
         '冒険者',
         '錬金術師'
-      ],  //}}}
-      'fareast-porttown': [  //{{{
+      ]),  //}}}
+      'fareast-porttown': by_names([  //{{{
         'お金好きの妖精',
         '弓兵隊',
         '港町',
@@ -439,8 +478,8 @@ var hatokurandom = {};
         '追い立てられた魔獣',
         '錬金術師',
         '近衛騎士団'
-      ],  //}}}
-      'fareast-prosperity': [  //{{{
+      ]),  //}}}
+      'fareast-prosperity': by_names([  //{{{
         '伝書鳩',
         '貿易商人',
         '課税',
@@ -451,8 +490,8 @@ var hatokurandom = {};
         '割り符',
         '早馬',
         '交易船'
-      ],  //}}}
-      'fareast-mine': [  //{{{
+      ]),  //}}}
+      'fareast-mine': by_names([  //{{{
         'お金好きの妖精',
         '弓兵隊',
         '鉱山都市',
@@ -463,8 +502,8 @@ var hatokurandom = {};
         '図書館',
         '歩兵大隊',
         '錬金術師'
-      ],  //}}}
-      'fareast-citystrife': [  //{{{
+      ]),  //}}}
+      'fareast-citystrife': by_names([  //{{{
         '伝書鳩',
         '弓兵隊',
         '港町',
@@ -475,8 +514,8 @@ var hatokurandom = {};
         '早馬',
         '歩兵大隊',
         '錬金術師'
-      ],  //}}}
-      'fareast-scandal': [  //{{{
+      ]),  //}}}
+      'fareast-scandal': by_names([  //{{{
         'お金好きの妖精',
         '鉱山都市',
         '割り符',
@@ -487,8 +526,8 @@ var hatokurandom = {};
         '錬金術師',
         '銀行',
         '噂好きの公爵夫人'
-      ],  //}}}
-      'fareast-battlefield': [  //{{{
+      ]),  //}}}
+      'fareast-battlefield': by_names([  //{{{
         '伝書鳩',
         '弓兵隊',
         '結盟',
@@ -499,8 +538,8 @@ var hatokurandom = {};
         '歩兵大隊',
         '補給部隊',
         '近衛騎士団'
-      ],  //}}}
-      'fareast-guildstrife': [  //{{{
+      ]),  //}}}
+      'fareast-guildstrife': by_names([  //{{{
         'お金好きの妖精',
         '伝書鳩',
         '貿易商人',
@@ -511,8 +550,8 @@ var hatokurandom = {};
         'サムライ',
         '結盟',
         '星詠みの魔女'
-      ],  //}}}
-      'fareast-kunoichi': [  //{{{
+      ]),  //}}}
+      'fareast-kunoichi': by_names([  //{{{
         '伝書鳩',
         '弓兵隊',
         '貿易商人',
@@ -523,8 +562,8 @@ var hatokurandom = {};
         '寄付',
         '交易船',
         '歩兵大隊'
-      ],  //}}}
-      'fareast-moneymoneymoney': [  //{{{
+      ]),  //}}}
+      'fareast-moneymoneymoney': by_names([  //{{{
         'お金好きの妖精',
         '弓兵隊',
         '課税',
@@ -535,8 +574,8 @@ var hatokurandom = {};
         'シノビ',
         '呪詛の魔女',
         '錬金術師'
-      ],  //}}}
-      'northern-territory': [  //{{{
+      ]),  //}}}
+      'northern-territory': by_names([  //{{{
         'ケットシー',
         '幸運の銀貨',
         'エルフの狙撃手',
@@ -547,8 +586,8 @@ var hatokurandom = {};
         '破城槌',
         '図書館',
         '冒険者'
-      ],  //}}}
-      'northern-parliament': [  //{{{
+      ]),  //}}}
+      'northern-parliament': by_names([  //{{{
         '名馬',
         '洗礼',
         'エルフの狙撃手',
@@ -559,8 +598,8 @@ var hatokurandom = {};
         '交易船',
         '図書館',
         '呪詛の魔女'
-      ],  //}}}
-      'northern-witchandchurch': [  //{{{
+      ]),  //}}}
+      'northern-witchandchurch': by_names([  //{{{
         'ケットシー',
         '幸運の銀貨',
         '洗礼',
@@ -571,8 +610,8 @@ var hatokurandom = {};
         '早馬',
         '都市開発',
         '呪詛の魔女'
-      ],  //}}}
-      'northern-society': [  //{{{
+      ]),  //}}}
+      'northern-society': by_names([  //{{{
         'ケットシー',
         '洗礼',
         '呪いの人形',
@@ -583,8 +622,8 @@ var hatokurandom = {};
         '図書館',
         '銀行',
         '噂好きの公爵夫人'
-      ],  //}}}
-      'northern-guiltycrown': [  //{{{
+      ]),  //}}}
+      'northern-guiltycrown': by_names([  //{{{
         '名馬',
         'ドワーフの宝石職人',
         '宮廷闘争',
@@ -595,8 +634,8 @@ var hatokurandom = {};
         '破城槌',
         '歩兵大隊',
         '補給部隊'
-      ],  //}}}
-      'northern-darkness': [  //{{{
+      ]),  //}}}
+      'northern-darkness': by_names([  //{{{
         'ケットシー',
         '呪いの人形',
         '名馬',
@@ -607,8 +646,8 @@ var hatokurandom = {};
         '早馬',
         '城壁',
         '錬金術師'
-      ],  //}}}
-      'northern-scandal': [  //{{{
+      ]),  //}}}
+      'northern-scandal': by_names([  //{{{
         '名馬',
         'ドワーフの宝石職人',
         '地方役人',
@@ -619,8 +658,8 @@ var hatokurandom = {};
         '錬金術師',
         '銀行',
         '噂好きの公爵夫人'
-      ],  //}}}
-      'northern-teaparty': [  //{{{
+      ]),  //}}}
+      'northern-teaparty': by_names([  //{{{
         '幸運の銀貨',
         '名馬',
         '呪いの人形',
@@ -631,8 +670,8 @@ var hatokurandom = {};
         '見習い魔女',
         '結盟',
         '願いの泉'
-      ],  //}}}
-      'northern-swordsman': [  //{{{
+      ]),  //}}}
+      'northern-swordsman': by_names([  //{{{
         '洗礼',
         '名馬',
         '独占',
@@ -643,8 +682,8 @@ var hatokurandom = {};
         '結盟',
         '早馬',
         '交易船'
-      ],  //}}}
-      'fairy-primer': [  //{{{
+      ]),  //}}}
+      'fairy-primer': by_names([  //{{{
         '家守の精霊',
         '伝令',
         '春風の妖精',
@@ -655,8 +694,8 @@ var hatokurandom = {};
         '商船団',
         '収穫祭',
         '合併'
-      ],  //}}}
-      'fairy-butlerandmaid': [  //{{{
+      ]),  //}}}
+      'fairy-butlerandmaid': by_names([  //{{{
         '伝令',
         '春風の妖精',
         '星巫女の託宣',
@@ -667,8 +706,8 @@ var hatokurandom = {};
         '検地役人',
         'メイド長',
         '執事'
-      ],  //}}}
-      'fairy-winter': [  //{{{
+      ]),  //}}}
+      'fairy-winter': by_names([  //{{{
         '密偵',
         '伝令',
         '春風の妖精',
@@ -679,8 +718,8 @@ var hatokurandom = {};
         '行商人',
         'ブラウニー',
         '執事'
-      ],  //}}}
-      'fairy-folklore': [  //{{{
+      ]),  //}}}
+      'fairy-folklore': by_names([  //{{{
         '密偵',
         '巡礼',
         '家守の精霊',
@@ -691,8 +730,8 @@ var hatokurandom = {};
         'ブラウニー',
         '聖堂騎士',
         'メイド長'
-      ],  //}}}
-      'fairy-frontier': [  //{{{
+      ]),  //}}}
+      'fairy-frontier': by_names([  //{{{
         '密偵',
         '巡礼',
         '家守の精霊',
@@ -703,8 +742,8 @@ var hatokurandom = {};
         '鬼族の戦士',
         '徴税人',
         '合併'
-      ],  //}}}
-      'fairy-carnival': [  //{{{
+      ]),  //}}}
+      'fairy-carnival': by_names([  //{{{
         '密偵',
         '春風の妖精',
         '祝福',
@@ -715,8 +754,8 @@ var hatokurandom = {};
         '聖堂騎士',
         'メイド長',
         '収穫祭'
-      ],  //}}}
-      'fairy-holyornot': [  //{{{
+      ]),  //}}}
+      'fairy-holyornot': by_names([  //{{{
         '密偵',
         '巡礼',
         '家守の精霊',
@@ -727,8 +766,8 @@ var hatokurandom = {};
         '交易都市',
         '収穫祭',
         '裁判官'
-      ],  //}}}
-      'fairy-fairyandknight': [  //{{{
+      ]),  //}}}
+      'fairy-fairyandknight': by_names([  //{{{
         '家守の精霊',
         '春風の妖精',
         '祝福',
@@ -739,8 +778,8 @@ var hatokurandom = {};
         '大農園',
         '聖堂騎士',
         '合併'
-      ],  //}}}
-      'championship1-prelims1': [  //{{{
+      ]),  //}}}
+      'championship1-prelims1': by_names([  //{{{
         '城壁',
         '願いの泉',
         '破城槌',
@@ -751,8 +790,8 @@ var hatokurandom = {};
         '港町',
         '銀行',
         '錬金術師'
-      ],  //}}}
-      'championship1-prelims2': [  //{{{
+      ]),  //}}}
+      'championship1-prelims2': by_names([  //{{{
         '早馬',
         '斥候',
         '願いの泉',
@@ -763,8 +802,8 @@ var hatokurandom = {};
         '見習い魔女',
         '冒険者',
         '割り符'
-      ],  //}}}
-      'championship1-prelims3': [  //{{{
+      ]),  //}}}
+      'championship1-prelims3': by_names([  //{{{
         '早馬',
         '斥候',
         '城壁',
@@ -775,8 +814,8 @@ var hatokurandom = {};
         'シノビ',
         '錬金術師',
         '近衛騎士団'
-      ],  //}}}
-      'championship1-semifinals': [  //{{{
+      ]),  //}}}
+      'championship1-semifinals': by_names([  //{{{
         '願いの泉',
         '斥候',
         '隠れ家',
@@ -787,8 +826,8 @@ var hatokurandom = {};
         '錬金術師',
         '冒険者',
         '呪詛の魔女'
-      ],  //}}}
-      'championship1-finals': [  //{{{
+      ]),  //}}}
+      'championship1-finals': by_names([  //{{{
         '早馬',
         '願いの泉',
         '斥候',
@@ -799,107 +838,43 @@ var hatokurandom = {};
         '割り符',
         '結盟',
         '噂好きの公爵夫人'
-      ],  //}}}
-      'reference-all-actions':  //{{{
-        list(function (c) {return has_type(c, '行動');})
-      ,  //}}}
-      'reference-plain-actions':  //{{{
-        list(function (c) {
-          return has_type(c, '行動') &&
-            !has_type(c, '攻撃') &&
-            !has_type(c, '防衛');
-        })
-      ,  //}}}
-      'reference-attacks':  //{{{
-        list(function (c) {return has_type(c, '攻撃');})
-      ,  //}}}
-      'reference-defenses':  //{{{
-        list(function (c) {return has_type(c, '防衛');})
-      ,  //}}}
-      'reference-territories':  //{{{
-        list(function (c) {return has_type(c, '領地');})
-      ,  //}}}
-      'reference-authorities':  //{{{
-        list(function (c) {return has_type(c, '継承権');})
-      ,  //}}}
-      'reference-curses':  //{{{
-        list(function (c) {return has_type(c, '災い');})
-      ,  //}}}
-      'reference-princesses':  //{{{
-        list(function (c) {return has_type(c, 'プリンセス');})
-      ,  //}}}
-      'reference-support':  //{{{
-        list(function (c) {return has_type(c, 'サポート');})
-      ,  //}}}
-      'reference-subtype-army':  //{{{
-        list(function (c) {return has_subtype(c, '兵力');})
-      ,  //}}}
-      'reference-subtype-trick':  //{{{
-        list(function (c) {return has_subtype(c, '計略');})
-      ,  //}}}
-      'reference-subtype-magic':  //{{{
-        list(function (c) {return has_subtype(c, '魔法');})
-      ,  //}}}
-      'reference-subtype-merchant':  //{{{
-        list(function (c) {return has_subtype(c, '商人');})
-      ,  //}}}
-      'reference-subtype-maid':  //{{{
-        list(function (c) {return has_subtype(c, '侍女');})
-      ,  //}}}
-      'reference-cost2':  //{{{
-        list(function (c) {return costs(c, 2);})
-      ,  //}}}
-      'reference-cost3':  //{{{
-        list(function (c) {return costs(c, 3);})
-      ,  //}}}
-      'reference-cost4':  //{{{
-        list(function (c) {return costs(c, 4);})
-      ,  //}}}
-      'reference-cost5':  //{{{
-        list(function (c) {return costs(c, 5);})
-      ,  //}}}
-      'reference-cost6':  //{{{
-        list(function (c) {return costs(c, 6);})
-      ,  //}}}
-      'reference-cost7ormore':  //{{{
-        list(function (c) {return 7 <= c.cost;})
-      ,  //}}}
-      'reference-link0':  //{{{
-        list(function (c) {return links(c, 0);})
-      ,  //}}}
-      'reference-link1':  //{{{
-        list(function (c) {return links(c, 1);})
-      ,  //}}}
-      'reference-link2':  //{{{
-        list(function (c) {return links(c, 2);})
-      ,  //}}}
-      'reference-unplayable':  //{{{
-        list(function (c) {return c.link === undefined;})
-      ,  //}}}
-      'reference-basic':  //{{{
-        list(function (c) {return included(c, H.EID_BASIC);})
-      ,  //}}}
-      'reference-fareast':  //{{{
-        list(function (c) {return included(c, H.EID_FAREAST);})
-      ,  //}}}
-      'reference-northern':  //{{{
-        list(function (c) {return included(c, H.EID_NORTHERN);})
-      ,  //}}}
-      'reference-fairy':  //{{{
-        list(function (c) {return included(c, H.EID_FAIRY);})
-      ,  //}}}
-      'reference-six':  //{{{
-        list(function (c) {return included(c, H.EID_SIX);})
-      ,  //}}}
-      'reference-rarity-basic':  //{{{
-        list(function (c) {return c.rarity == 'B';})
-      ,  //}}}
-      'reference-rarity-common':  //{{{
-        list(function (c) {return c.rarity == 'C';})
-      ,  //}}}
-      'reference-rarity-rare':  //{{{
-        list(function (c) {return c.rarity == 'R';})
-      ,  //}}}
+      ]),  //}}}
+      'reference-all-actions': by_type('行動'),
+      'reference-plain-actions': list(function (c) {  //{{{
+        return has_type(c, '行動') &&
+          !has_type(c, '攻撃') &&
+          !has_type(c, '防衛');
+      }),  //}}}
+      'reference-attacks': by_type('攻撃'),
+      'reference-defenses': by_type('防衛'),
+      'reference-territories': by_type('領地'),
+      'reference-authorities': by_type('継承権'),
+      'reference-curses': by_type('災い'),
+      'reference-princesses': by_type('プリンセス'),
+      'reference-support': by_type('サポート'),
+      'reference-subtype-army': by_subtype('兵力'),
+      'reference-subtype-trick': by_subtype('計略'),
+      'reference-subtype-magic': by_subtype('魔法'),
+      'reference-subtype-merchant': by_subtype('商人'),
+      'reference-subtype-maid': by_subtype('侍女'),
+      'reference-cost2': by_cost(2),
+      'reference-cost3': by_cost(3),
+      'reference-cost4': by_cost(4),
+      'reference-cost5': by_cost(5),
+      'reference-cost6': by_cost(6),
+      'reference-cost7ormore': list(function (c) {return 7 <= c.cost;}),
+      'reference-link0': by_link(0),
+      'reference-link1': by_link(1),
+      'reference-link2': by_link(2),
+      'reference-unplayable': by_link(undefined),
+      'reference-basic': by_expansion(H.EID_BASIC),
+      'reference-fareast': by_expansion(H.EID_FAREAST),
+      'reference-northern': by_expansion(H.EID_NORTHERN),
+      'reference-fairy': by_expansion(H.EID_FAIRY),
+      'reference-six': by_expansion(H.EID_SIX),
+      'reference-rarity-basic': by_rarity('B'),
+      'reference-rarity-common': by_rarity('C'),
+      'reference-rarity-rare': by_rarity('R'),
       '': []  // Dummy entry to make folds simple.
     };
   })();
@@ -1470,11 +1445,11 @@ var hatokurandom = {};
     return card;
   };
 
-  H.card_names_from_psid = function (psid) {  //{{{2
-    var card_names = H.PSID_TO_CARD_NAMES_TABLE[psid];
-    if (card_names === undefined)
+  H.cids_from_psid = function (psid) {  //{{{2
+    var delayed_cids = H.PSID_TO_DELAYED_CIDS_TABLE[psid];
+    if (delayed_cids === undefined)
       throw new H.KeyError('PSID', psid);
-    return card_names;
+    return force(delayed_cids);
   };
 
   H.child_pids_from_pid = function (pid) {  //{{{2
@@ -1667,7 +1642,7 @@ var hatokurandom = {};
   };
 
   H.is_psid = function (sid) {  //{{{2
-    return !!(H.PSID_TO_CARD_NAMES_TABLE[sid]);
+    return !!(H.PSID_TO_DELAYED_CIDS_TABLE[sid]);
   };
 
   H.is_rsid = function (sid) {  //{{{2
@@ -1844,8 +1819,8 @@ var hatokurandom = {};
   };
 
   H.xcards_from_psid = function (psid) {  //{{{2
-    return $.map(H.card_names_from_psid(psid), function (card_name) {
-      return H.xcard_from_card(H.card_from_card_name(card_name));
+    return $.map(H.cids_from_psid(psid), function (cid) {
+      return H.xcard_from_card(H.card_from_cid(cid));
     });
   };
 
