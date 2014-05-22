@@ -328,9 +328,9 @@ var hatokurandom = {};
     function by_link(count) {
       return list(function (card) {return card.link === count;});
     }
-    var included = function (card, eid) {
-        return card.eid == eid;
-    };
+    function by_expansion(eid) {
+      return list(function (card) {return card.eid == eid;});
+    }
     return {
       'basic-firstplay': by_names([  //{{{
         '斥候',
@@ -868,21 +868,11 @@ var hatokurandom = {};
       'reference-link1': by_link(1),
       'reference-link2': by_link(2),
       'reference-unplayable': by_link(undefined),
-      'reference-basic':  //{{{
-        list(function (c) {return included(c, H.EID_BASIC);})
-      ,  //}}}
-      'reference-fareast':  //{{{
-        list(function (c) {return included(c, H.EID_FAREAST);})
-      ,  //}}}
-      'reference-northern':  //{{{
-        list(function (c) {return included(c, H.EID_NORTHERN);})
-      ,  //}}}
-      'reference-fairy':  //{{{
-        list(function (c) {return included(c, H.EID_FAIRY);})
-      ,  //}}}
-      'reference-six':  //{{{
-        list(function (c) {return included(c, H.EID_SIX);})
-      ,  //}}}
+      'reference-basic': by_expansion(H.EID_BASIC),
+      'reference-fareast': by_expansion(H.EID_FAREAST),
+      'reference-northern': by_expansion(H.EID_NORTHERN),
+      'reference-fairy': by_expansion(H.EID_FAIRY),
+      'reference-six': by_expansion(H.EID_SIX),
       'reference-rarity-basic':  //{{{
         list(function (c) {return c.rarity == 'B';})
       ,  //}}}
