@@ -215,9 +215,9 @@
                 例: 「《呪詛の魔女》を含めるなら《魔法の護符》も含める」
 
         .block
-          %h2 表示
+          %h2 その他
 
-          %fieldset{data: {role: 'controlgroup'}}
+          %fieldset{data: {role: 'controlgroup', type: 'horizontal'}}
             %legend カードの並び順
             %label
               %input(type='radio' name='sort_key' value='eid')
@@ -225,6 +225,15 @@
             %label
               %input(type='radio' name='sort_key' value='cost')
               コスト順
+
+          %fieldset{data: {role: 'controlgroup', type: 'horizontal'}}
+            %legend 共有方法
+            %label
+              %input(type='radio' name='sharing_tool' value='web_intent')
+              Twitter (Web)
+            %label
+              %input(type='radio' name='sharing_tool' value='twitter_app')
+              Twitter.app
 
         .block
           %input#button_to_reset_options(type='button' value='初期設定に戻す')

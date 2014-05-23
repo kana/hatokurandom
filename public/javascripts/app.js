@@ -280,6 +280,7 @@ var hatokurandom = {};
     include_northern: 'may',
     include_pairs: false,
     include_six: 'may',
+    sharing_tool: 'web_intent',
     sort_key: 'eid',
     statistical: false,
     try_count: 100
@@ -1996,18 +1997,23 @@ var hatokurandom = {};
       var $page = H.get_current_page();
       var permalink = H.generate_permalink($page);
       var is_reference_page = /^reference-/.test($page.jqmData('sid'));
-      var link_to_share_permalink = [
-        'https://twitter.com/intent/tweet',
-        '?url=', encodeURIComponent(permalink),
-        '&text=', encodeURIComponent(
-          is_reference_page
-          ? 'ハトクラの' + $page.jqmData('title')
-          : 'ハトクラなう。今回のサプライ: '
-            + H.list_card_names($page).join(', ')
-        ),
-        '&hashtags=', encodeURIComponent('hatokura'),
-        '&related=', encodeURIComponent('HeartofCrown')
-      ].join('')
+      var base_message =
+        is_reference_page
+        ? 'ハトクラの' + $page.jqmData('title')
+        : 'ハトクラなう。今回のサプライ: '
+          + H.list_card_names($page).join(', ');
+      var ss =
+        H.options.sharing_tool == 'web_intent'
+        ? ['https://twitter.com/intent/tweet',
+           '?url=', encodeURIComponent(permalink),
+           '&text=', encodeURIComponent(base_message),
+           '&hashtags=', encodeURIComponent('hatokura'),
+           '&related=', encodeURIComponent('HeartofCrown')]
+        : ['twitter://post?message=',
+           encodeURIComponent(base_message),
+           encodeURIComponent(' ' + permalink),
+           encodeURIComponent(' ' + '#hatokura')];
+      var link_to_share_permalink = ss.join('')
 
       $(this).attr('href', link_to_share_permalink);
       return;  // Let the browser opens the adjusted href.
