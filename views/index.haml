@@ -226,6 +226,15 @@
               %input(type='radio' name='sort_key' value='cost')
               コスト順
 
+          %fieldset{data: {role: 'controlgroup', type: 'horizontal'}}
+            %legend 共有方法
+            %label
+              %input(type='radio' name='sharing_tool' value='web_intent')
+              Twitter (Web)
+            %label
+              %input(type='radio' name='sharing_tool' value='twitter_app')
+              Twitter.app
+
         .block
           %input#button_to_reset_options(type='button' value='初期設定に戻す')
 

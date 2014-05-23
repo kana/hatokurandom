@@ -280,6 +280,7 @@ var hatokurandom = {};
     include_northern: 'may',
     include_pairs: false,
     include_six: 'may',
+    sharing_tool: 'web_intent',
     sort_key: 'eid',
     statistical: false,
     try_count: 100
