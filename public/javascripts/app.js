@@ -1661,6 +1661,10 @@ var hatokurandom = {};
     return !H.is_psid(sid);
   };
 
+  H.is_running_in_standalone_mode = function () {  //{{{2
+    return window.navigator.standalone;
+  };
+
   H.is_running_specs = function () {  //{{{2
     return document.title == 'Jasmine Spec Runner';
   };
@@ -2022,6 +2026,7 @@ var hatokurandom = {};
       var link_to_share_permalink = ss.join('')
 
       $(this).attr('href', link_to_share_permalink);
+      H.save_state_before_sharing_if_necessary(permalink);
       return;  // Let the browser opens the adjusted href.
     });
   };
@@ -2239,6 +2244,21 @@ var hatokurandom = {};
     H.load_options({is_resetting: true});
   };
 
+  H.restore_state_before_sharing_if_necessary = function () {  //{{{2
+    if (!H.is_running_in_standalone_mode())
+      return;
+
+    var s = $.cookie('state_before_sharing');
+    if (s === null)
+      return;
+
+    // TODO: Is it better to remove state_before_sharing after restoring?
+    var v = JSON.parse(s);
+    // Use only hash to avoid reloading page.  Because the base URL of a saved
+    // permalink is not the same as the base URL of the currently running app.
+    location.replace($m.path.parseUrl(v.url).hash);
+  };
+
   H.save_option = function (key, value) {  //{{{2
     H.options[key] = value;
     $.cookie(key, JSON.stringify(value), {expires: 365});
@@ -2250,6 +2270,24 @@ var hatokurandom = {};
         && H.options.include_six == 'must_not') {
       $('#configure [name="include_basic"]').val('may').change();
     }
+  };
+
+  H.save_state_before_sharing_if_necessary = function (permalink) {  //{{{2
+    if (!H.is_running_in_standalone_mode())
+      return;
+
+    // Fairly enough length of time
+    // * To review the supply after preparation of a new game, and
+    // * Not to interrupt generating a new supply for further games.
+    var RESTORABLE_PERIOD_IN_MILLISECONDS = 5 * 60 * 1000;
+    var now = Date.now();
+    $.cookie(
+      'state_before_sharing',
+      JSON.stringify({
+        url: permalink
+      }),
+      {expires: new Date(now + RESTORABLE_PERIOD_IN_MILLISECONDS)}
+    );
   };
 
   H.set_up_options_if_necessary = (function () {  //{{{2
@@ -2366,6 +2404,7 @@ var hatokurandom = {};
   $(document).ready(function () {  //{{{2
     H.redirect_to_new_url_from_iui_era_url_if_necessary();
     H.suggest_new_uri_for_heroku_migration_if_necessary();
+    H.restore_state_before_sharing_if_necessary();
 
     $m.defaultPageTransition = 'slide';
 
