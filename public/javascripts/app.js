@@ -2026,6 +2026,7 @@ var hatokurandom = {};
       var link_to_share_permalink = ss.join('')
 
       $(this).attr('href', link_to_share_permalink);
+      H.save_state_before_sharing_if_necessary(permalink);
       return;  // Let the browser opens the adjusted href.
     });
   };
@@ -2254,6 +2255,24 @@ var hatokurandom = {};
         && H.options.include_six == 'must_not') {
       $('#configure [name="include_basic"]').val('may').change();
     }
+  };
+
+  H.save_state_before_sharing_if_necessary = function (permalink) {  //{{{2
+    if (!H.is_running_in_standalone_mode())
+      return;
+
+    // Fairly enough length of time
+    // * To review the supply after preparation of a new game, and
+    // * Not to interrupt generating a new supply for further games.
+    var RESTORABLE_PERIOD_IN_MILLISECONDS = 5 * 60 * 1000;
+    var now = Date.now();
+    $.cookie(
+      'state_before_sharing',
+      JSON.stringify({
+        url: permalink
+      }),
+      {expires: new Date(now + RESTORABLE_PERIOD_IN_MILLISECONDS)}
+    );
   };
 
   H.set_up_options_if_necessary = (function () {  //{{{2
