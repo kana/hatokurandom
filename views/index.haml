@@ -11,6 +11,10 @@
     %link(href='/stylesheets/app.css' rel='stylesheet' type='text/css')
     %script(src='/javascripts/jquery/jquery-2.1.1.min.js' type='text/javascript')
     %script(src='/javascripts/jquery-cookie/jquery.cookie.js' type='text/javascript')
+    :javascript
+      $(document).on('mobileinit', function () {
+        $.mobile.autoInitializePage = false;
+      });
     %script(src='/javascripts/jquery-mobile/jquery.mobile-1.4.2.min.js' type='text/javascript')
     %script(src='/javascripts/app.js' type='text/javascript')
   %body

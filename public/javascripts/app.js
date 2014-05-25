@@ -1906,20 +1906,28 @@ var hatokurandom = {};
   };
 
   H.adjust_the_initial_page_if_it_is_dynamic_page = function () {  //{{{2
-    // jQuery Mobile doesn't trigger pagebeforechange for a dynamic page if its
-    // URL is directly opened (from a link posted to Twitter, for example).
-    // And the #home page will be shown but location.href points the dynamic
-    // page URL.  So that we have to "redirect" to the dynamic page, especially
-    // after all of jQuery Mobile's initializations.
+    // From users' point of view, this app has many pages like
+    // #supply:random10, #supply:fareast-firstplay, etc.
+    // But several pages such as #supply are actually exist as DOM elements.
+    // When a user visits #{apid}:{query}, this app replaces the content of
+    // #{apid} then shows #{apid} instead of #{apid}:{query}.
     //
-    // FIXME: But this is a quick-and-dirty workaround.  Consider other ways.
+    // Unfortunately, this contept does not match jQuery Mobile initialization.
+    // When an app is accessed with a hash of some page, $m.initializePage()
+    // shows that page as the initial page if it exists as a DOM element.
+    // Otherwise, the first page (for this app, #home) is shown instead.
+    //
+    // As a workaround for this mismatch, a dummy page which has
+    // #{apid}:{query} as its ID is inserted.  This dummy page just fakes
+    // $m.initializePage().  So that it will never be shown.
+    //
+    // NB: This workaround may not work for future versions of jQuery Mobile.
     if (H.is_dynamic_page_url(location.href)) {
-      setTimeout(
-        function () {
-          $(':mobile-pagecontainer').pagecontainer('change', location.href);
-        },
-        500
-      );
+      var url = $m.path.parseUrl(location.href);
+      var pid = H.pid_from_url(url);
+      var apid = H.apid_from_pid(pid);
+      var $dummy_page = $('#' + apid).clone().attr('id', pid);
+      $('body').append($dummy_page);
     }
   };
 
@@ -2397,6 +2405,8 @@ var hatokurandom = {};
           );
       });
     });
+
+    $m.initializePage();
   });
 
   //}}}1
