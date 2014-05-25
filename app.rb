@@ -3,6 +3,7 @@
 require 'bundler/setup'
 require 'cgi'
 require 'haml'
+require 'sass'
 require 'sinatra'
 require 'socket'
 
