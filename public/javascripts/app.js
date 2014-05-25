@@ -206,7 +206,7 @@ var hatokurandom = {};
     // Guessed from http://hatokura.flipflops.jp/wordpress/files/2014/05/hoc.jpg
     // 1st row
     {imperfect: true, cid: 0x69, eid: H.EID_SIX, cost: 6, link: undefined, name: 'オアシスの美姫 エムシエレ', types: ['プリンセス'], rarity: 'R'},
-    {imperfect: true, cid: 0x6a, eid: H.EID_SIX, cost: 5, link: 1, name: '独立都市', types: ['領地'], rarity: 'C'},
+    {cid: 0x6a, eid: H.EID_SIX, cost: 5, link: 1, name: '独立都市', types: ['領地'], rarity: 'C'},
     {imperfect: true, cid: 0x6b, eid: H.EID_SIX, cost: undefined, link: 1, name: 'オアシス都市ネフェルティリ', types: ['領地'], rarity: 'R'},
     {imperfect: true, cid: 0x6c, eid: H.EID_SIX, cost: 5, link: 0, name: '〓〓〓〓', types: ['?', '?'], rarity: 'C'},
     {imperfect: true, cid: 0x6d, eid: H.EID_SIX, cost: '+2', link: undefined, name: '?', types: ['サポート'], rarity: 'R'},
