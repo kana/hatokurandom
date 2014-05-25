@@ -271,7 +271,6 @@ var hatokurandom = {};
   H.DEFAULT_OPTIONS = {  //{{{2
     exclude_banned_cards: true,
     exclude_banned_cards_for_fairy_garden: true,
-    exclude_useless_cards: false,
     include_all_costs: false,
     include_basic: 'may',
     include_fairy: 'may',
