@@ -20,6 +20,7 @@ class App < Sinatra::Application
   end
 
   get '/stylesheets/app.css' do
+    last_modified File::Stat.new('views/app.sass').mtime
     sass :app
   end
 
