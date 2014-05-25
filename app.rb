@@ -3,6 +3,7 @@
 require 'bundler/setup'
 require 'cgi'
 require 'haml'
+require 'sass'
 require 'sinatra'
 require 'socket'
 
@@ -16,6 +17,11 @@ class App < Sinatra::Application
 
   get '/' do
     haml :index
+  end
+
+  get '/stylesheets/app.css' do
+    last_modified File::Stat.new('views/app.sass').mtime
+    sass :app
   end
 
   get '/offline' do
