@@ -2244,6 +2244,19 @@ var hatokurandom = {};
     H.load_options({is_resetting: true});
   };
 
+  H.restore_state_before_sharing_if_necessary = function () {  //{{{2
+    if (!H.is_running_in_standalone_mode())
+      return;
+
+    var s = $.cookie('state_before_sharing');
+    if (s === null)
+      return;
+
+    // TODO: Is it better to remove state_before_sharing after restoring?
+    var v = JSON.parse(s);
+    location.replace(v.url);
+  };
+
   H.save_option = function (key, value) {  //{{{2
     H.options[key] = value;
     $.cookie(key, JSON.stringify(value), {expires: 365});
@@ -2389,6 +2402,7 @@ var hatokurandom = {};
   $(document).ready(function () {  //{{{2
     H.redirect_to_new_url_from_iui_era_url_if_necessary();
     H.suggest_new_uri_for_heroku_migration_if_necessary();
+    H.restore_state_before_sharing_if_necessary();
 
     $m.defaultPageTransition = 'slide';
 
