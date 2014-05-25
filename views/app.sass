@@ -1,4 +1,4 @@
-// Show icons to distinguish external links.
+// Show icons to distinguish external links.  {{{1
 
 a[target='_blank']:after
   content: '\00a0\f08e'
@@ -13,7 +13,7 @@ a.share.button:after
   display: none
 
 
-// Hide elements regardless of the default rendering type.
+// Hide elements regardless of the default rendering type.  {{{1
 //
 // Especially, $('a').toggle() sets "display: inline;" to show elements,
 // but this value might conflict with a jQuery Moble theme.
@@ -22,7 +22,7 @@ a.share.button:after
   display: none !important
 
 
-// For cards in a card-list view.
+// For cards in a card-list view.  {{{1
 
 .card label
   display: block
@@ -108,7 +108,7 @@ a.share.button:after
   margin: 0
 
 
-// #header
+// #header  {{{1
 
 #header.disabled
   opacity: 0.5
@@ -123,7 +123,7 @@ a.share.button:after
   color: #666
 
 
-// #configure
+// #configure  {{{1
 
 #configure
   // not to be overlaid by #header
@@ -173,13 +173,13 @@ a.share.button:after
   font-size: 50px
 
 
-// #templates
+// #templates  {{{1
 
 #templates
   display: none
 
 
-// #notification
+// #notification  {{{1
 
 #notification
   position: fixed
@@ -217,7 +217,10 @@ a.share.button:after
   color: #c00
 
 
-// #home
+// #home  {{{1
 
 #home a.disabled
   color: #999
+
+// __END__  {{{1
+// vim: foldmethod=marker
