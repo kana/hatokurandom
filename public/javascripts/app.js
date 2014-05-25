@@ -2397,6 +2397,8 @@ var hatokurandom = {};
           );
       });
     });
+
+    $m.initializePage();
   });
 
   //}}}1
