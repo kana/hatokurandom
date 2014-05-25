@@ -2254,7 +2254,9 @@ var hatokurandom = {};
 
     // TODO: Is it better to remove state_before_sharing after restoring?
     var v = JSON.parse(s);
-    location.replace(v.url);
+    // Use only hash to avoid reloading page.  Because the base URL of a saved
+    // permalink is not the same as the base URL of the currently running app.
+    location.replace($m.path.parseUrl(v.url).hash);
   };
 
   H.save_option = function (key, value) {  //{{{2
