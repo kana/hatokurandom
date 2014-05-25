@@ -1661,6 +1661,10 @@ var hatokurandom = {};
     return !H.is_psid(sid);
   };
 
+  H.is_running_in_standalone_mode = function () {  //{{{2
+    return window.navigator.standalone;
+  };
+
   H.is_running_specs = function () {  //{{{2
     return document.title == 'Jasmine Spec Runner';
   };
