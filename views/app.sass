@@ -1,4 +1,5 @@
-// Show icons to distinguish external links.  {{{1
+// Misc.  {{{1
+// Show icons to distinguish external links.  {{{2
 
 a[target='_blank']:after
   content: '\00a0\f08e'
@@ -12,33 +13,36 @@ a[target='_blank']:after
 a.share.button:after
   display: none
 
-// Hide elements regardless of the default rendering type.  {{{1
+// Hide elements regardless of the default rendering type.  {{{2
 //
 // Especially, $('a').toggle() sets "display: inline;" to show elements,
 // but this value might conflict with a jQuery Moble theme.
 // Use the following class to avoid problems like this.
+
 .unavailable
   display: none !important
 
-// For cards in a card-list view.  {{{1
+// Cards  {{{1
+// Basic  {{{2
 
 .card label
   display: block
   cursor: pointer
 
-.ui-listview > .ui-li-static.dropped.card
-  background: #ddd
-.dropped.card span
+.card[data-imperfect='true']
   opacity: 0.5
 
 .card .cost,
 .card .name
   font-weight: bolder
 
+// Types  {{{2
+
 .card .type
   width: 0.8em
   height: 0.8em
   display: inline-block
+
 .card .type[data-name='行動']
   background: #999
 .card .type[data-name='防衛']
@@ -58,12 +62,17 @@ a.share.button:after
 .card .type[data-name='?']
   background: #ddd
 
+// Subtypes  {{{2
+
 .card .subtype:after
   color: #999
   content: '（' attr(data-name) '）'
   font-size: 80%
+
 .card .subtype[data-name='']:after
   display: none
+
+// Expansion symbols  {{{2
 
 .card .esym
   font-size: 80%
@@ -74,6 +83,7 @@ a.share.button:after
   position: absolute
   right: 0.5em
   top: 0.5em
+
 .card .esym[data-esym='基本']
   color: #666
   background: #ddd
@@ -90,15 +100,21 @@ a.share.button:after
   color: #966
   background: #ece
 
-.card[data-imperfect='true']
+// Dropped cards  {{{2
+
+.ui-listview > .ui-li-static.dropped.card
+  background: #ddd
+.dropped.card span
   opacity: 0.5
 
-// Use the same style as linked list items for static list items.
+// Use the same style as linked list items for static list items.  {{{2
+
 .ui-listview > .ui-li-static.card
   background: transparent
 
-// Show 10 cards without scrolling
+// Show 10 cards without scrolling  {{{2
 // in non-fullscreen Mobile Safari on iPhone 4S with iOS7.
+
 .ui-listview > .ui-li-static
   padding-top: 0.4em
   padding-bottom: 0.4em
@@ -107,31 +123,38 @@ a.share.button:after
 
 // #header  {{{1
 
-#header.disabled
-  opacity: 0.5
-
 #header .button
   font-size: 24px
   line-height: 100%
   padding: 0.25em 0
+
+#header.disabled
+  opacity: 0.5
 
 #header.disabled .button,
 #header .disabled.button
   color: #666
 
 // #configure  {{{1
+// Not to be overlaid by #header  {{{2
 
 #configure
-  // not to be overlaid by #header
   z-index: 2000
+
+// Headings and blocks  {{{2
 
 #configure h2
   font-size: 110%
+
+#configure legend
+  font-weight: bolder
 
 #configure .block
   margin-top: 2em
 #configure .block:first-child
   margin-top: 0
+
+// #available_card_sets  {{{2
 
 #configure #available_card_sets .ui-controlgroup-label
   float: left
@@ -145,6 +168,8 @@ a.share.button:after
   float: left
 #configure #available_card_sets .ui-controlgroup-controls > .ui-radio > .ui-btn
   padding: 0.25em 0.5em
+
+// Misc. markup  {{{2
 
 #configure .note
   display: block
@@ -160,10 +185,7 @@ a.share.button:after
 #configure .card-name
   white-space: nowrap
 
-#configure legend
-  font-weight: bolder
-
-// A workaround to avoid automatic zooming by focusing a <select>.
+// A workaround to avoid automatic zooming by focusing a <select>.  {{{2
 // https://github.com/jquery/jquery-mobile/issues/2069#issuecomment-2871905
 .iOS .ui-select .ui-btn select
   font-size: 50px
@@ -174,18 +196,23 @@ a.share.button:after
   display: none
 
 // #notification  {{{1
+// Basic  {{{2
 
 #notification
   position: fixed
   right: 0.2em
   bottom: 0.0em
 
+// #offline_mode  {{{2
+
 #notification #offline_mode
   opacity: 0.2
+
 #notification #offline_mode .progress
   font-size: 80%
   font-style: normal
   font-family: 'Helvetica', sans-serif
+
 #notification #offline_mode.checking
   color: #666
 #notification #offline_mode.noupdate
@@ -203,8 +230,11 @@ a.share.button:after
 #notification #offline_mode.error
   color: #900
 
+// #supply_status  {{{2
+
 #notification #supply_status
   display: none
+
 #notification #supply_status.failed
   display: inline
   opacity: 0.2
