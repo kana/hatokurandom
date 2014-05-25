@@ -19,6 +19,10 @@ class App < Sinatra::Application
     haml :index
   end
 
+  get '/stylesheets/app.css' do
+    sass :app
+  end
+
   get '/offline' do
     haml :index
   end
