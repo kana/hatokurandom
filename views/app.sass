@@ -1,259 +1,223 @@
-/* Show icons to distinguish external links. */
+// Show icons to distinguish external links.
 
 a[target='_blank']:after
-{
-  content: '\00a0\f08e';
-  display: inline-block;
-  font-family: FontAwesome;
-  font-size: 80%;
-  font-style: normal;
-  font-weight: normal;
-  text-decoration: inherit;
-}
+  content: '\00a0\f08e'
+  display: inline-block
+  font-family: FontAwesome
+  font-size: 80%
+  font-style: normal
+  font-weight: normal
+  text-decoration: inherit
 
 a.share.button:after
-{
-  display: none;
-}
+  display: none
 
 
-/* Hide elements regardless of the default rendering type.
- *
- * Especially, $('a').toggle() sets "display: inline;" to show elements,
- * but this value might conflict with a jQuery Moble theme.
- * Use the following class to avoid problems like this.
- */
+// Hide elements regardless of the default rendering type.
+//
+// Especially, $('a').toggle() sets "display: inline;" to show elements,
+// but this value might conflict with a jQuery Moble theme.
+// Use the following class to avoid problems like this.
 .unavailable
-{
-  display: none !important;
-}
+  display: none !important
 
 
-/* For cards in a card-list view. */
+// For cards in a card-list view.
 
 .card label
-{
-  display: block;
-  cursor: pointer;
-}
+  display: block
+  cursor: pointer
 
 .ui-listview > .ui-li-static.dropped.card
-{
-  background: #ddd;
-}
+  background: #ddd
 .dropped.card span
-{
-  opacity: 0.5;
-}
+  opacity: 0.5
 
 .card .cost,
 .card .name
-{
-  font-weight: bolder;
-}
+  font-weight: bolder
 
 .card .type
-{
-  width: 0.8em;
-  height: 0.8em;
-  display: inline-block;
-}
-.card .type[data-name='行動'] {background: #999;}
-.card .type[data-name='防衛'] {background: #339;}
-.card .type[data-name='攻撃'] {background: #c66;}
-.card .type[data-name='災い'] {background: #636;}
-.card .type[data-name='領地'] {background: #963;}
-.card .type[data-name='継承権'] {background: #696;}
-.card .type[data-name='プリンセス'] {background: #cc3;}
-.card .type[data-name='サポート'] {background: #e73;}
-.card .type[data-name='?'] {background: #ddd;}
+  width: 0.8em
+  height: 0.8em
+  display: inline-block
+.card .type[data-name='行動']
+  background: #999
+.card .type[data-name='防衛']
+  background: #339
+.card .type[data-name='攻撃']
+  background: #c66
+.card .type[data-name='災い']
+  background: #636
+.card .type[data-name='領地']
+  background: #963
+.card .type[data-name='継承権']
+  background: #696
+.card .type[data-name='プリンセス']
+  background: #cc3
+.card .type[data-name='サポート']
+  background: #e73
+.card .type[data-name='?']
+  background: #ddd
 
 .card .subtype:after
-{
-  color: #999;
-  content: '（' attr(data-name) '）';
-  font-size: 80%;
-}
+  color: #999
+  content: '（' attr(data-name) '）'
+  font-size: 80%
 .card .subtype[data-name='']:after
-{
-  display: none;
-}
+  display: none
 
 .card .esym
-{
-  font-size: 80%;
-  padding: 0.25em 0.25em;
-  border-radius: 0.25em;
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  line-height: 100%;
-  position: absolute;
-  right: 0.5em;
-  top: 0.5em;
-}
-.card .esym[data-esym='基本'] {color: #666; background: #ddd;}
-.card .esym[data-esym='極東'] {color: #884; background: #eeb;}
-.card .esym[data-esym='北限'] {color: #669; background: #cce;}
-.card .esym[data-esym='ＦＧ'] {color: #696; background: #ded;}
-.card .esym[data-esym='六都'] {color: #966; background: #ece;}
+  font-size: 80%
+  padding: 0.25em 0.25em
+  border-radius: 0.25em
+  border: 1px solid rgba(0, 0, 0, 0.05)
+  line-height: 100%
+  position: absolute
+  right: 0.5em
+  top: 0.5em
+.card .esym[data-esym='基本']
+  color: #666
+  background: #ddd
+.card .esym[data-esym='極東']
+  color: #884
+  background: #eeb
+.card .esym[data-esym='北限']
+  color: #669
+  background: #cce
+.card .esym[data-esym='ＦＧ']
+  color: #696
+  background: #ded
+.card .esym[data-esym='六都']
+  color: #966
+  background: #ece
 
 .card[data-imperfect='true']
-{
-  opacity: 0.5;
-}
+  opacity: 0.5
 
-/* Use the same style as linked list items for static list items. */
+// Use the same style as linked list items for static list items.
 .ui-listview > .ui-li-static.card
-{
-  background: transparent;
-}
+  background: transparent
 
-/* Show 10 cards without scrolling
- * in non-fullscreen Mobile Safari on iPhone 4S with iOS7.
- */
+// Show 10 cards without scrolling
+// in non-fullscreen Mobile Safari on iPhone 4S with iOS7.
 .ui-listview > .ui-li-static
-{
-  padding-top: 0.4em;
-  padding-bottom: 0.4em;
-}
+  padding-top: 0.4em
+  padding-bottom: 0.4em
 .ui-listview > .ui-li-static > label
-{
-  margin: 0;
-}
+  margin: 0
 
 
-/* #header */
+// #header
 
 #header.disabled
-{
-  opacity: 0.5;
-}
+  opacity: 0.5
 
 #header .button
-{
-  font-size: 24px;
-  line-height: 100%;
-  padding: 0.25em 0;
-}
+  font-size: 24px
+  line-height: 100%
+  padding: 0.25em 0
 
 #header.disabled .button,
 #header .disabled.button
-{
-  color: #666;
-}
+  color: #666
 
 
-/* #configure */
+// #configure
 
 #configure
-{
-  z-index: 2000;  /* not to be overlaid by #header */
-}
+  // not to be overlaid by #header
+  z-index: 2000
 
 #configure h2
-{
-  font-size: 110%;
-}
+  font-size: 110%
 
 #configure .block
-{
-  margin-top: 2em;
-}
+  margin-top: 2em
 #configure .block:first-child
-{
-  margin-top: 0;
-}
+  margin-top: 0
 
 #configure #available_card_sets .ui-controlgroup-label
-{
-  float: left;
-  width: 6em;
-  height: 2em;
-  position: relative;
-  top: 0.25em;
-}
+  float: left
+  width: 6em
+  height: 2em
+  position: relative
+  top: 0.25em
 #configure #available_card_sets .fairygarden .ui-controlgroup-label
-{
-  top: -0.25em;
-}
+  top: -0.25em
 #configure #available_card_sets .ui-controlgroup-controls
-{
-  float: left;
-}
+  float: left
 #configure #available_card_sets .ui-controlgroup-controls > .ui-radio > .ui-btn
-{
-  padding: 0.25em 0.5em;
-}
+  padding: 0.25em 0.5em
 
 #configure .note
-{
-  display: block;
-  font-size: 80%;
-  font-weight: lighter;
-}
+  display: block
+  font-size: 80%
+  font-weight: lighter
 
-#configure .card-name:before {color: #666; content: '《';}
-#configure .card-name:after {color: #666; content: '》';}
-#configure .card-name {white-space: nowrap;}
+#configure .card-name:before
+  color: #666
+  content: '《'
+#configure .card-name:after
+  color: #666
+  content: '》'
+#configure .card-name
+  white-space: nowrap
 
 #configure legend
-{
-  font-weight: bolder;
-}
+  font-weight: bolder
 
-/* A workaround to avoid automatic zooming by focusing a <select>.
- * https://github.com/jquery/jquery-mobile/issues/2069#issuecomment-2871905
- */
+// A workaround to avoid automatic zooming by focusing a <select>.
+// https://github.com/jquery/jquery-mobile/issues/2069#issuecomment-2871905
 .iOS .ui-select .ui-btn select
-{
-  font-size: 50px;
-}
+  font-size: 50px
 
 
-/* #templates */
+// #templates
 
 #templates
-{
-  display: none;
-}
+  display: none
 
 
-/* #notification */
+// #notification
 
 #notification
-{
-  position: fixed;
-  right: 0.2em;
-  bottom: 0.0em;
-}
+  position: fixed
+  right: 0.2em
+  bottom: 0.0em
 
-#notification #offline_mode {opacity: 0.2;}
+#notification #offline_mode
+  opacity: 0.2
 #notification #offline_mode .progress
-{
-  font-size: 80%;
-  font-style: normal;
-  font-family: 'Helvetica', sans-serif;
-}
-#notification #offline_mode.checking {color: #666;}
-#notification #offline_mode.noupdate {color: #090;}
-#notification #offline_mode.downloading {color: #666;}
-#notification #offline_mode.progress {color: #666;}
-#notification #offline_mode.cached {color: #090;}
-#notification #offline_mode.updateready {color: #099;}
-#notification #offline_mode.obsolete {color: #660;}
-#notification #offline_mode.error {color: #900;}
+  font-size: 80%
+  font-style: normal
+  font-family: 'Helvetica', sans-serif
+#notification #offline_mode.checking
+  color: #666
+#notification #offline_mode.noupdate
+  color: #090
+#notification #offline_mode.downloading
+  color: #666
+#notification #offline_mode.progress
+  color: #666
+#notification #offline_mode.cached
+  color: #090
+#notification #offline_mode.updateready
+  color: #099
+#notification #offline_mode.obsolete
+  color: #660
+#notification #offline_mode.error
+  color: #900
 
-#notification #supply_status {display: none;}
+#notification #supply_status
+  display: none
 #notification #supply_status.failed
-{
-  display: inline;
-  opacity: 0.2;
-  color: #c00;
-}
+  display: inline
+  opacity: 0.2
+  color: #c00
 
 
-/* #home */
+// #home
 
 #home a.disabled
-{
-  color: #999;
-}
+  color: #999
