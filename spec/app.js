@@ -56,12 +56,12 @@
       expect(function () {H.card_from_cid('xxx');}).toThrow();
     });
   });
-  describe('card_names_from_psid', function () {
-    var f = H.card_names_from_psid;
-    it('should return card names from a given psid', function () {
+  describe('cids_from_psid', function () {
+    var f = H.cids_from_psid;
+    it('should return CIDs from a given psid', function () {
       var psid = 'basic-firstplay';
-      var card_names = H.PSID_TO_CARD_NAMES_TABLE[psid];
-      expect(f(psid)).toBe(card_names);
+      var cids = H.PSID_TO_DELAYED_CIDS_TABLE[psid]();
+      expect(f(psid)).toBe(cids);
     });
     it('should raise error if a given cid is not valid', function () {
       expect(function () {f('basic-guide');}).not.toThrow();
