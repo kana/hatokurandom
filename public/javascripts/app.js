@@ -1430,10 +1430,16 @@ var hatokurandom = {};
   H.Error.prototype.constructor = H.Error;
 
   H.KeyError = function (key_name, key_value) {  //{{{2
-    H.Error.call(
-      this,
-      key_name + ' ' + JSON.stringify(key_value) + ' is not valid.'
-    );
+    if (arguments.length == 2) {
+      var key_name = arguments[0];
+      var key_value = arguments[1];
+      H.Error.call(
+        this,
+        key_name + ' ' + JSON.stringify(key_value) + ' is not valid.'
+      );
+    } else {
+      H.Error.call(this, arguments[0]);
+    }
   };
   H.KeyError.prototype = new H.Error();
   H.KeyError.prototype.constructor = H.KeyError;

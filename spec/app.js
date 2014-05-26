@@ -18,6 +18,7 @@
   describe('KeyError', function () {
     it('should return a custom error object', function () {
       expect(new H.KeyError('Hi', 'hi') instanceof H.KeyError).toBeTruthy();
+      expect(new H.KeyError('Hi hi') instanceof H.KeyError).toBeTruthy();
     });
     it('should return an object which inherits H.Error', function () {
       expect(new H.KeyError('Hi', 'hi') instanceof H.Error).toBeTruthy();
