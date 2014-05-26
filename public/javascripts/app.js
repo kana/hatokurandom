@@ -1457,8 +1457,17 @@ var hatokurandom = {};
 
   H.card_from_cid = function (cid) {  //{{{2
     var card = H.CID_TO_CARD_TABLE[cid];
-    if (card === undefined)
-      throw new H.KeyError('CID', cid);
+    if (card === undefined) {
+      throw new H.KeyError(
+        [
+          'カード(CID ', JSON.stringify(cid), ')は存在しません。\n',
+          '\n',
+          '最近になって新しい拡張がリリースされましたか?\n',
+          '・その場合はアプリをリロードすれば大体直ります。\n',
+          '・そうでなければURLに誤りがある可能性があります。'
+        ].join('')
+      );
+    }
     return card;
   };
 
