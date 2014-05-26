@@ -1462,13 +1462,6 @@ var hatokurandom = {};
     return card;
   };
 
-  H.cids_from_psid = function (psid) {  //{{{2
-    var delayed_cids = H.PSID_TO_DELAYED_CIDS_TABLE[psid];
-    if (delayed_cids === undefined)
-      throw new H.KeyError('PSID', psid);
-    return force(delayed_cids);
-  };
-
   H.child_pids_from_pid = function (pid) {  //{{{2
     var child_pids = H.PID_TO_CHILD_PIDS_TABLE[pid];
     if (child_pids === undefined)
@@ -1571,6 +1564,13 @@ var hatokurandom = {};
     }
     selected_cards.fallback = true;
     return selected_cards;
+  };
+
+  H.cids_from_psid = function (psid) {  //{{{2
+    var delayed_cids = H.PSID_TO_DELAYED_CIDS_TABLE[psid];
+    if (delayed_cids === undefined)
+      throw new H.KeyError('PSID', psid);
+    return force(delayed_cids);
   };
 
   H.decode_base64 = function (base64_encoded_string) {  //{{{2

@@ -56,19 +56,6 @@
       expect(function () {H.card_from_cid('xxx');}).toThrow();
     });
   });
-  describe('cids_from_psid', function () {
-    var f = H.cids_from_psid;
-    it('should return CIDs from a given psid', function () {
-      var psid = 'basic-firstplay';
-      var cids = H.PSID_TO_DELAYED_CIDS_TABLE[psid]();
-      expect(f(psid)).toBe(cids);
-    });
-    it('should raise error if a given cid is not valid', function () {
-      expect(function () {f('basic-guide');}).not.toThrow();
-      expect(function () {f('Basic-Guide');}).toThrow();
-      expect(function () {f('basic');}).toThrow();
-    });
-  });
   describe('child_pids_from_pid', function () {
     var f = H.child_pids_from_pid;
     it('should return child pids from a given pid', function () {
@@ -530,6 +517,19 @@
           3
         );
       });
+    });
+  });
+  describe('cids_from_psid', function () {
+    var f = H.cids_from_psid;
+    it('should return CIDs from a given psid', function () {
+      var psid = 'basic-firstplay';
+      var cids = H.PSID_TO_DELAYED_CIDS_TABLE[psid]();
+      expect(f(psid)).toBe(cids);
+    });
+    it('should raise error if a given cid is not valid', function () {
+      expect(function () {f('basic-guide');}).not.toThrow();
+      expect(function () {f('Basic-Guide');}).toThrow();
+      expect(function () {f('basic');}).toThrow();
     });
   });
   describe('decode_base64', function () {
