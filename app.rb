@@ -25,12 +25,6 @@ class App < Sinatra::Application
     haml :index
   end
 
-  get '/stylesheets/app.css' do
-    cache_control :public, :max_age => ONE_WEEK
-    last_modified File::Stat.new('views/app.sass').mtime
-    sass :app
-  end
-
   get '/offline' do
     cache_control :public, :max_age => ONE_DAY
     last_modified File::Stat.new('views/index.haml').mtime
@@ -39,6 +33,12 @@ class App < Sinatra::Application
 
   get '/spec' do
     send_file 'public/spec.html'
+  end
+
+  get '/stylesheets/app.css' do
+    cache_control :public, :max_age => ONE_WEEK
+    last_modified File::Stat.new('views/app.sass').mtime
+    sass :app
   end
 
   helpers do
