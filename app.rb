@@ -30,6 +30,7 @@ class App < Sinatra::Application
   end
 
   get '/offline' do
+    last_modified File::Stat.new('views/index.haml').mtime
     haml :index
   end
 
