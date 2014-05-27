@@ -1430,10 +1430,16 @@ var hatokurandom = {};
   H.Error.prototype.constructor = H.Error;
 
   H.KeyError = function (key_name, key_value) {  //{{{2
-    H.Error.call(
-      this,
-      key_name + ' ' + JSON.stringify(key_value) + ' is not valid.'
-    );
+    if (arguments.length == 2) {
+      var key_name = arguments[0];
+      var key_value = arguments[1];
+      H.Error.call(
+        this,
+        key_name + ' ' + JSON.stringify(key_value) + ' is not valid.'
+      );
+    } else {
+      H.Error.call(this, arguments[0]);
+    }
   };
   H.KeyError.prototype = new H.Error();
   H.KeyError.prototype.constructor = H.KeyError;
@@ -1451,16 +1457,18 @@ var hatokurandom = {};
 
   H.card_from_cid = function (cid) {  //{{{2
     var card = H.CID_TO_CARD_TABLE[cid];
-    if (card === undefined)
-      throw new H.KeyError('CID', cid);
+    if (card === undefined) {
+      throw new H.KeyError(
+        [
+          'カード(CID ', JSON.stringify(cid), ')は存在しません。\n',
+          '\n',
+          '最近になって新しい拡張がリリースされましたか?\n',
+          '・その場合はアプリをリロードすれば大体直ります。\n',
+          '・そうでなければURLに誤りがある可能性があります。'
+        ].join('')
+      );
+    }
     return card;
-  };
-
-  H.cids_from_psid = function (psid) {  //{{{2
-    var delayed_cids = H.PSID_TO_DELAYED_CIDS_TABLE[psid];
-    if (delayed_cids === undefined)
-      throw new H.KeyError('PSID', psid);
-    return force(delayed_cids);
   };
 
   H.child_pids_from_pid = function (pid) {  //{{{2
@@ -1565,6 +1573,13 @@ var hatokurandom = {};
     }
     selected_cards.fallback = true;
     return selected_cards;
+  };
+
+  H.cids_from_psid = function (psid) {  //{{{2
+    var delayed_cids = H.PSID_TO_DELAYED_CIDS_TABLE[psid];
+    if (delayed_cids === undefined)
+      throw new H.KeyError('PSID', psid);
+    return force(delayed_cids);
   };
 
   H.decode_base64 = function (base64_encoded_string) {  //{{{2

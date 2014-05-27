@@ -18,6 +18,7 @@
   describe('KeyError', function () {
     it('should return a custom error object', function () {
       expect(new H.KeyError('Hi', 'hi') instanceof H.KeyError).toBeTruthy();
+      expect(new H.KeyError('Hi hi') instanceof H.KeyError).toBeTruthy();
     });
     it('should return an object which inherits H.Error', function () {
       expect(new H.KeyError('Hi', 'hi') instanceof H.Error).toBeTruthy();
@@ -53,19 +54,6 @@
       expect(function () {H.card_from_cid(0x01);}).not.toThrow();
       expect(function () {H.card_from_cid(-0x01);}).toThrow();
       expect(function () {H.card_from_cid('xxx');}).toThrow();
-    });
-  });
-  describe('card_names_from_psid', function () {
-    var f = H.card_names_from_psid;
-    it('should return card names from a given psid', function () {
-      var psid = 'basic-firstplay';
-      var card_names = H.PSID_TO_CARD_NAMES_TABLE[psid];
-      expect(f(psid)).toBe(card_names);
-    });
-    it('should raise error if a given cid is not valid', function () {
-      expect(function () {f('basic-guide');}).not.toThrow();
-      expect(function () {f('Basic-Guide');}).toThrow();
-      expect(function () {f('basic');}).toThrow();
     });
   });
   describe('child_pids_from_pid', function () {
@@ -529,6 +517,19 @@
           3
         );
       });
+    });
+  });
+  describe('cids_from_psid', function () {
+    var f = H.cids_from_psid;
+    it('should return CIDs from a given psid', function () {
+      var psid = 'basic-firstplay';
+      var cids = H.PSID_TO_DELAYED_CIDS_TABLE[psid]();
+      expect(f(psid)).toBe(cids);
+    });
+    it('should raise error if a given cid is not valid', function () {
+      expect(function () {f('basic-guide');}).not.toThrow();
+      expect(function () {f('Basic-Guide');}).toThrow();
+      expect(function () {f('basic');}).toThrow();
     });
   });
   describe('decode_base64', function () {
