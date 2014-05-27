@@ -19,6 +19,7 @@ class App < Sinatra::Application
   set :static_cache_control, [:public, :max_age => ONE_WEEK]
 
   get '/' do
+    last_modified File::Stat.new('views/index.haml').mtime
     haml :index
   end
 
