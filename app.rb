@@ -32,6 +32,7 @@ class App < Sinatra::Application
   end
 
   get '/offline' do
+    cache_control :public, :max_age => ONE_DAY
     last_modified File::Stat.new('views/index.haml').mtime
     haml :index
   end
