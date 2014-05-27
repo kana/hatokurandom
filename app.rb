@@ -14,6 +14,9 @@ class App < Sinatra::Application
   NAME = 'ハトクランダム'
   CODENAME = 'Hatokurandom'
   GITHUB_REPOS_URI = 'https://github.com/kana/hatokurandom'
+  ONE_WEEK = 7 * 24 * 60 * 60
+
+  set :static_cache_control, [:public, :max_age => ONE_WEEK]
 
   get '/' do
     haml :index
