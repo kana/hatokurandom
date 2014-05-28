@@ -92,7 +92,7 @@
     #reference{as_page}
       -# #card_list_template
 
-    #configure{as_page, {data: {dialog: 'true', 'close-btn' => 'none'}}}
+    #configure{as_page, {data: {dialog: 'true', close_btn: 'none'}}}
 
       %div{data: {role: 'header', theme: 'b'}}
         %a#configure_close_button.ui-btn.ui-corner-all.ui-icon-delete.ui-btn-icon-notext.ui-btn-left
@@ -380,18 +380,18 @@
           %a(href='\#{{pid}}') {{title}}
       #card_list_template
         %div{as_content}
-          %ul.card_list{as_listview}(data-divider-theme='d')
+          %ul.card_list{as_listview, data: {divider_theme: 'd'}}
             -# #card_list_item_template
       %ul#card_list_item_template
-        %li.card(data-cid='{{cid}}' data-imperfect='{{imperfect}}')
+        %li.card{data: {cid: '{{cid}}', imperfect: '{{imperfect}}'}}
           -# FIXME: Link to a card view.
           %label
-            %input.selected(type='checkbox' data-role='none')
+            %input.selected{data: {role: 'none'}}(type='checkbox')
             %span.cost {{cost}}
-            %span.type(data-name='{{dominant_type}}')
+            %span.type{data: {name: '{{dominant_type}}'}}
             %span.name {{name}}
-            %span.subtype(data-name='{{subtype}}')
-            %span.esym(data-esym='{{esym}}') {{esym}}
+            %span.subtype{data: {name: '{{subtype}}'}}
+            %span.esym{data: {esym: '{{esym}}'}} {{esym}}
       %ul#supply_deadline_template
         %li{data: {role: 'list-divider', theme: 'a'}}
 
