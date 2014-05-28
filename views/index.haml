@@ -36,16 +36,16 @@
       %div{data: {role: 'navbar'}}
         %ul
           %li
-            %a.home.button{data: {direction: 'reverse'}}(href='#home' title='ホーム画面へ移動する。')
+            %a.home.button{data: {direction: 'reverse'}}(href='#home' title='ホーム画面へ移動する。')<
               %i.fa.fa-home
           %li
-            %a.configure.button{data: {transition: 'pop'}}(href='#configure' title='設定画面を開く。')
+            %a.configure.button{data: {transition: 'pop'}}(href='#configure' title='設定画面を開く。')<
               %i.fa.fa-cog
           %li
-            %a.share.button(href='...' target='_blank' title='サプライを共有する。')
+            %a.share.button(href='...' target='_blank' title='サプライを共有する。')<
               %i.fa.fa-share-square-o
           %li
-            %a.reshuffle.button(title='サプライを再生成する。')
+            %a.reshuffle.button(title='サプライを再生成する。')<
               %i.fa.fa-random
 
     #home{as_page}
@@ -253,20 +253,20 @@
           を使っての習作と私的な需要を満たすことを兼ねて作成しています。
         %ul
           %li
-            %a(href='#{App::GITHUB_REPOS_URI}' target='_blank')
+            %a(href='#{App::GITHUB_REPOS_URI}' target='_blank')<
               ソースコード
           %li
-            %a(href='#{App::GITHUB_REPOS_URI}/issues' target='_blank')
+            %a(href='#{App::GITHUB_REPOS_URI}/issues' target='_blank')<
               既知の問題点や実装予定の機能
           %li
-            %a(href='https://twitter.com/intent/tweet?text=@kana1+&hashtags=hatokurandom' target='_blank')
+            %a(href='https://twitter.com/intent/tweet?text=@kana1+&hashtags=hatokurandom' target='_blank')<
               ご意見・ご感想
         %ul{as_listview, as_inset}
           %li
-            %a(href='#tips')
+            %a(href='#tips')<
               Tips
           %li
-            %a(href='#credits')
+            %a(href='#credits')<
               バージョン情報
 
     #tips{as_page}
@@ -365,7 +365,7 @@
         %i.fa.fa-warning
       #offline_mode
         %i
-          %span.progress
+        %span.progress
 
     #templates.internal
       #page_list_template
