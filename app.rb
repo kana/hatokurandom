@@ -22,7 +22,7 @@ class App < Sinatra::Application
   get '/' do
     cache_control :public, :max_age => ONE_DAY
     last_modified File::Stat.new('views/index.haml').mtime
-    haml :index
+    haml :index, :ugly => true
   end
 
   get '/offline' do
