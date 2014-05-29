@@ -878,6 +878,7 @@ var hatokurandom = {};
       'reference-northern': by_expansion(H.EID_NORTHERN),
       'reference-fairy': by_expansion(H.EID_FAIRY),
       'reference-six': by_expansion(H.EID_SIX),
+      'reference-rarity-special': by_rarity(undefined),
       'reference-rarity-basic': by_rarity('B'),
       'reference-rarity-common': by_rarity('C'),
       'reference-rarity-rare': by_rarity('R'),
@@ -1046,6 +1047,7 @@ var hatokurandom = {};
       'reference:six'
     ],  //}}}
     'references:rarity': [  //{{{
+      'reference:rarity-special',
       'reference:rarity-basic',
       'reference:rarity-common',
       'reference:rarity-rare'
@@ -1344,6 +1346,9 @@ var hatokurandom = {};
     },  //}}}
     'references:rarity': {  //{{{
       title: 'レアリティ別カードリスト'
+    },  //}}}
+    'reference:rarity-special': {  //{{{
+      title: '特殊なレアリティのカード一覧'
     },  //}}}
     'reference:rarity-basic': {  //{{{
       title: 'ベーシックマーケットのカード一覧'
