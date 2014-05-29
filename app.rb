@@ -5,6 +5,7 @@ require 'cgi'
 require 'haml'
 require 'sass'
 require 'sinatra'
+require 'sinatra/assetpack'
 require 'socket'
 
 
@@ -16,6 +17,18 @@ class App < Sinatra::Application
   GITHUB_REPOS_URI = 'https://github.com/kana/hatokurandom'
   ONE_DAY = 1 * 24 * 60 * 60
   ONE_WEEK = 7 * 24 * 60 * 60
+
+  register Sinatra::AssetPack
+  assets do
+    js :whole, [
+      '/javascripts/jquery/jquery-2.1.1.min.js',
+      '/javascripts/jquery-cookie/jquery.cookie.js',
+      '/javascripts/configure-jquery-mobile.js',
+      '/javascripts/jquery-mobile/jquery.mobile-1.4.2.min.js',
+      '/javascripts/app.js',
+    ]
+    js_compression :simple
+  end
 
   set :static_cache_control, [:public, :max_age => ONE_WEEK]
 
