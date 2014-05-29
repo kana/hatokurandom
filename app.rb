@@ -28,6 +28,13 @@ class App < Sinatra::Application
       '/javascripts/app.js',
     ]
     js_compression :simple
+
+    css :whole, [
+      '/stylesheets/font-awesome/css/font-awesome.min.css',
+      '/stylesheets/jquery-mobile/jquery.mobile-1.4.2.min.css',
+      '/stylesheets/app.css',
+    ]
+    css_compression :simple
   end
 
   set :static_cache_control, [:public, :max_age => ONE_WEEK]

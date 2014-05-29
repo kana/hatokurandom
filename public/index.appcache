@@ -1,11 +1,9 @@
 CACHE MANIFEST
 
 CACHE:
+/assets/whole.css
 /assets/whole.js
 /javascripts/jquery-mobile/jquery.mobile-1.4.2.min.map
-/stylesheets/app.css
-/stylesheets/font-awesome/css/font-awesome.min.css
 /stylesheets/font-awesome/fonts/fontawesome-webfont.woff?v=4.0.3
-/stylesheets/jquery-mobile/jquery.mobile-1.4.2.min.css
 
 # @@VERSION@@
