@@ -61,6 +61,17 @@ class App < Sinatra::Application
     sass :app
   end
 
+  get '/assets/images/ajax-loader.gif' do
+    call env.merge('PATH_INFO' => '/javascripts/jquery-mobile/images/ajax-loader.gif')
+  end
+
+  get '/fonts/fontawesome-webfont.woff' do
+    call env.merge('PATH_INFO' => '/stylesheets/font-awesome/fonts/fontawesome-webfont.woff')
+  end
+  get '/assets/jquery.mobile-1.4.2.min.map' do
+    call env.merge('PATH_INFO' => '/javascripts/jquery-mobile/jquery.mobile-1.4.2.min.map')
+  end
+
   helpers do
     def offline_mode?
       request.path == '/offline'
