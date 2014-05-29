@@ -231,7 +231,10 @@ var hatokurandom = {};
     // From http://hatokura.flipflops.jp/wordpress/archives/923
     {cid: 0x80, eid: H.EID_SIX, cost: '+2', link: undefined, name: '軍師シャオリン', types: ['サポート'], rarity: 'R'},
     {imperfect: true, cid: 0x81, eid: H.EID_SIX, cost: '+2', link: undefined, name: '?', types: ['サポート'], rarity: 'R'},
-    {imperfect: true, cid: 0x82, eid: H.EID_SIX, cost: '+2', link: undefined, name: '?', types: ['サポート'], rarity: 'R'}
+    {imperfect: true, cid: 0x82, eid: H.EID_SIX, cost: '+2', link: undefined, name: '?', types: ['サポート'], rarity: 'R'},
+
+    // From http://hatokura.flipflops.jp/wordpress/archives/938
+    {cid: 0x83, eid: H.EID_SIX, cost: 4, link: 0, name: 'まじない師', types: ['行動', '攻撃'], subtype: '魔法', rarity: 'C'}
 
     //{{{3
   ];
