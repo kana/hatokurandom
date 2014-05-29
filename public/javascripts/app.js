@@ -214,7 +214,7 @@ var hatokurandom = {};
     {imperfect: true, cid: 0x6f, eid: H.EID_SIX, cost: '+2', link: undefined, name: '?', types: ['サポート'], rarity: 'R'},
     // 2nd row
     {imperfect: true, cid: 0x70, eid: H.EID_SIX, cost: 5, link: 1, name: '学園都市', types: ['領地'], rarity: 'C'},
-    {imperfect: true, cid: 0x71, eid: H.EID_SIX, cost: 0, link: undefined, name: '不運', types: ['災い'], rarity: 'C'},
+    {cid: 0x71, eid: H.EID_SIX, cost: 0, link: undefined, name: '不運', types: ['災い'], rarity: undefined},
     // 3rd row
     {imperfect: true, cid: 0x72, eid: H.EID_SIX, cost: 4, link: 1, name: '〓〓〓〓〓〓', types: ['行動'], rarity: 'C'},
     {imperfect: true, cid: 0x73, eid: H.EID_SIX, cost: '+2', link: undefined, name: '?', types: ['サポート'], rarity: 'R'},
@@ -231,7 +231,10 @@ var hatokurandom = {};
     // From http://hatokura.flipflops.jp/wordpress/archives/923
     {cid: 0x80, eid: H.EID_SIX, cost: '+2', link: undefined, name: '軍師シャオリン', types: ['サポート'], rarity: 'R'},
     {imperfect: true, cid: 0x81, eid: H.EID_SIX, cost: '+2', link: undefined, name: '?', types: ['サポート'], rarity: 'R'},
-    {imperfect: true, cid: 0x82, eid: H.EID_SIX, cost: '+2', link: undefined, name: '?', types: ['サポート'], rarity: 'R'}
+    {imperfect: true, cid: 0x82, eid: H.EID_SIX, cost: '+2', link: undefined, name: '?', types: ['サポート'], rarity: 'R'},
+
+    // From http://hatokura.flipflops.jp/wordpress/archives/938
+    {cid: 0x83, eid: H.EID_SIX, cost: 4, link: 0, name: 'まじない師', types: ['行動', '攻撃'], subtype: '魔法', rarity: 'C'}
 
     //{{{3
   ];
