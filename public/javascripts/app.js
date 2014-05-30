@@ -1351,7 +1351,7 @@ var hatokurandom = {};
       title: '特殊なレアリティのカード一覧'
     },  //}}}
     'reference:rarity-basic': {  //{{{
-      title: 'ベーシックマーケットのカード一覧'
+      title: 'ベーシックカード一覧'
     },  //}}}
     'reference:rarity-common': {  //{{{
       title: 'コモンカード一覧'
