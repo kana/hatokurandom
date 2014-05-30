@@ -65,7 +65,7 @@ var hatokurandom = {};
 
     // 基本セット  //{{{3
 
-    {cid: 0x34, eid: H.EID_BASIC, cost: 0, link: undefined, name: '呪い', types: ['災い'], rarity: undefined},
+    {cid: 0x34, eid: H.EID_BASIC, cost: 0, link: undefined, name: '呪い', types: ['災い'], rarity: 'B'},
 
     {cid: 0x2b, eid: H.EID_BASIC, cost: 1, link: 1, name: '農村', types: ['領地'], rarity: 'B'},
 
@@ -74,7 +74,7 @@ var hatokurandom = {};
     {cid: 0x03, eid: H.EID_BASIC, cost: 2, link: 1, name: '願いの泉', types: ['行動'], rarity: 'C'},
     {cid: 0x04, eid: H.EID_BASIC, cost: 2, link: 2, name: '斥候', types: ['行動', '攻撃'], subtype: '兵力', rarity: 'C'},
     {cid: 0x05, eid: H.EID_BASIC, cost: 2, link: 2, name: '早馬', types: ['行動'], rarity: 'C'},
-    {cid: 0x2e, eid: H.EID_BASIC, cost: 2, link: undefined, name: '見習い侍女', types: ['継承権'], subtype: '侍女', rarity: undefined},
+    {cid: 0x2e, eid: H.EID_BASIC, cost: 2, link: undefined, name: '見習い侍女', types: ['継承権'], subtype: '侍女', rarity: 'B'},
 
     {cid: 0x06, eid: H.EID_BASIC, cost: 3, link: 0, name: '交易船', types: ['行動'], subtype: '商人', rarity: 'C'},
     {cid: 0x07, eid: H.EID_BASIC, cost: 3, link: 0, name: '埋もれた財宝', types: ['行動'], rarity: 'C'},
