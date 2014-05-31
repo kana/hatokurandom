@@ -1609,7 +1609,7 @@ var hatokurandom = {};
           return true;
       }
       return false;
-    }
+    };
     var selected_cards;
 
     var ok_count = 0;
@@ -2156,7 +2156,7 @@ var hatokurandom = {};
            encodeURIComponent(base_message),
            encodeURIComponent(' ' + permalink),
            encodeURIComponent(' ' + '#hatokura')];
-      var link_to_share_permalink = ss.join('')
+      var link_to_share_permalink = ss.join('');
 
       $(this).attr('href', link_to_share_permalink);
       H.save_state_before_sharing_if_necessary(permalink);
