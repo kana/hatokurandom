@@ -1738,8 +1738,8 @@ var hatokurandom = {};
       return '?';
 
     throw new H.Error(
-      JSON.stringify(types)
-      + ' is not a valid type definition.'
+      JSON.stringify(types) +
+      ' is not a valid type definition.'
     );
   };
 
@@ -2085,9 +2085,9 @@ var hatokurandom = {};
     var $card_list = $card_list_page.find('.card_list');
     var xcards = H.xcards_from_card_list_view($card_list);
     var rsid = H.rsid_from_xcards(
-      sid == 'editor'
-      ? $.grep(xcards, function (xcard) {return !xcard.dropped;})
-      : xcards
+      sid == 'editor' ?
+      $.grep(xcards, function (xcard) {return !xcard.dropped;}) :
+      xcards
     );
     var base_uri = $m.path.parseUrl(online_version_url_base).hrefNoHash;
     return base_uri + '#supply:' + rsid;
@@ -2141,21 +2141,20 @@ var hatokurandom = {};
       var permalink = H.generate_permalink($page);
       var is_reference_page = /^reference-/.test($page.jqmData('sid'));
       var base_message =
-        is_reference_page
-        ? 'ハトクラの' + $page.jqmData('title')
-        : 'ハトクラなう。今回のサプライ: '
-          + H.list_card_names($page).join(', ');
+        is_reference_page ?
+        'ハトクラの' + $page.jqmData('title') :
+        'ハトクラなう。今回のサプライ: ' + H.list_card_names($page).join(', ');
       var ss =
-        H.options.sharing_tool == 'web_intent'
-        ? ['https://twitter.com/intent/tweet',
-           '?url=', encodeURIComponent(permalink),
-           '&text=', encodeURIComponent(base_message),
-           '&hashtags=', encodeURIComponent('hatokura'),
-           '&related=', encodeURIComponent('HeartofCrown')]
-        : ['twitter://post?message=',
-           encodeURIComponent(base_message),
-           encodeURIComponent(' ' + permalink),
-           encodeURIComponent(' ' + '#hatokura')];
+        H.options.sharing_tool == 'web_intent' ?
+        ['https://twitter.com/intent/tweet',
+         '?url=', encodeURIComponent(permalink),
+         '&text=', encodeURIComponent(base_message),
+         '&hashtags=', encodeURIComponent('hatokura'),
+         '&related=', encodeURIComponent('HeartofCrown')] :
+        ['twitter://post?message=',
+         encodeURIComponent(base_message),
+         encodeURIComponent(' ' + permalink),
+         encodeURIComponent(' ' + '#hatokura')];
       var link_to_share_permalink = ss.join('');
 
       $(this).attr('href', link_to_share_permalink);
@@ -2216,9 +2215,9 @@ var hatokurandom = {};
     for (var key in H.DEFAULT_OPTIONS) {
       var saved_value = $.cookie(key);
       var value =
-        saved_value == null
-        ? H.DEFAULT_OPTIONS[key]
-        : JSON.parse(saved_value);
+        saved_value == null ?
+        H.DEFAULT_OPTIONS[key] :
+        JSON.parse(saved_value);
 
       H.options[key] = value;
 
@@ -2396,11 +2395,11 @@ var hatokurandom = {};
     H.options[key] = value;
     $.cookie(key, JSON.stringify(value), {expires: 365});
 
-    if (H.options.include_basic == 'must_not'
-        && H.options.include_fareast == 'must_not'
-        && H.options.include_northern == 'must_not'
-        && H.options.include_fairy == 'must_not'
-        && H.options.include_six == 'must_not') {
+    if (H.options.include_basic == 'must_not' &&
+        H.options.include_fareast == 'must_not' &&
+        H.options.include_northern == 'must_not' &&
+        H.options.include_fairy == 'must_not' &&
+        H.options.include_six == 'must_not') {
       $('#configure [name="include_basic"]').val('may').change();
     }
   };
@@ -2569,9 +2568,9 @@ var hatokurandom = {};
         $('#notification #offline_mode i').attr('class', icon_class);
         $('#notification #offline_mode .progress')
           .text(
-            event_type == 'progress'
-            ? [e.originalEvent.loaded, '/', e.originalEvent.total].join('')
-            : ''
+            event_type == 'progress' ?
+            [e.originalEvent.loaded, '/', e.originalEvent.total].join('') :
+            ''
           );
       });
     });
