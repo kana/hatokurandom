@@ -203,38 +203,36 @@ var hatokurandom = {};
 
     // 六都市同盟  //{{{3
 
-    // Guessed from http://hatokura.flipflops.jp/wordpress/files/2014/05/hoc.jpg
-    // 1st row
     {cid: 0x69, eid: H.EID_SIX, cost: 6, link: undefined, name: 'オアシスの美姫 エムシエレ', types: ['プリンセス'], rarity: 'R'},
-    {cid: 0x6a, eid: H.EID_SIX, cost: 5, link: 1, name: '独立都市', types: ['領地'], rarity: 'C'},
-    {cid: 0x6b, eid: H.EID_SIX, cost: 9, link: 1, name: 'オアシス都市ネフェルティリ', types: ['領地'], rarity: 'R'},
-    {imperfect: true, cid: 0x6c, eid: H.EID_SIX, cost: 5, link: 0, name: '〓〓〓〓', types: ['?', '?'], rarity: 'C'},
-    {imperfect: true, cid: 0x6d, eid: H.EID_SIX, cost: '+2', link: undefined, name: '?', types: ['サポート'], rarity: 'R'},
-    {imperfect: true, cid: 0x6e, eid: H.EID_SIX, cost: undefined, link: undefined, name: '?', types: ['?'], rarity: 'C'},
-    {imperfect: true, cid: 0x6f, eid: H.EID_SIX, cost: '+2', link: undefined, name: '?', types: ['サポート'], rarity: 'R'},
-    // 2nd row
-    {imperfect: true, cid: 0x70, eid: H.EID_SIX, cost: 5, link: 1, name: '学園都市', types: ['領地'], rarity: 'C'},
-    {cid: 0x71, eid: H.EID_SIX, cost: 0, link: undefined, name: '不運', types: ['災い'], rarity: undefined},
-    // 3rd row
-    {imperfect: true, cid: 0x72, eid: H.EID_SIX, cost: 4, link: 1, name: '〓〓〓〓〓〓', types: ['行動'], rarity: 'C'},
-    {imperfect: true, cid: 0x73, eid: H.EID_SIX, cost: '+2', link: undefined, name: '?', types: ['サポート'], rarity: 'R'},
-    {imperfect: true, cid: 0x74, eid: H.EID_SIX, cost: '+2', link: undefined, name: '?', types: ['サポート'], rarity: 'R'},
-    {imperfect: true, cid: 0x75, eid: H.EID_SIX, cost: '+2', link: undefined, name: '?', types: ['サポート'], rarity: 'R'},
-    // 4th row
-    {imperfect: true, cid: 0x76, eid: H.EID_SIX, cost: undefined, link: 1, name: '?', types: ['領地'], rarity: 'C'},
-    // 5th row
-    {imperfect: true, cid: 0x77, eid: H.EID_SIX, cost: undefined, link: undefined, name: '?', types: ['?'], rarity: 'C'},
-    {imperfect: true, cid: 0x78, eid: H.EID_SIX, cost: undefined, link: undefined, name: '?', types: ['?'], rarity: undefined},
-    // 6th row
-    {imperfect: true, cid: 0x79, eid: H.EID_SIX, cost: undefined, link: undefined, name: '?', types: ['?'], rarity: undefined},
+    {cid: 0x6a, eid: H.EID_SIX, cost: 9, link: 1, name: 'オアシス都市ネフェルティリ', types: ['領地'], rarity: 'R'},
 
-    // From http://hatokura.flipflops.jp/wordpress/archives/923
-    {cid: 0x80, eid: H.EID_SIX, cost: '+2', link: undefined, name: '軍師シャオリン', types: ['サポート'], rarity: 'R'},
-    {imperfect: true, cid: 0x81, eid: H.EID_SIX, cost: '+2', link: undefined, name: '?', types: ['サポート'], rarity: 'R'},
-    {imperfect: true, cid: 0x82, eid: H.EID_SIX, cost: '+2', link: undefined, name: '?', types: ['サポート'], rarity: 'R'},
+    {cid: 0x6b, eid: H.EID_SIX, cost: '+2', link: undefined, name: 'メイド長クロナ', types: ['サポート'], rarity: 'R'},
+    {cid: 0x6c, eid: H.EID_SIX, cost: '+2', link: undefined, name: '帝国議事堂', types: ['サポート'], rarity: 'R'},
+    {cid: 0x6d, eid: H.EID_SIX, cost: '+2', link: undefined, name: '軍師シャオリン', types: ['サポート'], rarity: 'R'},
+    {cid: 0x6e, eid: H.EID_SIX, cost: '+2', link: undefined, name: '豪農ニコル', types: ['サポート'], rarity: 'R'},
+    {cid: 0x6f, eid: H.EID_SIX, cost: '+2', link: undefined, name: '政商ウィリアム', types: ['サポート'], rarity: 'R'},
+    {cid: 0x70, eid: H.EID_SIX, cost: '+2', link: undefined, name: '聖ルモイ大聖堂', types: ['サポート'], rarity: 'R'},
+    {cid: 0x71, eid: H.EID_SIX, cost: '+2', link: undefined, name: '先帝ヘラルドの王錫', types: ['サポート'], rarity: 'R'},
+    {cid: 0x72, eid: H.EID_SIX, cost: '+2', link: undefined, name: '大魔女アウローラ', types: ['サポート'], rarity: 'R'},
 
-    // From http://hatokura.flipflops.jp/wordpress/archives/938
-    {cid: 0x83, eid: H.EID_SIX, cost: 4, link: 0, name: 'まじない師', types: ['行動', '攻撃'], subtype: '魔法', rarity: 'C'}
+    {cid: 0x73, eid: H.EID_SIX, cost: 3, link: 0, name: 'いたずら妖精', types: ['行動', '攻撃'], subtype: '魔法', rarity: 'C'},
+    {cid: 0x74, eid: H.EID_SIX, cost: 5, link: 2, name: 'ニンジャマスター', types: ['行動'], rarity: 'C'},
+    {cid: 0x75, eid: H.EID_SIX, cost: 3, link: 0, name: 'へそくり', types: ['行動'], rarity: 'C'},
+    {cid: 0x76, eid: H.EID_SIX, cost: 4, link: 0, name: 'まじない師', types: ['行動', '攻撃'], subtype: '魔法', rarity: 'C'},
+    {cid: 0x77, eid: H.EID_SIX, cost: 4, link: 0, name: '開発命令', types: ['行動', '攻撃'], rarity: 'C'},
+    {cid: 0x78, eid: H.EID_SIX, cost: 5, link: 1, name: '学術都市', types: ['領地'], rarity: 'C'},
+    {cid: 0x79, eid: H.EID_SIX, cost: 2, link: 2, name: '漁村', types: ['領地'], rarity: 'C'},
+    {cid: 0x7a, eid: H.EID_SIX, cost: 5, link: 0, name: '十字軍', types: ['行動'], subtype: '兵力', rarity: 'C'},
+    {cid: 0x7b, eid: H.EID_SIX, cost: 3, link: 2, name: '女学院', types: ['行動'], rarity: 'C'},
+    {cid: 0x7c, eid: H.EID_SIX, cost: 12, link: undefined, name: '大公爵', types: ['継承権'], rarity: 'C'},
+    {cid: 0x7d, eid: H.EID_SIX, cost: 5, link: 1, name: '転売屋', types: ['行動'], subtype: '商人', rarity: 'C'},
+    {cid: 0x7e, eid: H.EID_SIX, cost: 5, link: 1, name: '独立都市', types: ['領地'], rarity: 'C'},
+    {cid: 0x7f, eid: H.EID_SIX, cost: 5, link: 0, name: '砲兵部隊', types: ['行動', '攻撃'], subtype: '兵力', rarity: 'C'},
+    {cid: 0x80, eid: H.EID_SIX, cost: 4, link: 1, name: '魔法のランプ', types: ['行動'], subtype: '魔法', rarity: 'C'},
+    {cid: 0x81, eid: H.EID_SIX, cost: 5, link: 0, name: '免罪符', types: ['行動'], rarity: 'C'},
+    {cid: 0x82, eid: H.EID_SIX, cost: 5, link: 0, name: '傭兵団', types: ['行動', '攻撃'], subtype: '兵力', rarity: 'C'},
+
+    {cid: 0x83, eid: H.EID_SIX, cost: 0, link: undefined, name: '不運', types: ['災い'], rarity: undefined}
 
     //{{{3
   ];
@@ -280,7 +278,7 @@ var hatokurandom = {};
     include_fareast: 'may',
     include_link_2: false,
     include_northern: 'may',
-    include_six: 'must_not',  // TODO: Unleash after the release.
+    include_six: 'may',
     sharing_tool: 'web_intent',
     sort_key: 'eid',
     statistical: false,
@@ -781,6 +779,90 @@ var hatokurandom = {};
         '聖堂騎士',
         '合併'
       ]),  //}}}
+      'six-journey': by_names([  //{{{
+        '漁村',
+        '開発命令',
+        '学術都市',
+        '独立都市',
+        '転売屋',
+        '春風の妖精',
+        '巡礼',
+        '旅芸人',
+        '行商人',
+        '商船団'
+      ]),  //}}}
+      'six-alliance': by_names([  //{{{
+        '漁村',
+        '魔法のランプ',
+        '開発命令',
+        '独立都市',
+        '転売屋',
+        '砲兵部隊',
+        '春風の妖精',
+        '巡礼',
+        '旅芸人',
+        '行商人'
+      ]),  //}}}
+      'six-trade': by_names([  //{{{
+        '漁村',
+        '女学院',
+        '魔法のランプ',
+        '転売屋',
+        '傭兵団',
+        '密偵',
+        '旅芸人',
+        '石弓隊',
+        '行商人',
+        '収穫祭'
+      ]),  //}}}
+      'six-churchesandwars': by_names([  //{{{
+        '学術都市',
+        '十字軍',
+        '傭兵団',
+        '独立都市',
+        '砲兵部隊',
+        '密偵',
+        '伝令',
+        '司書',
+        'ギルドマスター',
+        '商船団'
+      ]),  //}}}
+      'six-inquisition': by_names([  //{{{
+        'いたずら妖精',
+        'まじない師',
+        '魔法のランプ',
+        '十字軍',
+        '免罪符',
+        'ニンジャマスター',
+        '家守の精霊',
+        'リーフフェアリー',
+        'ギルドマスター',
+        '祝福'
+      ]),  //}}}
+      'six-water': by_names([  //{{{
+        '漁村',
+        '女学院',
+        'へそくり',
+        '開発命令',
+        '免罪符',
+        'ニンジャマスター',
+        '巡礼',
+        'ニンフ',
+        '商船団',
+        '執事'
+      ]),  //}}}
+      'six-rottenauthority': by_names([  //{{{
+        'へそくり',
+        'まじない師',
+        '開発命令',
+        '独立都市',
+        '転売屋',
+        '免罪符',
+        '大公爵',
+        '巡礼',
+        '伝令',
+        '収穫祭'
+      ]),  //}}}
       'championship1-prelims1': by_names([  //{{{
         '城壁',
         '願いの泉',
@@ -989,6 +1071,13 @@ var hatokurandom = {};
       'supply:fairy-fairyandknight'
     ],  //}}}
     'supplies:six': [  //{{{
+      'supply:six-journey',
+      'supply:six-alliance',
+      'supply:six-trade',
+      'supply:six-churchesandwars',
+      'supply:six-inquisition',
+      'supply:six-water',
+      'supply:six-rottenauthority'
     ],  //}}}
     'supplies:championship1': [  //{{{
       'supply:championship1-prelims1',
@@ -1211,6 +1300,27 @@ var hatokurandom = {};
     },  //}}}
     'supplies:six': {  //{{{
       title: '推奨サプライ(六都市同盟)'
+    },  //}}}
+    'supply:six-journey': {  //{{{
+      title: '旅の始めに'
+    },  //}}}
+    'supply:six-alliance': {  //{{{
+      title: '六都市同盟'
+    },  //}}}
+    'supply:six-trade': {  //{{{
+      title: '大陸間交易'
+    },  //}}}
+    'supply:six-churchesandwars': {  //{{{
+      title: '教会と戦争'
+    },  //}}}
+    'supply:six-inquisition': {  //{{{
+      title: '異端審問'
+    },  //}}}
+    'supply:six-water': {  //{{{
+      title: '水は巡る'
+    },  //}}}
+    'supply:six-rottenauthority': {  //{{{
+      title: '絶対の権力は徹底的に腐敗する'
     },  //}}}
     'supplies:championship1': {  //{{{
       title: '世界選手権'
