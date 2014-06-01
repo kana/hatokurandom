@@ -779,6 +779,90 @@ var hatokurandom = {};
         '聖堂騎士',
         '合併'
       ]),  //}}}
+      'six-journey': by_names([  //{{{
+        '漁村',
+        '開発命令',
+        '学術都市',
+        '独立都市',
+        '転売屋',
+        '春風の妖精',
+        '巡礼',
+        '旅芸人',
+        '行商人',
+        '商船団'
+      ]),  //}}}
+      'six-alliance': by_names([  //{{{
+        '漁村',
+        '魔法のランプ',
+        '開発命令',
+        '独立都市',
+        '転売屋',
+        '砲兵部隊',
+        '春風の妖精',
+        '巡礼',
+        '旅芸人',
+        '行商人'
+      ]),  //}}}
+      'six-trade': by_names([  //{{{
+        '漁村',
+        '女学院',
+        '魔法のランプ',
+        '転売屋',
+        '傭兵団',
+        '密偵',
+        '旅芸人',
+        '石弓隊',
+        '行商人',
+        '収穫祭'
+      ]),  //}}}
+      'six-churchesandwars': by_names([  //{{{
+        '学術都市',
+        '十字軍',
+        '傭兵団',
+        '独立都市',
+        '砲兵部隊',
+        '密偵',
+        '伝令',
+        '司書',
+        'ギルドマスター',
+        '商船団'
+      ]),  //}}}
+      'six-inquisition': by_names([  //{{{
+        'いたずら妖精',
+        'まじない師',
+        '魔法のランプ',
+        '十字軍',
+        '免罪符',
+        'ニンジャマスター',
+        '家守の精霊',
+        'リーフフェアリー',
+        'ギルドマスター',
+        '祝福'
+      ]),  //}}}
+      'six-water': by_names([  //{{{
+        '漁村',
+        '女学院',
+        'へそくり',
+        '開発命令',
+        '免罪符',
+        'ニンジャマスター',
+        '巡礼',
+        'ニンフ',
+        '商船団',
+        '執事'
+      ]),  //}}}
+      'six-rottenauthority': by_names([  //{{{
+        'へそくり',
+        'まじない師',
+        '開発命令',
+        '独立都市',
+        '転売屋',
+        '免罪符',
+        '大公爵',
+        '巡礼',
+        '伝令',
+        '収穫祭'
+      ]),  //}}}
       'championship1-prelims1': by_names([  //{{{
         '城壁',
         '願いの泉',
@@ -987,6 +1071,13 @@ var hatokurandom = {};
       'supply:fairy-fairyandknight'
     ],  //}}}
     'supplies:six': [  //{{{
+      'supply:six-journey',
+      'supply:six-alliance',
+      'supply:six-trade',
+      'supply:six-churchesandwars',
+      'supply:six-inquisition',
+      'supply:six-water',
+      'supply:six-rottenauthority'
     ],  //}}}
     'supplies:championship1': [  //{{{
       'supply:championship1-prelims1',
@@ -1209,6 +1300,27 @@ var hatokurandom = {};
     },  //}}}
     'supplies:six': {  //{{{
       title: '推奨サプライ(六都市同盟)'
+    },  //}}}
+    'supply:six-journey': {  //{{{
+      title: '旅の始めに'
+    },  //}}}
+    'supply:six-alliance': {  //{{{
+      title: '六都市同盟'
+    },  //}}}
+    'supply:six-trade': {  //{{{
+      title: '大陸間交易'
+    },  //}}}
+    'supply:six-churchesandwars': {  //{{{
+      title: '教会と戦争'
+    },  //}}}
+    'supply:six-inquisition': {  //{{{
+      title: '異端審問'
+    },  //}}}
+    'supply:six-water': {  //{{{
+      title: '水は巡る'
+    },  //}}}
+    'supply:six-rottenauthority': {  //{{{
+      title: '絶対の権力は徹底的に腐敗する'
     },  //}}}
     'supplies:championship1': {  //{{{
       title: '世界選手権'
