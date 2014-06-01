@@ -203,38 +203,36 @@ var hatokurandom = {};
 
     // 六都市同盟  //{{{3
 
-    // Guessed from http://hatokura.flipflops.jp/wordpress/files/2014/05/hoc.jpg
-    // 1st row
     {cid: 0x69, eid: H.EID_SIX, cost: 6, link: undefined, name: 'オアシスの美姫 エムシエレ', types: ['プリンセス'], rarity: 'R'},
-    {cid: 0x6a, eid: H.EID_SIX, cost: 5, link: 1, name: '独立都市', types: ['領地'], rarity: 'C'},
-    {cid: 0x6b, eid: H.EID_SIX, cost: 9, link: 1, name: 'オアシス都市ネフェルティリ', types: ['領地'], rarity: 'R'},
-    {imperfect: true, cid: 0x6c, eid: H.EID_SIX, cost: 5, link: 0, name: '〓〓〓〓', types: ['?', '?'], rarity: 'C'},
-    {imperfect: true, cid: 0x6d, eid: H.EID_SIX, cost: '+2', link: undefined, name: '?', types: ['サポート'], rarity: 'R'},
-    {imperfect: true, cid: 0x6e, eid: H.EID_SIX, cost: undefined, link: undefined, name: '?', types: ['?'], rarity: 'C'},
-    {imperfect: true, cid: 0x6f, eid: H.EID_SIX, cost: '+2', link: undefined, name: '?', types: ['サポート'], rarity: 'R'},
-    // 2nd row
-    {imperfect: true, cid: 0x70, eid: H.EID_SIX, cost: 5, link: 1, name: '学園都市', types: ['領地'], rarity: 'C'},
-    {cid: 0x71, eid: H.EID_SIX, cost: 0, link: undefined, name: '不運', types: ['災い'], rarity: undefined},
-    // 3rd row
-    {imperfect: true, cid: 0x72, eid: H.EID_SIX, cost: 4, link: 1, name: '〓〓〓〓〓〓', types: ['行動'], rarity: 'C'},
-    {imperfect: true, cid: 0x73, eid: H.EID_SIX, cost: '+2', link: undefined, name: '?', types: ['サポート'], rarity: 'R'},
-    {imperfect: true, cid: 0x74, eid: H.EID_SIX, cost: '+2', link: undefined, name: '?', types: ['サポート'], rarity: 'R'},
-    {imperfect: true, cid: 0x75, eid: H.EID_SIX, cost: '+2', link: undefined, name: '?', types: ['サポート'], rarity: 'R'},
-    // 4th row
-    {imperfect: true, cid: 0x76, eid: H.EID_SIX, cost: undefined, link: 1, name: '?', types: ['領地'], rarity: 'C'},
-    // 5th row
-    {imperfect: true, cid: 0x77, eid: H.EID_SIX, cost: undefined, link: undefined, name: '?', types: ['?'], rarity: 'C'},
-    {imperfect: true, cid: 0x78, eid: H.EID_SIX, cost: undefined, link: undefined, name: '?', types: ['?'], rarity: undefined},
-    // 6th row
-    {imperfect: true, cid: 0x79, eid: H.EID_SIX, cost: undefined, link: undefined, name: '?', types: ['?'], rarity: undefined},
+    {cid: 0x6a, eid: H.EID_SIX, cost: 9, link: 1, name: 'オアシス都市ネフェルティリ', types: ['領地'], rarity: 'R'},
 
-    // From http://hatokura.flipflops.jp/wordpress/archives/923
-    {cid: 0x80, eid: H.EID_SIX, cost: '+2', link: undefined, name: '軍師シャオリン', types: ['サポート'], rarity: 'R'},
-    {imperfect: true, cid: 0x81, eid: H.EID_SIX, cost: '+2', link: undefined, name: '?', types: ['サポート'], rarity: 'R'},
-    {imperfect: true, cid: 0x82, eid: H.EID_SIX, cost: '+2', link: undefined, name: '?', types: ['サポート'], rarity: 'R'},
+    {cid: 0x6b, eid: H.EID_SIX, cost: '+2', link: undefined, name: 'メイド長クロナ', types: ['サポート'], rarity: 'R'},
+    {cid: 0x6c, eid: H.EID_SIX, cost: '+2', link: undefined, name: '帝国議事堂', types: ['サポート'], rarity: 'R'},
+    {cid: 0x6d, eid: H.EID_SIX, cost: '+2', link: undefined, name: '軍師シャオリン', types: ['サポート'], rarity: 'R'},
+    {cid: 0x6e, eid: H.EID_SIX, cost: '+2', link: undefined, name: '豪農ニコル', types: ['サポート'], rarity: 'R'},
+    {cid: 0x6f, eid: H.EID_SIX, cost: '+2', link: undefined, name: '政商ウィリアム', types: ['サポート'], rarity: 'R'},
+    {cid: 0x70, eid: H.EID_SIX, cost: '+2', link: undefined, name: '聖ルモイ大聖堂', types: ['サポート'], rarity: 'R'},
+    {cid: 0x71, eid: H.EID_SIX, cost: '+2', link: undefined, name: '先帝ヘラルドの王錫', types: ['サポート'], rarity: 'R'},
+    {cid: 0x72, eid: H.EID_SIX, cost: '+2', link: undefined, name: '大魔女アウローラ', types: ['サポート'], rarity: 'R'},
 
-    // From http://hatokura.flipflops.jp/wordpress/archives/938
-    {cid: 0x83, eid: H.EID_SIX, cost: 4, link: 0, name: 'まじない師', types: ['行動', '攻撃'], subtype: '魔法', rarity: 'C'}
+    {cid: 0x73, eid: H.EID_SIX, cost: 3, link: 0, name: 'いたずら妖精', types: ['行動', '攻撃'], subtype: '魔法', rarity: 'C'},
+    {cid: 0x74, eid: H.EID_SIX, cost: 5, link: 2, name: 'ニンジャマスター', types: ['行動'], rarity: 'C'},
+    {cid: 0x75, eid: H.EID_SIX, cost: 3, link: 0, name: 'へそくり', types: ['行動'], rarity: 'C'},
+    {cid: 0x76, eid: H.EID_SIX, cost: 4, link: 0, name: 'まじない師', types: ['行動', '攻撃'], subtype: '魔法', rarity: 'C'},
+    {cid: 0x77, eid: H.EID_SIX, cost: 4, link: 0, name: '開発命令', types: ['行動', '攻撃'], rarity: 'C'},
+    {cid: 0x78, eid: H.EID_SIX, cost: 5, link: 1, name: '学術都市', types: ['領地'], rarity: 'C'},
+    {cid: 0x79, eid: H.EID_SIX, cost: 2, link: 2, name: '漁村', types: ['領地'], rarity: 'C'},
+    {cid: 0x7a, eid: H.EID_SIX, cost: 5, link: 0, name: '十字軍', types: ['行動'], subtype: '兵力', rarity: 'C'},
+    {cid: 0x7b, eid: H.EID_SIX, cost: 3, link: 2, name: '女学院', types: ['行動'], rarity: 'C'},
+    {cid: 0x7c, eid: H.EID_SIX, cost: 12, link: undefined, name: '大公爵', types: ['継承権'], rarity: 'C'},
+    {cid: 0x7d, eid: H.EID_SIX, cost: 5, link: 1, name: '転売屋', types: ['行動'], subtype: '商人', rarity: 'C'},
+    {cid: 0x7e, eid: H.EID_SIX, cost: 5, link: 1, name: '独立都市', types: ['領地'], rarity: 'C'},
+    {cid: 0x7f, eid: H.EID_SIX, cost: 5, link: 0, name: '砲兵部隊', types: ['行動', '攻撃'], subtype: '兵力', rarity: 'C'},
+    {cid: 0x80, eid: H.EID_SIX, cost: 4, link: 1, name: '魔法のランプ', types: ['行動'], subtype: '魔法', rarity: 'C'},
+    {cid: 0x81, eid: H.EID_SIX, cost: 5, link: 0, name: '免罪符', types: ['行動'], rarity: 'C'},
+    {cid: 0x82, eid: H.EID_SIX, cost: 5, link: 0, name: '傭兵団', types: ['行動', '攻撃'], subtype: '兵力', rarity: 'C'},
+
+    {cid: 0x83, eid: H.EID_SIX, cost: 0, link: undefined, name: '不運', types: ['災い'], rarity: undefined}
 
     //{{{3
   ];
