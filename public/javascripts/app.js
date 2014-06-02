@@ -1864,7 +1864,7 @@ var hatokurandom = {};
   H.parse_dsid = function (sid) {  //{{{2
     var match;
 
-    match = /^random(\d\d)(:(.*))?$/.exec(sid);
+    match = /^random(\d+)(:(.*))?$/.exec(sid);
     if (match) {
       return {
         valid: true,
