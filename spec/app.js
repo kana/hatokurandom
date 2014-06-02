@@ -949,7 +949,7 @@
       expect(f('random10').length).toEqual(10);
       expect(f('random12').length).toEqual(12);
       expect(f('random20').length).toEqual(20);
-      expect(f('random4').length).toEqual(0);
+      expect(f('random4').length).toEqual(4);
     });
     it('should return xcards randomly with the current options', function () {
       var original_options = H.options;
