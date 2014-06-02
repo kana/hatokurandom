@@ -763,12 +763,24 @@
   describe('parse_dsid', function () {
     describe('with "random"', function () {
       it('should return "success" data from dsid without rsid', function () {
-        var m = H.parse_dsid('random10');
-        expect(m.valid).toBeTruthy();
-        expect(m.count).toEqual(10);
-        expect(m.editor).toBeFalsy();
-        expect(m.random).toBeTruthy();
-        expect(m.rsid).toBeFalsy();
+        var m10 = H.parse_dsid('random10');
+        expect(m10.valid).toBeTruthy();
+        expect(m10.count).toEqual(10);
+        expect(m10.editor).toBeFalsy();
+        expect(m10.random).toBeTruthy();
+        expect(m10.rsid).toBeFalsy();
+        var m99 = H.parse_dsid('random99');
+        expect(m99.valid).toBeTruthy();
+        expect(m99.count).toEqual(99);
+        expect(m99.editor).toBeFalsy();
+        expect(m99.random).toBeTruthy();
+        expect(m99.rsid).toBeFalsy();
+        var m100 = H.parse_dsid('random100');
+        expect(m100.valid).toBeTruthy();
+        expect(m100.count).toEqual(100);
+        expect(m100.editor).toBeFalsy();
+        expect(m100.random).toBeTruthy();
+        expect(m100.rsid).toBeFalsy();
       });
       it('should return "success" data from dsid with rsid', function () {
         var m = H.parse_dsid('random11:BADgc');
@@ -937,7 +949,7 @@
       expect(f('random10').length).toEqual(10);
       expect(f('random12').length).toEqual(12);
       expect(f('random20').length).toEqual(20);
-      expect(f('random4').length).toEqual(0);
+      expect(f('random4').length).toEqual(4);
     });
     it('should return xcards randomly with the current options', function () {
       var original_options = H.options;
@@ -1097,7 +1109,7 @@
       expect(H.xcards_from_sid('random10').length).toEqual(10);
       expect(H.xcards_from_sid('random12').length).toEqual(12);
       expect(H.xcards_from_sid('random20').length).toEqual(20);
-      expect(function () {H.xcards_from_sid('random4');}).toThrow();
+      expect(H.xcards_from_sid('random4').length).toEqual(4);
     });
     it('should return xcards from rsid', function () {
       expect(H.xcards_from_sid('BADgc'))
