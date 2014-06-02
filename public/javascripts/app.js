@@ -1609,7 +1609,7 @@ var hatokurandom = {};
           return true;
       }
       return false;
-    }
+    };
     var selected_cards;
 
     var ok_count = 0;
@@ -1657,15 +1657,15 @@ var hatokurandom = {};
       }
       if (options.include_all_costs) {
         var costs = {};
-        for (var i in selected_cards)
-          costs[selected_cards[i].cost] = true;
+        for (var ic in selected_cards)
+          costs[selected_cards[ic].cost] = true;
         if (!(costs[2] && costs[3] && costs[4] && (costs[5] || costs[6])))
           continue;
       }
       if (options.include_link_2) {
         var links = {};
-        for (var i in selected_cards)
-          links[selected_cards[i].link] = true;
+        for (var il in selected_cards)
+          links[selected_cards[il].link] = true;
         if (links[0] && !links[2])
           continue;
       }
@@ -1738,8 +1738,8 @@ var hatokurandom = {};
       return '?';
 
     throw new H.Error(
-      JSON.stringify(types)
-      + ' is not a valid type definition.'
+      JSON.stringify(types) +
+      ' is not a valid type definition.'
     );
   };
 
@@ -1890,7 +1890,7 @@ var hatokurandom = {};
   H.pid_from_url = function (url) {  //{{{2
     // jQuery Mobile omits the fragment of a url for the home page.
     var pid = url.hash.substring(1);
-    return pid == '' ? 'home' : pid;
+    return pid === '' ? 'home' : pid;
   };
 
   H.render = function (tid, data) {  //{{{2
@@ -1900,7 +1900,7 @@ var hatokurandom = {};
         /{{([^{}]+)}}/g,
         function (_, key) {
           var value = _data[key];
-          return value == null ? '{{-' + key + '-}}' : value;
+          return value === undefined ? '{{-' + key + '-}}' : value;
         }
       )
     );
@@ -2006,7 +2006,7 @@ var hatokurandom = {};
       xcard.dropped = dropped;
       xcards.push(xcard);
     }
-    if (bs.length != 0) {
+    if (bs.length !== 0) {
       throw new H.Error([
         JSON.stringify(rsid), 'is not valid RSID;',
         'it contains trailing data:', JSON.stringify(bs)
@@ -2085,9 +2085,9 @@ var hatokurandom = {};
     var $card_list = $card_list_page.find('.card_list');
     var xcards = H.xcards_from_card_list_view($card_list);
     var rsid = H.rsid_from_xcards(
-      sid == 'editor'
-      ? $.grep(xcards, function (xcard) {return !xcard.dropped;})
-      : xcards
+      sid == 'editor' ?
+      $.grep(xcards, function (xcard) {return !xcard.dropped;}) :
+      xcards
     );
     var base_uri = $m.path.parseUrl(online_version_url_base).hrefNoHash;
     return base_uri + '#supply:' + rsid;
@@ -2141,22 +2141,21 @@ var hatokurandom = {};
       var permalink = H.generate_permalink($page);
       var is_reference_page = /^reference-/.test($page.jqmData('sid'));
       var base_message =
-        is_reference_page
-        ? 'ハトクラの' + $page.jqmData('title')
-        : 'ハトクラなう。今回のサプライ: '
-          + H.list_card_names($page).join(', ');
+        is_reference_page ?
+        'ハトクラの' + $page.jqmData('title') :
+        'ハトクラなう。今回のサプライ: ' + H.list_card_names($page).join(', ');
       var ss =
-        H.options.sharing_tool == 'web_intent'
-        ? ['https://twitter.com/intent/tweet',
-           '?url=', encodeURIComponent(permalink),
-           '&text=', encodeURIComponent(base_message),
-           '&hashtags=', encodeURIComponent('hatokura'),
-           '&related=', encodeURIComponent('HeartofCrown')]
-        : ['twitter://post?message=',
-           encodeURIComponent(base_message),
-           encodeURIComponent(' ' + permalink),
-           encodeURIComponent(' ' + '#hatokura')];
-      var link_to_share_permalink = ss.join('')
+        H.options.sharing_tool == 'web_intent' ?
+        ['https://twitter.com/intent/tweet',
+         '?url=', encodeURIComponent(permalink),
+         '&text=', encodeURIComponent(base_message),
+         '&hashtags=', encodeURIComponent('hatokura'),
+         '&related=', encodeURIComponent('HeartofCrown')] :
+        ['twitter://post?message=',
+         encodeURIComponent(base_message),
+         encodeURIComponent(' ' + permalink),
+         encodeURIComponent(' ' + '#hatokura')];
+      var link_to_share_permalink = ss.join('');
 
       $(this).attr('href', link_to_share_permalink);
       H.save_state_before_sharing_if_necessary(permalink);
@@ -2216,16 +2215,16 @@ var hatokurandom = {};
     for (var key in H.DEFAULT_OPTIONS) {
       var saved_value = $.cookie(key);
       var value =
-        saved_value == null
-        ? H.DEFAULT_OPTIONS[key]
-        : JSON.parse(saved_value);
+        saved_value === null ?
+        H.DEFAULT_OPTIONS[key] :
+        JSON.parse(saved_value);
 
       H.options[key] = value;
 
       var $input =
         $('#configure :input')
         .filter(function () {return $(this).attr('name') == key;});
-      if ($input.length == 0) {
+      if ($input.length === 0) {
         // There is no form; it's an internal option.
       } else if ($input.is(':checkbox')) {
         $input.check(value);
@@ -2396,11 +2395,11 @@ var hatokurandom = {};
     H.options[key] = value;
     $.cookie(key, JSON.stringify(value), {expires: 365});
 
-    if (H.options.include_basic == 'must_not'
-        && H.options.include_fareast == 'must_not'
-        && H.options.include_northern == 'must_not'
-        && H.options.include_fairy == 'must_not'
-        && H.options.include_six == 'must_not') {
+    if (H.options.include_basic == 'must_not' &&
+        H.options.include_fareast == 'must_not' &&
+        H.options.include_northern == 'must_not' &&
+        H.options.include_fairy == 'must_not' &&
+        H.options.include_six == 'must_not') {
       $('#configure [name="include_basic"]').val('may').change();
     }
   };
@@ -2482,7 +2481,7 @@ var hatokurandom = {};
     return $card_list.find('.card').map(function () {
       var $card = $(this);
       var xcard = H.xcard_from_card(H.card_from_cid($card.data('cid')));
-      xcard.dropped = $card.find('.selected:checkbox:checked').length == 0;
+      xcard.dropped = $card.find('.selected:checkbox:checked').length === 0;
       return xcard;
     }).get();
   };
@@ -2569,9 +2568,9 @@ var hatokurandom = {};
         $('#notification #offline_mode i').attr('class', icon_class);
         $('#notification #offline_mode .progress')
           .text(
-            event_type == 'progress'
-            ? [e.originalEvent.loaded, '/', e.originalEvent.total].join('')
-            : ''
+            event_type == 'progress' ?
+            [e.originalEvent.loaded, '/', e.originalEvent.total].join('') :
+            ''
           );
       });
     });
