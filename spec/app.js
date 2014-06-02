@@ -1109,7 +1109,7 @@
       expect(H.xcards_from_sid('random10').length).toEqual(10);
       expect(H.xcards_from_sid('random12').length).toEqual(12);
       expect(H.xcards_from_sid('random20').length).toEqual(20);
-      expect(function () {H.xcards_from_sid('random4');}).toThrow();
+      expect(H.xcards_from_sid('random4').length).toEqual(4);
     });
     it('should return xcards from rsid', function () {
       expect(H.xcards_from_sid('BADgc'))
