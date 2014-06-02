@@ -1890,7 +1890,7 @@ var hatokurandom = {};
   H.pid_from_url = function (url) {  //{{{2
     // jQuery Mobile omits the fragment of a url for the home page.
     var pid = url.hash.substring(1);
-    return pid == '' ? 'home' : pid;
+    return pid === '' ? 'home' : pid;
   };
 
   H.render = function (tid, data) {  //{{{2
@@ -1900,7 +1900,7 @@ var hatokurandom = {};
         /{{([^{}]+)}}/g,
         function (_, key) {
           var value = _data[key];
-          return value == null ? '{{-' + key + '-}}' : value;
+          return value === undefined ? '{{-' + key + '-}}' : value;
         }
       )
     );
@@ -2006,7 +2006,7 @@ var hatokurandom = {};
       xcard.dropped = dropped;
       xcards.push(xcard);
     }
-    if (bs.length != 0) {
+    if (bs.length !== 0) {
       throw new H.Error([
         JSON.stringify(rsid), 'is not valid RSID;',
         'it contains trailing data:', JSON.stringify(bs)
@@ -2215,7 +2215,7 @@ var hatokurandom = {};
     for (var key in H.DEFAULT_OPTIONS) {
       var saved_value = $.cookie(key);
       var value =
-        saved_value == null ?
+        saved_value === null ?
         H.DEFAULT_OPTIONS[key] :
         JSON.parse(saved_value);
 
@@ -2224,7 +2224,7 @@ var hatokurandom = {};
       var $input =
         $('#configure :input')
         .filter(function () {return $(this).attr('name') == key;});
-      if ($input.length == 0) {
+      if ($input.length === 0) {
         // There is no form; it's an internal option.
       } else if ($input.is(':checkbox')) {
         $input.check(value);
@@ -2481,7 +2481,7 @@ var hatokurandom = {};
     return $card_list.find('.card').map(function () {
       var $card = $(this);
       var xcard = H.xcard_from_card(H.card_from_cid($card.data('cid')));
-      xcard.dropped = $card.find('.selected:checkbox:checked').length == 0;
+      xcard.dropped = $card.find('.selected:checkbox:checked').length === 0;
       return xcard;
     }).get();
   };
