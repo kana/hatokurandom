@@ -2095,11 +2095,22 @@ var hatokurandom = {};
       if (browser_history_available) {
         $m.back();
       } else {
+        // (a) [..., A, B, C]     $m.navigate.history.stack
+        //                 ^      $m.navigate.history.activeIndex
+
         $(':mobile-pagecontainer').pagecontainer(
           'change',
           $m.navigate.history.stack[$m.navigate.history.activeIndex - 1].url,
           {transition: transition, reverse: true}
         );
+
+        // (b) [..., A, B, C, B]  $m.navigate.history.stack
+        //                    ^   $m.navigate.history.activeIndex
+
+        $m.navigate.history.activeIndex -= 2;
+
+        // (c) [..., A, B, C, B]  $m.navigate.history.stack
+        //              ^         $m.navigate.history.activeIndex
       }
     } else {
       if (go_home_as_fallback) {
