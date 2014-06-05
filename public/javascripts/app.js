@@ -2542,6 +2542,16 @@ var hatokurandom = {};
     H.adjust_header(ui.toPage);
   });
 
+  $(document).on('swiperight', function (e) {  //{{{2
+    // It would be better to add a gesture to forward history.  But H.back()
+    // has a side effect on jQuery Mobile's history stack to provide its
+    // functionality against [IOS7_HISTORY_BUG].  As a result, users cannot
+    // forward repatedly.  And forwarding is not often used.  So that
+    // forwarding is not supported at this moment.
+    if (H.is_running_in_standalone_mode())
+      H.back();
+  });
+
   $(document).ready(function () {  //{{{2
     H.redirect_to_new_url_from_iui_era_url_if_necessary();
     H.suggest_new_uri_for_heroku_migration_if_necessary();
