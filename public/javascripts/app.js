@@ -2076,6 +2076,57 @@ var hatokurandom = {};
     $page.jqmData('title', meta.title);
   };
 
+  H.back = function (go_home_as_fallback, transition) {  //{{{2
+    // NB: $m.navigate.history is not documented API.
+    // This code might not work with newer versions of jQuery Mobile.
+    if (1 <= $m.navigate.history.activeIndex) {
+      // $m.back() uses window.history.go to back if $m.hashListeningEnabled.
+      // This is the same as using the browser's "Back" button.  But Back and
+      // Forward buttons do not work on iOS7 if application cache is enabled.
+      // So that dialogs cannot be closed, because close buttons of dialogs are
+      // implemented as back buttons.  [IOS7_HISTORY_BUG]
+      //
+      // As a workaround for this issue, we manually goes to the previous
+      // page instead of $m.back().  This workaround should be removed when
+      // the bug is fixed in later releases of iOS.
+      var browser_history_available =
+        !window.navigator.standalone ||
+        window.applicationCache.status == window.applicationCache.UNCACHED;
+      if (browser_history_available) {
+        $m.back();
+      } else {
+        // (a) [..., A, B, C]     $m.navigate.history.stack
+        //                 ^      $m.navigate.history.activeIndex
+
+        $(':mobile-pagecontainer').pagecontainer(
+          'change',
+          $m.navigate.history.stack[$m.navigate.history.activeIndex - 1].url,
+          {transition: transition, reverse: true}
+        );
+
+        // (b) [..., A, B, C, B]  $m.navigate.history.stack
+        //                    ^   $m.navigate.history.activeIndex
+
+        $m.navigate.history.activeIndex -= 2;
+
+        // (c) [..., A, B, C, B]  $m.navigate.history.stack
+        //              ^         $m.navigate.history.activeIndex
+      }
+    } else {
+      if (go_home_as_fallback) {
+        // If a dialog such as #configure is directly accessed, there is no
+        // valid page to back.  Close the dialog by going to #home instead.
+        $(':mobile-pagecontainer').pagecontainer(
+          'change',
+          '#home',
+          {transition: transition, reverse: true}
+        );
+      } else {
+        // Since there is no valid page to back, nothing to do.
+      }
+    }
+  };
+
   H.generate_permalink = function ($card_list_page) {  //{{{2
     var online_version_url_base = location.href.replace('/offline', '/');
     var sid = $card_list_page.jqmData('sid');
@@ -2165,38 +2216,7 @@ var hatokurandom = {};
 
   H.initialize_configure = function () {  //{{{2
     $('#configure_close_button').click(function () {
-      // NB: $m.navigate.history is not documented API.
-      // This code might not work with newer versions of jQuery Mobile.
-      if (1 <= $m.navigate.history.activeIndex) {
-        // $m.back() uses window.history.go to back if $m.hashListeningEnabled.
-        // This is the same as using the browser's "Back" button.  But Back and
-        // Forward buttons do not work on iOS7 if application cache is enabled.
-        // So that #configure dialog cannot be closed.
-        //
-        // As a workaround for this issue, we manually goes to the previous
-        // page instead of $m.back().  This workaround should be removed when
-        // the bug is fixed in later releases of iOS.
-        var browser_history_available =
-          !window.navigator.standalone ||
-          window.applicationCache.status == window.applicationCache.UNCACHED;
-        if (browser_history_available) {
-          $m.back();
-        } else {
-          $(':mobile-pagecontainer').pagecontainer(
-            'change',
-            $m.navigate.history.stack[$m.navigate.history.activeIndex - 1].url,
-            {transition: 'pop', reverse: true}
-          );
-        }
-      } else {
-        // When #configure is directly accessed, there is no valid page to back.
-        // Close #configure by going to #home instead.
-        $(':mobile-pagecontainer').pagecontainer(
-          'change',
-          '#home',
-          {transition: 'pop', reverse: true}
-        );
-      }
+      H.back(true, 'pop');
     });
   };
 
@@ -2531,6 +2551,16 @@ var hatokurandom = {};
 
   $(document).on('pagecontainerbeforetransition', ':mobile-pagecontainer', function (e, ui) {  //{{{2
     H.adjust_header(ui.toPage);
+  });
+
+  $(document).on('swiperight', function (e) {  //{{{2
+    // It would be better to add a gesture to forward history.  But H.back()
+    // has a side effect on jQuery Mobile's history stack to provide its
+    // functionality against [IOS7_HISTORY_BUG].  As a result, users cannot
+    // forward repatedly.  And forwarding is not often used.  So that
+    // forwarding is not supported at this moment.
+    if (H.is_running_in_standalone_mode())
+      H.back();
   });
 
   $(document).ready(function () {  //{{{2
