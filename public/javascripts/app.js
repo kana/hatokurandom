@@ -2096,10 +2096,7 @@ var hatokurandom = {};
       // As a workaround for this issue, we manually goes to the previous
       // page instead of $m.back().  This workaround should be removed when
       // the bug is fixed in later releases of iOS.
-      var browser_history_available =
-        !window.navigator.standalone ||
-        window.applicationCache.status == window.applicationCache.UNCACHED;
-      if (browser_history_available) {
+      if (H.is_browser_history_available()) {
         $m.back();
       } else {
         var io = h.activeIndex;
