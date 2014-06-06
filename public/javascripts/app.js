@@ -2630,15 +2630,10 @@ var hatokurandom = {};
     H.adjust_header(ui.toPage);
   });
 
-  $(document).on('swiperight', function (e) {  //{{{2
-    if (H.is_running_in_standalone_mode())
-      H.back();
-  });
-
-  $(document).on('swipeleft', function (e) {  //{{{2
-    if (H.is_running_in_standalone_mode())
-      H.forward();
-  });
+  if (H.is_running_in_standalone_mode()) {  //{{{2
+    $(document).on('swiperight', function (e) {H.back();});
+    $(document).on('swipeleft', function (e) {H.forward();});
+  }
 
   $(document).ready(function () {  //{{{2
     H.redirect_to_new_url_from_iui_era_url_if_necessary();
