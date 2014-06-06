@@ -2168,6 +2168,12 @@ var hatokurandom = {};
     return $(':mobile-pagecontainer').pagecontainer('getActivePage');
   };
 
+  H.infer_proper_transition = function () {  //{{{2
+    return H.get_current_page().page('option', 'dialog') ?
+      $m.defaultDialogTransition :
+      $m.defaultPageTransition;
+  };
+
   H.initialize_header = function () {  //{{{2
     $('#header').toolbar();
     $('#header > [data-role="navbar"]').navbar();
