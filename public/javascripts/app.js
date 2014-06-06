@@ -2076,7 +2076,7 @@ var hatokurandom = {};
     $page.jqmData('title', meta.title);
   };
 
-  H.back = function (go_home_as_fallback) {  //{{{2
+  H.back = function () {  //{{{2
     // NB: $m.navigate.history is not documented API.
     // This code might not work with newer versions of jQuery Mobile.
     var h = $m.navigate.history;
@@ -2243,7 +2243,7 @@ var hatokurandom = {};
 
   H.initialize_configure = function () {  //{{{2
     $('#configure_close_button').click(function () {
-      H.back(true);
+      H.back();
     });
   };
 
