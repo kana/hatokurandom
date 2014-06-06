@@ -2079,7 +2079,9 @@ var hatokurandom = {};
   H.back = function (go_home_as_fallback, transition) {  //{{{2
     // NB: $m.navigate.history is not documented API.
     // This code might not work with newer versions of jQuery Mobile.
-    if (1 <= $m.navigate.history.activeIndex) {
+    var h = $m.navigate.history;
+
+    if (1 <= h.activeIndex) {
       // $m.back() uses window.history.go to back if $m.hashListeningEnabled.
       // This is the same as using the browser's "Back" button.  But Back and
       // Forward buttons do not work on iOS7 if application cache is enabled.
@@ -2095,22 +2097,22 @@ var hatokurandom = {};
       if (browser_history_available) {
         $m.back();
       } else {
-        // (a) [..., A, B, C]     $m.navigate.history.stack
-        //                 ^      $m.navigate.history.activeIndex
+        // (a) [..., A, B, C]     h.stack
+        //                 ^      h.activeIndex
 
         $(':mobile-pagecontainer').pagecontainer(
           'change',
-          $m.navigate.history.stack[$m.navigate.history.activeIndex - 1].url,
+          h.stack[h.activeIndex - 1].url,
           {transition: transition, reverse: true}
         );
 
-        // (b) [..., A, B, C, B]  $m.navigate.history.stack
-        //                    ^   $m.navigate.history.activeIndex
+        // (b) [..., A, B, C, B]  h.stack
+        //                    ^   h.activeIndex
 
-        $m.navigate.history.activeIndex -= 2;
+        h.activeIndex -= 2;
 
-        // (c) [..., A, B, C, B]  $m.navigate.history.stack
-        //              ^         $m.navigate.history.activeIndex
+        // (c) [..., A, B, C, B]  h.stack
+        //              ^         h.activeIndex
       }
     } else {
       if (go_home_as_fallback) {
