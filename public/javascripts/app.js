@@ -2133,7 +2133,8 @@ var hatokurandom = {};
         //                 io       il
       }
     } else {
-      if (go_home_as_fallback) {
+      var in_a_dialog = H.get_current_page().page('option', 'dialog');
+      if (in_a_dialog) {
         // If a dialog such as #configure is directly accessed, there is no
         // valid page to back.  Close the dialog by going to #home instead.
         $(':mobile-pagecontainer').pagecontainer(
