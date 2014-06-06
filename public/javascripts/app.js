@@ -2113,7 +2113,7 @@ var hatokurandom = {};
         $(':mobile-pagecontainer').pagecontainer(
           'change',
           h.stack[io - 1].url,
-          {transition: transition, reverse: true}
+          {transition: H.infer_proper_transition(), reverse: true}
         );
 
         // (c) [..., A, B, C, X, Y, Z, B]  h.stack
@@ -2139,7 +2139,7 @@ var hatokurandom = {};
         $(':mobile-pagecontainer').pagecontainer(
           'change',
           '#home',
-          {transition: transition, reverse: true}
+          {transition: H.infer_proper_transition(), reverse: true}
         );
       } else {
         // Since there is no valid page to back, nothing to do.
