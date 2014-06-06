@@ -2150,6 +2150,54 @@ var hatokurandom = {};
     }
   };
 
+  H.forward = function () {  //{{{2
+    // NB: See also H.back().
+    var h = $m.navigate.history;
+
+    if (h.activeIndex <= h.stack.length - 1) {
+      if (H.is_browser_history_available()) {
+        $(':mobile-pagecontainer').pagecontainer('forward');
+      } else {
+        var io = h.activeIndex;
+        var il = h.stack.length - 1;
+
+        // (a) [..., A, B, C, X, Y, Z]     h.stack
+        //                 ^               h.activeIndex
+        //                 io       il
+
+        h.activeIndex = il;
+
+        // (b) [..., A, B, C, X, Y, Z]     h.stack
+        //                          ^      h.activeIndex
+        //                 io       il
+
+        $(':mobile-pagecontainer').pagecontainer(
+          'change',
+          h.stack[io + 1].url,
+          {transition: H.infer_proper_transition()}
+        );
+
+        // (c) [..., A, B, C, X, Y, Z, X]  h.stack
+        //                             ^   h.activeIndex
+        //                 io       il
+
+        h.activeIndex = io + 1;
+
+        // (d) [..., A, B, C, X, Y, Z, X]  h.stack
+        //                    ^            h.activeIndex
+        //                 io       il
+
+        h.stack.pop();
+
+        // (e) [..., A, B, C, X, Y, Z]     h.stack
+        //                    ^            h.activeIndex
+        //                 io       il
+      }
+    } else {
+      // Nowhere to forward.  Do nothing.
+    }
+  };
+
   H.generate_permalink = function ($card_list_page) {  //{{{2
     var online_version_url_base = location.href.replace('/offline', '/');
     var sid = $card_list_page.jqmData('sid');
