@@ -1774,6 +1774,11 @@ var hatokurandom = {};
       card.name == 'サムライ';
   };
 
+  H.is_browser_history_available = function () {  //{{{2
+    return !window.navigator.standalone ||
+           window.applicationCache.status == window.applicationCache.UNCACHED;
+  };
+
   H.is_dsid = function (sid) {  //{{{2
     return H.parse_dsid(sid).valid;
   };
@@ -2076,10 +2081,12 @@ var hatokurandom = {};
     $page.jqmData('title', meta.title);
   };
 
-  H.back = function (go_home_as_fallback, transition) {  //{{{2
+  H.back = function () {  //{{{2
     // NB: $m.navigate.history is not documented API.
     // This code might not work with newer versions of jQuery Mobile.
-    if (1 <= $m.navigate.history.activeIndex) {
+    var h = $m.navigate.history;
+
+    if (1 <= h.activeIndex) {
       // $m.back() uses window.history.go to back if $m.hashListeningEnabled.
       // This is the same as using the browser's "Back" button.  But Back and
       // Forward buttons do not work on iOS7 if application cache is enabled.
@@ -2089,41 +2096,105 @@ var hatokurandom = {};
       // As a workaround for this issue, we manually goes to the previous
       // page instead of $m.back().  This workaround should be removed when
       // the bug is fixed in later releases of iOS.
-      var browser_history_available =
-        !window.navigator.standalone ||
-        window.applicationCache.status == window.applicationCache.UNCACHED;
-      if (browser_history_available) {
+      if (H.is_browser_history_available()) {
         $m.back();
       } else {
-        // (a) [..., A, B, C]     $m.navigate.history.stack
-        //                 ^      $m.navigate.history.activeIndex
+        var io = h.activeIndex;
+        var il = h.stack.length - 1;
+
+        // (a) [..., A, B, C, X, Y, Z]     h.stack
+        //                 ^               h.activeIndex
+        //                 io       il
+
+        h.activeIndex = il;
+
+        // (b) [..., A, B, C, X, Y, Z]     h.stack
+        //                          ^      h.activeIndex
+        //                 io       il
 
         $(':mobile-pagecontainer').pagecontainer(
           'change',
-          $m.navigate.history.stack[$m.navigate.history.activeIndex - 1].url,
-          {transition: transition, reverse: true}
+          h.stack[io - 1].url,
+          {transition: H.infer_proper_transition(), reverse: true}
         );
 
-        // (b) [..., A, B, C, B]  $m.navigate.history.stack
-        //                    ^   $m.navigate.history.activeIndex
+        // (c) [..., A, B, C, X, Y, Z, B]  h.stack
+        //                             ^   h.activeIndex
+        //                 io       il
 
-        $m.navigate.history.activeIndex -= 2;
+        h.activeIndex = io - 1;
 
-        // (c) [..., A, B, C, B]  $m.navigate.history.stack
-        //              ^         $m.navigate.history.activeIndex
+        // (d) [..., A, B, C, X, Y, Z, B]  h.stack
+        //              ^                  h.activeIndex
+        //                 io       il
+
+        h.stack.pop();
+
+        // (e) [..., A, B, C, X, Y, Z]     h.stack
+        //              ^                  h.activeIndex
+        //                 io       il
       }
     } else {
-      if (go_home_as_fallback) {
+      var in_a_dialog = H.get_current_page().page('option', 'dialog');
+      if (in_a_dialog) {
         // If a dialog such as #configure is directly accessed, there is no
         // valid page to back.  Close the dialog by going to #home instead.
         $(':mobile-pagecontainer').pagecontainer(
           'change',
           '#home',
-          {transition: transition, reverse: true}
+          {transition: H.infer_proper_transition(), reverse: true}
         );
       } else {
         // Since there is no valid page to back, nothing to do.
       }
+    }
+  };
+
+  H.forward = function () {  //{{{2
+    // NB: See also H.back().
+    var h = $m.navigate.history;
+
+    if (h.activeIndex <= h.stack.length - 1) {
+      if (H.is_browser_history_available()) {
+        $(':mobile-pagecontainer').pagecontainer('forward');
+      } else {
+        var io = h.activeIndex;
+        var il = h.stack.length - 1;
+
+        // (a) [..., A, B, C, X, Y, Z]     h.stack
+        //                 ^               h.activeIndex
+        //                 io       il
+
+        h.activeIndex = il;
+
+        // (b) [..., A, B, C, X, Y, Z]     h.stack
+        //                          ^      h.activeIndex
+        //                 io       il
+
+        $(':mobile-pagecontainer').pagecontainer(
+          'change',
+          h.stack[io + 1].url,
+          {transition: H.infer_proper_transition()}
+        );
+
+        // (c) [..., A, B, C, X, Y, Z, X]  h.stack
+        //                             ^   h.activeIndex
+        //                 io       il
+
+        h.activeIndex = io + 1;
+
+        // (d) [..., A, B, C, X, Y, Z, X]  h.stack
+        //                    ^            h.activeIndex
+        //                 io       il
+
+        h.stack.pop();
+
+        // (e) [..., A, B, C, X, Y, Z]     h.stack
+        //                    ^            h.activeIndex
+        //                 io       il
+      }
+    } else {
+      // Nowhere to forward.  Do nothing.
     }
   };
 
@@ -2146,6 +2217,12 @@ var hatokurandom = {};
 
   H.get_current_page = function () {  //{{{2
     return $(':mobile-pagecontainer').pagecontainer('getActivePage');
+  };
+
+  H.infer_proper_transition = function () {  //{{{2
+    return H.get_current_page().page('option', 'dialog') ?
+      $m.defaultDialogTransition :
+      $m.defaultPageTransition;
   };
 
   H.initialize_header = function () {  //{{{2
@@ -2216,7 +2293,7 @@ var hatokurandom = {};
 
   H.initialize_configure = function () {  //{{{2
     $('#configure_close_button').click(function () {
-      H.back(true, 'pop');
+      H.back();
     });
   };
 
@@ -2553,15 +2630,10 @@ var hatokurandom = {};
     H.adjust_header(ui.toPage);
   });
 
-  $(document).on('swiperight', function (e) {  //{{{2
-    // It would be better to add a gesture to forward history.  But H.back()
-    // has a side effect on jQuery Mobile's history stack to provide its
-    // functionality against [IOS7_HISTORY_BUG].  As a result, users cannot
-    // forward repatedly.  And forwarding is not often used.  So that
-    // forwarding is not supported at this moment.
-    if (H.is_running_in_standalone_mode())
-      H.back();
-  });
+  if (H.is_running_in_standalone_mode()) {  //{{{2
+    $(document).on('swiperight', function (e) {H.back();});
+    $(document).on('swipeleft', function (e) {H.forward();});
+  }
 
   $(document).ready(function () {  //{{{2
     H.redirect_to_new_url_from_iui_era_url_if_necessary();
