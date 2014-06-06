@@ -2097,22 +2097,40 @@ var hatokurandom = {};
       if (browser_history_available) {
         $m.back();
       } else {
-        // (a) [..., A, B, C]     h.stack
-        //                 ^      h.activeIndex
+        var io = h.activeIndex;
+        var il = h.stack.length - 1;
+
+        // (a) [..., A, B, C, X, Y, Z]     h.stack
+        //                 ^               h.activeIndex
+        //                 io       il
+
+        h.activeIndex = il;
+
+        // (b) [..., A, B, C, X, Y, Z]     h.stack
+        //                          ^      h.activeIndex
+        //                 io       il
 
         $(':mobile-pagecontainer').pagecontainer(
           'change',
-          h.stack[h.activeIndex - 1].url,
+          h.stack[io - 1].url,
           {transition: transition, reverse: true}
         );
 
-        // (b) [..., A, B, C, B]  h.stack
-        //                    ^   h.activeIndex
+        // (c) [..., A, B, C, X, Y, Z, B]  h.stack
+        //                             ^   h.activeIndex
+        //                 io       il
 
-        h.activeIndex -= 2;
+        h.activeIndex = io - 1;
 
-        // (c) [..., A, B, C, B]  h.stack
-        //              ^         h.activeIndex
+        // (d) [..., A, B, C, X, Y, Z, B]  h.stack
+        //              ^                  h.activeIndex
+        //                 io       il
+
+        h.stack.pop();
+
+        // (e) [..., A, B, C, X, Y, Z]     h.stack
+        //              ^                  h.activeIndex
+        //                 io       il
       }
     } else {
       if (go_home_as_fallback) {
