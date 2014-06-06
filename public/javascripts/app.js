@@ -1774,6 +1774,11 @@ var hatokurandom = {};
       card.name == 'サムライ';
   };
 
+  H.is_browser_history_available = function () {  //{{{2
+    return !window.navigator.standalone ||
+           window.applicationCache.status == window.applicationCache.UNCACHED;
+  };
+
   H.is_dsid = function (sid) {  //{{{2
     return H.parse_dsid(sid).valid;
   };
