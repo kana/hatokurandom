@@ -2631,13 +2631,13 @@ var hatokurandom = {};
   });
 
   $(document).on('swiperight', function (e) {  //{{{2
-    // It would be better to add a gesture to forward history.  But H.back()
-    // has a side effect on jQuery Mobile's history stack to provide its
-    // functionality against [IOS7_HISTORY_BUG].  As a result, users cannot
-    // forward repatedly.  And forwarding is not often used.  So that
-    // forwarding is not supported at this moment.
     if (H.is_running_in_standalone_mode())
       H.back();
+  });
+
+  $(document).on('swipeleft', function (e) {  //{{{2
+    if (H.is_running_in_standalone_mode())
+      H.forward();
   });
 
   $(document).ready(function () {  //{{{2
