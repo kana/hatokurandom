@@ -1658,8 +1658,8 @@ var hatokurandom = {};
       if (options.include_all_costs) {
         var costs = {};
         for (var ic in selected_cards)
-          costs[selected_cards[ic].cost] = true;
-        if (!(costs[2] && costs[3] && costs[4] && (costs[5] || costs[6])))
+          costs[Math.min(selected_cards[ic].cost, 5)] = true;
+        if (!(costs[2] && costs[3] && costs[4] && costs[5]))
           continue;
       }
       if (options.include_link_2) {
