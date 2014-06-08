@@ -188,11 +188,10 @@
                 %span.card-name サムライ
             %label
               %input(type='checkbox' name='include_all_costs')
-              コストの偏りを減らす
+              各コスト帯のカードを含める
               %span.note
-                各コスト帯のカードが1枚以上出現します。
-                ただし6コスト以上のカードは5コスト帯に含まれます。
-                これはゲーム的に面白くない偏りを避けるためです。
+                各コスト帯のカードを1枚以上含めるようにします。
+                ただし6コスト以上のカードは5コスト帯として扱います。
             %label
               %input(type='checkbox' name='include_link_2')
               リンク2を適宜含める
