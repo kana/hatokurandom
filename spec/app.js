@@ -238,6 +238,17 @@
           false
         );
       });
+      it('should return a valid result with cost 2-4 & 12', function () {
+        test(
+          [
+            H.card_from_card_name('早馬'),
+            H.card_from_card_name('交易船'),
+            H.card_from_card_name('都市開発'),
+            H.card_from_card_name('大公爵')
+          ],
+          false
+        );
+      });
       it('should not return a valid result without cost 5-6', function () {
         test(
           [
