@@ -1,5 +1,9 @@
 # coding: utf-8
 
+# To avoid Encoding::UndefinedConversionError while packing assets.
+Encoding.default_internal = Encoding::UTF_8
+Encoding.default_external = Encoding::UTF_8
+
 require 'bundler/setup'
 require 'cgi'
 require 'haml'
