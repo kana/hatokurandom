@@ -27,7 +27,7 @@ class App < Sinatra::Application
       '/javascripts/jquery-mobile/jquery.mobile-1.4.2.min.js',
       '/javascripts/app.js',
     ]
-    js_compression :simple
+    js_compression :uglify
 
     css :whole, [
       '/stylesheets/font-awesome/css/font-awesome.min.css',
