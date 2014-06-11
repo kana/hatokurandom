@@ -1,14 +1,9 @@
 CACHE MANIFEST
 
 CACHE:
-/javascripts/app.js
-/javascripts/jquery-cookie/jquery.cookie.js
-/javascripts/jquery-mobile/jquery.mobile-1.4.2.min.js
-/javascripts/jquery-mobile/jquery.mobile-1.4.2.min.map
-/javascripts/jquery/jquery-2.1.1.min.js
-/stylesheets/app.css
-/stylesheets/font-awesome/css/font-awesome.min.css
-/stylesheets/font-awesome/fonts/fontawesome-webfont.woff?v=4.0.3
-/stylesheets/jquery-mobile/jquery.mobile-1.4.2.min.css
+/assets/images/ajax-loader.gif
+/assets/whole.css
+/assets/whole.js
+/fonts/fontawesome-webfont.woff?v=4.0.3
 
 # @@VERSION@@

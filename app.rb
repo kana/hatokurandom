@@ -1,10 +1,15 @@
 # coding: utf-8
 
+# To avoid Encoding::UndefinedConversionError while packing assets.
+Encoding.default_internal = Encoding::UTF_8
+Encoding.default_external = Encoding::UTF_8
+
 require 'bundler/setup'
 require 'cgi'
 require 'haml'
 require 'sass'
 require 'sinatra'
+require 'sinatra/assetpack'
 require 'socket'
 
 
@@ -16,6 +21,25 @@ class App < Sinatra::Application
   GITHUB_REPOS_URI = 'https://github.com/kana/hatokurandom'
   ONE_DAY = 1 * 24 * 60 * 60
   ONE_WEEK = 7 * 24 * 60 * 60
+
+  register Sinatra::AssetPack
+  assets do
+    js :whole, [
+      '/javascripts/jquery/jquery-2.1.1.min.js',
+      '/javascripts/jquery-cookie/jquery.cookie.js',
+      '/javascripts/configure-jquery-mobile.js',
+      '/javascripts/jquery-mobile/jquery.mobile-1.4.2.min.js',
+      '/javascripts/app.js',
+    ]
+    js_compression :uglify
+
+    css :whole, [
+      '/stylesheets/font-awesome/css/font-awesome.min.css',
+      '/stylesheets/jquery-mobile/jquery.mobile-1.4.2.min.css',
+      '/stylesheets/app.css',
+    ]
+    css_compression :simple
+  end
 
   set :static_cache_control, [:public, :max_age => ONE_WEEK]
 
@@ -39,6 +63,24 @@ class App < Sinatra::Application
     cache_control :public, :max_age => ONE_WEEK
     last_modified File::Stat.new('views/app.sass').mtime
     sass :app
+  end
+
+  before '/assets/whole.js' do
+    cache_control :public, :max_age => ONE_WEEK
+    last_modified File::Stat.new('public/javascripts/app.js').mtime
+  end
+
+  before '/assets/whole.css' do
+    cache_control :public, :max_age => ONE_WEEK
+    last_modified File::Stat.new('views/app.sass').mtime
+  end
+
+  get '/assets/images/ajax-loader.gif' do
+    call env.merge('PATH_INFO' => '/javascripts/jquery-mobile/images/ajax-loader.gif')
+  end
+
+  get '/fonts/fontawesome-webfont.woff' do
+    call env.merge('PATH_INFO' => '/stylesheets/font-awesome/fonts/fontawesome-webfont.woff')
   end
 
   helpers do
