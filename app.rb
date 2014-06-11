@@ -61,6 +61,16 @@ class App < Sinatra::Application
     sass :app
   end
 
+  before '/assets/whole.js' do
+    cache_control :public, :max_age => ONE_WEEK
+    last_modified File::Stat.new('public/javascripts/app.js').mtime
+  end
+
+  before '/assets/whole.css' do
+    cache_control :public, :max_age => ONE_WEEK
+    last_modified File::Stat.new('views/app.sass').mtime
+  end
+
   get '/assets/images/ajax-loader.gif' do
     call env.merge('PATH_INFO' => '/javascripts/jquery-mobile/images/ajax-loader.gif')
   end
