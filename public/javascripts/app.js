@@ -1617,7 +1617,7 @@ var hatokurandom = {};
     return cs;
   };
 
-  H.choose_random_cards = function (given_cards, count, options) {  //{{{2
+  H.choose_supply_cards = function (given_cards, count, options) {  //{{{2
     var any = function (cards, eid) {
       for (var i = 0; i < cards.length; i++) {
         if (cards[i].eid == eid)
@@ -1957,7 +1957,7 @@ var hatokurandom = {};
       return H.xcards_from_rsid(dsid_data.rsid);
     } else if (dsid_data.random) {
       var cards =
-        H.choose_random_cards(
+        H.choose_supply_cards(
           H.COMMON_CARDS,
           dsid_data.count,
           H.options
@@ -2572,7 +2572,7 @@ var hatokurandom = {};
 
   H.test_supply_generation = function (options) {  //{{{2
     // For interactive investigation; not called from anywhere.
-    var s = H.choose_random_cards(
+    var s = H.choose_supply_cards(
       H.COMMON_CARDS,
       10,
       $.extend({}, H.DEFAULT_OPTIONS, {statistical: true}, options)

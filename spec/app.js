@@ -116,10 +116,10 @@
       });
     });
   });
-  describe('choose_random_cards', function () {
+  describe('choose_supply_cards', function () {
     describe('basics', function () {
       it('should return a subset of given cards', function () {
-        var cards = H.choose_random_cards(H.COMMON_CARDS, 10, H.DEFAULT_OPTIONS);
+        var cards = H.choose_supply_cards(H.COMMON_CARDS, 10, H.DEFAULT_OPTIONS);
         for (var i = 0; i < cards.length; i++) {
           var c1 = cards[i];
           expect(
@@ -128,7 +128,7 @@
         }
       });
       it('should choose cards without duplicates', function () {
-        var cards = H.choose_random_cards(H.COMMON_CARDS, 10, H.DEFAULT_OPTIONS);
+        var cards = H.choose_supply_cards(H.COMMON_CARDS, 10, H.DEFAULT_OPTIONS);
         for (var i = 0; i < cards.length; i++) {
           var c1 = cards[i];
           expect(
@@ -137,15 +137,15 @@
         }
       });
       it('should choose random cards each time', function () {
-        var cards1 = H.choose_random_cards(H.COMMON_CARDS, 10, H.DEFAULT_OPTIONS);
+        var cards1 = H.choose_supply_cards(H.COMMON_CARDS, 10, H.DEFAULT_OPTIONS);
         var cards2;
         do {
-          cards2 = H.choose_random_cards(H.COMMON_CARDS, 10, H.DEFAULT_OPTIONS);
+          cards2 = H.choose_supply_cards(H.COMMON_CARDS, 10, H.DEFAULT_OPTIONS);
         } while (cards1 == cards2);
         expect(cards1).not.toEqual(cards2);
       });
       it('should return invalid result if there is no more card', function () {
-        var cards = H.choose_random_cards(
+        var cards = H.choose_supply_cards(
           [
             H.card_from_card_name('早馬'),
             H.card_from_card_name('斥候'),
@@ -174,7 +174,7 @@
           expect(
             filter_by_eid(
               eid,
-              H.choose_random_cards(
+              H.choose_supply_cards(
                 H.COMMON_CARDS,
                 H.COMMON_CARDS.length
                 - filter_by_eid(eid, H.COMMON_CARDS).length,
@@ -201,7 +201,7 @@
         };
         var test = function (eid, options) {
           var cards =
-            H.choose_random_cards(
+            H.choose_supply_cards(
               H.COMMON_CARDS,
               10,
               $.extend({}, H.DEFAULT_OPTIONS, options)
@@ -222,7 +222,7 @@
     describe('statistical', function () {
       it('should return statistical result if requested', function () {
         var s =
-          H.choose_random_cards(
+          H.choose_supply_cards(
             H.COMMON_CARDS,
             10,
             $.extend({}, H.DEFAULT_OPTIONS, {statistical: true})
@@ -233,7 +233,7 @@
       });
       it('should return statistical result with given try count', function () {
         var s =
-          H.choose_random_cards(
+          H.choose_supply_cards(
             H.COMMON_CARDS,
             10,
             $.extend({}, H.DEFAULT_OPTIONS, {statistical: true, try_count: 33})
@@ -246,7 +246,7 @@
     describe('with include_all_costs', function () {
       var test = function (card_set, fallback) {
         var cards =
-          H.choose_random_cards(
+          H.choose_supply_cards(
             card_set,
             card_set.length,
             $.extend(
@@ -311,7 +311,7 @@
     describe('with include_link_2', function () {
       var test = function (card_set, fallback) {
         var cards =
-          H.choose_random_cards(
+          H.choose_supply_cards(
             card_set,
             card_set.length,
             $.extend(
@@ -402,7 +402,7 @@
     describe('with exclude_banned_cards', function () {
       var test = function (card_set, valid) {
         var cards =
-          H.choose_random_cards(
+          H.choose_supply_cards(
             card_set,
             card_set.length,
             $.extend(
@@ -464,7 +464,7 @@
     describe('with exclude_banned_cards_for_fairy_garden', function () {
       var test = function (card_set, valid, length) {
         var cards =
-          H.choose_random_cards(
+          H.choose_supply_cards(
             card_set,
             card_set.length,
             $.extend(
@@ -539,7 +539,7 @@
     describe('with not-fully-unveiled cards', function () {
       var test = function (card_set, expected_validness, expected_length) {
         var cards =
-          H.choose_random_cards(
+          H.choose_supply_cards(
             card_set,
             card_set.length,
             $.extend(
