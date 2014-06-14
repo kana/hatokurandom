@@ -1596,6 +1596,27 @@ var hatokurandom = {};
     return child_pids;
   };
 
+  H.choose_available_cards = function (given_cards, options) {  //{{{2
+    var cs = given_cards;
+    var filter_by_eid = function (cs, available, eid) {
+      if (available)
+        return cs;
+      else
+        return $.grep(cs, function (c) {return c.eid != eid;});
+    };
+
+    if (options.exclude_banned_cards)
+      cs = cs.filter(H.not(H.is_banned_card));
+    cs = cs.filter(function (c) {return !c.imperfect;});
+    cs = filter_by_eid(cs, options.include_basic != 'must_not', H.EID_BASIC);
+    cs = filter_by_eid(cs, options.include_fareast != 'must_not', H.EID_FAREAST);
+    cs = filter_by_eid(cs, options.include_northern != 'must_not', H.EID_NORTHERN);
+    cs = filter_by_eid(cs, options.include_fairy != 'must_not', H.EID_FAIRY);
+    cs = filter_by_eid(cs, options.include_six != 'must_not', H.EID_SIX);
+
+    return cs;
+  };
+
   H.choose_random_cards = function (given_cards, count, options) {  //{{{2
     var filter_by_eid = function (cards, use, eid) {
       if (!use)
