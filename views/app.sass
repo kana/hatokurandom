@@ -72,6 +72,13 @@ $unknown-color: #ddd
 .card .type[data-names~='?']
   background: $unknown-color
 
+=compound-main-types($main, $sub)
+  background: linear-gradient(to bottom right, $main 70%, #fff 70%, #fff 73%, $sub 73%)
+.card .type[data-names~='防衛'][data-names~='災い']
+  +compound-main-types($defense-color, $trouble-color)
+.card .type[data-names~='継承権'][data-names~='領地']
+  +compound-main-types($authority-color, $land-color)
+
 // Subtypes  {{{2
 
 .card .subtype:after
