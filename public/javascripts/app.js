@@ -1625,12 +1625,12 @@ var hatokurandom = {};
       }
       return false;
     };
+    var available_cards = H.choose_available_cards(given_cards, options);
     var selected_cards;
 
     var ok_count = 0;
     var try_count = options.try_count || H.DEFAULT_OPTIONS;
     for (var t = 1; t <= try_count; t++) {
-      var available_cards = H.choose_available_cards(given_cards, options);
       var rest_cards = available_cards.slice(0);
 
       selected_cards = [];
