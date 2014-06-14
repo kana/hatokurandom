@@ -1618,12 +1618,6 @@ var hatokurandom = {};
   };
 
   H.choose_random_cards = function (given_cards, count, options) {  //{{{2
-    var filter_by_eid = function (cards, use, eid) {
-      if (!use)
-        return $.grep(cards, function (card) {return card.eid != eid;});
-      else
-        return cards;
-    };
     var any = function (cards, eid) {
       for (var i = 0; i < cards.length; i++) {
         if (cards[i].eid == eid)
@@ -1636,15 +1630,8 @@ var hatokurandom = {};
     var ok_count = 0;
     var try_count = options.try_count || H.DEFAULT_OPTIONS;
     for (var t = 1; t <= try_count; t++) {
-      var rest_cards = given_cards.slice(0);
-      if (options.exclude_banned_cards)
-        rest_cards = $.grep(rest_cards, H.not(H.is_banned_card));
-      rest_cards = $.grep(rest_cards, function (c) {return !c.imperfect;});
-      rest_cards = filter_by_eid(rest_cards, options.include_basic != 'must_not', H.EID_BASIC);
-      rest_cards = filter_by_eid(rest_cards, options.include_fareast != 'must_not', H.EID_FAREAST);
-      rest_cards = filter_by_eid(rest_cards, options.include_northern != 'must_not', H.EID_NORTHERN);
-      rest_cards = filter_by_eid(rest_cards, options.include_fairy != 'must_not', H.EID_FAIRY);
-      rest_cards = filter_by_eid(rest_cards, options.include_six != 'must_not', H.EID_SIX);
+      var available_cards = H.choose_available_cards(given_cards, options);
+      var rest_cards = available_cards.slice(0);
 
       selected_cards = [];
       for (var i = 1; i <= count && 1 <= rest_cards.length; i++) {
