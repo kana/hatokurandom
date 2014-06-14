@@ -1596,7 +1596,7 @@ var hatokurandom = {};
     return child_pids;
   };
 
-  H.choose_random_cards = function (available_cards, count, options) {  //{{{2
+  H.choose_random_cards = function (given_cards, count, options) {  //{{{2
     var filter_by_eid = function (cards, use, eid) {
       if (!use)
         return $.grep(cards, function (card) {return card.eid != eid;});
@@ -1615,7 +1615,7 @@ var hatokurandom = {};
     var ok_count = 0;
     var try_count = options.try_count || H.DEFAULT_OPTIONS;
     for (var t = 1; t <= try_count; t++) {
-      var rest_cards = available_cards.slice(0);
+      var rest_cards = given_cards.slice(0);
       if (options.exclude_banned_cards)
         rest_cards = $.grep(rest_cards, H.not(H.is_banned_card));
       rest_cards = $.grep(rest_cards, function (c) {return !c.imperfect;});
