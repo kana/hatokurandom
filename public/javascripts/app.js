@@ -2453,7 +2453,7 @@ var hatokurandom = {};
           $.extend(
             {
               cost: '?',
-              dominant_type: H.dominant_type_from_types(xcard.types),
+              main_types: xcard.types.join(' '),
               subtype: '',
               esym: H.EID_TO_EXPANSION_TABLE[xcard.eid].symbol
             },
