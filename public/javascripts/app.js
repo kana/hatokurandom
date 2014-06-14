@@ -1644,16 +1644,8 @@ var hatokurandom = {};
     var ok_count = 0;
     var try_count = options.try_count || H.DEFAULT_OPTIONS;
     for (var t = 1; t <= try_count; t++) {
-      var rest_cards = available_cards.slice(0);
-
-      chosen_cards = [];
-      for (var i = 1; i <= count && 1 <= rest_cards.length; i++) {
-        var j = Math.floor(Math.random() * rest_cards.length);
-        var c = rest_cards[j];
-        rest_cards.splice(j, 1);
-        chosen_cards.push(c);
-      }
-      if (i <= count)
+      chosen_cards = H.choose_random_cards(available_cards, count);
+      if (chosen_cards.length != count)
         break;
 
       if (options.include_basic == 'must') {
