@@ -1617,6 +1617,19 @@ var hatokurandom = {};
     return cs;
   };
 
+  H.choose_random_cards = function (given_cards, count) {  //{{{2
+    // TODO: Add tests.
+    var rest_cards = given_cards.slice(0);
+    var chosen_cards = [];
+    for (var i = 1; i <= count && 1 <= rest_cards.length; i++) {
+      var j = Math.floor(Math.random() * rest_cards.length);
+      var c = rest_cards[j];
+      rest_cards.splice(j, 1);
+      chosen_cards.push(c);
+    }
+    return chosen_cards;
+  };
+
   H.choose_supply_cards = function (given_cards, count, options) {  //{{{2
     var any = function (cards, eid) {
       for (var i = 0; i < cards.length; i++) {
