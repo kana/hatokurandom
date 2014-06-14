@@ -1596,13 +1596,41 @@ var hatokurandom = {};
     return child_pids;
   };
 
-  H.choose_random_cards = function (available_cards, count, options) {  //{{{2
-    var filter_by_eid = function (cards, use, eid) {
-      if (!use)
-        return $.grep(cards, function (card) {return card.eid != eid;});
+  H.choose_available_cards = function (given_cards, options) {  //{{{2
+    var cs = given_cards;
+    var filter_by_eid = function (cs, available, eid) {
+      if (available)
+        return cs;
       else
-        return cards;
+        return $.grep(cs, function (c) {return c.eid != eid;});
     };
+
+    if (options.exclude_banned_cards)
+      cs = cs.filter(H.not(H.is_banned_card));
+    cs = cs.filter(function (c) {return !c.imperfect;});
+    cs = filter_by_eid(cs, options.include_basic != 'must_not', H.EID_BASIC);
+    cs = filter_by_eid(cs, options.include_fareast != 'must_not', H.EID_FAREAST);
+    cs = filter_by_eid(cs, options.include_northern != 'must_not', H.EID_NORTHERN);
+    cs = filter_by_eid(cs, options.include_fairy != 'must_not', H.EID_FAIRY);
+    cs = filter_by_eid(cs, options.include_six != 'must_not', H.EID_SIX);
+
+    return cs;
+  };
+
+  H.choose_random_cards = function (given_cards, count) {  //{{{2
+    // TODO: Add tests.
+    var rest_cards = given_cards.slice(0);
+    var chosen_cards = [];
+    for (var i = 1; i <= count && 1 <= rest_cards.length; i++) {
+      var j = Math.floor(Math.random() * rest_cards.length);
+      var c = rest_cards[j];
+      rest_cards.splice(j, 1);
+      chosen_cards.push(c);
+    }
+    return chosen_cards;
+  };
+
+  H.choose_supply_cards = function (given_cards, count, options) {  //{{{2
     var any = function (cards, eid) {
       for (var i = 0; i < cards.length; i++) {
         if (cards[i].eid == eid)
@@ -1610,68 +1638,53 @@ var hatokurandom = {};
       }
       return false;
     };
-    var selected_cards;
+    var available_cards = H.choose_available_cards(given_cards, options);
+    var chosen_cards;
 
     var ok_count = 0;
     var try_count = options.try_count || H.DEFAULT_OPTIONS;
     for (var t = 1; t <= try_count; t++) {
-      var rest_cards = available_cards.slice(0);
-      if (options.exclude_banned_cards)
-        rest_cards = $.grep(rest_cards, H.not(H.is_banned_card));
-      rest_cards = $.grep(rest_cards, function (c) {return !c.imperfect;});
-      rest_cards = filter_by_eid(rest_cards, options.include_basic != 'must_not', H.EID_BASIC);
-      rest_cards = filter_by_eid(rest_cards, options.include_fareast != 'must_not', H.EID_FAREAST);
-      rest_cards = filter_by_eid(rest_cards, options.include_northern != 'must_not', H.EID_NORTHERN);
-      rest_cards = filter_by_eid(rest_cards, options.include_fairy != 'must_not', H.EID_FAIRY);
-      rest_cards = filter_by_eid(rest_cards, options.include_six != 'must_not', H.EID_SIX);
-
-      selected_cards = [];
-      for (var i = 1; i <= count && 1 <= rest_cards.length; i++) {
-        var j = Math.floor(Math.random() * rest_cards.length);
-        var c = rest_cards[j];
-        rest_cards.splice(j, 1);
-        selected_cards.push(c);
-      }
-      if (i <= count)
+      chosen_cards = H.choose_random_cards(available_cards, count);
+      if (chosen_cards.length != count)
         break;
 
       if (options.include_basic == 'must') {
-        if (!any(selected_cards, H.EID_BASIC))
+        if (!any(chosen_cards, H.EID_BASIC))
           continue;
       }
       if (options.include_fareast == 'must') {
-        if (!any(selected_cards, H.EID_FAREAST))
+        if (!any(chosen_cards, H.EID_FAREAST))
           continue;
       }
       if (options.include_northern == 'must') {
-        if (!any(selected_cards, H.EID_NORTHERN))
+        if (!any(chosen_cards, H.EID_NORTHERN))
           continue;
       }
       if (options.include_fairy == 'must') {
-        if (!any(selected_cards, H.EID_FAIRY))
+        if (!any(chosen_cards, H.EID_FAIRY))
           continue;
       }
       if (options.include_six == 'must') {
-        if (!any(selected_cards, H.EID_SIX))
+        if (!any(chosen_cards, H.EID_SIX))
           continue;
       }
       if (options.include_all_costs) {
         var costs = {};
-        for (var ic in selected_cards)
-          costs[Math.min(selected_cards[ic].cost, 5)] = true;
+        for (var ic in chosen_cards)
+          costs[Math.min(chosen_cards[ic].cost, 5)] = true;
         if (!(costs[2] && costs[3] && costs[4] && costs[5]))
           continue;
       }
       if (options.include_link_2) {
         var links = {};
-        for (var il in selected_cards)
-          links[selected_cards[il].link] = true;
+        for (var il in chosen_cards)
+          links[chosen_cards[il].link] = true;
         if (links[0] && !links[2])
           continue;
       }
       if (options.exclude_banned_cards_for_fairy_garden) {
-        if (any(selected_cards, H.EID_FAIRY) &&
-            selected_cards.some(H.is_banned_card_for_fairy_garden))
+        if (any(chosen_cards, H.EID_FAIRY) &&
+            chosen_cards.some(H.is_banned_card_for_fairy_garden))
           continue;
       }
 
@@ -1679,7 +1692,7 @@ var hatokurandom = {};
         ok_count++;
         continue;
       }
-      return selected_cards;
+      return chosen_cards;
     }
 
     if (options.statistical) {
@@ -1689,8 +1702,8 @@ var hatokurandom = {};
         probability: (ok_count * 100 / try_count) + '%'
       };
     }
-    selected_cards.fallback = true;
-    return selected_cards;
+    chosen_cards.fallback = true;
+    return chosen_cards;
   };
 
   H.cids_from_psid = function (psid) {  //{{{2
@@ -1949,7 +1962,7 @@ var hatokurandom = {};
       return H.xcards_from_rsid(dsid_data.rsid);
     } else if (dsid_data.random) {
       var cards =
-        H.choose_random_cards(
+        H.choose_supply_cards(
           H.COMMON_CARDS,
           dsid_data.count,
           H.options
@@ -2564,7 +2577,7 @@ var hatokurandom = {};
 
   H.test_supply_generation = function (options) {  //{{{2
     // For interactive investigation; not called from anywhere.
-    var s = H.choose_random_cards(
+    var s = H.choose_supply_cards(
       H.COMMON_CARDS,
       10,
       $.extend({}, H.DEFAULT_OPTIONS, {statistical: true}, options)
