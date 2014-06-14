@@ -1639,60 +1639,60 @@ var hatokurandom = {};
       return false;
     };
     var available_cards = H.choose_available_cards(given_cards, options);
-    var selected_cards;
+    var chosen_cards;
 
     var ok_count = 0;
     var try_count = options.try_count || H.DEFAULT_OPTIONS;
     for (var t = 1; t <= try_count; t++) {
       var rest_cards = available_cards.slice(0);
 
-      selected_cards = [];
+      chosen_cards = [];
       for (var i = 1; i <= count && 1 <= rest_cards.length; i++) {
         var j = Math.floor(Math.random() * rest_cards.length);
         var c = rest_cards[j];
         rest_cards.splice(j, 1);
-        selected_cards.push(c);
+        chosen_cards.push(c);
       }
       if (i <= count)
         break;
 
       if (options.include_basic == 'must') {
-        if (!any(selected_cards, H.EID_BASIC))
+        if (!any(chosen_cards, H.EID_BASIC))
           continue;
       }
       if (options.include_fareast == 'must') {
-        if (!any(selected_cards, H.EID_FAREAST))
+        if (!any(chosen_cards, H.EID_FAREAST))
           continue;
       }
       if (options.include_northern == 'must') {
-        if (!any(selected_cards, H.EID_NORTHERN))
+        if (!any(chosen_cards, H.EID_NORTHERN))
           continue;
       }
       if (options.include_fairy == 'must') {
-        if (!any(selected_cards, H.EID_FAIRY))
+        if (!any(chosen_cards, H.EID_FAIRY))
           continue;
       }
       if (options.include_six == 'must') {
-        if (!any(selected_cards, H.EID_SIX))
+        if (!any(chosen_cards, H.EID_SIX))
           continue;
       }
       if (options.include_all_costs) {
         var costs = {};
-        for (var ic in selected_cards)
-          costs[Math.min(selected_cards[ic].cost, 5)] = true;
+        for (var ic in chosen_cards)
+          costs[Math.min(chosen_cards[ic].cost, 5)] = true;
         if (!(costs[2] && costs[3] && costs[4] && costs[5]))
           continue;
       }
       if (options.include_link_2) {
         var links = {};
-        for (var il in selected_cards)
-          links[selected_cards[il].link] = true;
+        for (var il in chosen_cards)
+          links[chosen_cards[il].link] = true;
         if (links[0] && !links[2])
           continue;
       }
       if (options.exclude_banned_cards_for_fairy_garden) {
-        if (any(selected_cards, H.EID_FAIRY) &&
-            selected_cards.some(H.is_banned_card_for_fairy_garden))
+        if (any(chosen_cards, H.EID_FAIRY) &&
+            chosen_cards.some(H.is_banned_card_for_fairy_garden))
           continue;
       }
 
@@ -1700,7 +1700,7 @@ var hatokurandom = {};
         ok_count++;
         continue;
       }
-      return selected_cards;
+      return chosen_cards;
     }
 
     if (options.statistical) {
@@ -1710,8 +1710,8 @@ var hatokurandom = {};
         probability: (ok_count * 100 / try_count) + '%'
       };
     }
-    selected_cards.fallback = true;
-    return selected_cards;
+    chosen_cards.fallback = true;
+    return chosen_cards;
   };
 
   H.cids_from_psid = function (psid) {  //{{{2
