@@ -2644,8 +2644,20 @@ var hatokurandom = {};
   });
 
   if (H.is_running_in_standalone_mode()) {  //{{{2
-    $(document).on('swiperight', function (e) {H.back();});
-    $(document).on('swipeleft', function (e) {H.forward();});
+    $(document).on('swiperight', function (e) {
+      var start_x = e.swipestart.coords[0];
+      var page_width = window.innerWidth;
+      var zone_width = page_width / 10;
+      if (start_x < zone_width)
+        H.back();
+    });
+    $(document).on('swipeleft', function (e) {
+      var start_x = e.swipestart.coords[0];
+      var page_width = window.innerWidth;
+      var zone_width = page_width / 10;
+      if (page_width - zone_width <= start_x)
+        H.forward();
+    });
   }
 
   $(document).ready(function () {  //{{{2
