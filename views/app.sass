@@ -43,24 +43,41 @@ a.share.button:after
   height: 0.8em
   display: inline-block
 
-.card .type[data-name='行動']
-  background: #999
-.card .type[data-name='防衛']
-  background: #339
-.card .type[data-name='攻撃']
-  background: #c66
-.card .type[data-name='災い']
-  background: #636
-.card .type[data-name='領地']
-  background: #963
-.card .type[data-name='継承権']
-  background: #696
-.card .type[data-name='プリンセス']
-  background: #cc3
-.card .type[data-name='サポート']
-  background: #e73
-.card .type[data-name='?']
-  background: #ddd
+$trouble-color: #636
+$action-color: #999
+$defense-color: #339
+$attack-color: #c66
+$land-color: #963
+$authority-color: #696
+$princess-color: #cc3
+$support-color: #e73
+$unknown-color: #ddd
+
+.card .type[data-names~='災い']
+  background: $trouble-color
+.card .type[data-names~='行動']
+  background: $action-color
+.card .type[data-names~='防衛']
+  background: $defense-color
+.card .type[data-names~='攻撃']
+  background: $attack-color
+.card .type[data-names~='領地']
+  background: $land-color
+.card .type[data-names~='継承権']
+  background: $authority-color
+.card .type[data-names~='プリンセス']
+  background: $princess-color
+.card .type[data-names~='サポート']
+  background: $support-color
+.card .type[data-names~='?']
+  background: $unknown-color
+
+=compound-main-types($main, $sub)
+  background: linear-gradient(to bottom right, $main 70%, #fff 70%, #fff 73%, $sub 73%)
+.card .type[data-names~='防衛'][data-names~='災い']
+  +compound-main-types($defense-color, $trouble-color)
+.card .type[data-names~='継承権'][data-names~='領地']
+  +compound-main-types($authority-color, $land-color)
 
 // Subtypes  {{{2
 
