@@ -1467,7 +1467,7 @@ var hatokurandom = {};
       title: 'レアカード一覧'
     },  //}}}
     'reference:rarity-special': {  //{{{
-      title: '特殊なレアリティのカード一覧'
+      title: 'レアリティが未定義のカード一覧'
     },  //}}}
     '': {}  // Dummy entry to make folds simple.
   };
