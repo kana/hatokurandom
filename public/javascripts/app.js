@@ -934,6 +934,7 @@ var hatokurandom = {};
       'reference-territories': by_type('領地'),
       'reference-authorities': by_type('継承権'),
       'reference-curses': by_type('災い'),
+      'reference-treated-as-curses': list(function (c) {return c.cursed;}),
       'reference-princesses': by_type('プリンセス'),
       'reference-support': by_type('サポート'),
       'reference-subtype-army': by_subtype('兵力'),
@@ -1102,6 +1103,7 @@ var hatokurandom = {};
       'reference:territories',
       'reference:authorities',
       'reference:curses',
+      'reference:treated-as-curses',
       'reference:princesses',
       'reference:support'
     ],  //}}}
@@ -1369,6 +1371,9 @@ var hatokurandom = {};
     },  //}}}
     'reference:curses': {  //{{{
       title: '災いカード一覧'
+    },  //}}}
+    'reference:treated-as-curses': {  //{{{
+      title: '「呪い」でもあるカード一覧'
     },  //}}}
     'reference:princesses': {  //{{{
       title: 'プリンセスカード一覧'
