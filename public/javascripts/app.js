@@ -65,7 +65,7 @@ var hatokurandom = {};
 
     // 基本セット  //{{{3
 
-    {cid: 0x34, eid: H.EID_BASIC, cost: 0, link: undefined, name: '呪い', types: ['災い'], rarity: 'B'},
+    {cid: 0x34, eid: H.EID_BASIC, cost: 0, link: undefined, name: '呪い', types: ['災い'], cursed: true, rarity: 'B'},
 
     {cid: 0x2b, eid: H.EID_BASIC, cost: 1, link: 1, name: '農村', types: ['領地'], rarity: 'B'},
 
@@ -85,7 +85,7 @@ var hatokurandom = {};
     {cid: 0x0c, eid: H.EID_BASIC, cost: 3, link: 1, name: '買収工作', types: ['行動', '攻撃'], subtype: '計略', rarity: 'C'},
     {cid: 0x2c, eid: H.EID_BASIC, cost: 3, link: 1, name: '都市', types: ['領地'], rarity: 'B'},
     {cid: 0x0d, eid: H.EID_BASIC, cost: 3, link: 1, name: '隠れ家', types: ['行動', '防衛'], rarity: 'C'},
-    {cid: 0x0e, eid: H.EID_BASIC, cost: 3, link: 1, name: '魔法の護符', types: ['行動', '防衛', '災い'], rarity: 'C'},
+    {cid: 0x0e, eid: H.EID_BASIC, cost: 3, link: 1, name: '魔法の護符', types: ['行動', '防衛', '災い'], cursed: true, rarity: 'C'},
     {cid: 0x2f, eid: H.EID_BASIC, cost: 3, link: undefined, name: '宮廷侍女', types: ['継承権'], subtype: '侍女', rarity: 'B'},
 
     {cid: 0x0f, eid: H.EID_BASIC, cost: 4, link: 0, name: '歩兵大隊', types: ['行動', '攻撃'], subtype: '兵力', rarity: 'C'},
@@ -148,7 +148,7 @@ var hatokurandom = {};
 
     {cid: 0x41, eid: H.EID_NORTHERN, cost: 3, link: 1, name: '洗礼', types: ['行動'], rarity: 'C'},
     {cid: 0x43, eid: H.EID_NORTHERN, cost: 3, link: 2, name: '名馬', types: ['行動'], rarity: 'C'},
-    {cid: 0x42, eid: H.EID_NORTHERN, cost: 3, link: undefined, name: '呪いの人形', types: ['災い'], rarity: 'C'},
+    {cid: 0x42, eid: H.EID_NORTHERN, cost: 3, link: undefined, name: '呪いの人形', types: ['災い'], cursed: true, rarity: 'C'},
 
     {cid: 0x45, eid: H.EID_NORTHERN, cost: 4, link: 0, name: 'ドワーフの宝石職人', types: ['行動'], rarity: 'C'},
     {cid: 0x44, eid: H.EID_NORTHERN, cost: 4, link: 0, name: '宮廷闘争', types: ['行動', '攻撃'], subtype: '計略', rarity: 'C'},
@@ -933,7 +933,8 @@ var hatokurandom = {};
       'reference-defenses': by_type('防衛'),
       'reference-territories': by_type('領地'),
       'reference-authorities': by_type('継承権'),
-      'reference-curses': by_type('災い'),
+      'reference-misfortune': by_type('災い'),
+      'reference-curses': list(function (c) {return c.cursed;}),
       'reference-princesses': by_type('プリンセス'),
       'reference-support': by_type('サポート'),
       'reference-subtype-army': by_subtype('兵力'),
@@ -960,10 +961,10 @@ var hatokurandom = {};
       'reference-northern': by_expansion(H.EID_NORTHERN),
       'reference-fairy': by_expansion(H.EID_FAIRY),
       'reference-six': by_expansion(H.EID_SIX),
-      'reference-rarity-special': by_rarity(undefined),
       'reference-rarity-basic': by_rarity('B'),
       'reference-rarity-common': by_rarity('C'),
       'reference-rarity-rare': by_rarity('R'),
+      'reference-rarity-special': by_rarity(undefined),
       '': []  // Dummy entry to make folds simple.
     };
   })();
@@ -1101,6 +1102,7 @@ var hatokurandom = {};
       'reference:defenses',
       'reference:territories',
       'reference:authorities',
+      'reference:misfortune',
       'reference:curses',
       'reference:princesses',
       'reference:support'
@@ -1136,10 +1138,10 @@ var hatokurandom = {};
       'reference:six'
     ],  //}}}
     'references:rarity': [  //{{{
-      'reference:rarity-special',
       'reference:rarity-basic',
       'reference:rarity-common',
-      'reference:rarity-rare'
+      'reference:rarity-rare',
+      'reference:rarity-special'
     ],  //}}}
     '': []  // Dummy entry to make folds simple.
   };
@@ -1367,8 +1369,11 @@ var hatokurandom = {};
     'reference:authorities': {  //{{{
       title: '継承権カード一覧'
     },  //}}}
-    'reference:curses': {  //{{{
+    'reference:misfortune': {  //{{{
       title: '災いカード一覧'
+    },  //}}}
+    'reference:curses': {  //{{{
+      title: '「呪い」でもあるカード一覧'
     },  //}}}
     'reference:princesses': {  //{{{
       title: 'プリンセスカード一覧'
@@ -1457,9 +1462,6 @@ var hatokurandom = {};
     'references:rarity': {  //{{{
       title: 'レアリティ別カードリスト'
     },  //}}}
-    'reference:rarity-special': {  //{{{
-      title: '特殊なレアリティのカード一覧'
-    },  //}}}
     'reference:rarity-basic': {  //{{{
       title: 'ベーシックカード一覧'
     },  //}}}
@@ -1468,6 +1470,9 @@ var hatokurandom = {};
     },  //}}}
     'reference:rarity-rare': {  //{{{
       title: 'レアカード一覧'
+    },  //}}}
+    'reference:rarity-special': {  //{{{
+      title: 'レアリティが未定義のカード一覧'
     },  //}}}
     '': {}  // Dummy entry to make folds simple.
   };
