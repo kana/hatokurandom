@@ -26,7 +26,6 @@ class App < Sinatra::Application
   assets do
     js :whole, [
       '/javascripts/jquery/jquery-2.1.1.min.js',
-      '/javascripts/jquery-cookie/jquery.cookie.js',
       '/javascripts/configure-jquery-mobile.js',
       '/javascripts/jquery-mobile/jquery.mobile-1.4.2.min.js',
       '/javascripts/app.js',

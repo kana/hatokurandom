@@ -40,6 +40,18 @@ var hatokurandom = {};
     return promise();
   }
 
+  function load_value(key) {  //{{{2
+    return JSON.parse(localStorage.getItem(key) || 'null');
+  }
+
+  function save_value(key, value) {  //{{{2
+    localStorage.setItem(key, JSON.stringify(value));
+  }
+
+  function delete_value(key) {  //{{{2
+    localStorage.removeItem(key);
+  }
+
   // Constants  //{{{1
   // Eids  //{{{2
   H.EID_BASIC = 1;
@@ -2328,11 +2340,7 @@ var hatokurandom = {};
 
   H.load_options = function (kw) {  //{{{2
     for (var key in H.DEFAULT_OPTIONS) {
-      var saved_value = $.cookie(key);
-      var value =
-        saved_value === null ?
-        H.DEFAULT_OPTIONS[key] :
-        JSON.parse(saved_value);
+      var value = load_value(key) || H.DEFAULT_OPTIONS[key];
 
       H.options[key] = value;
 
@@ -2486,7 +2494,7 @@ var hatokurandom = {};
 
   H.reset_options = function () {  //{{{2
     for (var key in H.DEFAULT_OPTIONS)
-      $.cookie(key, undefined);
+      delete_value(key);
 
     H.load_options({is_resetting: true});
   };
@@ -2495,12 +2503,19 @@ var hatokurandom = {};
     if (!H.is_running_in_standalone_mode())
       return;
 
-    var s = $.cookie('state_before_sharing');
-    if (s === null)
+    var v = load_value('state_before_sharing');
+    if (v === null)
       return;
 
-    // TODO: Is it better to remove state_before_sharing after restoring?
-    var v = JSON.parse(s);
+    // Fairly enough length of time
+    // * To review the supply after preparation of a new game, and
+    // * Not to interrupt generating a new supply for further games.
+    var RESTORABLE_PERIOD_IN_MILLISECONDS = 5 * 60 * 1000;
+
+    if (v.at === undefined ||
+        RESTORABLE_PERIOD_IN_MILLISECONDS < Date.now() - v.at.valueOf())
+      delete_value('state_before_sharing');
+
     // Use only hash to avoid reloading page.  Because the base URL of a saved
     // permalink is not the same as the base URL of the currently running app.
     location.replace($m.path.parseUrl(v.url).hash);
@@ -2508,7 +2523,7 @@ var hatokurandom = {};
 
   H.save_option = function (key, value) {  //{{{2
     H.options[key] = value;
-    $.cookie(key, JSON.stringify(value), {expires: 365});
+    save_value(key, value);
 
     if (H.options.include_basic == 'must_not' &&
         H.options.include_fareast == 'must_not' &&
@@ -2523,18 +2538,8 @@ var hatokurandom = {};
     if (!H.is_running_in_standalone_mode())
       return;
 
-    // Fairly enough length of time
-    // * To review the supply after preparation of a new game, and
-    // * Not to interrupt generating a new supply for further games.
-    var RESTORABLE_PERIOD_IN_MILLISECONDS = 5 * 60 * 1000;
     var now = Date.now();
-    $.cookie(
-      'state_before_sharing',
-      JSON.stringify({
-        url: permalink
-      }),
-      {expires: new Date(now + RESTORABLE_PERIOD_IN_MILLISECONDS)}
-    );
+    save_value('state_before_sharing', {url: permalink, at: now});
   };
 
   H.set_up_options_if_necessary = (function () {  //{{{2
