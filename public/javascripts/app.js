@@ -2321,6 +2321,8 @@ var hatokurandom = {};
 
       $(this).attr('href', link_to_share_permalink);
       H.save_state_before_sharing_if_necessary(permalink);
+      if (!is_reference_page)
+        H.record_supply(permalink);
       return;  // Let the browser opens the adjusted href.
     });
   };
