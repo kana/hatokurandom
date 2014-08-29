@@ -2511,8 +2511,17 @@ var hatokurandom = {};
     if (s === null)
       return;
 
-    // TODO: Is it better to remove state_before_sharing after restoring?
+    // Fairly enough length of time
+    // * To review the supply after preparation of a new game, and
+    // * Not to interrupt generating a new supply for further games.
+    var RESTORABLE_PERIOD_IN_MILLISECONDS = 5 * 60 * 1000;
+
     var v = JSON.parse(s);
+
+    if (v.at === undefined ||
+        RESTORABLE_PERIOD_IN_MILLISECONDS < Date.now() - v.at.valueOf())
+      $.cookie('state_before_sharing', undefined);
+
     // Use only hash to avoid reloading page.  Because the base URL of a saved
     // permalink is not the same as the base URL of the currently running app.
     location.replace($m.path.parseUrl(v.url).hash);
@@ -2535,17 +2544,14 @@ var hatokurandom = {};
     if (!H.is_running_in_standalone_mode())
       return;
 
-    // Fairly enough length of time
-    // * To review the supply after preparation of a new game, and
-    // * Not to interrupt generating a new supply for further games.
-    var RESTORABLE_PERIOD_IN_MILLISECONDS = 5 * 60 * 1000;
     var now = Date.now();
     $.cookie(
       'state_before_sharing',
       JSON.stringify({
-        url: permalink
+        url: permalink,
+        at: now
       }),
-      {expires: new Date(now + RESTORABLE_PERIOD_IN_MILLISECONDS)}
+      {expires: 365}
     );
   };
 
