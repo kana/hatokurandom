@@ -2523,7 +2523,7 @@ var hatokurandom = {};
 
   H.save_option = function (key, value) {  //{{{2
     H.options[key] = value;
-    saveValue(key, value, {expires: 365});
+    saveValue(key, value);
 
     if (H.options.include_basic == 'must_not' &&
         H.options.include_fareast == 'must_not' &&
@@ -2539,14 +2539,7 @@ var hatokurandom = {};
       return;
 
     var now = Date.now();
-    saveValue(
-      'state_before_sharing',
-      {
-        url: permalink,
-        at: now
-      },
-      {expires: 365}
-    );
+    saveValue('state_before_sharing', {url: permalink, at: now});
   };
 
   H.set_up_options_if_necessary = (function () {  //{{{2
