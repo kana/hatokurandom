@@ -44,6 +44,10 @@ var hatokurandom = {};
     return $.cookie(key);
   }
 
+  function saveValue(key, value) {  //{{{2
+    return $.cookie(key, value);
+  }
+
   // Constants  //{{{1
   // Eids  //{{{2
   H.EID_BASIC = 1;
