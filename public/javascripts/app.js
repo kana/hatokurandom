@@ -2498,7 +2498,7 @@ var hatokurandom = {};
 
   H.reset_options = function () {  //{{{2
     for (var key in H.DEFAULT_OPTIONS)
-      $.cookie(key, undefined);
+      deleteValue(key);
 
     H.load_options({is_resetting: true});
   };
@@ -2520,7 +2520,7 @@ var hatokurandom = {};
 
     if (v.at === undefined ||
         RESTORABLE_PERIOD_IN_MILLISECONDS < Date.now() - v.at.valueOf())
-      $.cookie('state_before_sharing', undefined);
+      deleteValue('state_before_sharing');
 
     // Use only hash to avoid reloading page.  Because the base URL of a saved
     // permalink is not the same as the base URL of the currently running app.
