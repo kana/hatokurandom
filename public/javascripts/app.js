@@ -40,15 +40,15 @@ var hatokurandom = {};
     return promise();
   }
 
-  function loadValue(key) {  //{{{2
+  function load_value(key) {  //{{{2
     return JSON.parse(localStorage.getItem(key) || 'null');
   }
 
-  function saveValue(key, value) {  //{{{2
+  function save_value(key, value) {  //{{{2
     localStorage.setItem(key, JSON.stringify(value));
   }
 
-  function deleteValue(key) {  //{{{2
+  function delete_value(key) {  //{{{2
     localStorage.removeItem(key);
   }
 
@@ -2340,7 +2340,7 @@ var hatokurandom = {};
 
   H.load_options = function (kw) {  //{{{2
     for (var key in H.DEFAULT_OPTIONS) {
-      var value = loadValue(key) || H.DEFAULT_OPTIONS[key];
+      var value = load_value(key) || H.DEFAULT_OPTIONS[key];
 
       H.options[key] = value;
 
@@ -2494,7 +2494,7 @@ var hatokurandom = {};
 
   H.reset_options = function () {  //{{{2
     for (var key in H.DEFAULT_OPTIONS)
-      deleteValue(key);
+      delete_value(key);
 
     H.load_options({is_resetting: true});
   };
@@ -2503,7 +2503,7 @@ var hatokurandom = {};
     if (!H.is_running_in_standalone_mode())
       return;
 
-    var v = loadValue('state_before_sharing');
+    var v = load_value('state_before_sharing');
     if (v === null)
       return;
 
@@ -2514,7 +2514,7 @@ var hatokurandom = {};
 
     if (v.at === undefined ||
         RESTORABLE_PERIOD_IN_MILLISECONDS < Date.now() - v.at.valueOf())
-      deleteValue('state_before_sharing');
+      delete_value('state_before_sharing');
 
     // Use only hash to avoid reloading page.  Because the base URL of a saved
     // permalink is not the same as the base URL of the currently running app.
@@ -2523,7 +2523,7 @@ var hatokurandom = {};
 
   H.save_option = function (key, value) {  //{{{2
     H.options[key] = value;
-    saveValue(key, value);
+    save_value(key, value);
 
     if (H.options.include_basic == 'must_not' &&
         H.options.include_fareast == 'must_not' &&
@@ -2539,7 +2539,7 @@ var hatokurandom = {};
       return;
 
     var now = Date.now();
-    saveValue('state_before_sharing', {url: permalink, at: now});
+    save_value('state_before_sharing', {url: permalink, at: now});
   };
 
   H.set_up_options_if_necessary = (function () {  //{{{2
