@@ -41,7 +41,7 @@ var hatokurandom = {};
   }
 
   function loadValue(key) {  //{{{2
-    return $.cookie(key);
+    return JSON.parse($.cookie(key) || 'null');
   }
 
   function saveValue(key, value) {  //{{{2
@@ -2340,11 +2340,7 @@ var hatokurandom = {};
 
   H.load_options = function (kw) {  //{{{2
     for (var key in H.DEFAULT_OPTIONS) {
-      var saved_value = loadValue(key);
-      var value =
-        saved_value === null ?
-        H.DEFAULT_OPTIONS[key] :
-        JSON.parse(saved_value);
+      var value = loadValue(key) || H.DEFAULT_OPTIONS[key];
 
       H.options[key] = value;
 
@@ -2507,16 +2503,14 @@ var hatokurandom = {};
     if (!H.is_running_in_standalone_mode())
       return;
 
-    var s = loadValue('state_before_sharing');
-    if (s === null)
+    var v = loadValue('state_before_sharing');
+    if (v === null)
       return;
 
     // Fairly enough length of time
     // * To review the supply after preparation of a new game, and
     // * Not to interrupt generating a new supply for further games.
     var RESTORABLE_PERIOD_IN_MILLISECONDS = 5 * 60 * 1000;
-
-    var v = JSON.parse(s);
 
     if (v.at === undefined ||
         RESTORABLE_PERIOD_IN_MILLISECONDS < Date.now() - v.at.valueOf())
