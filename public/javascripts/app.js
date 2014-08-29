@@ -2340,7 +2340,7 @@ var hatokurandom = {};
 
   H.load_options = function (kw) {  //{{{2
     for (var key in H.DEFAULT_OPTIONS) {
-      var saved_value = $.cookie(key);
+      var saved_value = loadValue(key);
       var value =
         saved_value === null ?
         H.DEFAULT_OPTIONS[key] :
@@ -2507,7 +2507,7 @@ var hatokurandom = {};
     if (!H.is_running_in_standalone_mode())
       return;
 
-    var s = $.cookie('state_before_sharing');
+    var s = loadValue('state_before_sharing');
     if (s === null)
       return;
 
