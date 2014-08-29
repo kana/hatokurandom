@@ -2529,7 +2529,7 @@ var hatokurandom = {};
 
   H.save_option = function (key, value) {  //{{{2
     H.options[key] = value;
-    $.cookie(key, JSON.stringify(value), {expires: 365});
+    saveValue(key, JSON.stringify(value), {expires: 365});
 
     if (H.options.include_basic == 'must_not' &&
         H.options.include_fareast == 'must_not' &&
@@ -2545,7 +2545,7 @@ var hatokurandom = {};
       return;
 
     var now = Date.now();
-    $.cookie(
+    saveValue(
       'state_before_sharing',
       JSON.stringify({
         url: permalink,
