@@ -48,6 +48,10 @@ var hatokurandom = {};
     return $.cookie(key, value);
   }
 
+  function deleteValue(key) {  //{{{2
+    return $.cookie(key, undefined);
+  }
+
   // Constants  //{{{1
   // Eids  //{{{2
   H.EID_BASIC = 1;
