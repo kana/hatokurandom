@@ -45,7 +45,7 @@ var hatokurandom = {};
   }
 
   function saveValue(key, value) {  //{{{2
-    return $.cookie(key, value);
+    return $.cookie(key, JSON.stringify(value));
   }
 
   function deleteValue(key) {  //{{{2
@@ -2523,7 +2523,7 @@ var hatokurandom = {};
 
   H.save_option = function (key, value) {  //{{{2
     H.options[key] = value;
-    saveValue(key, JSON.stringify(value), {expires: 365});
+    saveValue(key, value, {expires: 365});
 
     if (H.options.include_basic == 'must_not' &&
         H.options.include_fareast == 'must_not' &&
@@ -2541,10 +2541,10 @@ var hatokurandom = {};
     var now = Date.now();
     saveValue(
       'state_before_sharing',
-      JSON.stringify({
+      {
         url: permalink,
         at: now
-      }),
+      },
       {expires: 365}
     );
   };
