@@ -41,15 +41,15 @@ var hatokurandom = {};
   }
 
   function loadValue(key) {  //{{{2
-    return JSON.parse($.cookie(key) || 'null');
+    return JSON.parse(localStorage.getItem(key) || 'null');
   }
 
   function saveValue(key, value) {  //{{{2
-    return $.cookie(key, JSON.stringify(value));
+    localStorage.setItem(key, JSON.stringify(value));
   }
 
   function deleteValue(key) {  //{{{2
-    return $.cookie(key, undefined);
+    localStorage.removeItem(key);
   }
 
   // Constants  //{{{1
