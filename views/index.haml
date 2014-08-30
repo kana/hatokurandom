@@ -365,7 +365,10 @@
             -# #page_list_item_template
       %ul#page_list_item_template
         %li
-          %a(href='\#{{pid}}') {{title}}
+          %a(href='\#{{pid}}')
+            %span.title {{title}}
+            %span.excerpt {{excerpt}}
+            .at {{at}}
       #card_list_template
         %div{as_content}
           %ul.card_list{as_listview, data: {divider_theme: 'd'}}
