@@ -58,10 +58,12 @@
   });
   describe('child_page_hints_from_pid', function () {
     var f = H.child_page_hints_from_pid;
-    it('should return child pids from a given pid', function () {
+    it('should return child page hints from a given pid', function () {
       var pid = 'supplies:basic';
-      var child_pids = H.PID_TO_CHILD_PAGE_HINTS_TABLE[pid];
-      expect(f(pid)).toBe(child_pids);
+      var hints = f(pid);
+      expect(hints.length).toBeGreaterThan(0);
+      expect(hints[0].pid).not.toBeUndefined();
+      expect(hints[0].title).not.toBeUndefined();
     });
     it('should raise error if a given pid is not valid', function () {
       expect(function () {f('supplies:basic');}).not.toThrow();

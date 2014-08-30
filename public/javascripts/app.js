@@ -1624,7 +1624,15 @@ var hatokurandom = {};
     var maybeHints = H.PID_TO_CHILD_PAGE_HINTS_TABLE[pid];
     if (maybeHints === undefined)
       throw new H.KeyError('PID', pid);
-    return typeof maybeHints == 'function' ? maybeHints() : maybeHints;
+    var xhints = typeof maybeHints == 'function' ? maybeHints() : maybeHints;
+    return xhints.map(function (xh) {
+      var child_pid = xh;
+      var child_meta = H.meta_from_pid(child_pid);
+      return {
+        pid: child_pid,
+        title: child_meta.title
+      };
+    });
   };
 
   H.choose_available_cards = function (given_cards, options) {  //{{{2
@@ -2431,12 +2439,8 @@ var hatokurandom = {};
     var $content = H.render('page_list_template');
     var $page_list = $content.find('.page_list');
     for (var i in child_page_hints) {
-      var child_pid = child_page_hints[i];
-      var child_meta = H.meta_from_pid(child_pid);
-      $page_list.append(H.render('page_list_item_template', {
-        pid: child_pid,
-        title: child_meta.title
-      }));
+      var h = child_page_hints[i];
+      $page_list.append(H.render('page_list_item_template', h));
     }
 
     var $page = $('#' + apid);
