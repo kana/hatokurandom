@@ -2485,13 +2485,28 @@ var hatokurandom = {};
     var pid = H.pid_from_purl(purl);
     var sid = H.sid_from_pid(pid);
     var recorded_supplies = load_value('recorded_supplies') || [];
+    var now = Date.now();
 
-    recorded_supplies.unshift({sid: sid, at: Date.now()});
+    recorded_supplies.unshift({sid: sid, at: now});
     var LIMIT = 100;
     while (LIMIT < recorded_supplies.length)
       recorded_supplies.pop();
 
     save_value('recorded_supplies', recorded_supplies);
+
+    if (H.is_running_in_standalone_mode()) {
+      // For some reason, iOS Safari in standalone mode fails to record log.
+      // I guess that it is a problem of timing; it takes a short time to
+      // persist a value given to localStorage.setItem, but another app will be
+      // opened before the persisting finishes.
+      //
+      // So a short "sleep" is used as a temporary fix for this problem.
+      // TODO: But this "sleep" is crappy and wastes resources.
+      //       It should be replaced with a more elegant solution.
+      var DELAY = 500;
+      while (Date.now() - now < DELAY) {
+      }
+    }
   };
 
   H.redirect_to_new_url_from_iui_era_url_if_necessary = function () {  //{{{2
