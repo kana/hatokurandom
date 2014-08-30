@@ -1621,10 +1621,10 @@ var hatokurandom = {};
   };
 
   H.child_pids_from_pid = function (pid) {  //{{{2
-    var child_pids = H.PID_TO_CHILD_PAGE_HINTS_TABLE[pid];
-    if (child_pids === undefined)
+    var maybeHints = H.PID_TO_CHILD_PAGE_HINTS_TABLE[pid];
+    if (maybeHints === undefined)
       throw new H.KeyError('PID', pid);
-    return typeof child_pids == 'function' ? child_pids() : child_pids;
+    return typeof maybeHints == 'function' ? maybeHints() : maybeHints;
   };
 
   H.choose_available_cards = function (given_cards, options) {  //{{{2
