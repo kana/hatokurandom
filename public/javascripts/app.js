@@ -21,6 +21,10 @@ var hatokurandom = {};
   //   'C' = common
   //   'R' = rare
   //   undefined = unknown
+  //
+  // url: URL string
+  // href: URL string (the same as "url")
+  // purl: Parsed URL, returned by $m.path.parseUrl
 
   // Fundamental tools  //{{{1
   function delay(expressionAsFunction) {  //{{{2
