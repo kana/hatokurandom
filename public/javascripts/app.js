@@ -1046,7 +1046,23 @@ var hatokurandom = {};
     'supplies:log': function () {  //{{{
       var recorded_supplies = load_value('recorded_supplies') || [];
       return recorded_supplies.map(function (entry) {
-        return 'supply:' + entry.sid;
+        var is_rsid = H.is_rsid(entry.sid)
+        var pid = 'supply:' + entry.sid;
+        var at = new Date(entry.at);
+        var excerpt;
+        if (is_rsid) {
+          excerpt =
+            H.xcards_from_rsid(entry.sid)
+            .map(function (c) {return c.name[0];})
+            .toString()
+            .replace(/,/g, ' ');
+        }
+        return {
+          pid: pid,
+          title: is_rsid ? 'ランダム' : H.meta_from_pid(pid).title,
+          excerpt: excerpt,
+          at: at.toLocaleString()
+        }
       });
     },  //}}}
     'supplies:basic': [  //{{{
