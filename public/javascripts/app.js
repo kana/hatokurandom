@@ -2436,6 +2436,20 @@ var hatokurandom = {};
     return $page;
   };
 
+  H.record_supply = function (supply_permalink) {  //{{{2
+    var purl = $m.path.parseUrl(supply_permalink);
+    var pid = H.pid_from_purl(purl);
+    var sid = H.sid_from_pid(pid);
+    var recorded_supplies = load_value('recorded_supplies') || [];
+
+    recorded_supplies.unshift({sid: sid, at: Date.now()});
+    var LIMIT = 100;
+    while (LIMIT < recorded_supplies.length)
+      recorded_supplies.pop();
+
+    save_value('recorded_supplies', recorded_supplies);
+  };
+
   H.redirect_to_new_url_from_iui_era_url_if_necessary = function () {  //{{{2
     var purl = $m.path.parseUrl(location.href);
     var pid = H.pid_from_purl(purl);
