@@ -1026,6 +1026,7 @@ var hatokurandom = {};
   H.PID_TO_CHILD_PIDS_TABLE = {  //{{{2
     'home': [  //{{{
       'supplies:random',
+      'supplies:log',
       'supplies:basic',
       'supplies:fareast',
       'supplies:championship1',
@@ -1041,6 +1042,9 @@ var hatokurandom = {};
       'supply:random12',
       'supply:random13',
       'supply:random14'
+    ],  //}}}
+    'supplies:log': [  //{{{
+      // TODO: Impelement.
     ],  //}}}
     'supplies:basic': [  //{{{
       'supply:basic-firstplay',
@@ -1192,6 +1196,9 @@ var hatokurandom = {};
     },  //}}}
     'supply:random14': {  //{{{
       title: 'ランダムに14枚選択'
+    },  //}}}
+    'supplies:log': {  //{{{
+      title: '最近共有したサプライ'
     },  //}}}
     'supplies:basic': {  //{{{
       title: '推奨サプライ(基本セット)'
