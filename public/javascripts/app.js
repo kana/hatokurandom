@@ -1626,12 +1626,16 @@ var hatokurandom = {};
       throw new H.KeyError('PID', pid);
     var xhints = typeof maybeHints == 'function' ? maybeHints() : maybeHints;
     return xhints.map(function (xh) {
-      var child_pid = xh;
-      var child_meta = H.meta_from_pid(child_pid);
-      return {
-        pid: child_pid,
-        title: child_meta.title
-      };
+      if (typeof xh == 'string') {
+        var child_pid = xh;
+        var child_meta = H.meta_from_pid(child_pid);
+        return {
+          pid: child_pid,
+          title: child_meta.title
+        };
+      } else {
+        return xh;
+      }
     });
   };
 
