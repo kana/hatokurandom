@@ -1,7 +1,7 @@
 var hatokurandom = {};
 
 (function (H, $, $m) {
-  // Naming convensions  //{{{1
+  // Naming convension  //{{{1
   //
   // cid: Card ID
   // eid: Expansion ID
@@ -21,6 +21,10 @@ var hatokurandom = {};
   //   'C' = common
   //   'R' = rare
   //   undefined = unknown
+  //
+  // url: URL string
+  // href: URL string (the same as "url")
+  // purl: Parsed URL, returned by $m.path.parseUrl
 
   // Fundamental tools  //{{{1
   function delay(expressionAsFunction) {  //{{{2
@@ -1814,8 +1818,8 @@ var hatokurandom = {};
   };
 
   H.is_dynamic_page_url = function (location_href) {  //{{{2
-    var url = $m.path.parseUrl(location_href);
-    var pid = H.pid_from_url(url);
+    var purl = $m.path.parseUrl(location_href);
+    var pid = H.pid_from_purl(purl);
     var apid = H.apid_from_pid(pid);
     return pid != apid;
   };
@@ -1922,9 +1926,9 @@ var hatokurandom = {};
     };
   };
 
-  H.pid_from_url = function (url) {  //{{{2
+  H.pid_from_purl = function (purl) {  //{{{2
     // jQuery Mobile omits the fragment of a url for the home page.
-    var pid = url.hash.substring(1);
+    var pid = purl.hash.substring(1);
     return pid === '' ? 'home' : pid;
   };
 
@@ -2093,8 +2097,8 @@ var hatokurandom = {};
     //
     // NB: This workaround may not work for future versions of jQuery Mobile.
     if (H.is_dynamic_page_url(location.href)) {
-      var url = $m.path.parseUrl(location.href);
-      var pid = H.pid_from_url(url);
+      var purl = $m.path.parseUrl(location.href);
+      var pid = H.pid_from_purl(purl);
       var apid = H.apid_from_pid(pid);
       var $dummy_page = $('#' + apid).clone().attr('id', pid);
       $('body').append($dummy_page);
@@ -2373,8 +2377,8 @@ var hatokurandom = {};
     // For some reason, jQuery Mobile use the <title> element rather than the
     // data-title of a page if the page is deeply linked or the page is
     // reloaded.  So that we have to force using the title of the visited page.
-    var url = $m.path.parseUrl(location.href);
-    var pid = H.pid_from_url(url);
+    var purl = $m.path.parseUrl(location.href);
+    var pid = H.pid_from_purl(purl);
     var meta = H.meta_from_pid(pid);
     document.title = meta.title;
   };
@@ -2431,13 +2435,11 @@ var hatokurandom = {};
   };
 
   H.redirect_to_new_url_from_iui_era_url_if_necessary = function () {  //{{{2
-    var url = $m.path.parseUrl(location.href);
-    var pid = H.pid_from_url(url);
+    var purl = $m.path.parseUrl(location.href);
+    var pid = H.pid_from_purl(purl);
     var new_pid = H.migrate_from_version_1(pid);
-    if (new_pid) {
-      var base_uri = $m.path.parseUrl(location.href).hrefNoHash;
-      location.replace(base_uri + '#' + new_pid);
-    }
+    if (new_pid)
+      location.replace(purl.hrefNoHash + '#' + new_pid);
   };
 
   H.refresh_card_list_view = function ($card_list, xcards, sid, is_first) {  //{{{2
@@ -2630,8 +2632,8 @@ var hatokurandom = {};
       if (typeof(data.toPage) != 'string')
         return;
 
-      var url = $m.path.parseUrl(data.toPage);
-      var pid = H.pid_from_url(url);
+      var purl = $m.path.parseUrl(data.toPage);
+      var pid = H.pid_from_purl(purl);
       var apid = H.apid_from_pid(pid);
 
       H.adjust_title(pid);
