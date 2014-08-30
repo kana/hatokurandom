@@ -1621,7 +1621,7 @@ var hatokurandom = {};
     var child_pids = H.PID_TO_CHILD_PIDS_TABLE[pid];
     if (child_pids === undefined)
       throw new H.KeyError('PID', pid);
-    return child_pids;
+    return typeof child_pids == 'function' ? child_pids() : child_pids;
   };
 
   H.choose_available_cards = function (given_cards, options) {  //{{{2
