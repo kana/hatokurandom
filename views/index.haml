@@ -254,11 +254,39 @@
               ご意見・ご感想
         %ul{as_listview, as_inset}
           %li
+            %a(href='#help-sharing-supply')<
+              サプライの共有
+          %li
             %a(href='#help-offline')<
               オフラインでの利用
           %li
             %a(href='#credits')<
               バージョン情報
+
+    #help-sharing-supply{as_page}
+      %div{as_content}
+        %h1 サプライの共有
+
+        %p
+          カードセットが表示されている画面ではメニューバーの共有アイコン
+          %i.fa.fa-share-square-o
+          でサプライを共有できます。
+        %p
+          共有方法は今のところTwitterのみです。デフォルトでは
+          %a(href='https://dev.twitter.com/docs/intents' target='_blank')>
+            別ウィンドウが開かれてそこでツイートする形
+          ですが、
+          %a(href='https://about.twitter.com/products/list' target='_blank')>
+            Twitterの公式アプリ
+          でツイートする形にもできます。
+          こちらの形態が良い場合はメニューバーの設定アイコン
+          %i.fa.fa-cog
+          から設定を行ってください。
+        %p
+          また、
+          %a(href='#supplies:log')> 最近共有したサプライ
+          は記録されており、直近100件分まで後から確認することができます。
+          この記録はブラウザ側に保存されています。
 
     #help-offline{as_page}
       %div{as_content}

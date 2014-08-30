@@ -1192,6 +1192,9 @@ var hatokurandom = {};
     'about': {  //{{{
       title: 'このアプリについて'
     },  //}}}
+    'help-sharing-supply': {  //{{{
+      title: 'サプライの共有'
+    },  //}}}
     'help-offline': {  //{{{
       title: 'オフラインでの利用'
     },  //}}}
