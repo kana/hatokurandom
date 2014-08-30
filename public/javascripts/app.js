@@ -1977,7 +1977,7 @@ var hatokurandom = {};
         /{{([^{}]+)}}/g,
         function (_, key) {
           var value = _data[key];
-          return value === undefined ? '{{-' + key + '-}}' : value;
+          return value === undefined ? '' : value;
         }
       )
     );

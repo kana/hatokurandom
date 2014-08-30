@@ -908,7 +908,7 @@
     });
     it('should use dummy values if proper values are not given', function () {
       var $x = H.render('test2', {});
-      expect($x.html()).toEqual('{{-message-}}');
+      expect($x.html()).toEqual('');
     });
     it('should treat an empty string as a valid value', function () {
       var $x = H.render('test2', {message: ''});
