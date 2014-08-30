@@ -1620,7 +1620,7 @@ var hatokurandom = {};
     return card;
   };
 
-  H.child_pids_from_pid = function (pid) {  //{{{2
+  H.child_page_hints_from_pid = function (pid) {  //{{{2
     var maybeHints = H.PID_TO_CHILD_PAGE_HINTS_TABLE[pid];
     if (maybeHints === undefined)
       throw new H.KeyError('PID', pid);
@@ -2426,7 +2426,7 @@ var hatokurandom = {};
   };
 
   H.prepare_dynamic_page_content_pages = function (pid, apid) {  //{{{2
-    var child_pids = H.child_pids_from_pid(pid);
+    var child_pids = H.child_page_hints_from_pid(pid);
 
     var $content = H.render('page_list_template');
     var $page_list = $content.find('.page_list');

@@ -56,8 +56,8 @@
       expect(function () {H.card_from_cid('xxx');}).toThrow();
     });
   });
-  describe('child_pids_from_pid', function () {
-    var f = H.child_pids_from_pid;
+  describe('child_page_hints_from_pid', function () {
+    var f = H.child_page_hints_from_pid;
     it('should return child pids from a given pid', function () {
       var pid = 'supplies:basic';
       var child_pids = H.PID_TO_CHILD_PAGE_HINTS_TABLE[pid];
