@@ -56,12 +56,14 @@
       expect(function () {H.card_from_cid('xxx');}).toThrow();
     });
   });
-  describe('child_pids_from_pid', function () {
-    var f = H.child_pids_from_pid;
-    it('should return child pids from a given pid', function () {
+  describe('child_page_hints_from_pid', function () {
+    var f = H.child_page_hints_from_pid;
+    it('should return child page hints from a given pid', function () {
       var pid = 'supplies:basic';
-      var child_pids = H.PID_TO_CHILD_PIDS_TABLE[pid];
-      expect(f(pid)).toBe(child_pids);
+      var hints = f(pid);
+      expect(hints.length).toBeGreaterThan(0);
+      expect(hints[0].pid).not.toBeUndefined();
+      expect(hints[0].title).not.toBeUndefined();
     });
     it('should raise error if a given pid is not valid', function () {
       expect(function () {f('supplies:basic');}).not.toThrow();
@@ -906,7 +908,7 @@
     });
     it('should use dummy values if proper values are not given', function () {
       var $x = H.render('test2', {});
-      expect($x.html()).toEqual('{{-message-}}');
+      expect($x.html()).toEqual('');
     });
     it('should treat an empty string as a valid value', function () {
       var $x = H.render('test2', {message: ''});

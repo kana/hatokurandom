@@ -46,6 +46,8 @@
           %li
             %a(href='#supplies:random') ランダム選択
           %li
+            %a(href='#supplies:log') 最近共有したサプライ
+          %li
             %a(href='#supplies:basic') 推奨サプライ(基本セット)
           %li
             %a(href='#supplies:fareast') 推奨サプライ(極東辺境領)
@@ -252,17 +254,43 @@
               ご意見・ご感想
         %ul{as_listview, as_inset}
           %li
-            %a(href='#tips')<
-              Tips
+            %a(href='#help-sharing-supply')<
+              サプライの共有
+          %li
+            %a(href='#help-offline')<
+              オフラインでの利用
           %li
             %a(href='#credits')<
               バージョン情報
 
-    #tips{as_page}
+    #help-sharing-supply{as_page}
       %div{as_content}
-        %h1 Tips
+        %h1 サプライの共有
 
-        %h2 オフラインでの利用
+        %p
+          カードセットが表示されている画面ではメニューバーの共有アイコン
+          %i.fa.fa-share-square-o
+          でサプライを共有できます。
+        %p
+          共有方法は今のところTwitterのみです。デフォルトでは
+          %a(href='https://dev.twitter.com/docs/intents' target='_blank')>
+            別ウィンドウが開かれてそこでツイートする形
+          ですが、
+          %a(href='https://about.twitter.com/products/list' target='_blank')>
+            Twitterの公式アプリ
+          でツイートする形にもできます。
+          こちらの形態が良い場合はメニューバーの設定アイコン
+          %i.fa.fa-cog
+          から設定を行ってください。
+        %p
+          また、
+          %a(href='#supplies:log')> 最近共有したサプライ
+          は記録されており、直近100件分まで後から確認することができます。
+          この記録はブラウザ側に保存されています。
+
+    #help-offline{as_page}
+      %div{as_content}
+        %h1 オフラインでの利用
 
         %p
           このアプリはWebアプリではありますが、
@@ -363,7 +391,10 @@
             -# #page_list_item_template
       %ul#page_list_item_template
         %li
-          %a(href='\#{{pid}}') {{title}}
+          %a(href='\#{{pid}}')
+            %span.title {{title}}
+            %span.excerpt {{excerpt}}
+            .at {{at}}
       #card_list_template
         %div{as_content}
           %ul.card_list{as_listview, data: {divider_theme: 'd'}}

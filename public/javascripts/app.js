@@ -1023,9 +1023,10 @@ var hatokurandom = {};
     '_random-14': 'supply:random14'
   };
 
-  H.PID_TO_CHILD_PIDS_TABLE = {  //{{{2
+  H.PID_TO_CHILD_PAGE_HINTS_TABLE = {  //{{{2
     'home': [  //{{{
       'supplies:random',
+      'supplies:log',
       'supplies:basic',
       'supplies:fareast',
       'supplies:championship1',
@@ -1042,6 +1043,35 @@ var hatokurandom = {};
       'supply:random13',
       'supply:random14'
     ],  //}}}
+    'supplies:log': function () {  //{{{
+      var recorded_supplies = load_value('recorded_supplies');
+      if (recorded_supplies) {
+        return recorded_supplies.map(function (entry) {
+          var is_rsid = H.is_rsid(entry.sid)
+          var pid = 'supply:' + entry.sid;
+          var at = new Date(entry.at);
+          var excerpt;
+          if (is_rsid) {
+            excerpt =
+              H.xcards_from_rsid(entry.sid)
+              .map(function (c) {return c.name[0];})
+              .toString()
+              .replace(/,/g, ' ');
+          }
+          return {
+            pid: pid,
+            title: is_rsid ? 'ランダム' : H.meta_from_pid(pid).title,
+            excerpt: excerpt,
+            at: at.toLocaleString()
+          }
+        });
+      } else {
+        return [{
+          pid: 'help-sharing-supply',
+          title: 'サプライの共有について'
+        }];
+      }
+    },  //}}}
     'supplies:basic': [  //{{{
       'supply:basic-firstplay',
       'supply:basic-guide',
@@ -1169,8 +1199,11 @@ var hatokurandom = {};
     'about': {  //{{{
       title: 'このアプリについて'
     },  //}}}
-    'tips': {  //{{{
-      title: 'Tips'
+    'help-sharing-supply': {  //{{{
+      title: 'サプライの共有'
+    },  //}}}
+    'help-offline': {  //{{{
+      title: 'オフラインでの利用'
     },  //}}}
     'credits': {  //{{{
       title: 'バージョン情報'
@@ -1192,6 +1225,9 @@ var hatokurandom = {};
     },  //}}}
     'supply:random14': {  //{{{
       title: 'ランダムに14枚選択'
+    },  //}}}
+    'supplies:log': {  //{{{
+      title: '最近共有したサプライ'
     },  //}}}
     'supplies:basic': {  //{{{
       title: '推奨サプライ(基本セット)'
@@ -1610,11 +1646,23 @@ var hatokurandom = {};
     return card;
   };
 
-  H.child_pids_from_pid = function (pid) {  //{{{2
-    var child_pids = H.PID_TO_CHILD_PIDS_TABLE[pid];
-    if (child_pids === undefined)
+  H.child_page_hints_from_pid = function (pid) {  //{{{2
+    var maybeHints = H.PID_TO_CHILD_PAGE_HINTS_TABLE[pid];
+    if (maybeHints === undefined)
       throw new H.KeyError('PID', pid);
-    return child_pids;
+    var xhints = typeof maybeHints == 'function' ? maybeHints() : maybeHints;
+    return xhints.map(function (xh) {
+      if (typeof xh == 'string') {
+        var child_pid = xh;
+        var child_meta = H.meta_from_pid(child_pid);
+        return {
+          pid: child_pid,
+          title: child_meta.title
+        };
+      } else {
+        return xh;
+      }
+    });
   };
 
   H.choose_available_cards = function (given_cards, options) {  //{{{2
@@ -1939,7 +1987,7 @@ var hatokurandom = {};
         /{{([^{}]+)}}/g,
         function (_, key) {
           var value = _data[key];
-          return value === undefined ? '{{-' + key + '-}}' : value;
+          return value === undefined ? '' : value;
         }
       )
     );
@@ -2321,6 +2369,8 @@ var hatokurandom = {};
 
       $(this).attr('href', link_to_share_permalink);
       H.save_state_before_sharing_if_necessary(permalink);
+      if (!is_reference_page)
+        H.record_supply(permalink);
       return;  // Let the browser opens the adjusted href.
     });
   };
@@ -2414,17 +2464,13 @@ var hatokurandom = {};
   };
 
   H.prepare_dynamic_page_content_pages = function (pid, apid) {  //{{{2
-    var child_pids = H.child_pids_from_pid(pid);
+    var child_page_hints = H.child_page_hints_from_pid(pid);
 
     var $content = H.render('page_list_template');
     var $page_list = $content.find('.page_list');
-    for (var i in child_pids) {
-      var child_pid = child_pids[i];
-      var child_meta = H.meta_from_pid(child_pid);
-      $page_list.append(H.render('page_list_item_template', {
-        pid: child_pid,
-        title: child_meta.title
-      }));
+    for (var i in child_page_hints) {
+      var h = child_page_hints[i];
+      $page_list.append(H.render('page_list_item_template', h));
     }
 
     var $page = $('#' + apid);
@@ -2432,6 +2478,20 @@ var hatokurandom = {};
     $page.empty().append($content);
 
     return $page;
+  };
+
+  H.record_supply = function (supply_permalink) {  //{{{2
+    var purl = $m.path.parseUrl(supply_permalink);
+    var pid = H.pid_from_purl(purl);
+    var sid = H.sid_from_pid(pid);
+    var recorded_supplies = load_value('recorded_supplies') || [];
+
+    recorded_supplies.unshift({sid: sid, at: Date.now()});
+    var LIMIT = 100;
+    while (LIMIT < recorded_supplies.length)
+      recorded_supplies.pop();
+
+    save_value('recorded_supplies', recorded_supplies);
   };
 
   H.redirect_to_new_url_from_iui_era_url_if_necessary = function () {  //{{{2
