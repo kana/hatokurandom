@@ -2426,12 +2426,12 @@ var hatokurandom = {};
   };
 
   H.prepare_dynamic_page_content_pages = function (pid, apid) {  //{{{2
-    var child_pids = H.child_page_hints_from_pid(pid);
+    var child_page_hints = H.child_page_hints_from_pid(pid);
 
     var $content = H.render('page_list_template');
     var $page_list = $content.find('.page_list');
-    for (var i in child_pids) {
-      var child_pid = child_pids[i];
+    for (var i in child_page_hints) {
+      var child_pid = child_page_hints[i];
       var child_meta = H.meta_from_pid(child_pid);
       $page_list.append(H.render('page_list_item_template', {
         pid: child_pid,
