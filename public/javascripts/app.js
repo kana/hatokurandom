@@ -1,7 +1,7 @@
 var hatokurandom = {};
 
 (function (H, $, $m) {
-  // Naming convensions  //{{{1
+  // Naming convension  //{{{1
   //
   // cid: Card ID
   // eid: Expansion ID
