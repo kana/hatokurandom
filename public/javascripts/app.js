@@ -1044,26 +1044,33 @@ var hatokurandom = {};
       'supply:random14'
     ],  //}}}
     'supplies:log': function () {  //{{{
-      var recorded_supplies = load_value('recorded_supplies') || [];
-      return recorded_supplies.map(function (entry) {
-        var is_rsid = H.is_rsid(entry.sid)
-        var pid = 'supply:' + entry.sid;
-        var at = new Date(entry.at);
-        var excerpt;
-        if (is_rsid) {
-          excerpt =
-            H.xcards_from_rsid(entry.sid)
-            .map(function (c) {return c.name[0];})
-            .toString()
-            .replace(/,/g, ' ');
-        }
-        return {
-          pid: pid,
-          title: is_rsid ? 'ランダム' : H.meta_from_pid(pid).title,
-          excerpt: excerpt,
-          at: at.toLocaleString()
-        }
-      });
+      var recorded_supplies = load_value('recorded_supplies');
+      if (recorded_supplies) {
+        return recorded_supplies.map(function (entry) {
+          var is_rsid = H.is_rsid(entry.sid)
+          var pid = 'supply:' + entry.sid;
+          var at = new Date(entry.at);
+          var excerpt;
+          if (is_rsid) {
+            excerpt =
+              H.xcards_from_rsid(entry.sid)
+              .map(function (c) {return c.name[0];})
+              .toString()
+              .replace(/,/g, ' ');
+          }
+          return {
+            pid: pid,
+            title: is_rsid ? 'ランダム' : H.meta_from_pid(pid).title,
+            excerpt: excerpt,
+            at: at.toLocaleString()
+          }
+        });
+      } else {
+        return [{
+          pid: 'help-sharing-supply',
+          title: 'サプライの共有について'
+        }];
+      }
     },  //}}}
     'supplies:basic': [  //{{{
       'supply:basic-firstplay',
