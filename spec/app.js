@@ -870,21 +870,21 @@
       });
     });
   });
-  describe('pid_from_url', function () {
+  describe('pid_from_purl', function () {
     it('should return pid from a url object', function () {
-      expect(H.pid_from_url($.mobile.path.parseUrl('/#home')))
+      expect(H.pid_from_purl($.mobile.path.parseUrl('/#home')))
         .toEqual('home');
-      expect(H.pid_from_url($.mobile.path.parseUrl('/#supplies:basic')))
+      expect(H.pid_from_purl($.mobile.path.parseUrl('/#supplies:basic')))
         .toEqual('supplies:basic');
     });
     it('should return pid of the home from url without fragment', function () {
-      expect(H.pid_from_url($.mobile.path.parseUrl('/')))
+      expect(H.pid_from_purl($.mobile.path.parseUrl('/')))
         .toEqual('home');
     });
     it('should reject any non-url object, especially a string', function () {
-      expect(function () {H.pid_from_url($.mobile.path.parseUrl('/#home'));})
+      expect(function () {H.pid_from_purl($.mobile.path.parseUrl('/#home'));})
         .not.toThrow();
-      expect(function () {H.pid_from_url('/#home');})
+      expect(function () {H.pid_from_purl('/#home');})
         .toThrow();
     });
   });
