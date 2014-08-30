@@ -60,7 +60,7 @@
     var f = H.child_pids_from_pid;
     it('should return child pids from a given pid', function () {
       var pid = 'supplies:basic';
-      var child_pids = H.PID_TO_CHILD_PIDS_TABLE[pid];
+      var child_pids = H.PID_TO_CHILD_PAGE_HINTS_TABLE[pid];
       expect(f(pid)).toBe(child_pids);
     });
     it('should raise error if a given pid is not valid', function () {

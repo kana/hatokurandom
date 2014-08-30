@@ -1023,7 +1023,7 @@ var hatokurandom = {};
     '_random-14': 'supply:random14'
   };
 
-  H.PID_TO_CHILD_PIDS_TABLE = {  //{{{2
+  H.PID_TO_CHILD_PAGE_HINTS_TABLE = {  //{{{2
     'home': [  //{{{
       'supplies:random',
       'supplies:log',
@@ -1621,7 +1621,7 @@ var hatokurandom = {};
   };
 
   H.child_pids_from_pid = function (pid) {  //{{{2
-    var child_pids = H.PID_TO_CHILD_PIDS_TABLE[pid];
+    var child_pids = H.PID_TO_CHILD_PAGE_HINTS_TABLE[pid];
     if (child_pids === undefined)
       throw new H.KeyError('PID', pid);
     return typeof child_pids == 'function' ? child_pids() : child_pids;
