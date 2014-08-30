@@ -1192,8 +1192,8 @@ var hatokurandom = {};
     'about': {  //{{{
       title: 'このアプリについて'
     },  //}}}
-    'tips': {  //{{{
-      title: 'Tips'
+    'help-offline': {  //{{{
+      title: 'オフラインでの利用'
     },  //}}}
     'credits': {  //{{{
       title: 'バージョン情報'
