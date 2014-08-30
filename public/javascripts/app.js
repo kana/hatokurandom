@@ -1043,9 +1043,12 @@ var hatokurandom = {};
       'supply:random13',
       'supply:random14'
     ],  //}}}
-    'supplies:log': [  //{{{
-      // TODO: Impelement.
-    ],  //}}}
+    'supplies:log': function () {  //{{{
+      var recorded_supplies = load_value('recorded_supplies') || [];
+      return recorded_supplies.map(function (entry) {
+        return 'supply:' + entry.sid;
+      });
+    },  //}}}
     'supplies:basic': [  //{{{
       'supply:basic-firstplay',
       'supply:basic-guide',
