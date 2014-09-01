@@ -1062,7 +1062,7 @@ var hatokurandom = {};
             pid: pid,
             title: is_rsid ? 'ランダム' : H.meta_from_pid(pid).title,
             excerpt: excerpt,
-            at: at.toLocaleString()
+            at: H.format_log_datetime(at)
           }
         });
       } else {
