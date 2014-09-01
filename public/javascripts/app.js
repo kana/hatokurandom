@@ -2498,7 +2498,7 @@ var hatokurandom = {};
   H.prepare_dynamic_page_content_pages = function (pid, apid) {  //{{{2
     var child_page_hints = H.child_page_hints_from_pid(pid);
 
-    var $content = H.render('page_list_template');
+    var $content = H.render('page_list_template', {pid: pid});
     var $page_list = $content.find('.page_list');
     for (var i in child_page_hints) {
       var h = child_page_hints[i];

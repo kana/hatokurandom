@@ -386,7 +386,7 @@
 
     #templates.internal
       #page_list_template
-        %div{as_content}
+        %div{as_content, {data: {pid: '{{pid}}'}}}
           %ul.page_list{as_listview}
             -# #page_list_item_template
       %ul#page_list_item_template
