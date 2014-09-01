@@ -1062,7 +1062,7 @@ var hatokurandom = {};
             pid: pid,
             title: is_rsid ? 'ランダム' : H.meta_from_pid(pid).title,
             excerpt: excerpt,
-            at: at.toLocaleString()
+            at: H.format_log_datetime(at)
           }
         });
       } else {
@@ -1837,6 +1837,16 @@ var hatokurandom = {};
     ).join('');
   };
 
+  H.format_log_datetime = function (datetime) {  //{{{2
+    var yyyy = H.pad(datetime.getFullYear().toString(), 4);
+    var mm = H.pad((datetime.getMonth() + 1).toString(), 2);
+    var dd = H.pad(datetime.getDate().toString(), 2);
+    var HH = H.pad(datetime.getHours().toString(), 2);
+    var MM = H.pad(datetime.getMinutes().toString(), 2);
+    var SS = H.pad(datetime.getSeconds().toString(), 2);
+    return yyyy + '-' + mm + '-' + dd + ' ' + HH + ':' + MM + ':' + SS;
+  };
+
   H.is_banned_card = function (card) {  //{{{2
     return card.name == '埋もれた財宝' ||
       card.name == '買収工作' ||
@@ -1946,6 +1956,13 @@ var hatokurandom = {};
       return 0;
     });
     return _xs;
+  };
+
+  H.pad = function (number_string, width) {  //{{{2
+    var s = number_string;
+    while (s.length < width)
+      s = '0' + s;
+    return s;
   };
 
   H.parse_dsid = function (sid) {  //{{{2

@@ -650,6 +650,14 @@
       expect(function () {H.encode_base64([0x40]);}).toThrow();
     });
   });
+  describe('format_log_datetime', function () {
+    it('returns a neat string', function () {
+      var at1 = new Date('2014-09-08T07:06:05+09:00');
+      expect(H.format_log_datetime(at1)).toEqual('2014-09-08 07:06:05');
+      var at2 = new Date('2014-12-11T10:11:12+09:00');
+      expect(H.format_log_datetime(at2)).toEqual('2014-12-11 10:11:12');
+    });
+  });
   describe('is_banned_card', function () {
     var f = function (n) {return H.is_banned_card(H.card_from_card_name(n));};
     it('should return true for banned cards', function () {
@@ -818,6 +826,16 @@
           function (x) {return x.car;}
         )
       ).not.toBe(xs);
+    });
+  });
+  describe('pad', function () {
+    it('does nothing for long string', function () {
+      expect(H.pad('123', 2)).toEqual('123');
+      expect(H.pad('123', 3)).toEqual('123');
+    });
+    it('prepends 0s for short string', function () {
+      expect(H.pad('123', 4)).toEqual('0123');
+      expect(H.pad('123', 5)).toEqual('00123');
     });
   });
   describe('parse_dsid', function () {
