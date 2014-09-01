@@ -2590,8 +2590,10 @@ var hatokurandom = {};
     var RESTORABLE_PERIOD_IN_MILLISECONDS = 5 * 60 * 1000;
 
     if (v.at === undefined ||
-        RESTORABLE_PERIOD_IN_MILLISECONDS < Date.now() - v.at.valueOf())
+        RESTORABLE_PERIOD_IN_MILLISECONDS < Date.now() - v.at.valueOf()) {
       delete_value('state_before_sharing');
+      return;
+    }
 
     // Use only hash to avoid reloading page.  Because the base URL of a saved
     // permalink is not the same as the base URL of the currently running app.
