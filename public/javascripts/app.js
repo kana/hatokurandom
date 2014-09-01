@@ -1047,12 +1047,11 @@ var hatokurandom = {};
       var recorded_supplies = load_value('recorded_supplies');
       if (recorded_supplies) {
         return recorded_supplies.map(function (entry) {
-          var is_rsid = H.is_rsid(entry.sid)
           var pid = 'supply:' + entry.sid;
           var at = new Date(entry.at);
           return {
             pid: pid,
-            title: is_rsid ? 'ランダム' : H.meta_from_pid(pid).title,
+            title: H.is_rsid(entry.sid) ? 'ランダム' : H.meta_from_pid(pid).title,
             excerpt: H.excerpt_from_sid(entry.sid),
             at: H.format_log_datetime(at)
           }
