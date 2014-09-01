@@ -1047,22 +1047,12 @@ var hatokurandom = {};
       var recorded_supplies = load_value('recorded_supplies');
       if (recorded_supplies) {
         return recorded_supplies.map(function (entry) {
-          var is_rsid = H.is_rsid(entry.sid)
           var pid = 'supply:' + entry.sid;
-          var at = new Date(entry.at);
-          var excerpt;
-          if (is_rsid) {
-            excerpt =
-              H.xcards_from_rsid(entry.sid)
-              .map(function (c) {return c.name[0];})
-              .toString()
-              .replace(/,/g, ' ');
-          }
           return {
             pid: pid,
-            title: is_rsid ? 'ランダム' : H.meta_from_pid(pid).title,
-            excerpt: excerpt,
-            at: H.format_log_datetime(at)
+            title: H.is_rsid(entry.sid) ? 'ランダム' : H.meta_from_pid(pid).title,
+            excerpt: H.excerpt_from_sid(entry.sid),
+            at: H.format_log_datetime(new Date(entry.at))
           }
         });
       } else {
@@ -1836,6 +1826,31 @@ var hatokurandom = {};
       }
     ).join('');
   };
+
+  H.excerpt_from_sid = function (sid) {  //{{{2
+    if (H.is_rsid(sid)) {
+      return H.xcards_from_rsid(sid)
+        .map(function (c) {return c.name[0];})
+        .join(' ');
+    } else {
+      var parent_pid = pid_to_parent_pid_table_promise()['supply:' + sid];
+      var meta = H.meta_from_pid(parent_pid);
+      return meta.title.replace(/^推奨サプライ\((.*)\)$/, '$1');
+    }
+  };
+
+  pid_to_parent_pid_table_promise = delay(function () {
+    var t = {};
+    for (var pid in H.PID_TO_CHILD_PAGE_HINTS_TABLE) {
+      var hints = H.PID_TO_CHILD_PAGE_HINTS_TABLE[pid];
+      for (var i = 0; i < hints.length; i++) {
+        var hint = hints[i];
+        if (typeof hint == 'string')
+          t[hint] = pid;
+      }
+    }
+    return t;
+  });
 
   H.format_log_datetime = function (datetime) {  //{{{2
     var yyyy = H.pad(datetime.getFullYear().toString(), 4);
