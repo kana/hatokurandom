@@ -1833,9 +1833,24 @@ var hatokurandom = {};
         .map(function (c) {return c.name[0];})
         .join(' ');
     } else {
-      return undefined;
+      var parent_pid = pid_to_parent_pid_table_promise()['supply:' + sid];
+      var meta = H.meta_from_pid(parent_pid);
+      return meta.title.replace(/^推奨サプライ\((.*)\)$/, '$1');
     }
   };
+
+  pid_to_parent_pid_table_promise = delay(function () {
+    var t = {};
+    for (var pid in H.PID_TO_CHILD_PAGE_HINTS_TABLE) {
+      var hints = H.PID_TO_CHILD_PAGE_HINTS_TABLE[pid];
+      for (var i = 0; i < hints.length; i++) {
+        var hint = hints[i];
+        if (typeof hint == 'string')
+          t[hint] = pid;
+      }
+    }
+    return t;
+  });
 
   H.format_log_datetime = function (datetime) {  //{{{2
     var yyyy = H.pad(datetime.getFullYear().toString(), 4);
