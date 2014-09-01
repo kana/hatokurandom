@@ -1050,17 +1050,10 @@ var hatokurandom = {};
           var is_rsid = H.is_rsid(entry.sid)
           var pid = 'supply:' + entry.sid;
           var at = new Date(entry.at);
-          var excerpt;
-          if (is_rsid) {
-            excerpt =
-              H.xcards_from_rsid(entry.sid)
-              .map(function (c) {return c.name[0];})
-              .join(' ');
-          }
           return {
             pid: pid,
             title: is_rsid ? 'ランダム' : H.meta_from_pid(pid).title,
-            excerpt: excerpt,
+            excerpt: H.excerpt_from_sid(entry.sid),
             at: H.format_log_datetime(at)
           }
         });
@@ -1834,6 +1827,16 @@ var hatokurandom = {};
         return c;
       }
     ).join('');
+  };
+
+  H.excerpt_from_sid = function (sid) {  //{{{2
+    if (H.is_rsid(sid)) {
+      return H.xcards_from_rsid(sid)
+        .map(function (c) {return c.name[0];})
+        .join(' ');
+    } else {
+      return undefined;
+    }
   };
 
   H.format_log_datetime = function (datetime) {  //{{{2
