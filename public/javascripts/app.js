@@ -2781,6 +2781,11 @@ var hatokurandom = {};
     });
   }
 
+  $(document).on('swipeleft', '[data-pid="supplies:log"] > ul > li', function (e) {  //{{{2
+    $(this).siblings().find('.delete').removeClass('enabled');
+    $(this).find('.delete').addClass('enabled');
+  });
+
   $(document).ready(function () {  //{{{2
     H.redirect_to_new_url_from_iui_era_url_if_necessary();
     H.suggest_new_uri_for_heroku_migration_if_necessary();
