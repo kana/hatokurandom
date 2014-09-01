@@ -1948,6 +1948,13 @@ var hatokurandom = {};
     return _xs;
   };
 
+  H.pad = function (number_string, width) {  //{{{2
+    var s = number_string;
+    while (s.length < width)
+      s = '0' + s;
+    return s;
+  };
+
   H.parse_dsid = function (sid) {  //{{{2
     var match;
 

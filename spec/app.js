@@ -820,6 +820,16 @@
       ).not.toBe(xs);
     });
   });
+  describe('pad', function () {
+    it('does nothing for long string', function () {
+      expect(H.pad('123', 2)).toEqual('123');
+      expect(H.pad('123', 3)).toEqual('123');
+    });
+    it('prepends 0s for short string', function () {
+      expect(H.pad('123', 4)).toEqual('0123');
+      expect(H.pad('123', 5)).toEqual('00123');
+    });
+  });
   describe('parse_dsid', function () {
     describe('with "random"', function () {
       it('should return "success" data from dsid without rsid', function () {
