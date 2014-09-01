@@ -1055,8 +1055,7 @@ var hatokurandom = {};
             excerpt =
               H.xcards_from_rsid(entry.sid)
               .map(function (c) {return c.name[0];})
-              .toString()
-              .replace(/,/g, ' ');
+              .join(' ');
           }
           return {
             pid: pid,
