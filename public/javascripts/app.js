@@ -2792,6 +2792,16 @@ var hatokurandom = {};
     $(this).find('.delete').addClass('enabled');
   });
 
+  $(document).on('click', '[data-pid="supplies:log"] > ul > li > .delete', function (e) {  //{{{2
+    var $li = $(this).parent();
+    var $ul = $li.parent();
+    H.delete_recorded_supply($li.index());
+    $li.slideUp(function () {
+      $li.remove();
+      $ul.listview('refresh');
+    });
+  });
+
   $(document).ready(function () {  //{{{2
     H.redirect_to_new_url_from_iui_era_url_if_necessary();
     H.suggest_new_uri_for_heroku_migration_if_necessary();
