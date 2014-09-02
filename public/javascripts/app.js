@@ -2793,6 +2793,10 @@ var hatokurandom = {};
     $(this).find('.delete').addClass('enabled');
   });
 
+  $(document).on('swiperight', '[data-pid="supplies:log"] > ul > li.deletable', function (e) {  //{{{2
+    $(this).siblings().andSelf().find('.delete').removeClass('enabled');
+  });
+
   $(document).on('click', '[data-pid="supplies:log"] > ul > li.deletable > .delete', function (e) {  //{{{2
     var $li = $(this).parent();
     var $ul = $li.parent();
