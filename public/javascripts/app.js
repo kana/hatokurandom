@@ -2264,6 +2264,12 @@ var hatokurandom = {};
     }
   };
 
+  H.delete_recorded_supply = function (index) {  //{{{2
+    var recorded_supplies = load_value('recorded_supplies');
+    recorded_supplies.splice(index, 1);
+    save_value('recorded_supplies', recorded_supplies);
+  };
+
   H.forward = function () {  //{{{2
     // NB: See also H.back().
     var h = $m.navigate.history;
