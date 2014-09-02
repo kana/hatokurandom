@@ -2788,12 +2788,12 @@ var hatokurandom = {};
     });
   }
 
-  $(document).on('swipeleft', '[data-pid="supplies:log"] > ul > li', function (e) {  //{{{2
+  $(document).on('swipeleft', '[data-pid="supplies:log"] > ul > li.deletable', function (e) {  //{{{2
     $(this).siblings().find('.delete').removeClass('enabled');
     $(this).find('.delete').addClass('enabled');
   });
 
-  $(document).on('click', '[data-pid="supplies:log"] > ul > li > .delete', function (e) {  //{{{2
+  $(document).on('click', '[data-pid="supplies:log"] > ul > li.deletable > .delete', function (e) {  //{{{2
     var $li = $(this).parent();
     var $ul = $li.parent();
     H.delete_recorded_supply($li.index());
