@@ -390,7 +390,7 @@
           %ul.page_list{as_listview}
             -# #page_list_item_template
       %ul#page_list_item_template
-        %li
+        %li(class='{{type}}')
           %a(href='\#{{pid}}')
             %span.title {{title}}
             %span.excerpt {{excerpt}}
