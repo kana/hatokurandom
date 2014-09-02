@@ -1045,7 +1045,7 @@ var hatokurandom = {};
     ],  //}}}
     'supplies:log': function () {  //{{{
       var recorded_supplies = load_value('recorded_supplies');
-      if (recorded_supplies) {
+      if (recorded_supplies && 1 <= recorded_supplies.length) {
         return recorded_supplies.map(function (entry) {
           var pid = 'supply:' + entry.sid;
           return {
