@@ -2799,6 +2799,8 @@ var hatokurandom = {};
     $li.slideUp(function () {
       $li.remove();
       $ul.listview('refresh');
+      if ($ul.children().length == 0)
+        location.replace(location.href);  // Refresh page to show usage link.
     });
   });
 
