@@ -1045,14 +1045,15 @@ var hatokurandom = {};
     ],  //}}}
     'supplies:log': function () {  //{{{
       var recorded_supplies = load_value('recorded_supplies');
-      if (recorded_supplies) {
+      if (recorded_supplies && 1 <= recorded_supplies.length) {
         return recorded_supplies.map(function (entry) {
           var pid = 'supply:' + entry.sid;
           return {
             pid: pid,
             title: H.is_rsid(entry.sid) ? 'ランダム' : H.meta_from_pid(pid).title,
             excerpt: H.excerpt_from_sid(entry.sid),
-            at: H.format_log_datetime(new Date(entry.at))
+            at: H.format_log_datetime(new Date(entry.at)),
+            type: 'deletable'
           }
         });
       } else {
@@ -2264,6 +2265,12 @@ var hatokurandom = {};
     }
   };
 
+  H.delete_recorded_supply = function (index) {  //{{{2
+    var recorded_supplies = load_value('recorded_supplies');
+    recorded_supplies.splice(index, 1);
+    save_value('recorded_supplies', recorded_supplies);
+  };
+
   H.forward = function () {  //{{{2
     // NB: See also H.back().
     var h = $m.navigate.history;
@@ -2498,7 +2505,7 @@ var hatokurandom = {};
   H.prepare_dynamic_page_content_pages = function (pid, apid) {  //{{{2
     var child_page_hints = H.child_page_hints_from_pid(pid);
 
-    var $content = H.render('page_list_template');
+    var $content = H.render('page_list_template', {pid: pid});
     var $page_list = $content.find('.page_list');
     for (var i in child_page_hints) {
       var h = child_page_hints[i];
@@ -2780,6 +2787,27 @@ var hatokurandom = {};
         H.forward();
     });
   }
+
+  $(document).on('swipeleft', '[data-pid="supplies:log"] > ul > li.deletable', function (e) {  //{{{2
+    $(this).siblings().find('.delete').removeClass('enabled');
+    $(this).find('.delete').addClass('enabled');
+  });
+
+  $(document).on('swiperight', '[data-pid="supplies:log"] > ul > li.deletable', function (e) {  //{{{2
+    $(this).siblings().andSelf().find('.delete').removeClass('enabled');
+  });
+
+  $(document).on('click', '[data-pid="supplies:log"] > ul > li.deletable > .delete', function (e) {  //{{{2
+    var $li = $(this).parent();
+    var $ul = $li.parent();
+    H.delete_recorded_supply($li.index());
+    $li.slideUp(function () {
+      $li.remove();
+      $ul.listview('refresh');
+      if ($ul.children().length == 0)
+        location.replace(location.href);  // Refresh page to show usage link.
+    });
+  });
 
   $(document).ready(function () {  //{{{2
     H.redirect_to_new_url_from_iui_era_url_if_necessary();
