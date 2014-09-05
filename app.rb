@@ -27,14 +27,14 @@ class App < Sinatra::Application
     js :whole, [
       '/javascripts/jquery/jquery-2.1.1.min.js',
       '/javascripts/configure-jquery-mobile.js',
-      '/javascripts/jquery-mobile/jquery.mobile-1.4.2.min.js',
+      '/javascripts/jquery-mobile/jquery.mobile-1.4.3.min.js',
       '/javascripts/app.js',
     ]
     js_compression :uglify
 
     css :whole, [
       '/stylesheets/font-awesome/css/font-awesome.min.css',
-      '/stylesheets/jquery-mobile/jquery.mobile-1.4.2.min.css',
+      '/stylesheets/jquery-mobile/jquery.mobile-1.4.3.min.css',
       '/stylesheets/app.css',
     ]
     css_compression :simple
