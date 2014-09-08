@@ -339,7 +339,7 @@ var hatokurandom = {};
       return list(function (card) {return card.subtype == subtype;});
     }
     function by_cost(cost) {
-      return list(function (card) {return card.cost == cost;});
+      return list(function (card) {return card.cost === cost;});
     }
     function by_link(count) {
       return list(function (card) {return card.link === count;});
