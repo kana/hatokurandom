@@ -336,19 +336,19 @@ var hatokurandom = {};
       return 0 <= card.types.indexOf(type);
     }
     function by_subtype(subtype) {
-      return list(function (card) {return card.subtype == subtype;});
+      return list(function (card) {return card.subtype === subtype;});
     }
     function by_cost(cost) {
-      return list(function (card) {return card.cost == cost;});
+      return list(function (card) {return card.cost === cost;});
     }
     function by_link(count) {
       return list(function (card) {return card.link === count;});
     }
     function by_expansion(eid) {
-      return list(function (card) {return card.eid == eid;});
+      return list(function (card) {return card.eid === eid;});
     }
     function by_rarity(rarity) {
-      return list(function (card) {return card.rarity == rarity;});
+      return list(function (card) {return card.rarity === rarity;});
     }
     return {
       'basic-firstplay': by_names([  //{{{
