@@ -2189,7 +2189,7 @@ var hatokurandom = {};
 
   H.adjust_title = function (pid) {  //{{{2
     var apid = H.apid_from_pid(pid);
-    var $page = $('#' + apid);
+    var $page = $('#' + apid + '[data-role="page"]');
     if ($page.length != 1)  // Seems not to be a valid page.  Skip.
       return;
 
