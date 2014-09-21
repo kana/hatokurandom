@@ -2433,7 +2433,8 @@ var hatokurandom = {};
 
   H.load_options = function (kw) {  //{{{2
     for (var key in H.DEFAULT_OPTIONS) {
-      var value = load_value(key) || H.DEFAULT_OPTIONS[key];
+      var _value = load_value(key);
+      var value = _value !== null ? _value : H.DEFAULT_OPTIONS[key];
 
       H.options[key] = value;
 
