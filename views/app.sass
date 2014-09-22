@@ -153,11 +153,6 @@ $unknown-color: #ddd
   color: #666
 
 // #configure  {{{1
-// Not to be overlaid by #header  {{{2
-
-#configure
-  z-index: 2000
-
 // Headings and blocks  {{{2
 
 #configure h2
@@ -290,6 +285,12 @@ $unknown-color: #ddd
 .page_list .at
   font-size: 80%
   color: #999
+
+// Dialogs  {{{1
+// Not to be overlaid by #header  {{{2
+
+[data-dialog='true'], [data-role='dialog']
+  z-index: 2000
 
 // __END__  {{{1
 // vim: foldmethod=marker
