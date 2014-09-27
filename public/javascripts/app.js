@@ -2623,7 +2623,7 @@ var hatokurandom = {};
     }
     $select.val(H.options.must_exclude_cards);
     $select.prepend($select.find(':selected'));
-    $select.selectmenu('refresh', true);
+    $select.selectmenu('refresh');
   }
 
   H.reset_options = function () {  //{{{2
