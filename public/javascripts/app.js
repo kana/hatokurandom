@@ -1663,7 +1663,7 @@ var hatokurandom = {};
       if (available)
         return cs;
       else
-        return $.grep(cs, function (c) {return c.eid != eid;});
+        return cs.filter(function (c) {return c.eid != eid;});
     };
 
     if (options.exclude_banned_cards)
@@ -2648,6 +2648,14 @@ var hatokurandom = {};
     $select.prepend($select.find(':selected'));
 
     $select.selectmenu('refresh');
+
+    // Unfortunately, jQuery Mobile's selectmenu widget does not provide a way
+    // to customize the theme of the subdialog.
+    $('#must_exclude_cards-menu')
+      .parents('[data-role="dialog"]')
+      .find('[data-role="header"]')
+      .removeClass('ui-bar-inherit')
+      .addClass('ui-bar-b');
   }
 
   H.reset_options = function () {  //{{{2
