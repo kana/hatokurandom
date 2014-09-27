@@ -2633,12 +2633,20 @@ var hatokurandom = {};
     var $select = $('#must_exclude_cards');
     $select.empty();
     $select.append($('<option>').text('（未設定）'));
-    for (var i = 0; i < H.COMMON_CARDS.length; i++) {
-      var c = H.COMMON_CARDS[i];
-      $select.append($('<option>').attr('value', c.cid).text(c.name));
-    }
+
+    H.group_by(H.COMMON_CARDS, function (c) {return c.eid;})
+    .forEach(function (cg) {
+      var $optgroup =
+        $('<optgroup>').attr('label', H.EID_TO_EXPANSION_TABLE[cg.key].name);
+      cg.forEach(function (c) {
+        $optgroup.append($('<option>').attr('value', c.cid).text(c.name));
+      });
+      $select.append($optgroup);
+    });
+
     $select.val(H.options.must_exclude_cards);
     $select.prepend($select.find(':selected'));
+
     $select.selectmenu('refresh');
   }
 
