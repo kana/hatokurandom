@@ -1668,6 +1668,12 @@ var hatokurandom = {};
 
     if (options.exclude_banned_cards)
       cs = cs.filter(H.not(H.is_banned_card));
+    if (1 <= options.must_exclude_cards.length) {
+      var d = {};
+      for (var i = 0; i < options.must_exclude_cards.length; i++)
+        d[options.must_exclude_cards[i]] = true;
+      cs = cs.filter(function (c) {return !d[c.cid];});
+    }
     // cs = cs.filter(function (c) {return !c.imperfect;});  // For preview.
     cs = filter_by_eid(cs, options.include_basic != 'must_not', H.EID_BASIC);
     cs = filter_by_eid(cs, options.include_fareast != 'must_not', H.EID_FAREAST);
