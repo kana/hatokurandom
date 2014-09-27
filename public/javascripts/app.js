@@ -2814,6 +2814,18 @@ var hatokurandom = {};
     });
   });
 
+  $(document).on('selectmenucreate', '#must_exclude_cards', function (e) {  //{{{2
+    var $select = $('#must_exclude_cards');
+    $select.empty();
+    $select.append($('<option>').text('（未設定）'));
+    for (var i = 0; i < H.COMMON_CARDS.length; i++) {
+      var c = H.COMMON_CARDS[i];
+      $select.append($('<option>').attr('value', c.cid).text(c.name));
+    }
+    $select.val(H.options.must_exclude_cards);
+    $select.selectmenu('refresh');
+  });
+
   $(document).ready(function () {  //{{{2
     H.redirect_to_new_url_from_iui_era_url_if_necessary();
     H.suggest_new_uri_for_heroku_migration_if_necessary();
