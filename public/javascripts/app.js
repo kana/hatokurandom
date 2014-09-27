@@ -2830,6 +2830,13 @@ var hatokurandom = {};
     H.refresh_must_exclude_cards_menu();
   });
 
+  $(document).on('pagecontainerbeforeshow', function (e, data) {  //{{{2
+    var id = data.toPage && data.toPage.attr('id');
+    if (id !== 'must_exclude_cards-dialog')
+      return;
+    H.refresh_must_exclude_cards_menu();
+  });
+
   $(document).ready(function () {  //{{{2
     H.redirect_to_new_url_from_iui_era_url_if_necessary();
     H.suggest_new_uri_for_heroku_migration_if_necessary();
