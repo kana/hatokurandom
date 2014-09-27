@@ -2622,7 +2622,7 @@ var hatokurandom = {};
       $select.append($('<option>').attr('value', c.cid).text(c.name));
     }
     $select.val(H.options.must_exclude_cards);
-    $select.selectmenu('refresh');
+    $select.selectmenu('refresh', true);
   }
 
   H.reset_options = function () {  //{{{2
