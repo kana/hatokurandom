@@ -295,6 +295,7 @@ var hatokurandom = {};
     include_link_2: false,
     include_northern: 'may',
     include_six: 'may',
+    must_exclude_cards: [],
     sharing_tool: 'web_intent',
     sort_key: 'eid',
     statistical: false,
