@@ -117,6 +117,26 @@
         expect(f({include_six: 'must_not'})).toEqual([cbs, cft, cne, cfg]);
       });
     });
+    describe('must_exclude_cards', function () {
+      it('drops specified cards', function () {
+        var c1 = H.card_from_card_name('破城槌');
+        var c2 = H.card_from_card_name('サムライ');
+        var c3 = H.card_from_card_name('独占');
+        var c4 = H.card_from_card_name('祝福');
+        var c5 = H.card_from_card_name('開発命令');
+        var given_cards = [c1, c2, c3, c4, c5];
+        var f = function (cids) {
+          return H.choose_available_cards(
+            given_cards,
+            $.extend({}, H.DEFAULT_OPTIONS, {must_exclude_cards: cids})
+          );
+        };
+        expect(f([])).toEqual([c1, c2, c3, c4, c5]);
+        expect(f([c1.cid])).toEqual([c2, c3, c4, c5]);
+        expect(f([c2.cid])).toEqual([c1, c3, c4, c5]);
+        expect(f([c3.cid, c2.cid, c4.cid])).toEqual([c1, c5]);
+      });
+    });
   });
   describe('choose_supply_cards', function () {
     describe('basics', function () {
