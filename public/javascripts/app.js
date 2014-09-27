@@ -1864,6 +1864,22 @@ var hatokurandom = {};
     return yyyy + '-' + mm + '-' + dd + ' ' + HH + ':' + MM + ':' + SS;
   };
 
+  H.group_by = function (xs, key_selector) {  //{{{2
+    var table = {};
+    var keys = [];
+    for (var i = 0; i < xs.length; i++) {
+      var x = xs[i];
+      var k = key_selector(x);
+      if (!(k in table)) {
+        keys.push(k);
+        table[k] = [];
+        table[k].key = k;
+      }
+      table[k].push(x);
+    }
+    return keys.map(function (k) {return table[k];});
+  };
+
   H.is_banned_card = function (card) {  //{{{2
     return card.name == '埋もれた財宝' ||
       card.name == '買収工作' ||

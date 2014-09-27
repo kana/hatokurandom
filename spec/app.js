@@ -658,6 +658,20 @@
       expect(H.format_log_datetime(at2)).toEqual('2014-12-11 10:11:12');
     });
   });
+  describe('group_by', function () {
+    it('groups a sequence by key', function () {
+      var gs =
+        H.group_by(
+          [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+          function (n) {return n % 3;}
+        );
+      expect(gs[0].key).toEqual(0);
+      expect(gs[1].key).toEqual(1);
+      expect(gs[2].key).toEqual(2);
+      expect(gs.map(function (g) {return g.map(function (x) {return x;})}))
+        .toEqual([[0, 3, 6, 9], [1, 4, 7], [2, 5, 8]]);
+    });
+  });
   describe('is_banned_card', function () {
     var f = function (n) {return H.is_banned_card(H.card_from_card_name(n));};
     it('should return true for banned cards', function () {
