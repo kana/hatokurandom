@@ -2613,6 +2613,18 @@ var hatokurandom = {};
     );
   };
 
+  H.refresh_must_exclude_cards_menu = function () {  //{{{2
+    var $select = $('#must_exclude_cards');
+    $select.empty();
+    $select.append($('<option>').text('（未設定）'));
+    for (var i = 0; i < H.COMMON_CARDS.length; i++) {
+      var c = H.COMMON_CARDS[i];
+      $select.append($('<option>').attr('value', c.cid).text(c.name));
+    }
+    $select.val(H.options.must_exclude_cards);
+    $select.selectmenu('refresh');
+  }
+
   H.reset_options = function () {  //{{{2
     for (var key in H.DEFAULT_OPTIONS)
       delete_value(key);
@@ -2815,15 +2827,7 @@ var hatokurandom = {};
   });
 
   $(document).on('selectmenucreate', '#must_exclude_cards', function (e) {  //{{{2
-    var $select = $('#must_exclude_cards');
-    $select.empty();
-    $select.append($('<option>').text('（未設定）'));
-    for (var i = 0; i < H.COMMON_CARDS.length; i++) {
-      var c = H.COMMON_CARDS[i];
-      $select.append($('<option>').attr('value', c.cid).text(c.name));
-    }
-    $select.val(H.options.must_exclude_cards);
-    $select.selectmenu('refresh');
+    H.refresh_must_exclude_cards_menu();
   });
 
   $(document).ready(function () {  //{{{2
