@@ -80,7 +80,7 @@
       var result = H.choose_available_cards(given_cards, H.DEFAULT_OPTIONS);
       expect(result).toEqual([c2]);
     });
-    it('drops imperfect cards', function () {
+    xit('drops imperfect cards', function () {
       var c1 = H.card_from_card_name('冒険者');
       var c2 = {imperfect: true};
       var c3 = H.card_from_card_name('割り符');
@@ -558,7 +558,7 @@
         );
       });
     });
-    describe('with not-fully-unveiled cards', function () {
+    xdescribe('with not-fully-unveiled cards', function () {
       var test = function (card_set, expected_validness, expected_length) {
         var cards =
           H.choose_supply_cards(
