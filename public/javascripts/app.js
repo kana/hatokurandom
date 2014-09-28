@@ -295,6 +295,7 @@ var hatokurandom = {};
     include_link_2: false,
     include_northern: 'may',
     include_six: 'may',
+    must_exclude_cards: [],
     sharing_tool: 'web_intent',
     sort_key: 'eid',
     statistical: false,
@@ -1662,12 +1663,18 @@ var hatokurandom = {};
       if (available)
         return cs;
       else
-        return $.grep(cs, function (c) {return c.eid != eid;});
+        return cs.filter(function (c) {return c.eid != eid;});
     };
 
     if (options.exclude_banned_cards)
       cs = cs.filter(H.not(H.is_banned_card));
-    cs = cs.filter(function (c) {return !c.imperfect;});
+    if (1 <= options.must_exclude_cards.length) {
+      var d = {};
+      for (var i = 0; i < options.must_exclude_cards.length; i++)
+        d[options.must_exclude_cards[i]] = true;
+      cs = cs.filter(function (c) {return !d[c.cid];});
+    }
+    // cs = cs.filter(function (c) {return !c.imperfect;});  // For preview.
     cs = filter_by_eid(cs, options.include_basic != 'must_not', H.EID_BASIC);
     cs = filter_by_eid(cs, options.include_fareast != 'must_not', H.EID_FAREAST);
     cs = filter_by_eid(cs, options.include_northern != 'must_not', H.EID_NORTHERN);
@@ -1861,6 +1868,22 @@ var hatokurandom = {};
     var MM = H.pad(datetime.getMinutes().toString(), 2);
     var SS = H.pad(datetime.getSeconds().toString(), 2);
     return yyyy + '-' + mm + '-' + dd + ' ' + HH + ':' + MM + ':' + SS;
+  };
+
+  H.group_by = function (xs, key_selector) {  //{{{2
+    var table = {};
+    var keys = [];
+    for (var i = 0; i < xs.length; i++) {
+      var x = xs[i];
+      var k = key_selector(x);
+      if (!(k in table)) {
+        keys.push(k);
+        table[k] = [];
+        table[k].key = k;
+      }
+      table[k].push(x);
+    }
+    return keys.map(function (k) {return table[k];});
   };
 
   H.is_banned_card = function (card) {  //{{{2
@@ -2149,7 +2172,10 @@ var hatokurandom = {};
 
   // Core  //{{{1
   H.adjust_header = function ($page) {  //{{{2
-    $('#header').toggleClass('disabled', $page.attr('id') == 'configure');
+    $('#header').toggleClass(
+      'disabled',
+      $page.data('dialog') || $page.data('role') == 'dialog'
+    );
     $('#header .reshuffle.button').toggleClass(
       'disabled',
       !H.is_dsid($page.jqmData('sid'))
@@ -2188,7 +2214,7 @@ var hatokurandom = {};
 
   H.adjust_title = function (pid) {  //{{{2
     var apid = H.apid_from_pid(pid);
-    var $page = $('#' + apid);
+    var $page = $('#' + apid + '[data-role="page"]');
     if ($page.length != 1)  // Seems not to be a valid page.  Skip.
       return;
 
@@ -2609,6 +2635,35 @@ var hatokurandom = {};
     );
   };
 
+  H.refresh_must_exclude_cards_menu = function () {  //{{{2
+    var $select = $('#must_exclude_cards');
+    $select.empty();
+    $select.append($('<option>').text('（未設定）'));
+
+    H.group_by(H.COMMON_CARDS, function (c) {return c.eid;})
+    .forEach(function (cg) {
+      var $optgroup =
+        $('<optgroup>').attr('label', H.EID_TO_EXPANSION_TABLE[cg.key].name);
+      cg.forEach(function (c) {
+        $optgroup.append($('<option>').attr('value', c.cid).text(c.name));
+      });
+      $select.append($optgroup);
+    });
+
+    $select.val(H.options.must_exclude_cards);
+    $select.prepend($select.find(':selected'));
+
+    $select.selectmenu('refresh');
+
+    // Unfortunately, jQuery Mobile's selectmenu widget does not provide a way
+    // to customize the theme of the subdialog.
+    $('#must_exclude_cards-menu')
+      .parents('[data-role="dialog"]')
+      .find('[data-role="header"]')
+      .removeClass('ui-bar-inherit')
+      .addClass('ui-bar-b');
+  }
+
   H.reset_options = function () {  //{{{2
     for (var key in H.DEFAULT_OPTIONS)
       delete_value(key);
@@ -2808,6 +2863,17 @@ var hatokurandom = {};
       if ($ul.children().length == 0)
         location.replace(location.href);  // Refresh page to show usage link.
     });
+  });
+
+  $(document).on('selectmenucreate', '#must_exclude_cards', function (e) {  //{{{2
+    H.refresh_must_exclude_cards_menu();
+  });
+
+  $(document).on('pagecontainerbeforeshow', function (e, data) {  //{{{2
+    var id = data.toPage && data.toPage.attr('id');
+    if (id !== 'must_exclude_cards-dialog')
+      return;
+    H.refresh_must_exclude_cards_menu();
   });
 
   $(document).ready(function () {  //{{{2

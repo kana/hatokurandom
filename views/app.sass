@@ -153,18 +153,19 @@ $unknown-color: #ddd
   color: #666
 
 // #configure  {{{1
-// Not to be overlaid by #header  {{{2
-
-#configure
-  z-index: 2000
-
 // Headings and blocks  {{{2
 
 #configure h2
   font-size: 110%
 
-#configure legend
+#configure legend,
+#configure .ui-field-contain > label
   font-weight: bolder
+
+#configure .ui-field-contain > label
+  margin-top: 0
+  padding-top: 0.7em
+  border-top: 1px solid transparent
 
 #configure .block
   margin-top: 2em
@@ -185,6 +186,11 @@ $unknown-color: #ddd
   float: left
 #configure #available_card_sets .ui-controlgroup-controls > .ui-radio > .ui-btn
   padding: 0.25em 0.5em
+
+// #must_exclude_cards  {{{2
+
+#configure #must_exclude_cards-button > span:not(.ui-li-count)
+  white-space: normal
 
 // Misc. markup  {{{2
 
@@ -284,6 +290,12 @@ $unknown-color: #ddd
 .page_list .at
   font-size: 80%
   color: #999
+
+// Dialogs  {{{1
+// Not to be overlaid by #header  {{{2
+
+[data-dialog='true'], [data-role='dialog']
+  z-index: 2000
 
 // __END__  {{{1
 // vim: foldmethod=marker
