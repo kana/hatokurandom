@@ -6,11 +6,11 @@
 	<title>Slider - jQuery Mobile Demos</title>
 	<link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
-	<link rel="stylesheet" href="../css/themes/default/jquery.mobile-1.4.3.min.css">
+	<link rel="stylesheet" href="../css/themes/default/jquery.mobile-1.4.5.min.css">
 	<link rel="stylesheet" href="../_assets/css/jqm-demos.css">
 	<script src="../js/jquery.js"></script>
 	<script src="../_assets/js/index.js"></script>
-	<script src="../js/jquery.mobile-1.4.3.min.js"></script>
+	<script src="../js/jquery.mobile-1.4.5.min.js"></script>
     <style id="full-width-slider">
         /* Hide the number input */
         .full-width-slider input {
@@ -20,6 +20,14 @@
             margin-left: 15px;
         }
     </style>
+	<script id="dynamic-slider">
+$( document ).on( "pagecreate", function() {
+	$( "<input type='number' data-type='range' min='0' max='100' step='1' value='17'>" )
+		.appendTo( "#dynamic-slider-form" )
+		.slider()
+		.textinput()
+});
+	</script>
 </head>
 <body>
 <div data-role="page" class="jqm-demos" data-quicklinks="true">
@@ -133,6 +141,14 @@
                     <input type="range" name="slider-12" id="slider-12" min="0" max="100" value="50">
                 </form>
                 </div><!-- /demo-html -->
+
+				<h2>Dynamically injected</h2>
+				<p>The slider below has been created at runtime.</p>
+
+				<div data-demo-html="true" data-demo-js="#dynamic-slider">
+					<form id="dynamic-slider-form">
+					</form>
+				</div>
 
 	</div><!-- /content -->
 	    <div data-role="panel" class="jqm-navmenu-panel" data-position="left" data-display="overlay" data-theme="a">

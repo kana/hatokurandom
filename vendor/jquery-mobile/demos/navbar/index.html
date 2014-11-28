@@ -6,11 +6,11 @@
 	<title>Navbar - jQuery Mobile Demos</title>
 	<link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
-	<link rel="stylesheet" href="../css/themes/default/jquery.mobile-1.4.3.min.css">
+	<link rel="stylesheet" href="../css/themes/default/jquery.mobile-1.4.5.min.css">
 	<link rel="stylesheet" href="../_assets/css/jqm-demos.css">
 	<script src="../js/jquery.js"></script>
 	<script src="../_assets/js/index.js"></script>
-	<script src="../js/jquery.mobile-1.4.3.min.js"></script>
+	<script src="../js/jquery.mobile-1.4.5.min.js"></script>
 	<style>
 		.nav-glyphish-example .ui-btn { padding-top: 40px !important; }
 		.nav-glyphish-example .ui-btn:after { width: 30px!important; height: 30px!important; margin-left: -15px !important; box-shadow: none!important; -moz-box-shadow: none!important; -webkit-box-shadow: none!important; -webkit-border-radius: 0 !important; border-radius: 0 !important; }
@@ -291,6 +291,33 @@
 					</ul>
 				</div><!-- /navbar -->
 			</div><!-- /footer -->
+			</div><!--/demo-html -->
+
+		<h2>Navbars with button elements</h2>
+
+		<p>Instead of links you can also use button elements inside navbars.</p>
+
+			<div data-demo-html="true">
+				<div data-role="navbar" data-iconpos="left">
+					<ul>
+						<li><button data-icon="home">One</button></li>
+						<li><button data-icon="grid" data-theme="b">Two</button></li>
+						<li><button data-icon="search">Three</button></li>
+					</ul>
+				</div><!-- /navbar -->
+			</div><!--/demo-html -->
+
+			<div data-demo-html="true">
+				<div data-role="header" style="overflow:hidden;">
+				<h1>I'm a header</h1>
+					<div data-role="navbar" data-iconpos="right">
+						<ul>
+							<li><button data-icon="home">One</button></li>
+							<li><button data-icon="grid" data-theme="b">Two</button></li>
+							<li><button data-icon="search">Three</button></li>
+						</ul>
+					</div><!-- /navbar -->
+				</div><!-- /header -->
 			</div><!--/demo-html -->
 
 	</div><!-- /content -->
