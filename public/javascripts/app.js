@@ -2183,8 +2183,10 @@ var hatokurandom = {};
 
     var apid = $page.attr('id');
     var canShare = apid == 'supply' || apid == 'reference';
-    var canSomething = canShare;
+    var canSave = apid == 'supply';
+    var canSomething = canShare || canSave;
     $('#share_button').toggleClass('ui-state-disabled', !canShare);
+    $('#save_button').toggleClass('ui-state-disabled', !canSave);
     $('#extra_button').toggleClass('ui-state-disabled', !canSomething);
   };
 
