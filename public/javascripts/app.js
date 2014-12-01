@@ -2173,15 +2173,15 @@ var hatokurandom = {};
   // Core  //{{{1
   H.adjust_header = function ($page) {  //{{{2
     $('#header').toggleClass(
-      'disabled',
+      'ui-state-disabled',
       $page.data('dialog') || $page.data('role') == 'dialog'
     );
     $('#header .reshuffle.button').toggleClass(
-      'disabled',
+      'ui-state-disabled',
       !H.is_dsid($page.jqmData('sid'))
     );
     $('#header .share.button').toggleClass(
-      'disabled',
+      'ui-state-disabled',
       !($page.attr('id') == 'supply' || $page.attr('id') == 'reference')
     );
   };
@@ -2387,7 +2387,7 @@ var hatokurandom = {};
     });
 
     $('#header .reshuffle.button').click(function () {
-      if ($(this).is('.disabled'))
+      if ($(this).is('.ui-state-disabled'))
         return;
 
       var $page = H.get_current_page();
@@ -2409,7 +2409,7 @@ var hatokurandom = {};
       // on iOS7.  In this case, it opens URL in the current screen of the app.
       // So that it's not possible to back to the app.
 
-      if ($(this).is('.disabled'))
+      if ($(this).is('.ui-state-disabled'))
         return false;
 
       var $page = H.get_current_page();
