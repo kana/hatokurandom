@@ -27,16 +27,16 @@
       %div{data: {role: 'navbar'}}
         %ul
           %li
-            %a.home.button{data: {direction: 'reverse'}}(href='#home' title='ホーム画面へ移動する。')<
+            %a#home_button.button{data: {direction: 'reverse'}}(href='#home' title='ホーム画面へ移動する。')<
               %i.fa.fa-home
           %li
-            %a.configure.button{data: {transition: 'pop'}}(href='#configure' title='設定画面を開く。')<
+            %a#configure_button.button{data: {transition: 'pop'}}(href='#configure' title='設定画面を開く。')<
               %i.fa.fa-cog
           %li
-            %a.share.button(href='...' target='_blank' title='サプライを共有する。')<
+            %a#share_button.button(href='...' target='_blank' title='サプライを共有する。')<
               %i.fa.fa-share-square-o
           %li
-            %a.reshuffle.button(title='サプライを再生成する。')<
+            %a#reshuffle_button.button(title='サプライを再生成する。')<
               %i.fa.fa-random
 
     #home{as_page}

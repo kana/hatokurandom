@@ -2176,11 +2176,11 @@ var hatokurandom = {};
       'ui-state-disabled',
       $page.data('dialog') || $page.data('role') == 'dialog'
     );
-    $('#header .reshuffle.button').toggleClass(
+    $('#reshuffle_button').toggleClass(
       'ui-state-disabled',
       !H.is_dsid($page.jqmData('sid'))
     );
-    $('#header .share.button').toggleClass(
+    $('#share_button').toggleClass(
       'ui-state-disabled',
       !($page.attr('id') == 'supply' || $page.attr('id') == 'reference')
     );
@@ -2386,7 +2386,7 @@ var hatokurandom = {};
       );
     });
 
-    $('#header .reshuffle.button').click(function () {
+    $('#reshuffle_button').click(function () {
       if ($(this).is('.ui-state-disabled'))
         return;
 
@@ -2400,7 +2400,7 @@ var hatokurandom = {};
       );
     });
 
-    $('#header .share.button').click(function (e) {
+    $('#share_button').click(function (e) {
       // Here we want to open a new window to share a link.  If the app is
       // running in standalone mode on iOS devices, we want to switches to
       // Mobile Safari to open a new window.
