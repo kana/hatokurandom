@@ -2183,7 +2183,9 @@ var hatokurandom = {};
 
     var apid = $page.attr('id');
     var canShare = apid == 'supply' || apid == 'reference';
+    var canSomething = canShare;
     $('#share_button').toggleClass('ui-state-disabled', !canShare);
+    $('#extra_button').toggleClass('ui-state-disabled', !canSomething);
   };
 
   H.adjust_the_initial_page_if_it_is_dynamic_page = function () {  //{{{2
