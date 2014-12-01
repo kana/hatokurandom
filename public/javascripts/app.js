@@ -2180,10 +2180,10 @@ var hatokurandom = {};
       'ui-state-disabled',
       !H.is_dsid($page.jqmData('sid'))
     );
-    $('#share_button').toggleClass(
-      'ui-state-disabled',
-      !($page.attr('id') == 'supply' || $page.attr('id') == 'reference')
-    );
+
+    var apid = $page.attr('id');
+    var canShare = apid == 'supply' || apid == 'reference';
+    $('#share_button').toggleClass('ui-state-disabled', !canShare);
   };
 
   H.adjust_the_initial_page_if_it_is_dynamic_page = function () {  //{{{2
