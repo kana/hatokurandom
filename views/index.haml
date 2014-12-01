@@ -33,11 +33,17 @@
             %a#configure_button.button{data: {transition: 'pop'}}(href='#configure' title='設定画面を開く。')<
               %i.fa.fa-cog
           %li
-            %a#share_button.button(href='...' target='_blank' title='サプライを共有する。')<
+            %a#extra_button.button{data: {rel: 'popup', transition: 'fade'}}(href='#extra-menu')<
               %i.fa.fa-share-square-o
           %li
             %a#reshuffle_button.button(title='サプライを再生成する。')<
               %i.fa.fa-random
+
+      #extra-menu.ui-content{data: {role: 'popup', arrow: 'true', theme: 'a'}}
+        %div
+          %a#share_button.ui-btn.ui-corner-all.ui-shadow(href='...' target='_blank')<
+            %i.fa.fa-twitter
+            共有する
 
     #home{as_page}
 
