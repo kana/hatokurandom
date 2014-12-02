@@ -2588,6 +2588,11 @@ var hatokurandom = {};
       location.replace(purl.hrefNoHash + '#' + new_pid);
   };
 
+  H.redirect_to_non_dialog_url = function () {  //{{{2
+    if (location.href.indexOf($m.dialogHashKey) !== -1)
+      location.href = location.href.replace($m.dialogHashKey, '');
+  };
+
   H.refresh_card_list_view = function ($card_list, xcards, sid, is_first) {  //{{{2
     var refresh_if_dropped = function () {
       var updated_xcards = H.xcards_from_card_list_view($card_list);
@@ -2884,6 +2889,7 @@ var hatokurandom = {};
   $(document).ready(function () {  //{{{2
     H.redirect_to_new_url_from_iui_era_url_if_necessary();
     H.suggest_new_uri_for_heroku_migration_if_necessary();
+    H.redirect_to_non_dialog_url();
     H.restore_state_before_sharing_if_necessary();
 
     $m.defaultPageTransition = 'slide';
