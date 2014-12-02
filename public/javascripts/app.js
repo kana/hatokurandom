@@ -2348,7 +2348,10 @@ var hatokurandom = {};
   };
 
   H.generate_permalink = function ($card_list_page) {  //{{{2
-    var online_version_url_base = location.href.replace('/offline', '/');
+    var online_version_url_base =
+      location.href
+      .replace('/offline', '/')
+      .replace($m.dialogHashKey, '');
     var sid = $card_list_page.jqmData('sid');
     if (!H.is_dsid(sid))
       return online_version_url_base;
