@@ -278,9 +278,15 @@
         %h1 サプライの共有
 
         %p
-          カードセットが表示されている画面ではメニューバーの共有アイコン
-          %i.fa.fa-share-square-o
-          でサプライを共有できます。
+          メニューバーの
+          %span.fa-stack(title='拡張メニューアイコン')
+            %i.fa.fa-stack-2x.fa-square
+            %i.fa.fa-stack-1x.fa-ellipsis-h.fa-inverse
+          から
+          %a.ui-btn.ui-btn-inline.ui-mini.ui-corner-all.ui-shadow
+            %i.fa.fa-twitter
+            共有する
+          ボタンを使うと現在画面に表示されているサプライを共有できます。
         %p
           共有方法は今のところTwitterのみです。デフォルトでは
           %a(href='https://dev.twitter.com/docs/intents' target='_blank')>
