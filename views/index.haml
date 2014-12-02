@@ -33,11 +33,11 @@
             %a#configure_button.button{data: {transition: 'pop'}}(href='#configure' title='設定画面を開く。')<
               %i.fa.fa-cog
           %li
-            %a#extra_button.button{data: {rel: 'popup', transition: 'fade'}}(href='#extra-menu')<
-              %i.fa.fa-ellipsis-h
-          %li
             %a#reshuffle_button.button(title='サプライを再生成する。')<
               %i.fa.fa-random
+          %li
+            %a#extra_button.button{data: {rel: 'popup', transition: 'fade'}}(href='#extra-menu')<
+              %i.fa.fa-ellipsis-h
 
       #extra-menu.ui-content{data: {role: 'popup', arrow: 'true', theme: 'a'}}
         %div
