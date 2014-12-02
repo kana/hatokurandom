@@ -2445,6 +2445,16 @@ var hatokurandom = {};
         H.record_supply(permalink);
       return;  // Let the browser opens the adjusted href.
     });
+
+    $('#save_button').click(function (e) {
+      if ($(this).is('.ui-state-disabled'))
+        return false;
+      var $page = H.get_current_page();
+      var permalink = H.generate_permalink($page);
+      H.record_supply(permalink);
+      $('#extra-menu').popup('close');
+      alert('保存しました。');  // TODO: Replace with friendly UI.
+    });
   };
 
   H.initialize_configure = function () {  //{{{2
