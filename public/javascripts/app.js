@@ -2173,17 +2173,19 @@ var hatokurandom = {};
   // Core  //{{{1
   H.adjust_header = function ($page) {  //{{{2
     $('#header').toggleClass(
-      'disabled',
+      'ui-state-disabled',
       $page.data('dialog') || $page.data('role') == 'dialog'
     );
-    $('#header .reshuffle.button').toggleClass(
-      'disabled',
+    $('#reshuffle_button').toggleClass(
+      'ui-state-disabled',
       !H.is_dsid($page.jqmData('sid'))
     );
-    $('#header .share.button').toggleClass(
-      'disabled',
-      !($page.attr('id') == 'supply' || $page.attr('id') == 'reference')
-    );
+
+    var apid = $page.attr('id');
+    var canShare = apid == 'supply' || apid == 'reference';
+    var canSomething = canShare;
+    $('#share_button').toggleClass('ui-state-disabled', !canShare);
+    $('#extra_button').toggleClass('ui-state-disabled', !canSomething);
   };
 
   H.adjust_the_initial_page_if_it_is_dynamic_page = function () {  //{{{2
@@ -2346,7 +2348,10 @@ var hatokurandom = {};
   };
 
   H.generate_permalink = function ($card_list_page) {  //{{{2
-    var online_version_url_base = location.href.replace('/offline', '/');
+    var online_version_url_base =
+      location.href
+      .replace('/offline', '/')
+      .replace($m.dialogHashKey, '');
     var sid = $card_list_page.jqmData('sid');
     if (!H.is_dsid(sid))
       return online_version_url_base;
@@ -2386,8 +2391,8 @@ var hatokurandom = {};
       );
     });
 
-    $('#header .reshuffle.button').click(function () {
-      if ($(this).is('.disabled'))
+    $('#reshuffle_button').click(function () {
+      if ($(this).is('.ui-state-disabled'))
         return;
 
       var $page = H.get_current_page();
@@ -2400,7 +2405,7 @@ var hatokurandom = {};
       );
     });
 
-    $('#header .share.button').click(function (e) {
+    $('#share_button').click(function (e) {
       // Here we want to open a new window to share a link.  If the app is
       // running in standalone mode on iOS devices, we want to switches to
       // Mobile Safari to open a new window.
@@ -2409,7 +2414,7 @@ var hatokurandom = {};
       // on iOS7.  In this case, it opens URL in the current screen of the app.
       // So that it's not possible to back to the app.
 
-      if ($(this).is('.disabled'))
+      if ($(this).is('.ui-state-disabled'))
         return false;
 
       var $page = H.get_current_page();
@@ -2581,6 +2586,11 @@ var hatokurandom = {};
     var new_pid = H.migrate_from_version_1(pid);
     if (new_pid)
       location.replace(purl.hrefNoHash + '#' + new_pid);
+  };
+
+  H.redirect_to_non_dialog_url = function () {  //{{{2
+    if (location.href.indexOf($m.dialogHashKey) !== -1)
+      location.href = location.href.replace($m.dialogHashKey, '');
   };
 
   H.refresh_card_list_view = function ($card_list, xcards, sid, is_first) {  //{{{2
@@ -2879,6 +2889,7 @@ var hatokurandom = {};
   $(document).ready(function () {  //{{{2
     H.redirect_to_new_url_from_iui_era_url_if_necessary();
     H.suggest_new_uri_for_heroku_migration_if_necessary();
+    H.redirect_to_non_dialog_url();
     H.restore_state_before_sharing_if_necessary();
 
     $m.defaultPageTransition = 'slide';
