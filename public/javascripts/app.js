@@ -2183,8 +2183,10 @@ var hatokurandom = {};
 
     var apid = $page.attr('id');
     var canShare = apid == 'supply' || apid == 'reference';
-    var canSomething = canShare;
+    var canSave = apid == 'supply';
+    var canSomething = canShare || canSave;
     $('#share_button').toggleClass('ui-state-disabled', !canShare);
+    $('#save_button').toggleClass('ui-state-disabled', !canSave);
     $('#extra_button').toggleClass('ui-state-disabled', !canSomething);
   };
 
@@ -2442,6 +2444,16 @@ var hatokurandom = {};
       if (!is_reference_page)
         H.record_supply(permalink);
       return;  // Let the browser opens the adjusted href.
+    });
+
+    $('#save_button').click(function (e) {
+      if ($(this).is('.ui-state-disabled'))
+        return false;
+      var $page = H.get_current_page();
+      var permalink = H.generate_permalink($page);
+      H.record_supply(permalink);
+      $('#extra-menu').popup('close');
+      alert('保存しました。');  // TODO: Replace with friendly UI.
     });
   };
 
