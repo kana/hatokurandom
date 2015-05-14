@@ -1,4 +1,24 @@
 #!/usr/bin/env ruby
+# coding: utf-8
+
+class Nanoc::Context
+  def offline_mode?; end  # FIXME: Generate two outputs.
+  def css _; end  # FIXME: Replace with a meaningful value.
+  def js _; end  # FIXME: Replace with a meaningful value.
+end
+
+module ::App
+  NAME = 'ハトクランダム'
+  CODENAME = 'Hatokurandom'
+  GITHUB_REPOS_URI = 'https://github.com/kana/hatokurandom'
+end
+
+compile '/' do
+  filter :haml
+end
+
+
+
 
 compile '*' do
   next if item.binary?
