@@ -2767,12 +2767,15 @@ var hatokurandom = {};
   })();
 
   H.suggest_new_uri_for_heroku_migration_if_necessary = function () {  //{{{2
-    var old_domain = 'hatokurandom.heroku.com';
-    var new_domain = 'hatokurandom.herokuapp.com';
-    if (location.hostname == old_domain) {
+    var old_domains = [
+      'hatokurandom.heroku.com',
+      'hatokurandom.herokuapp.com'
+    ];
+    var new_domain = 'hatokurandom.whileimautomaton.net';
+    if (0 <= old_domains.indexOf(location.hostname)) {
       var message =
-        '現在アクセスされている ' + old_domain + ' ですが、' +
-        '諸事情により2014-09-22から利用できなくなりました。' +
+        '現在アクセスされている ' + location.hostname + ' ですが、' +
+        '諸事情により2015-07-01から利用できなくなりました。' +
         '今後は ' + new_domain + ' でアクセスするようお願いします。' +
         '\n\n' +
         new_domain + ' へ移動してもよいでしょうか?';
