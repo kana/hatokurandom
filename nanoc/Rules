@@ -8,13 +8,15 @@ compile '*' do
   layout 'default'
 end
 
+route '/' do
+  '/index.html'
+end
+
 route '*' do
-  if item[:extension] == 'css'
-    item.identifier.chop + '.css'
-  elsif item.binary?
-    item.identifier.chop + (item[:extension] ? '.' + item[:extension] : '')
+  if item[:extension]
+    item.identifier.chop + '.' + item[:extension]
   else
-    item.identifier + 'index.html'
+    item.identifier.chop
   end
 end
 
