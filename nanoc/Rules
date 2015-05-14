@@ -1,14 +1,11 @@
 #!/usr/bin/env ruby
 
 compile '*' do
-  if item[:extension] == 'css'
-    # don’t filter stylesheets
-  elsif item.binary?
-    # don’t filter binary items
-  else
-    filter :erb
-    layout 'default'
-  end
+  next if item.binary?
+  next if item[:extension] == 'css'
+
+  filter :erb
+  layout 'default'
 end
 
 route '*' do
