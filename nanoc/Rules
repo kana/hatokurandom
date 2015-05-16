@@ -15,6 +15,10 @@ compile '/' do
   filter :haml
 end
 
+compile '/stylesheets/whole/' do
+  # FIXME: Combine related files.
+end
+
 
 
 
@@ -28,6 +32,10 @@ end
 
 route '/' do
   '/index.html'
+end
+
+route '/stylesheets/whole/' do
+  '/assets/whole.css'
 end
 
 route '*' do
