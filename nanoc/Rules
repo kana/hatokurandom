@@ -1,6 +1,19 @@
 #!/usr/bin/env ruby
 
+preprocess do
+  root_item = items.find {|i| i.identifier == '/'}
+  items << Nanoc::Item.new(
+    root_item.raw_content,
+    root_item.attributes.merge({offline_mode: true}),
+    '/offline/'
+  )
+end
+
 compile '/' do
+  filter :haml
+end
+
+compile '/offline/' do
   filter :haml
 end
 
@@ -25,6 +38,10 @@ end
 
 route '/' do
   '/index.html'
+end
+
+route '/offline/' do
+  '/offline.html'
 end
 
 route '/stylesheets/whole/' do
