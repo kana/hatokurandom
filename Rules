@@ -1,7 +1,12 @@
 #!/usr/bin/env ruby
 
 preprocess do
-  root_item = items.find {|i| i.identifier == '/'}
+  def items.find_by_identifier(identifier)
+    find {|i| i.identifier == identifier} or
+      throw ArgumentError.new("No such item with identifier '#{identifier}'")
+  end
+
+  root_item = items.find_by_identifier('/')
   items << Nanoc::Item.new(
     root_item.raw_content,
     root_item.attributes.merge({offline_mode: true}),
