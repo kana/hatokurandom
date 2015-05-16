@@ -20,6 +20,10 @@ compile '/offline/' do
   filter :haml
 end
 
+compile '/stylesheets/app/' do
+  filter :sass
+end
+
 compile '/stylesheets/whole/' do
   # FIXME: Combine related files.
 end
@@ -41,6 +45,10 @@ end
 
 route '/offline/' do
   '/offline.html'
+end
+
+route '/stylesheets/app/' do
+  '/stylesheets/app.css'
 end
 
 route '/stylesheets/whole/' do
