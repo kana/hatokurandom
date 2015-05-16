@@ -19,6 +19,10 @@ compile '/stylesheets/whole/' do
   # FIXME: Combine related files.
 end
 
+compile '/javascripts/whole/' do
+  # FIXME: Combine related files.
+end
+
 
 
 
@@ -36,6 +40,10 @@ end
 
 route '/stylesheets/whole/' do
   '/assets/whole.css'
+end
+
+route '/javascripts/whole/' do
+  '/assets/whole.js'
 end
 
 route '*' do
