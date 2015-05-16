@@ -1,5 +1,5 @@
 !!! 5
-%html{offline_mode? ? {manifest: '/index.appcache'} : {}}
+%html{item[:offline_mode] ? {manifest: '/index.appcache'} : {}}
   %head
     %title= App::NAME
     %meta(charset='UTF-8')

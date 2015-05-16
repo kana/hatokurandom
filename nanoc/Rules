@@ -1,10 +1,6 @@
 #!/usr/bin/env ruby
 # coding: utf-8
 
-class Nanoc::Context
-  def offline_mode?; end  # FIXME: Generate two outputs.
-end
-
 module ::App
   NAME = 'ハトクランダム'
   CODENAME = 'Hatokurandom'
