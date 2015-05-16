@@ -3,7 +3,6 @@
 
 class Nanoc::Context
   def offline_mode?; end  # FIXME: Generate two outputs.
-  def css _; end  # FIXME: Replace with a meaningful value.
   def js _; end  # FIXME: Replace with a meaningful value.
 end
 
