@@ -62,5 +62,3 @@ end
 route '*' do
   item.identifier.chop
 end
-
-layout '*', :erb
