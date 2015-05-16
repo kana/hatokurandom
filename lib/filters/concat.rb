@@ -4,6 +4,14 @@ class ConcatFilter < Nanoc::Filter
 
   def run(content, params={})
     depend_on(params[:items])
-    params[:items].map {|i| i.raw_content}.join()
+    params[:items]
+      .map {|i|
+        if i.binary?
+          File.open(i.raw_filename).read()
+        else
+          i.raw_content
+        end
+      }
+      .join()
   end
 end
