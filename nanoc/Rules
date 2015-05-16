@@ -60,11 +60,7 @@ route '/javascripts/whole/' do
 end
 
 route '*' do
-  if item[:extension]
-    item.identifier.chop + '.' + item[:extension]
-  else
-    item.identifier.chop
-  end
+  item.identifier.chop
 end
 
 layout '*', :erb
