@@ -30,7 +30,11 @@ compile '/stylesheets/app/' do
 end
 
 compile '/stylesheets/whole/' do
-  # FIXME: Combine related files.
+  filter :concat, items: [
+    '/stylesheets/font-awesome/css/font-awesome.min.css/',
+    '/stylesheets/jquery-mobile/jquery.mobile-1.4.5.min.css/',
+    '/stylesheets/app/',
+  ].map {|id| items.find_by_identifier(id)}
 end
 
 compile '/javascripts/whole/' do
