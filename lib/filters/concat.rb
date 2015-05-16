@@ -9,7 +9,7 @@ class ConcatFilter < Nanoc::Filter
         if i.binary?
           File.open(i.raw_filename).read()
         else
-          i.raw_content
+          i.compiled_content
         end
       }
       .join()
