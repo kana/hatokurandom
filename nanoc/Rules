@@ -3,7 +3,6 @@
 
 class Nanoc::Context
   def offline_mode?; end  # FIXME: Generate two outputs.
-  def js _; end  # FIXME: Replace with a meaningful value.
 end
 
 module ::App
