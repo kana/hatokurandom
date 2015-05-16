@@ -9,6 +9,9 @@ preprocess do
   )
 end
 
+
+
+
 compile '/' do
   filter :haml
 end
@@ -25,9 +28,6 @@ compile '/javascripts/whole/' do
   # FIXME: Combine related files.
 end
 
-
-
-
 compile '*' do
   next if item.binary?
   next if item[:extension] == 'css'
@@ -35,6 +35,9 @@ compile '*' do
   filter :erb
   layout 'default'
 end
+
+
+
 
 route '/' do
   '/index.html'
