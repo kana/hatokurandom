@@ -38,7 +38,12 @@ compile '/stylesheets/whole/' do
 end
 
 compile '/javascripts/whole/' do
-  # FIXME: Combine related files.
+  filter :concat, items: [
+    '/javascripts/jquery/jquery-2.1.1.min.js/',
+    '/javascripts/configure-jquery-mobile.js/',
+    '/javascripts/jquery-mobile/jquery.mobile-1.4.5.min.js/',
+    '/javascripts/app.js/',
+  ].map {|id| items.find_by_identifier(id)}
 end
 
 compile '*' do
