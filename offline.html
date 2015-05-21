@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html manifest='/offline.appcache'>
+  <head>
+    <title>ハトクランダム</title>
+    <meta charset='UTF-8'>
+    <meta content='width=device-width, initial-scale=1' name='viewport'>
+    <meta content='yes' name='apple-mobile-web-app-capable'>
+    <meta content='black' name='apple-mobile-web-app-status-bar-style'>
+    <link href='assets/whole.css' rel='stylesheet'>
+    <script src='assets/whole.js'></script>
+  </head>
+  <body>
+    <div data-position='fixed' data-role='header' data-theme='b' id='header'>
+      <div data-role='navbar'>
+        <ul>
+          <li>
+            <a class='button' data-direction='reverse' href='#home' id='home_button' title='ホーム画面へ移動する。'><i class='fa fa-home'></i></a>
+          </li>
+          <li>
+            <a class='button' data-transition='pop' href='#configure' id='configure_button' title='設定画面を開く。'><i class='fa fa-cog'></i></a>
+          </li>
+          <li>
+            <a class='button' id='reshuffle_button' title='サプライを再生成する。'><i class='fa fa-random'></i></a>
+          </li>
+          <li>
+            <a class='button' data-rel='popup' data-transition='fade' href='#extra-menu' id='extra_button'><i class='fa fa-ellipsis-h'></i></a>
+          </li>
+        </ul>
+      </div>
+      <div class='ui-content' data-arrow='true' data-role='popup' data-theme='a' id='extra-menu'>
+        <div>
+          <a class='ui-btn ui-corner-all ui-shadow' href='...' id='share_button' target='_blank'><i class='fa fa-twitter'></i>
+          共有する</a>
+        </div>
+        <div>
+          <a class='ui-btn ui-corner-all ui-shadow' id='save_button'><i class='fa fa-save'></i>
+          保存する</a>
+        </div>
+      </div>
+    </div>
+    <div data-role='page' id='home'>
+      <div data-role='content'>
+        <ul data-role='listview'>
+          <li>
+            <a href='#supplies:random'>ランダム選択</a>
+          </li>
+          <li>
+            <a href='#supplies:log'>最近共有したサプライ</a>
+          </li>
+          <li>
+            <a href='#supplies:basic'>推奨サプライ(基本セット)</a>
+          </li>
+          <li>
+            <a href='#supplies:fareast'>推奨サプライ(極東辺境領)</a>
+          </li>
+          <li>
+            <a href='#supplies:northern'>推奨サプライ(北限の魔女)</a>
+          </li>
+          <li>
+            <a href='#supplies:fairy'>推奨サプライ(フェアリーガーデン)</a>
+          </li>
+          <li>
+            <a href='#supplies:six'>推奨サプライ(六都市同盟)</a>
+          </li>
+          <li>
+            <a href='#supplies:championship1'>世界選手権</a>
+          </li>
+          <li>
+            <a href='#supply:editor'>手動作成</a>
+          </li>
+          <li>
+            <a href='#card-references'>機能別カードリスト</a>
+          </li>
+          <li>
+            <a href='#about'>このアプリについて</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div data-role='page' id='supplies'>
+    </div>
+    <div data-role='page' id='supply'>
+    </div>
+    <div data-role='page' id='card-references'>
+    </div>
+    <div data-role='page' id='references'>
+    </div>
+    <div data-role='page' id='reference'>
+    </div>
+    <div data-close-btn='none' data-dialog='true' data-role='page' id='configure'>
+      <div data-role='header' data-theme='b'>
+        <a class='ui-btn ui-corner-all ui-icon-delete ui-btn-icon-notext ui-btn-left' id='configure_close_button'></a>
+        <h1>設定</h1>
+      </div>
+      <div data-role='content'>
+        <div class='block' id='available_card_sets'>
+          <h2>使用するカードセット</h2>
+          <fieldset data-role='controlgroup' data-type='horizontal'>
+            <legend>基本セット</legend>
+            <label>
+              <input name='include_basic' type='radio' value='must'>
+              必須
+            </label>
+            <label>
+              <input name='include_basic' type='radio' value='may'>
+              使用
+            </label>
+            <label>
+              <input name='include_basic' type='radio' value='must_not'>
+              禁止
+            </label>
+          </fieldset>
+          <fieldset data-role='controlgroup' data-type='horizontal'>
+            <legend>極東辺境領</legend>
+            <label>
+              <input name='include_fareast' type='radio' value='must'>
+              必須
+            </label>
+            <label>
+              <input name='include_fareast' type='radio' value='may'>
+              使用
+            </label>
+            <label>
+              <input name='include_fareast' type='radio' value='must_not'>
+              禁止
+            </label>
+          </fieldset>
+          <fieldset data-role='controlgroup' data-type='horizontal'>
+            <legend>北限の魔女</legend>
+            <label>
+              <input name='include_northern' type='radio' value='must'>
+              必須
+            </label>
+            <label>
+              <input name='include_northern' type='radio' value='may'>
+              使用
+            </label>
+            <label>
+              <input name='include_northern' type='radio' value='must_not'>
+              禁止
+            </label>
+          </fieldset>
+          <fieldset class='fairygarden' data-role='controlgroup' data-type='horizontal'>
+            <legend>フェアリーガーデン</legend>
+            <label>
+              <input name='include_fairy' type='radio' value='must'>
+              必須
+            </label>
+            <label>
+              <input name='include_fairy' type='radio' value='may'>
+              使用
+            </label>
+            <label>
+              <input name='include_fairy' type='radio' value='must_not'>
+              禁止
+            </label>
+          </fieldset>
+          <fieldset data-role='controlgroup' data-type='horizontal'>
+            <legend>六都市同盟</legend>
+            <label>
+              <input name='include_six' type='radio' value='must'>
+              必須
+            </label>
+            <label>
+              <input name='include_six' type='radio' value='may'>
+              使用
+            </label>
+            <label>
+              <input name='include_six' type='radio' value='must_not'>
+              禁止
+            </label>
+          </fieldset>
+          <div class='ui-field-contain'>
+            <label for='must_exclude_cards'>禁止カード</label>
+            <select data-divider-theme='b' data-native-menu='false' id='must_exclude_cards' multiple name='must_exclude_cards'></select>
+          </div>
+        </div>
+        <div class='block'>
+          <h2>偏り具合の調整</h2>
+          <fieldset data-role='controlgroup'>
+            <label>
+              <input name='exclude_banned_cards' type='checkbox'>
+              公式推奨バランスにする
+              <span class='note'>
+                以下のカードは出現しません:
+                <span class='card-name'>埋もれた財宝</span>
+                <span class='card-name'>買収工作</span>
+                <span class='card-name'>魅了術の魔女</span>
+              </span>
+            </label>
+            <label>
+              <input name='exclude_banned_cards_for_fairy_garden' type='checkbox'>
+              フェアリーガーデンと併用非推奨のカードを除外する
+              <span class='note'>
+                フェアリーガーデンのカードと以下のカードは同時に出現しません:
+                全ての防衛カード、および
+                <span class='card-name'>破城槌</span>
+                <span class='card-name'>埋もれた財宝</span>
+                <span class='card-name'>星詠みの魔女</span>
+                <span class='card-name'>シノビ</span>
+                <span class='card-name'>魅了術の魔女</span>
+                <span class='card-name'>歩兵大隊</span>
+                <span class='card-name'>近衛騎士団</span>
+                <span class='card-name'>弓兵隊</span>
+                <span class='card-name'>サムライ</span>
+              </span>
+            </label>
+            <label>
+              <input name='include_all_costs' type='checkbox'>
+              各コスト帯のカードを含める
+              <span class='note'>
+                各コスト帯のカードを1枚以上含めるようにします。
+                ただし6コスト以上のカードは5コスト帯として扱います。
+              </span>
+            </label>
+            <label>
+              <input name='include_link_2' type='checkbox'>
+              リンク2を適宜含める
+              <span class='note'>
+                サプライにリンク0のカードが含まれる場合、
+                リンク2のカードを1枚は含めるようにします。
+              </span>
+            </label>
+          </fieldset>
+        </div>
+        <div class='block'>
+          <h2>その他</h2>
+          <fieldset data-role='controlgroup' data-type='horizontal'>
+            <legend>カードの並び順</legend>
+            <label>
+              <input name='sort_key' type='radio' value='eid'>
+              拡張順
+            </label>
+            <label>
+              <input name='sort_key' type='radio' value='cost'>
+              コスト順
+            </label>
+          </fieldset>
+          <fieldset data-role='controlgroup' data-type='horizontal'>
+            <legend>共有方法</legend>
+            <label>
+              <input name='sharing_tool' type='radio' value='web_intent'>
+              Twitter (Web)
+            </label>
+            <label>
+              <input name='sharing_tool' type='radio' value='twitter_app'>
+              Twitter.app
+            </label>
+          </fieldset>
+        </div>
+        <div class='block'>
+          <input id='button_to_reset_options' type='button' value='初期設定に戻す'>
+        </div>
+      </div>
+    </div>
+    <div data-role='page' id='about'>
+      <div data-role='content'>
+        <p>
+          このアプリは
+          <a href='http://flipflops.jp/' target='_blank'>FLIPFLOPs</a>
+          様製作のデッキ成長型カードゲーム
+          <a href='http://hatokura.flipflops.jp/' target='_blank'>Heart of Crown</a>
+          用のサプライを選ぶためのツールです。
+        </p>
+        <p><a href='http://hatokura.flipflops.jp/rule' target='_blank'>ルールブック</a>には初めてプレイする際に最適な<a href='#supplies:basic'>推奨サプライ</a>が記載されていますが、ある程度ゲームに慣れてくると<a href='#supplies:random'>ランダム選択でサプライを決める</a>ようになります。
+          ところがコモンカード10種類をランダムに選択するのは案外大変です。
+          このツールが快適なゲームプレイの一助となれば幸いです。
+        </p>
+        <p>
+          この手のツールは<a href='http://www.google.com/search?q=%E3%83%8F%E3%83%BC%E3%83%88%E3%82%AA%E3%83%96%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%B3%20%E3%83%A9%E3%83%B3%E3%83%80%E3%83%A0%20%E9%81%B8%E6%8A%9E' target='_blank'>既存の実装</a>がいくつも存在しますが、<a href='http://whileimautomaton.net/' target='_blank'>作者</a>が<a href='#credits'>普段使用していない技術</a>を使っての習作と私的な需要を満たすことを兼ねて作成しています。
+        </p>
+        <ul>
+          <li>
+            <a href='https://github.com/kana/hatokurandom' target='_blank'>ソースコード</a>
+          </li>
+          <li>
+            <a href='https://github.com/kana/hatokurandom/issues' target='_blank'>既知の問題点や実装予定の機能</a>
+          </li>
+          <li>
+            <a href='https://twitter.com/intent/tweet?text=@kana1+&amp;hashtags=hatokurandom' target='_blank'>ご意見・ご感想</a>
+          </li>
+        </ul>
+        <ul data-inset='true' data-role='listview'>
+          <li>
+            <a href='#help-sharing-supply'>サプライの共有</a>
+          </li>
+          <li>
+            <a href='#help-offline'>オフラインでの利用</a>
+          </li>
+          <li>
+            <a href='#credits'>バージョン情報</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div data-role='page' id='help-sharing-supply'>
+      <div data-role='content'>
+        <h1>サプライの共有</h1>
+        <p>
+          メニューバーの
+          <span class='fa-stack' title='拡張メニューアイコン'>
+            <i class='fa fa-stack-2x fa-square'></i>
+            <i class='fa fa-stack-1x fa-ellipsis-h fa-inverse'></i>
+          </span>
+          から
+          <a class='ui-btn ui-btn-inline ui-mini ui-corner-all ui-shadow'>
+            <i class='fa fa-twitter'></i>
+            共有する
+          </a>
+          ボタンを使うと現在画面に表示されているサプライを共有できます。
+        </p>
+        <p>
+          共有方法は今のところTwitterのみです。デフォルトでは
+          <a href='https://dev.twitter.com/docs/intents' target='_blank'>別ウィンドウが開かれてそこでツイートする形</a>
+          ですが、
+          <a href='https://about.twitter.com/products/list' target='_blank'>Twitterの公式アプリ</a>
+          でツイートする形にもできます。
+          どちらを使用するかはメニューバーの
+          <span class='fa-stack' title='設定アイコン'>
+            <i class='fa fa-stack-2x fa-square'></i>
+            <i class='fa fa-stack-1x fa-cog fa-inverse'></i>
+          </span>
+          から設定できます。
+        </p>
+        <p>
+          なお、<a href='#supplies:log'>最近共有したサプライ</a>は記録されており、直近100件分まで後から確認することができます。
+          この記録はブラウザ側に保存されています。
+          また、この一覧で左にスワイプするとサプライを削除できます。
+        </p>
+      </div>
+    </div>
+    <div data-role='page' id='help-offline'>
+      <div data-role='content'>
+        <h1>オフラインでの利用</h1>
+        <p>
+          このアプリはWebアプリではありますが、<a href='/offline'>オフラインでも利用できるバージョン</a>を用意しています。
+        </p>
+        <p>
+          特にiPhoneのSafariでこのオフライン版を
+          「ホーム画面に追加」
+          すると通常のアプリのように使えるようになります。
+          うっかり電波の届かない場所でハトクラする時も安心ですし、
+          オフライン版だと通信待ち時間が無いので高速で起動します。
+        </p>
+        <p>
+          なお、オフライン版を利用している場合は
+          画面右下隅に通信状況を示すアイコンが表示されます:
+        </p>
+        <ul class='fa-ul'>
+          <li>
+            <i class='fa-li fa fa-signal'></i>
+            最新バージョンのチェック中
+          </li>
+          <li>
+            <i class='fa-li fa fa-download'></i>
+            最新バージョンのダウンロード中
+          </li>
+          <li>
+            <i class='fa-li fa fa-check-circle'></i>
+            オンライン状態 - 最新バージョンを利用中
+          </li>
+          <li>
+            <i class='fa-li fa fa-refresh'></i>
+            オンライン状態 - 次回起動時に最新バージョンへ自動更新
+          </li>
+          <li>
+            <i class='fa-li fa fa-exclamation-circle'></i>
+            オフライン状態 or
+            オンライン状態だが最新バージョンのダウンロードに失敗
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div data-role='page' id='credits'>
+      <div data-role='content'>
+        <h1>
+          About this application
+        </h1>
+        <div>
+          Hatokurandom
+          @@VERSION@@
+        </div>
+        <div>
+          Copyright &copy; 2012-2015
+          <a href='http://whileimautomaton.net/' target='_blank'>Kana Natsuno</a>
+        </div>
+        <h2>
+          Powered by the following libraries and services
+        </h2>
+        <ul data-inset='true' data-role='listview'>
+          <li>
+            <h3>
+              <a href='http://fortawesome.github.com/Font-Awesome/' target='_blank'>Font Awesome</a>
+            </h3>
+            for awesome icons.
+          </li>
+          <li>
+            <h3>
+              <a href='http://www.heroku.com/' target='_blank'>Heroku</a>
+            </h3>
+            for easy-to-use cloud application platform.
+          </li>
+          <li>
+            <h3>
+              <a href='http://pivotal.github.com/jasmine/' target='_blank'>Jasmine</a>
+            </h3>
+            for BDD in JavaScript.
+          </li>
+          <li>
+            <h3>
+              <a href='http://jquery.com/' target='_blank'>jQuery</a>
+            </h3>
+            for everything to develop Web applications.
+          </li>
+          <li>
+            <h3>
+              <a href='http://jquerymobile.com/' target='_blank'>jQuery Mobile</a>
+            </h3>
+            for touch-optimized Web application framework.
+          </li>
+        </ul>
+        <h2>
+          Thanks for the following games
+        </h2>
+        <ul data-inset='true' data-role='listview'>
+          <li>
+            <h3>
+              <a href='http://hatokura.flipflops.jp/' target='_blank'>Heart of Crown</a>
+            </h3>
+            for an exciting variant of deck-building games.
+          </li>
+          <li>
+            <h3>
+              <a href='http://www.riograndegames.com/games.html?id=278' target='_blank'>Dominion</a>
+            </h3>
+            for the origin of deck-building games.
+          </li>
+          <li>
+            <h3>
+              <a href='http://www.wizards.com/magic/' target='_blank'>Magic: The Gathering</a>
+            </h3>
+            for the origin of collectible trading card games.
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div id='notification'>
+      <div id='supply_status'>
+        <i class='fa fa-warning'></i>
+      </div>
+      <div id='offline_mode'>
+        <i></i>
+        <span class='progress'></span>
+      </div>
+    </div>
+    <div class='internal' id='templates'>
+      <div id='page_list_template'>
+        <div data-pid='{{pid}}' data-role='content'>
+          <ul class='page_list' data-role='listview'>
+          </ul>
+        </div>
+      </div>
+      <ul id='page_list_item_template'>
+        <li class='{{type}}'>
+          <a href='#{{pid}}'>
+            <span class='title'>{{title}}</span>
+            <span class='excerpt'>{{excerpt}}</span>
+            <div class='at'>{{at}}</div>
+          </a>
+          <span class='delete ui-btn ui-btn-inline ui-mini ui-li-aside ui-corner-all'>削除</span>
+        </li>
+      </ul>
+      <div id='card_list_template'>
+        <div data-role='content'>
+          <ul class='card_list' data-divider-theme='d' data-role='listview'>
+          </ul>
+        </div>
+      </div>
+      <ul id='card_list_item_template'>
+        <li class='card' data-cid='{{cid}}' data-imperfect='{{imperfect}}'>
+          <label>
+            <input class='selected' data-role='none' type='checkbox'>
+            <span class='cost'>{{cost}}</span>
+            <span class='type' data-names='{{main_types}}'></span>
+            <span class='name'>{{name}}</span>
+            <span class='subtype' data-name='{{subtype}}'></span>
+            <span class='esym' data-esym='{{esym}}'>{{esym}}</span>
+          </label>
+        </li>
+      </ul>
+      <ul id='supply_deadline_template'>
+        <li data-role='list-divider' data-theme='a'></li>
+      </ul>
+    </div>
+  </body>
+</html>

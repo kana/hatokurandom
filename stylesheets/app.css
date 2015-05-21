@@ -1,0 +1,252 @@
+@charset "UTF-8";
+a[target='_blank']:after {
+  content: " ";
+  display: inline-block;
+  font-family: FontAwesome;
+  font-size: 80%;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: inherit; }
+
+#share_button:after {
+  display: none; }
+
+.unavailable {
+  display: none !important; }
+
+.card label {
+  display: block;
+  cursor: pointer; }
+
+.card[data-imperfect='true'] {
+  opacity: 0.5; }
+
+.card .cost,
+.card .name {
+  font-weight: bolder; }
+
+.card .type {
+  width: 0.8em;
+  height: 0.8em;
+  display: inline-block; }
+
+.card .type[data-names~='災い'] {
+  background: #636; }
+
+.card .type[data-names~='行動'] {
+  background: #999; }
+
+.card .type[data-names~='防衛'] {
+  background: #339; }
+
+.card .type[data-names~='攻撃'] {
+  background: #c66; }
+
+.card .type[data-names~='領地'] {
+  background: #963; }
+
+.card .type[data-names~='継承権'] {
+  background: #696; }
+
+.card .type[data-names~='プリンセス'] {
+  background: #cc3; }
+
+.card .type[data-names~='サポート'] {
+  background: #e73; }
+
+.card .type[data-names~='?'] {
+  background: #ddd; }
+
+.card .type[data-names~='防衛'][data-names~='災い'] {
+  background: linear-gradient(to bottom right, #339 70%, #fff 70%, #fff 73%, #636 73%); }
+
+.card .type[data-names~='継承権'][data-names~='領地'] {
+  background: linear-gradient(to bottom right, #696 70%, #fff 70%, #fff 73%, #963 73%); }
+
+.card .subtype:after {
+  color: #999;
+  content: "（" attr(data-name) "）";
+  font-size: 80%; }
+
+.card .subtype[data-name='']:after {
+  display: none; }
+
+.card .esym {
+  font-size: 80%;
+  padding: 0.25em 0.25em;
+  border-radius: 0.25em;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  line-height: 100%;
+  position: absolute;
+  right: 0.5em;
+  top: 0.5em; }
+
+.card .esym[data-esym='基本'] {
+  color: #666;
+  background: #ddd; }
+
+.card .esym[data-esym='極東'] {
+  color: #884;
+  background: #eeb; }
+
+.card .esym[data-esym='北限'] {
+  color: #669;
+  background: #cce; }
+
+.card .esym[data-esym='ＦＧ'] {
+  color: #696;
+  background: #ded; }
+
+.card .esym[data-esym='六都'] {
+  color: #966;
+  background: #ece; }
+
+.ui-listview > .ui-li-static.dropped.card {
+  background: #ddd; }
+
+.dropped.card span {
+  opacity: 0.5; }
+
+.ui-listview > .ui-li-static.card {
+  background: transparent; }
+
+.ui-listview > .ui-li-static {
+  padding-top: 0.4em;
+  padding-bottom: 0.4em; }
+
+.ui-listview > .ui-li-static > label {
+  margin: 0; }
+
+#header .button {
+  font-size: 24px;
+  line-height: 100%;
+  padding: 0.25em 0; }
+
+#configure h2 {
+  font-size: 110%; }
+
+#configure legend,
+#configure .ui-field-contain > label {
+  font-weight: bolder; }
+
+#configure .ui-field-contain > label {
+  margin-top: 0;
+  padding-top: 0.7em;
+  border-top: 1px solid transparent; }
+
+#configure .block {
+  margin-top: 2em; }
+
+#configure .block:first-child {
+  margin-top: 0; }
+
+#configure #available_card_sets .ui-controlgroup-label {
+  float: left;
+  width: 6em;
+  height: 2em;
+  position: relative;
+  top: 0.25em; }
+
+#configure #available_card_sets .fairygarden .ui-controlgroup-label {
+  top: -0.25em; }
+
+#configure #available_card_sets .ui-controlgroup-controls {
+  float: left; }
+
+#configure #available_card_sets .ui-controlgroup-controls > .ui-radio > .ui-btn {
+  padding: 0.25em 0.5em; }
+
+#configure #must_exclude_cards-button > span:not(.ui-li-count) {
+  white-space: normal; }
+
+#configure .note {
+  display: block;
+  font-size: 80%;
+  font-weight: lighter; }
+
+#configure .card-name:before {
+  color: #666;
+  content: "《"; }
+
+#configure .card-name:after {
+  color: #666;
+  content: "》"; }
+
+#configure .card-name {
+  white-space: nowrap; }
+
+.iOS .ui-select .ui-btn select {
+  font-size: 50px; }
+
+#templates {
+  display: none; }
+
+#notification {
+  position: fixed;
+  right: 0.2em;
+  bottom: 0em; }
+
+#notification #offline_mode {
+  opacity: 0.2; }
+
+#notification #offline_mode .progress {
+  font-size: 80%;
+  font-style: normal;
+  font-family: "Helvetica", sans-serif; }
+
+#notification #offline_mode.checking {
+  color: #666; }
+
+#notification #offline_mode.noupdate {
+  color: #090; }
+
+#notification #offline_mode.downloading {
+  color: #666; }
+
+#notification #offline_mode.progress {
+  color: #666; }
+
+#notification #offline_mode.cached {
+  color: #090; }
+
+#notification #offline_mode.updateready {
+  color: #099; }
+
+#notification #offline_mode.obsolete {
+  color: #660; }
+
+#notification #offline_mode.error {
+  color: #900; }
+
+#notification #supply_status {
+  display: none; }
+
+#notification #supply_status.failed {
+  display: inline;
+  opacity: 0.2;
+  color: #c00; }
+
+#home a.disabled {
+  color: #999; }
+
+.delete.ui-btn {
+  color: #fff;
+  text-shadow: 0 1px 0 #000;
+  background-color: #f33;
+  border-color: #f99;
+  opacity: 0;
+  transition: opacity 0.25s linear;
+  right: 0.5em; }
+
+.enabled.delete.ui-btn {
+  opacity: 1; }
+
+.page_list .excerpt {
+  font-size: 80%; }
+
+.page_list .at {
+  font-size: 80%;
+  color: #999; }
+
+[data-dialog='true'], [data-role='dialog'] {
+  z-index: 2000; }
