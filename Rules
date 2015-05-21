@@ -29,6 +29,10 @@ compile '/offline/' do
   filter :haml
 end
 
+compile '/manifest/' do
+  filter :version
+end
+
 compile '/stylesheets/app/' do
   filter :sass
 end
