@@ -70,7 +70,7 @@ route '/offline/' do
 end
 
 route '/manifest/' do
-  '/index.appcache'
+  '/offline.appcache'
 end
 
 route '/stylesheets/app/' do
