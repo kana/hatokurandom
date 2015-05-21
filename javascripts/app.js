@@ -2775,7 +2775,7 @@ var hatokurandom = {};
     if (0 <= old_domains.indexOf(location.hostname)) {
       var message =
         '現在アクセスされている ' + location.hostname + ' ですが、' +
-        '諸事情により2014-09-22から利用できなくなりました。' +
+        '諸事情により2015-07-01から利用できなくなりました。' +
         '今後は ' + new_domain + ' でアクセスするようお願いします。' +
         '\n\n' +
         new_domain + ' へ移動してもよいでしょうか?';
