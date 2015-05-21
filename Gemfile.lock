@@ -6,13 +6,18 @@ GEM
     colored (1.2)
     cri (2.7.0)
       colored (~> 1.2)
+    execjs (2.5.2)
     haml (4.0.6)
       tilt
+    json (1.8.2)
     nanoc (3.8.0)
       cri (~> 2.3)
     rack (1.6.1)
     sass (3.4.13)
     tilt (1.4.1)
+    uglifier (2.7.1)
+      execjs (>= 0.3.0)
+      json (>= 1.8.0)
 
 PLATFORMS
   ruby
@@ -22,3 +27,4 @@ DEPENDENCIES
   haml
   nanoc
   sass
+  uglifier
