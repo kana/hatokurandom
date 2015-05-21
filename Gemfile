@@ -1,9 +1,7 @@
 source 'https://rubygems.org'
-ruby '2.1.2'
 
+gem 'adsf'
 gem 'haml'
+gem 'nanoc'
 gem 'sass'
-gem 'sinatra'
-gem 'sinatra-assetpack'
-gem 'thin'
 gem 'uglifier'

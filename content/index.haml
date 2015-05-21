@@ -1,13 +1,13 @@
 !!! 5
-%html{offline_mode? ? {manifest: '/index.appcache'} : {}}
+%html{item[:offline_mode] ? {manifest: '/offline.appcache'} : {}}
   %head
     %title= App::NAME
     %meta(charset='UTF-8')
     %meta(name='viewport' content='width=device-width, initial-scale=1')
     %meta(name='apple-mobile-web-app-capable' content='yes')
     %meta(name='apple-mobile-web-app-status-bar-style' content='black')
-    = css :whole
-    = js :whole
+    %link(rel='stylesheet' href='assets/whole.css')
+    %script(src='assets/whole.js')
   %body
     :ruby
       def as_page

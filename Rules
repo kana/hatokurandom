@@ -1,0 +1,96 @@
+#!/usr/bin/env ruby
+
+# To avoid Encoding::InvalidByteSequenceError by minifier.
+Encoding::default_internal = Encoding::UTF_8
+Encoding::default_external = Encoding::UTF_8
+
+preprocess do
+  def items.find_by_identifier(identifier)
+    find {|i| i.identifier == identifier} or
+      throw ArgumentError.new("No such item with identifier '#{identifier}'")
+  end
+
+  root_item = items.find_by_identifier('/')
+  items << Nanoc::Item.new(
+    root_item.raw_content,
+    root_item.attributes.merge({offline_mode: true}),
+    '/offline/'
+  )
+end
+
+
+
+
+compile '/' do
+  filter :version
+  filter :haml
+end
+
+compile '/offline/' do
+  filter :version
+  filter :haml
+end
+
+compile '/manifest/' do
+  filter :version
+end
+
+compile '/stylesheets/app/' do
+  filter :sass
+end
+
+compile '/stylesheets/whole/' do
+  filter :concat, items: [
+    '/stylesheets/font-awesome/css/font-awesome.min.css/',
+    '/stylesheets/jquery-mobile/jquery.mobile-1.4.5.min.css/',
+    '/stylesheets/app/',
+  ].map {|id| items.find_by_identifier(id)}
+  # TODO: Minify CSS.
+  # "filter :sass, style: :compressed" on concat result fails for multibyte
+  # characters.  The same on /stylesheets/app/ fails because SASS embeds BOM.
+end
+
+compile '/javascripts/whole/' do
+  filter :concat, items: [
+    '/javascripts/jquery/jquery-2.1.1.min.js/',
+    '/javascripts/configure-jquery-mobile.js/',
+    '/javascripts/jquery-mobile/jquery.mobile-1.4.5.min.js/',
+    '/javascripts/app.js/',
+  ].map {|id| items.find_by_identifier(id)}
+  filter :uglify_js
+end
+
+compile '*' do
+  # Copy as is.
+end
+
+
+
+
+route '/' do
+  '/index.html'
+end
+
+route '/offline/' do
+  '/offline.html'
+end
+
+route '/manifest/' do
+  '/offline.appcache'
+end
+
+route '/stylesheets/app/' do
+  '/stylesheets/app.css'
+end
+
+route '/stylesheets/whole/' do
+  '/assets/whole.css'
+end
+
+route '/javascripts/whole/' do
+  '/assets/whole.js'
+end
+
+route '*' do
+  item.identifier.chop
+end
