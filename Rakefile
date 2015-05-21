@@ -4,7 +4,7 @@ task :deploy, [:remote] do |t, args|
   sh 'git diff --quiet HEAD'
   version = %x{git describe --always --dirty}.chomp
   sh 'nanoc prune --yes'
-  sh 'rm -f output/offline.appcache'  # Its content depends on environment.
+  sh 'rm -f output/*.{html,appcache}'  # To replace versions correctly.
   sh 'nanoc compile'
   sh %Q{
     cd output &&
