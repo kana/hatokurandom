@@ -69,6 +69,10 @@ route '/offline/' do
   '/offline.html'
 end
 
+route '/manifest/' do
+  '/index.appcache'
+end
+
 route '/stylesheets/app/' do
   '/stylesheets/app.css'
 end
