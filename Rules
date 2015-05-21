@@ -22,10 +22,12 @@ end
 
 
 compile '/' do
+  filter :version
   filter :haml
 end
 
 compile '/offline/' do
+  filter :version
   filter :haml
 end
 
