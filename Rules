@@ -1,5 +1,9 @@
 #!/usr/bin/env ruby
 
+# To avoid Encoding::InvalidByteSequenceError by minifier.
+Encoding::default_internal = Encoding::UTF_8
+Encoding::default_external = Encoding::UTF_8
+
 preprocess do
   def items.find_by_identifier(identifier)
     find {|i| i.identifier == identifier} or
