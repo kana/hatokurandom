@@ -44,6 +44,7 @@ compile '/javascripts/whole/' do
     '/javascripts/jquery-mobile/jquery.mobile-1.4.5.min.js/',
     '/javascripts/app.js/',
   ].map {|id| items.find_by_identifier(id)}
+  filter :uglify_js
 end
 
 compile '*' do
