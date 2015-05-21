@@ -39,6 +39,9 @@ compile '/stylesheets/whole/' do
     '/stylesheets/jquery-mobile/jquery.mobile-1.4.5.min.css/',
     '/stylesheets/app/',
   ].map {|id| items.find_by_identifier(id)}
+  # TODO: Minify CSS.
+  # "filter :sass, style: :compressed" on concat result fails for multibyte
+  # characters.  The same on /stylesheets/app/ fails because SASS embeds BOM.
 end
 
 compile '/javascripts/whole/' do
