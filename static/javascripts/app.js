@@ -250,7 +250,25 @@ var hatokurandom = {};
     {cid: 0x81, eid: H.EID_SIX, cost: 5, link: 0, name: '免罪符', types: ['行動'], rarity: 'C'},
     {cid: 0x82, eid: H.EID_SIX, cost: 5, link: 0, name: '傭兵団', types: ['行動', '攻撃'], subtype: '兵力', rarity: 'C'},
 
-    {cid: 0x83, eid: H.EID_SIX, cost: 0, link: undefined, name: '不運', types: ['災い'], rarity: undefined}
+    {cid: 0x83, eid: H.EID_SIX, cost: 0, link: undefined, name: '不運', types: ['災い'], rarity: undefined},
+
+    // 星天前路  //{{{3
+
+    {cid: 0x84, eid: H.EID_STAR, cost: 6, link: undefined, name: '?', types: ['プリンセス'], rarity: 'R'},
+
+    {cid: 0x85, eid: H.EID_STAR, cost: '+2', link: undefined, name: '?', types: ['サポート'], rarity: 'R'},
+    {cid: 0x86, eid: H.EID_STAR, cost: '+2', link: undefined, name: '?', types: ['サポート'], rarity: 'R'},
+
+    {cid: 0x87, eid: H.EID_STAR, cost: undefined, link: 0, name: '?', types: ['?'], rarity: 'C'},
+    {cid: 0x88, eid: H.EID_STAR, cost: undefined, link: 0, name: '?', types: ['?'], rarity: 'C'},
+    {cid: 0x89, eid: H.EID_STAR, cost: undefined, link: 0, name: '?', types: ['?'], rarity: 'C'},
+    {cid: 0x8a, eid: H.EID_STAR, cost: undefined, link: 0, name: '?', types: ['?'], rarity: 'C'},
+    {cid: 0x8b, eid: H.EID_STAR, cost: undefined, link: 0, name: '?', types: ['?'], rarity: 'C'},
+    {cid: 0x8c, eid: H.EID_STAR, cost: undefined, link: 0, name: '?', types: ['?'], rarity: 'C'},
+    {cid: 0x8d, eid: H.EID_STAR, cost: undefined, link: 0, name: '?', types: ['?'], rarity: 'C'},
+    {cid: 0x8e, eid: H.EID_STAR, cost: undefined, link: 0, name: '?', types: ['?'], rarity: 'C'},
+    {cid: 0x8f, eid: H.EID_STAR, cost: undefined, link: 0, name: '?', types: ['?'], rarity: 'C'},
+    {cid: 0x90, eid: H.EID_STAR, cost: undefined, link: 0, name: '?', types: ['?'], rarity: 'C'}
 
     //{{{3
   ];
