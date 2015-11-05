@@ -1121,6 +1121,8 @@ var hatokurandom = {};
       'supply:six-water',
       'supply:six-rottenauthority'
     ],  //}}}
+    'supplies:star': [  //{{{
+    ],  //}}}
     'supplies:championship1': [  //{{{
       'supply:championship1-prelims1',
       'supply:championship1-prelims2',
@@ -1349,6 +1351,9 @@ var hatokurandom = {};
     },  //}}}
     'supplies:six': {  //{{{
       title: '推奨サプライ(六都市同盟)'
+    },  //}}}
+    'supplies:star': {  //{{{
+      title: '推奨サプライ(星天前路)'
     },  //}}}
     'supply:six-journey': {  //{{{
       title: '旅の始めに'
