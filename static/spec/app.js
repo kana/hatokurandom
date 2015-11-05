@@ -116,6 +116,9 @@
       it('drops Six Cities Alliance cards if configured so', function () {
         expect(f({include_six: 'must_not'})).toEqual([cbs, cft, cne, cfg]);
       });
+      it('drops 星天前路 cards if configured so', function () {
+        expect(f({include_star: 'must_not'})).toEqual([cbs, cft, cne, cfg]);
+      });
     });
     describe('must_exclude_cards', function () {
       it('drops specified cards', function () {
@@ -216,6 +219,7 @@
         test(H.EID_NORTHERN, {include_northern: 'must_not'});
         test(H.EID_FAIRY, {include_fairy: 'must_not'});
         test(H.EID_SIX, {include_six: 'must_not'});
+        test(H.EID_STAR, {include_star: 'must_not'});
       });
       it('should include "must" expansions', function () {
         var filter_by_eid = function (eid, cards) {
