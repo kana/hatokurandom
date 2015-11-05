@@ -63,6 +63,7 @@ var hatokurandom = {};
   H.EID_NORTHERN = 3;
   H.EID_FAIRY = 4;
   H.EID_SIX = 5;
+  H.EID_STAR = 6;
 
   H.EXPANSIONS = [  //{{{2
     {eid: H.EID_BASIC, name: '基本セット', symbol: '基本'},
