@@ -297,6 +297,7 @@ var hatokurandom = {};
     include_link_2: false,
     include_northern: 'may',
     include_six: 'may',
+    include_star: 'may',
     must_exclude_cards: [],
     sharing_tool: 'web_intent',
     sort_key: 'eid',
@@ -1682,6 +1683,7 @@ var hatokurandom = {};
     cs = filter_by_eid(cs, options.include_northern != 'must_not', H.EID_NORTHERN);
     cs = filter_by_eid(cs, options.include_fairy != 'must_not', H.EID_FAIRY);
     cs = filter_by_eid(cs, options.include_six != 'must_not', H.EID_SIX);
+    cs = filter_by_eid(cs, options.include_star != 'must_not', H.EID_STAR);
 
     return cs;
   };
@@ -1735,6 +1737,10 @@ var hatokurandom = {};
       }
       if (options.include_six == 'must') {
         if (!any(chosen_cards, H.EID_SIX))
+          continue;
+      }
+      if (options.include_star == 'must') {
+        if (!any(chosen_cards, H.EID_STAR))
           continue;
       }
       if (options.include_all_costs) {
@@ -2727,7 +2733,8 @@ var hatokurandom = {};
         H.options.include_fareast == 'must_not' &&
         H.options.include_northern == 'must_not' &&
         H.options.include_fairy == 'must_not' &&
-        H.options.include_six == 'must_not') {
+        H.options.include_six == 'must_not' &&
+        H.options.include_star == 'must_not') {
       $('#configure [name="include_basic"]').val('may').change();
     }
   };

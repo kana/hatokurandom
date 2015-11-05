@@ -162,6 +162,18 @@
               %input(type='radio' name='include_six' value='must_not')
               禁止
 
+          %fieldset{data: {role: 'controlgroup', type: 'horizontal'}}
+            %legend 星天前路
+            %label
+              %input(type='radio' name='include_star' value='must')
+              必須
+            %label
+              %input(type='radio' name='include_star' value='may')
+              使用
+            %label
+              %input(type='radio' name='include_star' value='must_not')
+              禁止
+
           .ui-field-contain
             %label(for='must_exclude_cards') 禁止カード
             %select#must_exclude_cards(name='must_exclude_cards' multiple){data: {native: {menu: 'false'}, divider: {theme: 'b'}}}
