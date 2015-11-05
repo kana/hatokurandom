@@ -981,6 +981,7 @@ var hatokurandom = {};
       'reference-northern': by_expansion(H.EID_NORTHERN),
       'reference-fairy': by_expansion(H.EID_FAIRY),
       'reference-six': by_expansion(H.EID_SIX),
+      'reference-star': by_expansion(H.EID_STAR),
       'reference-rarity-basic': by_rarity('B'),
       'reference-rarity-common': by_rarity('C'),
       'reference-rarity-rare': by_rarity('R'),
@@ -1178,7 +1179,8 @@ var hatokurandom = {};
       'reference:fareast',
       'reference:northern',
       'reference:fairy',
-      'reference:six'
+      'reference:six',
+      'reference:star'
     ],  //}}}
     'references:rarity': [  //{{{
       'reference:rarity-basic',
@@ -1510,6 +1512,9 @@ var hatokurandom = {};
     },  //}}}
     'reference:six': {  //{{{
       title: '六都市同盟のカード一覧'
+    },  //}}}
+    'reference:star': {  //{{{
+      title: '星天前路のカード一覧'
     },  //}}}
     'references:rarity': {  //{{{
       title: 'レアリティ別カードリスト'
