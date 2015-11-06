@@ -63,13 +63,15 @@ var hatokurandom = {};
   H.EID_NORTHERN = 3;
   H.EID_FAIRY = 4;
   H.EID_SIX = 5;
+  H.EID_STAR = 6;
 
   H.EXPANSIONS = [  //{{{2
     {eid: H.EID_BASIC, name: '基本セット', symbol: '基本'},
     {eid: H.EID_FAREAST, name: '極東辺境領', symbol: '極東'},
     {eid: H.EID_NORTHERN, name: '北限の魔女', symbol: '北限'},
     {eid: H.EID_FAIRY, name: 'フェアリーガーデン', symbol: 'ＦＧ'},
-    {eid: H.EID_SIX, name: '六都市同盟', symbol: '六都'}
+    {eid: H.EID_SIX, name: '六都市同盟', symbol: '六都'},
+    {eid: H.EID_STAR, name: '星天前路', symbol: '星天'}
   ];
 
   H.ALL_CARDS = [  //{{{2
@@ -248,7 +250,25 @@ var hatokurandom = {};
     {cid: 0x81, eid: H.EID_SIX, cost: 5, link: 0, name: '免罪符', types: ['行動'], rarity: 'C'},
     {cid: 0x82, eid: H.EID_SIX, cost: 5, link: 0, name: '傭兵団', types: ['行動', '攻撃'], subtype: '兵力', rarity: 'C'},
 
-    {cid: 0x83, eid: H.EID_SIX, cost: 0, link: undefined, name: '不運', types: ['災い'], rarity: undefined}
+    {cid: 0x83, eid: H.EID_SIX, cost: 0, link: undefined, name: '不運', types: ['災い'], rarity: undefined},
+
+    // 星天前路  //{{{3
+
+    {cid: 0x84, eid: H.EID_STAR, cost: 6, link: undefined, name: '?', types: ['プリンセス'], rarity: 'R'},
+
+    {cid: 0x85, eid: H.EID_STAR, cost: '+2', link: undefined, name: '帝立魔法図書館', types: ['サポート'], rarity: 'R'},
+    {cid: 0x86, eid: H.EID_STAR, cost: '+2', link: undefined, name: '帝宮の宝物庫', types: ['サポート'], rarity: 'R'},
+
+    {cid: 0x87, eid: H.EID_STAR, cost: undefined, link: 0, name: '?', types: ['?'], rarity: 'C'},
+    {cid: 0x88, eid: H.EID_STAR, cost: undefined, link: 0, name: '?', types: ['?'], rarity: 'C'},
+    {cid: 0x89, eid: H.EID_STAR, cost: undefined, link: 0, name: '?', types: ['?'], rarity: 'C'},
+    {cid: 0x8a, eid: H.EID_STAR, cost: undefined, link: 0, name: '?', types: ['?'], rarity: 'C'},
+    {cid: 0x8b, eid: H.EID_STAR, cost: undefined, link: 0, name: '?', types: ['?'], rarity: 'C'},
+    {cid: 0x8c, eid: H.EID_STAR, cost: undefined, link: 0, name: '?', types: ['?'], rarity: 'C'},
+    {cid: 0x8d, eid: H.EID_STAR, cost: undefined, link: 0, name: '?', types: ['?'], rarity: 'C'},
+    {cid: 0x8e, eid: H.EID_STAR, cost: undefined, link: 0, name: '?', types: ['?'], rarity: 'C'},
+    {cid: 0x8f, eid: H.EID_STAR, cost: undefined, link: 0, name: '?', types: ['?'], rarity: 'C'},
+    {cid: 0x90, eid: H.EID_STAR, cost: undefined, link: 0, name: '?', types: ['?'], rarity: 'C'}
 
     //{{{3
   ];
@@ -295,6 +315,7 @@ var hatokurandom = {};
     include_link_2: false,
     include_northern: 'may',
     include_six: 'may',
+    include_star: 'may',
     must_exclude_cards: [],
     sharing_tool: 'web_intent',
     sort_key: 'eid',
@@ -978,6 +999,7 @@ var hatokurandom = {};
       'reference-northern': by_expansion(H.EID_NORTHERN),
       'reference-fairy': by_expansion(H.EID_FAIRY),
       'reference-six': by_expansion(H.EID_SIX),
+      'reference-star': by_expansion(H.EID_STAR),
       'reference-rarity-basic': by_rarity('B'),
       'reference-rarity-common': by_rarity('C'),
       'reference-rarity-rare': by_rarity('R'),
@@ -1118,6 +1140,8 @@ var hatokurandom = {};
       'supply:six-water',
       'supply:six-rottenauthority'
     ],  //}}}
+    'supplies:star': [  //{{{
+    ],  //}}}
     'supplies:championship1': [  //{{{
       'supply:championship1-prelims1',
       'supply:championship1-prelims2',
@@ -1173,7 +1197,8 @@ var hatokurandom = {};
       'reference:fareast',
       'reference:northern',
       'reference:fairy',
-      'reference:six'
+      'reference:six',
+      'reference:star'
     ],  //}}}
     'references:rarity': [  //{{{
       'reference:rarity-basic',
@@ -1347,6 +1372,9 @@ var hatokurandom = {};
     'supplies:six': {  //{{{
       title: '推奨サプライ(六都市同盟)'
     },  //}}}
+    'supplies:star': {  //{{{
+      title: '推奨サプライ(星天前路)'
+    },  //}}}
     'supply:six-journey': {  //{{{
       title: '旅の始めに'
     },  //}}}
@@ -1502,6 +1530,9 @@ var hatokurandom = {};
     },  //}}}
     'reference:six': {  //{{{
       title: '六都市同盟のカード一覧'
+    },  //}}}
+    'reference:star': {  //{{{
+      title: '星天前路のカード一覧'
     },  //}}}
     'references:rarity': {  //{{{
       title: 'レアリティ別カードリスト'
@@ -1680,6 +1711,7 @@ var hatokurandom = {};
     cs = filter_by_eid(cs, options.include_northern != 'must_not', H.EID_NORTHERN);
     cs = filter_by_eid(cs, options.include_fairy != 'must_not', H.EID_FAIRY);
     cs = filter_by_eid(cs, options.include_six != 'must_not', H.EID_SIX);
+    cs = filter_by_eid(cs, options.include_star != 'must_not', H.EID_STAR);
 
     return cs;
   };
@@ -1733,6 +1765,10 @@ var hatokurandom = {};
       }
       if (options.include_six == 'must') {
         if (!any(chosen_cards, H.EID_SIX))
+          continue;
+      }
+      if (options.include_star == 'must') {
+        if (!any(chosen_cards, H.EID_STAR))
           continue;
       }
       if (options.include_all_costs) {
@@ -2725,7 +2761,8 @@ var hatokurandom = {};
         H.options.include_fareast == 'must_not' &&
         H.options.include_northern == 'must_not' &&
         H.options.include_fairy == 'must_not' &&
-        H.options.include_six == 'must_not') {
+        H.options.include_six == 'must_not' &&
+        H.options.include_star == 'must_not') {
       $('#configure [name="include_basic"]').val('may').change();
     }
   };

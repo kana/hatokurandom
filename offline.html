@@ -63,6 +63,9 @@
             <a href='#supplies:six'>推奨サプライ(六都市同盟)</a>
           </li>
           <li>
+            <a class='disabled'>推奨サプライ(星天前路)</a>
+          </li>
+          <li>
             <a href='#supplies:championship1'>世界選手権</a>
           </li>
           <li>
@@ -167,6 +170,21 @@
             </label>
             <label>
               <input name='include_six' type='radio' value='must_not'>
+              禁止
+            </label>
+          </fieldset>
+          <fieldset data-role='controlgroup' data-type='horizontal'>
+            <legend>星天前路</legend>
+            <label>
+              <input name='include_star' type='radio' value='must'>
+              必須
+            </label>
+            <label>
+              <input name='include_star' type='radio' value='may'>
+              使用
+            </label>
+            <label>
+              <input name='include_star' type='radio' value='must_not'>
               禁止
             </label>
           </fieldset>
@@ -378,7 +396,7 @@
         </h1>
         <div>
           Hatokurandom
-          0.11.0
+          0.11.0-11-g410a062
         </div>
         <div>
           Copyright &copy; 2012-2015

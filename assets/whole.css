@@ -106,6 +106,10 @@ a[target='_blank']:after {
   color: #966;
   background: #ece; }
 
+.card .esym[data-esym='星天'] {
+  color: #633;
+  background: #fcc; }
+
 .ui-listview > .ui-li-static.dropped.card {
   background: #ddd; }
 
