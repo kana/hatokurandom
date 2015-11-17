@@ -254,13 +254,13 @@ var hatokurandom = {};
 
     // 星天前路  //{{{3
 
-    {cid: 0x84, eid: H.EID_STAR, cost: 6, link: undefined, name: '?', types: ['プリンセス'], rarity: 'R'},
+    {cid: 0x84, eid: H.EID_STAR, cost: 6, link: undefined, name: '古王朝の裔姫 ルウェリー', types: ['プリンセス'], rarity: 'R'},
 
     {cid: 0x85, eid: H.EID_STAR, cost: '+2', link: undefined, name: '帝立魔法図書館', types: ['サポート'], rarity: 'R'},
     {cid: 0x86, eid: H.EID_STAR, cost: '+2', link: undefined, name: '帝宮の宝物庫', types: ['サポート'], rarity: 'R'},
 
-    {cid: 0x87, eid: H.EID_STAR, cost: undefined, link: 0, name: '?', types: ['?'], rarity: 'C'},
-    {cid: 0x88, eid: H.EID_STAR, cost: undefined, link: 0, name: '?', types: ['?'], rarity: 'C'},
+    {cid: 0x87, eid: H.EID_STAR, cost: 4, link: 0, name: '義賊', types: ['行動', '攻撃'], rarity: 'C'},
+    {cid: 0x88, eid: H.EID_STAR, cost: 5, link: 1, name: '離れ小島', types: ['領地'], rarity: 'C'},
     {cid: 0x89, eid: H.EID_STAR, cost: undefined, link: 0, name: '?', types: ['?'], rarity: 'C'},
     {cid: 0x8a, eid: H.EID_STAR, cost: undefined, link: 0, name: '?', types: ['?'], rarity: 'C'},
     {cid: 0x8b, eid: H.EID_STAR, cost: undefined, link: 0, name: '?', types: ['?'], rarity: 'C'},
