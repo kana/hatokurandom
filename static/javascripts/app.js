@@ -261,14 +261,14 @@ var hatokurandom = {};
 
     {cid: 0x87, eid: H.EID_STAR, cost: 4, link: 0, name: '義賊', types: ['行動', '攻撃'], rarity: 'C'},
     {cid: 0x88, eid: H.EID_STAR, cost: 5, link: 1, name: '離れ小島', types: ['領地'], rarity: 'C'},
-    {cid: 0x89, eid: H.EID_STAR, cost: undefined, link: 0, name: '?', types: ['?'], rarity: 'C'},
-    {cid: 0x8a, eid: H.EID_STAR, cost: undefined, link: 0, name: '?', types: ['?'], rarity: 'C'},
-    {cid: 0x8b, eid: H.EID_STAR, cost: undefined, link: 0, name: '?', types: ['?'], rarity: 'C'},
-    {cid: 0x8c, eid: H.EID_STAR, cost: undefined, link: 0, name: '?', types: ['?'], rarity: 'C'},
-    {cid: 0x8d, eid: H.EID_STAR, cost: undefined, link: 0, name: '?', types: ['?'], rarity: 'C'},
-    {cid: 0x8e, eid: H.EID_STAR, cost: undefined, link: 0, name: '?', types: ['?'], rarity: 'C'},
-    {cid: 0x8f, eid: H.EID_STAR, cost: undefined, link: 0, name: '?', types: ['?'], rarity: 'C'},
-    {cid: 0x90, eid: H.EID_STAR, cost: undefined, link: 0, name: '?', types: ['?'], rarity: 'C'}
+    {cid: 0x89, eid: H.EID_STAR, cost: 5, link: 1, name: 'ウィッチドクター', types: ['行動'], subtype: '魔法', rarity: 'C'},
+    {cid: 0x8a, eid: H.EID_STAR, cost: 5, link: undefined, name: '富豪の愛娘', types: ['継承権'], rarity: 'C'},
+    {cid: 0x8b, eid: H.EID_STAR, cost: 4, link: 1, name: '家庭教師', types: ['行動'], rarity: 'C'},
+    {cid: 0x8c, eid: H.EID_STAR, cost: 4, link: 1, name: 'カンフーマスター', types: ['行動', '攻撃'], rarity: 'C'},
+    {cid: 0x8d, eid: H.EID_STAR, cost: 3, link: 2, name: '灯台', types: ['領地'], rarity: 'C'},
+    {cid: 0x8e, eid: H.EID_STAR, cost: 5, link: 0, name: 'キョンシー', types: ['行動', '攻撃'], subtype: '魔法', rarity: 'C'},
+    {cid: 0x8f, eid: H.EID_STAR, cost: 5, link: 1, name: 'キャラバン', types: ['行動'], subtype: '商人', rarity: 'C'},
+    {cid: 0x90, eid: H.EID_STAR, cost: 4, link: 0, name: '先行投資', types: ['行動'], rarity: 'C'}
 
     //{{{3
   ];
