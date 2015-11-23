@@ -2038,6 +2038,11 @@ var hatokurandom = {};
       card.name == 'サムライ';
   };
 
+  H.is_banned_card_for_trajectory_of_the_star = function (card) {  //{{{2
+    return H.is_banned_card_for_fairy_garden(card) ||
+      card.name == '割り符';
+  };
+
   H.is_browser_history_available = function () {  //{{{2
     return !window.navigator.standalone ||
            window.applicationCache.status == window.applicationCache.UNCACHED;
