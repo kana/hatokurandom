@@ -308,6 +308,7 @@ var hatokurandom = {};
   H.DEFAULT_OPTIONS = {  //{{{2
     exclude_banned_cards: true,
     exclude_banned_cards_for_fairy_garden: true,
+    exclude_banned_cards_for_trajectory_of_the_star: true,
     include_all_costs: false,
     include_basic: 'may',
     include_fairy: 'may',
