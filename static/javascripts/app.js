@@ -1887,6 +1887,11 @@ var hatokurandom = {};
             chosen_cards.some(H.is_banned_card_for_fairy_garden))
           continue;
       }
+      if (options.exclude_banned_cards_for_trajectory_of_the_star) {
+        if (any(chosen_cards, H.EID_STAR) &&
+            chosen_cards.some(H.is_banned_card_for_trajectory_of_the_star))
+          continue;
+      }
 
       if (options.statistical) {
         ok_count++;
