@@ -116,7 +116,7 @@
       it('drops Six Cities Alliance cards if configured so', function () {
         expect(f({include_six: 'must_not'})).toEqual([cbs, cft, cne, cfg]);
       });
-      it('drops 星天前路 cards if configured so', function () {
+      it('drops Trajectory of the star cards if configured so', function () {
         expect(f({include_star: 'must_not'})).toEqual([cbs, cft, cne, cfg]);
       });
     });
