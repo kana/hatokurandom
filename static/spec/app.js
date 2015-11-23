@@ -94,7 +94,8 @@
       var cne = H.card_from_card_name('豪商');
       var cfg = H.card_from_card_name('商船団');
       var csa = H.card_from_card_name('転売屋');
-      var given_cards = [cbs, cft, cne, cfg, csa];
+      var cts = H.card_from_card_name('キャラバン');
+      var given_cards = [cbs, cft, cne, cfg, csa, cts];
       var f = function (custom_options) {
         return H.choose_available_cards(
           given_cards,
@@ -102,22 +103,22 @@
         );
       };
       it('drops Basic Set cards if configured so', function () {
-        expect(f({include_basic: 'must_not'})).toEqual([cft, cne, cfg, csa]);
+        expect(f({include_basic: 'must_not'})).toEqual([cft, cne, cfg, csa, cts]);
       });
       it('drops Fareast Territory cards if configured so', function () {
-        expect(f({include_fareast: 'must_not'})).toEqual([cbs, cne, cfg, csa]);
+        expect(f({include_fareast: 'must_not'})).toEqual([cbs, cne, cfg, csa, cts]);
       });
       it('drops Northern Enchantress cards if configured so', function () {
-        expect(f({include_northern: 'must_not'})).toEqual([cbs, cft, cfg, csa]);
+        expect(f({include_northern: 'must_not'})).toEqual([cbs, cft, cfg, csa, cts]);
       });
       it('drops Fairy Garden cards if configured so', function () {
-        expect(f({include_fairy: 'must_not'})).toEqual([cbs, cft, cne, csa]);
+        expect(f({include_fairy: 'must_not'})).toEqual([cbs, cft, cne, csa, cts]);
       });
       it('drops Six Cities Alliance cards if configured so', function () {
-        expect(f({include_six: 'must_not'})).toEqual([cbs, cft, cne, cfg]);
+        expect(f({include_six: 'must_not'})).toEqual([cbs, cft, cne, cfg, cts]);
       });
       it('drops Trajectory of the star cards if configured so', function () {
-        expect(f({include_star: 'must_not'})).toEqual([cbs, cft, cne, cfg]);
+        expect(f({include_star: 'must_not'})).toEqual([cbs, cft, cne, cfg, csa]);
       });
     });
     describe('must_exclude_cards', function () {
