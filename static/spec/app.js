@@ -513,6 +513,7 @@
             H.card_from_card_name('伝令'),
             H.card_from_card_name('交易船'),
             H.card_from_card_name('都市開発'),
+            H.card_from_card_name('割り符'),  // newly banned in Tots
             H.card_from_card_name('買収工作')
           ],
           true
@@ -536,6 +537,15 @@
             H.card_from_card_name('都市開発'),
             H.card_from_card_name('冒険者'),
             H.card_from_card_name('魅了術の魔女')
+          ],
+          true
+        );
+        test(
+          [
+            H.card_from_card_name('早馬'),
+            H.card_from_card_name('交易船'),
+            H.card_from_card_name('都市開発'),
+            H.card_from_card_name('冒険者')
           ],
           true
         );
@@ -614,6 +624,16 @@
           ],
           true
         );
+        test(
+          [
+            H.card_from_card_name('早馬'),
+            H.card_from_card_name('交易船'),
+            H.card_from_card_name('都市開発'),
+            H.card_from_card_name('冒険者'),
+            H.card_from_card_name('割り符')  // newly banned
+          ],
+          true
+        );
       });
       it('should return invalid result with banned cards if Trajectory of the star cards are included', function () {
         test(
@@ -633,6 +653,16 @@
             H.card_from_card_name('都市開発'),
             H.card_from_card_name('冒険者'),
             H.card_from_card_name('魅了術の魔女')
+          ],
+          false
+        );
+        test(
+          [
+            H.card_from_card_name('富豪の愛娘'),
+            H.card_from_card_name('交易船'),
+            H.card_from_card_name('都市開発'),
+            H.card_from_card_name('冒険者'),
+            H.card_from_card_name('割り符')  // newly banned
           ],
           false
         );
