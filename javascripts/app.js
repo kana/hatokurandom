@@ -261,14 +261,14 @@ var hatokurandom = {};
 
     {cid: 0x87, eid: H.EID_STAR, cost: 4, link: 0, name: '義賊', types: ['行動', '攻撃'], rarity: 'C'},
     {cid: 0x88, eid: H.EID_STAR, cost: 5, link: 1, name: '離れ小島', types: ['領地'], rarity: 'C'},
-    {cid: 0x89, eid: H.EID_STAR, cost: undefined, link: 0, name: '?', types: ['?'], rarity: 'C'},
-    {cid: 0x8a, eid: H.EID_STAR, cost: undefined, link: 0, name: '?', types: ['?'], rarity: 'C'},
-    {cid: 0x8b, eid: H.EID_STAR, cost: undefined, link: 0, name: '?', types: ['?'], rarity: 'C'},
-    {cid: 0x8c, eid: H.EID_STAR, cost: undefined, link: 0, name: '?', types: ['?'], rarity: 'C'},
-    {cid: 0x8d, eid: H.EID_STAR, cost: undefined, link: 0, name: '?', types: ['?'], rarity: 'C'},
-    {cid: 0x8e, eid: H.EID_STAR, cost: undefined, link: 0, name: '?', types: ['?'], rarity: 'C'},
-    {cid: 0x8f, eid: H.EID_STAR, cost: undefined, link: 0, name: '?', types: ['?'], rarity: 'C'},
-    {cid: 0x90, eid: H.EID_STAR, cost: undefined, link: 0, name: '?', types: ['?'], rarity: 'C'}
+    {cid: 0x89, eid: H.EID_STAR, cost: 5, link: 1, name: 'ウィッチドクター', types: ['行動'], subtype: '魔法', rarity: 'C'},
+    {cid: 0x8a, eid: H.EID_STAR, cost: 5, link: undefined, name: '富豪の愛娘', types: ['継承権'], rarity: 'C'},
+    {cid: 0x8b, eid: H.EID_STAR, cost: 4, link: 1, name: '家庭教師', types: ['行動'], rarity: 'C'},
+    {cid: 0x8c, eid: H.EID_STAR, cost: 4, link: 1, name: 'カンフーマスター', types: ['行動', '攻撃'], rarity: 'C'},
+    {cid: 0x8d, eid: H.EID_STAR, cost: 3, link: 2, name: '灯台', types: ['領地'], rarity: 'C'},
+    {cid: 0x8e, eid: H.EID_STAR, cost: 5, link: 0, name: 'キョンシー', types: ['行動', '攻撃'], subtype: '魔法', rarity: 'C'},
+    {cid: 0x8f, eid: H.EID_STAR, cost: 5, link: 1, name: 'キャラバン', types: ['行動'], subtype: '商人', rarity: 'C'},
+    {cid: 0x90, eid: H.EID_STAR, cost: 4, link: 0, name: '先行投資', types: ['行動'], rarity: 'C'}
 
     //{{{3
   ];
@@ -308,6 +308,7 @@ var hatokurandom = {};
   H.DEFAULT_OPTIONS = {  //{{{2
     exclude_banned_cards: true,
     exclude_banned_cards_for_fairy_garden: true,
+    exclude_banned_cards_for_trajectory_of_the_star: true,
     include_all_costs: false,
     include_basic: 'may',
     include_fairy: 'may',
@@ -901,6 +902,78 @@ var hatokurandom = {};
         '伝令',
         '収穫祭'
       ]),  //}}}
+      'star-journey': by_names([  //{{{
+        '灯台',
+        '義賊',
+        'キャラバン',
+        '先行投資',
+        '春風の妖精',
+        '伝令',
+        '石弓隊',
+        'ブラウニー',
+        '星巫女の託宣',
+        '交易都市'
+      ]),  //}}}
+      'star-risky': by_names([  //{{{
+        'カンフーマスター',
+        '離れ小島',
+        'ウィッチドクター',
+        '先行投資',
+        '家守の精霊',
+        '巡礼',
+        '旅芸人',
+        'メイド長',
+        '行商人',
+        '氷雪の精霊'
+      ]),  //}}}
+      'star-war': by_names([  //{{{
+        '離れ小島',
+        '灯台',
+        '家庭教師',
+        '富豪の愛娘',
+        'キョンシー',
+        'ウィッチドクター',
+        '伝令',
+        '聖堂騎士',
+        '検地役人',
+        '交易都市'
+      ]),  //}}}
+      'star-silkroad': by_names([  //{{{
+        '義賊',
+        'キャラバン',
+        '離れ小島',
+        '先行投資',
+        'ウィッチドクター',
+        'いたずら妖精',
+        '魔法のランプ',
+        '免罪符',
+        '家守の精霊',
+        'リーフフェアリー'
+      ]),  //}}}
+      'star-wisdom': by_names([  //{{{
+        'カンフーマスター',
+        '家庭教師',
+        'キャラバン',
+        '離れ小島',
+        '富豪の愛娘',
+        '独立都市',
+        '巡礼',
+        '春風の妖精',
+        '収穫祭',
+        '裁判官'
+      ]),  //}}}
+      'star-wish': by_names([  //{{{
+        '灯台',
+        '義賊',
+        'キャラバン',
+        '離れ小島',
+        '先行投資',
+        'へそくり',
+        '独立都市',
+        '家守の精霊',
+        '密偵',
+        '星巫女の託宣'
+      ]),  //}}}
       'championship1-prelims1': by_names([  //{{{
         '城壁',
         '願いの泉',
@@ -1141,6 +1214,12 @@ var hatokurandom = {};
       'supply:six-rottenauthority'
     ],  //}}}
     'supplies:star': [  //{{{
+      'supply:star-journey',
+      'supply:star-risky',
+      'supply:star-war',
+      'supply:star-silkroad',
+      'supply:star-wisdom',
+      'supply:star-wish'
     ],  //}}}
     'supplies:championship1': [  //{{{
       'supply:championship1-prelims1',
@@ -1372,9 +1451,6 @@ var hatokurandom = {};
     'supplies:six': {  //{{{
       title: '推奨サプライ(六都市同盟)'
     },  //}}}
-    'supplies:star': {  //{{{
-      title: '推奨サプライ(星天前路)'
-    },  //}}}
     'supply:six-journey': {  //{{{
       title: '旅の始めに'
     },  //}}}
@@ -1395,6 +1471,27 @@ var hatokurandom = {};
     },  //}}}
     'supply:six-rottenauthority': {  //{{{
       title: '絶対の権力は徹底的に腐敗する'
+    },  //}}}
+    'supplies:star': {  //{{{
+      title: '推奨サプライ(星天前路)'
+    },  //}}}
+    'supply:star-journey': {  //{{{
+      title: '遠路に幸あれかし'
+    },  //}}}
+    'supply:star-risky': {  //{{{
+      title: 'ハイリスクハイリターン'
+    },  //}}}
+    'supply:star-war': {  //{{{
+      title: '政争と戦争'
+    },  //}}}
+    'supply:star-silkroad': {  //{{{
+      title: 'シルクロード'
+    },  //}}}
+    'supply:star-wisdom': {  //{{{
+      title: '知は力なり'
+    },  //}}}
+    'supply:star-wish': {  //{{{
+      title: '天の星よ我が路行を照らせ'
     },  //}}}
     'supplies:championship1': {  //{{{
       title: '世界選手権'
@@ -1790,6 +1887,11 @@ var hatokurandom = {};
             chosen_cards.some(H.is_banned_card_for_fairy_garden))
           continue;
       }
+      if (options.exclude_banned_cards_for_trajectory_of_the_star) {
+        if (any(chosen_cards, H.EID_STAR) &&
+            chosen_cards.some(H.is_banned_card_for_trajectory_of_the_star))
+          continue;
+      }
 
       if (options.statistical) {
         ok_count++;
@@ -1939,6 +2041,11 @@ var hatokurandom = {};
       card.name == '近衛騎士団' ||
       card.name == '弓兵隊' ||
       card.name == 'サムライ';
+  };
+
+  H.is_banned_card_for_trajectory_of_the_star = function (card) {  //{{{2
+    return H.is_banned_card_for_fairy_garden(card) ||
+      card.name == '割り符';
   };
 
   H.is_browser_history_available = function () {  //{{{2
