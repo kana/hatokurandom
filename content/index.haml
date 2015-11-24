@@ -208,6 +208,13 @@
                 %span.card-name 弓兵隊
                 %span.card-name サムライ
             %label
+              %input(type='checkbox' name='exclude_banned_cards_for_trajectory_of_the_star')
+              星天前路と併用非推奨のカードを除外する
+              %span.note
+                星天前路のカードと以下のカードは同時に出現しません:
+                「フェアリーガーデンと併用非推奨のカード」一式、および
+                %span.card-name 割り符
+            %label
               %input(type='checkbox' name='include_all_costs')
               各コスト帯のカードを含める
               %span.note

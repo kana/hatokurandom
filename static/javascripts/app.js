@@ -308,6 +308,7 @@ var hatokurandom = {};
   H.DEFAULT_OPTIONS = {  //{{{2
     exclude_banned_cards: true,
     exclude_banned_cards_for_fairy_garden: true,
+    exclude_banned_cards_for_trajectory_of_the_star: true,
     include_all_costs: false,
     include_basic: 'may',
     include_fairy: 'may',
@@ -1886,6 +1887,11 @@ var hatokurandom = {};
             chosen_cards.some(H.is_banned_card_for_fairy_garden))
           continue;
       }
+      if (options.exclude_banned_cards_for_trajectory_of_the_star) {
+        if (any(chosen_cards, H.EID_STAR) &&
+            chosen_cards.some(H.is_banned_card_for_trajectory_of_the_star))
+          continue;
+      }
 
       if (options.statistical) {
         ok_count++;
@@ -2035,6 +2041,11 @@ var hatokurandom = {};
       card.name == '近衛騎士団' ||
       card.name == '弓兵隊' ||
       card.name == 'サムライ';
+  };
+
+  H.is_banned_card_for_trajectory_of_the_star = function (card) {  //{{{2
+    return H.is_banned_card_for_fairy_garden(card) ||
+      card.name == '割り符';
   };
 
   H.is_browser_history_available = function () {  //{{{2

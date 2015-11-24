@@ -94,7 +94,8 @@
       var cne = H.card_from_card_name('豪商');
       var cfg = H.card_from_card_name('商船団');
       var csa = H.card_from_card_name('転売屋');
-      var given_cards = [cbs, cft, cne, cfg, csa];
+      var cts = H.card_from_card_name('キャラバン');
+      var given_cards = [cbs, cft, cne, cfg, csa, cts];
       var f = function (custom_options) {
         return H.choose_available_cards(
           given_cards,
@@ -102,22 +103,22 @@
         );
       };
       it('drops Basic Set cards if configured so', function () {
-        expect(f({include_basic: 'must_not'})).toEqual([cft, cne, cfg, csa]);
+        expect(f({include_basic: 'must_not'})).toEqual([cft, cne, cfg, csa, cts]);
       });
       it('drops Fareast Territory cards if configured so', function () {
-        expect(f({include_fareast: 'must_not'})).toEqual([cbs, cne, cfg, csa]);
+        expect(f({include_fareast: 'must_not'})).toEqual([cbs, cne, cfg, csa, cts]);
       });
       it('drops Northern Enchantress cards if configured so', function () {
-        expect(f({include_northern: 'must_not'})).toEqual([cbs, cft, cfg, csa]);
+        expect(f({include_northern: 'must_not'})).toEqual([cbs, cft, cfg, csa, cts]);
       });
       it('drops Fairy Garden cards if configured so', function () {
-        expect(f({include_fairy: 'must_not'})).toEqual([cbs, cft, cne, csa]);
+        expect(f({include_fairy: 'must_not'})).toEqual([cbs, cft, cne, csa, cts]);
       });
       it('drops Six Cities Alliance cards if configured so', function () {
-        expect(f({include_six: 'must_not'})).toEqual([cbs, cft, cne, cfg]);
+        expect(f({include_six: 'must_not'})).toEqual([cbs, cft, cne, cfg, cts]);
       });
-      it('drops 星天前路 cards if configured so', function () {
-        expect(f({include_star: 'must_not'})).toEqual([cbs, cft, cne, cfg]);
+      it('drops Trajectory of the star cards if configured so', function () {
+        expect(f({include_star: 'must_not'})).toEqual([cbs, cft, cne, cfg, csa]);
       });
     });
     describe('must_exclude_cards', function () {
@@ -512,6 +513,7 @@
             H.card_from_card_name('伝令'),
             H.card_from_card_name('交易船'),
             H.card_from_card_name('都市開発'),
+            H.card_from_card_name('割り符'),  // newly banned in Tots
             H.card_from_card_name('買収工作')
           ],
           true
@@ -538,6 +540,15 @@
           ],
           true
         );
+        test(
+          [
+            H.card_from_card_name('早馬'),
+            H.card_from_card_name('交易船'),
+            H.card_from_card_name('都市開発'),
+            H.card_from_card_name('冒険者')
+          ],
+          true
+        );
       });
       it('should return invalid result with banned cards if Fairy Garden cards are included', function () {
         test(
@@ -557,6 +568,101 @@
             H.card_from_card_name('都市開発'),
             H.card_from_card_name('冒険者'),
             H.card_from_card_name('魅了術の魔女')
+          ],
+          false
+        );
+      });
+    });
+    describe('with exclude_banned_cards_for_trajectory_of_the_star', function () {
+      var test = function (card_set, valid, length) {
+        var cards =
+          H.choose_supply_cards(
+            card_set,
+            card_set.length,
+            $.extend(
+              {},
+              H.DEFAULT_OPTIONS,
+              {
+                exclude_banned_cards: false,
+                exclude_banned_cards_for_trajectory_of_the_star: true,
+                try_count: 1
+              }
+            )
+          );
+        expect(!cards.fallback).toEqual(valid);
+        expect(cards.length).toEqual(card_set.length);
+      };
+      it('should return valid result from non-banned cards', function () {
+        test(
+          [
+            H.card_from_card_name('富豪の愛娘'),
+            H.card_from_card_name('交易船'),
+            H.card_from_card_name('都市開発'),
+            H.card_from_card_name('買収工作')
+          ],
+          true
+        );
+      });
+      it('should return valid result with banned cards if Trajectory of the star cards are not included', function () {
+        test(
+          [
+            H.card_from_card_name('早馬'),
+            H.card_from_card_name('交易船'),
+            H.card_from_card_name('都市開発'),
+            H.card_from_card_name('冒険者'),
+            H.card_from_card_name('埋もれた財宝')
+          ],
+          true
+        );
+        test(
+          [
+            H.card_from_card_name('早馬'),
+            H.card_from_card_name('交易船'),
+            H.card_from_card_name('都市開発'),
+            H.card_from_card_name('冒険者'),
+            H.card_from_card_name('魅了術の魔女')
+          ],
+          true
+        );
+        test(
+          [
+            H.card_from_card_name('早馬'),
+            H.card_from_card_name('交易船'),
+            H.card_from_card_name('都市開発'),
+            H.card_from_card_name('冒険者'),
+            H.card_from_card_name('割り符')  // newly banned
+          ],
+          true
+        );
+      });
+      it('should return invalid result with banned cards if Trajectory of the star cards are included', function () {
+        test(
+          [
+            H.card_from_card_name('富豪の愛娘'),
+            H.card_from_card_name('交易船'),
+            H.card_from_card_name('都市開発'),
+            H.card_from_card_name('冒険者'),
+            H.card_from_card_name('埋もれた財宝')
+          ],
+          false
+        );
+        test(
+          [
+            H.card_from_card_name('富豪の愛娘'),
+            H.card_from_card_name('交易船'),
+            H.card_from_card_name('都市開発'),
+            H.card_from_card_name('冒険者'),
+            H.card_from_card_name('魅了術の魔女')
+          ],
+          false
+        );
+        test(
+          [
+            H.card_from_card_name('富豪の愛娘'),
+            H.card_from_card_name('交易船'),
+            H.card_from_card_name('都市開発'),
+            H.card_from_card_name('冒険者'),
+            H.card_from_card_name('割り符')  // newly banned
           ],
           false
         );
