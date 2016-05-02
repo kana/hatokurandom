@@ -64,6 +64,7 @@ var hatokurandom = {};
   H.EID_FAIRY = 4;
   H.EID_SIX = 5;
   H.EID_STAR = 6;
+  H.EID_INTERLUDE = 7;
 
   H.EXPANSIONS = [  //{{{2
     {eid: H.EID_BASIC, name: '基本セット', symbol: '基本'},
@@ -71,7 +72,8 @@ var hatokurandom = {};
     {eid: H.EID_NORTHERN, name: '北限の魔女', symbol: '北限'},
     {eid: H.EID_FAIRY, name: 'フェアリーガーデン', symbol: 'ＦＧ'},
     {eid: H.EID_SIX, name: '六都市同盟', symbol: '六都'},
-    {eid: H.EID_STAR, name: '星天前路', symbol: '星天'}
+    {eid: H.EID_STAR, name: '星天前路', symbol: '星天'},
+    {eid: H.EID_INTERLUDE, name: '姫君たちの幕間劇', symbol: '幕間'}
   ];
 
   H.ALL_CARDS = [  //{{{2
@@ -268,7 +270,17 @@ var hatokurandom = {};
     {cid: 0x8d, eid: H.EID_STAR, cost: 3, link: 2, name: '灯台', types: ['領地'], rarity: 'C'},
     {cid: 0x8e, eid: H.EID_STAR, cost: 5, link: 0, name: 'キョンシー', types: ['行動', '攻撃'], subtype: '魔法', rarity: 'C'},
     {cid: 0x8f, eid: H.EID_STAR, cost: 5, link: 1, name: 'キャラバン', types: ['行動'], subtype: '商人', rarity: 'C'},
-    {cid: 0x90, eid: H.EID_STAR, cost: 4, link: 0, name: '先行投資', types: ['行動'], rarity: 'C'}
+    {cid: 0x90, eid: H.EID_STAR, cost: 4, link: 0, name: '先行投資', types: ['行動'], rarity: 'C'},
+
+    // 姫君たちの幕間劇  //{{{3
+
+    {cid: 0x91, eid: H.EID_INTERLUDE, cost: 3, link: undefined, name: 'お付の侍女 リリー', types: ['継承権'], rarity: 'R'},
+    {cid: 0x92, eid: H.EID_INTERLUDE, cost: 3, link: undefined, name: 'お付の侍女 ホノカ', types: ['継承権'], rarity: 'R'},
+    {cid: 0x93, eid: H.EID_INTERLUDE, cost: 3, link: undefined, name: 'お付の侍女 ミンニャン', types: ['継承権'], rarity: 'R'},
+    {cid: 0x94, eid: H.EID_INTERLUDE, cost: 3, link: undefined, name: 'お付の侍女 シャリファ', types: ['継承権'], rarity: 'R'},
+
+    {cid: 0x95, eid: H.EID_INTERLUDE, cost: 2, link: 2, name: '従者', types: ['行動'], rarity: 'B'},
+    {cid: 0x96, eid: H.EID_INTERLUDE, cost: 2, link: 1, name: '屋敷', types: ['領地'], rarity: 'B'}
 
     //{{{3
   ];
@@ -1073,6 +1085,7 @@ var hatokurandom = {};
       'reference-fairy': by_expansion(H.EID_FAIRY),
       'reference-six': by_expansion(H.EID_SIX),
       'reference-star': by_expansion(H.EID_STAR),
+      'reference-interlude': by_expansion(H.EID_INTERLUDE),
       'reference-rarity-basic': by_rarity('B'),
       'reference-rarity-common': by_rarity('C'),
       'reference-rarity-rare': by_rarity('R'),
@@ -1277,7 +1290,8 @@ var hatokurandom = {};
       'reference:northern',
       'reference:fairy',
       'reference:six',
-      'reference:star'
+      'reference:star',
+      'reference:interlude'
     ],  //}}}
     'references:rarity': [  //{{{
       'reference:rarity-basic',
@@ -1630,6 +1644,9 @@ var hatokurandom = {};
     },  //}}}
     'reference:star': {  //{{{
       title: '星天前路のカード一覧'
+    },  //}}}
+    'reference:interlude': {  //{{{
+      title: '姫君たちの幕間劇のカード一覧'
     },  //}}}
     'references:rarity': {  //{{{
       title: 'レアリティ別カードリスト'
