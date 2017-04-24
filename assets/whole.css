@@ -110,6 +110,14 @@ a[target='_blank']:after {
   color: #642;
   background: #fc9; }
 
+.card .esym[data-esym='幕間'] {
+  color: #636;
+  background: #fde; }
+
+.card .esym[data-esym='レ！'] {
+  color: #663;
+  background: #ee9; }
+
 .ui-listview > .ui-li-static.dropped.card {
   background: #ddd; }
 
