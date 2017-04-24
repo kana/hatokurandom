@@ -286,7 +286,7 @@ var hatokurandom = {};
 
     // レギオンズ!  //{{{3
 
-    {cid: 0x97, eid: H.EID_LEGIONS, cost: 11, link: undefined, name: '妖精姫 エルルーン', types: ['プリンセス'], rarity: 'R'}
+    {cid: 0x97, eid: H.EID_LEGIONS, cost: 8, link: undefined, name: '妖精姫 エルルーン', types: ['プリンセス'], rarity: 'R'}
 
     //{{{3
   ];
