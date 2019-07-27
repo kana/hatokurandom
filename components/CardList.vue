@@ -1,5 +1,5 @@
 <template>
-  <ul v-if="cids" class="card-list">
+  <ul class="card-list">
     <li v-for="card in cards" :key="card.cid" class="card-item">
       {{ card.name }}
     </li>

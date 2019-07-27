@@ -1,5 +1,5 @@
 <template>
-  <ul v-if="childPids" class="link-list">
+  <ul class="link-list">
     <li v-for="childPid in childPids" :key="childPid" class="link-item">
       <nuxt-link :to="childPid">
         {{ titleFromPid(childPid) }}

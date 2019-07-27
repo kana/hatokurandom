@@ -1,7 +1,7 @@
 <template>
   <div class="page">
-    <card-list :pid="pid" />
-    <page-list :pid="pid" />
+    <card-list v-if="isCardListPid(pid)" :pid="pid" />
+    <page-list v-if="isPageListPid(pid)" :pid="pid" />
   </div>
 </template>
 
@@ -22,6 +22,10 @@ export default {
     pid () {
       return this.$route.params.pid
     }
+  },
+  methods: {
+    isCardListPid,
+    isPageListPid
   }
 }
 </script>
