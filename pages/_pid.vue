@@ -15,7 +15,7 @@ import { childPidListFromPid, titleFromPid } from '../lib/constants'
 
 export default {
   validate ({ params }) {
-    return childPidListFromPid([params.pid]) !== undefined
+    return childPidListFromPid(params.pid) !== undefined
   },
   computed: {
     menus () {
