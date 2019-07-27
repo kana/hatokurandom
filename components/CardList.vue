@@ -19,7 +19,7 @@
 
 <script>
 import { sortBy } from 'lodash-es'
-import { xcardsFromPid, parseSpecialPid } from '~/lib/constants'
+import { isPredefinedSupplyPid, parseSpecialPid, rsidFromXcards, xcardsFromPid } from '~/lib/constants'
 
 export default {
   name: 'CardList',
@@ -38,6 +38,17 @@ export default {
     playable () {
       return this.xcards.filter(xcard => !xcard.dropped).length === 10
     },
+    sharePid () {
+      if (this.playable) {
+        if (isPredefinedSupplyPid(this.pid)) {
+          return this.pid
+        } else {
+          return `supply:${rsidFromXcards(this.xcards)}`
+        }
+      } else {
+        return null
+      }
+    },
     sortedXcards () {
       return sortBy(this.xcards, [
         'dropped',
@@ -52,9 +63,26 @@ export default {
       return parseSpecialPid(this.pid)
     }
   },
+  watch: {
+    pid () {
+      this.updateSharePid()
+    },
+    xcards: {
+      handler () {
+        this.updateSharePid()
+      },
+      deep: true
+    }
+  },
+  mounted () {
+    this.updateSharePid()
+  },
   methods: {
     shuffle () {
       this.xcards = xcardsFromPid(this.pid)
+    },
+    updateSharePid () {
+      this.$store.commit('supply/setPid', this.sharePid)
     }
   }
 }
