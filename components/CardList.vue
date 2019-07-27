@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { cardFromCid, cidsFromPid, parseSpecialPid } from '~/lib/constants'
+import { xcardsFromPid, parseSpecialPid } from '~/lib/constants'
 
 export default {
   name: 'CardList',
@@ -27,7 +27,7 @@ export default {
   },
   data () {
     return {
-      xcards: this.xcardsFromPid(this.pid)
+      xcards: xcardsFromPid(this.pid)
     }
   },
   computed: {
@@ -37,13 +37,7 @@ export default {
   },
   methods: {
     shuffle () {
-      this.xcards = this.xcardsFromPid(this.pid)
-    },
-    xcardsFromPid (pid) {
-      return cidsFromPid(pid).map(cid => ({
-        dropped: false,
-        ...cardFromCid(cid)
-      }))
+      this.xcards = xcardsFromPid(this.pid)
     }
   }
 }
