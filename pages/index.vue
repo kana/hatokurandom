@@ -1,26 +1,15 @@
 <template>
   <div class="page">
-    <ul class="link-list">
-      <li v-for="menu in menus" :key="menu.pid" class="link-item">
-        <nuxt-link :to="menu.pid">
-          {{ menu.title }}
-        </nuxt-link>
-      </li>
-    </ul>
+    <page-list pid="home" />
   </div>
 </template>
 
 <script>
-import { childPidsFromPid, titleFromPid } from '../lib/constants'
+import PageList from '~/components/PageList'
 
 export default {
-  computed: {
-    menus () {
-      return childPidsFromPid('home').map(pid => ({
-        pid,
-        title: titleFromPid(pid)
-      }))
-    }
+  components: {
+    PageList
   }
 }
 </script>
