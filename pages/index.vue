@@ -1,19 +1,9 @@
 <template>
   <div class="page">
     <ul class="link-list">
-      <li class="link-item">
-        <nuxt-link to="/">
-          Home
-        </nuxt-link>
-      </li>
-      <li class="link-item">
-        <nuxt-link to="/expansion/basic">
-          Basic
-        </nuxt-link>
-      </li>
-      <li class="link-item">
-        <nuxt-link to="/about">
-          About this app
+      <li v-for="menu in menus" :key="menu.pid" class="link-item">
+        <nuxt-link :to="menu.pid">
+          {{ menu.name }}
         </nuxt-link>
       </li>
     </ul>
@@ -21,7 +11,17 @@
 </template>
 
 <script>
-export default {}
+export default {
+  computed: {
+    menus () {
+      return [
+        { pid: 'basic', name: '推奨サプライ(基本セット)' },
+        { pid: 'fareast', name: '推奨サプライ(極東辺境領)' },
+        { pid: 'northern', name: '推奨サプライ(北限の魔女)' }
+      ]
+    }
+  }
+}
 </script>
 
 <style scoped>
