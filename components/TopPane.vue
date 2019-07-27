@@ -65,20 +65,21 @@ export default {
 
 .top-pane {
   align-items: center;
-  background: #eee;
-  border-bottom: 1px solid #ddd;
+  background: #f5f5f7;
+  border-bottom: 1px solid #a7a7ab;
   display: flex;
   height: 3em;
   justify-content: center;
 }
 
 .title {
-  font-size: 144%;
+  font-weight: bolder;
   text-align: center;
   width: 100%;
 }
 
 .back-to-parent-button {
+  color: #007cff;
   cursor: pointer;
   flex: none;
   height: 1em;
@@ -88,6 +89,7 @@ export default {
 }
 
 .share-button {
+  color: #007cff;
   cursor: pointer;
   flex: none;
   height: 1em;
