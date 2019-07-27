@@ -1,6 +1,6 @@
 <template>
   <div class="top-pane">
-    <div v-if="isBackButtonAvailable" class="back-button" @click="back">
+    <div v-if="parentPid" class="back-to-parent-button" @click="backToParent">
       [&lt;]
     </div>
     <div class="title">
@@ -10,21 +10,21 @@
 </template>
 
 <script>
-import { pidFromPath, titleFromPid } from '~/lib/constants'
+import { parentPidFromPid, pidFromPath, titleFromPid } from '~/lib/constants'
 
 export default {
   name: 'TopPane',
   computed: {
-    isBackButtonAvailable () {
-      return true // TODO
+    parentPid () {
+      return parentPidFromPid(pidFromPath(this.$route.path))
     },
     title () {
       return titleFromPid(pidFromPath(this.$route.path))
     }
   },
   methods: {
-    back () {
-      this.$router.back()
+    backToParent () {
+      this.$router.push(this.parentPid)
     }
   }
 }
@@ -47,7 +47,7 @@ export default {
   width: 100%;
 }
 
-.back-button {
+.back-to-parent-button {
   cursor: pointer;
   flex: none;
   height: 1em;
