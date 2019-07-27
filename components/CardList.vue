@@ -1,5 +1,5 @@
 <template>
-  <ul class="card-list">
+  <ul v-if="cids" class="card-list">
     <li v-for="card in cards" :key="card.cid" class="card-item">
       {{ card.name }}
     </li>
@@ -7,19 +7,22 @@
 </template>
 
 <script>
-import { cardFromCid } from '~/lib/constants'
+import { cardFromCid, cidsFromPid } from '~/lib/constants'
 
 export default {
   name: 'CardList',
   props: {
-    cids: {
-      type: Array, // string[]
-      default: () => []
+    pid: {
+      type: String,
+      required: true
     }
   },
   computed: {
     cards () {
       return this.cids.map(cardFromCid)
+    },
+    cids () {
+      return cidsFromPid(this.pid)
     }
   }
 }
