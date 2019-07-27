@@ -5,7 +5,7 @@
         {{ card.name }}
       </li>
     </ul>
-    <div v-if="special.random">
+    <div v-if="special.random" @click="shuffle">
       [Shuffle]
     </div>
   </div>
@@ -22,15 +22,22 @@ export default {
       required: true
     }
   },
+  data () {
+    return {
+      cids: cidsFromPid(this.pid)
+    }
+  },
   computed: {
     cards () {
       return this.cids.map(cardFromCid)
     },
-    cids () {
-      return cidsFromPid(this.pid)
-    },
     special () {
       return parseSpecialPid(this.pid)
+    }
+  },
+  methods: {
+    shuffle () {
+      this.cids = cidsFromPid(this.pid)
     }
   }
 }
