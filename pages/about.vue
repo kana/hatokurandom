@@ -42,7 +42,13 @@
 </template>
 
 <script>
-export default {}
+import { titleFromPid } from '~/lib/constants'
+
+export default {
+  head: {
+    title: titleFromPid('about')
+  }
+}
 </script>
 
 <style scoped>

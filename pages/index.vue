@@ -6,9 +6,13 @@
 
 <script>
 import PageList from '~/components/PageList'
-import { isCardListPid, isPageListPid } from '~/lib/constants'
+import { isCardListPid, isPageListPid, titleFromPid } from '~/lib/constants'
 
 export default {
+  head: {
+    title: titleFromPid('home'),
+    titleTemplate: null
+  },
   components: {
     PageList
   },

@@ -5,6 +5,7 @@ export default {
    */
   head: {
     title: 'ハトクランダム',
+    titleTemplate: '%s | ハトクランダム',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
