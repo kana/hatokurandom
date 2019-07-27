@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <card-list :pid="pid" />
-    <page-list v-if="childPids" :pids="childPids" />
+    <page-list :pid="pid" />
   </div>
 </template>
 
@@ -20,9 +20,6 @@ export default {
     PageList
   },
   computed: {
-    childPids () {
-      return childPidsFromPid(this.$route.params.pid)
-    },
     pid () {
       return this.$route.params.pid
     }

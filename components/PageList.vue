@@ -1,22 +1,27 @@
 <template>
-  <ul class="link-list">
-    <li v-for="pid in pids" :key="pid" class="link-item">
-      <nuxt-link :to="pid">
-        {{ titleFromPid(pid) }}
+  <ul v-if="childPids" class="link-list">
+    <li v-for="childPid in childPids" :key="childPid" class="link-item">
+      <nuxt-link :to="childPid">
+        {{ titleFromPid(childPid) }}
       </nuxt-link>
     </li>
   </ul>
 </template>
 
 <script>
-import { titleFromPid } from '~/lib/constants'
+import { childPidsFromPid, titleFromPid } from '~/lib/constants'
 
 export default {
   name: 'PageList',
   props: {
-    pids: {
-      type: Array, // string[]
-      default: () => []
+    pid: {
+      type: String,
+      required: true
+    }
+  },
+  computed: {
+    childPids () {
+      return childPidsFromPid(this.pid)
     }
   },
   methods: {
