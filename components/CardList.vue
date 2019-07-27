@@ -1,11 +1,11 @@
 <template>
   <div>
     <ul class="card-list">
-      <li v-for="xcard in xcards" :key="xcard.cid" class="card-item">
-        <template v-if="special.editable">
-          [{{ xcard.dropped ? 'x' : ' ' }}]
-        </template>
-        {{ xcard.name }}
+      <li v-for="xcard in sortedXcards" :key="xcard.cid" class="card-item">
+        <label>
+          <input v-if="special.editable" v-model="xcard.dropped" type="checkbox">
+          {{ xcard.name }}
+        </label>
       </li>
     </ul>
     <div v-if="special.random" @click="shuffle">
@@ -15,6 +15,7 @@
 </template>
 
 <script>
+import { sortBy } from 'lodash-es'
 import { xcardsFromPid, parseSpecialPid } from '~/lib/constants'
 
 export default {
@@ -31,6 +32,16 @@ export default {
     }
   },
   computed: {
+    sortedXcards () {
+      return sortBy(this.xcards, [
+        'dropped',
+        'eid',
+        'cost',
+        'link',
+        'name',
+        'cid'
+      ])
+    },
     special () {
       return parseSpecialPid(this.pid)
     }
