@@ -18,8 +18,7 @@
 </template>
 
 <script>
-import { sortBy } from 'lodash-es'
-import { isPredefinedSupplyPid, parseSpecialPid, rsidFromXcards, xcardsFromPid } from '~/lib/constants'
+import { isPredefinedSupplyPid, parseSpecialPid, rsidFromXcards, sortXcards, xcardsFromPid } from '~/lib/constants'
 
 export default {
   name: 'CardList',
@@ -50,14 +49,7 @@ export default {
       }
     },
     sortedXcards () {
-      return sortBy(this.xcards, [
-        'dropped',
-        'eid',
-        'cost',
-        'link',
-        'name',
-        'cid'
-      ])
+      return sortXcards(this.xcards)
     },
     special () {
       return parseSpecialPid(this.pid)
