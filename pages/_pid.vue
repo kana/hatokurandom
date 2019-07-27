@@ -8,12 +8,11 @@
 <script>
 import CardList from '~/components/CardList'
 import PageList from '~/components/PageList'
-import { childPidsFromPid, cidsFromPid } from '~/lib/constants'
+import { isCardListPid, isPageListPid } from '~/lib/constants'
 
 export default {
   validate ({ params }) {
-    return childPidsFromPid(params.pid) !== undefined ||
-      cidsFromPid(params.pid) !== undefined
+    return isCardListPid(params.pid) || isPageListPid(params.pid)
   },
   components: {
     CardList,
