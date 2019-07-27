@@ -33,8 +33,8 @@ export default {
 
 .bottom-pane {
   align-items: center;
-  background: #eee;
-  border-top: 1px solid #ddd;
+  background: #f5f5f7;
+  border-top: 1px solid #a7a7ab;
   display: flex;
   height: 3em;
   justify-content: center;
@@ -53,11 +53,11 @@ export default {
 }
 
 .tab:hover {
-  background: #eee;
+  background: #f2f2f4;
 }
 
 .tab + .tab {
-  border-left: 1px solid #ddd;
+  border-left: 1px solid #a7a7ab;
 }
 
 </style>
