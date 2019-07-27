@@ -1,5 +1,8 @@
 <template>
   <div class="top-pane">
+    <div v-if="isBackButtonAvailable" class="back-button" @click="back">
+      [&lt;]
+    </div>
     <div class="title">
       {{ title }}
     </div>
@@ -12,9 +15,17 @@ import { titleFromPid } from '~/lib/constants'
 export default {
   name: 'TopPane',
   computed: {
+    isBackButtonAvailable () {
+      return true // TODO
+    },
     title () {
       const pid = this.$route.path.slice(1)
       return titleFromPid(pid || 'home')
+    }
+  },
+  methods: {
+    back () {
+      this.$router.back()
     }
   }
 }
@@ -34,6 +45,16 @@ export default {
 .title {
   font-size: 144%;
   text-align: center;
+  width: 100%;
+}
+
+.back-button {
+  cursor: pointer;
+  flex: none;
+  height: 1em;
+  margin-left: 1em;
+  margin-right: -2em;
+  width: 1em;
 }
 
 </style>
