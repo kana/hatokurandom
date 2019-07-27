@@ -11,6 +11,9 @@
     <div v-if="special.random" @click="shuffle">
       [Shuffle]
     </div>
+    <div>
+      [{{ playable ? 'OK' : '...' }}]
+    </div>
   </div>
 </template>
 
@@ -32,6 +35,9 @@ export default {
     }
   },
   computed: {
+    playable () {
+      return this.xcards.filter(xcard => !xcard.dropped).length === 10
+    },
     sortedXcards () {
       return sortBy(this.xcards, [
         'dropped',
@@ -55,4 +61,9 @@ export default {
 </script>
 
 <style scoped>
+
+.card-list > .card-item:nth-child(10) {
+  border-bottom: 1em solid #999;
+}
+
 </style>
