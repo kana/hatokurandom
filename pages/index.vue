@@ -1,9 +1,9 @@
 <template>
   <div class="page">
     <ul class="link-list">
-      <li v-for="pid in childPidList" :key="pid" class="link-item">
-        <nuxt-link :to="pid">
-          {{ pid }}
+      <li v-for="menu in menus" :key="menu.pid" class="link-item">
+        <nuxt-link :to="menu.pid">
+          {{ menu.title }}
         </nuxt-link>
       </li>
     </ul>
@@ -11,12 +11,15 @@
 </template>
 
 <script>
-import { childPidListFromPid } from '../lib/constants'
+import { childPidListFromPid, titleFromPid } from '../lib/constants'
 
 export default {
   computed: {
-    childPidList () {
-      return childPidListFromPid('home')
+    menus () {
+      return childPidListFromPid('home').map(pid => ({
+        pid,
+        title: titleFromPid(pid)
+      }))
     }
   }
 }
