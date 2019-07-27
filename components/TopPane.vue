@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { isCardListPid, parentPidFromPid, pidFromPath, titleFromPid, xcardsFromPid } from '~/lib/constants'
+import { isCardListPid, parentPidFromPid, pidFromPath, sortXcards, titleFromPid, xcardsFromPid } from '~/lib/constants'
 
 export default {
   name: 'TopPane',
@@ -36,7 +36,7 @@ export default {
     shareUrl () {
       const permalink = `${this.locationOrigin}/${this.sharePid}`
       const isReferencePage = /^reference:/.test(this.sharePid)
-      const usedCardNames = xcardsFromPid(this.sharePid)
+      const usedCardNames = sortXcards(xcardsFromPid(this.sharePid))
         .filter(xcard => !xcard.dropped)
         .map(xcard => xcard.name)
       const baseMessage = isReferencePage
