@@ -1,8 +1,8 @@
 <template>
   <div class="top-pane">
-    <div v-if="parentPid" class="back-to-parent-button" @click="backToParent">
+    <nuxt-link v-if="toParent" :to="toParent" class="back-to-parent-button">
       [&lt;]
-    </div>
+    </nuxt-link>
     <div class="title">
       {{ title }}
     </div>
@@ -13,16 +13,13 @@
 </template>
 
 <script>
-import { isCardListPid, parentPidFromPid, pidFromPath, sortXcards, titleFromPid, xcardsFromPid } from '~/lib/constants'
+import { isCardListPid, pathFromPid, parentPidFromPid, pidFromPath, sortXcards, titleFromPid, xcardsFromPid } from '~/lib/constants'
 
 export default {
   name: 'TopPane',
   computed: {
     locationOrigin () {
       return 'https://hatokurandom.whileimautomaton.net'
-    },
-    parentPid () {
-      return parentPidFromPid(this.pid)
     },
     pid () {
       return pidFromPath(this.$route.path)
@@ -56,11 +53,9 @@ export default {
     },
     title () {
       return titleFromPid(this.pid)
-    }
-  },
-  methods: {
-    backToParent () {
-      this.$router.push(this.parentPid)
+    },
+    toParent () {
+      return pathFromPid(parentPidFromPid(this.pid))
     }
   }
 }
