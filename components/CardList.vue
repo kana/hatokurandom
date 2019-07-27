@@ -1,8 +1,11 @@
 <template>
   <div>
     <ul class="card-list">
-      <li v-for="card in cards" :key="card.cid" class="card-item">
-        {{ card.name }}
+      <li v-for="xcard in xcards" :key="xcard.cid" class="card-item">
+        <template v-if="special.editable">
+          [{{ xcard.dropped ? 'x' : ' ' }}]
+        </template>
+        {{ xcard.name }}
       </li>
     </ul>
     <div v-if="special.random" @click="shuffle">
@@ -24,20 +27,23 @@ export default {
   },
   data () {
     return {
-      cids: cidsFromPid(this.pid)
+      xcards: this.xcardsFromPid(this.pid)
     }
   },
   computed: {
-    cards () {
-      return this.cids.map(cardFromCid)
-    },
     special () {
       return parseSpecialPid(this.pid)
     }
   },
   methods: {
     shuffle () {
-      this.cids = cidsFromPid(this.pid)
+      this.xcards = this.xcardsFromPid(this.pid)
+    },
+    xcardsFromPid (pid) {
+      return cidsFromPid(pid).map(cid => ({
+        dropped: false,
+        ...cardFromCid(cid)
+      }))
     }
   }
 }
