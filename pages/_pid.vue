@@ -11,15 +11,15 @@
 </template>
 
 <script>
-import { childPidListFromPid, titleFromPid } from '../lib/constants'
+import { childPidsFromPid, titleFromPid } from '../lib/constants'
 
 export default {
   validate ({ params }) {
-    return childPidListFromPid(params.pid) !== undefined
+    return childPidsFromPid(params.pid) !== undefined
   },
   computed: {
     menus () {
-      return childPidListFromPid(this.$route.params.pid).map(pid => ({
+      return childPidsFromPid(this.$route.params.pid).map(pid => ({
         pid,
         title: titleFromPid(pid)
       }))

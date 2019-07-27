@@ -11,12 +11,12 @@
 </template>
 
 <script>
-import { childPidListFromPid, titleFromPid } from '../lib/constants'
+import { childPidsFromPid, titleFromPid } from '../lib/constants'
 
 export default {
   computed: {
     menus () {
-      return childPidListFromPid('home').map(pid => ({
+      return childPidsFromPid('home').map(pid => ({
         pid,
         title: titleFromPid(pid)
       }))
