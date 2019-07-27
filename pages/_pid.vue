@@ -1,28 +1,23 @@
 <template>
   <div class="page">
-    <ul class="link-list">
-      <li v-for="menu in menus" :key="menu.pid" class="link-item">
-        <nuxt-link :to="menu.pid">
-          {{ menu.title }}
-        </nuxt-link>
-      </li>
-    </ul>
+    <page-list :pids="childPids" />
   </div>
 </template>
 
 <script>
-import { childPidsFromPid, titleFromPid } from '../lib/constants'
+import PageList from '~/components/PageList'
+import { childPidsFromPid } from '~/lib/constants'
 
 export default {
   validate ({ params }) {
     return childPidsFromPid(params.pid) !== undefined
   },
+  components: {
+    PageList
+  },
   computed: {
-    menus () {
-      return childPidsFromPid(this.$route.params.pid).map(pid => ({
-        pid,
-        title: titleFromPid(pid)
-      }))
+    childPids () {
+      return childPidsFromPid(this.$route.params.pid)
     }
   }
 }
