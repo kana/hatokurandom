@@ -7,14 +7,15 @@
 </template>
 
 <script>
+import { titleFromPid } from '~/lib/constants'
+
 export default {
   name: 'TopPane',
-  data () {
-    return {
-      title: 'ハトクランダム'
-    }
-  },
   computed: {
+    title () {
+      const pid = this.$route.path.slice(1)
+      return titleFromPid(pid || 'home')
+    }
   }
 }
 </script>
