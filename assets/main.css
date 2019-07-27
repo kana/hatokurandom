@@ -1,3 +1,9 @@
+body {
+  color: #222;
+  font-family: sans-serif;
+  margin: 0;
+}
+
 .page-enter-active, .page-leave-active {
   transition: opacity 0.4s;
 }

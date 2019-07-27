@@ -1,13 +1,19 @@
 <template>
   <div class="app">
+    <top-pane />
     <nuxt />
   </div>
 </template>
 
-<style scoped>
-.app {
-  border: 1px solid #999;
-  margin: 1em;
-  padding: 1em;
+<script>
+import TopPane from '~/components/TopPane'
+
+export default {
+  components: {
+    TopPane
+  }
 }
+</script>
+
+<style scoped>
 </style>
