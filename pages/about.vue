@@ -52,7 +52,4 @@ export default {
 </script>
 
 <style scoped>
-.page {
-  background: #fee;
-}
 </style>

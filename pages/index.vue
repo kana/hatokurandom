@@ -29,7 +29,4 @@ export default {
 </script>
 
 <style scoped>
-.page {
-  background: #eef;
-}
 </style>
