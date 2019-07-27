@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { titleFromPid } from '~/lib/constants'
+import { pidFromPath, titleFromPid } from '~/lib/constants'
 
 export default {
   name: 'TopPane',
@@ -19,8 +19,7 @@ export default {
       return true // TODO
     },
     title () {
-      const pid = this.$route.path.slice(1)
-      return titleFromPid(pid || 'home')
+      return titleFromPid(pidFromPath(this.$route.path))
     }
   },
   methods: {
