@@ -31,8 +31,7 @@ export default {
       return isCardListPid(this.pid) && this.sharePid
     },
     sharePid () {
-      // return this.$store.state.supply.pid
-      return 'supply:BAFAJAKgZAbAeAqhCBDBhB-CM' // TODO
+      return this.$store.state.supply.pid
     },
     shareUrl () {
       const permalink = `${this.locationOrigin}/${this.sharePid}`
