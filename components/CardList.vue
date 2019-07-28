@@ -1,8 +1,8 @@
 <template>
   <div class="container">
-    <div v-if="special.editable || sortedXcardsExcluded.length > 0" class="block-title">
+    <block-title v-if="special.editable || sortedXcardsExcluded.length > 0">
       使用するカード
-    </div>
+    </block-title>
     <omni-list>
       <card-list-item v-for="xcard in sortedXcardsIncluded" :key="xcard.cid" :editable="special.editable" :xcard="xcard" />
       <omni-list-item
@@ -15,9 +15,9 @@
     </omni-list>
 
     <template v-if="sortedXcardsExcluded.length > 0">
-      <div class="block-title">
+      <block-title>
         {{ special.random ? '除外したカード' : '未使用のカード' }}
-      </div>
+      </block-title>
       <omni-list>
         <card-list-item v-for="xcard in sortedXcardsExcluded" :key="xcard.cid" :editable="special.editable" :xcard="xcard" />
       </omni-list>
@@ -38,6 +38,7 @@
 </template>
 
 <script>
+import BlockTitle from '~/components/BlockTitle'
 import CardListItem from '~/components/CardListItem'
 import OmniList from '~/components/OmniList'
 import OmniListItem from '~/components/OmniListItem'
@@ -46,6 +47,7 @@ import { isPredefinedSupplyPid, parseSpecialPid, rsidFromXcards, sortXcards, xca
 export default {
   name: 'CardList',
   components: {
+    BlockTitle,
     CardListItem,
     OmniList,
     OmniListItem
