@@ -1,7 +1,11 @@
 <template>
   <div class="app">
     <top-pane class="top-pane" />
-    <div class="main-pane">
+    <div
+      v-touch:start="onTouchStart"
+      v-touch:swipe.right="onSwipeRight"
+      class="main-pane"
+    >
       <nuxt />
     </div>
     <bottom-pane class="bottom-pane" />
@@ -16,6 +20,24 @@ export default {
   components: {
     BottomPane,
     TopPane
+  },
+  data () {
+    return {
+      touchStartX: 0
+    }
+  },
+  methods: {
+    // Back-to-parent-view gesture support.
+    onSwipeRight (e) {
+      const screenLeftEdgeWidth = window.innerWidth / 10
+      if (this.touchStartX < screenLeftEdgeWidth) {
+        // TODO: Should use page stack.
+        this.$router.back()
+      }
+    },
+    onTouchStart (e) {
+      this.touchStartX = e.clientX
+    }
   }
 }
 </script>
