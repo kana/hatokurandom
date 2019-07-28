@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="block-title" v-if="special.editable || sortedXcardsExcluded.length > 0">
+    <div v-if="special.editable || sortedXcardsExcluded.length > 0" class="block-title">
       使用するカード
     </div>
     <ul class="card-list">
@@ -19,7 +19,7 @@
       <div class="block-title">
         {{ special.random ? '除外したカード' : '未使用のカード' }}
       </div>
-      <ul class="card-list"
+      <ul class="card-list">
         <li v-for="xcard in sortedXcardsExcluded" :key="xcard.cid" class="card-item">
           <label class="label">
             <input v-if="special.editable" v-show="false" v-model="xcard.dropped" type="checkbox">
