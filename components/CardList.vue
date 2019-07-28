@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="card-list">
     <div v-if="special.editable || sortedXcardsExcluded.length > 0" class="block-title">
       使用するカード
     </div>
@@ -23,7 +23,9 @@
       [Shuffle]
     </div>
     <div v-if="!playable" class="playable-status">
-      {{ playableStatusMessage }}
+      <div class="message">
+        {{ playableStatusMessage }}
+      </div>
     </div>
   </div>
 </template>
@@ -116,15 +118,22 @@ export default {
 <style scoped>
 
 .playable-status {
-  background: #f3f3f3;
-  border-radius: 1ex;
   bottom: 0;
-  left: 50%;
-  margin-bottom: 1ex;
-  padding: 0.5ex 1em;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  margin-bottom: calc(1ex + var(--bottom-pane-height));
   position: fixed;
-  transform: translateX(-50%);
+  width: 100%;
   z-index: 1;
+}
+
+.playable-status .message {
+  background: #777;
+  color: #eee;
+  border-radius: 1ex;
+  font-size: 80%;
+  padding: 0.5ex 1em;
 }
 
 </style>
