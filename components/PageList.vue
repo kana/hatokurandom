@@ -1,22 +1,31 @@
 <template>
   <omni-list>
-    <li v-for="childPid in childPids" :key="childPid" class="list-item">
-      <nuxt-link :to="pathFromPid(childPid)" class="link">
+    <omni-list-item
+      v-for="childPid in childPids"
+      :key="childPid"
+      :props="{
+        is: 'nuxt-link',
+        to: pathFromPid(childPid)
+      }"
+    >
+      <div class="line">
         <span class="label">{{ titleFromPid(childPid) }}</span>
         <span class="icon">＞</span>
-      </nuxt-link>
-    </li>
+      </div>
+    </omni-list-item>
   </omni-list>
 </template>
 
 <script>
 import OmniList from '~/components/OmniList'
+import OmniListItem from '~/components/OmniListItem'
 import { childPidsFromPid, pathFromPid, titleFromPid } from '~/lib/constants'
 
 export default {
   name: 'PageList',
   components: {
-    OmniList
+    OmniList,
+    OmniListItem
   },
   props: {
     pid: {
@@ -38,34 +47,17 @@ export default {
 
 <style scoped>
 
-.list-item {
-  margin: 0;
-  padding: 0;
-}
-
-.list-item + .list-item {
-  border-top: 1px solid var(--item-separator-color);
-}
-
-.link {
+.line {
   align-items: center;
-  color: var(--item-label-color);
   display: flex;
   justify-content: flex-start;
-  padding: 0.5em 1em;
-  text-decoration: none;
-  transition: background 0.2s;
 }
 
-.link:hover {
-  background: var(--header-background-color);
-}
-
-.link .label {
+.line .label {
   width: 100%;
 }
 
-.link .icon {
+.line .icon {
   color: var(--item-next-icon-color);
   flex: none;
   font-weight: bolder;
