@@ -7,7 +7,7 @@
       {{ title }}
     </div>
     <a v-if="shareable" :href="shareUrl" class="share-button" target="_blank">
-      [^]
+      <font-awesome-icon icon="share-square" />
     </a>
   </div>
 </template>
