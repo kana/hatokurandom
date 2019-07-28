@@ -1,5 +1,6 @@
 :root {
   --bottom-pane-height: 3em;
+  --top-pane-height: 3em;
 
   --checked-color: #007cff;
   --header-back-button-color: #007cff;

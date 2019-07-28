@@ -36,7 +36,7 @@ export default {
 }
 
 .main-pane {
-  padding: 3em 0;
+  padding: var(--top-pane-height) 0 var(--bottom-pane-height);
 }
 
 .bottom-pane {

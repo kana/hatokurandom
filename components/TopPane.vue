@@ -69,7 +69,7 @@ export default {
   border-bottom: 1px solid var(--header-border-color);
   color: var(--header-text-color);
   display: flex;
-  height: 3em;
+  height: var(--top-pane-height);
   justify-content: center;
 }
 
