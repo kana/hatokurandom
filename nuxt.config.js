@@ -58,6 +58,12 @@ export default {
      ** You can extend webpack config here
      */
     extend(config, ctx) {},
+    // Workaround for Safari to avoid infinite loop when hot reloading.
+    // See also: https://github.com/nuxt/nuxt.js/issues/3828#issuecomment-508428611
+    filenames: {
+      app: ({ isDev }) => isDev ? '[name].[hash].js' : '[chunkhash].js',
+      chunk: ({ isDev }) => isDev ? '[name].[hash].js' : '[chunkhash].js'
+    },
     transpile: [
       'lodash-es'
     ]
