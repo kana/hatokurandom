@@ -132,7 +132,7 @@ export default {
 <style scoped>
 
 .container {
-  margin-bottom: calc(1ex + 0.5ex + 1em + 0.5ex + 1ex);
+  margin-bottom: 3em;
 }
 
 .divider {
@@ -179,11 +179,11 @@ export default {
 }
 
 .playable-status .message {
-  background: #777;
-  color: #eee;
+  background: var(--toast-background-color);
+  color: var(--toast-text-color);
   border-radius: 1ex;
   font-size: 80%;
-  padding: 0.5ex 1em;
+  padding: 0.5em 1.2em;
 }
 
 </style>
