@@ -24,9 +24,9 @@
       </omni-list>
     </template>
 
-    <div v-if="special.random" class="shuffle-button" @click="shuffle">
+    <div v-if="special.random" class="shuffle-button">
       <div class="icon" @click="shuffle">
-        ^v
+        <font-awesome-icon icon="sync-alt" size="lg" />
       </div>
     </div>
 
@@ -162,8 +162,6 @@ export default {
   border-radius: 3.5em;
   cursor: pointer;
   display: flex;
-  font-size: 120%;
-  font-weight: bolder;
   height: 100%;
   justify-content: center;
   transition: background 0.2s;
