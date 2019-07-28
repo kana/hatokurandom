@@ -4,12 +4,7 @@
       使用するカード
     </div>
     <ul class="card-list">
-      <li v-for="xcard in sortedXcardsIncluded" :key="xcard.cid" class="card-item">
-        <label class="label">
-          <input v-if="special.editable" v-show="false" v-model="xcard.dropped" type="checkbox">
-          {{ xcard.name }}
-        </label>
-      </li>
+      <card-list-item v-for="xcard in sortedXcardsIncluded" :key="xcard.cid" :editable="special.editable" :xcard="xcard" />
       <li v-if="sortedXcardsIncluded.length === 0" class="divider">
         カードを選んでください。
       </li>
@@ -20,12 +15,7 @@
         {{ special.random ? '除外したカード' : '未使用のカード' }}
       </div>
       <ul class="card-list">
-        <li v-for="xcard in sortedXcardsExcluded" :key="xcard.cid" class="card-item">
-          <label class="label">
-            <input v-if="special.editable" v-show="false" v-model="xcard.dropped" type="checkbox">
-            {{ xcard.name }}
-          </label>
-        </li>
+        <card-list-item v-for="xcard in sortedXcardsExcluded" :key="xcard.cid" :editable="special.editable" :xcard="xcard" />
       </ul>
     </template>
 
@@ -39,10 +29,14 @@
 </template>
 
 <script>
+import CardListItem from '~/components/CardListItem'
 import { isPredefinedSupplyPid, parseSpecialPid, rsidFromXcards, sortXcards, xcardsFromPid } from '~/lib/constants'
 
 export default {
   name: 'CardList',
+  components: {
+    CardListItem
+  },
   props: {
     pid: {
       type: String,
@@ -120,11 +114,6 @@ export default {
 </script>
 
 <style scoped>
-
-.label {
-  cursor: pointer;
-  width: 100%;
-}
 
 .playable-status {
   background: #f3f3f3;
