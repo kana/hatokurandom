@@ -32,8 +32,8 @@
     <div v-if="special.random" @click="shuffle">
       [Shuffle]
     </div>
-    <div>
-      [{{ playable ? 'OK' : '...' }}]
+    <div v-if="!playable" class="playable-status">
+      {{ playableStatusMessage }}
     </div>
   </div>
 </template>
@@ -56,7 +56,19 @@ export default {
   },
   computed: {
     playable () {
-      return this.xcards.filter(xcard => !xcard.dropped).length === 10
+      return this.sortedXcardsIncluded.length === 10
+    },
+    playableStatusMessage () {
+      const lackedCount = 10 - this.sortedXcardsIncluded.length
+      if (lackedCount > 0) {
+        return `あと${lackedCount}種類のカードを選んでください。`
+      }
+
+      if (lackedCount < 0) {
+        return `あと${-lackedCount}種類のカードを除外してください。`
+      }
+
+      return ''
     },
     sharePid () {
       if (this.playable) {
@@ -112,6 +124,18 @@ export default {
 .label {
   cursor: pointer;
   width: 100%;
+}
+
+.playable-status {
+  background: #f3f3f3;
+  border-radius: 1ex;
+  bottom: 0;
+  left: 50%;
+  margin-bottom: 1ex;
+  padding: 0.5ex 1em;
+  position: fixed;
+  transform: translateX(-50%);
+  z-index: 1;
 }
 
 </style>
