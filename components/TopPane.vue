@@ -1,7 +1,7 @@
 <template>
   <div class="top-pane">
     <nuxt-link v-if="toParent" :to="toParent" class="back-to-parent-button">
-      [&lt;]
+      <font-awesome-icon icon="chevron-left" size="lg" />
     </nuxt-link>
     <div class="title">
       {{ title }}
