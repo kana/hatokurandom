@@ -1,22 +1,22 @@
 <template>
-  <div class="card-list">
+  <div>
     <div v-if="special.editable || sortedXcardsExcluded.length > 0" class="block-title">
       使用するカード
     </div>
-    <ul class="card-list">
+    <omni-list>
       <card-list-item v-for="xcard in sortedXcardsIncluded" :key="xcard.cid" :editable="special.editable" :xcard="xcard" />
       <li v-if="sortedXcardsIncluded.length === 0" class="divider">
         カードを選んでください。
       </li>
-    </ul>
+    </omni-list>
 
     <template v-if="sortedXcardsExcluded.length > 0">
       <div class="block-title">
         {{ special.random ? '除外したカード' : '未使用のカード' }}
       </div>
-      <ul class="card-list">
+      <omni-list>
         <card-list-item v-for="xcard in sortedXcardsExcluded" :key="xcard.cid" :editable="special.editable" :xcard="xcard" />
-      </ul>
+      </omni-list>
     </template>
 
     <div v-if="special.random" class="shuffle-button" @click="shuffle">
@@ -35,12 +35,14 @@
 
 <script>
 import CardListItem from '~/components/CardListItem'
+import OmniList from '~/components/OmniList'
 import { isPredefinedSupplyPid, parseSpecialPid, rsidFromXcards, sortXcards, xcardsFromPid } from '~/lib/constants'
 
 export default {
   name: 'CardList',
   components: {
-    CardListItem
+    CardListItem,
+    OmniList
   },
   props: {
     pid: {
