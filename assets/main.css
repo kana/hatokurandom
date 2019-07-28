@@ -1,3 +1,7 @@
+:root {
+  --bottom-pane-height: 3em;
+}
+
 body {
   background: #efeff5;
   color: #000;

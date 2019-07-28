@@ -36,7 +36,7 @@ export default {
   background: #f5f5f7;
   border-top: 1px solid #a7a7ab;
   display: flex;
-  height: 3em;
+  height: var(--bottom-pane-height);
   justify-content: center;
 }
 
