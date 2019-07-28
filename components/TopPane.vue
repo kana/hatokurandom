@@ -65,8 +65,9 @@ export default {
 
 .top-pane {
   align-items: center;
-  background: #f5f5f7;
-  border-bottom: 1px solid #a7a7ab;
+  background: var(--header-background-color);
+  border-bottom: 1px solid var(--header-border-color);
+  color: var(--header-text-color);
   display: flex;
   height: 3em;
   justify-content: center;
@@ -79,7 +80,7 @@ export default {
 }
 
 .back-to-parent-button {
-  color: #007cff;
+  color: var(--header-back-button-color);
   cursor: pointer;
   flex: none;
   height: 1em;
@@ -89,7 +90,7 @@ export default {
 }
 
 .share-button {
-  color: #007cff;
+  color: var(--header-text-color);
   cursor: pointer;
   flex: none;
   height: 1em;
