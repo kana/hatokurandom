@@ -1,13 +1,34 @@
 <template>
   <div>
+    <div class="block-title" v-if="special.editable || sortedXcardsExcluded.length > 0">
+      使用するカード
+    </div>
     <ul class="card-list">
-      <li v-for="xcard in sortedXcards" :key="xcard.cid" class="card-item">
+      <li v-for="xcard in sortedXcardsIncluded" :key="xcard.cid" class="card-item">
         <label>
           <input v-if="special.editable" v-model="xcard.dropped" type="checkbox">
           {{ xcard.name }}
         </label>
       </li>
+      <li v-if="sortedXcardsIncluded.length === 0" class="divider">
+        カードを選んでください。
+      </li>
     </ul>
+
+    <template v-if="sortedXcardsExcluded.length > 0">
+      <div class="block-title">
+        {{ special.random ? '除外したカード' : '未使用のカード' }}
+      </div>
+      <ul class="card-list"
+        <li v-for="xcard in sortedXcardsExcluded" :key="xcard.cid" class="card-item">
+          <label>
+            <input v-if="special.editable" v-model="xcard.dropped" type="checkbox">
+            {{ xcard.name }}
+          </label>
+        </li>
+      </ul>
+    </template>
+
     <div v-if="special.random" @click="shuffle">
       [Shuffle]
     </div>
@@ -50,6 +71,12 @@ export default {
     },
     sortedXcards () {
       return sortXcards(this.xcards)
+    },
+    sortedXcardsExcluded () {
+      return this.sortedXcards.filter(xcard => xcard.dropped)
+    },
+    sortedXcardsIncluded () {
+      return this.sortedXcards.filter(xcard => !xcard.dropped)
     },
     special () {
       return parseSpecialPid(this.pid)
