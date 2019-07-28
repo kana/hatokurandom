@@ -25,7 +25,7 @@
     </template>
 
     <div v-if="special.random" class="shuffle-button" @click="shuffle">
-      <div class="icon">
+      <div class="icon" @click="shuffle">
         ^v
       </div>
     </div>
@@ -141,10 +141,10 @@ export default {
 
 .shuffle-button {
   align-items: center;
-  background: #77f;
+  background: var(--link-text-color);
   border-radius: 3.5em;
   bottom: var(--bottom-pane-height);
-  color: #fff;
+  color: var(--switch-knob-color);
   cursor: pointer;
   display: flex;
   height: 3.5em;
@@ -153,18 +153,25 @@ export default {
   margin-right: 1ex;
   position: fixed;
   right: 0;
-  transition: background 0.2s;
   width: 3.5em;
   z-index: 1;
 }
 
-.shuffle-button:hover {
-  background: #88f;
-}
-
 .shuffle-button .icon {
+  align-items: center;
+  border-radius: 3.5em;
+  cursor: pointer;
+  display: flex;
   font-size: 120%;
   font-weight: bolder;
+  height: 100%;
+  justify-content: center;
+  transition: background 0.2s;
+  width: 100%;
+}
+
+.shuffle-button .icon:hover {
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .playable-status {
