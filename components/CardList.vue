@@ -5,8 +5,8 @@
     </div>
     <ul class="card-list">
       <li v-for="xcard in sortedXcardsIncluded" :key="xcard.cid" class="card-item">
-        <label>
-          <input v-if="special.editable" v-model="xcard.dropped" type="checkbox">
+        <label class="label">
+          <input v-if="special.editable" v-show="false" v-model="xcard.dropped" type="checkbox">
           {{ xcard.name }}
         </label>
       </li>
@@ -21,8 +21,8 @@
       </div>
       <ul class="card-list"
         <li v-for="xcard in sortedXcardsExcluded" :key="xcard.cid" class="card-item">
-          <label>
-            <input v-if="special.editable" v-model="xcard.dropped" type="checkbox">
+          <label class="label">
+            <input v-if="special.editable" v-show="false" v-model="xcard.dropped" type="checkbox">
             {{ xcard.name }}
           </label>
         </li>
@@ -109,8 +109,9 @@ export default {
 
 <style scoped>
 
-.card-list > .card-item:nth-child(10) {
-  border-bottom: 1em solid #999;
+.label {
+  cursor: pointer;
+  width: 100%;
 }
 
 </style>
