@@ -1,6 +1,7 @@
 <template>
-  <a :href="href" target="_blank">
-    {{ label }}
+  <a :href="href" target="_blank" class="link">
+    <span class="label">{{ label }}</span>
+    <font-awesome-icon icon="external-link-alt" size="xs" class="icon" />
   </a>
 </template>
 
