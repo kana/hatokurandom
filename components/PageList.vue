@@ -10,7 +10,7 @@
     >
       <div class="line">
         <span class="label">{{ titleFromPid(childPid) }}</span>
-        <span class="icon">＞</span>
+        <font-awesome-icon icon="angle-right" size="lg" class="icon" />
       </div>
     </omni-list-item>
   </omni-list>
@@ -64,7 +64,6 @@ export default {
 .line .icon {
   color: var(--item-next-icon-color);
   flex: none;
-  font-weight: bolder;
 }
 
 </style>

@@ -2,8 +2,8 @@ import Vue from 'vue'
 import { library, config } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import {
+  faAngleRight,
   faChevronLeft,
-  faChevronRight,
   faCog,
   faExternalLinkAlt,
   faHome,
@@ -15,8 +15,8 @@ import {
 config.autoAddCss = false
 
 library.add(
+  faAngleRight,
   faChevronLeft,
-  faChevronRight,
   faCog,
   faExternalLinkAlt,
   faHome,
