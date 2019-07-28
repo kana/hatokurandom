@@ -34,7 +34,8 @@ export default {
    ** Plugins to load before mounting the App
    */
   plugins: [
-    '~/plugins/fontawesome'
+    '~/plugins/fontawesome',
+    '~/plugins/vue2-touch-events'
   ],
   /*
    ** Nuxt.js modules
