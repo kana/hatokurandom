@@ -5,9 +5,13 @@
     </div>
     <omni-list>
       <card-list-item v-for="xcard in sortedXcardsIncluded" :key="xcard.cid" :editable="special.editable" :xcard="xcard" />
-      <li v-if="sortedXcardsIncluded.length === 0" class="divider">
+      <omni-list-item
+        v-if="sortedXcardsIncluded.length === 0"
+        :props="{ is: 'div' }"
+        class="divider"
+      >
         カードを選んでください。
-      </li>
+      </omni-list-item>
     </omni-list>
 
     <template v-if="sortedXcardsExcluded.length > 0">
@@ -36,13 +40,15 @@
 <script>
 import CardListItem from '~/components/CardListItem'
 import OmniList from '~/components/OmniList'
+import OmniListItem from '~/components/OmniListItem'
 import { isPredefinedSupplyPid, parseSpecialPid, rsidFromXcards, sortXcards, xcardsFromPid } from '~/lib/constants'
 
 export default {
   name: 'CardList',
   components: {
     CardListItem,
-    OmniList
+    OmniList,
+    OmniListItem
   },
   props: {
     pid: {
