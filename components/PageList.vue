@@ -1,5 +1,5 @@
 <template>
-  <omni-list>
+  <omni-list class="page-list">
     <omni-list-item
       v-for="childPid in childPids"
       :key="childPid"
@@ -46,6 +46,10 @@ export default {
 </script>
 
 <style scoped>
+
+.page-list {
+  margin-top: 2em;
+}
 
 .line {
   align-items: center;
