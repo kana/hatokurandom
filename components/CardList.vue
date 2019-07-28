@@ -19,9 +19,10 @@
       </ul>
     </template>
 
-    <div v-if="special.random" @click="shuffle">
-      [Shuffle]
+    <div v-if="special.random" class="shuffle-button" @click="shuffle">
+      <div class="icon">^v</div>
     </div>
+
     <div v-if="!playable" class="playable-status">
       <div class="message">
         {{ playableStatusMessage }}
@@ -117,12 +118,40 @@ export default {
 
 <style scoped>
 
+.shuffle-button {
+  align-items: center;
+  background: #77f;
+  border-radius: 3.5em;
+  bottom: var(--bottom-pane-height);
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  height: 3.5em;
+  justify-content: center;
+  margin-bottom: 1ex;
+  margin-right: 1ex;
+  position: fixed;
+  right: 0;
+  transition: background 0.2s;
+  width: 3.5em;
+  z-index: 1;
+}
+
+.shuffle-button:hover {
+  background: #88f;
+}
+
+.shuffle-button .icon {
+  font-size: 120%;
+  font-weight: bolder;
+}
+
 .playable-status {
-  bottom: 0;
+  bottom: var(--bottom-pane-height);
   display: flex;
   justify-content: center;
   left: 0;
-  margin-bottom: calc(1ex + var(--bottom-pane-height));
+  margin-bottom: 1ex;
   position: fixed;
   width: 100%;
   z-index: 1;
