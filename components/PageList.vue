@@ -1,7 +1,7 @@
 <template>
   <ul class="link-list">
     <li v-for="childPid in childPids" :key="childPid" class="link-item">
-      <nuxt-link :to="childPid">
+      <nuxt-link :to="pathFromPid(childPid)">
         {{ titleFromPid(childPid) }}
       </nuxt-link>
     </li>
@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { childPidsFromPid, titleFromPid } from '~/lib/constants'
+import { childPidsFromPid, pathFromPid, titleFromPid } from '~/lib/constants'
 
 export default {
   name: 'PageList',
@@ -25,6 +25,7 @@ export default {
     }
   },
   methods: {
+    pathFromPid,
     titleFromPid
   }
 }
