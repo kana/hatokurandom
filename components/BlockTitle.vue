@@ -15,7 +15,7 @@ export default {
 <style scoped>
 
 .block-title {
-  margin: 2em 1em 1em;
+  margin: 2em 1em 0.25em;
 }
 
 .text {

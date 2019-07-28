@@ -18,7 +18,7 @@ export default {
   border-style: solid none;
   border-width: 1px;
   list-style: none;
-  margin: 2em 0;
+  margin: 0;
   padding: 0;
 }
 
