@@ -1,11 +1,11 @@
 <template>
-  <div class="app">
+  <div
+    v-touch:start="onTouchStart"
+    v-touch:swipe.right="onSwipeRight"
+    class="app"
+  >
     <top-pane class="top-pane" />
-    <div
-      v-touch:start="onTouchStart"
-      v-touch:swipe.right="onSwipeRight"
-      class="main-pane"
-    >
+    <div class="main-pane">
       <nuxt />
     </div>
     <bottom-pane class="bottom-pane" />
