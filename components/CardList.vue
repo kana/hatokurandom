@@ -133,6 +133,7 @@ export default {
 
 .container {
   margin-bottom: 3em;
+  margin-top: 2em;
 }
 
 .divider {
