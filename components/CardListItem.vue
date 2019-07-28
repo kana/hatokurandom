@@ -1,20 +1,24 @@
 <template>
-  <li class="card">
-    <label class="label">
+  <omni-list-item :props="{ is: 'label' }">
+    <div class="label">
       <input v-if="editable" v-show="false" v-model="xcard.dropped" type="checkbox">
       <span class="cost">{{ xcard.cost }}</span>
       <span class="types">{{ xcard.types }}</span>
       <span class="name">{{ xcard.name }}</span>
       <span class="expansion" :data-symbol="expansionSymbol">{{ expansionSymbol }}</span>
-    </label>
-  </li>
+    </div>
+  </omni-list-item>
 </template>
 
 <script>
+import OmniListItem from '~/components/OmniListItem'
 import { expansionFromEid } from '~/lib/constants'
 
 export default {
   name: 'CardListItem',
+  components: {
+    OmniListItem
+  },
   props: {
     editable: {
       type: Boolean,
