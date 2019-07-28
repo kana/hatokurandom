@@ -25,12 +25,15 @@ export default {
    ** Global CSS
    */
   css: [
+  '@fortawesome/fontawesome-svg-core/styles.css',    
     '~/assets/main.css'
   ],
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: [
+    '~/plugins/fontawesome'
+  ],
   /*
    ** Nuxt.js modules
    */
