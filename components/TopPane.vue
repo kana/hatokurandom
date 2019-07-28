@@ -55,7 +55,8 @@ export default {
       return titleFromPid(this.pid)
     },
     toParent () {
-      return pathFromPid(parentPidFromPid(this.pid))
+      const parentPid = parentPidFromPid(this.pid)
+      return parentPid !== undefined ? pathFromPid(parentPid) : undefined
     }
   }
 }
