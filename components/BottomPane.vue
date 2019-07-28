@@ -7,7 +7,7 @@
       :class="{ active: tab.path === currentTabPath }"
       class="tab"
     >
-      {{ tab.name }}
+      <font-awesome-icon size="lg" :icon="tab.icon" />
     </nuxt-link>
   </div>
 </template>
@@ -21,8 +21,8 @@ export default {
     },
     tabs () {
       return [
-        { path: '/', name: '[Home]' },
-        { path: '/configure', name: '[Preferences]' }
+        { path: '/', icon: 'home' },
+        { path: '/configure', icon: 'cog' }
       ]
     }
   }
@@ -42,6 +42,7 @@ export default {
 
 .tab {
   align-items: center;
+  color: var(--item-label-color);
   display: flex;
   height: 100%;
   justify-content: center;
