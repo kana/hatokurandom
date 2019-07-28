@@ -8,9 +8,10 @@
       <omni-list-item
         v-if="sortedXcardsIncluded.length === 0"
         :props="{ is: 'div' }"
-        class="divider"
       >
-        カードを選んでください。
+        <span class="divider">
+          カードを選んでください。
+        </span>
       </omni-list-item>
     </omni-list>
 
@@ -132,6 +133,10 @@ export default {
 
 .container {
   margin-bottom: calc(1ex + 0.5ex + 1em + 0.5ex + 1ex);
+}
+
+.divider {
+  color: var(--item-value-color);
 }
 
 .shuffle-button {
