@@ -20,7 +20,9 @@
     </template>
 
     <div v-if="special.random" class="shuffle-button" @click="shuffle">
-      <div class="icon">^v</div>
+      <div class="icon">
+        ^v
+      </div>
     </div>
 
     <div v-if="!playable" class="playable-status">
