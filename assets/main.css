@@ -26,8 +26,8 @@
 }
 
 body {
-  background: #efeff5;
-  color: #000;
+  background: var(--page-background-color);
+  color: var(--header-text-color);
   font-family: sans-serif;
   margin: 0;
 }
