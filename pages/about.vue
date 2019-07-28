@@ -52,4 +52,13 @@ export default {
 </script>
 
 <style scoped>
+
+.page {
+  margin: 2em 5%;
+}
+
+p {
+  margin: 1.2em 0;
+}
+
 </style>
