@@ -33,6 +33,7 @@ export default {
   position: fixed;
   top: 0;
   width: 100%;
+  z-index: 1;
 }
 
 .main-pane {
@@ -44,6 +45,7 @@ export default {
   left: 0;
   position: fixed;
   width: 100%;
+  z-index: 1;
 }
 
 </style>
