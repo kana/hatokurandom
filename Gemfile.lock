@@ -12,7 +12,7 @@ GEM
     json (1.8.2)
     nanoc (3.8.0)
       cri (~> 2.3)
-    rack (1.6.1)
+    rack (2.0.7)
     sass (3.4.13)
     tilt (1.4.1)
     uglifier (2.7.1)
