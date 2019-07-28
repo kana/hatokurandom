@@ -1,11 +1,12 @@
 <template>
   <omni-list-item :props="{ is: 'label' }">
-    <div class="label">
+    <div :class="{ dropped: xcard.dropped }" class="line">
       <input v-if="editable" v-show="false" v-model="xcard.dropped" type="checkbox">
       <span class="cost">{{ xcard.cost }}</span>
-      <span class="types">{{ xcard.types }}</span>
+      <span :data-names="typeNamesString" class="type" />
       <span class="name">{{ xcard.name }}</span>
-      <span class="expansion" :data-symbol="expansionSymbol">{{ expansionSymbol }}</span>
+      <span v-if="xcard.subtype" class="subtype">（{{ xcard.subtype }}）</span>
+      <span :data-symbol="expansionSymbol" class="expansion">{{ expansionSymbol }}</span>
     </div>
   </omni-list-item>
 </template>
@@ -32,6 +33,9 @@ export default {
   computed: {
     expansionSymbol () {
       return expansionFromEid(this.xcard.eid).symbol
+    },
+    typeNamesString () {
+      return this.xcard.types.join(' ')
     }
   }
 }
@@ -39,7 +43,7 @@ export default {
 
 <style scoped>
 
-.label {
+.line {
   align-items: center;
   cursor: pointer;
   display: flex;
@@ -47,8 +51,78 @@ export default {
   width: 100%;
 }
 
+.line.dropped {
+  opacity: 0.5;
+}
+
+.cost {
+  flex: none;
+  font-weight: bolder;
+}
+
+.type {
+  background: #f0f;
+  display: inline-block;
+  flex: none;
+  height: 0.8em;
+  margin-left: 0.5ex;
+  width: 0.8em;
+
+  --trouble-color: #636;
+  --action-color: #999;
+  --defense-color: #339;
+  --attack-color: #c66;
+  --land-color: #963;
+  --authority-color: #696;
+  --princess-color: #cc3;
+  --support-color: #e73;
+  --unknown-color: #ddd;
+}
+
+.type[data-names~='災い'] {
+  background: var(--trouble-color);
+}
+.type[data-names~='行動'] {
+  background: var(--action-color);
+}
+.type[data-names~='防衛'] {
+  background: var(--defense-color);
+}
+.type[data-names~='攻撃'] {
+  background: var(--attack-color);
+}
+.type[data-names~='領地'] {
+  background: var(--land-color);
+}
+.type[data-names~='継承権'] {
+  background: var(--authority-color);
+}
+.type[data-names~='プリンセス'] {
+  background: var(--princess-color);
+}
+.type[data-names~='サポート'] {
+  background: var(--support-color);
+}
+.type[data-names~='?'] {
+  background: var(--unknown-color);
+}
+
+.type[data-names~='防衛'][data-names~='災い'] {
+  background: linear-gradient(to bottom right, var(--defense-color) 70%, #fff 70%, #fff 73%, var(--trouble-color) 73%);
+}
+.type[data-names~='継承権'][data-names~='領地'] {
+  background: linear-gradient(to bottom right, var(--authority-color) 70%, #fff 70%, #fff 73%, var(--land-color) 73%);
+}
+
 .name {
-  width: 100%;
+  font-weight: bolder;
+  margin-left: 0.5ex;
+}
+
+.subtype {
+  align-self: flex-end;
+  color: var(--item-value-color);
+  font-size: 80%;
 }
 
 .expansion {
@@ -57,40 +131,41 @@ export default {
   flex: none;
   font-size: 80%;
   line-height: 100%;
+  margin-left: auto;
   padding: 0.25em 0.25em;
 }
 
 .expansion[data-symbol='基本'] {
-  color: #666;
   background: #ddd;
+  color: #666;
 }
 .expansion[data-symbol='極東'] {
-  color: #884;
   background: #eeb;
+  color: #884;
 }
 .expansion[data-symbol='北限'] {
-  color: #669;
   background: #cce;
+  color: #669;
 }
 .expansion[data-symbol='ＦＧ'] {
-  color: #696;
   background: #ded;
+  color: #696;
 }
 .expansion[data-symbol='六都'] {
-  color: #966;
   background: #ece;
+  color: #966;
 }
 .expansion[data-symbol='星天'] {
-  color: #642;
   background: #fc9;
+  color: #642;
 }
 .expansion[data-symbol='幕間'] {
-  color: #636;
   background: #fde;
+  color: #636;
 }
 .expansion[data-symbol='レ！'] {
-  color: #663;
   background: #ee9;
+  color: #663;
 }
 
 </style>
