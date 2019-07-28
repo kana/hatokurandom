@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <div v-if="special.editable || sortedXcardsExcluded.length > 0" class="block-title">
       使用するカード
     </div>
@@ -127,6 +127,10 @@ export default {
 </script>
 
 <style scoped>
+
+.container {
+  margin-bottom: calc(1ex + 0.5ex + 1em + 0.5ex + 1ex);
+}
 
 .shuffle-button {
   align-items: center;
