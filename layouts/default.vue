@@ -16,6 +16,13 @@
 import BottomPane from '~/components/BottomPane'
 import TopPane from '~/components/TopPane'
 
+function clientXFromEvent (event) {
+  if (event.type.indexOf('mouse') !== -1) {
+    return event.clientX
+  }
+  return event.touches[0].clientX
+}
+
 export default {
   components: {
     BottomPane,
@@ -29,14 +36,14 @@ export default {
   methods: {
     // Back-to-parent-view gesture support.
     onSwipeRight (e) {
-      const screenLeftEdgeWidth = window.innerWidth / 10
+      const screenLeftEdgeWidth = window.innerWidth * 20 / 100
       if (this.touchStartX < screenLeftEdgeWidth) {
         // TODO: Should use page stack.
         this.$router.back()
       }
     },
     onTouchStart (e) {
-      this.touchStartX = e.clientX
+      this.touchStartX = clientXFromEvent(e)
     }
   }
 }
