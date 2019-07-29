@@ -30,7 +30,7 @@
       </div>
     </div>
 
-    <div v-if="!playable" class="playable-status">
+    <div v-if="special.editable && !playable" class="playable-status">
       <div class="message">
         {{ playableStatusMessage }}
       </div>
