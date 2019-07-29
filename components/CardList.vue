@@ -106,24 +106,33 @@ export default {
   },
   watch: {
     pid () {
-      this.updateSharePid()
+      this.onUpdateXcards()
     },
     xcards: {
       handler () {
-        this.updateSharePid()
+        this.onUpdateXcards()
       },
       deep: true
     }
   },
   mounted () {
-    this.updateSharePid()
+    this.onUpdateXcards()
   },
   methods: {
+    onUpdateXcards () {
+      this.$store.commit('supply/setPid', this.sharePid)
+
+      if (this.special.random) {
+        this.$router.replace({
+          path: this.$route.path,
+          query: {
+            rsid: rsidFromXcards(this.xcards)
+          }
+        })
+      }
+    },
     shuffle () {
       this.xcards = xcardsFromPid(this.pid)
-    },
-    updateSharePid () {
-      this.$store.commit('supply/setPid', this.sharePid)
     }
   }
 }
