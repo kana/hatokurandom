@@ -87,7 +87,10 @@ export default {
         if (isPredefinedSupplyPid(this.pid)) {
           return this.pid
         } else {
-          return `supply:${rsidFromXcards(this.xcards)}`
+          const xcards = this.special.random
+            ? this.xcards
+            : this.xcards.filter(xcard => !xcard.dropped)
+          return `supply:${rsidFromXcards(xcards)}`
         }
       } else {
         return null
