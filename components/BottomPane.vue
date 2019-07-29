@@ -46,11 +46,12 @@ export default {
   display: flex;
   height: 100%;
   justify-content: center;
+  transition: background 0.2s, color 0.2s;
   width: 100%;
 }
 
 .tab.active {
-  font-weight: bolder;
+  color: var(--item-active-background-color);
 }
 
 .tab:hover {
