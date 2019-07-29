@@ -43,7 +43,7 @@ import BlockTitle from '~/components/BlockTitle'
 import CardListItem from '~/components/CardListItem'
 import OmniList from '~/components/OmniList'
 import OmniListItem from '~/components/OmniListItem'
-import { isPredefinedSupplyPid, parseSpecialPid, rsidFromXcards, sortXcards, xcardsFromPid } from '~/lib/constants'
+import { isPredefinedSupplyPid, parseSpecialPid, rsidFromXcards, sortXcards, xcardsFromPid, xcardsFromRsid } from '~/lib/constants'
 
 export default {
   name: 'CardList',
@@ -61,7 +61,9 @@ export default {
   },
   data () {
     return {
-      xcards: xcardsFromPid(this.pid)
+      xcards: this.$route.query.rsid
+        ? xcardsFromRsid(this.$route.query.rsid)
+        : xcardsFromPid(this.pid)
     }
   },
   computed: {
