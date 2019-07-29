@@ -2,7 +2,7 @@
   <div class="bottom-pane">
     <nuxt-link
       v-for="tab in tabs"
-      :key="tab.pid"
+      :key="tab.path"
       :to="tab.path"
       :class="{ active: tab.path === currentTabPath }"
       class="tab"
