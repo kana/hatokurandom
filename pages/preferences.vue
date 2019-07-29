@@ -7,9 +7,9 @@
       <li v-for="expansion in configurableExpansions" :key="expansion.eid">
         <div>{{ expansion.name }}</div>
         <div :id="expansion.optionKey">
-          <label><input :name="expansion.optionKey" type="radio"> 必ず使う</label>
-          <label><input :name="expansion.optionKey" type="radio"> 使う</label>
-          <label><input :name="expansion.optionKey" type="radio"> 使わない</label>
+          <label><input v-model="options[expansion.optionKey]" type="radio" value="must"> 必ず使う</label>
+          <label><input v-model="options[expansion.optionKey]" type="radio" value="may"> 使う</label>
+          <label><input v-model="options[expansion.optionKey]" type="radio" value="must_not"> 使わない</label>
         </div>
       </li>
     </ul>
@@ -137,6 +137,9 @@ export default {
   computed: {
     configurableExpansions () {
       return EXPANSIONS.filter(expansion => expansion.optionKey !== undefined)
+    },
+    options () {
+      return this
     },
     ...mapOptionStore([
       'excludeBannedCardsByUser',
