@@ -32,7 +32,7 @@
     <ul>
       <li>
         <label>
-          <input v-model="exclude_banned_cards" name="exclude_banned_cards" type="checkbox">
+          <input v-model="exclude_banned_cards" type="checkbox">
           <div class="title">
             公式推奨バランスにする
           </div>
@@ -46,7 +46,7 @@
       </li>
       <li>
         <label>
-          <input name="exclude_banned_cards_for_fairy_garden" type="checkbox" checked>
+          <input v-model="exclude_banned_cards_for_fairy_garden" type="checkbox">
           <div class="title">
             フェアリーガーデンと併用非推奨のカードを除外する
           </div>
@@ -67,7 +67,7 @@
       </li>
       <li>
         <label>
-          <input name="exclude_banned_cards_for_trajectory_of_the_star" type="checkbox" checked>
+          <input v-model="exclude_banned_cards_for_trajectory_of_the_star" type="checkbox">
           <div class="title">
             星天前路と併用非推奨のカードを除外する
           </div>
@@ -80,7 +80,7 @@
       </li>
       <li>
         <label>
-          <input name="include_all_costs" type="checkbox">
+          <input v-model="include_all_costs" type="checkbox">
           <div class="title">
             各コスト帯のカードを含める
           </div>
@@ -92,7 +92,7 @@
       </li>
       <li>
         <label>
-          <input name="include_link_2" type="checkbox">
+          <input v-model="include_link_2" type="checkbox">
           <div class="title">
             リンク2を適宜含める
           </div>
