@@ -82,8 +82,11 @@ export default {
 
       return ''
     },
+    sharable () {
+      return this.playable || this.pid.startsWith('reference:')
+    },
     sharePid () {
-      if (this.playable) {
+      if (this.sharable) {
         if (isPredefinedSupplyPid(this.pid)) {
           return this.pid
         } else {
