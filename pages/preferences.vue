@@ -110,6 +110,23 @@
 import BlockTitle from '~/components/BlockTitle'
 import { EXPANSIONS, titleFromPid } from '~/lib/constants'
 
+function mapOptionStore (keys) {
+  const computed = {}
+
+  for (const key of keys) {
+    computed[key] = {
+      get () {
+        return this.$store.state.options[key]
+      },
+      set (value) {
+        this.$store.dispatch('options/update', { key, value })
+      }
+    }
+  }
+
+  return computed
+}
+
 export default {
   components: {
     BlockTitle
@@ -121,17 +138,20 @@ export default {
     configurableExpansions () {
       return EXPANSIONS.filter(expansion => expansion.optionKey !== undefined)
     },
-    exclude_banned_cards: {
-      get () {
-        return this.$store.state.options.exclude_banned_cards
-      },
-      set (value) {
-        this.$store.dispatch('options/update', {
-          key: 'exclude_banned_cards',
-          value
-        })
-      }
-    }
+    ...mapOptionStore([
+      'exclude_banned_cards',
+      'exclude_banned_cards_for_fairy_garden',
+      'exclude_banned_cards_for_trajectory_of_the_star',
+      'include_all_costs',
+      'include_basic',
+      'include_fairy',
+      'include_fareast',
+      'include_link_2',
+      'include_northern',
+      'include_six',
+      'include_star',
+      'must_exclude_cards'
+    ])
   }
 }
 </script>
