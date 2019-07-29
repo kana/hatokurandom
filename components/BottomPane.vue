@@ -20,8 +20,11 @@ export default {
       return this.$route.path === '/preferences' ? '/preferences' : '/'
     },
     tabs () {
+      const homeTabPath = this.$route.path === '/preferences'
+        ? this.$store.state.history.homeTabLastPath
+        : '/'
       return [
-        { path: '/', icon: 'home' },
+        { path: homeTabPath, icon: 'home' },
         { path: '/preferences', icon: 'cog' }
       ]
     }

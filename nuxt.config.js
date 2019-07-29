@@ -35,6 +35,7 @@ export default {
    */
   plugins: [
     '~/plugins/fontawesome',
+    '~/plugins/router',
     '~/plugins/vue2-touch-events'
   ],
   /*
