@@ -32,7 +32,7 @@
     <ul>
       <li>
         <label>
-          <input name="exclude_banned_cards" type="checkbox" checked>
+          <input v-model="exclude_banned_cards" name="exclude_banned_cards" type="checkbox">
           <div class="title">
             公式推奨バランスにする
           </div>
@@ -120,6 +120,17 @@ export default {
   computed: {
     configurableExpansions () {
       return EXPANSIONS.filter(expansion => expansion.optionKey !== undefined)
+    },
+    exclude_banned_cards: {
+      get () {
+        return this.$store.state.options.exclude_banned_cards
+      },
+      set (value) {
+        this.$store.dispatch('options/update', {
+          key: 'exclude_banned_cards',
+          value
+        })
+      }
     }
   }
 }
