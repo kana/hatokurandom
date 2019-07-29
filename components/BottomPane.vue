@@ -17,12 +17,12 @@ export default {
   name: 'BottomPane',
   computed: {
     currentTabPath () {
-      return this.$route.path === '/configure' ? '/configure' : '/'
+      return this.$route.path === '/preferences' ? '/preferences' : '/'
     },
     tabs () {
       return [
         { path: '/', icon: 'home' },
-        { path: '/configure', icon: 'cog' }
+        { path: '/preferences', icon: 'cog' }
       ]
     }
   }
