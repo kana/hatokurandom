@@ -7,9 +7,9 @@
       <li v-for="expansion in configurableExpansions" :key="expansion.eid">
         <div>{{ expansion.name }}</div>
         <div :id="expansion.optionKey">
-          <label><input :name="expansion.optionKey" type="radio"> 必須</label>
-          <label><input :name="expansion.optionKey" type="radio"> 使用</label>
-          <label><input :name="expansion.optionKey" type="radio"> 禁止</label>
+          <label><input :name="expansion.optionKey" type="radio"> 必ず使う</label>
+          <label><input :name="expansion.optionKey" type="radio"> 使う</label>
+          <label><input :name="expansion.optionKey" type="radio"> 使わない</label>
         </div>
       </li>
     </ul>
