@@ -1,17 +1,17 @@
 // TODO: Load from localStorage.
 export const state = () => ({
-  exclude_banned_cards: true,
-  exclude_banned_cards_for_fairy_garden: true,
-  exclude_banned_cards_for_trajectory_of_the_star: true,
-  include_all_costs: false,
-  include_basic: 'may',
-  include_fairy: 'may',
-  include_fareast: 'may',
-  include_link_2: false,
-  include_northern: 'may',
-  include_six: 'may',
-  include_star: 'may',
-  must_exclude_cards: []
+  excludeBannedCardsByUser: [],
+  excludeBannedCardsForAll: true,
+  excludeBannedCardsForFairy: true,
+  excludeBannedCardsForStar: true,
+  includeAllCosts: false,
+  includeExpansionBasic: 'may',
+  includeExpansionFairy: 'may',
+  includeExpansionFareast: 'may',
+  includeExpansionNorthern: 'may',
+  includeExpansionSix: 'may',
+  includeExpansionStar: 'may',
+  includeLink2: false
 })
 
 export const mutations = {

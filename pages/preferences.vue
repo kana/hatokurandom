@@ -18,7 +18,7 @@
       禁止カード
     </block-title>
     <div>
-      <div id="must_exclude_cards">
+      <div id="excludeBannedCardsByUser">
         サムライ, 割り符
       </div>
       <div>
@@ -32,7 +32,7 @@
     <ul>
       <li>
         <label>
-          <input v-model="exclude_banned_cards" type="checkbox">
+          <input v-model="excludeBannedCardsForAll" type="checkbox">
           <div class="title">
             公式推奨バランスにする
           </div>
@@ -46,7 +46,7 @@
       </li>
       <li>
         <label>
-          <input v-model="exclude_banned_cards_for_fairy_garden" type="checkbox">
+          <input v-model="excludeBannedCardsForFairy" type="checkbox">
           <div class="title">
             フェアリーガーデンと併用非推奨のカードを除外する
           </div>
@@ -67,7 +67,7 @@
       </li>
       <li>
         <label>
-          <input v-model="exclude_banned_cards_for_trajectory_of_the_star" type="checkbox">
+          <input v-model="excludeBannedCardsForStar" type="checkbox">
           <div class="title">
             星天前路と併用非推奨のカードを除外する
           </div>
@@ -80,7 +80,7 @@
       </li>
       <li>
         <label>
-          <input v-model="include_all_costs" type="checkbox">
+          <input v-model="includeAllCosts" type="checkbox">
           <div class="title">
             各コスト帯のカードを含める
           </div>
@@ -92,7 +92,7 @@
       </li>
       <li>
         <label>
-          <input v-model="include_link_2" type="checkbox">
+          <input v-model="includeLink2" type="checkbox">
           <div class="title">
             リンク2を適宜含める
           </div>
@@ -139,18 +139,18 @@ export default {
       return EXPANSIONS.filter(expansion => expansion.optionKey !== undefined)
     },
     ...mapOptionStore([
-      'exclude_banned_cards',
-      'exclude_banned_cards_for_fairy_garden',
-      'exclude_banned_cards_for_trajectory_of_the_star',
-      'include_all_costs',
-      'include_basic',
-      'include_fairy',
-      'include_fareast',
-      'include_link_2',
-      'include_northern',
-      'include_six',
-      'include_star',
-      'must_exclude_cards'
+      'excludeBannedCardsByUser',
+      'excludeBannedCardsForAll',
+      'excludeBannedCardsForFairy',
+      'excludeBannedCardsForStar',
+      'includeAllCosts',
+      'includeExpansionBasic',
+      'includeExpansionFairy',
+      'includeExpansionFareast',
+      'includeExpansionNorthern',
+      'includeExpansionSix',
+      'includeExpansionStar',
+      'includeLink2'
     ])
   }
 }
