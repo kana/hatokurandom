@@ -67,6 +67,13 @@ export default {
     },
     transpile: [
       'lodash-es'
-    ]
+    ],
+    loaders: {
+      vue: {
+        compilerOptions: {
+          whitespace: 'condense'
+        }
+      }
+    }
   }
 }
