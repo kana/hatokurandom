@@ -5,11 +5,15 @@
     </block-title>
     <omni-list>
       <omni-list-item v-for="expansion in configurableExpansions" :key="expansion.eid">
-        <div>{{ expansion.name }}</div>
-        <div :id="expansion.optionKey">
-          <label><input v-model="options[expansion.optionKey]" type="radio" value="must"> 必ず使う</label>
-          <label><input v-model="options[expansion.optionKey]" type="radio" value="may"> 使う</label>
-          <label><input v-model="options[expansion.optionKey]" type="radio" value="must_not"> 使わない</label>
+        <div class="item-expansion">
+          <div class="label-expansion">
+            {{ expansion.name }}
+          </div>
+          <div :id="expansion.optionKey" class="segmented-button-group">
+            <label :class="{ checked: options[expansion.optionKey] === 'must' }" class="segmented-button"><input v-show="false" v-model="options[expansion.optionKey]" type="radio" value="must"> 必ず使う</label>
+            <label :class="{ checked: options[expansion.optionKey] === 'may' }" class="segmented-button"><input v-show="false" v-model="options[expansion.optionKey]" type="radio" value="may"> 使う</label>
+            <label :class="{ checked: options[expansion.optionKey] === 'must_not' }" class="segmented-button"><input v-show="false" v-model="options[expansion.optionKey]" type="radio" value="must_not"> 使わない</label>
+          </div>
         </div>
       </omni-list-item>
     </omni-list>
@@ -169,6 +173,49 @@ export default {
 
 .page {
   margin: 2em 0;
+}
+
+.item-expansion {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.segmented-button-group {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.segmented-button {
+  background: var(--switch-off-background-color);
+  border: 1px solid var(--switch-off-border-color);
+  cursor: pointer;
+  display: inline-block;
+  margin: 0;
+  padding: 0.5ex 1ex;
+  transition: background 0.2s, color 0.2s;
+}
+
+.segmented-button:hover {
+  background: var(--header-background-color);
+  color: var(--item-label-color);
+}
+
+.segmented-button.checked {
+  background: var(--switch-on-background-color);
+  color: var(--switch-knob-color);
+}
+
+.segmented-button:first-child {
+  border-radius: 0.5em 0 0 0.5em;
+}
+
+.segmented-button:last-child {
+  border-radius: 0 0.5em 0.5em 0;
+}
+
+.segmented-button + .segmented-button {
+  border-left: 1px solid var(--switch-off-border-color);
 }
 
 </style>
