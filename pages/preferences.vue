@@ -3,34 +3,36 @@
     <block-title>
       使用するカードセット
     </block-title>
-    <ul>
-      <li v-for="expansion in configurableExpansions" :key="expansion.eid">
+    <omni-list>
+      <omni-list-item v-for="expansion in configurableExpansions" :key="expansion.eid">
         <div>{{ expansion.name }}</div>
         <div :id="expansion.optionKey">
           <label><input v-model="options[expansion.optionKey]" type="radio" value="must"> 必ず使う</label>
           <label><input v-model="options[expansion.optionKey]" type="radio" value="may"> 使う</label>
           <label><input v-model="options[expansion.optionKey]" type="radio" value="must_not"> 使わない</label>
         </div>
-      </li>
-    </ul>
+      </omni-list-item>
+    </omni-list>
 
     <block-title>
       禁止カード
     </block-title>
-    <div>
-      <div id="excludeBannedCardsByUser">
-        サムライ, 割り符
-      </div>
-      <div>
-        ＞
-      </div>
-    </div>
+    <omni-list>
+      <omni-list-item>
+        <div id="excludeBannedCardsByUser">
+          サムライ, 割り符
+        </div>
+        <div>
+          ＞
+        </div>
+      </omni-list-item>
+    </omni-list>
 
     <block-title>
       偏り具合の調整
     </block-title>
-    <ul>
-      <li>
+    <omni-list>
+      <omni-list-item>
         <label>
           <input v-model="excludeBannedCardsForAll" type="checkbox">
           <div class="title">
@@ -43,8 +45,8 @@
             <span class="card-name">魅了術の魔女</span>
           </div>
         </label>
-      </li>
-      <li>
+      </omni-list-item>
+      <omni-list-item>
         <label>
           <input v-model="excludeBannedCardsForFairy" type="checkbox">
           <div class="title">
@@ -64,8 +66,8 @@
             <span class="card-name">サムライ</span>
           </div>
         </label>
-      </li>
-      <li>
+      </omni-list-item>
+      <omni-list-item>
         <label>
           <input v-model="excludeBannedCardsForStar" type="checkbox">
           <div class="title">
@@ -77,8 +79,8 @@
             <span class="card-name">割り符</span>
           </div>
         </label>
-      </li>
-      <li>
+      </omni-list-item>
+      <omni-list-item>
         <label>
           <input v-model="includeAllCosts" type="checkbox">
           <div class="title">
@@ -89,8 +91,8 @@
             ただし6コスト以上のカードは5コスト帯として扱います。
           </div>
         </label>
-      </li>
-      <li>
+      </omni-list-item>
+      <omni-list-item>
         <label>
           <input v-model="includeLink2" type="checkbox">
           <div class="title">
@@ -101,13 +103,15 @@
             リンク2のカードを1枚は含めるようにします。
           </div>
         </label>
-      </li>
-    </ul>
+      </omni-list-item>
+    </omni-list>
   </div>
 </template>
 
 <script>
 import BlockTitle from '~/components/BlockTitle'
+import OmniList from '~/components/OmniList'
+import OmniListItem from '~/components/OmniListItem'
 import { EXPANSIONS, titleFromPid } from '~/lib/constants'
 
 function mapOptionStore (keys) {
@@ -129,7 +133,9 @@ function mapOptionStore (keys) {
 
 export default {
   components: {
-    BlockTitle
+    BlockTitle,
+    OmniList,
+    OmniListItem
   },
   head: {
     title: titleFromPid('preferences')
@@ -162,7 +168,7 @@ export default {
 <style scoped>
 
 .page {
-  margin: 2em 5%;
+  margin: 2em 0;
 }
 
 </style>
