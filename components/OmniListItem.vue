@@ -1,6 +1,6 @@
 <template>
   <li class="list-item">
-    <component :is="props.is" v-bind="props" class="list-item-content">
+    <component :is="props.is || 'div'" v-bind="props" class="list-item-content">
       <slot />
     </component>
   </li>
@@ -12,7 +12,9 @@ export default {
   props: {
     props: {
       type: Object,
-      required: true
+      default () {
+        return {}
+      }
     }
   }
 }
