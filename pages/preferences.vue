@@ -215,7 +215,7 @@ export default {
 }
 
 .segmented-button + .segmented-button {
-  border-left: 1px solid var(--switch-off-border-color);
+  border-left: none;
 }
 
 </style>
