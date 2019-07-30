@@ -1,5 +1,5 @@
 <template>
-  <omni-list-item :props="{ is: 'label' }">
+  <omni-list-item :props="{ is: editable ? 'label' : 'div' }" :clickable="editable">
     <div :class="{ dropped: xcard.dropped }" class="line">
       <input v-if="editable" v-show="false" v-model="xcard.dropped" type="checkbox">
       <span class="cost">{{ xcard.cost }}</span>

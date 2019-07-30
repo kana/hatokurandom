@@ -7,6 +7,7 @@
         is: 'nuxt-link',
         to: pathFromPid(childPid)
       }"
+      clickable
     >
       <div class="line">
         <span class="label">{{ titleFromPid(childPid) }}</span>

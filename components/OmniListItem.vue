@@ -1,6 +1,6 @@
 <template>
   <li class="list-item">
-    <component :is="props.is || 'div'" v-bind="props" class="list-item-content">
+    <component :is="props.is || 'div'" v-bind="props" :class="{ clickable }" class="list-item-content">
       <slot />
     </component>
   </li>
@@ -15,6 +15,10 @@ export default {
       default () {
         return {}
       }
+    },
+    clickable: {
+      type: Boolean,
+      default: false
     }
   }
 }
@@ -39,7 +43,11 @@ export default {
   transition: background 0.2s;
 }
 
-.list-item-content:hover {
+.list-item-content.clickable {
+  cursor: pointer;
+}
+
+.list-item-content.clickable:hover {
   background: var(--header-background-color);
 }
 
