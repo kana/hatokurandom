@@ -15,11 +15,11 @@
               {{ expansion.name }}
             </template>
           </div>
-          <div :id="expansion.optionKey" class="segmented-button-group">
-            <label :class="{ checked: options[expansion.optionKey] === 'must' }" class="segmented-button"><input v-show="false" v-model="options[expansion.optionKey]" type="radio" value="must"> 必ず使う</label>
-            <label :class="{ checked: options[expansion.optionKey] === 'may' }" class="segmented-button"><input v-show="false" v-model="options[expansion.optionKey]" type="radio" value="may"> 使う</label>
-            <label :class="{ checked: options[expansion.optionKey] === 'must_not' }" class="segmented-button"><input v-show="false" v-model="options[expansion.optionKey]" type="radio" value="must_not"> 使わない</label>
-          </div>
+          <segmented-button-group
+            v-model="options[expansion.optionKey]"
+            :choices="choices"
+            class="segmented-button-group"
+          />
         </div>
       </omni-list-item>
     </omni-list>
@@ -122,6 +122,7 @@
 import BlockTitle from '~/components/BlockTitle'
 import OmniList from '~/components/OmniList'
 import OmniListItem from '~/components/OmniListItem'
+import SegmentedButtonGroup from '~/components/SegmentedButtonGroup'
 import { EXPANSIONS, titleFromPid } from '~/lib/constants'
 
 function mapOptionStore (keys) {
@@ -145,12 +146,20 @@ export default {
   components: {
     BlockTitle,
     OmniList,
-    OmniListItem
+    OmniListItem,
+    SegmentedButtonGroup
   },
   head: {
     title: titleFromPid('preferences')
   },
   computed: {
+    choices () {
+      return [
+        { label: '必ず使う', value: 'must' },
+        { label: '使う', value: 'may' },
+        { label: '使わない', value: 'must_not' }
+      ]
+    },
     configurableExpansions () {
       return EXPANSIONS.filter(expansion => expansion.optionKey !== undefined)
     },
@@ -192,48 +201,11 @@ export default {
   white-space: nowrap;
 }
 
-.segmented-button-group {
-  display: inline-block;
-  white-space: nowrap;
-}
-
 /* Narrower than iPhone 8 Plus */
 @media (max-width: 413px) {
   .segmented-button-group {
     font-size: 90%;
   }
-}
-
-.segmented-button {
-  background: var(--switch-off-background-color);
-  border: 1px solid var(--switch-off-border-color);
-  cursor: pointer;
-  display: inline-block;
-  margin: 0;
-  padding: 0.5ex 1ex;
-  transition: background 0.2s, color 0.2s;
-}
-
-.segmented-button:hover {
-  background: var(--header-background-color);
-  color: var(--item-label-color);
-}
-
-.segmented-button.checked {
-  background: var(--switch-on-background-color);
-  color: var(--switch-knob-color);
-}
-
-.segmented-button:first-child {
-  border-radius: 0.5em 0 0 0.5em;
-}
-
-.segmented-button:last-child {
-  border-radius: 0 0.5em 0.5em 0;
-}
-
-.segmented-button + .segmented-button {
-  border-left: none;
 }
 
 </style>
