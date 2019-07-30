@@ -7,7 +7,13 @@
       <omni-list-item v-for="expansion in configurableExpansions" :key="expansion.eid">
         <div class="item-expansion">
           <div class="label-expansion">
-            {{ expansion.name }}
+            <template v-if="expansion.name === 'フェアリーガーデン'">
+              <span class="word">フェアリー</span>
+              <span class="word">ガーデン</span>
+            </template>
+            <template v-else>
+              {{ expansion.name }}
+            </template>
           </div>
           <div :id="expansion.optionKey" class="segmented-button-group">
             <label :class="{ checked: options[expansion.optionKey] === 'must' }" class="segmented-button"><input v-show="false" v-model="options[expansion.optionKey]" type="radio" value="must"> 必ず使う</label>
@@ -181,9 +187,21 @@ export default {
   justify-content: space-between;
 }
 
+.label-expansion .word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
 .segmented-button-group {
   display: inline-block;
   white-space: nowrap;
+}
+
+/* Narrower than iPhone 8 Plus */
+@media (max-width: 413px) {
+  .segmented-button-group {
+    font-size: 90%;
+  }
 }
 
 .segmented-button {
