@@ -1,6 +1,6 @@
 // TODO: Load from localStorage.
 export const state = () => ({
-  excludeBannedCardsByUser: [],
+  excludeBannedCardsByUser: [], // cid[]
   excludeBannedCardsForAll: true,
   excludeBannedCardsForFairy: true,
   excludeBannedCardsForStar: true,
