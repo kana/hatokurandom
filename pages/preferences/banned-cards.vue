@@ -32,7 +32,7 @@
 import BlockTitle from '~/components/BlockTitle'
 import CardListItem from '~/components/CardListItem'
 import OmniList from '~/components/OmniList'
-import { cardFromCid, sortXcards, titleFromPid } from '~/lib/constants'
+import { COMMON_CARDS, sortXcards, titleFromPid } from '~/lib/constants'
 
 export default {
   components: {
@@ -43,18 +43,37 @@ export default {
   head: {
     title: titleFromPid('preferences/banned-cards')
   },
+  data () {
+    const bannedCidSet = new Set(this.$store.state.options.excludeBannedCardsByUser)
+    return {
+      xcards: COMMON_CARDS.map(card => ({
+        ...card,
+        dropped: bannedCidSet.has(card.cid)
+      }))
+    }
+  },
   computed: {
     bannedXcards () {
-      return sortXcards([11, 22, 33].map(cid => ({
-        ...cardFromCid(cid),
-        dropped: false
-      })))
+      return sortXcards(this.xcards.filter(xcard => xcard.dropped))
     },
     unbannedXcards () {
-      return sortXcards([3, 6, 8, 9, 39, 48, 55].map(cid => ({
-        ...cardFromCid(cid),
-        dropped: true
-      })))
+      return sortXcards(this.xcards.filter(xcard => !xcard.dropped))
+    }
+  },
+  watch: {
+    xcards: {
+      handler () {
+        this.onUpdateXcards()
+      },
+      deep: true
+    }
+  },
+  methods: {
+    onUpdateXcards () {
+      this.$store.dispatch('options/update', {
+        key: 'excludeBannedCardsByUser',
+        value: this.xcards.filter(xcard => xcard.dropped).map(xcard => xcard.cid)
+      })
     }
   }
 }
