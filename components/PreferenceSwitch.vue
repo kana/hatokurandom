@@ -22,10 +22,6 @@ export default {
     SwitchListItem
   },
   props: {
-    note: {
-      type: String,
-      required: true
-    },
     title: {
       type: String,
       required: true
