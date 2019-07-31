@@ -42,15 +42,14 @@
       偏り具合の調整
     </block-title>
 
-    <omni-list>
-      <switch-list-item v-model="excludeBannedCardsForAll" title="公式推奨バランスにする" />
-    </omni-list>
-    <div class="note">
-      以下のカードは出現しません:
-      <span class="card-name">埋もれた財宝</span>
-      <span class="card-name">買収工作</span>
-      <span class="card-name">魅了術の魔女</span>
-    </div>
+    <preference-switch v-model="excludeBannedCardsForAll" title="公式推奨バランスにする">
+      <template v-slot:note>
+        以下のカードは出現しません:
+        <span class="card-name">埋もれた財宝</span>
+        <span class="card-name">買収工作</span>
+        <span class="card-name">魅了術の魔女</span>
+      </template>
+    </preference-switch>
 
     <omni-list>
       <omni-list-item>
@@ -119,8 +118,8 @@
 import BlockTitle from '~/components/BlockTitle'
 import OmniList from '~/components/OmniList'
 import OmniListItem from '~/components/OmniListItem'
+import PreferenceSwitch from '~/components/PreferenceSwitch'
 import SegmentedButtonGroup from '~/components/SegmentedButtonGroup'
-import SwitchListItem from '~/components/SwitchListItem'
 import { EXPANSIONS, titleFromPid } from '~/lib/constants'
 
 function mapOptionStore (keys) {
@@ -145,8 +144,8 @@ export default {
     BlockTitle,
     OmniList,
     OmniListItem,
-    SegmentedButtonGroup,
-    SwitchListItem
+    PreferenceSwitch,
+    SegmentedButtonGroup
   },
   head: {
     title: titleFromPid('preferences')
