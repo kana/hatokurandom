@@ -1,6 +1,6 @@
 <template>
   <omni-list class="page-list">
-    <link-list-item
+    <page-list-item
       v-for="childPid in childPids"
       :key="childPid"
       :path="pathFromPid(childPid)"
@@ -10,15 +10,15 @@
 </template>
 
 <script>
-import LinkListItem from '~/components/LinkListItem'
 import OmniList from '~/components/OmniList'
+import PageListItem from '~/components/PageListItem'
 import { childPidsFromPid, pathFromPid, titleFromPid } from '~/lib/constants'
 
 export default {
   name: 'PageList',
   components: {
-    LinkListItem,
-    OmniList
+    OmniList,
+    PageListItem
   },
   props: {
     pid: {

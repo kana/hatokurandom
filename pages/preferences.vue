@@ -65,7 +65,9 @@
       <omni-list-item v-for="name in bannedCardNames" :key="name">
         {{ name }}
       </omni-list-item>
-      <link-list-item title="禁止カードを選ぶ…" path="/preferences/banned-cards" />
+      <link-list-item path="/preferences/banned-cards">
+        禁止カードを選ぶ…
+      </link-list-item>
     </omni-list>
 
     <block-title>
