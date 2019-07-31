@@ -34,7 +34,7 @@ export default {
   --unit: calc(1.728em);
   background: var(--switch-off-background-color);
   border-radius: var(--unit);
-  border: 1px solid var(--switch-off-border-color);
+  border: 2px solid var(--switch-off-border-color);
   box-sizing: border-box;
   height: var(--unit);
   transition: background 0.2s, border-color 0.2s;
@@ -51,10 +51,10 @@ export default {
   border-radius: var(--unit);
   box-sizing: border-box;
   box-shadow: rgba(0, 0, 0, 0.1) 1px 1px 3px 1px;
-  height: calc(var(--unit) - 2px);
+  height: calc(var(--unit) - 4px);
   margin-left: 0;
   transition: margin-left 0.2s;
-  width: calc(var(--unit) - 2px);
+  width: calc(var(--unit) - 4px);
 }
 
 .switch-box.on .knob {
