@@ -11,6 +11,11 @@
         :xcard="xcard"
         editable
       />
+      <omni-list-item v-if="bannedXcards.length === 0">
+        <span class="divider">
+          未設定
+        </span>
+      </omni-list-item>
     </omni-list>
 
     <block-title>
@@ -32,13 +37,15 @@
 import BlockTitle from '~/components/BlockTitle'
 import CardListItem from '~/components/CardListItem'
 import OmniList from '~/components/OmniList'
+import OmniListItem from '~/components/OmniListItem'
 import { COMMON_CARDS, sortXcards, titleFromPid } from '~/lib/constants'
 
 export default {
   components: {
     BlockTitle,
     CardListItem,
-    OmniList
+    OmniList,
+    OmniListItem
   },
   head: {
     title: titleFromPid('preferences/banned-cards')
@@ -83,6 +90,10 @@ export default {
 
 .page {
   margin: 2em 0;
+}
+
+.divider {
+  color: var(--item-value-color);
 }
 
 </style>
