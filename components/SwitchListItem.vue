@@ -4,18 +4,20 @@
       <span class="title">
         {{ title }}
       </span>
-      <input v-model="value" type="checkbox" class="form">
+      <switch-box v-model="value" class="form" />
     </div>
   </omni-list-item>
 </template>
 
 <script>
 import OmniListItem from '~/components/OmniListItem'
+import SwitchBox from '~/components/SwitchBox'
 
 export default {
   name: 'SwitchListItem',
   components: {
-    OmniListItem
+    OmniListItem,
+    SwitchBox
   },
   props: {
     title: {
