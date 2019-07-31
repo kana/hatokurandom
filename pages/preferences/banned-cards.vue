@@ -18,18 +18,20 @@
       </omni-list-item>
     </omni-list>
 
-    <block-title>
-      使用するカード
-    </block-title>
+    <template v-if="unbannedXcards.length > 0">
+      <block-title>
+        使用するカード
+      </block-title>
 
-    <omni-list>
-      <card-list-item
-        v-for="xcard in unbannedXcards"
-        :key="xcard.cid"
-        :xcard="xcard"
-        editable
-      />
-    </omni-list>
+      <omni-list>
+        <card-list-item
+          v-for="xcard in unbannedXcards"
+          :key="xcard.cid"
+          :xcard="xcard"
+          editable
+        />
+      </omni-list>
+    </template>
   </div>
 </template>
 
