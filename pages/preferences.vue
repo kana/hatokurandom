@@ -183,4 +183,16 @@ export default {
   }
 }
 
+.card-name {
+  display: inline-block;
+}
+
+.card-name:before {
+  content: '《';
+}
+
+.card-name:after {
+  content: '》';
+}
+
 </style>
