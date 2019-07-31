@@ -27,16 +27,6 @@
     <block-title>
       禁止カード
     </block-title>
-    <omni-list>
-      <omni-list-item v-for="name in bannedCardNames" :key="name">
-        {{ name }}
-      </omni-list-item>
-      <link-list-item title="禁止カードを編集する…" path="/preferences/banned-cards" />
-    </omni-list>
-
-    <block-title>
-      偏り具合の調整
-    </block-title>
 
     <preference-switch v-model="excludeBannedCardsForAll" title="公式推奨バランスにする">
       <template v-slot:note>
@@ -70,6 +60,17 @@
         <span class="card-name">割り符</span>
       </template>
     </preference-switch>
+
+    <omni-list class="">
+      <omni-list-item v-for="name in bannedCardNames" :key="name">
+        {{ name }}
+      </omni-list-item>
+      <link-list-item title="禁止カードを選ぶ…" path="/preferences/banned-cards" />
+    </omni-list>
+
+    <block-title>
+      偏り具合の調整
+    </block-title>
 
     <preference-switch v-model="includeAllCosts" title="各コスト帯のカードを含める">
       <template v-slot:note>
