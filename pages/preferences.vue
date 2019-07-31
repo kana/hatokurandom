@@ -51,66 +51,43 @@
       </template>
     </preference-switch>
 
-    <omni-list>
-      <omni-list-item>
-        <label>
-          <input v-model="excludeBannedCardsForFairy" type="checkbox">
-          <div class="title">
-            フェアリーガーデンと併用非推奨のカードを除外する
-          </div>
-          <div class="description">
-            フェアリーガーデンのカードと以下のカードは同時に出現しません:
-            全ての防衛カード、および
-            <span class="card-name">破城槌</span>
-            <span class="card-name">埋もれた財宝</span>
-            <span class="card-name">星詠みの魔女</span>
-            <span class="card-name">シノビ</span>
-            <span class="card-name">魅了術の魔女</span>
-            <span class="card-name">歩兵大隊</span>
-            <span class="card-name">近衛騎士団</span>
-            <span class="card-name">弓兵隊</span>
-            <span class="card-name">サムライ</span>
-          </div>
-        </label>
-      </omni-list-item>
-      <omni-list-item>
-        <label>
-          <input v-model="excludeBannedCardsForStar" type="checkbox">
-          <div class="title">
-            星天前路と併用非推奨のカードを除外する
-          </div>
-          <div class="description">
-            星天前路のカードと以下のカードは同時に出現しません:
-            「フェアリーガーデンと併用非推奨のカード」一式、および
-            <span class="card-name">割り符</span>
-          </div>
-        </label>
-      </omni-list-item>
-      <omni-list-item>
-        <label>
-          <input v-model="includeAllCosts" type="checkbox">
-          <div class="title">
-            各コスト帯のカードを含める
-          </div>
-          <div class="description">
-            各コスト帯のカードを1枚以上含めるようにします。
-            ただし6コスト以上のカードは5コスト帯として扱います。
-          </div>
-        </label>
-      </omni-list-item>
-      <omni-list-item>
-        <label>
-          <input v-model="includeLink2" type="checkbox">
-          <div class="title">
-            リンク2を適宜含める
-          </div>
-          <div class="description">
-            サプライにリンク0のカードが含まれる場合、
-            リンク2のカードを1枚は含めるようにします。
-          </div>
-        </label>
-      </omni-list-item>
-    </omni-list>
+    <preference-switch v-model="excludeBannedCardsForFairy" title="フェアリーガーデンと併用非推奨のカードを除外する">
+      <template v-slot:note>
+        フェアリーガーデンのカードと以下のカードは同時に出現しません:
+        全ての防衛カード、および
+        <span class="card-name">破城槌</span>
+        <span class="card-name">埋もれた財宝</span>
+        <span class="card-name">星詠みの魔女</span>
+        <span class="card-name">シノビ</span>
+        <span class="card-name">魅了術の魔女</span>
+        <span class="card-name">歩兵大隊</span>
+        <span class="card-name">近衛騎士団</span>
+        <span class="card-name">弓兵隊</span>
+        <span class="card-name">サムライ</span>
+      </template>
+    </preference-switch>
+
+    <preference-switch v-model="excludeBannedCardsForStar" title="星天前路と併用非推奨のカードを除外する">
+      <template v-slot:note>
+        星天前路のカードと以下のカードは同時に出現しません:
+        「フェアリーガーデンと併用非推奨のカード」一式、および
+        <span class="card-name">割り符</span>
+      </template>
+    </preference-switch>
+
+    <preference-switch v-model="includeAllCosts" title="各コスト帯のカードを含める">
+      <template v-slot:note>
+        各コスト帯のカードを1枚以上含めるようにします。
+        ただし6コスト以上のカードは5コスト帯として扱います。
+      </template>
+    </preference-switch>
+
+    <preference-switch v-model="includeLink2" title="リンク2を適宜含める">
+      <template v-slot:note>
+        サプライにリンク0のカードが含まれる場合、
+        リンク2のカードを1枚は含めるようにします。
+      </template>
+    </preference-switch>
   </div>
 </template>
 

@@ -44,7 +44,7 @@ export default {
 }
 
 .note {
-  margin: 0.5em 1em 2em;
+  margin: 0.5em 1em 1.5em;
 }
 
 .text {
