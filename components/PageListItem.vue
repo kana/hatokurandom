@@ -32,6 +32,7 @@ export default {
 
 .line {
   align-items: center;
+  color: var(--item-label-color);
   display: flex;
   justify-content: flex-start;
 }

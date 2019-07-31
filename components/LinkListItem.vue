@@ -6,7 +6,9 @@
     }"
     clickable
   >
-    <slot />
+    <div class="link">
+      <slot />
+    </div>
   </omni-list-item>
 </template>
 
@@ -28,4 +30,9 @@ export default {
 </script>
 
 <style scoped>
+
+.link {
+  color: var(--link-text-color);
+}
+
 </style>
