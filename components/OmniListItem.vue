@@ -1,6 +1,14 @@
 <template>
   <li class="list-item">
-    <component :is="props.is || 'div'" v-bind="props" :class="{ clickable }" class="list-item-content">
+    <component
+      :is="props.is || 'div'"
+      v-bind="props"
+      :class="{
+        clickable,
+        link: props.is === 'nuxt-link'
+      }"
+      class="list-item-content"
+    >
       <slot />
     </component>
   </li>
@@ -49,6 +57,10 @@ export default {
 
 .list-item-content.clickable:hover {
   background: var(--header-background-color);
+}
+
+.list-item-content.link {
+  color: var(--link-text-color);
 }
 
 </style>
