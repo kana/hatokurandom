@@ -17,7 +17,7 @@ export default {
   name: 'BottomPane',
   computed: {
     currentTabPath () {
-      return this.$route.path === '/preferences' ? '/preferences' : '/'
+      return this.$route.path.startsWith('/preferences') ? '/preferences' : '/'
     },
     tabs () {
       const homeTabPath = this.$route.path === '/preferences'
