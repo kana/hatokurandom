@@ -28,14 +28,10 @@
       禁止カード
     </block-title>
     <omni-list>
-      <omni-list-item>
-        <div id="excludeBannedCardsByUser">
-          サムライ, 割り符
-        </div>
-        <div>
-          ＞
-        </div>
+      <omni-list-item v-for="name in bannedCardNames" :key="name">
+        {{ name }}
       </omni-list-item>
+      <link-list-item title="禁止カードを編集する…" path="/preferences/banned-cards" />
     </omni-list>
 
     <block-title>
@@ -93,11 +89,12 @@
 
 <script>
 import BlockTitle from '~/components/BlockTitle'
+import LinkListItem from '~/components/LinkListItem'
 import OmniList from '~/components/OmniList'
 import OmniListItem from '~/components/OmniListItem'
 import PreferenceSwitch from '~/components/PreferenceSwitch'
 import SegmentedButtonGroup from '~/components/SegmentedButtonGroup'
-import { EXPANSIONS, titleFromPid } from '~/lib/constants'
+import { EXPANSIONS, cardFromCid, titleFromPid } from '~/lib/constants'
 
 function mapOptionStore (keys) {
   const computed = {}
@@ -119,6 +116,7 @@ function mapOptionStore (keys) {
 export default {
   components: {
     BlockTitle,
+    LinkListItem,
     OmniList,
     OmniListItem,
     PreferenceSwitch,
@@ -128,6 +126,9 @@ export default {
     title: titleFromPid('preferences')
   },
   computed: {
+    bannedCardNames () {
+      return this.excludeBannedCardsByUser.map(cid => cardFromCid(cid).name)
+    },
     choices () {
       return [
         { label: '必ず使う', value: 'must' },
