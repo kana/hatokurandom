@@ -1,32 +1,24 @@
 <template>
   <omni-list class="page-list">
-    <omni-list-item
+    <link-list-item
       v-for="childPid in childPids"
       :key="childPid"
-      :props="{
-        is: 'nuxt-link',
-        to: pathFromPid(childPid)
-      }"
-      clickable
-    >
-      <div class="line">
-        <span class="label">{{ titleFromPid(childPid) }}</span>
-        <font-awesome-icon icon="angle-right" size="lg" class="icon" />
-      </div>
-    </omni-list-item>
+      :path="pathFromPid(childPid)"
+      :title="titleFromPid(childPid)"
+    />
   </omni-list>
 </template>
 
 <script>
+import LinkListItem from '~/components/LinkListItem'
 import OmniList from '~/components/OmniList'
-import OmniListItem from '~/components/OmniListItem'
 import { childPidsFromPid, pathFromPid, titleFromPid } from '~/lib/constants'
 
 export default {
   name: 'PageList',
   components: {
-    OmniList,
-    OmniListItem
+    LinkListItem,
+    OmniList
   },
   props: {
     pid: {
@@ -50,21 +42,6 @@ export default {
 
 .page-list {
   margin-top: 2em;
-}
-
-.line {
-  align-items: center;
-  display: flex;
-  justify-content: flex-start;
-}
-
-.line .label {
-  width: 100%;
-}
-
-.line .icon {
-  color: var(--item-next-icon-color);
-  flex: none;
 }
 
 </style>
