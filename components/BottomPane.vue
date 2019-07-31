@@ -20,12 +20,15 @@ export default {
       return this.$route.path.startsWith('/preferences') ? '/preferences' : '/'
     },
     tabs () {
-      const homeTabPath = this.$route.path === '/preferences'
+      const homeTabPath = this.$route.path.startsWith('/preferences')
         ? this.$store.state.history.homeTabLastPath
         : '/'
+      const preferencesTabPath = this.$route.path.startsWith('/preferences')
+        ? '/preferences'
+        : this.$store.state.history.preferencesTabLastPath
       return [
         { path: homeTabPath, icon: 'home' },
-        { path: '/preferences', icon: 'cog' }
+        { path: preferencesTabPath, icon: 'cog' }
       ]
     }
   }

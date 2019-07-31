@@ -1,15 +1,19 @@
 export const state = () => ({
-  homeTabLastPath: '/'
+  homeTabLastPath: '/',
+  preferencesTabLastPath: '/preferences'
 })
 
 export const mutations = {
-  homeTabLastPath (state, path) {
-    state.homeTabLastPath = path
+  update (state, { key, path }) {
+    state[key] = path
   }
 }
 
 export const actions = {
   homeTabLastPath ({ commit }, path) {
-    commit('homeTabLastPath', path)
+    commit('update', { key: 'homeTabLastPath', path })
+  },
+  preferencesTabLastPath ({ commit }, path) {
+    commit('update', { key: 'preferencesTabLastPath', path })
   }
 }
