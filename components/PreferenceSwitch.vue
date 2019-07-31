@@ -1,7 +1,7 @@
 <template>
   <div class="preference-switch">
     <omni-list>
-      <switch-list-item v-model="value" :title="title" />
+      <switch-list-item v-model="model" :title="title" />
     </omni-list>
     <div class="note">
       <div class="text">
@@ -29,6 +29,16 @@ export default {
     value: {
       type: Boolean,
       required: true
+    }
+  },
+  computed: {
+    model: {
+      get () {
+        return this.value
+      },
+      set (value) {
+        this.$emit('input', value)
+      }
     }
   }
 }

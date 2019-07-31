@@ -1,7 +1,7 @@
 <template>
   <div :class="value ? 'on' : 'off'" class="switch-box">
     <div class="knob">
-      <input v-show="false" v-model="value" type="checkbox">
+      <input v-show="false" v-model="model" type="checkbox">
     </div>
   </div>
 </template>
@@ -13,6 +13,16 @@ export default {
     value: {
       type: Boolean,
       required: true
+    }
+  },
+  computed: {
+    model: {
+      get () {
+        return this.value
+      },
+      set (value) {
+        this.$emit('input', value)
+      }
     }
   }
 }

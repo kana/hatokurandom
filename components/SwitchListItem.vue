@@ -4,7 +4,7 @@
       <span class="title">
         {{ title }}
       </span>
-      <switch-box v-model="value" class="form" />
+      <switch-box v-model="model" class="form" />
     </div>
   </omni-list-item>
 </template>
@@ -27,6 +27,16 @@ export default {
     value: {
       type: Boolean,
       required: true
+    }
+  },
+  computed: {
+    model: {
+      get () {
+        return this.value
+      },
+      set (value) {
+        this.$emit('input', value)
+      }
     }
   }
 }
