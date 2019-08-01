@@ -3,6 +3,7 @@
     :to="path"
     component="nuxt-link"
     clickable
+    class="link"
   >
     <slot />
   </omni-list-item>
@@ -26,4 +27,9 @@ export default {
 </script>
 
 <style scoped>
+
+.link {
+  color: var(--link-text-color);
+}
+
 </style>
