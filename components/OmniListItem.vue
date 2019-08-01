@@ -1,5 +1,11 @@
 <template>
-  <component :is="component" :to="to" :class="{ clickable }" class="list-item">
+  <component
+    :is="component"
+    :to="to"
+    :class="{ clickable }"
+    class="list-item"
+    @click="$emit('click')"
+  >
     <slot />
   </component>
 </template>
