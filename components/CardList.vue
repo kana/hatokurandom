@@ -60,7 +60,7 @@ export default {
     return {
       xcards: this.$route.query.rsid
         ? xcardsFromRsid(this.$route.query.rsid)
-        : xcardsFromPid(this.pid)
+        : xcardsFromPid(this.pid, this.$store.state.options)
     }
   },
   computed: {
@@ -137,7 +137,7 @@ export default {
       }
     },
     shuffle () {
-      this.xcards = xcardsFromPid(this.pid)
+      this.xcards = xcardsFromPid(this.pid, this.$store.state.options)
     }
   }
 }
