@@ -61,7 +61,7 @@
       </template>
     </preference-switch>
 
-    <omni-list class="">
+    <omni-list>
       <omni-list-item v-for="name in bannedCardNames" :key="name">
         {{ name }}
       </omni-list-item>
@@ -87,11 +87,18 @@
         リンク2のカードを1枚は含めるようにします。
       </template>
     </preference-switch>
+
+    <omni-list class="reset">
+      <link-button-list-item @click="tryResetPreferences">
+        初期設定に戻す
+      </link-button-list-item>
+    </omni-list>
   </div>
 </template>
 
 <script>
 import BlockTitle from '~/components/BlockTitle'
+import LinkButtonListItem from '~/components/LinkButtonListItem'
 import LinkListItem from '~/components/LinkListItem'
 import OmniList from '~/components/OmniList'
 import OmniListItem from '~/components/OmniListItem'
@@ -119,6 +126,7 @@ function mapOptionStore (keys) {
 export default {
   components: {
     BlockTitle,
+    LinkButtonListItem,
     LinkListItem,
     OmniList,
     OmniListItem,
@@ -159,6 +167,13 @@ export default {
       'includeExpansionStar',
       'includeLink2'
     ])
+  },
+  methods: {
+    tryResetPreferences () {
+      if (confirm('本当に初期設定に戻しますか？')) {
+        this.$store.dispatch('options/reset')
+      }
+    }
   }
 }
 </script>
@@ -197,6 +212,10 @@ export default {
 
 .card-name:after {
   content: '》';
+}
+
+.reset {
+  margin-top: 2em;
 }
 
 </style>
