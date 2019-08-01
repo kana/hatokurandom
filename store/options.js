@@ -13,7 +13,6 @@ const DEFAULT_OPTIONS = {
   includeLink2: false
 }
 
-// TODO: Load from localStorage.
 export const state = () => ({ ...DEFAULT_OPTIONS })
 
 export const mutations = {

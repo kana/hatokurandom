@@ -36,7 +36,8 @@ export default {
   plugins: [
     '~/plugins/fontawesome',
     '~/plugins/router',
-    '~/plugins/vue2-touch-events'
+    '~/plugins/vue2-touch-events',
+    { src: '~/plugins/hooks.client', mode: 'client' }
   ],
   /*
    ** Nuxt.js modules
