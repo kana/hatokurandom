@@ -11,10 +11,8 @@
         :xcard="xcard"
         editable
       />
-      <omni-list-item v-if="bannedXcards.length === 0">
-        <span class="divider">
-          未設定
-        </span>
+      <omni-list-item v-if="bannedXcards.length === 0" class="divider">
+        未設定
       </omni-list-item>
     </omni-list>
 

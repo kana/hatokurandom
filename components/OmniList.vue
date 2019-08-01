@@ -1,7 +1,7 @@
 <template>
-  <ul class="list">
+  <div class="list">
     <slot />
-  </ul>
+  </div>
 </template>
 
 <script>
@@ -17,7 +17,6 @@ export default {
   border-color: var(--item-separator-color);
   border-style: solid none;
   border-width: 1px;
-  list-style: none;
   margin: 0;
   padding: 0;
 }

@@ -1,13 +1,16 @@
 <template>
-  <omni-list-item :props="{ is: editable ? 'label' : 'div' }" :clickable="editable">
-    <div :class="{ dropped: xcard.dropped }" class="line">
-      <input v-if="editable" v-show="false" v-model="xcard.dropped" type="checkbox">
-      <span class="cost">{{ xcard.cost }}</span>
-      <span :data-names="typeNamesString" class="type" />
-      <span class="name">{{ xcard.name }}</span>
-      <span v-if="xcard.subtype" class="subtype">（{{ xcard.subtype }}）</span>
-      <span :data-symbol="expansionSymbol" class="expansion">{{ expansionSymbol }}</span>
-    </div>
+  <omni-list-item
+    :component="editable ? 'label' : 'div'"
+    :clickable="editable"
+    :class="{ dropped: xcard.dropped }"
+    class="line"
+  >
+    <input v-if="editable" v-show="false" v-model="xcard.dropped" type="checkbox">
+    <span class="cost">{{ xcard.cost }}</span>
+    <span :data-names="typeNamesString" class="type" />
+    <span class="name">{{ xcard.name }}</span>
+    <span v-if="xcard.subtype" class="subtype">（{{ xcard.subtype }}）</span>
+    <span :data-symbol="expansionSymbol" class="expansion">{{ expansionSymbol }}</span>
   </omni-list-item>
 </template>
 
@@ -45,10 +48,8 @@ export default {
 
 .line {
   align-items: center;
-  cursor: pointer;
   display: flex;
   justify-content: flex-start;
-  width: 100%;
 }
 
 .line.dropped {

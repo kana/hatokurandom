@@ -1,29 +1,24 @@
 <template>
-  <li class="list-item">
-    <component
-      :is="props.is || 'div'"
-      v-bind="props"
-      :class="{ clickable }"
-      class="list-item-content"
-    >
-      <slot />
-    </component>
-  </li>
+  <component :is="component" :to="to" :class="{ clickable }" class="list-item">
+    <slot />
+  </component>
 </template>
 
 <script>
 export default {
   name: 'OmniListItem',
   props: {
-    props: {
-      type: Object,
-      default () {
-        return {}
-      }
-    },
     clickable: {
       type: Boolean,
       default: false
+    },
+    component: {
+      type: String,
+      default: 'div'
+    },
+    to: {
+      type: String,
+      default: null
     }
   }
 }
@@ -32,28 +27,23 @@ export default {
 <style scoped>
 
 .list-item {
+  color: var(--item-label-color);
+  display: block;
   margin: 0;
-  padding: 0;
+  padding: 0.5em 1em;
+  transition: background 0.2s;
+}
+
+.list-item.clickable {
+  cursor: pointer;
+}
+
+.list-item.clickable:hover {
+  background: var(--header-background-color);
 }
 
 .list-item + .list-item {
   border-top: 1px solid var(--item-separator-color);
-}
-
-.list-item-content {
-  color: var(--item-label-color);
-  padding: 0.5em 1em;
-  text-decoration: none;
-  display: block;
-  transition: background 0.2s;
-}
-
-.list-item-content.clickable {
-  cursor: pointer;
-}
-
-.list-item-content.clickable:hover {
-  background: var(--header-background-color);
 }
 
 </style>

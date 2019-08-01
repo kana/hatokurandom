@@ -5,10 +5,7 @@
     </block-title>
     <omni-list>
       <card-list-item v-for="xcard in sortedXcardsIncluded" :key="xcard.cid" :editable="special.editable" :xcard="xcard" />
-      <omni-list-item
-        v-if="sortedXcardsIncluded.length === 0"
-        :props="{ is: 'div' }"
-      >
+      <omni-list-item v-if="sortedXcardsIncluded.length === 0">
         <span class="divider">
           カードを選んでください。
         </span>

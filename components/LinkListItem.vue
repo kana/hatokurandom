@@ -1,14 +1,10 @@
 <template>
   <omni-list-item
-    :props="{
-      is: 'nuxt-link',
-      to: path
-    }"
+    :to="path"
+    component="nuxt-link"
     clickable
   >
-    <div class="link">
-      <slot />
-    </div>
+    <slot />
   </omni-list-item>
 </template>
 
@@ -30,9 +26,4 @@ export default {
 </script>
 
 <style scoped>
-
-.link {
-  color: var(--link-text-color);
-}
-
 </style>

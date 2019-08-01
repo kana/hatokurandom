@@ -1,11 +1,9 @@
 <template>
-  <omni-list-item :props="{ is: 'label' }" clickable>
-    <div class="line">
-      <span class="title">
-        {{ title }}
-      </span>
-      <switch-box v-model="model" class="form" />
-    </div>
+  <omni-list-item component="label" clickable class="line">
+    <span class="title">
+      {{ title }}
+    </span>
+    <switch-box v-model="model" class="form" />
   </omni-list-item>
 </template>
 

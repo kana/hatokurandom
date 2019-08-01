@@ -1,9 +1,7 @@
 <template>
-  <link-list-item :path="path">
-    <div class="line">
-      <span class="label">{{ title }}</span>
-      <font-awesome-icon icon="angle-right" size="lg" class="icon" />
-    </div>
+  <link-list-item :path="path" class="line">
+    <span class="label">{{ title }}</span>
+    <font-awesome-icon icon="angle-right" size="lg" class="icon" />
   </link-list-item>
 </template>
 
