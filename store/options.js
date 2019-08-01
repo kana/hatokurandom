@@ -19,22 +19,19 @@ export const state = () => ({
 })
 
 export const mutations = {
-  reset (state) {
-    for (const key of Object.keys(DEFAULT_OPTIONS)) {
-      state[key] = DEFAULT_OPTIONS[key]
-    }
-  },
   update (state, { key, value }) {
     state[key] = value
   }
 }
 
-// TODO: Save to localStorage.
 export const actions = {
-  reset ({ commit }) {
-    commit('reset')
+  reset ({ dispatch }) {
+    for (const key of Object.keys(DEFAULT_OPTIONS)) {
+      dispatch('update', { key, value: DEFAULT_OPTIONS[key] })
+    }
   },
   update ({ commit }, { key, value }) {
     commit('update', { key, value })
+    localStorage.setItem(key, JSON.stringify(value))
   }
 }
