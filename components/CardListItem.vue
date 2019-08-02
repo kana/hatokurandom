@@ -46,12 +46,6 @@ export default {
 
 <style scoped>
 
-.line {
-  align-items: center;
-  display: flex;
-  justify-content: flex-start;
-}
-
 .line.dropped {
   opacity: 0.5;
 }

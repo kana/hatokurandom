@@ -33,8 +33,10 @@ export default {
 <style scoped>
 
 .list-item {
+  align-items: center;
   color: var(--item-label-color);
-  display: block;
+  display: flex;
+  justify-content: flex-start;
   margin: 0;
   padding: 0.5em 1em;
   transition: background 0.2s;

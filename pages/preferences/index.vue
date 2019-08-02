@@ -4,23 +4,21 @@
       使用するカードセット
     </block-title>
     <omni-list>
-      <omni-list-item v-for="expansion in configurableExpansions" :key="expansion.eid">
-        <div class="item-expansion">
-          <div class="label-expansion">
-            <template v-if="expansion.name === 'フェアリーガーデン'">
-              <span class="word">フェアリー</span>
-              <span class="word">ガーデン</span>
-            </template>
-            <template v-else>
-              {{ expansion.name }}
-            </template>
-          </div>
-          <segmented-button-group
-            v-model="options[expansion.optionKey]"
-            :choices="choices"
-            class="segmented-button-group"
-          />
+      <omni-list-item v-for="expansion in configurableExpansions" :key="expansion.eid" class="item-expansion">
+        <div class="label-expansion">
+          <template v-if="expansion.name === 'フェアリーガーデン'">
+            <span class="word">フェアリー</span>
+            <span class="word">ガーデン</span>
+          </template>
+          <template v-else>
+            {{ expansion.name }}
+          </template>
         </div>
+        <segmented-button-group
+          v-model="options[expansion.optionKey]"
+          :choices="choices"
+          class="segmented-button-group"
+        />
       </omni-list-item>
     </omni-list>
 
@@ -184,10 +182,8 @@ export default {
   margin: 2em 0;
 }
 
-.item-expansion {
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
+.label-expansion {
+  width: 100%;
 }
 
 .label-expansion .word {

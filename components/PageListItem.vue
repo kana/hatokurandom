@@ -28,14 +28,8 @@ export default {
 
 <style scoped>
 
-.line {
-  align-items: center;
-  color: var(--item-label-color);
-  display: flex;
-  justify-content: flex-start;
-}
-
 .line .label {
+  color: var(--item-label-color);
   width: 100%;
 }
 

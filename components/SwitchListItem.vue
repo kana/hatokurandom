@@ -1,5 +1,5 @@
 <template>
-  <omni-list-item component="label" clickable class="line">
+  <omni-list-item component="label" clickable>
     <span class="title">
       {{ title }}
     </span>
@@ -42,13 +42,8 @@ export default {
 
 <style scoped>
 
-.line {
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-}
-
 .title {
+  width: 100%;
 }
 
 .form {
