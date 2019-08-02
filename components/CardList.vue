@@ -199,8 +199,9 @@ export default {
 
 .playable-status .message {
   background: var(--toast-background-color);
-  color: var(--toast-text-color);
   border-radius: 1ex;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 1px 3px 1px;
+  color: var(--toast-text-color);
   font-size: 80%;
   padding: 0.5em 1.2em;
 }
