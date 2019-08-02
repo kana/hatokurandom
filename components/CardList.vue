@@ -157,6 +157,7 @@ export default {
   background: var(--link-text-color);
   border-radius: 3.5em;
   bottom: var(--bottom-pane-height);
+  box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px 1px;
   color: var(--switch-knob-color);
   cursor: pointer;
   display: flex;
