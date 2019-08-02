@@ -188,10 +188,10 @@ export default {
 
 .playable-status {
   bottom: var(--bottom-pane-height);
-  display: flex;
-  justify-content: center;
+  box-sizing: border-box;
   left: 0;
-  margin-bottom: 1ex;
+  margin-bottom: calc(1ex + 3.5em + 1ex);
+  padding: 0 1em;
   position: fixed;
   width: 100%;
   z-index: 1;
