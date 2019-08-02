@@ -189,6 +189,8 @@ export default {
 .playable-status {
   bottom: var(--bottom-pane-height);
   box-sizing: border-box;
+  display: flex;
+  justify-content: center;
   left: 0;
   margin-bottom: calc(1ex + 3.5em + 1ex);
   padding: 0 1em;
@@ -204,6 +206,17 @@ export default {
   color: var(--toast-text-color);
   font-size: 80%;
   padding: 0.5em 1.2em;
+  width: 100%;
+}
+
+@media (min-width: 414px) {
+  .playable-status {
+    margin-bottom: 1ex;
+  }
+
+  .playable-status .message {
+    width: auto;
+  }
 }
 
 </style>
