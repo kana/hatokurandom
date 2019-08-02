@@ -144,7 +144,7 @@ export default {
 <style scoped>
 
 .container {
-  margin-bottom: 3em;
+  margin-bottom: calc(1ex + 2.0em + 1ex + 3.5em + 1ex);
   margin-top: 2em;
 }
 
@@ -211,7 +211,7 @@ export default {
 
 @media (min-width: 414px) {
   .playable-status {
-    margin-bottom: 1ex;
+    margin-bottom: 1.2em;
   }
 
   .playable-status .message {
