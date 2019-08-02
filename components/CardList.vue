@@ -168,7 +168,7 @@ export default {
   position: fixed;
   right: 0;
   width: 3.5em;
-  z-index: 1;
+  z-index: 2;
 }
 
 .shuffle-button .icon {
