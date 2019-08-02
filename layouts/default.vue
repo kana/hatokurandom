@@ -15,6 +15,7 @@
 <script>
 import BottomPane from '~/components/BottomPane'
 import TopPane from '~/components/TopPane'
+import { pathFromPid, parentPidFromPid, pidFromPath } from '~/lib/constants'
 
 function clientXFromEvent (event) {
   if (event.type.indexOf('mouse') !== -1) {
@@ -33,13 +34,32 @@ export default {
       touchStartX: 0
     }
   },
+  computed: {
+    pid () {
+      return pidFromPath(this.$route.path)
+    },
+    toBack () {
+      if (this.toParent) {
+        return this.toParent
+      }
+      if (this.pid.match(/^preferences/)) {
+        return '/'
+      }
+      return undefined
+    },
+    toParent () {
+      const parentPid = parentPidFromPid(this.pid)
+      return parentPid !== undefined ? pathFromPid(parentPid) : undefined
+    }
+  },
   methods: {
     // Back-to-parent-view gesture support.
     onSwipeRight (e) {
       const screenLeftEdgeWidth = window.innerWidth * 20 / 100
       if (this.touchStartX < screenLeftEdgeWidth) {
-        // TODO: Should use page stack.
-        this.$router.back()
+        if (this.toParent) {
+          this.$router.push(this.toParent)
+        }
       }
     },
     onTouchStart (e) {
