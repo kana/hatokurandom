@@ -37,6 +37,7 @@
       <li>
         <external-link href="https://twitter.com/intent/tweet?text=@kana1+&amp;hashtags=hatokurandom" label="ご意見・ご感想" />
       </li>
+      <li>バージョン {{ version }}</li>
     </ul>
   </div>
 </template>
@@ -51,6 +52,11 @@ export default {
   },
   head: {
     title: titleFromPid('about')
+  },
+  computed: {
+    version () {
+      return process.env.version
+    }
   }
 }
 </script>
