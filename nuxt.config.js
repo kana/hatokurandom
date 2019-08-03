@@ -1,5 +1,12 @@
+import { execFileSync } from 'child_process'
+
+const version = execFileSync('git', ['describe', '--always', '--dirty', '--long', '--tags']).toString()
+
 export default {
   mode: 'universal',
+  env: {
+    version
+  },
   /*
    ** Headers of the page
    */
@@ -73,6 +80,7 @@ export default {
       vue: {
         compilerOptions: {
           whitespace: 'condense'
+
         }
       }
     }
