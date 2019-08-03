@@ -19,11 +19,7 @@
       </omni-list>
     </template>
 
-    <div v-if="special.random" class="shuffle-button">
-      <div class="icon" @click="shuffle">
-        <font-awesome-icon icon="sync-alt" size="lg" />
-      </div>
-    </div>
+    <shuffle-button v-if="special.random" class="shuffle-button" @click="shuffle" />
 
     <div v-if="special.editable && !playable" class="playable-status">
       <div class="message">
@@ -38,6 +34,7 @@ import BlockTitle from '~/components/BlockTitle'
 import CardListItem from '~/components/CardListItem'
 import OmniList from '~/components/OmniList'
 import OmniListItem from '~/components/OmniListItem'
+import ShuffleButton from '~/components/ShuffleButton'
 import { isPredefinedSupplyPid, parseSpecialPid, rsidFromXcards, sortXcards, xcardsFromPid, xcardsFromRsid } from '~/lib/constants'
 
 export default {
@@ -46,7 +43,8 @@ export default {
     BlockTitle,
     CardListItem,
     OmniList,
-    OmniListItem
+    OmniListItem,
+    ShuffleButton
   },
   props: {
     pid: {
@@ -153,39 +151,10 @@ export default {
 }
 
 .shuffle-button {
-  align-items: center;
-  background: var(--link-text-color);
-  border-radius: 3.5em;
   bottom: var(--bottom-pane-height);
-  box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px 1px;
-  color: var(--switch-knob-color);
-  cursor: pointer;
-  display: flex;
-  height: 3.5em;
-  justify-content: center;
-  margin-bottom: 1ex;
-  margin-right: 1ex;
   position: fixed;
   right: 0;
-  width: 3.5em;
   z-index: 2;
-}
-
-.shuffle-button .icon {
-  align-items: center;
-  border-radius: 3.5em;
-  cursor: pointer;
-  display: flex;
-  height: 100%;
-  justify-content: center;
-  transition: background 0.2s;
-  width: 100%;
-}
-
-@media (hover) {
-  .shuffle-button .icon:hover {
-    background: rgba(255, 255, 255, 0.2);
-  }
 }
 
 .playable-status {
