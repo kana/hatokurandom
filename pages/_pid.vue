@@ -1,19 +1,23 @@
 <template>
   <page-container>
-    <card-list v-if="isCardListPid(pid)" :pid="pid" />
-    <page-list v-if="isPageListPid(pid)" :pid="pid" />
+    <log-page v-if="pid === 'supplies:log'" />
+    <card-list v-else-if="isCardListPid(pid)" :pid="pid" />
+    <page-list v-else-if="isPageListPid(pid)" :pid="pid" />
   </page-container>
 </template>
 
 <script>
 import CardList from '~/components/CardList'
+import LogPage from '~/components/LogPage'
 import PageContainer from '~/components/PageContainer'
 import PageList from '~/components/PageList'
 import { isCardListPid, isPageListPid, titleFromPid } from '~/lib/constants'
 
 export default {
   validate ({ params }) {
-    return isCardListPid(params.pid) || isPageListPid(params.pid)
+    return params.pid === 'supplies:log' ||
+      isCardListPid(params.pid) ||
+      isPageListPid(params.pid)
   },
   head () {
     return {
@@ -22,6 +26,7 @@ export default {
   },
   components: {
     CardList,
+    LogPage,
     PageContainer,
     PageList
   },
