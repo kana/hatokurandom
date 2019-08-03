@@ -4,7 +4,9 @@
       <span><font-awesome-icon icon="chevron-left" size="lg" /></span>
     </nuxt-link>
     <div class="title">
-      {{ title }}
+      <div class="text">
+        {{ title }}
+      </div>
     </div>
     <a v-if="shareable" :href="shareUrl" class="share-button" target="_blank">
       <span><font-awesome-icon icon="share-square" /></span>
@@ -76,9 +78,20 @@ export default {
 }
 
 .title {
-  font-weight: bolder;
-  text-align: center;
   width: 100%;
+  text-align: center;
+}
+
+.text {
+  box-sizing: border-box;
+  display: inline-block;
+  font-weight: bolder;
+  max-width: 100%;
+  overflow: hidden;
+  padding: 0 calc(2em + 1ex);
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .back-to-parent-button {
