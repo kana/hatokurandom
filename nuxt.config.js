@@ -54,6 +54,11 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/eslint-module',
     ['@nuxtjs/google-analytics', {
+      dev: false,
+      // debug: {
+      //   enabled: true,
+      //   sendHitTask: true
+      // },
       id: 'UA-50628159-3'
     }]
   ],
