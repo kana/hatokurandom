@@ -114,8 +114,10 @@ export default {
   justify-content: center;
   margin-left: calc(1em - 1ex);
   margin-right: calc(-2em - 1ex);
+  position: relative;
   text-align: center;
   width: calc(1em + 2ex);
+  z-index: 1;
 }
 
 .share-button {
