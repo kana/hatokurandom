@@ -40,8 +40,9 @@
       <omni-list-item>
         <external-link href="https://twitter.com/intent/tweet?text=@kana1+&amp;hashtags=hatokurandom" label="ご意見・ご感想" />
       </omni-list-item>
-      <omni-list-item>
-        バージョン {{ version }}
+      <omni-list-item class="version">
+        <span class="label">バージョン</span>
+        <span class="value">{{ version }}</span>
       </omni-list-item>
       <link-button-list-item v-if="isRunningInStandaloneMode" @click="reload">
         最新バージョンに更新する
@@ -93,6 +94,16 @@ export default {
 
 p {
   margin: 1.2em 0;
+}
+
+.version .label {
+  width: 100%;
+}
+
+.version .value {
+  color: var(--item-value-color);
+  flex: none;
+  white-space: nowrap;
 }
 
 </style>
