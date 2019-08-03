@@ -1,6 +1,6 @@
 <template>
   <div class="shuffle-button">
-    <div class="icon" @click="$emit('click')">
+    <div :class="{ shuffling }" class="icon" @click="onClick">
       <font-awesome-icon icon="sync-alt" size="lg" />
     </div>
   </div>
@@ -8,7 +8,25 @@
 
 <script>
 export default {
-  name: 'ShuffleButton'
+  name: 'ShuffleButton',
+  data () {
+    return {
+      shuffling: false,
+      timer: null
+    }
+  },
+  methods: {
+    onClick () {
+      if (this.shuffling === false) {
+        this.shuffling = true
+        this.timer = setTimeout(() => {
+          this.shuffling = false
+        }, 400)
+      }
+
+      this.$emit('click')
+    }
+  }
 }
 </script>
 
@@ -44,6 +62,23 @@ export default {
   .shuffle-button .icon:hover {
     background: rgba(255, 255, 255, 0.2);
   }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.shuffle-button .icon.shuffling {
+  animation-play-state: running;
+  animation-duration: 0.4s;
+  animation-iteration-count: 1;
+  animation-name: rotate;
+  animation-timing-function: ease;
 }
 
 </style>
