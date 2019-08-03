@@ -5,7 +5,9 @@
         <span class="label">{{ title }}</span>
         <span v-if="excerpt" class="excerpt">{{ excerpt }}</span>
       </div>
-      <div v-if="at" class="at">{{ at }}</div>
+      <div v-if="at" class="at">
+        {{ at }}
+      </div>
     </div>
     <div class="right">
       <font-awesome-icon icon="angle-right" size="lg" class="icon" />
