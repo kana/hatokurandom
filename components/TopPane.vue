@@ -8,14 +8,14 @@
         {{ title }}
       </div>
     </div>
-    <a v-if="shareable" :href="shareUrl" class="share-button" target="_blank">
+    <a v-if="shareable" :href="shareUrl" class="share-button" target="_blank" @click="share">
       <span><font-awesome-icon icon="share-square" /></span>
     </a>
   </div>
 </template>
 
 <script>
-import { isCardListPid, pathFromPid, parentPidFromPid, pidFromPath, sortXcards, titleFromPid, xcardsFromPid } from '~/lib/constants'
+import { isCardListPid, pathFromPid, parentPidFromPid, pidFromPath, sidFromPid, sortXcards, titleFromPid, xcardsFromPid } from '~/lib/constants'
 
 export default {
   name: 'TopPane',
@@ -60,6 +60,15 @@ export default {
     toParent () {
       const parentPid = parentPidFromPid(this.pid)
       return parentPid !== undefined ? pathFromPid(parentPid) : undefined
+    }
+  },
+  methods: {
+    share () {
+      this.$store.dispatch('log/push', {
+        sid: sidFromPid(this.sharePid),
+        at: Date.now()
+      })
+      // Propagate click event to let the browser open shareUrl.
     }
   }
 }
