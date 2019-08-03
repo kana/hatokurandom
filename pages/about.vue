@@ -1,5 +1,5 @@
 <template>
-  <page-container class="page">
+  <page-container class="about page">
     <p>
       このアプリは
       <external-link href="http://flipflops.jp/" label="FLIPFLOPs" />
@@ -44,11 +44,13 @@
 
 <script>
 import ExternalLink from '~/components/ExternalLink'
+import PageContainer from '~/components/PageContainer'
 import { titleFromPid } from '~/lib/constants'
 
 export default {
   components: {
-    ExternalLink
+    ExternalLink,
+    PageContainer
   },
   head: {
     title: titleFromPid('about')
@@ -63,7 +65,7 @@ export default {
 
 <style scoped>
 
-.page {
+.about.page {
   margin-left: 5%;
   margin-right: 5%;
 }
