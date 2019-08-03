@@ -44,9 +44,11 @@
         <span class="label">バージョン</span>
         <span class="value">{{ version }}</span>
       </omni-list-item>
-      <link-button-list-item v-if="isRunningInStandaloneMode" @click="reload">
-        最新バージョンに更新する
-      </link-button-list-item>
+      <no-ssr>
+        <link-button-list-item v-if="isRunningInStandaloneMode" @click="reload">
+          最新バージョンに更新する
+        </link-button-list-item>
+      </no-ssr>
     </omni-list>
   </page-container>
 </template>
@@ -72,7 +74,7 @@ export default {
   },
   computed: {
     isRunningInStandaloneMode () {
-      return navigator.standalone
+      return process.browser && navigator.standalone
     },
     version () {
       return process.env.version
