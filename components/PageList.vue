@@ -39,9 +39,4 @@ export default {
 </script>
 
 <style scoped>
-
-.page-list {
-  margin-top: 2em;
-}
-
 </style>

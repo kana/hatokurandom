@@ -1,5 +1,5 @@
 <template>
-  <div class="page">
+  <page-container class="page">
     <p>
       このアプリは
       <external-link href="http://flipflops.jp/" label="FLIPFLOPs" />
@@ -39,7 +39,7 @@
       </li>
       <li>バージョン {{ version }}</li>
     </ul>
-  </div>
+  </page-container>
 </template>
 
 <script>
@@ -64,7 +64,8 @@ export default {
 <style scoped>
 
 .page {
-  margin: 2em 5%;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
 p {

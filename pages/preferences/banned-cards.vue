@@ -1,5 +1,5 @@
 <template>
-  <div class="page">
+  <page-container>
     <block-title>
       禁止カード
     </block-title>
@@ -30,7 +30,7 @@
         />
       </omni-list>
     </template>
-  </div>
+  </page-container>
 </template>
 
 <script>
@@ -38,6 +38,7 @@ import BlockTitle from '~/components/BlockTitle'
 import CardListItem from '~/components/CardListItem'
 import OmniList from '~/components/OmniList'
 import OmniListItem from '~/components/OmniListItem'
+import PageContainer from '~/components/PageContainer'
 import { COMMON_CARDS, sortXcards, titleFromPid } from '~/lib/constants'
 
 export default {
@@ -45,7 +46,8 @@ export default {
     BlockTitle,
     CardListItem,
     OmniList,
-    OmniListItem
+    OmniListItem,
+    PageContainer
   },
   head: {
     title: titleFromPid('preferences/banned-cards')
@@ -87,10 +89,6 @@ export default {
 </script>
 
 <style scoped>
-
-.page {
-  margin: 2em 0;
-}
 
 .divider {
   color: var(--item-value-color);

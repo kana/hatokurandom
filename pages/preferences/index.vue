@@ -1,5 +1,5 @@
 <template>
-  <div class="page">
+  <page-container>
     <block-title>
       使用するカードセット
     </block-title>
@@ -91,7 +91,7 @@
         初期設定に戻す
       </link-button-list-item>
     </omni-list>
-  </div>
+  </page-container>
 </template>
 
 <script>
@@ -100,6 +100,7 @@ import LinkButtonListItem from '~/components/LinkButtonListItem'
 import LinkListItem from '~/components/LinkListItem'
 import OmniList from '~/components/OmniList'
 import OmniListItem from '~/components/OmniListItem'
+import PageContainer from '~/components/PageContainer'
 import PreferenceSwitch from '~/components/PreferenceSwitch'
 import SegmentedButtonGroup from '~/components/SegmentedButtonGroup'
 import { EXPANSIONS, cardFromCid, titleFromPid } from '~/lib/constants'
@@ -128,6 +129,7 @@ export default {
     LinkListItem,
     OmniList,
     OmniListItem,
+    PageContainer,
     PreferenceSwitch,
     SegmentedButtonGroup
   },
@@ -177,10 +179,6 @@ export default {
 </script>
 
 <style scoped>
-
-.page {
-  margin: 2em 0;
-}
 
 .label-expansion {
   width: 100%;

@@ -1,10 +1,11 @@
 <template>
-  <div class="page">
+  <page-container>
     <page-list pid="home" />
-  </div>
+  </page-container>
 </template>
 
 <script>
+import PageContainer from '~/components/PageContainer'
 import PageList from '~/components/PageList'
 import { isCardListPid, isPageListPid, titleFromPid } from '~/lib/constants'
 
@@ -14,6 +15,7 @@ export default {
     titleTemplate: null
   },
   components: {
+    PageContainer,
     PageList
   },
   mounted () {

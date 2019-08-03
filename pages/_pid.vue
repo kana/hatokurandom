@@ -1,12 +1,13 @@
 <template>
-  <div class="page">
+  <page-container>
     <card-list v-if="isCardListPid(pid)" :pid="pid" />
     <page-list v-if="isPageListPid(pid)" :pid="pid" />
-  </div>
+  </page-container>
 </template>
 
 <script>
 import CardList from '~/components/CardList'
+import PageContainer from '~/components/PageContainer'
 import PageList from '~/components/PageList'
 import { isCardListPid, isPageListPid, titleFromPid } from '~/lib/constants'
 
@@ -21,6 +22,7 @@ export default {
   },
   components: {
     CardList,
+    PageContainer,
     PageList
   },
   computed: {
