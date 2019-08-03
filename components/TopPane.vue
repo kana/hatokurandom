@@ -33,8 +33,7 @@ export default {
       return this.$store.state.supply.pid
     },
     shareUrl () {
-      // TODO: Remove # when this new version is released.
-      const permalink = `${this.locationOrigin}/#${this.sharePid}`
+      const permalink = `${this.locationOrigin}/${this.sharePid}`
       const isReferencePage = /^reference:/.test(this.sharePid)
       const usedCardNames = sortXcards(xcardsFromPid(this.sharePid))
         .filter(xcard => !xcard.dropped)
