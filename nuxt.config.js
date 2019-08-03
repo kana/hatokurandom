@@ -52,7 +52,10 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/eslint-module'
+    '@nuxtjs/eslint-module',
+    ['@nuxtjs/google-analytics', {
+      id: 'UA-50628159-3'
+    }]
   ],
   /*
    ** Axios module configuration
