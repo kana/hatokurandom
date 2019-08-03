@@ -182,8 +182,10 @@ export default {
   width: 100%;
 }
 
-.shuffle-button .icon:hover {
-  background: rgba(255, 255, 255, 0.2);
+@media (hover) {
+  .shuffle-button .icon:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
 }
 
 .playable-status {

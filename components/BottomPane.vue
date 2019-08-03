@@ -60,8 +60,10 @@ export default {
   color: var(--item-active-background-color);
 }
 
-.tab:hover {
-  background: #f2f2f4;
+@media (hover) {
+  .tab:hover {
+    background: #f2f2f4;
+  }
 }
 
 .tab + .tab {

@@ -45,9 +45,11 @@ export default {
   transition: background 0.2s, color 0.2s;
 }
 
-.segmented-button:hover {
-  background: var(--header-background-color);
-  color: var(--item-label-color);
+@media (hover) {
+  .segmented-button:hover {
+    background: var(--header-background-color);
+    color: var(--item-label-color);
+  }
 }
 
 .segmented-button.checked {

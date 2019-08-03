@@ -46,8 +46,10 @@ export default {
   cursor: pointer;
 }
 
-.list-item.clickable:hover {
-  background: var(--header-background-color);
+@media (hover) {
+  .list-item.clickable:hover {
+    background: var(--header-background-color);
+  }
 }
 
 .list-item + .list-item {
