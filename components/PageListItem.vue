@@ -1,8 +1,11 @@
 <template>
   <link-list-item :path="path" class="line">
     <div class="left">
-      <span class="label">{{ title }}</span>
-      <span v-if="at" class="at">{{ at }}</span>
+      <div class="above">
+        <span class="label">{{ title }}</span>
+        <span v-if="excerpt" class="excerpt">{{ excerpt }}</span>
+      </div>
+      <div v-if="at" class="at">{{ at }}</div>
     </div>
     <div class="right">
       <font-awesome-icon icon="angle-right" size="lg" class="icon" />
@@ -23,6 +26,10 @@ export default {
       type: String,
       default: null
     },
+    excerpt: {
+      type: String,
+      default: null
+    },
     path: {
       type: String,
       required: true
@@ -38,15 +45,26 @@ export default {
 <style scoped>
 
 .left {
-  align-content: flex-start;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
   width: 100%;
 }
 
-.left .label {
+.left .above {
+  align-items: flex-end;
+  display: flex;
+}
+
+.left .above .label {
   color: var(--item-label-color);
+}
+
+.left .above .excerpt {
+  color: var(--item-value-color);
+  font-size: 80%;
+  margin-left: auto;
+  overflow: hidden;
+  padding-left: 1em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .left .at {
@@ -56,6 +74,7 @@ export default {
 
 .right {
   flex: none;
+  margin-left: 1em;
 }
 
 .right .icon {
