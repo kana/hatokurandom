@@ -1,0 +1,9 @@
+#!/bin/bash -eux
+
+git diff --quiet HEAD
+
+git describe --always --long --tags >VERSION
+git commit -am "Generate VERSION - $(<VERSION)"
+git reset --hard HEAD~
+
+git push heroku HEAD@{1}:master -f

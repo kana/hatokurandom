@@ -11,7 +11,8 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate"
+    "generate": "nuxt generate",
+    "deploy": "./scripts/deploy"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.19",
