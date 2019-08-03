@@ -3,11 +3,9 @@
     <div class="left">
       <div class="above">
         <span class="label">{{ title }}</span>
-        <span v-if="excerpt" class="excerpt">{{ excerpt }}</span>
+        <span v-if="at" class="at">{{ at }}</span>
       </div>
-      <div v-if="at" class="at">
-        {{ at }}
-      </div>
+      <span v-if="excerpt" class="excerpt">{{ excerpt }}</span>
     </div>
     <div class="right">
       <font-awesome-icon icon="angle-right" size="lg" class="icon" />
@@ -47,21 +45,23 @@ export default {
 <style scoped>
 
 .left {
+  align-items: center;
+  display: flex;
   width: calc(100% - 2em);
 }
 
 .left .above {
-  align-items: flex-end;
   display: flex;
+  flex-direction: column;
 }
 
-.left .above .label {
+.left .label {
   color: var(--item-label-color);
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.left .above .excerpt {
+.left .excerpt {
   color: var(--item-value-color);
   font-size: 80%;
   margin-left: auto;
@@ -74,6 +74,8 @@ export default {
 .left .at {
   color: var(--item-value-color);
   font-size: 80%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .right {
