@@ -8,16 +8,21 @@
       :excerpt="item.excerpt"
       :at="item.at"
     />
+    <omni-list-item v-if="items.length === 0" class="list-item empty-message">
+      ログがありません。
+    </omni-list-item>
   </page-list>
 </template>
 
 <script>
+import OmniListItem from '~/components/OmniListItem'
 import PageList from '~/components/PageList'
 import PageListItem from '~/components/PageListItem'
 import { excerptFromPid, pathFromPid, pidFromSid, titleFromPid } from '~/lib/constants'
 
 export default {
   components: {
+    OmniListItem,
     PageList,
     PageListItem
   },
@@ -59,4 +64,9 @@ export default {
 </script>
 
 <style scoped>
+
+.list-item.empty-message {
+  color: var(--item-value-color);
+}
+
 </style>
