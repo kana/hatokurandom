@@ -5,7 +5,10 @@
     :class="{ dropped: xcard.dropped }"
     class="line"
   >
-    <input v-if="editable" v-show="false" v-model="xcard.dropped" type="checkbox">
+    <template v-if="editable">
+      <input v-show="false" v-model="xcard.dropped" type="checkbox">
+      <font-awesome-icon class="check" icon="check" size="xs" />
+    </template>
     <span class="cost">{{ xcard.cost }}</span>
     <span :data-names="typeNamesString" class="type" />
     <span class="name">{{ xcard.name }}</span>
@@ -46,8 +49,13 @@ export default {
 
 <style scoped>
 
-.line.dropped {
-  opacity: 0.5;
+.check {
+  color: var(--link-text-color);
+  margin-right: 1em;
+}
+
+.line.dropped .check {
+  visibility: hidden;
 }
 
 .cost {
