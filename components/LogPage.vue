@@ -12,7 +12,7 @@
 <script>
 import PageList from '~/components/PageList'
 import PageListItem from '~/components/PageListItem'
-import { pathFromPid, titleFromPid } from '~/lib/constants'
+import { pathFromPid, pidFromSid, titleFromPid } from '~/lib/constants'
 
 export default {
   components: {
@@ -21,10 +21,7 @@ export default {
   },
   computed: {
     childPids () {
-      return [
-        'supplies:six',
-        'supply:random12'
-      ]
+      return this.$store.state.log.items.map(item => pidFromSid(item.sid))
     }
   },
   methods: {
