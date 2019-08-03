@@ -3,7 +3,7 @@
     :to="path"
     component="nuxt-link"
     clickable
-    class="link"
+    class="link-list-item link"
   >
     <slot />
   </omni-list-item>
@@ -28,7 +28,7 @@ export default {
 
 <style scoped>
 
-.link {
+.link-list-item.link {
   color: var(--link-text-color);
 }
 
