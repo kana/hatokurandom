@@ -14,7 +14,7 @@
 <script>
 import PageList from '~/components/PageList'
 import PageListItem from '~/components/PageListItem'
-import { pathFromPid, pidFromSid, titleFromPid } from '~/lib/constants'
+import { excerptFromPid, pathFromPid, pidFromSid, titleFromPid } from '~/lib/constants'
 
 export default {
   components: {
@@ -29,7 +29,7 @@ export default {
           pid,
           path: pathFromPid(pid),
           title: titleFromPid(pid),
-          excerpt: pathFromPid(pid),
+          excerpt: excerptFromPid(pid),
           at: this.formatDateTime(new Date(item.at))
         }
       })
