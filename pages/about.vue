@@ -89,6 +89,7 @@ export default {
 <style scoped>
 
 .introduction {
+  color: var(--toast-text-color);
   margin: 2em 5%;
 }
 
