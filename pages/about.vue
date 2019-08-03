@@ -88,8 +88,7 @@ export default {
 <style scoped>
 
 .introduction {
-  margin-left: 5%;
-  margin-right: 5%;
+  margin: 2em 5%;
 }
 
 p {
