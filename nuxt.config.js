@@ -59,6 +59,9 @@ export default {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {},
+  serverMiddleware: [
+    '~/serverMiddleware/cache'
+  ],
   /*
    ** Build configuration
    */
