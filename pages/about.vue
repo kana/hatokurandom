@@ -43,12 +43,16 @@
       <omni-list-item>
         バージョン {{ version }}
       </omni-list-item>
+      <link-button-list-item v-if="isRunningInStandaloneMode" @click="reload">
+        最新バージョンに更新する
+      </link-button-list-item>
     </omni-list>
   </page-container>
 </template>
 
 <script>
 import ExternalLink from '~/components/ExternalLink'
+import LinkButtonListItem from '~/components/LinkButtonListItem'
 import OmniList from '~/components/OmniList'
 import OmniListItem from '~/components/OmniListItem'
 import PageContainer from '~/components/PageContainer'
@@ -57,6 +61,7 @@ import { titleFromPid } from '~/lib/constants'
 export default {
   components: {
     ExternalLink,
+    LinkButtonListItem,
     OmniList,
     OmniListItem,
     PageContainer
@@ -65,8 +70,16 @@ export default {
     title: titleFromPid('about')
   },
   computed: {
+    isRunningInStandaloneMode () {
+      return navigator.standalone
+    },
     version () {
       return process.env.version
+    }
+  },
+  methods: {
+    reload () {
+      location.reload(true)
     }
   }
 }
