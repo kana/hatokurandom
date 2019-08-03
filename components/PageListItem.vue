@@ -47,7 +47,7 @@ export default {
 <style scoped>
 
 .left {
-  width: 100%;
+  width: calc(100% - 2em);
 }
 
 .left .above {
@@ -57,6 +57,8 @@ export default {
 
 .left .above .label {
   color: var(--item-label-color);
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .left .above .excerpt {
@@ -76,7 +78,8 @@ export default {
 
 .right {
   flex: none;
-  margin-left: 1em;
+  margin-left: auto;
+  padding-left: 1em;
 }
 
 .right .icon {
