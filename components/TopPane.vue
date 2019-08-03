@@ -1,13 +1,13 @@
 <template>
   <div class="top-pane">
     <nuxt-link v-if="toParent" :to="toParent" class="back-to-parent-button">
-      <font-awesome-icon icon="chevron-left" size="lg" />
+      <span><font-awesome-icon icon="chevron-left" size="lg" /></span>
     </nuxt-link>
     <div class="title">
       {{ title }}
     </div>
     <a v-if="shareable" :href="shareUrl" class="share-button" target="_blank">
-      <font-awesome-icon icon="share-square" />
+      <span><font-awesome-icon icon="share-square" /></span>
     </a>
   </div>
 </template>
@@ -82,23 +82,33 @@ export default {
 }
 
 .back-to-parent-button {
+  align-content: center;
   color: var(--header-back-button-color);
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
   flex: none;
-  height: 1em;
-  margin-left: 1em;
-  margin-right: -2em;
-  width: 1em;
+  height: calc(1em + 2ex);
+  justify-content: center;
+  margin-left: calc(1em - 1ex);
+  margin-right: calc(-2em - 1ex);
+  text-align: center;
+  width: calc(1em + 2ex);
 }
 
 .share-button {
+  align-content: center;
   color: var(--header-text-color);
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
   flex: none;
-  height: 1em;
-  margin-left: -2em;
-  margin-right: 1em;
-  width: 1em;
+  height: calc(1em + 2ex);
+  justify-content: center;
+  margin-left: calc(-2em - 1ex);
+  margin-right: calc(1em - 1ex);
+  text-align: center;
+  width: calc(1em + 2ex);
 }
 
 </style>
