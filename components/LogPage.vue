@@ -5,6 +5,7 @@
       :key="item.pid"
       :path="item.path"
       :title="item.title"
+      :excerpt="item.excerpt"
       :at="item.at"
     />
   </page-list>
@@ -28,6 +29,7 @@ export default {
           pid,
           path: pathFromPid(pid),
           title: titleFromPid(pid),
+          excerpt: pathFromPid(pid),
           at: this.formatDateTime(new Date(item.at))
         }
       })
