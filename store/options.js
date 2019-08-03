@@ -46,9 +46,10 @@ export const actions = {
       }
     }
   },
-  reset ({ dispatch }) {
+  reset ({ commit }) {
     for (const key of Object.keys(DEFAULT_OPTIONS)) {
-      dispatch('update', { key, value: DEFAULT_OPTIONS[key] })
+      commit('update', { key, value: DEFAULT_OPTIONS[key] })
+      localStorage.removeItem(STORAGE_KEY_MAP[key])
     }
   },
   update ({ commit }, { key, value }) {
