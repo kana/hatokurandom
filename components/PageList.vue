@@ -1,11 +1,14 @@
 <template>
   <omni-list class="page-list">
-    <page-list-item
-      v-for="childPid in childPids"
-      :key="childPid"
-      :path="pathFromPid(childPid)"
-      :title="titleFromPid(childPid)"
-    />
+    <template v-if="pid">
+      <page-list-item
+        v-for="childPid in childPids"
+        :key="childPid"
+        :path="pathFromPid(childPid)"
+        :title="titleFromPid(childPid)"
+      />
+    </template>
+    <slot v-if="!pid" />
   </omni-list>
 </template>
 
@@ -23,7 +26,7 @@ export default {
   props: {
     pid: {
       type: String,
-      required: true
+      default: null
     }
   },
   computed: {
