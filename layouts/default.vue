@@ -57,8 +57,8 @@ export default {
     onSwipeRight (e) {
       const screenLeftEdgeWidth = window.innerWidth * 20 / 100
       if (this.touchStartX < screenLeftEdgeWidth) {
-        if (this.toParent) {
-          this.$router.push(this.toParent)
+        if (this.toBack) {
+          this.$router.push(this.toBack)
         }
       }
     },
