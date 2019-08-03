@@ -22,4 +22,9 @@ export default {
 </script>
 
 <style scoped>
+
+.label {
+  margin-right: 0.125em;
+}
+
 </style>
