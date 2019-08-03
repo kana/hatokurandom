@@ -1,6 +1,6 @@
-import { execFileSync } from 'child_process'
+import { readFileSync } from 'fs'
 
-const version = execFileSync('git', ['describe', '--always', '--dirty', '--long', '--tags']).toString()
+const version = readFileSync('VERSION').toString()
 
 export default {
   mode: 'universal',
