@@ -13,7 +13,7 @@ export default {
 <style scoped>
 
 .page-container {
-  margin: 2em 0;
+  padding: 2em 0;
 }
 
 </style>
