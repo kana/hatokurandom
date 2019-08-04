@@ -39,7 +39,7 @@ export default {
   ],
   pageTransition: {
     name: 'page',
-    mode: 'default'
+    mode: ''
   },
   /*
    ** Plugins to load before mounting the App
