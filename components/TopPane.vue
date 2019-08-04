@@ -8,7 +8,14 @@
         {{ title }}
       </div>
     </div>
-    <a v-if="shareable" :href="shareUrl" class="share-button" target="_blank" @click="share">
+    <a
+      v-if="shareablePage"
+      :href="shareUrl"
+      :class="{ disabled: !shareableSupply }"
+      class="share-button"
+      target="_blank"
+      @click="share"
+    >
       <span><font-awesome-icon icon="share-square" /></span>
     </a>
   </div>
@@ -26,13 +33,20 @@ export default {
     pid () {
       return pidFromPath(this.$route.path)
     },
-    shareable () {
-      return isCardListPid(this.pid) && this.sharePid
+    shareablePage () {
+      return isCardListPid(this.pid)
+    },
+    shareableSupply () {
+      return this.shareablePage && this.sharePid
     },
     sharePid () {
       return this.$store.state.supply.pid
     },
     shareUrl () {
+      if (!this.shareableSupply) {
+        return null
+      }
+
       const permalink = `${this.locationOrigin}/${this.sharePid}`
       const isReferencePage = /^reference:/.test(this.sharePid)
       const usedCardNames = sortXcards(xcardsFromPid(this.sharePid))
@@ -62,7 +76,12 @@ export default {
     }
   },
   methods: {
-    share () {
+    share (e) {
+      if (!this.shareableSupply) {
+        e.preventDefault()
+        return
+      }
+
       this.$store.dispatch('log/push', {
         sid: sidFromPid(this.sharePid),
         at: Date.now()
@@ -131,7 +150,14 @@ export default {
   margin-left: calc(-2em - 1ex);
   margin-right: calc(1em - 1ex);
   text-align: center;
+  transition: color 0.2s;
   width: calc(1em + 2ex);
+}
+
+.share-button.disabled {
+  color: var(--item-value-color);
+  cursor: default;
+  user-select: none;
 }
 
 </style>
