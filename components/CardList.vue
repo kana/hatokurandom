@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <block-title v-if="special.editable || sortedXcardsExcluded.length > 0">
+    <block-title v-if="special.editable || sortedXcardsExcluded.length > 0" class="first-block-title">
       使用するカード
     </block-title>
     <omni-list>
@@ -149,7 +149,10 @@ export default {
 
 .container {
   margin-bottom: calc(1ex + 2.0em + 1ex + 3.5em + 1ex);
-  margin-top: 2em;
+}
+
+.container .first-block-title {
+  margin-top: 0;
 }
 
 .divider {
