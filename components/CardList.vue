@@ -19,7 +19,9 @@
       </omni-list>
     </template>
 
-    <shuffle-button v-if="special.random" class="shuffle-button" @click="shuffle" />
+    <fade-in-out>
+      <shuffle-button v-if="special.random" class="shuffle-button" @click="shuffle" />
+    </fade-in-out>
 
     <fade-in-out>
       <div v-if="special.editable && !playable" class="playable-status">
