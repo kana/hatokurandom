@@ -140,6 +140,7 @@ export default {
 
 .share-button {
   align-content: center;
+  border-radius: 0.25ex;
   color: var(--header-text-color);
   cursor: pointer;
   display: flex;
@@ -150,7 +151,7 @@ export default {
   margin-left: calc(-2em - 1ex);
   margin-right: calc(1em - 1ex);
   text-align: center;
-  transition: color 0.2s;
+  transition: background 0.2s, color 0.2s;
   width: calc(1em + 2ex);
 }
 
@@ -158,6 +159,16 @@ export default {
   color: var(--item-value-color);
   cursor: default;
   user-select: none;
+}
+
+@media (hover) {
+  .share-button:hover {
+    background: var(--toast-background-color);
+  }
+
+  .share-button.disabled:hover {
+    background: transparent;
+  }
 }
 
 </style>
