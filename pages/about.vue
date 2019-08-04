@@ -93,11 +93,15 @@ export default {
 
 .introduction {
   color: var(--toast-text-color);
-  margin: 2em 5%;
+  margin: 0 5%;
 }
 
 p {
   margin: 1.2em 0;
+}
+
+p:first-child {
+  margin-top: 0;
 }
 
 .version .label {
