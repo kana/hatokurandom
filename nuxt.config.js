@@ -37,10 +37,6 @@ export default {
   '@fortawesome/fontawesome-svg-core/styles.css',    
     '~/assets/main.css'
   ],
-  pageTransition: {
-    name: 'page-forward',
-    mode: ''
-  },
   /*
    ** Plugins to load before mounting the App
    */

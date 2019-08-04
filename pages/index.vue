@@ -7,17 +7,18 @@
 <script>
 import PageContainer from '~/components/PageContainer'
 import PageList from '~/components/PageList'
-import { isCardListPid, isPageListPid, titleFromPid } from '~/lib/constants'
+import { isCardListPid, isPageListPid, titleFromPid, transition } from '~/lib/constants'
 
 export default {
-  head: {
-    title: titleFromPid('home'),
-    titleTemplate: null
-  },
   components: {
     PageContainer,
     PageList
   },
+  head: {
+    title: titleFromPid('home'),
+    titleTemplate: null
+  },
+  transition,
   mounted () {
     // Redirect old URL (/#supply:random10) to new URL (/supply:random10).
     if (this.$route.hash !== '') {

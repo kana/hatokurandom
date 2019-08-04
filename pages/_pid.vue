@@ -11,24 +11,25 @@ import CardList from '~/components/CardList'
 import LogPage from '~/components/LogPage'
 import PageContainer from '~/components/PageContainer'
 import PageList from '~/components/PageList'
-import { isCardListPid, isPageListPid, titleFromPid } from '~/lib/constants'
+import { isCardListPid, isPageListPid, titleFromPid, transition } from '~/lib/constants'
 
 export default {
-  validate ({ params }) {
-    return params.pid === 'supplies:log' ||
-      isCardListPid(params.pid) ||
-      isPageListPid(params.pid)
+  components: {
+    CardList,
+    LogPage,
+    PageContainer,
+    PageList
   },
   head () {
     return {
       title: titleFromPid(this.$route.params.pid)
     }
   },
-  components: {
-    CardList,
-    LogPage,
-    PageContainer,
-    PageList
+  transition,
+  validate ({ params }) {
+    return params.pid === 'supplies:log' ||
+      isCardListPid(params.pid) ||
+      isPageListPid(params.pid)
   },
   computed: {
     pid () {

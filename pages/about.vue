@@ -59,7 +59,7 @@ import LinkButtonListItem from '~/components/LinkButtonListItem'
 import OmniList from '~/components/OmniList'
 import OmniListItem from '~/components/OmniListItem'
 import PageContainer from '~/components/PageContainer'
-import { titleFromPid } from '~/lib/constants'
+import { titleFromPid, transition } from '~/lib/constants'
 
 export default {
   components: {
@@ -72,6 +72,7 @@ export default {
   head: {
     title: titleFromPid('about')
   },
+  transition,
   computed: {
     isRunningInStandaloneMode () {
       return process.browser && navigator.standalone
