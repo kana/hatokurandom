@@ -51,7 +51,6 @@ a {
   left: 100vw;
 }
 .page-forward-enter-to {
-  box-shadow: rgba(0, 0, 0, 0.3) -3px 0 3px 0;
   left: 0;
 }
 .page-forward-leave {
@@ -59,6 +58,10 @@ a {
 }
 .page-forward-leave-to {
   left: -20vw;
+}
+
+.page-forward-enter-active {
+  box-shadow: rgba(0, 0, 0, 0.3) -3px 0 3px 0;
 }
 
 .page-forward-leave-active:after {
@@ -74,4 +77,45 @@ a {
 }
 .page-forward-leave-active.page-forward-leave-to:after {
   background: rgba(0, 0, 0, 0.2);
+}
+
+.page-backward-enter-active,
+.page-backward-leave-active {
+  min-height: 100vh;
+  position: absolute;
+  top: var(--top-pane-height);
+  transition: left 0.4s;
+  width: 100%;
+}
+.page-backward-enter {
+  left: -20vw;
+}
+.page-backward-enter-to {
+  left: 0;
+}
+.page-backward-leave {
+  left: 0;
+}
+.page-backward-leave-to {
+  left: 100vw;
+}
+
+.page-backward-leave-active {
+  box-shadow: rgba(0, 0, 0, 0.3) -3px 0 3px 0;
+  z-index: 1;
+}
+
+.page-backward-enter-active:after {
+  background: rgba(0, 0, 0, 0.2);
+  content: '';
+  display: block;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  transition: background 0.4s;
+  width: 100%;
+}
+.page-backward-enter-active.page-backward-enter-to:after {
+  background: rgba(0, 0, 0, 0);
 }
