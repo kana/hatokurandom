@@ -39,7 +39,7 @@ import CardListItem from '~/components/CardListItem'
 import OmniList from '~/components/OmniList'
 import OmniListItem from '~/components/OmniListItem'
 import PageContainer from '~/components/PageContainer'
-import { COMMON_CARDS, sortXcards, titleFromPid } from '~/lib/constants'
+import { COMMON_CARDS, sortXcards, titleFromPid, transition } from '~/lib/constants'
 
 export default {
   components: {
@@ -52,6 +52,7 @@ export default {
   head: {
     title: titleFromPid('preferences/banned-cards')
   },
+  transition,
   data () {
     const bannedCidSet = new Set(this.$store.state.options.excludeBannedCardsByUser)
     return {

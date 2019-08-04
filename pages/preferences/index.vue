@@ -103,7 +103,7 @@ import OmniListItem from '~/components/OmniListItem'
 import PageContainer from '~/components/PageContainer'
 import PreferenceSwitch from '~/components/PreferenceSwitch'
 import SegmentedButtonGroup from '~/components/SegmentedButtonGroup'
-import { EXPANSIONS, cardFromCid, titleFromPid } from '~/lib/constants'
+import { EXPANSIONS, cardFromCid, titleFromPid, transition } from '~/lib/constants'
 
 function mapOptionStore (keys) {
   const computed = {}
@@ -136,6 +136,7 @@ export default {
   head: {
     title: titleFromPid('preferences')
   },
+  transition,
   computed: {
     bannedCardNames () {
       return this.excludeBannedCardsByUser.map(cid => cardFromCid(cid).name)
