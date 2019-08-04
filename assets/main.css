@@ -39,29 +39,29 @@ a {
   text-decoration: none;
 }
 
-.page-enter-active,
-.page-leave-active {
+.page-forward-enter-active,
+.page-forward-leave-active {
   min-height: 100vh;
   position: absolute;
   top: var(--top-pane-height);
   transition: left 0.4s;
   width: 100%;
 }
-.page-enter {
+.page-forward-enter {
   left: 100vw;
 }
-.page-enter-to {
+.page-forward-enter-to {
   box-shadow: rgba(0, 0, 0, 0.3) -3px 0 3px 0;
   left: 0;
 }
-.page-leave {
+.page-forward-leave {
   left: 0;
 }
-.page-leave-to {
+.page-forward-leave-to {
   left: -20vw;
 }
 
-.page-leave-active:after {
+.page-forward-leave-active:after {
   background: rgba(0, 0, 0, 0);
   content: '';
   display: block;
@@ -72,6 +72,6 @@ a {
   transition: background 0.4s;
   width: 100%;
 }
-.page-leave-active.page-leave-to:after {
+.page-forward-leave-active.page-forward-leave-to:after {
   background: rgba(0, 0, 0, 0.2);
 }

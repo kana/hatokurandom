@@ -38,7 +38,7 @@ export default {
     '~/assets/main.css'
   ],
   pageTransition: {
-    name: 'page',
+    name: 'page-forward',
     mode: ''
   },
   /*
