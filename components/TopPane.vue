@@ -19,7 +19,9 @@
         target="_blank"
         @click="share"
       >
-        <span><font-awesome-icon icon="share-square" /></span>
+        <div class="share-button-inner">
+          <font-awesome-icon icon="share-square" />
+        </div>
       </a>
     </fade-in-out>
   </div>
@@ -147,34 +149,36 @@ export default {
 }
 
 .share-button {
-  align-content: center;
+  flex: none;
+}
+
+.share-button-inner {
+  align-items: center;
   border-radius: 0.25ex;
   color: var(--header-text-color);
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  flex: none;
   height: calc(1em + 2ex);
   justify-content: center;
   margin-left: calc(-2em - 1ex);
   margin-right: calc(1em - 1ex);
-  text-align: center;
   transition: background 0.2s, color 0.2s;
   width: calc(1em + 2ex);
 }
 
-.share-button.disabled {
+.disabled .share-button-inner {
   color: var(--item-value-color);
   cursor: default;
   user-select: none;
 }
 
 @media (hover) {
-  .share-button:hover {
+  .share-button-inner:hover {
     background: var(--toast-background-color);
   }
 
-  .share-button.disabled:hover {
+  .disabled .share-button-inner:hover {
     background: transparent;
   }
 }
