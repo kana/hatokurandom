@@ -8,24 +8,30 @@
         {{ title }}
       </div>
     </div>
-    <a
-      v-if="shareablePage"
-      :href="shareUrl"
-      :class="{ disabled: !shareableSupply }"
-      class="share-button"
-      target="_blank"
-      @click="share"
-    >
-      <span><font-awesome-icon icon="share-square" /></span>
-    </a>
+    <fade-in-out>
+      <a
+        v-if="shareablePage"
+        :href="shareUrl"
+        :class="{ disabled: !shareableSupply }"
+        class="share-button"
+        target="_blank"
+        @click="share"
+      >
+        <span><font-awesome-icon icon="share-square" /></span>
+      </a>
+    </fade-in-out>
   </div>
 </template>
 
 <script>
+import FadeInOut from '~/components/FadeInOut'
 import { isCardListPid, pathFromPid, parentPidFromPid, pidFromPath, sidFromPid, sortXcards, titleFromPid, xcardsFromPid } from '~/lib/constants'
 
 export default {
   name: 'TopPane',
+  components: {
+    FadeInOut
+  },
   computed: {
     locationOrigin () {
       return 'https://hatokurandom.whileimautomaton.net'
