@@ -1,8 +1,10 @@
 <template>
   <div class="top-pane">
-    <nuxt-link v-if="toParent" :to="toParent" class="back-to-parent-button">
-      <span><font-awesome-icon icon="chevron-left" size="lg" /></span>
-    </nuxt-link>
+    <fade-in-out>
+      <nuxt-link v-if="toParent" :to="toParent" class="back-to-parent-button">
+        <span><font-awesome-icon icon="chevron-left" size="lg" /></span>
+      </nuxt-link>
+    </fade-in-out>
     <div class="title">
       <div class="text">
         {{ title }}
