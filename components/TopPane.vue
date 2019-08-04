@@ -2,7 +2,9 @@
   <div class="top-pane">
     <fade-in-out>
       <nuxt-link v-if="toParent" :to="toParent" class="back-to-parent-button">
-        <span><font-awesome-icon icon="chevron-left" size="lg" /></span>
+        <div class="back-to-parent-button-inner">
+          <font-awesome-icon icon="chevron-left" size="lg" />
+        </div>
       </nuxt-link>
     </fade-in-out>
     <div class="title">
@@ -132,20 +134,29 @@ export default {
 }
 
 .back-to-parent-button {
-  align-content: center;
+  flex: none;
+}
+
+.back-to-parent-button-inner {
+  align-items: center;
+  border-radius: 0.25ex;
   color: var(--header-back-button-color);
   cursor: pointer;
   display: flex;
-  flex-direction: column;
-  flex: none;
   height: calc(1em + 2ex);
   justify-content: center;
   margin-left: calc(1em - 1ex);
   margin-right: calc(-2em - 1ex);
   position: relative;
-  text-align: center;
+  transition: background 0.2s;
   width: calc(1em + 2ex);
   z-index: 1;
+}
+
+@media (hover) {
+  .back-to-parent-button-inner:hover {
+    background: var(--toast-background-color);
+  }
 }
 
 .share-button {
