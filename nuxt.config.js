@@ -60,7 +60,8 @@ export default {
       //   sendHitTask: true
       // },
       id: 'UA-50628159-3'
-    }]
+    }],
+    '@nuxtjs/redirect-module'
   ],
   /*
    ** Axios module configuration
@@ -95,5 +96,9 @@ export default {
         }
       }
     }
-  }
+  },
+  redirect: [
+    // For users who add the old offline version to home screen.
+    { from: '^/offline$', to: '/', statusCode: 301 }
+  ]
 }
