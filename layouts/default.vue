@@ -87,6 +87,7 @@ export default {
 
 .main-pane {
   padding: var(--top-pane-height) 0 var(--bottom-pane-height);
+  position: relative;
 }
 
 .bottom-pane {

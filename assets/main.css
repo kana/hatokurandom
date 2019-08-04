@@ -38,3 +38,24 @@ a {
   color: var(--link-text-color);
   text-decoration: none;
 }
+
+.page-enter-active,
+.page-leave-active {
+  min-height: 100vh;
+  position: absolute;
+  top: var(--top-pane-height);
+  transition: left 0.4s;
+  width: 100%;
+}
+.page-enter {
+  left: 100vw;
+}
+.page-enter-to {
+  left: 0;
+}
+.page-leave {
+  left: 0;
+}
+.page-leave-to {
+  left: -100vw;
+}
