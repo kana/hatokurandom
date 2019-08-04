@@ -21,17 +21,20 @@
 
     <shuffle-button v-if="special.random" class="shuffle-button" @click="shuffle" />
 
-    <div v-if="special.editable && !playable" class="playable-status">
-      <div class="message">
-        {{ playableStatusMessage }}
+    <fade-in-out>
+      <div v-if="special.editable && !playable" class="playable-status">
+        <div class="message">
+          {{ playableStatusMessage }}
+        </div>
       </div>
-    </div>
+    </fade-in-out>
   </div>
 </template>
 
 <script>
 import BlockTitle from '~/components/BlockTitle'
 import CardListItem from '~/components/CardListItem'
+import FadeInOut from '~/components/FadeInOut'
 import OmniList from '~/components/OmniList'
 import OmniListItem from '~/components/OmniListItem'
 import ShuffleButton from '~/components/ShuffleButton'
@@ -42,6 +45,7 @@ export default {
   components: {
     BlockTitle,
     CardListItem,
+    FadeInOut,
     OmniList,
     OmniListItem,
     ShuffleButton
