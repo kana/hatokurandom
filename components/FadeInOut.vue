@@ -14,7 +14,7 @@ export default {
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.2s;
+  transition: opacity 0.4s;
 }
 
 .fade-enter,
