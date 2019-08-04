@@ -60,3 +60,18 @@ a {
 .page-leave-to {
   left: -20vw;
 }
+
+.page-leave-active:after {
+  background: rgba(0, 0, 0, 0);
+  content: '';
+  display: block;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  transition: background 0.4s;
+  width: 100%;
+}
+.page-leave-active.page-leave-to:after {
+  background: rgba(0, 0, 0, 0.2);
+}
