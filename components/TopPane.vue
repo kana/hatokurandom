@@ -169,7 +169,6 @@ export default {
   color: var(--header-text-color);
   cursor: pointer;
   display: flex;
-  flex-direction: column;
   height: calc(1em + 2ex);
   justify-content: center;
   margin-left: calc(-2em - 1ex);
