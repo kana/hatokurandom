@@ -1,3 +1,5 @@
+import { orderBy } from 'lodash-es'
+
 const STORAGE_KEY = 'recorded_supplies'
 const MAX_ITEM_COUNT = 10000 // Less than 500KiB.
 
@@ -24,7 +26,7 @@ export const actions = {
   loadSavedState ({ commit }) {
     const value = localStorage.getItem(STORAGE_KEY)
     if (value !== null) {
-      commit('replace', JSON.parse(value))
+      commit('replace', orderBy(JSON.parse(value), ['at'], ['desc']))
     }
   },
   append ({ commit, state }, { sid, at }) {
