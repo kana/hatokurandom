@@ -143,13 +143,13 @@ export default {
   color: var(--header-back-button-color);
   cursor: pointer;
   display: flex;
-  height: calc(1em + 2ex);
+  height: 2em;
   justify-content: center;
-  margin-left: calc(1em - 1ex);
-  margin-right: calc(-2em - 1ex);
+  margin-left: 0.5em;
+  margin-right: -2.5em;
   position: relative;
   transition: background 0.2s;
-  width: calc(1em + 2ex);
+  width: 2em;
   z-index: 1;
 }
 
@@ -169,12 +169,12 @@ export default {
   color: var(--header-text-color);
   cursor: pointer;
   display: flex;
-  height: calc(1em + 2ex);
+  height: 2em;
   justify-content: center;
-  margin-left: calc(-2em - 1ex);
-  margin-right: calc(1em - 1ex);
+  margin-left: -2.5em;
+  margin-right: 0.5em;
   transition: background 0.2s, color 0.2s;
-  width: calc(1em + 2ex);
+  width: 2em;
 }
 
 .disabled .share-button-inner {
