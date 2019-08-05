@@ -28,7 +28,7 @@ export default {
   },
   computed: {
     items () {
-      const items = this.$store.state.log.items.map((item) => {
+      return this.$store.state.log.items.map((item) => {
         const pid = pidFromSid(item.sid)
         return {
           pid,
@@ -38,8 +38,6 @@ export default {
           at: this.formatDateTime(new Date(item.at))
         }
       })
-      items.reverse()
-      return items
     }
   },
   methods: {
