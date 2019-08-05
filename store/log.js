@@ -27,7 +27,7 @@ export const actions = {
       commit('replace', JSON.parse(value))
     }
   },
-  push ({ commit, state }, { sid, at }) {
+  append ({ commit, state }, { sid, at }) {
     commit('push', { sid, at })
     if (state.items.length > MAX_ITEM_COUNT) {
       commit('shift')

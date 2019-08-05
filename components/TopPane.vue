@@ -94,7 +94,7 @@ export default {
         return
       }
 
-      this.$store.dispatch('log/push', {
+      this.$store.dispatch('log/append', {
         sid: sidFromPid(this.sharePid),
         at: Date.now()
       })
