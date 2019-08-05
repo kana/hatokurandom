@@ -4,10 +4,15 @@
       使用するカード
     </block-title>
     <omni-list>
-      <card-list-item v-for="xcard in sortedXcardsIncluded" :key="xcard.cid" :editable="special.editable" :xcard="xcard" />
-      <omni-list-item v-if="sortedXcardsIncluded.length === 0" class="divider">
-        カードを選んでください。
-      </omni-list-item>
+      <transition-group v-if="special.editable" name="height" tag="div">
+        <card-list-item v-for="xcard in sortedXcardsIncluded" :key="xcard.cid" :editable="special.editable" :xcard="xcard" />
+        <omni-list-item v-if="sortedXcardsIncluded.length === 0" key="divider" class="divider">
+          カードを選んでください。
+        </omni-list-item>
+      </transition-group>
+      <template v-else>
+        <card-list-item v-for="xcard in sortedXcardsIncluded" :key="xcard.cid" :editable="special.editable" :xcard="xcard" />
+      </template>
     </omni-list>
 
     <template v-if="sortedXcardsExcluded.length > 0">
@@ -15,7 +20,9 @@
         {{ special.random ? '除外したカード' : '未使用のカード' }}
       </block-title>
       <omni-list>
-        <card-list-item v-for="xcard in sortedXcardsExcluded" :key="xcard.cid" :editable="special.editable" :xcard="xcard" />
+        <transition-group name="height" tag="div">
+          <card-list-item v-for="xcard in sortedXcardsExcluded" :key="xcard.cid" :editable="special.editable" :xcard="xcard" />
+        </transition-group>
       </omni-list>
     </template>
 
@@ -193,6 +200,23 @@ export default {
   .playable-status .message {
     width: auto;
   }
+}
+
+.height-enter-active,
+.height-leave-active {
+  overflow: hidden;
+  transition: max-height 0.4s, padding 0.4s;
+}
+
+.height-enter,
+.height-leave-to {
+  max-height: 0;
+  padding-bottom: 0;
+  padding-top: 0;
+}
+.height-enter-to,
+.height-leave {
+  max-height: 2.1em;
 }
 
 </style>
