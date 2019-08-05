@@ -8,8 +8,8 @@ export const state = () => ({
 })
 
 export const mutations = {
-  push (state, { sid, at }) {
-    state.items.push({ sid, at })
+  pop (state) {
+    state.items.pop()
   },
   replace (state, items) {
     state.items.splice(0, state.items.length)
@@ -17,8 +17,8 @@ export const mutations = {
       state.items.push(item)
     }
   },
-  shift (state) {
-    state.items.shift()
+  unshift (state, { sid, at }) {
+    state.items.unshift({ sid, at })
   }
 }
 
@@ -26,13 +26,14 @@ export const actions = {
   loadSavedState ({ commit }) {
     const value = localStorage.getItem(STORAGE_KEY)
     if (value !== null) {
+      // This orderBy can be removed after 2019-09.
       commit('replace', orderBy(JSON.parse(value), ['at'], ['desc']))
     }
   },
   append ({ commit, state }, { sid, at }) {
-    commit('push', { sid, at })
+    commit('unshift', { sid, at })
     if (state.items.length > MAX_ITEM_COUNT) {
-      commit('shift')
+      commit('pop')
     }
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state.items))
   }
