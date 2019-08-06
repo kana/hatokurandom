@@ -11,7 +11,7 @@ import CardList from '~/components/CardList'
 import LogPage from '~/components/LogPage'
 import PageContainer from '~/components/PageContainer'
 import PageList from '~/components/PageList'
-import { isCardListPid, isPageListPid, titleFromPid, transition } from '~/lib/constants'
+import { isCardListPid, isPageListPid, ogpMetaFromPid, titleFromPid, transition } from '~/lib/constants'
 
 export default {
   components: {
@@ -22,7 +22,8 @@ export default {
   },
   head () {
     return {
-      title: titleFromPid(this.$route.params.pid)
+      title: titleFromPid(this.$route.params.pid),
+      meta: ogpMetaFromPid(this.$route.params.pid)
     }
   },
   transition,
