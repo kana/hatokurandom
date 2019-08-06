@@ -25,7 +25,7 @@ export default {
       },
       {
         hid: 'og:type',
-        name: 'og:type',
+        property: 'og:type',
         content: 'website'
       }
     ],
