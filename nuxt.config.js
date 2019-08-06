@@ -22,6 +22,11 @@ export default {
         hid: 'description',
         name: 'description',
         content: 'ハートオブクラウンを楽しく遊ぶ為のランダマイザです。'
+      },
+      {
+        hid: 'og:type',
+        name: 'og:type',
+        content: 'website'
       }
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
