@@ -23,6 +23,7 @@
     "@nuxtjs/redirect-module": "^0.2.0",
     "lodash-es": "^4.17.15",
     "nuxt": "^2.0.0",
+    "sharp": "^0.23.0",
     "vue2-touch-events": "^2.0.0"
   },
   "devDependencies": {
