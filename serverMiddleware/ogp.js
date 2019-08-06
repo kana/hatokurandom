@@ -1,3 +1,4 @@
+import { readFileSync } from 'fs'
 import { parse } from 'url'
 import { parseSpecialPid, pidFromPath, xcardsFromPid } from '../lib/constants'
 
@@ -17,7 +18,10 @@ export default function (req, res, next) {
     return notFound(res)
   }
 
-  res.end(xcards.map(xcard => xcard.name).join(' '))
+  res.setHeader('Content-Type', 'image/png')
+  res.setHeader('Cache-Control', `public, max-age=${365 * 24 * 60 * 60}`)
+  res.statusCode = 200
+  res.end(readFileSync('./static/apple-touch-icon.png'))
 }
 
 function notFound (res) {
