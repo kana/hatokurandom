@@ -69,6 +69,7 @@ export default {
    */
   axios: {},
   serverMiddleware: [
+    { path: '/ogp', handler: '~/serverMiddleware/ogp' },
     '~/serverMiddleware/cache'
   ],
   /*
