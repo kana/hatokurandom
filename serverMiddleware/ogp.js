@@ -19,29 +19,13 @@ export default async function (req, res, next) {
     return notFound(res)
   }
 
-  // TODO: Generate image with dropped cards.
-  const xcards = sortXcards(maybeXcards).filter(xcard => !xcard.dropped)
-  if (xcards.length !== 10) {
+  const xcards = sortXcards(maybeXcards)
+  if (xcards.length < 10 || xcards.length > 14) {
     return notFound(res)
   }
 
-  const ogpWidth = 1200
-  const ogpHeight = 630
-  const cardWidth = 184
-  const cardHeight = 260
   const buffer = await sharp('ogp/bg.jpg')
-    .composite(xcards.map((xcard, i) => {
-      const c = i % 5
-      const r = Math.floor(i / 5)
-      const xSpace = (ogpWidth - cardWidth * 5) / 6
-      const ySpace = (ogpHeight - cardHeight * 2) / 3
-      return {
-        input: `ogp/cards/${xcard.cid}.jpg`,
-        gravity: 'northwest',
-        left: Math.floor(xSpace * (c + 1) + cardWidth * c),
-        top: Math.floor(ySpace * (r + 1) + cardHeight * r)
-      }
-    }))
+    .composite(xcards.map(compositeRuleFor10))
     .jpeg({ quality: 80 })
     .toBuffer()
 
@@ -49,6 +33,24 @@ export default async function (req, res, next) {
   res.setHeader('Cache-Control', `public, max-age=${1 * 24 * 60 * 60}`)
   res.statusCode = 200
   res.end(buffer)
+}
+
+const OGP_WIDTH = 1200
+const OGP_HEIGHT = 630
+const CARD_WIDTH = 184
+const CARD_HEIGHT = 260
+
+function compositeRuleFor10 (xcard, i) {
+  const c = i % 5
+  const r = Math.floor(i / 5)
+  const xSpace = (OGP_WIDTH - CARD_WIDTH * 5) / 6
+  const ySpace = (OGP_HEIGHT - CARD_HEIGHT * 2) / 3
+  return {
+    input: `ogp/cards/${xcard.cid}.jpg`,
+    gravity: 'northwest',
+    left: Math.floor(xSpace * (c + 1) + CARD_WIDTH * c),
+    top: Math.floor(ySpace * (r + 1) + CARD_HEIGHT * r)
+  }
 }
 
 function notFound (res) {
