@@ -24,8 +24,12 @@ export default async function (req, res, next) {
     return notFound(res)
   }
 
+  const images = await Promise.all(xcards.map(imageFromXcard))
+  const compositeRule = xcards.length === 10 ? compositeRuleFor10 : compositeRuleFor12To14
+  const rules = await Promise.all(images.map((image, i) => compositeRule(image, i, xcards.length)))
+
   const buffer = await sharp('ogp/bg.jpg')
-    .composite(xcards.map(compositeRuleFor10))
+    .composite(rules)
     .jpeg({ quality: 80 })
     .toBuffer()
 
@@ -35,21 +39,59 @@ export default async function (req, res, next) {
   res.end(buffer)
 }
 
+function imageFromXcard (xcard) {
+  return sharp(`ogp/cards/${xcard.cid}.jpg`).grayscale(xcard.dropped).toBuffer()
+}
+
 const OGP_WIDTH = 1200
 const OGP_HEIGHT = 630
 const CARD_WIDTH = 184
 const CARD_HEIGHT = 260
+const KEPT_CARD_WIDTH = 156
+const KEPT_CARD_HEIGHT = 220
+const DROPPED_CARD_WIDTH = 78
+const DROPPED_CARD_HEIGHT = 110
 
-function compositeRuleFor10 (xcard, i) {
+function compositeRuleFor10 (image, i, _n) {
   const c = i % 5
   const r = Math.floor(i / 5)
   const xSpace = (OGP_WIDTH - CARD_WIDTH * 5) / 6
   const ySpace = (OGP_HEIGHT - CARD_HEIGHT * 2) / 3
   return {
-    input: `ogp/cards/${xcard.cid}.jpg`,
+    input: image,
     gravity: 'northwest',
     left: Math.floor(xSpace * (c + 1) + CARD_WIDTH * c),
     top: Math.floor(ySpace * (r + 1) + CARD_HEIGHT * r)
+  }
+}
+
+async function compositeRuleFor12To14 (image, i, n) {
+  const kept = i < 10
+  const resizedImage = await sharp(image)
+    .resize(
+      kept
+      ? { width: KEPT_CARD_WIDTH, height: KEPT_CARD_HEIGHT }
+      : { width: DROPPED_CARD_WIDTH, height: DROPPED_CARD_HEIGHT }
+    )
+    .toBuffer()
+  const c = i % 5
+  const r = Math.floor(i / 5)
+  const ySpace = (OGP_HEIGHT - (KEPT_CARD_HEIGHT * 2 + DROPPED_CARD_HEIGHT)) / 4
+  const xPadding = kept
+    ? (OGP_WIDTH - KEPT_CARD_WIDTH * 5) / 6
+    : 20
+  const xMargin = kept
+    ? xPadding
+    : (OGP_WIDTH - (DROPPED_CARD_WIDTH * (n - 10) + xPadding * (n - 10 - 1))) / 2
+  return {
+    input: resizedImage,
+    gravity: 'northwest',
+    left: Math.floor(
+      kept
+      ? xMargin + (KEPT_CARD_WIDTH + xPadding) * c
+      : xMargin + (DROPPED_CARD_WIDTH + xPadding) * c
+    ),
+    top: Math.floor(ySpace * (r + 1) + KEPT_CARD_HEIGHT * r)
   }
 }
 
