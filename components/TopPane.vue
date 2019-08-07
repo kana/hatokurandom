@@ -31,7 +31,7 @@
 
 <script>
 import FadeInOut from '~/components/FadeInOut'
-import { isCardListPid, pathFromPid, parentPidFromPid, pidFromPath, sidFromPid, sortXcards, titleFromPid, xcardsFromPid } from '~/lib/constants'
+import { isCardListPid, pathFromPid, parentPidFromPid, permalinkFromPid, pidFromPath, sidFromPid, sortXcards, titleFromPid, xcardsFromPid } from '~/lib/constants'
 
 export default {
   name: 'TopPane',
@@ -39,9 +39,6 @@ export default {
     FadeInOut
   },
   computed: {
-    locationOrigin () {
-      return 'https://hatokurandom.whileimautomaton.net'
-    },
     pid () {
       return pidFromPath(this.$route.path)
     },
@@ -59,7 +56,7 @@ export default {
         return null
       }
 
-      const permalink = `${this.locationOrigin}/${this.sharePid}`
+      const permalink = permalinkFromPid(this.sharePid)
       const isReferencePage = /^reference:/.test(this.sharePid)
       const usedCardNames = sortXcards(xcardsFromPid(this.sharePid))
         .filter(xcard => !xcard.dropped)
