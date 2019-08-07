@@ -18,6 +18,7 @@ export default {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { name: 'apple-mobile-web-app-capable', content: 'yes' },
       { name: 'apple-mobile-web-app-status-bar-style', content: 'black' },
+      { name: 'og:site_name', content: 'ハトクランダム' },
       {
         hid: 'description',
         name: 'description',
