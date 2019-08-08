@@ -1,4 +1,4 @@
-const DEFAULT_OPTIONS = {
+export const DEFAULT_OPTIONS = {
   excludeBannedCardsByUser: [], // cid[]
   excludeBannedCardsForAll: true,
   excludeBannedCardsForFairy: true,

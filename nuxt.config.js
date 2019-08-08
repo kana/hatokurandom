@@ -75,6 +75,7 @@ export default {
    */
   axios: {},
   serverMiddleware: [
+    { path: '/api/slack', handler: '~/serverMiddleware/slack' },
     { path: '/ogp', handler: '~/serverMiddleware/ogp' },
     '~/serverMiddleware/cache'
   ],
