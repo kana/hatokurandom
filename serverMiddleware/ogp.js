@@ -24,7 +24,7 @@ export default async function (req, res, next) {
     return notFound(res)
   }
 
-  const images = await Promise.all(xcards.map(imageFromXcard))
+  const images = await Promise.all(xcards.map(xcard => imageFromXcard(xcard, xcards)))
   const compositeRule = xcards.length === 10 ? compositeRuleFor10 : compositeRuleFor12To14
   const rules = await Promise.all(images.map((image, i) => compositeRule(image, i, xcards.length)))
 
@@ -39,7 +39,7 @@ export default async function (req, res, next) {
   res.end(buffer)
 }
 
-function imageFromXcard (xcard) {
+function imageFromXcard (xcard, xcards) {
   return sharp(`ogp/cards/${xcard.cid}.jpg`).grayscale(xcard.dropped).toBuffer()
 }
 
