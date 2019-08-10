@@ -40,7 +40,17 @@ export default async function (req, res, next) {
 }
 
 function imageFromXcard (xcard, xcards) {
-  return sharp(`ogp/cards/${xcard.cid}.jpg`).grayscale(xcard.dropped).toBuffer()
+  const variant = calculateImageVariant(xcard, xcards)
+  return sharp(`ogp/cards/${xcard.cid}${variant}.jpg`).grayscale(xcard.dropped).toBuffer()
+}
+
+function calculateImageVariant (xcard, xcards) {
+  if (xcard.name === '呪いの人形') {
+    const i = xcards.map(xcard => xcard.cid).reduce((acc, n) => acc + n) % 5
+    return 'abcde'[i]
+  } else {
+    return ''
+  }
 }
 
 const OGP_WIDTH = 1200
