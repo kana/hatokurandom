@@ -1145,12 +1145,13 @@
     eslint-plugin-unicorn "^9.1.1"
     eslint-plugin-vue "^5.2.3"
 
-"@nuxtjs/eslint-module@^0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@nuxtjs/eslint-module/-/eslint-module-0.0.1.tgz#fecad1dd8c75ad2e71286284bdebd104cf3c4822"
-  integrity sha512-KAiSZMgomUAojQjBaPAJaRHd/bZRknSJdgwwcN2UlOFGfHEnFkman6kag99qfes235XCIPHzR4FOKjEeWZcYaA==
+"@nuxtjs/eslint-module@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/eslint-module/-/eslint-module-1.0.0.tgz#00edf65e0c8f61fa2246339149d906d5ba2751b6"
+  integrity sha512-WBh3tBhyc7hP1jKToC4j5sUFDhoikbz3rTGtEWDvHHyC4j8qw4OOqfPQ7onScTzM1xio+XRdMTbOxwoDCHc+cQ==
   dependencies:
-    eslint-loader "^2.1.2"
+    consola "^2.9.0"
+    eslint-loader "^2.2.1"
 
 "@nuxtjs/google-analytics@^2.2.0":
   version "2.2.0"
@@ -3622,7 +3623,7 @@ eslint-import-resolver-node@^0.3.2:
     debug "^2.6.9"
     resolve "^1.5.0"
 
-eslint-loader@^2.1.2:
+eslint-loader@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/eslint-loader/-/eslint-loader-2.2.1.tgz#28b9c12da54057af0845e2a6112701a2f6bf8337"
   integrity sha512-RLgV9hoCVsMLvOxCuNjdqOrUqIj9oJg8hF44vzJaYqsAHuY9G2YAeN3joQ9nxP0p5Th9iFSIpKo+SD8KISxXRg==
