@@ -1,7 +1,7 @@
 import { chooseRandomCards, ogpImageUrlFromPid, permalinkFromPid, rsidFromXcards, sortXcards } from '../lib/constants'
 import { DEFAULT_OPTIONS } from '../store/options'
 
-export default async function (req, res, next) {
+export default function (req, res, next) {
   // This endpoint should verify whether each request is really sent from Slack
   // or not.  But there is no data to be modified by any request for this
   // applciation.  So that verification is intentionally omitted.
