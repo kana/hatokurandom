@@ -57,7 +57,7 @@ export default {
       }
 
       const permalink = permalinkFromPid(this.sharePid)
-      const isReferencePage = /^reference:/.test(this.sharePid)
+      const isReferencePage = this.sharePid.startsWith('reference:')
       const usedCardNames = sortXcards(xcardsFromPid(this.sharePid))
         .filter(xcard => !xcard.dropped)
         .map(xcard => xcard.name)

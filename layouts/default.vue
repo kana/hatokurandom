@@ -18,7 +18,7 @@ import TopPane from '~/components/TopPane'
 import { pathFromPid, parentPidFromPid, pidFromPath } from '~/lib/constants'
 
 function clientXFromEvent (event) {
-  if (event.type.indexOf('mouse') !== -1) {
+  if (event.type.includes('mouse')) {
     return event.clientX
   }
   return event.touches[0].clientX
@@ -42,7 +42,7 @@ export default {
       if (this.toParent) {
         return this.toParent
       }
-      if (this.pid.match(/^preferences/)) {
+      if (this.pid.startsWith('preferences')) {
         return '/'
       }
       return undefined
