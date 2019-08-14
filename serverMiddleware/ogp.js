@@ -1,6 +1,6 @@
 import { readFileSync } from 'fs'
-import sharp from 'sharp'
 import { parse } from 'url'
+import sharp from 'sharp'
 import { parseSpecialPid, pidFromPath, sortXcards, xcardsFromPid } from '../lib/constants'
 
 // Handler for /ogp/supply:{sid}
@@ -80,8 +80,8 @@ async function compositeRuleFor12To14 (image, i, n) {
   const resizedImage = await sharp(image)
     .resize(
       kept
-      ? { width: KEPT_CARD_WIDTH, height: KEPT_CARD_HEIGHT }
-      : { width: DROPPED_CARD_WIDTH, height: DROPPED_CARD_HEIGHT }
+        ? { width: KEPT_CARD_WIDTH, height: KEPT_CARD_HEIGHT }
+        : { width: DROPPED_CARD_WIDTH, height: DROPPED_CARD_HEIGHT }
     )
     .toBuffer()
   const c = i % 5
@@ -98,8 +98,8 @@ async function compositeRuleFor12To14 (image, i, n) {
     gravity: 'northwest',
     left: Math.floor(
       kept
-      ? xMargin + (KEPT_CARD_WIDTH + xPadding) * c
-      : xMargin + (DROPPED_CARD_WIDTH + xPadding) * c
+        ? xMargin + (KEPT_CARD_WIDTH + xPadding) * c
+        : xMargin + (DROPPED_CARD_WIDTH + xPadding) * c
     ),
     top: Math.floor(ySpace * (r + 1) + KEPT_CARD_HEIGHT * r)
   }
