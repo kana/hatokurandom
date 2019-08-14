@@ -1,10 +1,10 @@
-import { parse } from 'url'
+import { URL } from 'url'
 import sharp from 'sharp'
-import { parseSpecialPid, pidFromPath, sortXcards, xcardsFromPid } from '../lib/constants'
+import { LOCATION_ORIGIN, parseSpecialPid, pidFromPath, sortXcards, xcardsFromPid } from '../lib/constants'
 
 // Handler for /ogp/supply:{sid}
 export default async function (req, res, next) {
-  const { pathname } = parse(req.url)
+  const { pathname } = new URL(req.url, LOCATION_ORIGIN)
 
   // Note that pathname doesn't contain "/ogp".
   const pid = pidFromPath(pathname)
