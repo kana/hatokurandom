@@ -1,4 +1,3 @@
-import { readFileSync } from 'fs'
 import { parse } from 'url'
 import sharp from 'sharp'
 import { parseSpecialPid, pidFromPath, sortXcards, xcardsFromPid } from '../lib/constants'
