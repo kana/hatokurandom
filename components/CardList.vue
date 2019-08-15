@@ -27,7 +27,7 @@
     </template>
 
     <fade-in-out>
-      <shuffle-button v-if="special.random" class="shuffle-button" @click="shuffle" />
+      <shuffle-button v-if="shuffleButtonVisible && special.random" class="shuffle-button" @click="shuffle" />
     </fade-in-out>
 
     <fade-in-out>
@@ -47,6 +47,7 @@ import FadeInOut from '~/components/FadeInOut'
 import OmniList from '~/components/OmniList'
 import OmniListItem from '~/components/OmniListItem'
 import ShuffleButton from '~/components/ShuffleButton'
+import EventBus from '~/lib/eventbus'
 import { isPredefinedSupplyPid, parseSpecialPid, rsidFromXcards, sortXcards, xcardsFromPid, xcardsFromRsid } from '~/lib/utils'
 
 export default {
@@ -67,6 +68,7 @@ export default {
   },
   data () {
     return {
+      shuffleButtonVisible: true,
       xcards: this.$route.query.rsid
         ? xcardsFromRsid(this.$route.query.rsid)
         : xcardsFromPid(this.pid, this.$store.state.options)
@@ -131,6 +133,11 @@ export default {
   },
   mounted () {
     this.onUpdateXcards()
+
+    // To smoothly fade out the shuffle button.
+    EventBus.$once('leaving-from-randomizer-page', () => {
+      this.shuffleButtonVisible = false
+    })
   },
   methods: {
     onUpdateXcards () {
