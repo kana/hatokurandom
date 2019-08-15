@@ -1,6 +1,6 @@
 import { URL } from 'url'
 import sharp from 'sharp'
-import { LOCATION_ORIGIN, parseSpecialPid, pidFromPath, sortXcards, xcardsFromPid } from '../lib/constants'
+import { LOCATION_ORIGIN, parseSpecialPid, pidFromPath, sortXcards, xcardsFromPid } from '../lib/utils'
 
 // Handler for /ogp/supply:{sid}
 export default async function (req, res, next) {

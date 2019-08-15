@@ -59,7 +59,7 @@ import LinkButtonListItem from '~/components/LinkButtonListItem'
 import OmniList from '~/components/OmniList'
 import OmniListItem from '~/components/OmniListItem'
 import PageContainer from '~/components/PageContainer'
-import { titleFromPid, transition } from '~/lib/constants'
+import { titleFromPid, transition } from '~/lib/utils'
 
 export default {
   components: {

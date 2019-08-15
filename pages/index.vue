@@ -7,7 +7,7 @@
 <script>
 import PageContainer from '~/components/PageContainer'
 import PageList from '~/components/PageList'
-import { isCardListPid, isPageListPid, titleFromPid, transition } from '~/lib/constants'
+import { isCardListPid, isPageListPid, titleFromPid, transition } from '~/lib/utils'
 
 export default {
   components: {

@@ -39,7 +39,7 @@ import CardListItem from '~/components/CardListItem'
 import OmniList from '~/components/OmniList'
 import OmniListItem from '~/components/OmniListItem'
 import PageContainer from '~/components/PageContainer'
-import { COMMON_CARDS, sortXcards, titleFromPid, transition } from '~/lib/constants'
+import { COMMON_CARDS, sortXcards, titleFromPid, transition } from '~/lib/utils'
 
 export default {
   components: {

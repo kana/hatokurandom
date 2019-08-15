@@ -19,7 +19,7 @@
 
 <script>
 import OmniListItem from '~/components/OmniListItem'
-import { expansionFromEid } from '~/lib/constants'
+import { expansionFromEid } from '~/lib/utils'
 
 export default {
   name: 'CardListItem',

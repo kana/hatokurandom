@@ -47,7 +47,7 @@ import FadeInOut from '~/components/FadeInOut'
 import OmniList from '~/components/OmniList'
 import OmniListItem from '~/components/OmniListItem'
 import ShuffleButton from '~/components/ShuffleButton'
-import { isPredefinedSupplyPid, parseSpecialPid, rsidFromXcards, sortXcards, xcardsFromPid, xcardsFromRsid } from '~/lib/constants'
+import { isPredefinedSupplyPid, parseSpecialPid, rsidFromXcards, sortXcards, xcardsFromPid, xcardsFromRsid } from '~/lib/utils'
 
 export default {
   name: 'CardList',

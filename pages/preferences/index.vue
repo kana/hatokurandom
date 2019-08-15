@@ -103,7 +103,7 @@ import OmniListItem from '~/components/OmniListItem'
 import PageContainer from '~/components/PageContainer'
 import PreferenceSwitch from '~/components/PreferenceSwitch'
 import SegmentedButtonGroup from '~/components/SegmentedButtonGroup'
-import { EXPANSIONS, cardFromCid, titleFromPid, transition } from '~/lib/constants'
+import { EXPANSIONS, cardFromCid, titleFromPid, transition } from '~/lib/utils'
 
 function mapOptionStore (keys) {
   const computed = {}

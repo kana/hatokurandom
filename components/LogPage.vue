@@ -18,7 +18,7 @@
 import OmniListItem from '~/components/OmniListItem'
 import PageList from '~/components/PageList'
 import PageListItem from '~/components/PageListItem'
-import { excerptFromPid, pathFromPid, pidFromSid, titleFromPid } from '~/lib/constants'
+import { excerptFromPid, pathFromPid, pidFromSid, titleFromPid } from '~/lib/utils'
 
 export default {
   components: {

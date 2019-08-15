@@ -1,4 +1,4 @@
-import { chooseRandomCards, ogpImageUrlFromPid, permalinkFromPid, rsidFromXcards, sortXcards } from '../lib/constants'
+import { chooseRandomCards, ogpImageUrlFromPid, permalinkFromPid, rsidFromXcards, sortXcards } from '../lib/utils'
 import { DEFAULT_OPTIONS } from '../store/options'
 
 export default function (req, res, next) {

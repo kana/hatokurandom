@@ -15,7 +15,7 @@
 <script>
 import OmniList from '~/components/OmniList'
 import PageListItem from '~/components/PageListItem'
-import { childPidsFromPid, pathFromPid, titleFromPid } from '~/lib/constants'
+import { childPidsFromPid, pathFromPid, titleFromPid } from '~/lib/utils'
 
 export default {
   name: 'PageList',

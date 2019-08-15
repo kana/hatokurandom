@@ -15,7 +15,7 @@
 <script>
 import BottomPane from '~/components/BottomPane'
 import TopPane from '~/components/TopPane'
-import { pathFromPid, parentPidFromPid, pidFromPath } from '~/lib/constants'
+import { pathFromPid, parentPidFromPid, pidFromPath } from '~/lib/utils'
 
 function clientXFromEvent (event) {
   if (event.type.includes('mouse')) {

@@ -11,7 +11,7 @@ import CardList from '~/components/CardList'
 import LogPage from '~/components/LogPage'
 import PageContainer from '~/components/PageContainer'
 import PageList from '~/components/PageList'
-import { isCardListPid, isPageListPid, ogpMetaFromPid, titleFromPid, transition } from '~/lib/constants'
+import { isCardListPid, isPageListPid, ogpMetaFromPid, titleFromPid, transition } from '~/lib/utils'
 
 export default {
   components: {
