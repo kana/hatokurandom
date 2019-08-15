@@ -40,10 +40,11 @@ export default {
     '~/plugins/vue2-touch-events',
     { src: '~/plugins/hooks.client', mode: 'client' }
   ],
+  devModules: [
+    '@nuxtjs/eslint-module'
+  ],
   modules: [
-    // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/eslint-module',
     ['@nuxtjs/google-analytics', {
       dev: false,
       // debug: {
