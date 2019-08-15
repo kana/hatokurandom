@@ -27,11 +27,11 @@
     </template>
 
     <fade-in-out>
-      <shuffle-button v-if="shuffleButtonVisible && special.random" class="shuffle-button" @click="shuffle" />
+      <shuffle-button v-if="!leaving && special.random" class="shuffle-button" @click="shuffle" />
     </fade-in-out>
 
     <fade-in-out>
-      <div v-if="special.editable && !playable" class="playable-status">
+      <div v-if="!leaving && special.editable && !playable" class="playable-status">
         <div class="message">
           {{ playableStatusMessage }}
         </div>
@@ -68,7 +68,7 @@ export default {
   },
   data () {
     return {
-      shuffleButtonVisible: true,
+      leaving: false,
       xcards: this.$route.query.rsid
         ? xcardsFromRsid(this.$route.query.rsid)
         : xcardsFromPid(this.pid, this.$store.state.options)
@@ -134,9 +134,9 @@ export default {
   mounted () {
     this.onUpdateXcards()
 
-    // To smoothly fade out the shuffle button.
+    // To smoothly fade out shuffle-button and playable-status.
     EventBus.$once('leaving-from-randomizer-page', () => {
-      this.shuffleButtonVisible = false
+      this.leaving = true
     })
   },
   methods: {
