@@ -44,7 +44,6 @@ export default {
     '@nuxtjs/eslint-module'
   ],
   modules: [
-    '@nuxtjs/axios',
     ['@nuxtjs/google-analytics', {
       dev: false,
       // debug: {
