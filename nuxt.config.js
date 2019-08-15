@@ -7,9 +7,6 @@ export default {
   env: {
     version
   },
-  /*
-   ** Headers of the page
-   */
   head: {
     title: 'ハトクランダム',
     titleTemplate: '%s | ハトクランダム',
@@ -32,29 +29,17 @@ export default {
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico?v=2' }]
   },
-  /*
-   ** Customize the progress-bar color
-   */
   loading: { color: '#fff' },
-  /*
-   ** Global CSS
-   */
   css: [
     '@fortawesome/fontawesome-svg-core/styles.css',
     '~/assets/main.css'
   ],
-  /*
-   ** Plugins to load before mounting the App
-   */
   plugins: [
     '~/plugins/fontawesome',
     '~/plugins/router',
     '~/plugins/vue2-touch-events',
     { src: '~/plugins/hooks.client', mode: 'client' }
   ],
-  /*
-   ** Nuxt.js modules
-   */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
@@ -69,22 +54,12 @@ export default {
     }],
     '@nuxtjs/redirect-module'
   ],
-  /*
-   ** Axios module configuration
-   ** See https://axios.nuxtjs.org/options
-   */
   axios: {},
   serverMiddleware: [
     { path: '/api/slack', handler: '~/serverMiddleware/slack' },
     { path: '/ogp', handler: '~/serverMiddleware/ogp' }
   ],
-  /*
-   ** Build configuration
-   */
   build: {
-    /*
-     ** You can extend webpack config here
-     */
     extend(config, ctx) {},
     // Workaround for Safari to avoid infinite loop when hot reloading.
     // See also: https://github.com/nuxt/nuxt.js/issues/3828#issuecomment-508428611
