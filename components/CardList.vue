@@ -154,6 +154,10 @@ export default {
     },
     shuffle () {
       this.xcards = xcardsFromPid(this.pid, this.$store.state.options)
+      this.$ga.event({
+        eventCategory: 'supply',
+        eventAction: 'shuffle'
+      })
     }
   }
 }
