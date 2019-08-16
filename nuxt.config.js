@@ -45,7 +45,6 @@ export default {
   ],
   modules: [
     ['@nuxtjs/google-analytics', {
-      dev: false,
       // debug: {
       //   enabled: true,
       //   sendHitTask: true
