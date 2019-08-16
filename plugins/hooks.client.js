@@ -3,4 +3,8 @@ if (process.browser) {
     app.$store.dispatch('options/loadSavedState')
     app.$store.dispatch('log/loadSavedState')
   })
+
+  if (navigator.standalone) {
+    document.body.classList.add('standalone')
+  }
 }

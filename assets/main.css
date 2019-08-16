@@ -34,6 +34,11 @@ body {
   margin: 0;
 }
 
+body.standalone {
+  -webkit-touch-callout: none;
+  user-select: none;
+}
+
 a {
   color: var(--link-text-color);
   text-decoration: none;
