@@ -95,6 +95,13 @@ export default {
         sid: sidFromPid(this.sharePid),
         at: Date.now()
       })
+
+      this.$ga.event({
+        eventCategory: 'supply',
+        eventAction: 'share',
+        eventLabel: this.sharePid
+      })
+
       // Propagate click event to let the browser open shareUrl.
     }
   }
