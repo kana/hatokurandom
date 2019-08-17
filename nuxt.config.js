@@ -17,11 +17,6 @@ export default {
       { name: 'apple-mobile-web-app-status-bar-style', content: 'black' },
       { name: 'og:site_name', content: 'ハトクランダム' },
       {
-        hid: 'description',
-        name: 'description',
-        content: 'ハートオブクラウンを楽しく遊ぶ為のランダマイザです。'
-      },
-      {
         hid: 'og:type',
         property: 'og:type',
         content: 'website'
