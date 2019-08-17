@@ -143,6 +143,37 @@ export default {
   width: 100%;
 }
 
+.title:before,
+.title:after {
+  content: '';
+  display: block;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  width: calc(2em + 1ex);
+  z-index: 1;
+}
+
+.title:before {
+  background: linear-gradient(
+    to right,
+    var(--header-background-color) 0,
+    var(--header-background-color) 1.5em,
+    var(--header-background-color-transparent) 100%
+  );
+  left: 0;
+}
+
+.title:after {
+  background: linear-gradient(
+    to left,
+    var(--header-background-color) 0,
+    var(--header-background-color) 1.5em,
+    var(--header-background-color-transparent) 100%
+  );
+  right: 0;
+}
+
 .text {
   box-sizing: border-box;
   display: inline-block;
@@ -213,6 +244,7 @@ export default {
 
 .back-to-parent-button {
   flex: none;
+  z-index: 2;
 }
 
 .back-to-parent-button-inner {
@@ -239,6 +271,7 @@ export default {
 
 .share-button {
   flex: none;
+  z-index: 2;
 }
 
 .share-button-inner {
