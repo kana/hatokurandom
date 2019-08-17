@@ -16,7 +16,6 @@ export default {
   },
   head: {
     title: titleFromPid('home'),
-    titleTemplate: null,
     meta: ogpMetaFromPid('home')
   },
   transition,
