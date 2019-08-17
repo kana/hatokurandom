@@ -8,7 +8,7 @@
       </nuxt-link>
     </fade-in-out>
     <div class="title">
-      <transition name="shift">
+      <transition :name="transition">
         <div :key="title" class="text">
           <span>{{ title }}</span>
         </div>
@@ -33,12 +33,17 @@
 
 <script>
 import FadeInOut from '~/components/FadeInOut'
-import { isCardListPid, pathFromPid, parentPidFromPid, permalinkFromPid, pidFromPath, sidFromPid, sortXcards, titleFromPid, xcardsFromPid } from '~/lib/utils'
+import { isCardListPid, isForwardTransitionByPids, pathFromPid, parentPidFromPid, permalinkFromPid, pidFromPath, sidFromPid, sortXcards, titleFromPid, xcardsFromPid } from '~/lib/utils'
 
 export default {
   name: 'TopPane',
   components: {
     FadeInOut
+  },
+  data () {
+    return {
+      transition: 'shift-forward'
+    }
   },
   computed: {
     pid () {
@@ -84,6 +89,13 @@ export default {
     toParent () {
       const parentPid = parentPidFromPid(this.pid)
       return parentPid !== undefined ? pathFromPid(parentPid) : undefined
+    }
+  },
+  watch: {
+    pid (newPid, oldPid) {
+      this.transition = isForwardTransitionByPids(newPid, oldPid)
+        ? 'shift-forward'
+        : 'shift-backward'
     }
   },
   methods: {
@@ -143,32 +155,60 @@ export default {
   white-space: nowrap;
 }
 
-.shift-enter-active,
-.shift-leave-active {
+.shift-forward-enter-active,
+.shift-forward-leave-active {
   transition: opacity 0.4s, transform 0.4s;
 }
 
-.shift-enter-active {
+.shift-forward-enter-active {
   left: 50%;
   position: absolute;
 }
 
-.shift-enter {
+.shift-forward-enter {
   opacity: 0;
   transform: translateX(calc(-50% + 100vw));
 }
-.shift-enter-to {
+.shift-forward-enter-to {
   opacity: 1;
   transform: translateX(-50%);
 }
 
-.shift-leave {
+.shift-forward-leave {
   opacity: 1;
   transform: translateX(0);
 }
-.shift-leave-to {
+.shift-forward-leave-to {
   opacity: 0;
-  transform: translateX(calc(-100vw));
+  transform: translateX(-100vw);
+}
+
+.shift-backward-enter-active,
+.shift-backward-leave-active {
+  transition: opacity 0.256s, transform 0.256s;
+}
+
+.shift-backward-enter-active {
+  left: 50%;
+  position: absolute;
+}
+
+.shift-backward-enter {
+  opacity: 0;
+  transform: translateX(calc(-50% - 100vw));
+}
+.shift-backward-enter-to {
+  opacity: 1;
+  transform: translateX(-50%);
+}
+
+.shift-backward-leave {
+  opacity: 1;
+  transform: translateX(0);
+}
+.shift-backward-leave-to {
+  opacity: 0;
+  transform: translateX(100vw);
 }
 
 .back-to-parent-button {
