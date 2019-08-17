@@ -8,9 +8,11 @@
       </nuxt-link>
     </fade-in-out>
     <div class="title">
-      <div class="text">
-        {{ title }}
-      </div>
+      <transition name="shift">
+        <div :key="title" class="text">
+          <span>{{ title }}</span>
+        </div>
+      </transition>
     </div>
     <fade-in-out>
       <a
@@ -121,8 +123,12 @@ export default {
 }
 
 .title {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  position: relative;
   width: 100%;
-  text-align: center;
 }
 
 .text {
@@ -135,6 +141,34 @@ export default {
   text-align: center;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.shift-enter-active,
+.shift-leave-active {
+  transition: opacity 0.4s, transform 0.4s;
+}
+
+.shift-enter-active {
+  left: 50%;
+  position: absolute;
+}
+
+.shift-enter {
+  opacity: 0;
+  transform: translateX(calc(50vw - 50%));
+}
+.shift-enter-to {
+  opacity: 1;
+  transform: translateX(-50%);
+}
+
+.shift-leave {
+  opacity: 1;
+  transform: translateX(0);
+}
+.shift-leave-to {
+  opacity: 0;
+  transform: translateX(calc(50% - 50vw));
 }
 
 .back-to-parent-button {
