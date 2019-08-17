@@ -39,7 +39,7 @@ import CardListItem from '~/components/CardListItem'
 import OmniList from '~/components/OmniList'
 import OmniListItem from '~/components/OmniListItem'
 import PageContainer from '~/components/PageContainer'
-import { COMMON_CARDS, sortXcards, titleFromPid, transition } from '~/lib/utils'
+import { COMMON_CARDS, ogpMetaFromPid, sortXcards, titleFromPid, transition } from '~/lib/utils'
 
 export default {
   components: {
@@ -50,7 +50,8 @@ export default {
     PageContainer
   },
   head: {
-    title: titleFromPid('preferences/banned-cards')
+    title: titleFromPid('preferences/banned-cards'),
+    meta: ogpMetaFromPid('preferences/banned-cards')
   },
   transition,
   data () {

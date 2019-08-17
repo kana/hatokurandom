@@ -103,7 +103,7 @@ import OmniListItem from '~/components/OmniListItem'
 import PageContainer from '~/components/PageContainer'
 import PreferenceSwitch from '~/components/PreferenceSwitch'
 import SegmentedButtonGroup from '~/components/SegmentedButtonGroup'
-import { EXPANSIONS, cardFromCid, titleFromPid, transition } from '~/lib/utils'
+import { EXPANSIONS, cardFromCid, ogpMetaFromPid, titleFromPid, transition } from '~/lib/utils'
 
 function mapOptionStore (keys) {
   const computed = {}
@@ -134,7 +134,8 @@ export default {
     SegmentedButtonGroup
   },
   head: {
-    title: titleFromPid('preferences')
+    title: titleFromPid('preferences'),
+    meta: ogpMetaFromPid('preferences')
   },
   transition,
   computed: {
