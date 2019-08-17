@@ -155,7 +155,7 @@ export default {
 
 .shift-enter {
   opacity: 0;
-  transform: translateX(calc(50vw - 50%));
+  transform: translateX(calc(-50% + 100vw));
 }
 .shift-enter-to {
   opacity: 1;
@@ -168,7 +168,7 @@ export default {
 }
 .shift-leave-to {
   opacity: 0;
-  transform: translateX(calc(50% - 50vw));
+  transform: translateX(calc(-100vw));
 }
 
 .back-to-parent-button {
