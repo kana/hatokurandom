@@ -59,7 +59,7 @@ import LinkButtonListItem from '~/components/LinkButtonListItem'
 import OmniList from '~/components/OmniList'
 import OmniListItem from '~/components/OmniListItem'
 import PageContainer from '~/components/PageContainer'
-import { ogpMetaFromPid, titleFromPid, transition } from '~/lib/utils'
+import { ogpMetaFromPid, titleTagValueFromPid, transition } from '~/lib/utils'
 
 export default {
   components: {
@@ -70,7 +70,7 @@ export default {
     PageContainer
   },
   head: {
-    title: titleFromPid('about'),
+    title: titleTagValueFromPid('about'),
     meta: ogpMetaFromPid('about')
   },
   transition,

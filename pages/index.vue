@@ -7,7 +7,7 @@
 <script>
 import PageContainer from '~/components/PageContainer'
 import PageList from '~/components/PageList'
-import { isCardListPid, isPageListPid, ogpMetaFromPid, titleFromPid, transition } from '~/lib/utils'
+import { isCardListPid, isPageListPid, ogpMetaFromPid, titleTagValueFromPid, transition } from '~/lib/utils'
 
 export default {
   components: {
@@ -15,7 +15,7 @@ export default {
     PageList
   },
   head: {
-    title: titleFromPid('home'),
+    title: titleTagValueFromPid('home'),
     meta: ogpMetaFromPid('home')
   },
   transition,
