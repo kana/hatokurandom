@@ -89,7 +89,7 @@ a {
   min-height: 100vh;
   position: absolute;
   top: var(--top-pane-height);
-  transition: left 0.4s;
+  transition: left 0.256s;
   width: 100%;
 }
 .page-backward-enter {
@@ -118,7 +118,7 @@ a {
   left: 0;
   position: absolute;
   top: 0;
-  transition: background 0.4s;
+  transition: background 0.256s;
   width: 100%;
 }
 .page-backward-enter-active.page-backward-enter-to:after {
