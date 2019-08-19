@@ -1,8 +1,8 @@
 <template>
   <page-list>
     <page-list-item
-      v-for="item in items"
-      :key="item.pid"
+      v-for="(item, i) in items"
+      :key="i"
       :path="item.path"
       :title="item.title"
       :excerpt="item.excerpt"
