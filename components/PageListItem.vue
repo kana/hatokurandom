@@ -10,7 +10,7 @@
     <div class="right">
       <font-awesome-icon icon="angle-right" size="lg" class="icon" />
     </div>
-    <div v-if="deletable" class="delete">
+    <div v-if="deletable" class="delete" @click="onClick">
       [x]
     </div>
   </link-list-item>
@@ -44,6 +44,12 @@ export default {
     title: {
       type: String,
       required: true
+    }
+  },
+  methods: {
+    onClick (e) {
+      e.preventDefault()
+      this.$emit('delete')
     }
   }
 }
