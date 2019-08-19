@@ -13,6 +13,7 @@
       :deletable="i === deletableIndex"
       :data-index="i"
       @touchmove="onTouchMove"
+      @delete="onDelete(i)"
     />
     <omni-list-item v-if="items.length === 0" class="list-item empty-message">
       ログがありません。
@@ -74,6 +75,10 @@ export default {
       }
     },
     onTouchMove (e) {
+    },
+    onDelete (index) {
+      this.$store.dispatch('log/delete', { index })
+      this.deletableIndex = -1
     },
     pad (n, width) {
       let s = n.toString()

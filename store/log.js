@@ -8,6 +8,9 @@ export const state = () => ({
 })
 
 export const mutations = {
+  delete (state, { index }) {
+    state.items.splice(index, 1)
+  },
   pop (state) {
     state.items.pop()
   },
@@ -35,6 +38,10 @@ export const actions = {
     if (state.items.length > MAX_ITEM_COUNT) {
       commit('pop')
     }
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state.items))
+  },
+  delete ({ commit, state }, { index }) {
+    commit('delete', { index })
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state.items))
   }
 }
