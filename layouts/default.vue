@@ -1,6 +1,5 @@
 <template>
   <div
-    v-touch:start="onTouchStart"
     v-touch:swipe.right="onSwipeRight"
     class="app"
   >
@@ -17,22 +16,10 @@ import BottomPane from '~/components/BottomPane'
 import TopPane from '~/components/TopPane'
 import { pathFromPid, parentPidFromPid, pidFromPath } from '~/lib/utils'
 
-function clientXFromEvent (event) {
-  if (event.type.includes('mouse')) {
-    return event.clientX
-  }
-  return event.touches[0].clientX
-}
-
 export default {
   components: {
     BottomPane,
     TopPane
-  },
-  data () {
-    return {
-      touchStartX: 0
-    }
   },
   computed: {
     pid () {
@@ -56,14 +43,11 @@ export default {
     // Back-to-parent-view gesture support.
     onSwipeRight (e) {
       const screenLeftEdgeWidth = window.innerWidth * 20 / 100
-      if (this.touchStartX < screenLeftEdgeWidth) {
+      if (e.currentTarget.$$touchObj.startX < screenLeftEdgeWidth) {
         if (this.toBack) {
           this.$router.push(this.toBack)
         }
       }
-    },
-    onTouchStart (e) {
-      this.touchStartX = clientXFromEvent(e)
     }
   }
 }
