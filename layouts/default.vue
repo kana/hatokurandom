@@ -41,25 +41,38 @@ export default {
     }
   },
   methods: {
+    isTouchStartedInGestureableArea (e) {
+      const screenLeftEdgeWidth = window.innerWidth * 20 / 100
+      return e.currentTarget.$$touchObj.startX < screenLeftEdgeWidth
+    },
     // Back-to-parent-view gesture support.
     onSwipeRight (_right, e) {
-      const screenLeftEdgeWidth = window.innerWidth * 20 / 100
-      if (e.currentTarget.$$touchObj.startX < screenLeftEdgeWidth) {
-        if (this.toBack) {
-          this.$router.push(this.toBack)
-        }
+      if (!this.isTouchStartedInGestureableArea(e)) {
+        return
       }
+
+      if (!this.toBack) {
+        return
+      }
+
+      this.$router.push(this.toBack)
     },
     // Prevent vertical scroll if user seesm to be doing a gesture.
     // This handler must be bound by @touchmove instead of v-touch:moved,
     // because the latter is passive so e.preventDefault() does nothing.
     onTouchMove (e) {
+      if (!this.isTouchStartedInGestureableArea(e)) {
+        return
+      }
+
       const t = e.currentTarget.$$touchObj
       const dx = t.currentX - t.startX
       const dy = t.currentY - t.startY
-      if (Math.abs(dx) >= Math.abs(dy) * 2) {
-        e.preventDefault()
+      if (Math.abs(dx) < Math.abs(dy) * 2) {
+        return
       }
+
+      e.preventDefault()
     }
   }
 }
