@@ -1,5 +1,5 @@
 <template>
-  <link-list-item :path="path" class="line">
+  <link-list-item :path="path" :class="{ deletable }" class="line">
     <div class="left">
       <div class="above">
         <span class="label">{{ title }}</span>
@@ -9,6 +9,9 @@
     </div>
     <div class="right">
       <font-awesome-icon icon="angle-right" size="lg" class="icon" />
+    </div>
+    <div class="delete" @click="onClick">
+      <font-awesome-icon icon="trash-alt" size="lg" class="icon" />
     </div>
   </link-list-item>
 </template>
@@ -26,6 +29,10 @@ export default {
       type: String,
       default: null
     },
+    deletable: {
+      type: Boolean,
+      default: false
+    },
     excerpt: {
       type: String,
       default: null
@@ -38,11 +45,32 @@ export default {
       type: String,
       required: true
     }
+  },
+  methods: {
+    onClick (e) {
+      e.preventDefault()
+      this.$emit('delete')
+    }
   }
 }
 </script>
 
 <style scoped>
+
+.line {
+  overflow: hidden;
+  position: relative;
+}
+
+.left,
+.right {
+  transition: transform 0.4s;
+}
+
+.deletable .left,
+.deletable .right {
+  transform: translateX(-4em);
+}
 
 .left {
   align-items: center;
@@ -86,6 +114,26 @@ export default {
 
 .right .icon {
   color: var(--item-next-icon-color);
+}
+
+.delete {
+  align-items: center;
+  background: var(--delete-background-color);
+  color: var(--delete-text-color);
+  display: flex;
+  flex: none;
+  height: 100%;
+  justify-content: center;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: transform 0.4s;
+  transform: translateX(4em);
+  width: 4em;
+}
+
+.deletable .delete {
+  transform: translateX(0);
 }
 
 </style>
