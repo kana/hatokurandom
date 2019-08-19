@@ -1,5 +1,5 @@
 <template>
-  <link-list-item :path="path" class="line">
+  <link-list-item :path="path" :class="{ deletable }" class="line">
     <div class="left">
       <div class="above">
         <span class="label">{{ title }}</span>
@@ -10,11 +10,9 @@
     <div class="right">
       <font-awesome-icon icon="angle-right" size="lg" class="icon" />
     </div>
-    <transition name="shift">
-      <div v-if="deletable" class="delete" @click="onClick">
-        <font-awesome-icon icon="trash-alt" size="lg" class="icon" />
-      </div>
-    </transition>
+    <div class="delete" @click="onClick">
+      <font-awesome-icon icon="trash-alt" size="lg" class="icon" />
+    </div>
   </link-list-item>
 </template>
 
@@ -60,7 +58,18 @@ export default {
 <style scoped>
 
 .line {
+  overflow: hidden;
   position: relative;
+}
+
+.left,
+.right {
+  transition: transform 0.4s;
+}
+
+.deletable .left,
+.deletable .right {
+  transform: translateX(-4em);
 }
 
 .left {
@@ -118,22 +127,13 @@ export default {
   position: absolute;
   right: 0;
   top: 0;
+  transition: transform 0.4s;
+  transform: translateX(4em);
   width: 4em;
 }
 
-.shift-enter-active,
-.shift-leave-active {
-  transition: right 0.4s;
-}
-
-.shift-enter,
-.shift-leave-to {
-  right: -4em;
-}
-
-.shift-enter-to,
-.shift-leave {
-  right: 0;
+.deletable .delete {
+  transform: translateX(0);
 }
 
 </style>
