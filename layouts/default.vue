@@ -2,6 +2,7 @@
   <div
     v-touch:swipe.right="onSwipeRight"
     class="app"
+    @touchmove="onTouchMove"
   >
     <top-pane class="top-pane" />
     <div class="main-pane">
@@ -41,12 +42,23 @@ export default {
   },
   methods: {
     // Back-to-parent-view gesture support.
-    onSwipeRight (e) {
+    onSwipeRight (_right, e) {
       const screenLeftEdgeWidth = window.innerWidth * 20 / 100
       if (e.currentTarget.$$touchObj.startX < screenLeftEdgeWidth) {
         if (this.toBack) {
           this.$router.push(this.toBack)
         }
+      }
+    },
+    // Prevent vertical scroll if user seesm to be doing a gesture.
+    // This handler must be bound by @touchmove instead of v-touch:moved,
+    // because the latter is passive so e.preventDefault() does nothing.
+    onTouchMove (e) {
+      const t = e.currentTarget.$$touchObj
+      const dx = t.currentX - t.startX
+      const dy = t.currentY - t.startY
+      if (Math.abs(dx) >= Math.abs(dy) * 2) {
+        e.preventDefault()
       }
     }
   }
