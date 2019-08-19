@@ -7,6 +7,7 @@
       :title="item.title"
       :excerpt="item.excerpt"
       :at="item.at"
+      :deletable="true"
     />
     <omni-list-item v-if="items.length === 0" class="list-item empty-message">
       ログがありません。

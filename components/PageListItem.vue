@@ -26,6 +26,10 @@ export default {
       type: String,
       default: null
     },
+    deletable: {
+      type: Boolean,
+      default: false
+    },
     excerpt: {
       type: String,
       default: null
