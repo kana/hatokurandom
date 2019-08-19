@@ -118,7 +118,7 @@ export default {
 }
 .height-enter-to,
 .height-leave {
-  max-height: 2.1em;
+  max-height: 2.5em;
 }
 
 </style>
