@@ -3,11 +3,16 @@
     <page-list-item
       v-for="(item, i) in items"
       :key="i"
+      v-touch="onTouch"
+      v-touch:swipe.left="onSwipeLeft"
+      v-touch:swipe.right="onSwipeRight"
       :path="item.path"
       :title="item.title"
       :excerpt="item.excerpt"
       :at="item.at"
-      :deletable="true"
+      :deletable="i === deletableIndex"
+      :data-index="i"
+      @touchmove="onTouchMove"
     />
     <omni-list-item v-if="items.length === 0" class="list-item empty-message">
       ログがありません。
@@ -26,6 +31,11 @@ export default {
     OmniListItem,
     PageList,
     PageListItem
+  },
+  data () {
+    return {
+      deletableIndex: -1
+    }
   },
   computed: {
     items () {
@@ -50,6 +60,20 @@ export default {
       const MM = this.pad(dateTime.getMinutes(), 2)
       const SS = this.pad(dateTime.getSeconds(), 2)
       return `${yyyy}-${mm}-${dd} ${HH}:${MM}:${SS}`
+    },
+    onSwipeLeft (_left, e) {
+      this.deletableIndex = parseInt(e.currentTarget.dataset.index, 10)
+    },
+    onSwipeRight () {
+      this.deletableIndex = -1
+    },
+    onTouch (e) {
+      const i = parseInt(e.currentTarget.dataset.index, 10)
+      if (this.deletableIndex !== i) {
+        this.deletableIndex = -1
+      }
+    },
+    onTouchMove (e) {
     },
     pad (n, width) {
       let s = n.toString()
