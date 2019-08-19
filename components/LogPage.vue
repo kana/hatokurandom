@@ -1,6 +1,6 @@
 <template>
   <page-list>
-    <transition-group name="height" tag="div">
+    <transition-group :name="transitionType" tag="div">
       <page-list-item
         v-for="(item, i) in items"
         :key="item.at"
@@ -37,7 +37,8 @@ export default {
   },
   data () {
     return {
-      deletableIndex: -1
+      deletableIndex: -1,
+      transitionType: 'none'
     }
   },
   computed: {
@@ -53,6 +54,10 @@ export default {
         }
       })
     }
+  },
+  updated () {
+    // Avoid page-list-item transition on reload.
+    this.transitionType = 'height'
   },
   methods: {
     formatDateTime (dateTime) {
