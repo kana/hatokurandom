@@ -1,20 +1,22 @@
 <template>
   <page-list>
-    <page-list-item
-      v-for="(item, i) in items"
-      :key="i"
-      v-touch="onTouch"
-      v-touch:swipe.left="onSwipeLeft"
-      v-touch:swipe.right="onSwipeRight"
-      :path="item.path"
-      :title="item.title"
-      :excerpt="item.excerpt"
-      :at="item.at"
-      :deletable="i === deletableIndex"
-      :data-index="i"
-      @touchmove="onTouchMove"
-      @delete="onDelete(i)"
-    />
+    <transition-group name="height" tag="div">
+      <page-list-item
+        v-for="(item, i) in items"
+        :key="item.at"
+        v-touch="onTouch"
+        v-touch:swipe.left="onSwipeLeft"
+        v-touch:swipe.right="onSwipeRight"
+        :path="item.path"
+        :title="item.title"
+        :excerpt="item.excerpt"
+        :at="item.at"
+        :deletable="i === deletableIndex"
+        :data-index="i"
+        @touchmove="onTouchMove"
+        @delete="onDelete(i)"
+      />
+    </transition-group>
     <omni-list-item v-if="items.length === 0" class="list-item empty-message">
       ログがありません。
     </omni-list-item>
@@ -95,6 +97,23 @@ export default {
 
 .list-item.empty-message {
   color: var(--item-value-color);
+}
+
+.height-enter-active,
+.height-leave-active {
+  overflow: hidden;
+  transition: max-height 0.4s, padding 0.4s;
+}
+
+.height-enter,
+.height-leave-to {
+  max-height: 0;
+  padding-bottom: 0;
+  padding-top: 0;
+}
+.height-enter-to,
+.height-leave {
+  max-height: 2.1em;
 }
 
 </style>
