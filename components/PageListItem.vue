@@ -11,7 +11,7 @@
       <font-awesome-icon icon="angle-right" size="lg" class="icon" />
     </div>
     <div v-if="deletable" class="delete" @click="onClick">
-      [x]
+      <font-awesome-icon icon="trash-alt" size="lg" class="icon" />
     </div>
   </link-list-item>
 </template>

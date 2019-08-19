@@ -9,7 +9,8 @@ import {
   faExternalLinkAlt,
   faHome,
   faShareSquare,
-  faSyncAlt
+  faSyncAlt,
+  faTrashAlt
 } from '@fortawesome/free-solid-svg-icons'
 
 // This is important, we are going to let Nuxt.js worry about the CSS
@@ -23,7 +24,8 @@ library.add(
   faExternalLinkAlt,
   faHome,
   faShareSquare,
-  faSyncAlt
+  faSyncAlt,
+  faTrashAlt
 )
 
 // Register the component globally
