@@ -57,6 +57,10 @@ export default {
 
 <style scoped>
 
+.line {
+  position: relative;
+}
+
 .left {
   align-items: center;
   display: flex;
@@ -99,6 +103,20 @@ export default {
 
 .right .icon {
   color: var(--item-next-icon-color);
+}
+
+.delete {
+  align-items: center;
+  background: var(--delete-background-color);
+  color: var(--delete-text-color);
+  display: flex;
+  flex: none;
+  height: 100%;
+  justify-content: center;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 4em;
 }
 
 </style>
