@@ -10,6 +10,9 @@
     <div class="right">
       <font-awesome-icon icon="angle-right" size="lg" class="icon" />
     </div>
+    <div v-if="deletable && deleteButtonVisible" class="delete">
+      [x]
+    </div>
   </link-list-item>
 </template>
 
@@ -41,6 +44,11 @@ export default {
     title: {
       type: String,
       required: true
+    }
+  },
+  data () {
+    return {
+      deleteButtonVisible: false
     }
   }
 }
