@@ -10,9 +10,11 @@
     <div class="right">
       <font-awesome-icon icon="angle-right" size="lg" class="icon" />
     </div>
-    <div v-if="deletable" class="delete" @click="onClick">
-      <font-awesome-icon icon="trash-alt" size="lg" class="icon" />
-    </div>
+    <transition name="shift">
+      <div v-if="deletable" class="delete" @click="onClick">
+        <font-awesome-icon icon="trash-alt" size="lg" class="icon" />
+      </div>
+    </transition>
   </link-list-item>
 </template>
 
@@ -117,6 +119,21 @@ export default {
   right: 0;
   top: 0;
   width: 4em;
+}
+
+.shift-enter-active,
+.shift-leave-active {
+  transition: right 0.4s;
+}
+
+.shift-enter,
+.shift-leave-to {
+  right: -4em;
+}
+
+.shift-enter-to,
+.shift-leave {
+  right: 0;
 }
 
 </style>
