@@ -96,7 +96,7 @@ export default {
 
 .main-pane {
   padding: var(--top-pane-height) 0 var(--bottom-pane-height);
-  position: relative;
+  position: relative; /* for .page-forward-enter and .page-backward-enter */
 }
 
 .bottom-pane {
