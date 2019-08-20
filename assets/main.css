@@ -49,7 +49,6 @@ a {
 
 .page-forward-enter-active,
 .page-forward-leave-active {
-  min-height: 100vh;
   position: absolute;
   top: var(--top-pane-height);
   transition: left 0.4s;
