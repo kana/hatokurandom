@@ -10,7 +10,7 @@
     <div class="right">
       <font-awesome-icon icon="angle-right" size="lg" class="icon" />
     </div>
-    <div class="delete" @click="onClick">
+    <div class="delete" @touchstart="onTouchStart" @click="onClick">
       <font-awesome-icon icon="trash-alt" size="lg" class="icon" />
     </div>
   </link-list-item>
@@ -50,6 +50,13 @@ export default {
     onClick (e) {
       e.preventDefault()
       this.$emit('delete')
+    },
+    onTouchStart (e) {
+      // This stopPropagation is necessary to prioritize PageListItem#onClick
+      // over LogPage#onTouch.  The former deletes this item by tapping the
+      // delete button, while the latter cancels deletion by tapping another
+      // item or a non-delete-button portion of this item.
+      e.stopPropagation()
     }
   }
 }

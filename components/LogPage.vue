@@ -76,8 +76,7 @@ export default {
       this.deletableIndex = -1
     },
     onTouch (e) {
-      const i = parseInt(e.currentTarget.dataset.index, 10)
-      if (this.deletableIndex === i) {
+      if (this.deletableIndex !== -1) {
         this.deletableIndex = -1
         e.preventDefault()
       }
