@@ -34,7 +34,7 @@ export default {
     '~/plugins/vue2-touch-events',
     { src: '~/plugins/hooks.client', mode: 'client' }
   ],
-  devModules: [
+  buildModules: [
     '@nuxtjs/eslint-module'
   ],
   modules: [
