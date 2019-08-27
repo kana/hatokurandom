@@ -1,4 +1,4 @@
-import { isPreferencesTabPid, pidFromPath } from '~/lib/utils'
+import { isPreferencesTabPid, parentPidFromPid, pathFromPid, pidFromPath } from '~/lib/utils'
 
 export const state = () => ({
   homeTabLastPath: '/',
@@ -24,6 +24,11 @@ export const actions = {
     const pid = pidFromPath(path)
     const key = isPreferencesTabPid(pid) ? 'preferencesTabPathStack' : 'homeTabPathStack'
 
+    if (state[key].length === 0) {
+      commit('update', { key, path: guessInitialPathStack(pid) })
+      return
+    }
+
     const i = state[key].indexOf(path)
     if (i !== -1) {
       commit('splice', { key, i })
@@ -37,4 +42,13 @@ export const actions = {
   preferencesTabLastPath ({ commit }, path) {
     commit('update', { key: 'preferencesTabLastPath', path })
   }
+}
+
+function guessInitialPathStack (pid) {
+  const pathStack = []
+  while (pid) {
+    pathStack.unshift(pathFromPid(pid))
+    pid = parentPidFromPid(pid)
+  }
+  return pathStack
 }
