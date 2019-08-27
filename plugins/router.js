@@ -13,6 +13,7 @@ export default ({ app }) => {
   })
 
   app.router.afterEach((to, from) => {
+    app.store.dispatch('history/navigate', to.path)
     if (isPreferencesTabPid(pidFromPath(to.path))) {
       app.store.dispatch('history/preferencesTabLastPath', to.fullPath)
     } else {
