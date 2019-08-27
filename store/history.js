@@ -18,6 +18,13 @@ export const mutations = {
 }
 
 export const getters = {
+  backPath (state) {
+    return function (pid) {
+      const key = isPreferencesTabPid(pid) ? 'preferencesTabPathStack' : 'homeTabPathStack'
+      const pathStack = state[key]
+      return pathStack[pathStack.length - 2]
+    }
+  },
   homeTabLastPath (state) {
     return state.homeTabPathStack[state.homeTabPathStack.length - 1] || '/'
   },

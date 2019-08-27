@@ -33,7 +33,7 @@
 
 <script>
 import FadeInOut from '~/components/FadeInOut'
-import { isCardListPid, isForwardTransitionByPids, pathFromPid, parentPidFromPid, permalinkFromPid, pidFromPath, sidFromPid, sortXcards, titleFromPid, xcardsFromPid } from '~/lib/utils'
+import { isCardListPid, isForwardTransitionByPids, permalinkFromPid, pidFromPath, sidFromPid, sortXcards, titleFromPid, xcardsFromPid } from '~/lib/utils'
 
 export default {
   name: 'TopPane',
@@ -87,8 +87,7 @@ export default {
       return titleFromPid(this.pid)
     },
     toBack () {
-      const parentPid = parentPidFromPid(this.pid)
-      return parentPid !== undefined ? pathFromPid(parentPid) : undefined
+      return this.$store.getters['history/backPath'](this.pid)
     }
   },
   watch: {
