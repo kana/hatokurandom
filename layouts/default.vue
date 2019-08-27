@@ -15,7 +15,7 @@
 <script>
 import BottomPane from '~/components/BottomPane'
 import TopPane from '~/components/TopPane'
-import { pathFromPid, parentPidFromPid, pidFromPath } from '~/lib/utils'
+import { pidFromPath } from '~/lib/utils'
 
 export default {
   components: {
@@ -27,17 +27,14 @@ export default {
       return pidFromPath(this.$route.path)
     },
     toBack () {
-      if (this.toParent) {
-        return this.toParent
+      const backPath = this.$store.getters['history/backPath'](this.pid)
+      if (backPath) {
+        return backPath
       }
       if (this.pid.startsWith('preferences')) {
         return '/'
       }
       return undefined
-    },
-    toParent () {
-      const parentPid = parentPidFromPid(this.pid)
-      return parentPid !== undefined ? pathFromPid(parentPid) : undefined
     }
   },
   methods: {

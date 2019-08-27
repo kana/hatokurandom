@@ -13,19 +13,20 @@
 </template>
 
 <script>
+import { isPreferencesTabPid, pidFromPath } from '~/lib/utils'
 export default {
   name: 'BottomPane',
   computed: {
     currentTabPath () {
-      return this.$route.path.startsWith('/preferences') ? '/preferences' : '/'
+      return isPreferencesTabPid(pidFromPath(this.$route.path)) ? '/preferences' : '/'
     },
     tabs () {
-      const homeTabPath = this.$route.path.startsWith('/preferences')
-        ? this.$store.state.history.homeTabLastPath
+      const homeTabPath = isPreferencesTabPid(pidFromPath(this.$route.path))
+        ? this.$store.getters['history/homeTabLastPath']
         : '/'
-      const preferencesTabPath = this.$route.path.startsWith('/preferences')
+      const preferencesTabPath = isPreferencesTabPid(pidFromPath(this.$route.path))
         ? '/preferences'
-        : this.$store.state.history.preferencesTabLastPath
+        : this.$store.getters['history/preferencesTabLastPath']
       return [
         { path: homeTabPath, icon: 'home' },
         { path: preferencesTabPath, icon: 'cog' }

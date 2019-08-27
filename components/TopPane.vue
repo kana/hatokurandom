@@ -1,7 +1,7 @@
 <template>
   <div class="top-pane">
     <fade-in-out>
-      <nuxt-link v-if="toParent" :to="toParent" class="back-to-parent-button">
+      <nuxt-link v-if="toBack" :to="toBack" class="back-to-parent-button">
         <div class="back-to-parent-button-inner">
           <font-awesome-icon icon="chevron-left" size="lg" />
         </div>
@@ -33,7 +33,7 @@
 
 <script>
 import FadeInOut from '~/components/FadeInOut'
-import { isCardListPid, isForwardTransitionByPids, pathFromPid, parentPidFromPid, permalinkFromPid, pidFromPath, sidFromPid, sortXcards, titleFromPid, xcardsFromPid } from '~/lib/utils'
+import { isCardListPid, isForwardTransitionByPids, permalinkFromPid, pidFromPath, sidFromPid, sortXcards, titleFromPid, xcardsFromPid } from '~/lib/utils'
 
 export default {
   name: 'TopPane',
@@ -86,9 +86,8 @@ export default {
     title () {
       return titleFromPid(this.pid)
     },
-    toParent () {
-      const parentPid = parentPidFromPid(this.pid)
-      return parentPid !== undefined ? pathFromPid(parentPid) : undefined
+    toBack () {
+      return this.$store.getters['history/backPath'](this.pid)
     }
   },
   watch: {
