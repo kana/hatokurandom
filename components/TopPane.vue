@@ -1,7 +1,7 @@
 <template>
   <div class="top-pane">
     <fade-in-out>
-      <nuxt-link v-if="toParent" :to="toParent" class="back-to-parent-button">
+      <nuxt-link v-if="toBack" :to="toBack" class="back-to-parent-button">
         <div class="back-to-parent-button-inner">
           <font-awesome-icon icon="chevron-left" size="lg" />
         </div>
@@ -86,7 +86,7 @@ export default {
     title () {
       return titleFromPid(this.pid)
     },
-    toParent () {
+    toBack () {
       const parentPid = parentPidFromPid(this.pid)
       return parentPid !== undefined ? pathFromPid(parentPid) : undefined
     }
