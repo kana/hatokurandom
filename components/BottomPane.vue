@@ -22,11 +22,11 @@ export default {
     },
     tabs () {
       const homeTabPath = isPreferencesTabPid(pidFromPath(this.$route.path))
-        ? this.$store.state.history.homeTabLastPath
+        ? this.$store.getters['history/homeTabLastPath']
         : '/'
       const preferencesTabPath = isPreferencesTabPid(pidFromPath(this.$route.path))
         ? '/preferences'
-        : this.$store.state.history.preferencesTabLastPath
+        : this.$store.getters['history/preferencesTabLastPath']
       return [
         { path: homeTabPath, icon: 'home' },
         { path: preferencesTabPath, icon: 'cog' }

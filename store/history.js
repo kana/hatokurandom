@@ -19,6 +19,15 @@ export const mutations = {
   }
 }
 
+export const getters = {
+  homeTabLastPath (state) {
+    return state.homeTabPathStack[state.homeTabPathStack.length - 1] || '/'
+  },
+  preferencesTabLastPath (state) {
+    return state.preferencesTabPathStack[state.preferencesTabPathStack.length - 1] || '/preferences'
+  }
+}
+
 export const actions = {
   navigate ({ commit, state }, path) {
     const pid = pidFromPath(path)
