@@ -1,9 +1,7 @@
 import { isPreferencesTabPid, parentPidFromPid, pathFromPid, pidFromPath } from '~/lib/utils'
 
 export const state = () => ({
-  homeTabLastPath: '/',
   homeTabPathStack: [],
-  preferencesTabLastPath: '/preferences',
   preferencesTabPathStack: []
 })
 
@@ -14,8 +12,8 @@ export const mutations = {
   splice (state, { key, i }) {
     state[key].splice(i)
   },
-  update (state, { key, path }) {
-    state[key] = path
+  update (state, { key, value }) {
+    state[key] = value
   }
 }
 
@@ -34,7 +32,7 @@ export const actions = {
     const key = isPreferencesTabPid(pid) ? 'preferencesTabPathStack' : 'homeTabPathStack'
 
     if (state[key].length === 0) {
-      commit('update', { key, path: guessInitialPathStack(pid) })
+      commit('update', { key, value: guessInitialPathStack(pid) })
       return
     }
 
@@ -44,12 +42,6 @@ export const actions = {
     }
 
     commit('push', { key, path })
-  },
-  homeTabLastPath ({ commit }, path) {
-    commit('update', { key: 'homeTabLastPath', path })
-  },
-  preferencesTabLastPath ({ commit }, path) {
-    commit('update', { key: 'preferencesTabLastPath', path })
   }
 }
 

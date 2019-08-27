@@ -1,5 +1,5 @@
 import EventBus from '~/lib/eventbus'
-import { isPreferencesTabPid, parseSpecialPid, pidFromPath } from '~/lib/utils'
+import { parseSpecialPid, pidFromPath } from '~/lib/utils'
 
 export default ({ app }) => {
   app.router.beforeEach((to, from, next) => {
@@ -14,10 +14,5 @@ export default ({ app }) => {
 
   app.router.afterEach((to, from) => {
     app.store.dispatch('history/navigate', to.path)
-    if (isPreferencesTabPid(pidFromPath(to.path))) {
-      app.store.dispatch('history/preferencesTabLastPath', to.fullPath)
-    } else {
-      app.store.dispatch('history/homeTabLastPath', to.fullPath)
-    }
   })
 }
