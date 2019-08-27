@@ -1,5 +1,5 @@
 import EventBus from '~/lib/eventbus'
-import { parseSpecialPid, pidFromPath } from '~/lib/utils'
+import { isPreferencesTabPid, parseSpecialPid, pidFromPath } from '~/lib/utils'
 
 export default ({ app }) => {
   app.router.beforeEach((to, from, next) => {
@@ -13,7 +13,7 @@ export default ({ app }) => {
   })
 
   app.router.afterEach((to, from) => {
-    if (to.path.startsWith('/preferences')) {
+    if (isPreferencesTabPid(pidFromPath(to.path))) {
       app.store.dispatch('history/preferencesTabLastPath', to.fullPath)
     } else {
       app.store.dispatch('history/homeTabLastPath', to.fullPath)
