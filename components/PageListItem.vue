@@ -1,5 +1,5 @@
 <template>
-  <link-list-item :path="path" :class="{ deletable }" class="line">
+  <link-list-item :path="path" :class="{ deletable, swiping: dx > 0 }" class="line">
     <div class="left">
       <div class="above">
         <span class="label">{{ title }}</span>
@@ -10,12 +10,7 @@
     <div class="right">
       <font-awesome-icon icon="angle-right" size="lg" class="icon" />
     </div>
-    <div
-      class="delete"
-      :style="{ right: `${dx}px` }"
-      @touchstart="onTouchStart"
-      @click="onClick"
-    >
+    <div class="delete" @touchstart="onTouchStart" @click="onClick">
       <font-awesome-icon icon="trash-alt" size="lg" class="icon" />
     </div>
   </link-list-item>
@@ -67,6 +62,11 @@ export default {
       // item or a non-delete-button portion of this item.
       e.stopPropagation()
     }
+  },
+  watch: {
+    dx (newValue) {
+      this.$el.style.setProperty('--dx', `${newValue}px`)
+    }
   }
 }
 </script>
@@ -74,6 +74,7 @@ export default {
 <style scoped>
 
 .line {
+  --dx: 0px;
   overflow: hidden;
   position: relative;
 }
@@ -81,6 +82,13 @@ export default {
 .left,
 .right {
   transition: transform 0.4s;
+  transform: translateX(calc(0em - var(--dx)));
+}
+
+.swiping .left,
+.swiping .right,
+.swiping .delete {
+  transition: none;
 }
 
 .deletable .left,
@@ -143,14 +151,27 @@ export default {
   position: absolute;
   right: 0;
   top: 0;
-  transform: translateX(4em);
+  transform: translateX(calc(4em - var(--dx)));
   transition: transform 0.4s;
   width: 4em;
 }
 
 .deletable .delete {
   transform: translateX(0);
-  transition: right 0.4s, transform 0.4s;
+}
+
+.delete::after {
+  background: var(--delete-background-color);
+  content: '';
+  height: 100%;
+  position: absolute;
+  right: calc(0em - var(--dx));
+  top: 0;
+  width: var(--dx);
+}
+
+.deletable .delete::after {
+  transition: right 0.4s, width 0.4s;
 }
 
 </style>

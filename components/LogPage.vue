@@ -96,7 +96,7 @@ export default {
     },
     onTouchMoving (e) {
       const t = e.currentTarget.$$touchObj
-      this.dx = Math.abs(t.currentX - t.startX)
+      this.dx = Math.max(t.startX - t.currentX, 0)
       this.currentlySwipedIndex = parseInt(e.currentTarget.dataset.index, 10)
       if (this.deletableIndex !== this.currentlySwipedIndex) {
         this.deletableIndex = -1
