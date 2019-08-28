@@ -10,7 +10,12 @@
     <div class="right">
       <font-awesome-icon icon="angle-right" size="lg" class="icon" />
     </div>
-    <div class="delete" @touchstart="onTouchStart" @click="onClick">
+    <div
+      class="delete"
+      :style="{ right: `${dx}px` }"
+      @touchstart="onTouchStart"
+      @click="onClick"
+    >
       <font-awesome-icon icon="trash-alt" size="lg" class="icon" />
     </div>
   </link-list-item>
@@ -32,6 +37,10 @@ export default {
     deletable: {
       type: Boolean,
       default: false
+    },
+    dx: {
+      type: Number,
+      default: 0
     },
     excerpt: {
       type: String,
@@ -134,13 +143,14 @@ export default {
   position: absolute;
   right: 0;
   top: 0;
-  transition: transform 0.4s;
   transform: translateX(4em);
+  transition: transform 0.4s;
   width: 4em;
 }
 
 .deletable .delete {
   transform: translateX(0);
+  transition: right 0.4s, transform 0.4s;
 }
 
 </style>

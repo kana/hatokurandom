@@ -5,6 +5,8 @@
         v-for="(item, i) in items"
         :key="item.at"
         v-touch="onTouch"
+        v-touch:end="onTouchEnd"
+        v-touch:moving="onTouchMoving"
         v-touch:swipe.left="onSwipeLeft"
         v-touch:swipe.right="onSwipeRight"
         :path="item.path"
@@ -12,8 +14,8 @@
         :excerpt="item.excerpt"
         :at="item.at"
         :deletable="i === deletableIndex"
+        :dx="i === currentlySwipedIndex && i !== deletableIndex ? dx : 0"
         :data-index="i"
-        @touchmove="onTouchMove"
         @delete="onDelete(i)"
       />
     </transition-group>
@@ -37,7 +39,9 @@ export default {
   },
   data () {
     return {
+      currentlySwipedIndex: -1,
       deletableIndex: -1,
+      dx: 0,
       transitionType: 'none'
     }
   },
@@ -81,7 +85,22 @@ export default {
         e.preventDefault()
       }
     },
-    onTouchMove (e) {
+    onTouchEnd (e) {
+      const i = parseInt(e.currentTarget.dataset.index, 10)
+      if (this.currentlySwipedIndex === i) {
+        e.preventDefault()
+      }
+
+      this.currentlySwipedIndex = -1
+      this.dx = 0
+    },
+    onTouchMoving (e) {
+      const t = e.currentTarget.$$touchObj
+      this.dx = Math.abs(t.currentX - t.startX)
+      this.currentlySwipedIndex = parseInt(e.currentTarget.dataset.index, 10)
+      if (this.deletableIndex !== this.currentlySwipedIndex) {
+        this.deletableIndex = -1
+      }
     },
     onDelete (index) {
       this.$store.dispatch('log/delete', { index })
