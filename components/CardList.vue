@@ -4,13 +4,7 @@
       使用するカード
     </block-title>
     <omni-list>
-      <transition-group v-if="special.editable" name="height" tag="div">
-        <card-list-item v-for="xcard in sortedXcardsIncluded" :key="xcard.cid" :editable="special.editable" :xcard="xcard" />
-        <omni-list-item v-if="sortedXcardsIncluded.length === 0" key="divider" class="divider">
-          カードを選んでください。
-        </omni-list-item>
-      </transition-group>
-      <template v-else>
+      <transition-group name="height" tag="div">
         <card-list-item
           v-for="xcard in sortedXcardsIncluded"
           :key="xcard.cid"
@@ -19,7 +13,10 @@
           :xcard="xcard"
           @change-this-card="onChangeThisCard(xcard)"
         />
-      </template>
+        <omni-list-item v-if="sortedXcardsIncluded.length === 0" key="divider" class="divider">
+          カードを選んでください。
+        </omni-list-item>
+      </transition-group>
     </omni-list>
 
     <template v-if="sortedXcardsExcluded.length > 0">
