@@ -11,7 +11,14 @@
         </omni-list-item>
       </transition-group>
       <template v-else>
-        <card-list-item v-for="xcard in sortedXcardsIncluded" :key="xcard.cid" :editable="special.editable" :random="special.random" :xcard="xcard" />
+        <card-list-item
+          v-for="xcard in sortedXcardsIncluded"
+          :key="xcard.cid"
+          :editable="special.editable"
+          :random="special.random"
+          :xcard="xcard"
+          @change-this-card="onChangeThisCard(xcard)"
+        />
       </template>
     </omni-list>
 
@@ -140,6 +147,9 @@ export default {
     })
   },
   methods: {
+    onChangeThisCard (xcard) {
+      console.log(xcard.name)
+    },
     onUpdateXcards () {
       this.$store.commit('supply/setPid', this.sharePid)
 
