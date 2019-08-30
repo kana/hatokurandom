@@ -152,6 +152,7 @@ export default {
         this.pid,
         {
           ...this.$store.state.options,
+          changedXcard,
           mustXcards: this.xcards.filter(xcard => xcard.cid !== changedXcard.cid)
         }
       )
