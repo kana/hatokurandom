@@ -148,7 +148,12 @@ export default {
   },
   methods: {
     onChangeThisCard (xcard) {
-      console.log(xcard.name)
+      this.xcards = xcardsFromPid(this.pid, this.$store.state.options)
+      this.$ga.event({
+        eventCategory: 'supply',
+        eventAction: 'change-this-card',
+        eventLabel: xcard.name
+      })
     },
     onUpdateXcards () {
       this.$store.commit('supply/setPid', this.sharePid)
