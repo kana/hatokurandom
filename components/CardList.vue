@@ -147,12 +147,16 @@ export default {
     })
   },
   methods: {
-    onChangeThisCard (xcard) {
-      this.xcards = xcardsFromPid(this.pid, this.$store.state.options)
+    onChangeThisCard (changedXcard) {
+      this.xcards = xcardsFromPid(
+        this.pid,
+        this.$store.state.options,
+        this.xcards.filter(xcard => xcard.cid !== changedXcard.cid)
+      )
       this.$ga.event({
         eventCategory: 'supply',
         eventAction: 'change-this-card',
-        eventLabel: xcard.name
+        eventLabel: changedXcard.name
       })
     },
     onUpdateXcards () {
