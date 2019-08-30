@@ -1,15 +1,17 @@
 <template>
   <omni-list-item
+    v-touch:start="onTouchStart"
     :component="editable ? 'label' : 'div'"
     :clickable="editable"
     :class="{ dropped: xcard.dropped }"
     class="line"
+    @touchmove.native="onTouchMove"
   >
     <template v-if="editable">
       <input v-show="false" v-model="xcard.dropped" type="checkbox">
       <font-awesome-icon class="check" icon="check" size="xs" />
     </template>
-    <span class="cost">{{ xcard.cost }}</span>
+    <span class="cost">{{ dx }} {{ xcard.cost }}</span>
     <span :data-names="typeNamesString" class="type" />
     <span class="name">{{ xcard.name }}</span>
     <span v-if="xcard.subtype" class="subtype">（{{ xcard.subtype }}）</span>
@@ -41,6 +43,11 @@ export default {
       required: true
     }
   },
+  data () {
+    return {
+      dx: 0
+    }
+  },
   computed: {
     expansionSymbol () {
       return expansionFromEid(this.xcard.eid).symbol
@@ -52,6 +59,26 @@ export default {
   methods: {
     onClick () {
       this.$emit('change-this-card')
+    },
+    onTouchStart () {
+      // vue2-touch-events updates e.currentTarget.$$touchObj.
+      this.dx = 0
+    },
+    onTouchMove (e) {
+      // TODO: Ignore vertical swipe.
+      // TODO: Ignore swipe to right.
+      // TODO: Show UI based on swipe amout.
+      const t = e.currentTarget.$$touchObj
+      const dx = t.currentX - t.startX
+      const dy = t.currentY - t.startY
+      this.dx = `${dx}, ${dy}`
+
+      if (Math.abs(dx) < Math.abs(dy) * 2) {
+        return
+      }
+
+      // Prevent vertical scroll if user seems to be doing a gesture.
+      e.preventDefault()
     }
   }
 }
