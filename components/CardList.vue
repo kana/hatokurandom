@@ -4,7 +4,7 @@
       使用するカード
     </block-title>
     <omni-list>
-      <transition-group name="height" tag="div">
+      <transition-group :key="shuffleCount" name="height" tag="div">
         <card-list-item
           v-for="xcard in sortedXcardsIncluded"
           :key="xcard.cid"
@@ -73,6 +73,7 @@ export default {
   data () {
     return {
       leaving: false,
+      shuffleCount: 0,
       xcards: this.$route.query.rsid
         ? xcardsFromRsid(this.$route.query.rsid)
         : xcardsFromPid(this.pid, this.$store.state.options)
@@ -172,6 +173,7 @@ export default {
       }
     },
     shuffle () {
+      this.shuffleCount++ // Disable a massive transition for each shuffle.
       this.xcards = xcardsFromPid(this.pid, this.$store.state.options)
       this.$ga.event({
         eventCategory: 'supply',
