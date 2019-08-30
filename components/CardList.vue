@@ -11,7 +11,7 @@
         </omni-list-item>
       </transition-group>
       <template v-else>
-        <card-list-item v-for="xcard in sortedXcardsIncluded" :key="xcard.cid" :editable="special.editable" :xcard="xcard" />
+        <card-list-item v-for="xcard in sortedXcardsIncluded" :key="xcard.cid" :editable="special.editable" :random="special.random" :xcard="xcard" />
       </template>
     </omni-list>
 
