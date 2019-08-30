@@ -45,7 +45,8 @@ export default {
   },
   data () {
     return {
-      dx: 0
+      dx: 0,
+      gesture: 'start'
     }
   },
   computed: {
@@ -63,18 +64,35 @@ export default {
     onTouchStart () {
       // vue2-touch-events updates e.currentTarget.$$touchObj.
       this.dx = 0
+      this.gesture = 'start'
     },
     onTouchMove (e) {
-      // TODO: Ignore vertical swipe.
-      // TODO: Ignore swipe to right.
+      if (this.gesture === 'ignore') {
+        return
+      }
+
       // TODO: Show UI based on swipe amout.
       const t = e.currentTarget.$$touchObj
+      if (t.currentX === 0 && t.currentY === 0) {
+        // For some reason these values are zeros at the start of a gesture.
+        return
+      }
+
       const dx = t.currentX - t.startX
       const dy = t.currentY - t.startY
-      this.dx = `${dx}, ${dy}`
+      this.dx = `${t.currentX},${t.currentY} = ${t.startX},${t.startY}`
 
-      if (Math.abs(dx) < Math.abs(dy) * 2) {
-        return
+      if (this.gesture === 'start') {
+        if (dx > 0 || Math.abs(dx) < Math.abs(dy)) {
+          // Swipe to right/up/down is not a right gesture.
+          this.gesture = 'ignore'
+          return
+        }
+        if (Math.abs(dx) > 10 || Math.abs(dy) > 10) {
+          // Once user starts a right gesture, do not ignore the following
+          // touchmove events until touchend to update UI.
+          this.gesture = 'doing'
+        }
       }
 
       // Prevent vertical scroll if user seems to be doing a gesture.
