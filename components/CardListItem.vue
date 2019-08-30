@@ -14,6 +14,7 @@
     <span class="name">{{ xcard.name }}</span>
     <span v-if="xcard.subtype" class="subtype">（{{ xcard.subtype }}）</span>
     <span :data-symbol="expansionSymbol" class="expansion">{{ expansionSymbol }}</span>
+    <span v-if="random" @click="onClick">[Change]</span>
   </omni-list-item>
 </template>
 
@@ -31,6 +32,10 @@ export default {
       type: Boolean,
       required: true
     },
+    random: {
+      type: Boolean,
+      default: false
+    },
     xcard: {
       type: Object,
       required: true
@@ -42,6 +47,11 @@ export default {
     },
     typeNamesString () {
       return this.xcard.types.join(' ')
+    }
+  },
+  methods: {
+    onClick () {
+      this.$emit('change-this-card')
     }
   }
 }
