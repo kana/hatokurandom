@@ -150,8 +150,10 @@ export default {
     onChangeThisCard (changedXcard) {
       this.xcards = xcardsFromPid(
         this.pid,
-        this.$store.state.options,
-        this.xcards.filter(xcard => xcard.cid !== changedXcard.cid)
+        {
+          ...this.$store.state.options,
+          mustXcards: this.xcards.filter(xcard => xcard.cid !== changedXcard.cid)
+        }
       )
       this.$ga.event({
         eventCategory: 'supply',
