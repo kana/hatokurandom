@@ -1,22 +1,28 @@
 <template>
   <omni-list-item
     v-touch:start="onTouchStart"
+    v-touch:end="onTouchEnd"
     :component="editable ? 'label' : 'div'"
     :clickable="editable"
-    :class="{ dropped: xcard.dropped }"
+    :class="{ dropped: xcard.dropped, [gesture]: true }"
     class="line"
     @touchmove.native="onTouchMove"
   >
-    <template v-if="editable">
-      <input v-show="false" v-model="xcard.dropped" type="checkbox">
-      <font-awesome-icon class="check" icon="check" size="xs" />
-    </template>
-    <span class="cost">{{ dx }} {{ xcard.cost }}</span>
-    <span :data-names="typeNamesString" class="type" />
-    <span class="name">{{ xcard.name }}</span>
-    <span v-if="xcard.subtype" class="subtype">（{{ xcard.subtype }}）</span>
-    <span :data-symbol="expansionSymbol" class="expansion">{{ expansionSymbol }}</span>
-    <span v-if="random" @click="onClick">[Change]</span>
+    <div
+      :style="{ transform: `translateX(-${dx}px)` }"
+      class="main"
+    >
+      <template v-if="editable">
+        <input v-show="false" v-model="xcard.dropped" type="checkbox">
+        <font-awesome-icon class="check" icon="check" size="xs" />
+      </template>
+      <span class="cost">{{ dx }} {{ xcard.cost }}</span>
+      <span :data-names="typeNamesString" class="type" />
+      <span class="name">{{ xcard.name }}</span>
+      <span v-if="xcard.subtype" class="subtype">（{{ xcard.subtype }}）</span>
+      <span :data-symbol="expansionSymbol" class="expansion">{{ expansionSymbol }}</span>
+    </div>
+    <span v-if="random" :style="{ width: `${dx}px` }" class="change-this-card">[Change]</span>
   </omni-list-item>
 </template>
 
@@ -58,9 +64,6 @@ export default {
     }
   },
   methods: {
-    onClick () {
-      this.$emit('change-this-card')
-    },
     onTouchStart () {
       // vue2-touch-events updates e.currentTarget.$$touchObj.
       this.dx = 0
@@ -80,7 +83,6 @@ export default {
 
       const dx = t.currentX - t.startX
       const dy = t.currentY - t.startY
-      this.dx = `${t.currentX},${t.currentY} = ${t.startX},${t.startY}`
 
       if (this.gesture === 'start') {
         if (dx > 0 || Math.abs(dx) < Math.abs(dy)) {
@@ -97,12 +99,39 @@ export default {
 
       // Prevent vertical scroll if user seems to be doing a gesture.
       e.preventDefault()
+
+      this.dx = Math.max(0, -dx)
+    },
+    onTouchEnd () {
+      this.gesture = 'end'
+      if (this.dx >= 100) { // TODO: 10vw? 5vw?
+        this.dx = 700 // TODO: 100vw
+        // TODO: this.$emit('change-this-card') after transition.
+      } else {
+        this.dx = 0
+      }
     }
   }
 }
 </script>
 
 <style scoped>
+
+.line {
+  position: relative;
+}
+
+.main {
+  align-items: center;
+  display: flex;
+  transition: transform 0.4s;
+  width: 100%;
+}
+
+.line.start .main,
+.line.doing .main {
+  transition: none;
+}
 
 .check {
   color: var(--link-text-color);
@@ -224,6 +253,27 @@ export default {
 .expansion[data-symbol='レ！'] {
   background: #ee9;
   color: #663;
+}
+
+.change-this-card {
+  align-items: center;
+  background: red;
+  box-sizing: border-box;
+  display: flex;
+  flex: none;
+  height: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: width 0.4s;
+  width: 0px;
+}
+
+.line.start .change-this-card,
+.line.doing .change-this-card {
+  transition: none;
 }
 
 </style>
