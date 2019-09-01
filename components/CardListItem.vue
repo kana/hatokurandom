@@ -282,9 +282,9 @@ export default {
 
 .change-this-card {
   align-items: center;
-  background: var(--toast-background-color);
+  background: var(--toast-text-color);
   box-sizing: border-box;
-  color: var(--toast-text-color);
+  color: var(--toast-highlight-color);
   display: flex;
   flex: none;
   height: 100%;
