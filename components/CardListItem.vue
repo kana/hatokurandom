@@ -28,8 +28,8 @@
       class="change-this-card"
       @transitionend="onTransitionEnd"
     >
-      <span class="icon">
-        <font-awesome-icon icon="sync-alt" size="sm" />
+      <span class="icon-container">
+        <font-awesome-icon :class="{ active: dx > 100 }" class="icon" icon="sync-alt" size="sm" />
       </span>
     </span>
   </omni-list-item>
@@ -305,8 +305,16 @@ export default {
   transition-duration: 0.2s;
 }
 
+.change-this-card .icon-container {
+  padding-right: 1.7em;
+}
+
 .change-this-card .icon {
-  padding-right: 1.5em;
+  transition: transform 0.3s;
+}
+
+.change-this-card .icon.active {
+  transform: scale(1.5) rotate(360deg);
 }
 
 </style>
