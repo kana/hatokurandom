@@ -28,7 +28,9 @@
       class="change-this-card"
       @transitionend="onTransitionEnd"
     >
-      [Change]
+      <span class="icon">
+        <font-awesome-icon icon="sync-alt" size="sm" />
+      </span>
     </span>
   </omni-list-item>
 </template>
@@ -81,8 +83,12 @@ export default {
         return
       }
 
-      // TODO: Show UI based on swipe amout.
       const t = e.currentTarget.$$touchObj
+      if (t === undefined) {
+        // Sometimes $$touchObj is undefined if user tries
+        // swiping with two or more fingers.
+        return
+      }
       if (t.currentX === 0 && t.currentY === 0) {
         // For some reason these values are zeros at the start of a gesture.
         return
@@ -274,11 +280,13 @@ export default {
 
 .change-this-card {
   align-items: center;
-  background: red;
+  background: var(--toast-background-color);
   box-sizing: border-box;
+  color: var(--toast-text-color);
   display: flex;
   flex: none;
   height: 100%;
+  justify-content: flex-end;
   max-width: 100%;
   overflow: hidden;
   position: absolute;
@@ -295,6 +303,10 @@ export default {
 
 .line.recognized .change-this-card {
   transition-duration: 0.2s;
+}
+
+.change-this-card .icon {
+  padding-right: 1.5em;
 }
 
 </style>
