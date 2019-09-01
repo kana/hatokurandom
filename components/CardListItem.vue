@@ -29,7 +29,7 @@
       @transitionend="onTransitionEnd"
     >
       <span class="icon-container">
-        <font-awesome-icon :class="{ active: willGestureBeRecognized }" class="icon" icon="sync-alt" size="sm" />
+        <font-awesome-icon :class="{ active: willGestureBeRecognized }" class="icon" icon="sync-alt" size="xs" />
       </span>
     </span>
   </omni-list-item>
@@ -312,11 +312,12 @@ export default {
 }
 
 .change-this-card .icon {
-  transition: transform 0.3s;
+  transition: transform 0.4s;
+  transform: scale(1.166) rotate(0deg);
 }
 
 .change-this-card .icon.active {
-  transform: scale(1.5) rotate(360deg);
+  transform: scale(1.777) rotate(360deg);
 }
 
 </style>
