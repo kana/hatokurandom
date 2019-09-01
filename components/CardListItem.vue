@@ -16,7 +16,7 @@
         <input v-show="false" v-model="xcard.dropped" type="checkbox">
         <font-awesome-icon class="check" icon="check" size="xs" />
       </template>
-      <span class="cost">{{ dx }} {{ xcard.cost }}</span>
+      <span class="cost">{{ xcard.cost }}</span>
       <span :data-names="typeNamesString" class="type" />
       <span class="name">{{ xcard.name }}</span>
       <span v-if="xcard.subtype" class="subtype">（{{ xcard.subtype }}）</span>
