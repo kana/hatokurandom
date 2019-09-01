@@ -104,8 +104,9 @@ export default {
     },
     onTouchEnd () {
       this.gesture = 'end'
-      if (this.dx >= 100) { // TODO: 10vw? 5vw?
-        this.dx = 700 // TODO: 100vw
+      const width = window.innerWidth
+      if (this.dx >= width / 3) {
+        this.dx = width
         // TODO: this.$emit('change-this-card') after transition.
       } else {
         this.dx = 0
