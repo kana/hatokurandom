@@ -72,7 +72,7 @@ export default {
       return this.xcard.types.join(' ')
     },
     willGestureBeRecognized () {
-      return process.browser && this.dx > window.innerWidth / 3
+      return process.browser && this.dx > window.innerWidth / 5
     }
   },
   methods: {
