@@ -4,15 +4,19 @@
       使用するカード
     </block-title>
     <omni-list>
-      <transition-group v-if="special.editable" name="height" tag="div">
-        <card-list-item v-for="xcard in sortedXcardsIncluded" :key="xcard.cid" :editable="special.editable" :xcard="xcard" />
+      <transition-group :key="shuffleCount" name="height" tag="div">
+        <card-list-item
+          v-for="xcard in sortedXcardsIncluded"
+          :key="xcard.cid"
+          :editable="special.editable"
+          :random="special.random"
+          :xcard="xcard"
+          @change-this-card="onChangeThisCard(xcard)"
+        />
         <omni-list-item v-if="sortedXcardsIncluded.length === 0" key="divider" class="divider">
           カードを選んでください。
         </omni-list-item>
       </transition-group>
-      <template v-else>
-        <card-list-item v-for="xcard in sortedXcardsIncluded" :key="xcard.cid" :editable="special.editable" :xcard="xcard" />
-      </template>
     </omni-list>
 
     <template v-if="sortedXcardsExcluded.length > 0">
@@ -69,6 +73,7 @@ export default {
   data () {
     return {
       leaving: false,
+      shuffleCount: 0,
       xcards: this.$route.query.rsid
         ? xcardsFromRsid(this.$route.query.rsid)
         : xcardsFromPid(this.pid, this.$store.state.options)
@@ -140,6 +145,21 @@ export default {
     })
   },
   methods: {
+    onChangeThisCard (changedXcard) {
+      this.xcards = xcardsFromPid(
+        this.pid,
+        {
+          ...this.$store.state.options,
+          changedXcard,
+          mustXcards: this.xcards.filter(xcard => xcard.cid !== changedXcard.cid)
+        }
+      )
+      this.$ga.event({
+        eventCategory: 'supply',
+        eventAction: 'change-this-card',
+        eventLabel: changedXcard.name
+      })
+    },
     onUpdateXcards () {
       this.$store.commit('supply/setPid', this.sharePid)
 
@@ -153,6 +173,7 @@ export default {
       }
     },
     shuffle () {
+      this.shuffleCount++ // Disable a massive transition for each shuffle.
       this.xcards = xcardsFromPid(this.pid, this.$store.state.options)
       this.$ga.event({
         eventCategory: 'supply',

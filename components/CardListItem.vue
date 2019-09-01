@@ -1,19 +1,37 @@
 <template>
   <omni-list-item
+    v-touch:start="onTouchStart"
+    v-touch:end="onTouchEnd"
     :component="editable ? 'label' : 'div'"
     :clickable="editable"
-    :class="{ dropped: xcard.dropped }"
+    :class="{ dropped: xcard.dropped, [gesture]: true }"
     class="line"
+    @touchmove.native="onTouchMove"
   >
-    <template v-if="editable">
-      <input v-show="false" v-model="xcard.dropped" type="checkbox">
-      <font-awesome-icon class="check" icon="check" size="xs" />
-    </template>
-    <span class="cost">{{ xcard.cost }}</span>
-    <span :data-names="typeNamesString" class="type" />
-    <span class="name">{{ xcard.name }}</span>
-    <span v-if="xcard.subtype" class="subtype">（{{ xcard.subtype }}）</span>
-    <span :data-symbol="expansionSymbol" class="expansion">{{ expansionSymbol }}</span>
+    <div
+      :style="{ transform: `translateX(-${dx}px)` }"
+      class="main"
+    >
+      <template v-if="editable">
+        <input v-show="false" v-model="xcard.dropped" type="checkbox">
+        <font-awesome-icon class="check" icon="check" size="xs" />
+      </template>
+      <span class="cost">{{ xcard.cost }}</span>
+      <span :data-names="typeNamesString" class="type" />
+      <span class="name">{{ xcard.name }}</span>
+      <span v-if="xcard.subtype" class="subtype">（{{ xcard.subtype }}）</span>
+      <span :data-symbol="expansionSymbol" class="expansion">{{ expansionSymbol }}</span>
+    </div>
+    <span
+      v-if="random"
+      :style="{ width: `${dx}px` }"
+      class="change-this-card"
+      @transitionend="onTransitionEnd"
+    >
+      <span class="icon-container">
+        <font-awesome-icon :class="{ active: willGestureBeRecognized }" class="icon" icon="sync-alt" size="xs" />
+      </span>
+    </span>
   </omni-list-item>
 </template>
 
@@ -31,9 +49,19 @@ export default {
       type: Boolean,
       required: true
     },
+    random: {
+      type: Boolean,
+      default: false
+    },
     xcard: {
       type: Object,
       required: true
+    }
+  },
+  data () {
+    return {
+      dx: 0,
+      gesture: 'start'
     }
   },
   computed: {
@@ -42,12 +70,93 @@ export default {
     },
     typeNamesString () {
       return this.xcard.types.join(' ')
+    },
+    willGestureBeRecognized () {
+      return process.browser && this.dx > window.innerWidth / 5
+    }
+  },
+  methods: {
+    onTouchStart () {
+      // vue2-touch-events updates e.currentTarget.$$touchObj.
+      this.dx = 0
+      this.gesture = 'start'
+    },
+    onTouchMove (e) {
+      if (this.gesture === 'ignore') {
+        return
+      }
+
+      const t = e.currentTarget.$$touchObj
+      if (t === undefined) {
+        // Sometimes $$touchObj is undefined if user tries
+        // swiping with two or more fingers.
+        return
+      }
+      if (t.currentX === 0 && t.currentY === 0) {
+        // For some reason these values are zeros at the start of a gesture.
+        return
+      }
+
+      const dx = t.currentX - t.startX
+      const dy = t.currentY - t.startY
+
+      if (this.gesture === 'start') {
+        if (dx > 0 || Math.abs(dx) < Math.abs(dy)) {
+          // Swipe to right/up/down is not a right gesture.
+          this.gesture = 'ignore'
+          return
+        }
+        if (Math.abs(dx) > 10 || Math.abs(dy) > 10) {
+          // Once user starts a right gesture, do not ignore the following
+          // touchmove events until touchend to update UI.
+          this.gesture = 'doing'
+        }
+      }
+
+      // Prevent vertical scroll if user seems to be doing a gesture.
+      e.preventDefault()
+
+      this.dx = Math.max(0, -dx)
+    },
+    onTouchEnd () {
+      if (this.willGestureBeRecognized) {
+        this.gesture = 'recognized'
+        this.dx = window.innerWidth
+      } else {
+        this.gesture = 'canceled'
+        this.dx = 0
+      }
+    },
+    onTransitionEnd () {
+      if (this.gesture === 'recognized') {
+        this.$emit('change-this-card')
+      }
     }
   }
 }
 </script>
 
 <style scoped>
+
+.line {
+  position: relative;
+}
+
+.main {
+  align-items: center;
+  display: flex;
+  transition: transform 0.4s;
+  width: 100%;
+}
+
+.line.start .main,
+.line.doing .main {
+  transition: none;
+}
+
+.line.recognized .main {
+  transition-duration: 0.2s;
+}
 
 .check {
   color: var(--link-text-color);
@@ -169,6 +278,46 @@ export default {
 .expansion[data-symbol='レ！'] {
   background: #ee9;
   color: #663;
+}
+
+.change-this-card {
+  align-items: center;
+  background: var(--toast-text-color);
+  box-sizing: border-box;
+  color: var(--toast-highlight-color);
+  display: flex;
+  flex: none;
+  height: 100%;
+  justify-content: flex-end;
+  max-width: 100%;
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: width 0.4s;
+  width: 0px;
+}
+
+.line.start .change-this-card,
+.line.doing .change-this-card {
+  transition: none;
+}
+
+.line.recognized .change-this-card {
+  transition-duration: 0.2s;
+}
+
+.change-this-card .icon-container {
+  padding-right: 1.7em;
+}
+
+.change-this-card .icon {
+  transition: transform 0.4s;
+  transform: scale(1.166) rotate(0deg);
+}
+
+.change-this-card .icon.active {
+  transform: scale(1.777) rotate(360deg);
 }
 
 </style>
