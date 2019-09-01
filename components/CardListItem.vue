@@ -29,7 +29,7 @@
       @transitionend="onTransitionEnd"
     >
       <span class="icon-container">
-        <font-awesome-icon :class="{ active: dx > 100 }" class="icon" icon="sync-alt" size="sm" />
+        <font-awesome-icon :class="{ active: willGestureBeRecognized }" class="icon" icon="sync-alt" size="sm" />
       </span>
     </span>
   </omni-list-item>
@@ -70,6 +70,9 @@ export default {
     },
     typeNamesString () {
       return this.xcard.types.join(' ')
+    },
+    willGestureBeRecognized () {
+      return process.browser && this.dx > window.innerWidth / 3
     }
   },
   methods: {
