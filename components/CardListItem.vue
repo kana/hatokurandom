@@ -22,7 +22,14 @@
       <span v-if="xcard.subtype" class="subtype">（{{ xcard.subtype }}）</span>
       <span :data-symbol="expansionSymbol" class="expansion">{{ expansionSymbol }}</span>
     </div>
-    <span v-if="random" :style="{ width: `${dx}px` }" class="change-this-card">[Change]</span>
+    <span
+      v-if="random"
+      :style="{ width: `${dx}px` }"
+      class="change-this-card"
+      @transitionend="onTransitionEnd"
+    >
+      [Change]
+    </span>
   </omni-list-item>
 </template>
 
@@ -103,13 +110,18 @@ export default {
       this.dx = Math.max(0, -dx)
     },
     onTouchEnd () {
-      this.gesture = 'end'
       const width = window.innerWidth
       if (this.dx >= width / 3) {
+        this.gesture = 'recognized'
         this.dx = width
-        // TODO: this.$emit('change-this-card') after transition.
       } else {
+        this.gesture = 'canceled'
         this.dx = 0
+      }
+    },
+    onTransitionEnd () {
+      if (this.gesture === 'recognized') {
+        this.$emit('change-this-card')
       }
     }
   }
@@ -132,6 +144,10 @@ export default {
 .line.start .main,
 .line.doing .main {
   transition: none;
+}
+
+.line.recognized .main {
+  transition-duration: 0.2s;
 }
 
 .check {
@@ -275,6 +291,10 @@ export default {
 .line.start .change-this-card,
 .line.doing .change-this-card {
   transition: none;
+}
+
+.line.recognized .change-this-card {
+  transition-duration: 0.2s;
 }
 
 </style>
