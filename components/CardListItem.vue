@@ -119,10 +119,9 @@ export default {
       this.dx = Math.max(0, -dx)
     },
     onTouchEnd () {
-      const width = window.innerWidth
-      if (this.dx >= width / 3) {
+      if (this.willGestureBeRecognized) {
         this.gesture = 'recognized'
-        this.dx = width
+        this.dx = window.innerWidth
       } else {
         this.gesture = 'canceled'
         this.dx = 0
