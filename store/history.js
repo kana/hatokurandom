@@ -6,8 +6,8 @@ export const state = () => ({
 })
 
 export const mutations = {
-  push (state, { key, path }) {
-    state[key].push(path)
+  push (state, { key, pid, fullPath }) {
+    state[key].push({ pid, fullPath })
   },
   splice (state, { key, i }) {
     state[key].splice(i)
@@ -21,21 +21,24 @@ export const getters = {
   backPath (state) {
     return function (pid) {
       const key = isPreferencesTabPid(pid) ? 'preferencesTabPathStack' : 'homeTabPathStack'
-      const pathStack = state[key]
-      return pathStack[pathStack.length - 2]
+      const navigationStack = state[key]
+      const entry = navigationStack[navigationStack.length - 2]
+      return entry && entry.fullPath
     }
   },
   homeTabLastPath (state) {
-    return state.homeTabPathStack[state.homeTabPathStack.length - 1] || '/'
+    const entry = state.homeTabPathStack[state.homeTabPathStack.length - 1]
+    return entry ? entry.fullPath : '/'
   },
   preferencesTabLastPath (state) {
-    return state.preferencesTabPathStack[state.preferencesTabPathStack.length - 1] || '/preferences'
+    const entry = state.preferencesTabPathStack[state.preferencesTabPathStack.length - 1]
+    return entry ? entry.fullPath : '/preferences'
   }
 }
 
 export const actions = {
-  navigate ({ commit, state }, path) {
-    const pid = pidFromPath(path)
+  navigate ({ commit, state }, fullPath) {
+    const pid = pidFromPath(fullPath)
     const key = isPreferencesTabPid(pid) ? 'preferencesTabPathStack' : 'homeTabPathStack'
 
     if (state[key].length === 0) {
@@ -43,20 +46,20 @@ export const actions = {
       return
     }
 
-    const i = state[key].indexOf(path)
+    const i = state[key].findIndex(entry => entry.pid === pid)
     if (i !== -1) {
       commit('splice', { key, i })
     }
 
-    commit('push', { key, path })
+    commit('push', { key, pid, fullPath })
   }
 }
 
 function guessInitialPathStack (pid) {
-  const pathStack = []
+  const navigationStack = []
   while (pid) {
-    pathStack.unshift(pathFromPid(pid))
+    navigationStack.unshift({ pid, fullPath: pathFromPid(pid) })
     pid = parentPidFromPid(pid)
   }
-  return pathStack
+  return navigationStack
 }

@@ -13,6 +13,6 @@ export default ({ app }) => {
   })
 
   app.router.afterEach((to, from) => {
-    app.store.dispatch('history/navigate', to.path)
+    app.store.dispatch('history/navigate', to.fullPath)
   })
 }
