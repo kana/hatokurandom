@@ -6,8 +6,8 @@ export const state = () => ({
 })
 
 export const mutations = {
-  push (state, { key, path }) {
-    state[key].push(path)
+  push (state, { key, fullPath }) {
+    state[key].push(fullPath)
   },
   splice (state, { key, i }) {
     state[key].splice(i)
@@ -34,8 +34,8 @@ export const getters = {
 }
 
 export const actions = {
-  navigate ({ commit, state }, path) {
-    const pid = pidFromPath(path)
+  navigate ({ commit, state }, fullPath) {
+    const pid = pidFromPath(fullPath)
     const key = isPreferencesTabPid(pid) ? 'preferencesTabPathStack' : 'homeTabPathStack'
 
     if (state[key].length === 0) {
@@ -43,12 +43,12 @@ export const actions = {
       return
     }
 
-    const i = state[key].indexOf(path)
+    const i = state[key].indexOf(fullPath)
     if (i !== -1) {
       commit('splice', { key, i })
     }
 
-    commit('push', { key, path })
+    commit('push', { key, fullPath })
   }
 }
 
