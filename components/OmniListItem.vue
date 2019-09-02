@@ -34,6 +34,7 @@ export default {
 
 .list-item {
   align-items: center;
+  border-bottom: 1px solid var(--item-separator-color);
   color: var(--item-label-color);
   display: flex;
   justify-content: flex-start;
@@ -50,10 +51,6 @@ export default {
   .list-item.clickable:hover {
     background: var(--header-background-color);
   }
-}
-
-.list-item + .list-item {
-  border-top: 1px solid var(--item-separator-color);
 }
 
 </style>
