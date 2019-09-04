@@ -75,7 +75,7 @@ export default {
       leaving: false,
       shuffleCount: 0,
       xcards: this.$route.query.rsid
-        ? xcardsAndMetaFromRsid(this.$route.query.rsid)
+        ? xcardsAndMetaFromRsid(this.$route.query.rsid).xcards
         : xcardsFromPid(this.pid, this.$store.state.options)
     }
   },
