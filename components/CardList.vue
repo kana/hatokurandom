@@ -106,7 +106,7 @@ export default {
           const xcards = this.special.random
             ? this.xcards
             : this.xcards.filter(xcard => !xcard.dropped)
-          return `supply:${rsidFromXcards(xcards)}`
+          return `supply:${rsidFromXcards(xcards, this.special.editor)}`
         }
       } else {
         return null
@@ -167,7 +167,7 @@ export default {
         this.$router.replace({
           path: this.$route.path,
           query: {
-            rsid: rsidFromXcards(this.xcards)
+            rsid: rsidFromXcards(this.xcards, this.special.editor)
           }
         })
       }
