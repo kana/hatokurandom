@@ -52,7 +52,7 @@ import OmniList from '~/components/OmniList'
 import OmniListItem from '~/components/OmniListItem'
 import ShuffleButton from '~/components/ShuffleButton'
 import EventBus from '~/lib/eventbus'
-import { isPredefinedSupplyPid, parseSpecialPid, rsidFromXcards, sortXcards, xcardsFromPid, xcardsFromRsid } from '~/lib/utils'
+import { isPredefinedSupplyPid, parseSpecialPid, rsidFromXcards, sortXcards, xcardsFromPid, xcardsAndMetaFromRsid } from '~/lib/utils'
 
 export default {
   name: 'CardList',
@@ -75,7 +75,7 @@ export default {
       leaving: false,
       shuffleCount: 0,
       xcards: this.$route.query.rsid
-        ? xcardsFromRsid(this.$route.query.rsid)
+        ? xcardsAndMetaFromRsid(this.$route.query.rsid)
         : xcardsFromPid(this.pid, this.$store.state.options)
     }
   },
