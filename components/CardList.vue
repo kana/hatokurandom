@@ -52,7 +52,7 @@ import OmniList from '~/components/OmniList'
 import OmniListItem from '~/components/OmniListItem'
 import ShuffleButton from '~/components/ShuffleButton'
 import EventBus from '~/lib/eventbus'
-import { isPredefinedSupplyPid, parseSpecialPid, rsidFromXcards, sortXcards, xcardsFromPid, xcardsFromRsid } from '~/lib/utils'
+import { isPredefinedSupplyPid, parseSpecialPid, rsidFromXcards, sortXcards, xcardsFromPid, xcardsAndMetaFromRsid } from '~/lib/utils'
 
 export default {
   name: 'CardList',
@@ -75,7 +75,7 @@ export default {
       leaving: false,
       shuffleCount: 0,
       xcards: this.$route.query.rsid
-        ? xcardsFromRsid(this.$route.query.rsid)
+        ? xcardsAndMetaFromRsid(this.$route.query.rsid).xcards
         : xcardsFromPid(this.pid, this.$store.state.options)
     }
   },
@@ -106,7 +106,7 @@ export default {
           const xcards = this.special.random
             ? this.xcards
             : this.xcards.filter(xcard => !xcard.dropped)
-          return `supply:${rsidFromXcards(xcards)}`
+          return `supply:${rsidFromXcards(xcards, this.special.editor)}`
         }
       } else {
         return null
@@ -167,7 +167,7 @@ export default {
         this.$router.replace({
           path: this.$route.path,
           query: {
-            rsid: rsidFromXcards(this.xcards)
+            rsid: rsidFromXcards(this.xcards, this.special.editor)
           }
         })
       }
