@@ -76,7 +76,7 @@ export default {
       shuffleCount: 0,
       xcards: this.$route.query.rsid
         ? xcardsAndMetaFromRsid(this.$route.query.rsid).xcards
-        : xcardsFromPid(this.pid, this.$store.state.options)
+        : this.rechooseXcards()
     }
   },
   computed: {
@@ -146,14 +146,7 @@ export default {
   },
   methods: {
     onChangeThisCard (changedXcard) {
-      this.xcards = xcardsFromPid(
-        this.pid,
-        {
-          ...this.$store.state.options,
-          changedXcard,
-          mustXcards: this.xcards.filter(xcard => xcard.cid !== changedXcard.cid)
-        }
-      )
+      this.xcards = this.rechooseXcards(changedXcard)
       this.$ga.event({
         eventCategory: 'supply',
         eventAction: 'change-this-card',
@@ -172,9 +165,20 @@ export default {
         })
       }
     },
+    rechooseXcards (changedXcard) {
+      const options =
+        changedXcard
+          ? {
+            ...this.$store.state.options,
+            changedXcard,
+            mustXcards: this.xcards.filter(xcard => xcard.cid !== changedXcard.cid)
+          }
+          : this.$store.state.options
+      return xcardsFromPid(this.pid, options)
+    },
     shuffle () {
       this.shuffleCount++ // Disable a massive transition for each shuffle.
-      this.xcards = xcardsFromPid(this.pid, this.$store.state.options)
+      this.xcards = this.rechooseXcards()
       this.$ga.event({
         eventCategory: 'supply',
         eventAction: 'shuffle'
