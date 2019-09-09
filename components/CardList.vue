@@ -1,5 +1,18 @@
 <template>
   <div class="container">
+    <div>
+      Debug:
+
+      <button @click="debugRandomSampling">
+        Shuffle 100,000 times
+      </button>
+
+      <div>{{ debugStatus }}</div>
+
+      <div v-for="(count, name) in debugStats" :key="name">
+        {{ count }} {{ name }}
+      </div>
+    </div>
     <block-title v-if="special.editable || sortedXcardsExcluded.length > 0">
       使用するカード
     </block-title>
@@ -72,6 +85,8 @@ export default {
   },
   data () {
     return {
+      debugStats: {},
+      debugStatus: 'initial',
       leaving: false,
       shuffleCount: 0,
       xcards: this.$route.query.rsid
@@ -183,6 +198,19 @@ export default {
         eventCategory: 'supply',
         eventAction: 'shuffle'
       })
+    },
+    debugRandomSampling () {
+      this.debugStatus = 'sampling...'
+      setTimeout(() => {
+        for (let i = 0; i < 10 * 10000; i++) {
+          const xcards = this.rechooseXcards()
+          for (const xcard of xcards) {
+            this.debugStats[xcard.name] = (this.debugStats[xcard.name] || 0) + 1
+          }
+        }
+        this.debugStats = { ...this.debugStats }
+        this.debugStatus = 'done'
+      }, 10)
     }
   }
 }
