@@ -65,7 +65,7 @@ import OmniList from '~/components/OmniList'
 import OmniListItem from '~/components/OmniListItem'
 import ShuffleButton from '~/components/ShuffleButton'
 import EventBus from '~/lib/eventbus'
-import { isPredefinedSupplyPid, parseSpecialPid, rsidFromXcards, sortXcards, xcardsFromPid, xcardsAndMetaFromRsid } from '~/lib/utils'
+import { isPredefinedSupplyPid, parseSpecialPid, pidFromSid, rsidFromXcards, sortXcards, xcardsFromPid, xcardsAndMetaFromRsid } from '~/lib/utils'
 
 export default {
   name: 'CardList',
@@ -109,6 +109,18 @@ export default {
       }
 
       return ''
+    },
+    recentlyUsedCountFromCid () {
+      const maxLogCount = 10
+      const map = {} // { [cid]: count }
+      for (const item of this.$store.state.log.items.slice(0, maxLogCount)) {
+        for (const xcard of xcardsFromPid(pidFromSid(item.sid))) {
+          if (!xcard.dropped) {
+            map[xcard.cid] = (map[xcard.cid] || 0) + 1
+          }
+        }
+      }
+      return map
     },
     sharable () {
       return this.playable || this.pid.startsWith('reference:')
@@ -181,15 +193,17 @@ export default {
       }
     },
     rechooseXcards (changedXcard) {
-      const options =
-        changedXcard
-          ? {
-            ...this.$store.state.options,
-            changedXcard,
-            mustXcards: this.xcards.filter(xcard => xcard.cid !== changedXcard.cid)
-          }
-          : this.$store.state.options
-      return xcardsFromPid(this.pid, options)
+      const optionsOnChangedXcard = changedXcard
+        ? {
+          changedXcard,
+          mustXcards: this.xcards.filter(xcard => xcard.cid !== changedXcard.cid)
+        }
+        : {}
+      return xcardsFromPid(this.pid, {
+        ...this.$store.state.options,
+        ...optionsOnChangedXcard,
+        recentlyUsedCountFromCid: this.recentlyUsedCountFromCid
+      })
     },
     shuffle () {
       this.shuffleCount++ // Disable a massive transition for each shuffle.
