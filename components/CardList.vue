@@ -1,5 +1,23 @@
 <template>
   <div class="container">
+    <div v-if="false">
+      Debug:
+
+      <button @click="debugRandomSampling">
+        Shuffle 100,000 times
+      </button>
+
+      <div>{{ debugStatus }}</div>
+
+      <div v-for="(count, name) in debugStats" :key="name">
+        {{ count }} {{ name }}
+      </div>
+
+      Recently used counts:
+      <div v-for="(count, cid) in recentlyUsedCountFromCid" :key="cid">
+        {{ count }} {{ cardFromCid(parseInt(cid, 10)).name }}
+      </div>
+    </div>
     <block-title v-if="special.editable || sortedXcardsExcluded.length > 0">
       使用するカード
     </block-title>
@@ -52,7 +70,7 @@ import OmniList from '~/components/OmniList'
 import OmniListItem from '~/components/OmniListItem'
 import ShuffleButton from '~/components/ShuffleButton'
 import EventBus from '~/lib/eventbus'
-import { isPredefinedSupplyPid, parseSpecialPid, rsidFromXcards, sortXcards, xcardsFromPid, xcardsAndMetaFromRsid } from '~/lib/utils'
+import { cardFromCid, isPredefinedSupplyPid, parseSpecialPid, pidFromSid, rsidFromXcards, sortXcards, xcardsFromPid, xcardsAndMetaFromRsid } from '~/lib/utils'
 
 export default {
   name: 'CardList',
@@ -72,11 +90,13 @@ export default {
   },
   data () {
     return {
+      debugStats: {},
+      debugStatus: 'initial',
       leaving: false,
       shuffleCount: 0,
       xcards: this.$route.query.rsid
         ? xcardsAndMetaFromRsid(this.$route.query.rsid).xcards
-        : xcardsFromPid(this.pid, this.$store.state.options)
+        : this.rechooseXcards()
     }
   },
   computed: {
@@ -94,6 +114,21 @@ export default {
       }
 
       return ''
+    },
+    recentlyUsedCountFromCid () {
+      if (!this.$store.state.options.avoidRecentlyUsedCards) {
+        return {}
+      }
+      const maxLogCount = 10
+      const map = {} // { [cid]: count }
+      for (const item of this.$store.state.log.items.slice(0, maxLogCount)) {
+        for (const xcard of xcardsFromPid(pidFromSid(item.sid))) {
+          if (!xcard.dropped) {
+            map[xcard.cid] = (map[xcard.cid] || 0) + 1
+          }
+        }
+      }
+      return map
     },
     sharable () {
       return this.playable || this.pid.startsWith('reference:')
@@ -145,15 +180,9 @@ export default {
     })
   },
   methods: {
+    cardFromCid,
     onChangeThisCard (changedXcard) {
-      this.xcards = xcardsFromPid(
-        this.pid,
-        {
-          ...this.$store.state.options,
-          changedXcard,
-          mustXcards: this.xcards.filter(xcard => xcard.cid !== changedXcard.cid)
-        }
-      )
+      this.xcards = this.rechooseXcards(changedXcard)
       this.$ga.event({
         eventCategory: 'supply',
         eventAction: 'change-this-card',
@@ -172,13 +201,41 @@ export default {
         })
       }
     },
+    rechooseXcards (changedXcard) {
+      const optionsOnChangedXcard = changedXcard
+        ? {
+          changedXcard,
+          mustXcards: this.xcards.filter(xcard => xcard.cid !== changedXcard.cid)
+        }
+        : {}
+      return xcardsFromPid(this.pid, {
+        ...this.$store.state.options,
+        ...optionsOnChangedXcard,
+        recentlyUsedCountFromCid: this.recentlyUsedCountFromCid
+      })
+    },
     shuffle () {
       this.shuffleCount++ // Disable a massive transition for each shuffle.
-      this.xcards = xcardsFromPid(this.pid, this.$store.state.options)
+      this.xcards = this.rechooseXcards()
       this.$ga.event({
         eventCategory: 'supply',
         eventAction: 'shuffle'
       })
+    },
+    debugRandomSampling () {
+      const start = Date.now()
+      this.debugStatus = 'sampling...'
+      setTimeout(() => {
+        for (let i = 0; i < 10 * 10000; i++) {
+          const xcards = this.rechooseXcards()
+          for (const xcard of xcards) {
+            this.debugStats[xcard.name] = (this.debugStats[xcard.name] || 0) + 1
+          }
+        }
+        this.debugStats = { ...this.debugStats }
+        const end = Date.now()
+        this.debugStatus = `done, ${end - start}`
+      }, 10)
     }
   }
 }

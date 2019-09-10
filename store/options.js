@@ -1,4 +1,5 @@
 export const DEFAULT_OPTIONS = {
+  avoidRecentlyUsedCards: false,
   excludeBannedCardsByUser: [], // cid[]
   excludeBannedCardsForAll: true,
   excludeBannedCardsForFairy: true,
@@ -15,6 +16,7 @@ export const DEFAULT_OPTIONS = {
 
 // For backward-compatibility.
 const STORAGE_KEY_MAP = {
+  avoidRecentlyUsedCards: 'avoid_recently_used_cards',
   excludeBannedCardsByUser: 'must_exclude_cards',
   excludeBannedCardsForAll: 'exclude_banned_cards',
   excludeBannedCardsForFairy: 'exclude_banned_cards_for_fairy_garden',
