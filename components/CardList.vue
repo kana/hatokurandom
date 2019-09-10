@@ -116,6 +116,9 @@ export default {
       return ''
     },
     recentlyUsedCountFromCid () {
+      if (!this.$store.state.options.avoidRecentlyUsedCards) {
+        return {}
+      }
       const maxLogCount = 10
       const map = {} // { [cid]: count }
       for (const item of this.$store.state.log.items.slice(0, maxLogCount)) {
