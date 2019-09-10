@@ -88,7 +88,9 @@
 
     <preference-switch v-model="avoidRecentlyUsedCards" title="最近使用したカードをなるべく避ける">
       <template v-slot:note>
-        <nuxt-link to="/supplies:log">最近使用したサプライ</nuxt-link>に含まれるカードの出現確率を下げます。使用回数が多いほど出現確率は下がります。ただし出現確率が完全に0になることはありません。
+        <nuxt-link to="/supplies:log">
+          最近使用したサプライ
+        </nuxt-link>に含まれるカードの出現確率を下げます。使用回数が多いほど出現確率は下がります。ただし出現確率が完全に0になることはありません。
       </template>
     </preference-switch>
 
