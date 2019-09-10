@@ -19,7 +19,7 @@
     "@fortawesome/vue-fontawesome": "^0.1.7",
     "@nuxtjs/google-analytics": "^2.2.0",
     "@nuxtjs/redirect-module": "^0.3.1",
-    "collections": "^5.1.9",
+    "fastpriorityqueue": "^0.6.3",
     "lodash-es": "^4.17.15",
     "nuxt": "^2.9.2",
     "sharp": "^0.23.0",

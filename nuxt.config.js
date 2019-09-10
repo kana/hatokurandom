@@ -53,7 +53,7 @@ export default {
     { path: '/ogp', handler: '~/serverMiddleware/ogp' }
   ],
   build: {
-    extend(config, ctx) {},
+    extend (config, ctx) {},
     // Workaround for Safari to avoid infinite loop when hot reloading.
     // See also: https://github.com/nuxt/nuxt.js/issues/3828#issuecomment-508428611
     filenames: {
