@@ -2180,13 +2180,6 @@ collection-visit@^1.0.0:
     map-visit "^1.0.0"
     object-visit "^1.0.0"
 
-collections@^5.1.9:
-  version "5.1.9"
-  resolved "https://registry.yarnpkg.com/collections/-/collections-5.1.9.tgz#4bb7d97a1b4b364f2a98d64ec1eca6ec9152d9ef"
-  integrity sha512-omsKk7VkxuYKsxKG9jdyNtqTVJXZuwLnK53lc7M7AW4cXKcEyK3F+4cfQFVOy4ivT+UWhJlvClrJI7qF2Ts6iA==
-  dependencies:
-    weak-map "~1.0.x"
-
 color-convert@^1.9.0, color-convert@^1.9.1:
   version "1.9.3"
   resolved "https://registry.yarnpkg.com/color-convert/-/color-convert-1.9.3.tgz#bb71850690e1f136567de629d2d5471deda4c1e8"
@@ -8271,11 +8264,6 @@ watchpack@^1.6.0:
     chokidar "^2.0.2"
     graceful-fs "^4.1.2"
     neo-async "^2.5.0"
-
-weak-map@~1.0.x:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/weak-map/-/weak-map-1.0.5.tgz#79691584d98607f5070bd3b70a40e6bb22e401eb"
-  integrity sha1-eWkVhNmGB/UHC9O3CkDmuyLkAes=
 
 webpack-bundle-analyzer@^3.4.1:
   version "3.4.1"
