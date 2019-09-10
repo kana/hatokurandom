@@ -200,6 +200,7 @@ export default {
       })
     },
     debugRandomSampling () {
+      const start = Date.now()
       this.debugStatus = 'sampling...'
       setTimeout(() => {
         for (let i = 0; i < 10 * 10000; i++) {
@@ -209,7 +210,8 @@ export default {
           }
         }
         this.debugStats = { ...this.debugStats }
-        this.debugStatus = 'done'
+        const end = Date.now()
+        this.debugStatus = `done, ${end - start}`
       }, 10)
     }
   }
