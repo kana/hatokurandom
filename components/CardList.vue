@@ -12,6 +12,11 @@
       <div v-for="(count, name) in debugStats" :key="name">
         {{ count }} {{ name }}
       </div>
+
+      Recently used counts:
+      <div v-for="(count, cid) in recentlyUsedCountFromCid" :key="cid">
+        {{ count }} {{ cardFromCid(parseInt(cid, 10)).name }}
+      </div>
     </div>
     <block-title v-if="special.editable || sortedXcardsExcluded.length > 0">
       使用するカード
@@ -65,7 +70,7 @@ import OmniList from '~/components/OmniList'
 import OmniListItem from '~/components/OmniListItem'
 import ShuffleButton from '~/components/ShuffleButton'
 import EventBus from '~/lib/eventbus'
-import { isPredefinedSupplyPid, parseSpecialPid, pidFromSid, rsidFromXcards, sortXcards, xcardsFromPid, xcardsAndMetaFromRsid } from '~/lib/utils'
+import { cardFromCid, isPredefinedSupplyPid, parseSpecialPid, pidFromSid, rsidFromXcards, sortXcards, xcardsFromPid, xcardsAndMetaFromRsid } from '~/lib/utils'
 
 export default {
   name: 'CardList',
@@ -172,6 +177,7 @@ export default {
     })
   },
   methods: {
+    cardFromCid,
     onChangeThisCard (changedXcard) {
       this.xcards = this.rechooseXcards(changedXcard)
       this.$ga.event({
