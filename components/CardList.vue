@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div>
+    <div v-if="false">
       Debug:
 
       <button @click="debugRandomSampling">
