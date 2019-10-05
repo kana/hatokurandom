@@ -141,7 +141,7 @@ export default {
           const xcards = this.special.random
             ? this.xcards
             : this.xcards.filter(xcard => !xcard.dropped)
-          return `supply:${rsidFromXcards(xcards, this.special.editor)}`
+          return `supply:${rsidFromXcards(xcards, this.special.editor || this.special.origin === 'edited')}`
         }
       } else {
         return null
