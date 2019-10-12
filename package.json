@@ -21,7 +21,7 @@
     "@nuxtjs/redirect-module": "^0.3.1",
     "fastpriorityqueue": "^0.6.3",
     "lodash-es": "^4.17.15",
-    "nuxt": "^2.10.0",
+    "nuxt": "^2.10.1",
     "sharp": "^0.23.1",
     "vue2-touch-events": "^2.0.0"
   },
