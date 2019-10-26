@@ -1,0 +1,16 @@
+{
+  "display": "standalone",
+  "name": "ハトクランダム",
+  "icons": [
+    {
+      "src": "static/apple-touch-icon.png",
+      "sizes": "120x120",
+      "type": "image/png"
+    },
+    {
+      "src": "static/favicon.ico",
+      "sizes": "32x32",
+      "type": "image/x-icon"
+    }
+  ]
+}
