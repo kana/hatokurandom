@@ -20,6 +20,15 @@ export default {
     PageContainer,
     PageList
   },
+  computed: {
+    pid () {
+      return this.$route.params.pid
+    }
+  },
+  methods: {
+    isCardListPid,
+    isPageListPid
+  },
   head () {
     return {
       title: titleTagValueFromPid(this.$route.params.pid),
@@ -31,15 +40,6 @@ export default {
     return params.pid === 'supplies:log' ||
       isCardListPid(params.pid) ||
       isPageListPid(params.pid)
-  },
-  computed: {
-    pid () {
-      return this.$route.params.pid
-    }
-  },
-  methods: {
-    isCardListPid,
-    isPageListPid
   }
 }
 </script>
