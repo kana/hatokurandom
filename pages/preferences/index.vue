@@ -141,11 +141,6 @@ export default {
     PreferenceSwitch,
     SegmentedButtonGroup
   },
-  head: {
-    title: titleTagValueFromPid('preferences'),
-    meta: ogpMetaFromPid('preferences')
-  },
-  transition,
   computed: {
     bannedCardNames () {
       return this.excludeBannedCardsByUser.map(cid => cardFromCid(cid).name)
@@ -185,7 +180,12 @@ export default {
         this.$store.dispatch('options/reset')
       }
     }
-  }
+  },
+  head: {
+    title: titleTagValueFromPid('preferences'),
+    meta: ogpMetaFromPid('preferences')
+  },
+  transition
 }
 </script>
 

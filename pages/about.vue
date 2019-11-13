@@ -69,11 +69,6 @@ export default {
     OmniListItem,
     PageContainer
   },
-  head: {
-    title: titleTagValueFromPid('about'),
-    meta: ogpMetaFromPid('about')
-  },
-  transition,
   computed: {
     isRunningInStandaloneMode () {
       return process.browser && navigator.standalone
@@ -86,7 +81,12 @@ export default {
     reload () {
       location.reload(true)
     }
-  }
+  },
+  head: {
+    title: titleTagValueFromPid('about'),
+    meta: ogpMetaFromPid('about')
+  },
+  transition
 }
 </script>
 

@@ -14,11 +14,6 @@ export default {
     PageContainer,
     PageList
   },
-  head: {
-    title: titleTagValueFromPid('home'),
-    meta: ogpMetaFromPid('home')
-  },
-  transition,
   mounted () {
     // Redirect old URL (/#supply:random10) to new URL (/supply:random10).
     if (this.$route.hash !== '') {
@@ -27,7 +22,12 @@ export default {
         this.$router.replace(`/${pid}`)
       }
     }
-  }
+  },
+  head: {
+    title: titleTagValueFromPid('home'),
+    meta: ogpMetaFromPid('home')
+  },
+  transition
 }
 </script>
 
