@@ -44,11 +44,11 @@
         <span class="label">バージョン</span>
         <span class="value">{{ version }}</span>
       </omni-list-item>
-      <no-ssr>
+      <client-only>
         <link-button-list-item v-if="isRunningInStandaloneMode" @click="reload">
           最新バージョンに更新する
         </link-button-list-item>
-      </no-ssr>
+      </client-only>
     </omni-list>
   </page-container>
 </template>
