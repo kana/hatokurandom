@@ -193,10 +193,15 @@ export default {
       this.$store.commit('supply/setPid', this.sharePid)
 
       if (this.special.random) {
+        const rsid = rsidFromXcards(this.xcards, this.special.editor)
+        if (this.$route.query.rsid === rsid) {
+          // Avoid NavigationDuplicated caused by browser back/foward to /supply:{pid}.
+          return
+        }
         this.$router.replace({
           path: this.$route.path,
           query: {
-            rsid: rsidFromXcards(this.xcards, this.special.editor)
+            rsid
           }
         })
       }
