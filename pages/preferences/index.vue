@@ -59,6 +59,17 @@
       </template>
     </preference-switch>
 
+    <preference-switch v-model="excludeCardsWithConditionalActivatedAbility" title="条件起動能力を持つカードを除外する">
+      <template v-slot:note>
+        以下のカードは出現しません:
+        <span class="card-name">灯台</span>
+        <span class="card-name">義賊</span>
+        <span class="card-name">先行投資</span>
+        <span class="card-name">家庭教師</span>
+        <span class="card-name">離れ小島</span>
+      </template>
+    </preference-switch>
+
     <omni-list>
       <omni-list-item v-for="name in bannedCardNames" :key="name">
         {{ name }}
@@ -164,6 +175,7 @@ export default {
       'excludeBannedCardsForAll',
       'excludeBannedCardsForFairy',
       'excludeBannedCardsForStar',
+      'excludeCardsWithConditionalActivatedAbility',
       'includeAllCosts',
       'includeExpansionBasic',
       'includeExpansionFairy',
