@@ -16,7 +16,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.28",
     "@fortawesome/free-solid-svg-icons": "^5.13.0",
-    "@fortawesome/vue-fontawesome": "^0.1.9",
+    "@fortawesome/vue-fontawesome": "^0.1.10",
     "@nuxtjs/google-analytics": "^2.3.0",
     "@nuxtjs/redirect-module": "^0.3.1",
     "fastpriorityqueue": "^0.6.3",
