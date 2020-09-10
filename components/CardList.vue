@@ -261,6 +261,7 @@ export default {
   bottom: var(--bottom-pane-height);
   position: fixed;
   right: 0;
+  touch-action: none;
   z-index: 2;
 }
 
