@@ -26,6 +26,7 @@
         <card-list-item
           v-for="xcard in sortedXcardsIncluded"
           :key="xcard.cid"
+          :allow-change-this-card="special.random && sortedXcardsExcluded.length === 0"
           :editable="special.editable"
           :random="special.random"
           :xcard="xcard"

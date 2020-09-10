@@ -45,6 +45,10 @@ export default {
     OmniListItem
   },
   props: {
+    allowChangeThisCard: {
+      type: Boolean,
+      default: false
+    },
     editable: {
       type: Boolean,
       required: true
@@ -77,7 +81,7 @@ export default {
   },
   methods: {
     onTouchStart () {
-      if (!this.random) {
+      if (!this.allowChangeThisCard) {
         return
       }
 
@@ -86,7 +90,7 @@ export default {
       this.gesture = 'start'
     },
     onTouchMove (e) {
-      if (!this.random) {
+      if (!this.allowChangeThisCard) {
         return
       }
       if (this.gesture === 'ignore') {
@@ -126,7 +130,7 @@ export default {
       this.dx = Math.max(0, -dx)
     },
     onTouchEnd () {
-      if (!this.random) {
+      if (!this.allowChangeThisCard) {
         return
       }
 
