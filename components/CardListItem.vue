@@ -77,11 +77,18 @@ export default {
   },
   methods: {
     onTouchStart () {
+      if (!this.random) {
+        return
+      }
+
       // vue2-touch-events updates e.currentTarget.$$touchObj.
       this.dx = 0
       this.gesture = 'start'
     },
     onTouchMove (e) {
+      if (!this.random) {
+        return
+      }
       if (this.gesture === 'ignore') {
         return
       }
@@ -119,6 +126,10 @@ export default {
       this.dx = Math.max(0, -dx)
     },
     onTouchEnd () {
+      if (!this.random) {
+        return
+      }
+
       if (this.willGestureBeRecognized) {
         this.gesture = 'recognized'
         this.dx = window.innerWidth
