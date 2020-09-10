@@ -46,6 +46,9 @@ export default {
     }
   },
   computed: {
+    isReferencePage () {
+      return this.sharePid.startsWith('reference:')
+    },
     pid () {
       return pidFromPath(this.$route.path)
     },
@@ -64,11 +67,10 @@ export default {
       }
 
       const permalink = permalinkFromPid(this.sharePid)
-      const isReferencePage = this.sharePid.startsWith('reference:')
       const usedCardNames = sortXcards(xcardsFromPid(this.sharePid))
         .filter(xcard => !xcard.dropped)
         .map(xcard => xcard.name)
-      const baseMessage = isReferencePage
+      const baseMessage = this.isReferencePage
         ? `ハトクラの${this.title}`
         : `ハトクラなう。今回のサプライ: ${usedCardNames.join(', ')}`
       const optionSharingTool = 'web_intent' // TODO
@@ -104,10 +106,12 @@ export default {
         return
       }
 
-      this.$store.dispatch('log/append', {
-        sid: sidFromPid(this.sharePid),
-        at: Date.now()
-      })
+      if (!this.isReferencePage) {
+        this.$store.dispatch('log/append', {
+          sid: sidFromPid(this.sharePid),
+          at: Date.now()
+        })
+      }
 
       this.$ga.event({
         eventCategory: 'supply',
