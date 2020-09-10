@@ -38,7 +38,7 @@
         <external-link href="https://github.com/kana/hatokurandom" label="ソースコード" />
       </omni-list-item>
       <omni-list-item>
-        <external-link href="https://twitter.com/intent/tweet?text=@kana1+&amp;hashtags=hatokurandom" label="ご意見・ご感想" />
+        <external-link :href="`https://twitter.com/intent/tweet?text=${encodeURIComponent('@kana1 ハトクランダムについて:')}`" label="ご意見・ご感想" />
       </omni-list-item>
       <omni-list-item class="version">
         <span class="label">バージョン</span>
