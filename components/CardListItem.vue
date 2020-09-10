@@ -45,6 +45,10 @@ export default {
     OmniListItem
   },
   props: {
+    allowChangeThisCard: {
+      type: Boolean,
+      default: false
+    },
     editable: {
       type: Boolean,
       required: true
@@ -77,11 +81,18 @@ export default {
   },
   methods: {
     onTouchStart () {
+      if (!this.allowChangeThisCard) {
+        return
+      }
+
       // vue2-touch-events updates e.currentTarget.$$touchObj.
       this.dx = 0
       this.gesture = 'start'
     },
     onTouchMove (e) {
+      if (!this.allowChangeThisCard) {
+        return
+      }
       if (this.gesture === 'ignore') {
         return
       }
@@ -119,6 +130,10 @@ export default {
       this.dx = Math.max(0, -dx)
     },
     onTouchEnd () {
+      if (!this.allowChangeThisCard) {
+        return
+      }
+
       if (this.willGestureBeRecognized) {
         this.gesture = 'recognized'
         this.dx = window.innerWidth
