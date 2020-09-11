@@ -10,4 +10,9 @@ However, some statements by the author could be regarded as a guideline.
 > 大丈夫です。二次創作や、公式画像の使用についてはガイドラインを設ける
 > 予定です。
 
-Therefore, images in this directory are lossily compressed.
+Therefore, images in this directory are lossily compressed with the
+following command:
+
+```sh
+convert scanned-image.jpg -resize 9999x240 -gravity North -extent 170x240 -resize 30% -resize 9999x260 -quality 60 lossy-version.jpg
+```
