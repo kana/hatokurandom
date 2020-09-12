@@ -5,14 +5,8 @@
 </template>
 
 <script>
+import { nameFromPath } from '~/lib/router'
 import { pidFromPath } from '~/lib/utils'
-
-const staticRouteNameMap = new Map([
-  ['/', 'index'],
-  ['/about', 'about'],
-  ['/preferences', 'preferences'],
-  ['/preferences/banned-cards', 'preferences-banned-cards']
-])
 
 export default {
   props: {
@@ -23,7 +17,7 @@ export default {
   },
   computed: {
     normalizedTo () {
-      const name = staticRouteNameMap.get(this.path) || 'pid'
+      const name = nameFromPath(this.path)
       const pid = name !== 'pid' ? undefined : pidFromPath(this.path)
       return {
         name,

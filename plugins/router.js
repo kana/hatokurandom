@@ -1,4 +1,5 @@
 import EventBus from '~/lib/eventbus'
+import { setUp as setUpLibRouter } from '~/lib/router'
 import { parseSpecialPid, pidFromPath } from '~/lib/utils'
 
 export default ({ app }) => {
@@ -15,4 +16,6 @@ export default ({ app }) => {
   app.router.afterEach((to, from) => {
     app.store.dispatch('history/navigate', to.fullPath)
   })
+
+  setUpLibRouter(app.router.options.routes)
 }
