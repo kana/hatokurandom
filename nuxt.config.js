@@ -1,6 +1,6 @@
 import { readFileSync } from 'fs'
 
-const version = readFileSync('VERSION').toString()
+const version = readFileSync('VERSION').toString().trim()
 
 export default {
   env: {
