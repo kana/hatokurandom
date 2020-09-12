@@ -4,6 +4,10 @@
   "description": "A utility to choose a supply for HEART of CROWN.",
   "author": "Kana Natsuno",
   "private": true,
+  "engines": {
+    "node": "14.x",
+    "yarn": "1.x"
+  },
   "scripts": {
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "precommit": "yarn lint",

@@ -3,7 +3,6 @@ import { readFileSync } from 'fs'
 const version = readFileSync('VERSION').toString()
 
 export default {
-  mode: 'universal',
   env: {
     version
   },
