@@ -200,10 +200,11 @@ export default {
           return
         }
         this.$router.replace({
-          path: this.$route.path,
+          name: this.$route.name,
           query: {
             rsid
-          }
+          },
+          params: this.$route.params
         })
       }
     },
