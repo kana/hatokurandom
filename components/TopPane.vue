@@ -8,7 +8,7 @@
       </transitioned-link>
     </fade-in-out>
     <div class="title">
-      <transition :name="transition">
+      <transition :name="titleTransition">
         <div :key="title" class="text">
           <span>{{ title }}</span>
         </div>
@@ -44,7 +44,7 @@ export default {
   },
   data () {
     return {
-      transition: 'shift-forward'
+      titleTransition: 'shift-forward'
     }
   },
   computed: {
@@ -96,7 +96,7 @@ export default {
   },
   watch: {
     pid (newPid, oldPid) {
-      this.transition = isForwardTransitionByPids(newPid, oldPid)
+      this.titleTransition = isForwardTransitionByPids(newPid, oldPid)
         ? 'shift-forward'
         : 'shift-backward'
     }
