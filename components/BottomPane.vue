@@ -1,6 +1,6 @@
 <template>
   <div class="bottom-pane">
-    <nuxt-link
+    <transitioned-link
       v-for="tab in tabs"
       :key="tab.path"
       :to="tab.path"
@@ -8,14 +8,19 @@
       class="tab"
     >
       <font-awesome-icon size="lg" :icon="tab.icon" />
-    </nuxt-link>
+    </transitioned-link>
   </div>
 </template>
 
 <script>
+import TransitionedLink from '~/components/TransitionedLink'
 import { isPreferencesTabPid, pidFromPath } from '~/lib/utils'
+
 export default {
   name: 'BottomPane',
+  components: {
+    TransitionedLink
+  },
   computed: {
     currentTabPath () {
       return isPreferencesTabPid(pidFromPath(this.$route.path)) ? '/preferences' : '/'

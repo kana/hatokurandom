@@ -1,11 +1,11 @@
 <template>
   <div class="top-pane">
     <fade-in-out>
-      <nuxt-link v-if="toBack" :to="toBack" class="back-to-parent-button">
+      <transitioned-link v-if="toBack" :to="toBack" class="back-to-parent-button">
         <div class="back-to-parent-button-inner">
           <font-awesome-icon icon="chevron-left" size="lg" />
         </div>
-      </nuxt-link>
+      </transitioned-link>
     </fade-in-out>
     <div class="title">
       <transition :name="transition">
@@ -33,12 +33,14 @@
 
 <script>
 import FadeInOut from '~/components/FadeInOut'
+import TransitionedLink from '~/components/TransitionedLink'
 import { isCardListPid, isForwardTransitionByPids, permalinkFromPid, pidFromPath, sidFromPid, sortXcards, titleFromPid, xcardsFromPid } from '~/lib/utils'
 
 export default {
   name: 'TopPane',
   components: {
-    FadeInOut
+    FadeInOut,
+    TransitionedLink
   },
   data () {
     return {
