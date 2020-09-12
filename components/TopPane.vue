@@ -44,7 +44,7 @@ export default {
   },
   data () {
     return {
-      titleTransition: 'shift-forward'
+      titleTransitionBase: 'shift-forward'
     }
   },
   computed: {
@@ -90,13 +90,17 @@ export default {
     title () {
       return titleFromPid(this.pid)
     },
+    titleTransition () {
+      const byTap = this.$route.params.transition
+      return byTap ? this.titleTransitionBase : 'none'
+    },
     toBack () {
       return this.$store.getters['history/backPath'](this.pid)
     }
   },
   watch: {
     pid (newPid, oldPid) {
-      this.titleTransition = isForwardTransitionByPids(newPid, oldPid)
+      this.titleTransitionBase = isForwardTransitionByPids(newPid, oldPid)
         ? 'shift-forward'
         : 'shift-backward'
     }
