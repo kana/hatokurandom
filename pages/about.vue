@@ -11,11 +11,11 @@
       <p>
         <external-link href="http://hatokura.flipflops.jp/rule" label="ルールブック" />
         には初めてプレイする際に最適な
-        <transitioned-link to="supplies:basic">
+        <transitioned-link path="/supplies:basic">
           推奨サプライ
         </transitioned-link>
         が記載されていますが、ある程度ゲームに慣れてくると
-        <transitioned-link to="supplies:random">
+        <transitioned-link path="/supplies:random">
           ランダム選択でサプライを決める
         </transitioned-link>
         ようになります。

@@ -1,7 +1,7 @@
 <template>
   <component
     :is="component"
-    :to="to"
+    :path="path"
     :class="{ clickable }"
     class="list-item"
     @click="$emit('click')"
@@ -22,7 +22,7 @@ export default {
       type: String,
       default: 'div'
     },
-    to: {
+    path: {
       type: String,
       default: null
     }

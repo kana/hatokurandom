@@ -1,6 +1,6 @@
 <template>
   <omni-list-item
-    :to="path"
+    :path="path"
     component="transitioned-link"
     clickable
     class="link-list-item link"

@@ -16,15 +16,15 @@ const staticRouteNameMap = new Map([
 
 export default {
   props: {
-    to: {
+    path: {
       type: String,
       required: true
     }
   },
   computed: {
     normalizedTo () {
-      const name = staticRouteNameMap.get(this.to) || 'pid'
-      const pid = name !== 'pid' ? undefined : pidFromPath(this.to)
+      const name = staticRouteNameMap.get(this.path) || 'pid'
+      const pid = name !== 'pid' ? undefined : pidFromPath(this.path)
       return {
         name,
         params: {

@@ -99,7 +99,7 @@
 
     <preference-switch v-model="avoidRecentlyUsedCards" title="最近使用したカードをなるべく避ける">
       <template v-slot:note>
-        <transitioned-link to="/supplies:log">
+        <transitioned-link path="/supplies:log">
           最近使用したサプライ
         </transitioned-link>に含まれるカードの出現確率を下げます。使用回数が多いほど出現確率は下がります。ただし出現確率が完全に0になることはありません。
       </template>

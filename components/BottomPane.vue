@@ -3,7 +3,7 @@
     <transitioned-link
       v-for="tab in tabs"
       :key="tab.path"
-      :to="tab.path"
+      :path="tab.path"
       :class="{ active: tab.path === currentTabPath }"
       class="tab"
     >

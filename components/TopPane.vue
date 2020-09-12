@@ -1,7 +1,7 @@
 <template>
   <div class="top-pane">
     <fade-in-out>
-      <transitioned-link v-if="toBack" :to="toBack" class="back-to-parent-button">
+      <transitioned-link v-if="toBack" :path="toBack" class="back-to-parent-button">
         <div class="back-to-parent-button-inner">
           <font-awesome-icon icon="chevron-left" size="lg" />
         </div>
