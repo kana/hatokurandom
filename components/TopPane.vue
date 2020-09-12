@@ -1,6 +1,6 @@
 <template>
   <div class="top-pane">
-    <fade-in-out>
+    <fade-in-out :enabled="shouldEnableIconTransition">
       <transitioned-link v-if="toBack" :path="toBack" class="back-to-parent-button">
         <div class="back-to-parent-button-inner">
           <font-awesome-icon icon="chevron-left" size="lg" />
@@ -14,7 +14,7 @@
         </div>
       </transition>
     </div>
-    <fade-in-out>
+    <fade-in-out :enabled="shouldEnableIconTransition">
       <a
         v-if="shareablePage"
         :href="shareUrl"
@@ -86,6 +86,9 @@ export default {
         encodeURIComponent(`${baseMessage} #hatokura ${permalink}`)
       ]
       return ss.join('')
+    },
+    shouldEnableIconTransition () {
+      return this.$route.params.transition
     },
     title () {
       return titleFromPid(this.pid)

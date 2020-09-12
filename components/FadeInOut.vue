@@ -1,12 +1,18 @@
 <template>
-  <transition name="fade" appear>
+  <transition :name="enabled ? 'fade' : 'none'" appear>
     <slot />
   </transition>
 </template>
 
 <script>
 export default {
-  name: 'FadeInOut'
+  name: 'FadeInOut',
+  props: {
+    enabled: {
+      type: Boolean,
+      default: false
+    }
+  }
 }
 </script>
 
