@@ -50,6 +50,15 @@
         </link-button-list-item>
       </client-only>
     </omni-list>
+    <div v-if="previousVersion" class="version-note">
+      <div v-if="previousVersion === version" class="text">
+        最新バージョンです。
+      </div>
+      <div v-else class="text">
+        最新バージョンに更新しました。
+        <br>更新前のバージョン: {{ previousVersion }}
+      </div>
+    </div>
   </page-container>
 </template>
 
@@ -73,13 +82,16 @@ export default {
     isRunningInStandaloneMode () {
       return process.browser && navigator.standalone
     },
+    previousVersion () {
+      return this.$route.query.updateFrom || undefined
+    },
     version () {
       return process.env.version
     }
   },
   methods: {
     reload () {
-      location.reload(true)
+      location.href = `${this.$route.path}?updateFrom=${this.version}`
     }
   },
   head: {
@@ -113,6 +125,15 @@ p:first-child {
   color: var(--item-value-color);
   flex: none;
   white-space: nowrap;
+}
+
+.version-note {
+  margin: 0.5em 1em 0;
+}
+
+.text {
+  color: var(--item-value-color);
+  font-size: 80%;
 }
 
 </style>
