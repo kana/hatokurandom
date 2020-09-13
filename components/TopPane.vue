@@ -1,6 +1,6 @@
 <template>
   <div class="top-pane">
-    <fade-in-out :enabled="shouldEnableIconTransition">
+    <fade-in-out :enabled="toBackTransitionEnabled">
       <transitioned-link v-if="toBack" :path="toBack" class="back-to-parent-button">
         <div class="back-to-parent-button-inner">
           <font-awesome-icon icon="chevron-left" size="lg" />
@@ -44,7 +44,9 @@ export default {
   },
   data () {
     return {
-      titleTransitionBase: 'shift-forward'
+      titleTransitionBase: 'shift-forward',
+      toBack: undefined,
+      toBackTransitionEnabled: false
     }
   },
   computed: {
@@ -97,7 +99,7 @@ export default {
       const byTap = this.$route.params.transition
       return byTap ? this.titleTransitionBase : 'none'
     },
-    toBack () {
+    toBackInRealtime () {
       return this.$store.getters['history/backPath'](this.pid)
     }
   },
@@ -106,7 +108,20 @@ export default {
       this.titleTransitionBase = isForwardTransitionByPids(newPid, oldPid)
         ? 'shift-forward'
         : 'shift-backward'
+    },
+    toBackInRealtime (newValue) {
+      this.toBackTransitionEnabled = this.shouldEnableIconTransition
+      this.$nextTick(() => {
+        this.toBack = newValue
+      })
     }
+  },
+  created () {
+    // - Computed properties are not available in data().
+    // - Their values are necessary for the first rendering.
+    // - beforeMount() is not called during server-side rendering.
+    // Therefore the following "initial values" must be set in created().
+    this.toBack = this.toBackInRealtime
   },
   methods: {
     share (e) {
