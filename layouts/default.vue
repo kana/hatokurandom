@@ -15,6 +15,7 @@
 <script>
 import BottomPane from '~/components/BottomPane'
 import TopPane from '~/components/TopPane'
+import { toFromPath } from '~/lib/router'
 import { pidFromPath } from '~/lib/utils'
 
 export default {
@@ -27,6 +28,13 @@ export default {
       return pidFromPath(this.$route.path)
     },
     toBack () {
+      if (this.toBackPath === undefined) {
+        return undefined
+      }
+
+      return toFromPath(this.toBackPath, { transition: true })
+    },
+    toBackPath () {
       const backPath = this.$store.getters['history/backPath'](this.pid)
       if (backPath) {
         return backPath

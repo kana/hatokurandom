@@ -1,7 +1,7 @@
 <template>
   <omni-list-item
-    :to="path"
-    component="nuxt-link"
+    :path="path"
+    component="transitioned-link"
     clickable
     class="link-list-item link"
   >
@@ -11,6 +11,9 @@
 
 <script>
 import OmniListItem from '~/components/OmniListItem'
+
+// TransitionedLink is preloaded.
+// Importing and adding it to 'components' don't work for some reason.
 
 export default {
   name: 'LinkListItem',

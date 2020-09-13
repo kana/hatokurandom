@@ -11,13 +11,13 @@
       <p>
         <external-link href="http://hatokura.flipflops.jp/rule" label="ルールブック" />
         には初めてプレイする際に最適な
-        <nuxt-link to="supplies:basic">
+        <transitioned-link path="/supplies:basic">
           推奨サプライ
-        </nuxt-link>
+        </transitioned-link>
         が記載されていますが、ある程度ゲームに慣れてくると
-        <nuxt-link to="supplies:random">
+        <transitioned-link path="/supplies:random">
           ランダム選択でサプライを決める
-        </nuxt-link>
+        </transitioned-link>
         ようになります。
         ところがコモンカード10種類をランダムに選択するのは案外大変です。
         このツールが快適なゲームプレイの一助となれば幸いです。
@@ -68,6 +68,7 @@ import LinkButtonListItem from '~/components/LinkButtonListItem'
 import OmniList from '~/components/OmniList'
 import OmniListItem from '~/components/OmniListItem'
 import PageContainer from '~/components/PageContainer'
+import TransitionedLink from '~/components/TransitionedLink'
 import { ogpMetaFromPid, titleTagValueFromPid, transition } from '~/lib/utils'
 
 export default {
@@ -76,7 +77,8 @@ export default {
     LinkButtonListItem,
     OmniList,
     OmniListItem,
-    PageContainer
+    PageContainer,
+    TransitionedLink
   },
   computed: {
     isRunningInStandaloneMode () {

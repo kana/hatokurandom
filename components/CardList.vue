@@ -49,8 +49,8 @@
       </omni-list>
     </template>
 
-    <fade-in-out>
-      <shuffle-button v-if="!leaving && special.random" class="shuffle-button" @click="shuffle" />
+    <fade-in-out :enabled="shuffleButtonTransitionEnabled">
+      <shuffle-button v-if="shuffleButtonVisible" class="shuffle-button" @click="shuffle" />
     </fade-in-out>
 
     <fade-in-out>
@@ -94,6 +94,8 @@ export default {
       debugStats: {},
       debugStatus: 'initial',
       leaving: false,
+      shuffleButtonTransitionEnabled: false,
+      shuffleButtonVisible: false,
       shuffleCount: 0,
       xcards: this.$route.query.rsid
         ? xcardsAndMetaFromRsid(this.$route.query.rsid).xcards
@@ -148,6 +150,12 @@ export default {
         return null
       }
     },
+    shouldEnableTransition () {
+      return !!this.$route.params.transition
+    },
+    shuffleButtonVisibleInRealtime () {
+      return !this.leaving && this.special.random
+    },
     sortedXcards () {
       return sortXcards(this.xcards)
     },
@@ -165,12 +173,22 @@ export default {
     pid () {
       this.onUpdateXcards()
     },
+    shuffleButtonVisibleInRealtime (newValue) {
+      this.shuffleButtonTransitionEnabled = this.shouldEnableTransition
+      this.$nextTick(() => {
+        this.shuffleButtonVisible = newValue
+      })
+    },
     xcards: {
       handler () {
         this.onUpdateXcards()
       },
       deep: true
     }
+  },
+  created () {
+    this.shuffleButtonTransitionEnabled = this.shouldEnableTransition
+    this.shuffleButtonVisible = this.shuffleButtonVisibleInRealtime
   },
   mounted () {
     this.onUpdateXcards()
@@ -200,10 +218,11 @@ export default {
           return
         }
         this.$router.replace({
-          path: this.$route.path,
+          name: this.$route.name,
           query: {
             rsid
-          }
+          },
+          params: this.$route.params
         })
       }
     },

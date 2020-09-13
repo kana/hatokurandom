@@ -99,9 +99,9 @@
 
     <preference-switch v-model="avoidRecentlyUsedCards" title="最近使用したカードをなるべく避ける">
       <template v-slot:note>
-        <nuxt-link to="/supplies:log">
+        <transitioned-link path="/supplies:log">
           最近使用したサプライ
-        </nuxt-link>に含まれるカードの出現確率を下げます。使用回数が多いほど出現確率は下がります。ただし出現確率が完全に0になることはありません。
+        </transitioned-link>に含まれるカードの出現確率を下げます。使用回数が多いほど出現確率は下がります。ただし出現確率が完全に0になることはありません。
       </template>
     </preference-switch>
 
@@ -122,6 +122,7 @@ import OmniListItem from '~/components/OmniListItem'
 import PageContainer from '~/components/PageContainer'
 import PreferenceSwitch from '~/components/PreferenceSwitch'
 import SegmentedButtonGroup from '~/components/SegmentedButtonGroup'
+import TransitionedLink from '~/components/TransitionedLink'
 import { EXPANSIONS, cardFromCid, ogpMetaFromPid, titleTagValueFromPid, transition } from '~/lib/utils'
 
 function mapOptionStore (keys) {
@@ -150,7 +151,8 @@ export default {
     OmniListItem,
     PageContainer,
     PreferenceSwitch,
-    SegmentedButtonGroup
+    SegmentedButtonGroup,
+    TransitionedLink
   },
   computed: {
     bannedCardNames () {

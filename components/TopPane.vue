@@ -1,20 +1,20 @@
 <template>
   <div class="top-pane">
-    <fade-in-out>
-      <nuxt-link v-if="toBack" :to="toBack" class="back-to-parent-button">
+    <fade-in-out :enabled="toBackTransitionEnabled">
+      <transitioned-link v-if="toBack" :path="toBack" class="back-to-parent-button">
         <div class="back-to-parent-button-inner">
           <font-awesome-icon icon="chevron-left" size="lg" />
         </div>
-      </nuxt-link>
+      </transitioned-link>
     </fade-in-out>
     <div class="title">
-      <transition :name="transition">
+      <transition :name="titleTransitionName" :mode="titleTransitionMode">
         <div :key="title" class="text">
           <span>{{ title }}</span>
         </div>
       </transition>
     </div>
-    <fade-in-out>
+    <fade-in-out :enabled="shareablePageTransitionEnabled">
       <a
         v-if="shareablePage"
         :href="shareUrl"
@@ -33,16 +33,24 @@
 
 <script>
 import FadeInOut from '~/components/FadeInOut'
+import TransitionedLink from '~/components/TransitionedLink'
 import { isCardListPid, isForwardTransitionByPids, permalinkFromPid, pidFromPath, sidFromPid, sortXcards, titleFromPid, xcardsFromPid } from '~/lib/utils'
 
 export default {
   name: 'TopPane',
   components: {
-    FadeInOut
+    FadeInOut,
+    TransitionedLink
   },
   data () {
     return {
-      transition: 'shift-forward'
+      shareablePage: undefined,
+      shareablePageTransitionEnabled: false,
+      title: undefined,
+      titleTransitionDirection: 'shift-forward',
+      titleTransitionEnabled: false,
+      toBack: undefined,
+      toBackTransitionEnabled: false
     }
   },
   computed: {
@@ -52,7 +60,7 @@ export default {
     pid () {
       return pidFromPath(this.$route.path)
     },
-    shareablePage () {
+    shareablePageInRealtime () {
       return isCardListPid(this.pid)
     },
     shareableSupply () {
@@ -85,19 +93,58 @@ export default {
       ]
       return ss.join('')
     },
-    title () {
+    shouldEnableTransition () {
+      return !!this.$route.params.transition
+    },
+    titleInRealtime () {
       return titleFromPid(this.pid)
     },
-    toBack () {
+    titleTransitionName () {
+      return this.titleTransitionEnabled ? this.titleTransitionDirection : 'none'
+    },
+    titleTransitionMode () {
+      // "out-in" must be used to avoid flickring in title area.  Because the
+      // default mode renders both the old and the new elements at the same
+      // time, and it results flickring.
+      return this.titleTransitionEnabled ? undefined : 'out-in'
+    },
+    toBackInRealtime () {
       return this.$store.getters['history/backPath'](this.pid)
     }
   },
   watch: {
     pid (newPid, oldPid) {
-      this.transition = isForwardTransitionByPids(newPid, oldPid)
+      this.titleTransitionDirection = isForwardTransitionByPids(newPid, oldPid)
         ? 'shift-forward'
         : 'shift-backward'
+    },
+    shareablePageInRealtime (newValue) {
+      this.shareablePageTransitionEnabled = this.shouldEnableTransition
+      this.$nextTick(() => {
+        this.shareablePage = newValue
+      })
+    },
+    titleInRealtime (newValue) {
+      this.titleTransitionEnabled = this.shouldEnableTransition
+      this.$nextTick(() => {
+        this.title = newValue
+      })
+    },
+    toBackInRealtime (newValue) {
+      this.toBackTransitionEnabled = this.shouldEnableTransition
+      this.$nextTick(() => {
+        this.toBack = newValue
+      })
     }
+  },
+  created () {
+    // - Computed properties are not available in data().
+    // - Their values are necessary for the first rendering.
+    // - beforeMount() is not called during server-side rendering.
+    // Therefore the following "initial values" must be set in created().
+    this.shareablePage = this.shareablePageInRealtime
+    this.title = this.titleInRealtime
+    this.toBack = this.toBackInRealtime
   },
   methods: {
     share (e) {

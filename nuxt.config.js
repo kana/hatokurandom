@@ -32,6 +32,7 @@ export default {
   ],
   plugins: [
     '~/plugins/fontawesome',
+    '~/plugins/preloaded-components',
     '~/plugins/router',
     '~/plugins/vue2-touch-events',
     { src: '~/plugins/hooks.client', mode: 'client' }
