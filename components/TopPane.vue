@@ -94,7 +94,7 @@ export default {
       return ss.join('')
     },
     shouldEnableTransition () {
-      return this.$route.params.transition
+      return !!this.$route.params.transition
     },
     titleInRealtime () {
       return titleFromPid(this.pid)
