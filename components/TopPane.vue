@@ -8,7 +8,7 @@
       </transitioned-link>
     </fade-in-out>
     <div class="title">
-      <transition :name="titleTransition">
+      <transition :name="titleTransitionName" :mode="titleTransitionMode">
         <div :key="title" class="text">
           <span>{{ title }}</span>
         </div>
@@ -46,7 +46,9 @@ export default {
     return {
       shareablePage: undefined,
       shareablePageTransitionEnabled: false,
-      titleTransitionBase: 'shift-forward',
+      title: undefined,
+      titleTransitionDirection: 'shift-forward',
+      titleTransitionEnabled: false,
       toBack: undefined,
       toBackTransitionEnabled: false
     }
@@ -94,12 +96,17 @@ export default {
     shouldEnableIconTransition () {
       return this.$route.params.transition
     },
-    title () {
+    titleInRealtime () {
       return titleFromPid(this.pid)
     },
-    titleTransition () {
-      const byTap = this.$route.params.transition
-      return byTap ? this.titleTransitionBase : 'none'
+    titleTransitionName () {
+      return this.titleTransitionEnabled ? this.titleTransitionDirection : 'none'
+    },
+    titleTransitionMode () {
+      // "out-in" must be used to avoid flickring in title area.  Because the
+      // default mode renders both the old and the new elements at the same
+      // time, and it results flickring.
+      return this.titleTransitionEnabled ? undefined : 'out-in'
     },
     toBackInRealtime () {
       return this.$store.getters['history/backPath'](this.pid)
@@ -107,7 +114,7 @@ export default {
   },
   watch: {
     pid (newPid, oldPid) {
-      this.titleTransitionBase = isForwardTransitionByPids(newPid, oldPid)
+      this.titleTransitionDirection = isForwardTransitionByPids(newPid, oldPid)
         ? 'shift-forward'
         : 'shift-backward'
     },
@@ -115,6 +122,12 @@ export default {
       this.shareablePageTransitionEnabled = this.shouldEnableIconTransition
       this.$nextTick(() => {
         this.shareablePage = newValue
+      })
+    },
+    titleInRealtime (newValue) {
+      this.titleTransitionEnabled = this.shouldEnableIconTransition
+      this.$nextTick(() => {
+        this.title = newValue
       })
     },
     toBackInRealtime (newValue) {
@@ -130,6 +143,7 @@ export default {
     // - beforeMount() is not called during server-side rendering.
     // Therefore the following "initial values" must be set in created().
     this.shareablePage = this.shareablePageInRealtime
+    this.title = this.titleInRealtime
     this.toBack = this.toBackInRealtime
   },
   methods: {
