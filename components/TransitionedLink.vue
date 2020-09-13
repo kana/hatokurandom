@@ -5,8 +5,7 @@
 </template>
 
 <script>
-import { nameFromPath } from '~/lib/router'
-import { pidFromPath } from '~/lib/utils'
+import { toFromPath } from '~/lib/router'
 
 export default {
   props: {
@@ -17,15 +16,7 @@ export default {
   },
   computed: {
     normalizedTo () {
-      const name = nameFromPath(this.path)
-      const pid = name !== 'pid' ? undefined : pidFromPath(this.path)
-      return {
-        name,
-        params: {
-          pid,
-          transition: true
-        }
-      }
+      return toFromPath(this.path, { transition: true })
     }
   }
 }
