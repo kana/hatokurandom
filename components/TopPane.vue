@@ -14,7 +14,7 @@
         </div>
       </transition>
     </div>
-    <fade-in-out :enabled="shouldEnableIconTransition">
+    <fade-in-out :enabled="shareablePageTransitionEnabled">
       <a
         v-if="shareablePage"
         :href="shareUrl"
@@ -44,6 +44,8 @@ export default {
   },
   data () {
     return {
+      shareablePage: undefined,
+      shareablePageTransitionEnabled: false,
       titleTransitionBase: 'shift-forward',
       toBack: undefined,
       toBackTransitionEnabled: false
@@ -56,7 +58,7 @@ export default {
     pid () {
       return pidFromPath(this.$route.path)
     },
-    shareablePage () {
+    shareablePageInRealtime () {
       return isCardListPid(this.pid)
     },
     shareableSupply () {
@@ -109,6 +111,12 @@ export default {
         ? 'shift-forward'
         : 'shift-backward'
     },
+    shareablePageInRealtime (newValue) {
+      this.shareablePageTransitionEnabled = this.shouldEnableIconTransition
+      this.$nextTick(() => {
+        this.shareablePage = newValue
+      })
+    },
     toBackInRealtime (newValue) {
       this.toBackTransitionEnabled = this.shouldEnableIconTransition
       this.$nextTick(() => {
@@ -121,6 +129,7 @@ export default {
     // - Their values are necessary for the first rendering.
     // - beforeMount() is not called during server-side rendering.
     // Therefore the following "initial values" must be set in created().
+    this.shareablePage = this.shareablePageInRealtime
     this.toBack = this.toBackInRealtime
   },
   methods: {
