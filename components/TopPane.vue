@@ -93,7 +93,7 @@ export default {
       ]
       return ss.join('')
     },
-    shouldEnableIconTransition () {
+    shouldEnableTransition () {
       return this.$route.params.transition
     },
     titleInRealtime () {
@@ -119,19 +119,19 @@ export default {
         : 'shift-backward'
     },
     shareablePageInRealtime (newValue) {
-      this.shareablePageTransitionEnabled = this.shouldEnableIconTransition
+      this.shareablePageTransitionEnabled = this.shouldEnableTransition
       this.$nextTick(() => {
         this.shareablePage = newValue
       })
     },
     titleInRealtime (newValue) {
-      this.titleTransitionEnabled = this.shouldEnableIconTransition
+      this.titleTransitionEnabled = this.shouldEnableTransition
       this.$nextTick(() => {
         this.title = newValue
       })
     },
     toBackInRealtime (newValue) {
-      this.toBackTransitionEnabled = this.shouldEnableIconTransition
+      this.toBackTransitionEnabled = this.shouldEnableTransition
       this.$nextTick(() => {
         this.toBack = newValue
       })
