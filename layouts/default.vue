@@ -15,6 +15,7 @@
 <script>
 import BottomPane from '~/components/BottomPane'
 import TopPane from '~/components/TopPane'
+import { updateLastTouchTime } from '~/lib/lasttouch'
 import { toFromPath } from '~/lib/router'
 import { pidFromPath } from '~/lib/utils'
 
@@ -44,6 +45,12 @@ export default {
       }
       return undefined
     }
+  },
+  mounted () {
+    window.addEventListener('touchstart', updateLastTouchTime, { passive: true })
+  },
+  beforeDestroy () {
+    window.removeEventListener('touchstart', updateLastTouchTime, { passive: true })
   },
   methods: {
     isTouchStartedInGestureableArea (e) {
