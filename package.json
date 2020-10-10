@@ -30,11 +30,11 @@
     "vue2-touch-events": "^2.3.2"
   },
   "devDependencies": {
-    "@nuxtjs/eslint-config": "^2.0.2",
+    "@nuxtjs/eslint-config": "^3.1.0",
     "@nuxtjs/eslint-module": "^3.0.0",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.1.0",
-    "eslint": "^6.8.0",
+    "eslint": "^7.11.0",
     "eslint-config-standard": "^14.1.1",
     "eslint-plugin-import": ">=2.22.1",
     "eslint-plugin-node": ">=11.1.0",
