@@ -27,7 +27,7 @@
     "lodash-es": "^4.17.15",
     "nuxt": "^2.14.7",
     "sharp": "^0.26.3",
-    "vue2-touch-events": "^2.3.2"
+    "vue2-touch-events": "^3.0.1"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^4.0.0",
