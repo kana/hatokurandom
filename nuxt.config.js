@@ -75,6 +75,7 @@ export default {
       }
     }
   },
+  createRequire: 'jiti',
   redirect: [
     // For users who add the old offline version to home screen.
     { from: '^/offline$', to: '/', statusCode: 301 }
