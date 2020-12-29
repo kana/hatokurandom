@@ -20,7 +20,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
-    "@fortawesome/vue-fontawesome": "^2.0.0",
+    "@fortawesome/vue-fontawesome": "^2.0.2",
     "@nuxtjs/google-analytics": "^2.4.0",
     "@nuxtjs/redirect-module": "^0.3.1",
     "fastpriorityqueue": "^0.6.3",
