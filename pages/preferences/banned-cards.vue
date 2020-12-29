@@ -10,6 +10,7 @@
         :key="xcard.cid"
         :xcard="xcard"
         editable
+        @toggle-dropped="onToggleDropped(xcard)"
       />
       <omni-list-item v-if="bannedXcards.length === 0" class="divider">
         未設定
@@ -27,6 +28,7 @@
           :key="xcard.cid"
           :xcard="xcard"
           editable
+          @toggle-dropped="onToggleDropped(xcard)"
         />
       </omni-list>
     </template>
@@ -80,6 +82,9 @@ export default {
     }
   },
   methods: {
+    onToggleDropped (xcard) {
+      xcard.dropped = !xcard.dropped
+    },
     onUpdateXcards () {
       this.$store.dispatch('options/update', {
         key: 'excludeBannedCardsByUser',

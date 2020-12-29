@@ -31,6 +31,7 @@
           :random="special.random"
           :xcard="xcard"
           @change-this-card="onChangeThisCard(xcard)"
+          @toggle-dropped="onToggleDropped(xcard)"
         />
         <omni-list-item v-if="sortedXcardsIncluded.length === 0" key="divider" class="divider">
           カードを選んでください。
@@ -44,7 +45,13 @@
       </block-title>
       <omni-list>
         <transition-group name="height" tag="div">
-          <card-list-item v-for="xcard in sortedXcardsExcluded" :key="xcard.cid" :editable="special.editable" :xcard="xcard" />
+          <card-list-item
+            v-for="xcard in sortedXcardsExcluded"
+            :key="xcard.cid"
+            :editable="special.editable"
+            :xcard="xcard"
+            @toggle-dropped="onToggleDropped(xcard)"
+          />
         </transition-group>
       </omni-list>
     </template>
@@ -207,6 +214,9 @@ export default {
         eventAction: 'change-this-card',
         eventLabel: changedXcard.name
       })
+    },
+    onToggleDropped (xcard) {
+      xcard.dropped = !xcard.dropped
     },
     onUpdateXcards () {
       this.$store.commit('supply/setPid', this.sharePid)
