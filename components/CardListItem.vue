@@ -13,7 +13,12 @@
       class="main"
     >
       <template v-if="editable">
-        <input v-show="false" v-model="xcard.dropped" type="checkbox">
+        <input
+          v-show="false"
+          :value="xcard.dropped"
+          type="checkbox"
+          @change="$emit('toggle-dropped')"
+        >
         <font-awesome-icon class="check" icon="check" size="xs" />
       </template>
       <span class="cost">{{ xcard.cost }}</span>

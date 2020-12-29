@@ -20,6 +20,18 @@ export default {
     PageContainer,
     PageList
   },
+  validate ({ params }) {
+    return params.pid === 'supplies:log' ||
+      isCardListPid(params.pid) ||
+      isPageListPid(params.pid)
+  },
+  transition,
+  head () {
+    return {
+      title: titleTagValueFromPid(this.$route.params.pid),
+      meta: ogpMetaFromPid(this.$route.params.pid)
+    }
+  },
   computed: {
     pid () {
       return this.$route.params.pid
@@ -28,18 +40,6 @@ export default {
   methods: {
     isCardListPid,
     isPageListPid
-  },
-  head () {
-    return {
-      title: titleTagValueFromPid(this.$route.params.pid),
-      meta: ogpMetaFromPid(this.$route.params.pid)
-    }
-  },
-  transition,
-  validate ({ params }) {
-    return params.pid === 'supplies:log' ||
-      isCardListPid(params.pid) ||
-      isPageListPid(params.pid)
   }
 }
 </script>

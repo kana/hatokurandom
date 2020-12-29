@@ -80,6 +80,11 @@ export default {
     PageContainer,
     TransitionedLink
   },
+  transition,
+  head: {
+    title: titleTagValueFromPid('about'),
+    meta: ogpMetaFromPid('about')
+  },
   computed: {
     isRunningInStandaloneMode () {
       return process.browser && navigator.standalone
@@ -95,12 +100,7 @@ export default {
     reload () {
       location.href = `${this.$route.path}?updateFrom=${this.version}`
     }
-  },
-  head: {
-    title: titleTagValueFromPid('about'),
-    meta: ogpMetaFromPid('about')
-  },
-  transition
+  }
 }
 </script>
 

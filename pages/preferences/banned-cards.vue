@@ -10,6 +10,7 @@
         :key="xcard.cid"
         :xcard="xcard"
         editable
+        @toggle-dropped="onToggleDropped(xcard)"
       />
       <omni-list-item v-if="bannedXcards.length === 0" class="divider">
         未設定
@@ -27,6 +28,7 @@
           :key="xcard.cid"
           :xcard="xcard"
           editable
+          @toggle-dropped="onToggleDropped(xcard)"
         />
       </omni-list>
     </template>
@@ -49,6 +51,7 @@ export default {
     OmniListItem,
     PageContainer
   },
+  transition,
   data () {
     const bannedCidSet = new Set(this.$store.state.options.excludeBannedCardsByUser)
     return {
@@ -57,6 +60,10 @@ export default {
         dropped: bannedCidSet.has(card.cid)
       }))
     }
+  },
+  head: {
+    title: titleTagValueFromPid('preferences/banned-cards'),
+    meta: ogpMetaFromPid('preferences/banned-cards')
   },
   computed: {
     bannedXcards () {
@@ -75,18 +82,16 @@ export default {
     }
   },
   methods: {
+    onToggleDropped (xcard) {
+      xcard.dropped = !xcard.dropped
+    },
     onUpdateXcards () {
       this.$store.dispatch('options/update', {
         key: 'excludeBannedCardsByUser',
         value: this.xcards.filter(xcard => xcard.dropped).map(xcard => xcard.cid)
       })
     }
-  },
-  head: {
-    title: titleTagValueFromPid('preferences/banned-cards'),
-    meta: ogpMetaFromPid('preferences/banned-cards')
-  },
-  transition
+  }
 }
 </script>
 

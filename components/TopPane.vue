@@ -82,15 +82,17 @@ export default {
         ? `ハトクラの${this.title}`
         : `ハトクラなう。今回のサプライ: ${usedCardNames.join(', ')}`
       const optionSharingTool = 'web_intent' // TODO
-      const ss = optionSharingTool === 'web_intent' ? [
-        'https://twitter.com/intent/tweet',
-        '?url=', encodeURIComponent(permalink),
-        '&text=', encodeURIComponent(`${baseMessage} #hatokura`),
-        '&related=', encodeURIComponent('HeartofCrown')
-      ] : [
-        'twitter://post?message=',
-        encodeURIComponent(`${baseMessage} #hatokura ${permalink}`)
-      ]
+      const ss = optionSharingTool === 'web_intent'
+        ? [
+            'https://twitter.com/intent/tweet',
+            '?url=', encodeURIComponent(permalink),
+            '&text=', encodeURIComponent(`${baseMessage} #hatokura`),
+            '&related=', encodeURIComponent('HeartofCrown')
+          ]
+        : [
+            'twitter://post?message=',
+            encodeURIComponent(`${baseMessage} #hatokura ${permalink}`)
+          ]
       return ss.join('')
     },
     shouldEnableTransition () {
