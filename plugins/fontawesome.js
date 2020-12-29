@@ -29,4 +29,4 @@ library.add(
 )
 
 // Register the component globally
-Vue.component('font-awesome-icon', FontAwesomeIcon)
+Vue.component('FontAwesomeIcon', FontAwesomeIcon)

@@ -229,9 +229,9 @@ export default {
     rechooseXcards (changedXcard) {
       const optionsOnChangedXcard = changedXcard
         ? {
-          changedXcard,
-          mustXcards: this.xcards.filter(xcard => xcard.cid !== changedXcard.cid)
-        }
+            changedXcard,
+            mustXcards: this.xcards.filter(xcard => xcard.cid !== changedXcard.cid)
+          }
         : {}
       return xcardsFromPid(this.pid, {
         ...this.$store.state.options,

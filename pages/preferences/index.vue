@@ -27,7 +27,7 @@
     </block-title>
 
     <preference-switch v-model="excludeBannedCardsForAll" title="公式推奨バランスにする">
-      <template v-slot:note>
+      <template #note>
         以下のカードは出現しません:
         <span class="card-name">埋もれた財宝</span>
         <span class="card-name">買収工作</span>
@@ -36,7 +36,7 @@
     </preference-switch>
 
     <preference-switch v-model="excludeBannedCardsForFairy" title="フェアリーガーデンと併用非推奨のカードを除外する">
-      <template v-slot:note>
+      <template #note>
         フェアリーガーデンのカードと以下のカードは同時に出現しません:
         全ての防衛カード、および
         <span class="card-name">破城槌</span>
@@ -52,7 +52,7 @@
     </preference-switch>
 
     <preference-switch v-model="excludeBannedCardsForStar" title="星天前路と併用非推奨のカードを除外する">
-      <template v-slot:note>
+      <template #note>
         星天前路のカードと以下のカードは同時に出現しません:
         「フェアリーガーデンと併用非推奨のカード」一式、および
         <span class="card-name">割り符</span>
@@ -60,7 +60,7 @@
     </preference-switch>
 
     <preference-switch v-model="excludeCardsWithConditionalActivatedAbility" title="条件起動能力を持つカードを除外する">
-      <template v-slot:note>
+      <template #note>
         以下のカードは出現しません:
         <span class="card-name">灯台</span>
         <span class="card-name">義賊</span>
@@ -84,21 +84,21 @@
     </block-title>
 
     <preference-switch v-model="includeAllCosts" title="各コスト帯のカードを含める">
-      <template v-slot:note>
+      <template #note>
         各コスト帯のカードを1枚以上含めるようにします。
         ただし6コスト以上のカードは5コスト帯として扱います。
       </template>
     </preference-switch>
 
     <preference-switch v-model="includeLink2" title="リンク2を適宜含める">
-      <template v-slot:note>
+      <template #note>
         サプライにリンク0のカードが含まれる場合、
         リンク2のカードを1枚は含めるようにします。
       </template>
     </preference-switch>
 
     <preference-switch v-model="avoidRecentlyUsedCards" title="最近使用したカードをなるべく避ける">
-      <template v-slot:note>
+      <template #note>
         <transitioned-link path="/supplies:log">
           最近使用したサプライ
         </transitioned-link>に含まれるカードの出現確率を下げます。使用回数が多いほど出現確率は下がります。ただし出現確率が完全に0になることはありません。
