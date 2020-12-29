@@ -49,6 +49,7 @@ export default {
     OmniListItem,
     PageContainer
   },
+  transition,
   data () {
     const bannedCidSet = new Set(this.$store.state.options.excludeBannedCardsByUser)
     return {
@@ -57,6 +58,10 @@ export default {
         dropped: bannedCidSet.has(card.cid)
       }))
     }
+  },
+  head: {
+    title: titleTagValueFromPid('preferences/banned-cards'),
+    meta: ogpMetaFromPid('preferences/banned-cards')
   },
   computed: {
     bannedXcards () {
@@ -81,12 +86,7 @@ export default {
         value: this.xcards.filter(xcard => xcard.dropped).map(xcard => xcard.cid)
       })
     }
-  },
-  head: {
-    title: titleTagValueFromPid('preferences/banned-cards'),
-    meta: ogpMetaFromPid('preferences/banned-cards')
-  },
-  transition
+  }
 }
 </script>
 
