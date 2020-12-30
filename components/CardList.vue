@@ -78,7 +78,7 @@ import OmniList from '~/components/OmniList'
 import OmniListItem from '~/components/OmniListItem'
 import ShuffleButton from '~/components/ShuffleButton'
 import EventBus from '~/lib/eventbus'
-import { cardFromCid, isPredefinedSupplyPid, parseSpecialPid, pidFromSid, rsidFromXcards, sortXcards, xcardsFromPid, xcardsAndMetaFromRsid } from '~/lib/utils'
+import { cardFromCid, isPredefinedSupplyPid, parseSpecialSupplyPid, pidFromSid, rsidFromXcards, sortXcards, xcardsFromPid, xcardsAndMetaFromRsid } from '~/lib/utils'
 
 export default {
   name: 'CardList',
@@ -173,7 +173,7 @@ export default {
       return this.sortedXcards.filter(xcard => !xcard.dropped)
     },
     special () {
-      return parseSpecialPid(this.pid)
+      return parseSpecialSupplyPid(this.pid)
     }
   },
   watch: {

@@ -1,6 +1,6 @@
 import { URL } from 'url'
 import sharp from 'sharp'
-import { LOCATION_ORIGIN, parseSpecialPid, pidFromPath, sortXcards, xcardsFromPid } from '../lib/utils'
+import { LOCATION_ORIGIN, parseSpecialSupplyPid, pidFromPath, sortXcards, xcardsFromPid } from '../lib/utils'
 
 // Handler for /ogp/supply:{sid}
 export default async function (req, res, next) {
@@ -8,7 +8,7 @@ export default async function (req, res, next) {
 
   // Note that pathname doesn't contain "/ogp".
   const pid = pidFromPath(pathname)
-  const parsed = parseSpecialPid(pid)
+  const parsed = parseSpecialSupplyPid(pid)
   if (parsed.random || parsed.editable) {
     return notFound(res)
   }

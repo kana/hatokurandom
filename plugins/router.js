@@ -1,11 +1,11 @@
 import EventBus from '~/lib/eventbus'
 import { setUp as setUpLibRouter } from '~/lib/router'
-import { parseSpecialPid, pidFromPath } from '~/lib/utils'
+import { parseSpecialSupplyPid, pidFromPath } from '~/lib/utils'
 
 export default ({ app }) => {
   app.router.beforeEach((to, from, next) => {
-    const f = parseSpecialPid(pidFromPath(from.path))
-    const t = parseSpecialPid(pidFromPath(to.path))
+    const f = parseSpecialSupplyPid(pidFromPath(from.path))
+    const t = parseSpecialSupplyPid(pidFromPath(to.path))
     if (f.random && !t.random) {
       EventBus.$emit('leaving-from-randomizer-page')
     }
