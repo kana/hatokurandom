@@ -7,6 +7,7 @@
     :class="{ dropped: xcard.dropped, [gesture]: true }"
     class="line"
     @touchmove.native="onTouchMove"
+    @dblclick.native="onDblClick"
   >
     <div
       :style="{ transform: `translateX(-${dx}px)` }"
@@ -85,6 +86,9 @@ export default {
     }
   },
   methods: {
+    onDblClick () {
+      this.$router.push(`/cards/${this.xcard.cid}`)
+    },
     onTouchStart () {
       if (!this.allowChangeThisCard) {
         return
