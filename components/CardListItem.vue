@@ -6,8 +6,8 @@
     :clickable="editable"
     :class="{ dropped: xcard.dropped, [gesture]: true }"
     class="line"
+    @click="onClick"
     @touchmove.native="onTouchMove"
-    @dblclick.native="onDblClick"
   >
     <div
       :style="{ transform: `translateX(-${dx}px)` }"
@@ -18,7 +18,7 @@
           v-show="false"
           :value="xcard.dropped"
           type="checkbox"
-          @change="$emit('toggle-dropped')"
+          @change="toggleDropped"
         >
         <font-awesome-icon class="check" icon="check" size="xs" />
       </template>
@@ -71,7 +71,8 @@ export default {
   data () {
     return {
       dx: 0,
-      gesture: 'start'
+      gesture: 'start',
+      queuedClickTimeoutID: undefined
     }
   },
   computed: {
@@ -86,8 +87,24 @@ export default {
     }
   },
   methods: {
-    onDblClick () {
+    handleDoubleClick () {
       this.$router.push(`/cards/${this.xcard.cid}`)
+    },
+    handleSingleClick () {
+      this.toggleDropped()
+    },
+    onClick () {
+      // Treat two clicks occured within 250 ms as a double click event.
+      if (this.queuedClickTimeoutID === undefined) {
+        this.queuedClickTimeoutID = setTimeout(() => {
+          this.queuedClickTimeoutID = undefined
+          this.handleSingleClick()
+        }, 250)
+      } else {
+        clearTimeout(this.queuedClickTimeoutID)
+        this.queuedClickTimeoutID = undefined
+        this.handleDoubleClick()
+      }
     },
     onTouchStart () {
       if (!this.allowChangeThisCard) {
@@ -155,6 +172,9 @@ export default {
       if (this.gesture === 'recognized') {
         this.$emit('change-this-card')
       }
+    },
+    toggleDropped () {
+      this.$emit('toggle-dropped')
     }
   }
 }
