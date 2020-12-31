@@ -12,11 +12,11 @@ export default {
 <style scoped>
 
 .mode::before {
-  content: "「";
+  content: "『";
 }
 
 .mode::after {
-  content: "」";
+  content: "』";
 }
 
 </style>
