@@ -88,7 +88,7 @@ export default {
   },
   methods: {
     handleDoubleClick () {
-      this.$router.push(`/cards/${this.xcard.cid}`)
+      this.$router.push({ name: 'cards-cid', params: { cid: this.xcard.cid, transition: true } })
     },
     handleSingleClick () {
       this.toggleDropped()
