@@ -32,7 +32,15 @@
         </tr>
         <tr>
           <th>テキスト</th>
-          <td>XXX</td>
+          <td class="cardText">
+            {{/* eslint-disable vue/no-v-html */}}
+            <div
+              v-for="html in cardTextHtmls"
+              :key="html"
+              v-html="html"
+            />
+            {{/* eslint-enable vue/no-v-html */}}
+          </td>
         </tr>
       </tbody>
     </table>
@@ -41,7 +49,7 @@
 
 <script>
 import PageContainer from '~/components/PageContainer'
-import { cardFromCid, expansionFromEid, pidFromPath, ogpMetaFromPid, titleTagValueFromPid, transition } from '~/lib/utils'
+import { cardFromCid, cardTextHtmlsFromCid, expansionFromEid, pidFromPath, ogpMetaFromPid, titleTagValueFromPid, transition } from '~/lib/utils'
 
 export default {
   components: {
@@ -51,6 +59,11 @@ export default {
     return cardFromCid(parseInt(params.cid, 10)) !== undefined
   },
   transition,
+  data () {
+    return {
+      cardTextHtmls: ['...']
+    }
+  },
   head () {
     const pid = pidFromPath(this.$route.path)
     return {
@@ -75,9 +88,22 @@ export default {
         R: 'レア'
       }[this.card.rarity] || '?'
     }
+  },
+  async mounted () {
+    this.cardTextHtmls = await cardTextHtmlsFromCid(this.cid)
   }
 }
 </script>
 
 <style scoped>
+
+.cardText >>> .coin {
+  background: #CCCC99;
+  border-radius: 1em;
+  display: inline-block;
+  height: 1em;
+  min-width: 1em;
+  text-align: center;
+}
+
 </style>
