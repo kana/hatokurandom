@@ -1,0 +1,18 @@
+{
+  "農村": [
+    "<coin>1</coin>"
+  ],
+  "見習い次女": [
+    "<succession-point>-2</succession-point>"
+  ],
+  "錬金術師": [
+    "カードを2枚引く。"
+  ],
+  "交易船": [
+    "以下の中から一つを選ぶ。\n「<coin>2</coin>」\n「カードを2枚引く。」"
+  ],
+  "銀行": [
+    "<coin>X</coin>",
+    "Xはあなたがこのターンにプレイした<card-name>都市</card-name><card-name>大都市</card-name><card-name>銀行</card-name>の枚数に1を加えた数に等しい。"
+  ]
+}
