@@ -32,14 +32,8 @@
         </tr>
         <tr>
           <th>テキスト</th>
-          <td class="cardText">
-            {{/* eslint-disable vue/no-v-html */}}
-            <div
-              v-for="html in cardTextHtmls"
-              :key="html"
-              v-html="html"
-            />
-            {{/* eslint-enable vue/no-v-html */}}
+          <td>
+            <component :is="cardTextComponent" />
           </td>
         </tr>
       </tbody>
@@ -49,7 +43,7 @@
 
 <script>
 import PageContainer from '~/components/PageContainer'
-import { cardFromCid, cardTextHtmlsFromCid, expansionFromEid, pidFromPath, ogpMetaFromPid, titleTagValueFromPid, transition } from '~/lib/utils'
+import { cardFromCid, cardTextComponentFromCid, expansionFromEid, pidFromPath, ogpMetaFromPid, titleTagValueFromPid, transition } from '~/lib/utils'
 
 export default {
   components: {
@@ -61,7 +55,7 @@ export default {
   transition,
   data () {
     return {
-      cardTextHtmls: ['...']
+      cardTextComponent: { render (h) { return h('span', '...') } }
     }
   },
   head () {
@@ -90,7 +84,7 @@ export default {
     }
   },
   async mounted () {
-    this.cardTextHtmls = await cardTextHtmlsFromCid(this.cid)
+    this.cardTextComponent = await cardTextComponentFromCid(this.cid)
   }
 }
 </script>
