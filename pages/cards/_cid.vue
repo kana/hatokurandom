@@ -1,6 +1,6 @@
 <template>
   <page-container>
-    <table>
+    <table class="card-detail">
       <tbody>
         <tr>
           <th>名前</th>
@@ -90,4 +90,15 @@ export default {
 </script>
 
 <style scoped>
+
+.card-detail {
+  margin: 0 1ex;
+}
+
+.card-detail th {
+  text-align: left;
+  vertical-align: text-top;
+  white-space: nowrap;
+}
+
 </style>
