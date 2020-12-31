@@ -174,7 +174,9 @@ export default {
       }
     },
     toggleDropped () {
-      this.$emit('toggle-dropped')
+      if (this.editable) {
+        this.$emit('toggle-dropped')
+      }
     }
   }
 }
