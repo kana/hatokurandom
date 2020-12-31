@@ -90,14 +90,4 @@ export default {
 </script>
 
 <style scoped>
-
-.cardText >>> .coin {
-  background: #CCCC99;
-  border-radius: 1em;
-  display: inline-block;
-  height: 1em;
-  min-width: 1em;
-  text-align: center;
-}
-
 </style>
