@@ -6,7 +6,7 @@
     :clickable="editable"
     :class="{ dropped: xcard.dropped, [gesture]: true }"
     class="line"
-    @click="onClick"
+    @click.native.prevent="onClick"
     @touchmove.native="onTouchMove"
   >
     <div
