@@ -4445,10 +4445,10 @@ fast-levenshtein@^2.0.6:
   resolved "https://registry.yarnpkg.com/fast-levenshtein/-/fast-levenshtein-2.0.6.tgz#3d8a5c66883a16a30ca8643e851f19baa7797917"
   integrity sha1-PYpcZog6FqMMqGQ+hR8Zuqd5eRc=
 
-fastpriorityqueue@^0.6.4:
-  version "0.6.4"
-  resolved "https://registry.yarnpkg.com/fastpriorityqueue/-/fastpriorityqueue-0.6.4.tgz#7b9e315b47df6badcc2480e5a2d1c2f975971f80"
-  integrity sha512-kQRqFEv6UATZAH1LcNU8TJNRJs456TPohsvX6S0k5NuJKKBDfVN9UadxnHCv0KlykdYhW8xXyQmV9QejkWjluA==
+fastpriorityqueue@^0.7.1:
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/fastpriorityqueue/-/fastpriorityqueue-0.7.1.tgz#740c02b2eba4006371822fb436d7e14ca075591c"
+  integrity sha512-XJ+vbiXYjmxc32VEpXScAq7mBg3vqh90OjLfiuyQ0zAtXpgICdVgGjKHep1kLGQufyuCBiEYpl6ZKcw79chTpA==
   dependencies:
     minimist "^1.2.5"
 
