@@ -26,7 +26,7 @@
     "fastpriorityqueue": "^0.7.1",
     "lodash-es": "^4.17.21",
     "nuxt": "^2.15.4",
-    "sharp": "^0.28.1",
+    "sharp": "^0.28.2",
     "vue2-touch-events": "^3.2.2"
   },
   "devDependencies": {
