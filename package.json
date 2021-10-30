@@ -5,7 +5,7 @@
   "author": "Kana Natsuno",
   "private": true,
   "engines": {
-    "node": "14.x",
+    "node": "16.x",
     "yarn": "1.x"
   },
   "scripts": {
