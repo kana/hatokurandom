@@ -143,6 +143,7 @@ function mapOptionStore (keys) {
 }
 
 export default {
+  name: 'PagesPreferencesIndex',
   components: {
     BlockTitle,
     LinkButtonListItem,

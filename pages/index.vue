@@ -10,6 +10,7 @@ import PageList from '~/components/PageList'
 import { isCardListPid, isPageListPid, ogpMetaFromPid, titleTagValueFromPid, transition } from '~/lib/utils'
 
 export default {
+  name: 'PagesIndex',
   components: {
     PageContainer,
     PageList

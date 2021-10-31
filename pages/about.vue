@@ -72,6 +72,7 @@ import TransitionedLink from '~/components/TransitionedLink'
 import { ogpMetaFromPid, titleTagValueFromPid, transition } from '~/lib/utils'
 
 export default {
+  name: 'PagesAbout',
   components: {
     ExternalLink,
     LinkButtonListItem,

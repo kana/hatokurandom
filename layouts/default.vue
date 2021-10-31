@@ -20,6 +20,7 @@ import { toFromPath } from '~/lib/router'
 import { pidFromPath } from '~/lib/utils'
 
 export default {
+  name: 'LayoutsDefault',
   components: {
     BottomPane,
     TopPane
